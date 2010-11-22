@@ -1,4 +1,5 @@
 require 'rack/session/abstract/id'
+require 'test/unit'
 module ActionController #:nodoc:
   class TestRequest < Request #:nodoc:
     attr_accessor :cookies, :session_options
