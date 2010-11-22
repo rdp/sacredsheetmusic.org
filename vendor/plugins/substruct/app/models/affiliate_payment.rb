@@ -34,7 +34,7 @@ class AffiliatePayment < ActiveRecord::Base
   
   # Gets a CSV string that represents an order list.
   def self.get_csv_for(payment_list)
-    require 'fastercsv'
+    require 'fastercsv' if RUBY_VERSION < '1.9.0'
     csv_string = FasterCSV.generate do |csv|
       payment_list.each do |p|
         affil = p.affiliate

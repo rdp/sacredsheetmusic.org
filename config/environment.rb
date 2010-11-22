@@ -20,8 +20,9 @@ Rails::Initializer.run do |config|
   config.action_controller.session_store = :active_record_store
   
   config.gem 'RedCloth'
-  config.gem 'fastercsv'
+  config.gem 'fastercsv' if RUBY_VERSION < '1.9.0'
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem 'mini_magick', :version => '1.3.3'
   config.gem 'ezcrypto'
+  config.gem 'subexec'
 end

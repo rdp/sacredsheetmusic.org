@@ -220,6 +220,7 @@ module ActiveRecord
 
       private
       def new_connection
+        p 'sending', spec.adapter_method
         ActiveRecord::Base.send(spec.adapter_method, spec.config)
       end
 
