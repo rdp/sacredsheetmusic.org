@@ -1,0 +1,3 @@
+[submodule "vendor/plugins"]
+	path = vendor/plugins
+	url = https://rdp@github.com/rdp/substruct-fork.git
