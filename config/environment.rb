@@ -45,3 +45,4 @@ if RUBY_VERSION >= '1.9.0'
   require 'csv'
   FasterCSV = CSV
 end
+Substruct.override_ssl_production_mode = true
