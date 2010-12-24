@@ -2,11 +2,19 @@
 v 0
 
   it needs to be able to download from the product page
+    if I create a product, then go to that product's page,  it should display
+    
+    
+    and it has a download, it should show a link to that download
+    if i click on that link, it should give me a 200 [?]
+    
+    
   it needs to have better terminology for the show product page
   substruct -> M4M pic
   link to cart needs to go
   all products -> all songs
   track an order needs to go
+  no "on sale"
 
 
 they need to be able to create an account
