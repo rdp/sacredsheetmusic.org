@@ -7,7 +7,7 @@
         <li>
           <%= 
             link_to(
-              dl.product.name,
+            dl.filename.split('/')[-1],
               :controller => 'customers',
               :action => 'download_for_order',
               :params => {
