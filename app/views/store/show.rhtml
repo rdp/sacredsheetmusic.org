@@ -5,7 +5,7 @@
 		<span class="info"><%= @product.code %></span>
 	</h1>
 	<ul class="navigation secondary">
-    <li><a href="/store">Back to store index</a></li>
+    <li><a href="/store">Back to index</a></li>
   </ul>
 	<% if @default_image %>
 		<div style="float:left; margin:20px; width: 200px;">
@@ -50,6 +50,7 @@
 </div>
 
 <div id="right">
+<!--
 	<div class="price"><%= sub_number_to_currency(@product.display_price) %></div>
 	
 	<% 
@@ -112,14 +113,13 @@
 	  # item in stock
 	  end
 	%>
-	
+-->
 	<div align="center" style="margin-top:10px;">
 		<p>
-		Not ready to buy yet?
 		<br/>
 		<%= 
 			link_to(
-				'Add this item to your wishlist',
+				'Add this to your download queue',
 				{
 					:controller => 'customers',
 					:action => 'add_to_wishlist',
