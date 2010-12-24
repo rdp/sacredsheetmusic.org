@@ -2,6 +2,7 @@ $: << '.'
 #require 'faster_require'
 require 'rubygems'
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fileutils'
 
 # note that before running these, you'll need to propagate the test db, like
 # $ rake db:create RAILS_ENV=test
@@ -18,7 +19,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class StoreControllerTest < ActionController::TestCase
   
-  
   def test_matthew_is_cool
     assert true
     Product.destroy_all
@@ -31,9 +31,22 @@ class StoreControllerTest < ActionController::TestCase
   
   def test_download_link
     p = test_matthew_is_cool
-    p.downloads << Download.new('filename' => 'abcdef.txt', 'content_type' => 'image/jpeg', 'size' => 1024)
+    p Dir.pwd
+    dl = Download.new('filename' => 'abcdef.txt', 'content_type' => 'image/jpeg', 'size' => 1024)
+    p.downloads << dl
+    # create it
+    FileUtils.mkdir_p(File.dirname dl.full_filename)
+    FileUtils.touch dl.full_filename
     get :show, :id => p.code
     assert_select "body", /abcdef/
+    # how to test? assert_select "body", /download_file/
+    dl
+  end
+  
+  def test_can_download_without_logging_in
+    dl = test_download_link
+    get :download_file, :download_id => dl.id
+    assert_response :success
   end
   
 end
