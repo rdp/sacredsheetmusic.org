@@ -1,12 +1,33 @@
 
-v 0
-
-
+upload link -> "email us a pdf, .xml file if desired to this email"
 
 they need to be able to create an account
 they need to be able to view...the admin interface for just product
   it needs to show them just their products
+  checkbox "I am authorized"
+  
+link to a "related links" page
   
 some terminology needs to change.
 
-it needs to show just notes.
+can upload .xml
+
+can view the pdf as an image
+
+can email with the contact us
+
+left side generic tags, with expand out when selected.
+
+new logo
+
+new color scheme
+
+new full background image [?]
+
+grouping for the "full store" view based on...top level tags.
+
+search box fixed
+
+index: show arranger
+
+composer, arranger fields to the product
