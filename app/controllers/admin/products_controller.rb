@@ -56,7 +56,7 @@ class Admin::ProductsController < Admin::BaseController
             begin
              0.upto(100) do |n|
                new_image = Image.new
-               raise unless system("convert -density 300 #{i[:download_data].path}[#{n}] /tmp/yo.gif") # will fail eventually...
+               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/yo.gif") # will fail eventually...
                fake_upload = Pathname.new('/tmp/yo.gif')
                def fake_upload.content_type
                 'image/gif'
