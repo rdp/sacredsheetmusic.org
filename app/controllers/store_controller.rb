@@ -1,5 +1,6 @@
 class StoreController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token, :only => :search
+  
   def show2
     @product = Product.find(params['id'])
   end
