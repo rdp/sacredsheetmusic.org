@@ -657,7 +657,7 @@ input.error {
 
 /* PAGINATION ============================================= */
 div.pagination {
-	background-color: #EDEDED;
+/*	background-color: #EDEDED; */
 	/*border-top: 2px solid #C5BEBE;*/
 	padding: 10px;
 	font-size: 1.2em;
