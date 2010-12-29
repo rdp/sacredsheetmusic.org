@@ -80,6 +80,15 @@ class MusicControllerTest < ActionController::TestCase
     assert_select "body", /new comment2/i
   end
   
+  def test_should_allow_for_url_et_al_submission
+    p = test_create_product
+    get :show, :id => p.code
+    assert_select "div", /name/i
+    assert_select "div", /url/i
+    assert_select "div", /difficulty/i
+    assert_select "div", /overall/i
+  end
+  
 end
 
 unless defined?($GO_TEST)
