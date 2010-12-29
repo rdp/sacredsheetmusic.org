@@ -19,10 +19,13 @@
   %>
   <%= 
     stylesheet_link_tag(
-      'main', 'subModal', 'lightbox',
+      'subModal', 'lightbox',
       :plugin => 'substruct', 
       :cache => 'substruct_main'
     ) 
+  %>
+  <%=
+    stylesheet_link_tag('main')
   %>
 	<%= yield :header %>
 </head>
@@ -120,7 +123,10 @@
 
 	<!-- Begin content body  -->
 	<div id="contentBody">
-		
+	<div style="float:left">
+          Floating left! way lef!
+       
+        </div>	
     <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
 		
 		<%= yield %>

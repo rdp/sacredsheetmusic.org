@@ -22,7 +22,9 @@
     <div class="product_title">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
+    <div class="product_title">
  (<%= product.tags.select{|t| t.parent != nil }.map{|t| t.name}.join(', ') %>)
+    </div>
     <% if product.display_price? %>
       <span class="money"><%= sub_number_to_currency(product.display_price) %></span>
     <% end %>
