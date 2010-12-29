@@ -10,16 +10,20 @@ require 'fileutils'
 # $ rake db:migratieRAILS_ENV=test
 # now run like:
 # $ ruby test/functional/store_controller_test.rb
+=begin
+unless defined?($GO_TEST)
     while(!File.exist?('go_tests'))
       p 'sleeping...'
       sleep 0.2
     end
-    File.delete 'go_tests'
+    File.delete 'go_tests' 
     p 'running tests'
+end
+=end
 
 class StoreControllerTest < ActionController::TestCase
   
-  def test_matthew_is_cool
+  def test_create_product
     assert true
     Product.destroy_all
     p = Product.create! :code => 'code1', :quantity => 1000, :name => 'product name', :price => 10, :date_available => Time.now
@@ -30,12 +34,12 @@ class StoreControllerTest < ActionController::TestCase
   end
   
   def test_download_link
-    p = test_matthew_is_cool
+    p = test_create_product
     p Dir.pwd
     dl = Download.new('filename' => 'abcdef.txt', 'content_type' => 'image/jpeg', 'size' => 1024)
     p.downloads << dl
     # create it
-    FileUtils.mkdir_p(File.dirname dl.full_filename)
+    FileUtils.mkdir_p(File.dirname(dl.full_filename))
     FileUtils.touch dl.full_filename
     get :show, :id => p.code
     assert_select "body", /abcdef/
@@ -49,4 +53,19 @@ class StoreControllerTest < ActionController::TestCase
     assert_response :success
   end
   
+  def test_shows_comments
+    p = test_create_product
+    p.comments << Comment.new(:comment => "hello there")
+    get :show, :id => p.code
+    assert_select "body", /comment/i
+    assert_select "body", /hello there/
+  end
+  
 end
+
+=begin
+unless defined?($GO_TEST)
+  $GO_TEST = 1
+  load File.expand_path(__FILE__)
+end
+=end
