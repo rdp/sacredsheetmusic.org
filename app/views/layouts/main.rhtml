@@ -58,7 +58,7 @@
 		
 		<!-- search box -->
 		<div id="searchbox">
-			<form action="/store/search" method="post">
+			<form action="/music/search" method="post">
 				<input type="image" src="/plugin_assets/substruct/images/public-ui/buttons/search.gif" style="float:right;" />
 				<input type="text" name="search_term" class="textInput big" style="float:right; margin-right: 5px;" />
 			</form>
@@ -73,7 +73,7 @@
 			<div id="navigation-inner">
 				<ul class="navigation">
 					<li class="<%= @cname == 'main' ? 'active' : '' %>"><a href="/">Home</a></li>
-					<li class="<%= (@cname == 'store' && @aname == 'index') ? 'active' : '' %>"><a href="/store">All Songs</a></li>
+					<li class="<%= (@cname == 'music' && @aname == 'index') ? 'active' : '' %>"><a href="/music">All Songs</a></li>
 					<% 
 						@main_nav_tags.each_index do |i| 
 							tag = @main_nav_tags[i]
@@ -85,7 +85,7 @@
 							<%= 
 								link_to(
 									tag.name,
-									:controller => 'store',
+									:controller => 'music',
 									:action => 'show_by_tags',
 									:tags => [tag.name]
 								)
@@ -105,7 +105,7 @@
 							<%= 
 								link_to(
 									tag.name,
-									:controller => 'store',
+									:controller => 'music',
 									:action => 'show_by_tags',
 									:tags => [@main_tag_active.name, tag.name]
 								)

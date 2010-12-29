@@ -1,0 +1,3 @@
+class MusicController < StoreController
+
+end

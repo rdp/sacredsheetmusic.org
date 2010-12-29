@@ -9,7 +9,7 @@
   	<h1>Songs</h1>
 	<% else %>
 		<h1>
-			<a href="/store">Songs</a></a> &gt;
+			<a href="/music">Songs</a></a> &gt;
 			<%
 				# Show breadcrumb navigation for store
 				tag_name_list = Array.new
@@ -18,7 +18,7 @@
 					tag_name_list << tag
 			%>
 				<% if i > 0 then %>&gt;<% end %>
-				<%= link_to tag, :controller => 'store', :action => 'show_by_tags', :tags => tag_name_list %>
+				<%= link_to tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %>
 
 			<%
 				i += 1

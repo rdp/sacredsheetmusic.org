@@ -17,10 +17,10 @@
           image = image_tag(product.images[0].public_filename(:small), :alt => product.name) 
         end
       %>
-      <%= link_to(image, :controller=>'store', :action=>'show', :id => product.code) %>
+      <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
     <div class="product_title">
-      <%= link_to(product.name, :controller=>'store', :action=>'show', :id => product.code) %>
+      <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
  (<%= product.tags.select{|t| t.parent != nil }.map{|t| t.name}.join(', ') %>)
     <% if product.display_price? %>
