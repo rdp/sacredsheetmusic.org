@@ -113,6 +113,11 @@ class MusicControllerTest < ActionController::TestCase
     assert Comment.count == count + 1
   end
   
+  def test_advanced_search
+    get :advanced_search
+    assert_layout 'main'
+  end
+  
 end
 
 unless defined?($GO_TEST)

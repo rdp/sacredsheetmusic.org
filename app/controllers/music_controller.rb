@@ -21,4 +21,8 @@ class MusicController < StoreController
    redirect_to :action => :show, :id => product.code
  end
 
+ def advanced_search
+
+ end
+
 end
