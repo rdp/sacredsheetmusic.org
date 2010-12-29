@@ -89,6 +89,18 @@ class MusicControllerTest < ActionController::TestCase
     assert_select "div", /overall/i
   end
   
+  def test_should_allow_for_complex_comment_submission
+    p = test_create_product
+    post :add_comment, :id => p.id, :comment => 'new comment34', :user_name => 'user name', 
+       :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3 # no difficulty rating
+    assert_redirected_to :action => :show
+    get :show, :id => p.code
+    assert_select "body", /new comment34/
+    assert_select "body", /user name/
+    assert_select "body", /fakeurl/
+
+  end
+  
 end
 
 unless defined?($GO_TEST)
