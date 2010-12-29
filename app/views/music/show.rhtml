@@ -135,7 +135,11 @@
 	
   <div>
   Comments:
-  
+  <% for c in @product.comments %>
+    <p>
+    <%= c.comment %>
+    </p>
+  <% end %>
   </div>
 </div>
 <div class="clear">&nbsp;</div>

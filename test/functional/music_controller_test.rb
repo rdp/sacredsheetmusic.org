@@ -10,18 +10,20 @@ require 'fileutils'
 # $ rake db:migratieRAILS_ENV=test
 # now run like:
 # $ ruby test/functional/store_controller_test.rb
-=begin
 unless defined?($GO_TEST)
+  if File.exist?('pause_until_tests')
     while(!File.exist?('go_tests'))
       p 'sleeping...'
       sleep 0.2
     end
     File.delete 'go_tests' 
-    p 'running tests'
+    p 'continuing on to run tests'
+  else
+   p 'touch pause_until_tests'
+  end
 end
-=end
 
-class StoreControllerTest < ActionController::TestCase
+class MusicControllerTest < ActionController::TestCase
   
   def test_create_product
     assert true
@@ -53,7 +55,7 @@ class StoreControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  def test_shows_comments
+  def test_shows_preexisting_comments
     p = test_create_product
     p.comments << Comment.new(:comment => "hello there")
     get :show, :id => p.code
@@ -61,11 +63,23 @@ class StoreControllerTest < ActionController::TestCase
     assert_select "body", /hello there/
   end
   
+  def test_allows_you_to_insert_new_comment_too
+    p = test_create_product
+    get :show, :id => p.code
+    assert_select "body", /make new comment/i
+    post :add_comment, :id => p.code, :comment => 'new comment2'
+    assert_redirected_to :action => :show
+  end
+  
+  def test_it_should_show_newly_inserted_comment
+    test_allows_you_to_insert_new_comment_too
+    get :show, :id => p.code
+    assert_select "body", /new comment2/i
+  end
+  
 end
 
-=begin
 unless defined?($GO_TEST)
   $GO_TEST = 1
   load File.expand_path(__FILE__)
 end
-=end
