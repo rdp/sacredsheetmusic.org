@@ -57,22 +57,25 @@ class MusicControllerTest < ActionController::TestCase
   
   def test_shows_preexisting_comments
     p = test_create_product
+    get :show, :id => p.code
+  # ??  assert_not_select "body", /comments/i
     p.comments << Comment.new(:comment => "hello there")
     get :show, :id => p.code
-    assert_select "body", /comment/i
+    assert_select "body", /comments/i
     assert_select "body", /hello there/
   end
   
   def test_allows_you_to_insert_new_comment_too
     p = test_create_product
     get :show, :id => p.code
-    assert_select "body", /make new comment/i
-    post :add_comment, :id => p.code, :comment => 'new comment2'
+    assert_select "body", /add.*comment/i
+    post :add_comment, :id => p.id, :comment => 'new comment2'
     assert_redirected_to :action => :show
+    p
   end
   
   def test_it_should_show_newly_inserted_comment
-    test_allows_you_to_insert_new_comment_too
+    p = test_allows_you_to_insert_new_comment_too
     get :show, :id => p.code
     assert_select "body", /new comment2/i
   end

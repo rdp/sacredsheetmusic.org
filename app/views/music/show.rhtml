@@ -133,13 +133,24 @@
 		</p>
 	</div-->
 	
-  <div>
-  Comments:
-  <% for c in @product.comments %>
-    <p>
-    <%= c.comment %>
-    </p>
+  <% if  @product.comments.length > 0 %>
+    <div>
+    Previous comments from other users:
+    <% for c in @product.comments %>
+      <p>
+      <%= c.comment %>
+      </p>
+    <% end %>
+  
+    </div>
   <% end %>
+  <div>
+    <form action="/music/add_comment" method="post">
+      <label for="q">Add your own comment about this piece:</label>
+      <input name="id" type="hidden" value="<%= @product.id %>"/>
+      <textarea name="comment" cols="40" rows="5"></textarea>
+      <input name="commit" type="submit" value="Add it!" />
+    </form>
   </div>
 </div>
 <div class="clear">&nbsp;</div>
