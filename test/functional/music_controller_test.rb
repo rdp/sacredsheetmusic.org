@@ -28,6 +28,7 @@ class MusicControllerTest < ActionController::TestCase
   def test_create_product
     assert true
     Product.destroy_all
+    Comment.destroy_all
     p = Product.create! :code => 'code1', :quantity => 1000, :name => 'product name', :price => 10, :date_available => Time.now
     get :show, :id => p.code
     assert_response :success
@@ -69,8 +70,8 @@ class MusicControllerTest < ActionController::TestCase
     p = test_create_product
     get :show, :id => p.code
     assert_select "body", /add.*comment/i
-    post :add_comment, :id => p.id, :comment => 'new comment2'
-    assert_redirected_to :action => :show
+    post :add_comment, :id => p.id, :comment => 'new comment2', :recaptcha => 'monday'
+    assert_redirected_to :action => :show, :controller => :music, :id => p.code
     p
   end
   
@@ -91,14 +92,25 @@ class MusicControllerTest < ActionController::TestCase
   
   def test_should_allow_for_complex_comment_submission
     p = test_create_product
+    count = Comment.count
     post :add_comment, :id => p.id, :comment => 'new comment34', :user_name => 'user name', 
-       :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3 # no difficulty rating
-    assert_redirected_to :action => :show
+       :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3, :recaptcha => 'monday' # no difficulty rating
+    assert Comment.count == count + 1
+    assert_redirected_to :action => :show, :controller => :music, :id => p.code
     get :show, :id => p.code
     assert_select "body", /new comment34/
     assert_select "body", /user name/
-    assert_select "body", /fakeurl/
-
+    # how to test? assert_select "body", /fakeurl/
+  end
+  
+  def test_without_recaptcha_fails
+    p = test_create_product
+    count = Comment.count
+    post :add_comment, :id => p.id, :comment => 'new comment34'
+    assert Comment.count == count
+    assert_redirected_to :action => :show, :controller => :music, :id => p.code
+    post :add_comment, :id => p.id, :comment => 'new comment34', :recaptcha => 'monday'
+    assert Comment.count == count + 1
   end
   
 end

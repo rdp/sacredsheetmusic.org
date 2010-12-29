@@ -6,14 +6,18 @@ class MusicController < StoreController
 
     #post :add_comment, :id => p.id, :comment => 'new comment34', :user_name => 'user name', 
     #   :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3 # no difficulty rating
-
    product = Product.find(params['id'])
-   new_hash = {}
-   # extract the ones we care about
-   for key in [:id, :comment, :user_name, :user_email, :user_url, :overall_rating, :difficulty_rating]
-    new_hash[key] = params[key]
+   if (params['recaptcha'] || '').downcase != 'monday'
+    flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
+   else
+     new_hash = {}
+     # extract the ones we care about
+     for key in [:id, :comment, :user_name, :user_email, :user_url, :overall_rating, :difficulty_rating]
+      new_hash[key] = params[key]
+     end
+     product.comments << Comment.new(new_hash)
+     flash[:notice] = 'Comment saved'
    end
-   product.comments << Comment.new(new_hash)
    redirect_to :action => :show, :id => product.code
  end
 
