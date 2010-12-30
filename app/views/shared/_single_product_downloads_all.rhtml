@@ -5,15 +5,15 @@
       <% @product.downloads.each do |dl| %>
         <li>
           <%= 
-            link_to(
-            dl.filename.split('/')[-1],
-              :controller => 'store',
-              :action => 'download_file',
-              :params => {
-                :download_id => dl.id
-              }
-            )
+            filename = dl.filename.split('/')[-1]
+            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename}</a>"
           %>
+          <% if filename =~ /\.(mid|wav|mp3)$/ %>
+          <br/>
+          <embed src="<%= dl.relative_path_to_web_server %>" 
+            width="140" height="40" autostart="false" loop="FALSE"> 
+         </embed>
+          <% end %>
         </li>
       <% end %>
     </ul>
