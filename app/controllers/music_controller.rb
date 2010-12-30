@@ -22,7 +22,18 @@ class MusicController < StoreController
  end
 
  def advanced_search
-
+   tag_ints = params[:product][:tag_ids].map{|id| id.to_i}
+   all_products = Product.find(:all) # LODO sql for this :)
+  
+   @products = all_products.select{|p|
+     # must have all, or rather it must include them all so subtracting them results in size 0
+     (tag_ints - p.tag_ids).length == 0
+   }
+  require '_dbg'
+  
+   @do_not_paginate = true # XXXX paginate ?
+   render :action => 'index.rhtml'
+  
  end
 
 end

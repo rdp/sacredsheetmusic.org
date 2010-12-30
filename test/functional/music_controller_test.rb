@@ -3,6 +3,7 @@ $: << '.'
 require 'rubygems'
 require File.dirname(__FILE__) + '/../test_helper'
 require 'fileutils'
+require 'substruct/assertions'
 
 # note that before running these, you'll need to propagate the test db, like
 # $ rake db:create RAILS_ENV=test
@@ -24,9 +25,9 @@ unless defined?($GO_TEST)
 end
 
 class MusicControllerTest < ActionController::TestCase
-  
+  include Substruct::Assertions
+
   def test_create_product
-    assert true
     Product.destroy_all
     Comment.destroy_all
     p = Product.create! :code => 'code1', :quantity => 1000, :name => 'product name', :price => 10, :date_available => Time.now
@@ -59,7 +60,7 @@ class MusicControllerTest < ActionController::TestCase
   def test_shows_preexisting_comments
     p = test_create_product
     get :show, :id => p.code
-  # ??  assert_not_select "body", /comments/i
+    assert_not_match /hello there/i
     p.comments << Comment.new(:comment => "hello there")
     get :show, :id => p.code
     assert_select "body", /comments/i
@@ -114,8 +115,29 @@ class MusicControllerTest < ActionController::TestCase
   end
   
   def test_advanced_search
-    get :advanced_search
+    Tag.destroy_all
+    Product.destroy_all
+    t1 = Tag.new(:name => "t1")
+    t2 = Tag.new(:name => "t1")
+    p = Product.create!  :code => 'code1', :quantity => 1000, :name => 'product name1', :price => 10, :date_available => Time.now
+    p.tag_ids = [t1.id.to_s] 
+    p2 = Product.create! :code => 'code2', :quantity => 1000, :name => 'product name2', :price => 10, :date_available => Time.now
+    p2.tag_ids = [t1.id.to_s, t2.id.to_s]
+    
+    get :advanced_search, {:product => {:tag_ids => [t1.id.to_s, t2.id.to_s]}}
+    #    params[:product][:tag_ids]
+    
     assert_layout 'main'
+    assert_contains /name2/
+    assert_not_match /name1/
+  end
+  
+  def assert_contains regex
+    raise 'not found ' + regex.to_s unless @response.body =~ regex
+  end
+  
+  def assert_not_match regex
+    raise 'bad match' + regex.to_s if @response.body =~ regex
   end
   
 end

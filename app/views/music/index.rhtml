@@ -27,7 +27,7 @@
 		</h1>
 	<% end %>
 	
-	<%= will_paginate @products %>
+	<%= will_paginate @products unless @do_not_paginate %>
 
 	<!-- PRODUCTS LIST -->
 	<%= render :partial => 'product', :collection => @products %>
@@ -39,7 +39,7 @@
     </p>
   <% end %>
 
-	<%= will_paginate @products %>
+	<%= will_paginate @products  unless @do_not_paginate%>
 
   <br/>
 	<!-- takes up space so we can see the bottom content on this page -->
