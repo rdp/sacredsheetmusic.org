@@ -27,7 +27,6 @@ class Admin::ProductsController < Admin::BaseController
   			params[:image].each do |i|
           if i[:image_data] && !i[:image_data].blank?
             new_image = Image.new
-            p i
             logger.info i.inspect
             logger.info i[:image_data].inspect
             # image_data is a file, really...
@@ -72,9 +71,13 @@ class Admin::ProductsController < Admin::BaseController
                 end
              end
             rescue => e
-              logger.info e.to_s
+              logger.info e.to_s # ok
             end
              
+            end
+            # hacky work-around for unknown file types...
+            if new_download.content_type == ""
+              new_download.content_type = "application/#{new_download.name.split('.')[-1]}"
             end
             if new_download.save
               @product.downloads << new_download
