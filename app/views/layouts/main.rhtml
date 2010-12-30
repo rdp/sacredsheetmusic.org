@@ -78,8 +78,8 @@
 			<div id="navcap_right"></div>
 			<div id="navigation-inner">
 				<ul class="navigation">
-					<li class="<%= @cname == 'main' ? 'active' : '' %>"><a href="/">Home</a></li>
-					<li class="<%= (@cname == 'music' && @aname == 'index') ? 'active' : '' %>"><a href="/music">All Songs</a></li>
+					<!--li class="<%= @cname == 'main' ? 'active' : '' %>"><a href="/">Home</a></li-->
+					<li class="<%= (@cname == 'music' && @aname == 'index') ? 'active' : '' %>"><a href="/music">All</a></li>
 					<% 
 						@main_nav_tags.each_index do |i| 
 							tag = @main_nav_tags[i]
