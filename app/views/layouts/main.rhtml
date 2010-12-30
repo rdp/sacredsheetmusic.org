@@ -107,13 +107,13 @@
 			<div id="subnavigation">
 				<ul class="navigation">
 					<% for tag in @subnav_tags do %>
-						<li class="<%= is_sub_tab_active?(tag.id) ? 'active' : '' %>">
+						<li class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>">
 							<%= 
 								link_to(
 									tag.name,
 									:controller => 'music',
 									:action => 'show_by_tags',
-									:tags => [@main_tag_active.name, tag.name]
+									:tags => [tag.name]
 								)
 							%>
 						</li>
