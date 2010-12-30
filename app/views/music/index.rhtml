@@ -4,7 +4,7 @@
   )
 %>
 
-<% h1_style = will_paginate(@products) ? "float: left": "" # hacky kludgey...
+<% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left": "" # hacky kludgey...
 %>
 
 <div id="fullContent">
