@@ -79,7 +79,7 @@ class Admin::ProductsController < Admin::BaseController
             if new_download.save
               @product.downloads << new_download
             else
-              download_errors.push(new_download.filename)
+              download_errors.push(new_download.filename + " " + new_download.errors.map{|e| e.to_s}.join(' '))
             end
           end
         end
@@ -97,7 +97,6 @@ class Admin::ProductsController < Admin::BaseController
       
       flash[:notice] = "Product '#{@product.name}' saved."
       if image_errors.length > 0
-        require '_dbg.rb'
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
       if download_errors.length > 0

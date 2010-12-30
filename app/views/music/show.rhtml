@@ -11,7 +11,7 @@
 		<div style="float:left; margin:20px; width: 400px;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename, :width => "300px" %>
+          <%= image_tag @default_image.public_filename, :width => "400px" %>
         </a>
       <% end %>
 			<p class="info">Click to see full view</p>
