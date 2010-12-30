@@ -628,7 +628,7 @@ input.error {
 	margin-left: 12px;
 	margin-right: 20px;
 	margin-top: 10px;
-	width: 115px;
+	/*width: 115px;  makes it slightly larger...*/
 	overflow:hidden;
 	text-align: center;
 }
