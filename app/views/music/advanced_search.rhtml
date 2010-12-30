@@ -3,11 +3,11 @@
   <form action="advanced_search_post">
   <ul>
   <% for tag in Tag.find_ordered_parents %>
-  <li><div style="min-width: 50px; float: left;"><%= tag.name %></div>
+  <li><div style="min-width: 75px; float: left; margin-right: 5px;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) %>
       <br/>
       <% for child in tag.children %>
-      <div style="min-width: 50px; float: left"><%= child.name %></div>
+      <div style="min-width: 75px; float: left; margin-right: 5px;"><%= child.name %></div>
   			<%= check_box_tag("product[tag_ids][]", child.id) %>
         <br/>
       <% end %>
