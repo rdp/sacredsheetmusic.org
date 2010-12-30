@@ -6,7 +6,7 @@
   <li><div style="min-width: 75px; float: left; margin-right: 5px;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) %>
       <br/>
-      <% for child in tag.children %>
+      <% for child in tag.children; next if child.products.length == 0 %>
       <div style="min-width: 75px; float: left; margin-right: 5px;"><%= child.name %></div>
   			<%= check_box_tag("product[tag_ids][]", child.id) %>
         <br/>
