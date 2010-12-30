@@ -21,7 +21,7 @@ class MusicController < StoreController
    redirect_to :action => :show, :id => product.code
  end
 
- def advanced_search
+ def advanced_search_post
    tag_ints = params[:product][:tag_ids].map{|id| id.to_i}
    all_products = Product.find(:all) # LODO sql for this :)
   

@@ -1,4 +1,4 @@
-<form>
+<form action="advanced_search_post">
   <% for tag in Tag.find_ordered_parents %>
       <%= tag.name %>
 			<%= check_box_tag("product[tag_ids][]", tag.id) %>
