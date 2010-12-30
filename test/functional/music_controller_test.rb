@@ -130,6 +130,9 @@ class MusicControllerTest < ActionController::TestCase
     assert_layout 'main'
     assert_contains /name2/
     assert_not_match /name1/
+    get :advanced_search, {:product => {:tag_ids => [t1.id.to_s]}}
+    assert_contains /name2/
+    assert_conains /name1/
   end
   
   def assert_contains regex
