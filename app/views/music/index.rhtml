@@ -32,14 +32,13 @@
 	<!-- PRODUCTS LIST -->
 	<%= render :partial => 'product', :collection => @products %>
 
-
   <% if @products.length == 0 then %>
     <p>
-      Sorry, no products to show in this view.
+      Sorry, no songs match this view.  Maybe you can change search terms or choose another category.
     </p>
   <% end %>
 
-	<%= will_paginate @products  unless @do_not_paginate%>
+  <%= will_paginate @products  unless @do_not_paginate%>
 
   <br/>
 	<!-- takes up space so we can see the bottom content on this page -->
