@@ -134,7 +134,6 @@
 							tag = @main_nav_tags[i]
 					%>
 						<li
-						 	class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>"
 							style="<%= i == @main_nav_tags.size-1 ? 'margin-right: 0px !important;' : '' %>"
 						>
 							<%= 
@@ -145,19 +144,26 @@
 									:tags => [tag.name]
 								)
 							%>
+
 						</li>
 					<%  if is_main_tab_active?(tag.id) %>
              <UL>
-             <% for tag2 in @subnav_tags do %>
+             <% for tag2 in @subnav_tags do; next if tag2.products.length == 0 %>
                 <LI>
+						 	<%= is_main_tab_active?(tag2.id) ? '<i>' : '' %>
 							<%= 
 								link_to(
 									tag2.name,
 									:controller => 'music',
 									:action => 'show_by_tags',
 									:tags => [tag2.name]
+									# makes linda not show many? 
+ #:tags => [@main_tag_active.name, tag2.name]
+
 								)
 							%>
+						 	<%= is_main_tab_active?(tag2.id) ? '</i>' : '' %>
+
                 </LI>
              <% end %>
              </UL>
