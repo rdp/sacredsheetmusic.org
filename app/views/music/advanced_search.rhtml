@@ -1,0 +1,15 @@
+<form>
+  <% for tag in Tag.find_ordered_parents %>
+      <%= tag.name %>
+			<%= check_box_tag("product[tag_ids][]", tag.id) %>
+      <br/>
+      <% for child in tag.children %>
+        <%= child.name %>
+  			<%= check_box_tag("product[tag_ids][]", child.id) %>
+        <br/>
+      <% end %>
+  <% end %>
+  
+  <input name="commit" type="submit" value="Search!" />
+
+</form>
