@@ -1,13 +1,13 @@
 <div style="float: left">
-  Please choose all that must apply.  For example if you wanted choir patriotic music, then check both choir and patriotic.
+  Please choose all that must apply.  For example if you wanted choir patriotic music, then check both choir and patriotic and hit "search".
   <form action="advanced_search_post">
   <ul>
   <% for tag in Tag.find_ordered_parents %>
-      <li><%= tag.name %>
+  <li><div style="min-width: 50px; float: left;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) %>
       <br/>
       <% for child in tag.children %>
-        <%= child.name %>
+      <div style="min-width: 50px; float: left"><%= child.name %></div>
   			<%= check_box_tag("product[tag_ids][]", child.id) %>
         <br/>
       <% end %>
