@@ -1,6 +1,9 @@
-<form action="advanced_search_post">
+<div style="float: left">
+  Please choose all that must apply.  For example if you wanted choir patriotic music, then check both choir and patriotic.
+  <form action="advanced_search_post">
+  <ul>
   <% for tag in Tag.find_ordered_parents %>
-      <%= tag.name %>
+      <li><%= tag.name %>
 			<%= check_box_tag("product[tag_ids][]", tag.id) %>
       <br/>
       <% for child in tag.children %>
@@ -8,8 +11,10 @@
   			<%= check_box_tag("product[tag_ids][]", child.id) %>
         <br/>
       <% end %>
+</li>
   <% end %>
-  
+  </ul>
   <input name="commit" type="submit" value="Search!" />
 
 </form>
+</div>
