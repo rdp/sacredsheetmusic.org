@@ -126,6 +126,7 @@
 
 	<!-- Begin content body  -->
 	<div id="contentBody">
+    <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
 	<div style="float:left; min-height: 350; padding-right: 20px;">
 
 <UL>
@@ -173,7 +174,6 @@
 
 </UL>       
         </div>	
-    <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
 		
 		<%= yield %>
 	</div>
