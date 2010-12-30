@@ -37,4 +37,42 @@ class MusicController < StoreController
   
  end
 
+  # Shows products by tag or tags.
+  # Tags are passed in as id #'s separated by commas.
+  #
+  def show_by_tags
+    # Tags are passed in as an array.
+    # Passed into this controller like this:
+    # /store/show_by_tags/tag_one/tag_two/tag_three/...
+    @tag_names = params[:tags] || []
+    # Generate tag ID list from names
+    tag_ids_array = Array.new
+    for name in @tag_names
+      temp_tag = Tag.find_by_name(name)
+      if temp_tag then
+        tag_ids_array << temp_tag.id
+      else
+        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+      end
+    end
+
+    if tag_ids_array.size == 0
+      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+    end
+
+    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC")
+    viewing_tag_names = @viewing_tags.collect { |t| " > #{t.name}"}
+    @title = "Songs #{viewing_tag_names}"
+    @tags = Tag.find_related_tags(tag_ids_array)
+
+    # Paginate products so we don't have a ton of ugly SQL
+    # and conditions in the controller
+    list = Product.find_by_tags(tag_ids_array, true)
+    pager = Paginator.new(list, list.size, @@per_page, params[:page])
+    @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
+      p.replace list[pager.current.offset, pager.items_per_page]
+    end
+
+    render :action => 'index.rhtml'
+  end
 end
