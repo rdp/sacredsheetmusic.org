@@ -117,8 +117,8 @@ class MusicControllerTest < ActionController::TestCase
   def test_advanced_search
     Tag.destroy_all
     Product.destroy_all
-    t1 = Tag.new(:name => "t1")
-    t2 = Tag.new(:name => "t1")
+    t1 = Tag.create!(:name => "t1")
+    t2 = Tag.create!(:name => "t2")
     p = Product.create!  :code => 'code1', :quantity => 1000, :name => 'product name1', :price => 10, :date_available => Time.now
     p.tag_ids = [t1.id.to_s] 
     p2 = Product.create! :code => 'code2', :quantity => 1000, :name => 'product name2', :price => 10, :date_available => Time.now
