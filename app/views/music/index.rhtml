@@ -4,11 +4,14 @@
   )
 %>
 
+<% h1_style = will_paginate(@products) ? "float: left": "" # hacky kludgey...
+%>
+
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
-  	<h1 style="float: left">Songs</h1>
+  <h1 style="<%= h1_style %>">Songs</h1>
 	<% else %>
-		<h1 style="float: left">
+		<h1 style="<%= h1_style %>">
 			<a href="/music">Songs</a></a> &gt;
 			<%
 				# Show breadcrumb navigation for store
@@ -27,7 +30,7 @@
 		</h1>
 	<% end %>
 	
-	<%= will_paginate @products unless @do_not_paginate %>
+	<%= will_paginate(@products) unless @do_not_paginate %>
 
 	<!-- PRODUCTS LIST -->
 	<%= render :partial => 'product', :collection => @products %>

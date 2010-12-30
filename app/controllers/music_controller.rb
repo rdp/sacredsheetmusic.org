@@ -1,4 +1,5 @@
 class MusicController < StoreController
+  @@per_page = 3
 
  skip_before_filter :verify_authenticity_token, :only => :add_comment # until I get it setup right...
 
