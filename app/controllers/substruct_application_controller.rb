@@ -4,8 +4,8 @@ module SubstructApplicationController
   
   def redirect_to_freewardchoir
     if ENV['RAILS_ENV'] == "production" 
-      if request.host !~ /freewardchoir/
-         redirect_to "http://freewardchoir.musicformormons.com" + request.request_uri
+      if request.host !~ /freemusicformormons/
+         redirect_to "http://freemusicformormons.com" + request.request_uri
          flash.keep
          return false
       end
