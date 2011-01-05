@@ -9,7 +9,7 @@
 
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
-  <h1 style="<%= h1_style %>">Songs</h1>
+                 <h1 style="<%= h1_style %>">Songs</h1>
 	<% else %>
 		<h1 style="<%= h1_style %>">
 			<a href="/music">Songs</a></a> &gt;
@@ -22,7 +22,6 @@
 			%>
 				<% if i > 0 then %>&gt;<% end %>
 				<%= link_to tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %>
-
 			<%
 				i += 1
 				end
@@ -33,14 +32,19 @@
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
 	<!-- PRODUCTS LIST -->
-	<%= render :partial => 'product', :collection => @products %>
 
-  <% if @products.length == 0 then %>
+	<%= render :partial => 'product', :collection => @products %>
+  <% if @products.length == 0 %>
     <p>
+    <% if @viewing_tags && @viewing_tags.length == 1 %>
+      Please choose a category to your left.
+    <% else %>
       Sorry, no songs match your view.  Maybe you can change search terms or choose another category or sub category to the left.
+    <% end %>
     </p>
   <% end %>
-<div class="clear">&nbsp;</div>
+
+  <div class="clear">&nbsp;</div>
 
   <%= will_paginate @products  unless @do_not_paginate%>
 

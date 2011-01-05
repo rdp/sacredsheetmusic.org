@@ -46,13 +46,14 @@ module ApplicationHelper
       @show_subnav = true
       @main_tag_active = Tag.find(tab_id)
       @subnav_tags = @main_tag_active.children
+      @show_subnav = false if @products.length==0 # don't show ones that we want them to choose another subcat on 
       return true
     end
     
     return false
   end
   
-  def is_sub_tab_active?(tab_id)
+  def is_sub_tab_active?(tab_id) # unused, I think
     if @viewing_tags && @viewing_tags.size > 1 && @viewing_tags[1].id == tab_id
       @show_subnav = true
       return true
