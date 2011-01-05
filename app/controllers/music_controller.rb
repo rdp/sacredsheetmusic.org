@@ -4,10 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => :add_comment # until I get it setup right...
 
  def add_comment
-
-    #post :add_comment, :id => p.id, :comment => 'new comment34', :user_name => 'user name', 
-    #   :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3 # no difficulty rating
-   product = Product.find(params['id'])
+  product = Product.find(params['id'])
    if (params['recaptcha'] || '').downcase != 'monday'
     flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
    else
