@@ -1,7 +1,7 @@
 class MusicController < StoreController
-  @@per_page = 11
+ @@per_page = 11
 
- skip_before_filter :verify_authenticity_token, :only => :add_comment # until I get it setup right...
+ skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
  def add_comment
   product = Product.find(params['id'])
@@ -71,7 +71,6 @@ class MusicController < StoreController
     render :action => 'index.rhtml'
   end
   
-  skip_before_filter :verify_authenticity_token, :only => :search
   
   # Downloads a file using the old system :P
   
