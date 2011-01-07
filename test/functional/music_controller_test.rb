@@ -125,16 +125,19 @@ class MusicControllerTest < ActionController::TestCase
 
     p = Product.create!  :code => 'code1', :quantity => 1000, :name => 'product name1',
       :price => 10, :date_available => Time.now
-    p.tag_ids = [t1a.id.to_s]
+    p.tag_ids = [t1a.id.to_s, t1.id.to_s]
     
     p2 = Product.create! :code => 'code2', :quantity => 1000, :name => 'product name2', 
       :price => 10, :date_available => Time.now
-    p2.tag_ids = [t1a.id.to_s, t2a.id.to_s]
+    p2.tag_ids = [t1a.id.to_s, t1.id.to_s, t2a.id.to_s, t2.id.to_s]
     
-    get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s, t2a.id.to_s]}}
+    # should work with parents, too...
+    for tags in [ [t1a.id.to_s, t2a.id.to_s], [t1.id.to_s, t2.id.to_s]]
+      get :advanced_search_post, {:product => {:tag_ids => tags}}
     
-    assert_contains /name2/
-    assert_not_match /name1/
+      assert_contains /name2/
+      assert_not_match /name1/
+    end
     
     get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s]}}
     assert_contains /name2/

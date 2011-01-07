@@ -21,7 +21,7 @@ class MusicController < StoreController
 
  def product_matches p, parent_tag_groups
   # it must match one member of each group
-  for parent_id_ignored, tag_ids in parent_tag_groups
+  for tag_ids in parent_tag_groups.values
     return false if (tag_ids - p.tag_ids).length == tag_ids.length # no intersection? you're done
   end
   true
@@ -30,11 +30,17 @@ class MusicController < StoreController
  def advanced_search_post
    tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
   
-   # we know they'are all "children" tags
    parent_tag_groups = {}
    for tag in tags
-     parent_tag_groups[tag.parent.id] ||= []
-     parent_tag_groups[tag.parent.id] << tag.id
+    if tag.parent
+      parent_id = tag.parent.id
+      child_id = tag.id
+    else
+      # allow for parent tags, too
+      parent_id = child_id = tag.id
+    end
+     parent_tag_groups[parent_id] ||= []
+     parent_tag_groups[parent_id] << child_id
    end
 
    all_products = Product.find(:all) # LODO sql for all this :)
