@@ -21,10 +21,10 @@
 				<% for @p_image in @images do %>
 				  <% next if @p_image == @default_image %>
 					<div class="float" style="margin:5px;">
-					  <% if @p_image.public_filename(:thumb) then %>
+					  <% if @p_image.public_filename() then %>
               <a href="<%= @p_image.public_filename %>" 
                 rel="lightbox[product_image]"
-              ><%= image_tag @p_image.public_filename(:thumb) %></a>
+              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
             <% end %>
 					</div>
 				<% end %>

@@ -19,13 +19,21 @@ class MusicController < StoreController
    redirect_to :action => :show, :id => product.code
  end
 
+ def product_matches p, tag_ints
+     # must have all, or rather it must include them all so subtracting them results in size 0
+     (tag_ints - p.tag_ids).length == 0
+ end
+
  def advanced_search_post
+    
    tag_ints = params[:product][:tag_ids].map{|id| id.to_i}
+   # we know they'are all "children" tags
+   main_tags = {}
+
    all_products = Product.find(:all) # LODO sql for this :)
   
    @products = all_products.select{|p|
-     # must have all, or rather it must include them all so subtracting them results in size 0
-     (tag_ints - p.tag_ids).length == 0
+     product_matches(p, tag_ints)
    }
   
    @do_not_paginate = true # XXXX enable paginate
