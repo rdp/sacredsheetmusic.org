@@ -21,7 +21,6 @@ class MusicController < StoreController
 
  def product_matches p, parent_tag_groups
   # it must match one member of each group
-  require 'ruby-debug'
   for parent_id_ignored, tag_ids in parent_tag_groups
     return false if (tag_ids - p.tag_ids).length == tag_ids.length # no intersection? you're done
   end
