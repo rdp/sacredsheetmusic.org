@@ -55,7 +55,7 @@ class Admin::ProductsController < Admin::BaseController
             begin
              0.upto(100) do |n|
                new_image = Image.new
-               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/yo.gif") # will fail eventually...
+               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/yo.gif")
                fake_upload = Pathname.new('/tmp/yo.gif')
                def fake_upload.content_type
                 'image/gif'
@@ -66,6 +66,10 @@ class Admin::ProductsController < Admin::BaseController
                new_image.uploaded_data = fake_upload
                if new_image.save
                 @product.images << new_image
+                # gets the rank wrong, except for the first? huh?
+                pi = new_image.product_images[0]
+                pi.rank = n
+                pi.save
               else
                 raise 'bad'
                 end

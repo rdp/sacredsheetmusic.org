@@ -15,18 +15,19 @@
         </a>
       <% end %>
 			<p class="info">Click to see full view</p>
-			<!-- thumbnails! -->
+			<!-- not thumbnails! -->
 			<% if @images.size > 1 %>
 				<h4>Other pages</h4>
 				<% for @p_image in @images do %>
 				  <% next if @p_image == @default_image %>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
-              <a href="<%= @p_image.public_filename %>" 
-                rel="lightbox[product_image]"
-              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
-            <% end %>
+                                             <a href="<%= @p_image.public_filename %>" 
+                                              rel="lightbox[product_image]"
+                                              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
+                                         <% end %>
 					</div>
+					<hr/>
 				<% end %>
 			<% end %>
 		</div>
@@ -35,7 +36,7 @@
 	<%= render :partial => '/shared/single_product_downloads_all' %>
 
 	<div>
-		<%= @product.description %>
+           <%= @product.description %>
 	</div>
         <div> Song topics:
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
@@ -43,6 +44,7 @@
         </div>
 
 	<div class="clear"></div>
+<!-- DISABLED 
 	<% if @product.related_products.size > 0 %>
 		<br/>
 		<h2>Related Products</h2>
@@ -50,12 +52,12 @@
 		<%= render :partial => 'product', :collection => @product.related_products %>
 		<div class="clear"></div>
 	<% end %>
-
+-->
 </div>
 
 <div id="right">
 
-	<!--div align="center" style="margin-top:10px;">
+	<!-- DISABLED div align="center" style="margin-top:10px;">
 		<p>
 		<br/>
 		<%= 

@@ -8,8 +8,10 @@
 			<%= check_box_tag("product[tag_ids][]", tag.id) if tag.children.count == 0 %>
       <br/>
       <% for child in tag.children; next if child.products.length == 0 %>
-      <div style="min-width: 75px; width: 100%; float: left; margin-right: 5px;"><%= child.name %></div>
+          <div>
+          <div style="min-width: 75px; float: left; margin-right: 5px;"><%= child.name %></div>
   			<%= check_box_tag("product[tag_ids][]", child.id) %>
+          </div>
         <br/>
       <% end %>
   </li>

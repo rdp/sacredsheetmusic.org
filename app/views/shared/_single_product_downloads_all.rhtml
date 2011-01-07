@@ -5,14 +5,26 @@
       <% @product.downloads.each do |dl| %>
         <li>
           <%= 
-            filename = dl.filename.split('/')[-1]
-            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename}</a>"
+            filename = dl.filename.split('.')[-1].downcase
+            filename_here = filename
+            filename_here = 'pdf view' if filename == 'pdf'
+            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_here}</a>"
           %>
-          <% if filename =~ /\.(mid|wav|mp3)$/ %>
-          <br/>
-          <embed src="<%= dl.relative_path_to_web_server %>" 
-            width="140" height="40" autostart="false" loop="FALSE"> 
-         </embed>
+          <% if filename =~ /mid|wav|mp3|m4a/ %>
+            <br/>
+            <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE"></embed>
+          <% elsif filename == 'pdf' %>
+            </li>
+            <li><%=
+            link_to(
+              'pdf download',
+              :controller => 'music',
+              :action => 'download_file',
+              :params => {
+                :download_id => dl.id
+              }
+            )
+            %>
           <% end %>
         </li>
       <% end %>

@@ -96,7 +96,7 @@ class MusicController < StoreController
   # Downloads a file using the old system :P
   
   def download_file
-    # Now find download...
+    # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     
     if file && File.exist?(file.full_filename)
