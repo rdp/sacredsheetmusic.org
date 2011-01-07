@@ -39,7 +39,6 @@ class MusicControllerTest < ActionController::TestCase
   
   def test_download_link
     p = test_create_product
-    p Dir.pwd
     dl = Download.new('filename' => 'abcdef.txt', 'content_type' => 'image/jpeg', 'size' => 1024)
     p.downloads << dl
     # create it
@@ -117,22 +116,39 @@ class MusicControllerTest < ActionController::TestCase
   def test_advanced_search
     Tag.destroy_all
     Product.destroy_all
+    # use children tags
     t1 = Tag.create!(:name => "t1")
+    t1a = Tag.create!(:name => "t1.a", :parent_id => t1.id)
     t2 = Tag.create!(:name => "t2")
-    p = Product.create!  :code => 'code1', :quantity => 1000, :name => 'product name1', :price => 10, :date_available => Time.now
-    p.tag_ids = [t1.id.to_s] 
-    p2 = Product.create! :code => 'code2', :quantity => 1000, :name => 'product name2', :price => 10, :date_available => Time.now
-    p2.tag_ids = [t1.id.to_s, t2.id.to_s]
+    t2a = Tag.create!(:name => "t2.a", :parent_id => t2.id)
+    t2b = Tag.create!(:name => "t2.b", :parent_id => t2.id)
+
+    p = Product.create!  :code => 'code1', :quantity => 1000, :name => 'product name1',
+      :price => 10, :date_available => Time.now
+    p.tag_ids = [t1a.id.to_s]
     
-    get :advanced_search, {:product => {:tag_ids => [t1.id.to_s, t2.id.to_s]}}
-    #    params[:product][:tag_ids]
+    p2 = Product.create! :code => 'code2', :quantity => 1000, :name => 'product name2', 
+      :price => 10, :date_available => Time.now
+    p2.tag_ids = [t1a.id.to_s, t2a.id.to_s]
     
-    assert_layout 'main'
+    get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s, t2a.id.to_s]}}
+    
     assert_contains /name2/
     assert_not_match /name1/
-    get :advanced_search, {:product => {:tag_ids => [t1.id.to_s]}}
+    
+    get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s]}}
     assert_contains /name2/
-    assert_conains /name1/
+    assert_contains /name1/
+    
+    get :advanced_search_post, {:product => {:tag_ids => [t2a.id.to_s, t2b.id.to_s]}}
+    assert_not_match /name1/
+    assert_contains /name2/ # still finds name2, despite t3 and t2 being checked
+
+    # with all 3 still only name2
+    get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s, t2a.id.to_s, t2b.id.to_s]}}
+    assert_not_match /name1/
+    assert_contains /name2/
+    
   end
   
   def assert_contains regex

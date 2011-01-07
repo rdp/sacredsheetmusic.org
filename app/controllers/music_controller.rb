@@ -19,21 +19,29 @@ class MusicController < StoreController
    redirect_to :action => :show, :id => product.code
  end
 
- def product_matches p, tag_ints
-     # must have all, or rather it must include them all so subtracting them results in size 0
-     (tag_ints - p.tag_ids).length == 0
+ def product_matches p, parent_tag_groups
+  # it must match one member of each group
+  require 'ruby-debug'
+  for parent_id_ignored, tag_ids in parent_tag_groups
+    return false if (tag_ids - p.tag_ids).length == tag_ids.length # no intersection? you're done
+  end
+  true
  end
 
  def advanced_search_post
-    
-   tag_ints = params[:product][:tag_ids].map{|id| id.to_i}
+   tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
+  
    # we know they'are all "children" tags
-   main_tags = {}
+   parent_tag_groups = {}
+   for tag in tags
+     parent_tag_groups[tag.parent.id] ||= []
+     parent_tag_groups[tag.parent.id] << tag.id
+   end
 
-   all_products = Product.find(:all) # LODO sql for this :)
+   all_products = Product.find(:all) # LODO sql for all this :)
   
    @products = all_products.select{|p|
-     product_matches(p, tag_ints)
+     product_matches(p, parent_tag_groups)
    }
   
    @do_not_paginate = true # XXXX enable paginate
