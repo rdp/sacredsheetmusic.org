@@ -9,6 +9,12 @@ module SubstructApplicationController
          flash.keep
          return false
       end
+      
+      if request.request_uri == ''
+        redirect_to "/ward_choir_music"
+        flash.keep
+        return false
+      end
     end
     
   end
