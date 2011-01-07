@@ -8,10 +8,10 @@
     <li><a href="/music">Back</a></li>
   </ul>
 	<% if @default_image %>
-		<div style="float:left; margin:20px; width: 400px;">
+		<div style="float:left; margin:20px; width: 500px;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename, :width => "400px" %>
+          <%= image_tag @default_image.public_filename, :width => "100%" %>
         </a>
       <% end %>
 			<p class="info">Click to see full view</p>
