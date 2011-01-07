@@ -10,8 +10,8 @@ module SubstructApplicationController
          return false
       end
       
-      if request.request_uri == ''
-        redirect_to "/ward_choir_music"
+      if request.request_uri == '/'
+        redirect_to "/ward-choir-music"
         flash.keep
         return false
       end
