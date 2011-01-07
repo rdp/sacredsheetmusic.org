@@ -37,7 +37,7 @@
 	<div>
 		<%= @product.description %>
 	</div>
-        <div> Topics:
+        <div> Song topics:
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
