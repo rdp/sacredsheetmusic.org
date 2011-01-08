@@ -50,10 +50,10 @@
  <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
           <% elsif filename =~ /mp3/ %>
                <object type="application/x-shockwave-flash"
-                    data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=yes" 
+                    data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=play mp3" 
                      width="157" height="17">
                <param name="movie" 
-                value="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=yes" />
+                value="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=play mp3" />
              <img src="noflash.gif" 
                   width="157" height="17" alt="" />
                  </object>
