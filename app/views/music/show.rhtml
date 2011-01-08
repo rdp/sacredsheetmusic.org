@@ -33,7 +33,39 @@
 		</div>
 	<% end %>
   
-	<%= render :partial => '/shared/single_product_downloads_all' %>
+<% if @product.downloads.count > 0 %>
+  <h2>Song Downloads</h2>
+  <p>
+    <ul>
+      <% @product.downloads.each do |dl| %>
+        <li>
+          <%= 
+            filename = dl.filename.split('.')[-1].downcase
+            filename_here = filename
+            #filename_here = 'pdf view' if filename == 'pdf'
+            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_here}</a>"
+          %>
+          <% if filename =~ /mid|wav/ %> <!-- TODO mp3, m4a, ogg  but they're a pretty miserable experience currently -->
+            <br/>
+            <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
+          <% elsif filename == 'pdf' %>
+            (<a href="<%= dl.relative_path_to_web_server %>">view</a>,
+            <%=
+            link_to(
+              'download',
+              :controller => 'music',
+              :action => 'download_file',
+              :params => {
+                :download_id => dl.id
+              }
+            ) %>
+            )
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
 
 	<div>
            <%= @product.description %>
