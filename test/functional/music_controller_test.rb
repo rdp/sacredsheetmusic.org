@@ -45,7 +45,7 @@ class MusicControllerTest < ActionController::TestCase
     FileUtils.mkdir_p(File.dirname(dl.full_filename))
     FileUtils.touch dl.full_filename
     get :show, :id => p.code
-    assert_select "body", /abcdef/
+    assert_select "body", /txt/
     # how to test? assert_select "body", /download_file/
     dl
   end
@@ -152,6 +152,25 @@ class MusicControllerTest < ActionController::TestCase
     assert_not_match /name1/
     assert_contains /name2/
     
+  end
+  
+  def test_normal_search_with_tags
+    test_advanced_search
+    get :search, {:search_term => "name1"}
+    assert assigns['products'].length == 1
+    get :search, {:search_term => "t1.a"}
+    assert assigns['products'].length == 2
+  end
+  
+  def test_normal_search_with_redundancy
+    test_advanced_search
+    t2b = Tag.create!(:name => "tag2")
+    p = Product.create!  :code => 'tag2', :quantity => 1000, :name => 'product name1',
+      :price => 10, :date_available => Time.now
+    p.tag_ids = [t2b.id.to_s]
+    
+    get :search, {:search_term => "tag2"}
+    assert assigns['products'].length == 1
   end
   
   def assert_contains regex

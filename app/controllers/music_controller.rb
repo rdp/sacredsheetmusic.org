@@ -133,5 +133,39 @@ class MusicController < StoreController
     end
   end 
   
+  def search
+    @search_term = params[:search_term]
+    @title = "Search Results for: #{@search_term}"
+    
+    # XXX paginate :)
+    
+    @products = Product.find(:all,
+      :order => 'name ASC',
+      :conditions => [
+        "(name LIKE ? OR code = ?) AND #{Product::CONDITIONS_AVAILABLE}", 
+        "%#{@search_term}%", @search_term
+      ]
+    )
+
+    # search for tags, too
+    @tags = Tag.find(:all,
+      :order => 'name ASC',
+      :conditions => [
+        "(name LIKE ?)", 
+        "%#{@search_term}%"
+      ]
+    )
+    
+    all_ids = @products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
+    # re map to fellas...
+    @products = all_ids.uniq.map{|id| Product.find(id) }
+    
+    # If only one product comes back, take em directly to it.
+    if @products.size == 1
+      redirect_to :action => 'show', :id => @products[0].code and return
+    else
+      render :action => 'index.rhtml'
+    end
+  end
 
 end
