@@ -42,7 +42,6 @@
           <%= 
             filename = dl.filename.split('.')[-1].downcase
             filename_here = filename
-            #filename_here = 'pdf view' if filename == 'pdf'
             "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_here}</a>"
           %>
           <% if filename =~ /mid|wav/ %> <!-- TODO mp3, m4a, ogg  but they're a pretty miserable experience currently -->
@@ -67,7 +66,7 @@
               :params => {
                 :download_id => dl.id
               }
-            ) %>
+            )%>
             )
           <% end %>
         </li>

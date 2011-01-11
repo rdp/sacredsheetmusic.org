@@ -1,5 +1,5 @@
 class MusicController < StoreController
- @@per_page = 11
+ @@per_page = 11_000_000 # lodo add in pagination if ever anybody cares
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
