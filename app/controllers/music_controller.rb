@@ -72,6 +72,11 @@ class MusicController < StoreController
       end
     end
 
+    if temp_tag.parent
+      # my own :P
+      @tag_names.unshift temp_tag.parent.name
+    end
+
     if tag_ids_array.size == 0
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
