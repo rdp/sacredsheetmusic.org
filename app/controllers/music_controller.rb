@@ -84,9 +84,14 @@ class MusicController < StoreController
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     list = Product.find_by_tags(tag_ids_array, true)
+    list = list.sort_by{|p| p.name}
     pager = Paginator.new(list, list.size, @@per_page, params[:page])
     @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
       p.replace list[pager.current.offset, pager.items_per_page]
+    end
+
+    if @tag_names.length == 1 && @viewing_tags[0].bio
+      @display_bio = @viewing_tags[0].bio
     end
 
     render :action => 'index.rhtml'

@@ -1,20 +1,19 @@
 <div style="float: left">
-  Please choose all that should apply.  For example if you wanted choir patriotic music, then check "SAB", "SATB", and "patriotic", then click "search".
+  Please check all that should apply.  For example if you wanted Easter music for a ward choir, then check both "SAB", "SATB", "SSAATTBB" and "Easter", then click "search".
   <form action="advanced_search_post">
   <ul>
   <% for tag in Tag.find_ordered_parents %>
-  <li>
+    <li>
       <div style="min-width: 75px; float: left; margin-right: 5px;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) if tag.children.count == 0 %>
       <br/>
-      <% for child in tag.children; next if child.products.length == 0 %>
-          <div>
-          <div style="min-width: 75px; float: left; margin-right: 5px;"><%= child.name %></div>
-  			<%= check_box_tag("product[tag_ids][]", child.id) %>
-          </div>
-        <br/>
-      <% end %>
-  </li>
+      <table>
+         <% for child in tag.children; next if child.products.length == 0 %>
+          <tr><td style="padding-right: 5px;"><%= child.name %></td><td><%= check_box_tag("product[tag_ids][]", child.id) %></td></tr>
+         <% end %>
+      </table>
+    </li>
+    <br/>
   <% end %>
   </ul>
   <input name="commit" type="submit" value="Search!" />
