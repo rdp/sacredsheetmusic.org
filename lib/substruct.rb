@@ -75,6 +75,14 @@ module Substruct
       :action     => 'ask'
 
     # Shorter url to show store items by tags
+    map.connect '/music/s/*tags',
+      :controller => 'music',
+      :action     => 'show_by_tags'
+    map.connect '/music/show_by_tags/*tags',
+      :controller => 'music',
+      :action     => 'show_by_tags'
+
+
     map.connect '/store/s/*tags',
       :controller => 'store',
       :action     => 'show_by_tags'
