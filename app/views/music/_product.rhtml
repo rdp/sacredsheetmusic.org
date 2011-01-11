@@ -22,7 +22,7 @@
     <div class="product_title">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
-    <div class="product_title" style="height: 50px"> 
+    <div class="product_title" style="height: 50px; font-size: 0.8em;"> 
          <!-- TAGS -->
          <% hymns = Tag.find_by_name('Hymns') || ' fakey'; tag_names = product.tags.select{|t| t.parent != nil && t.parent != hymns }.map{|t| t.name} %>
          (<%= tag_names.map{|t| link_to t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
