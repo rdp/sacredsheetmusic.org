@@ -55,13 +55,13 @@ class Admin::ProductsController < Admin::BaseController
             begin
              0.upto(100) do |n|
                new_image = Image.new
-               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/yo.gif")
-               fake_upload = Pathname.new('/tmp/yo.gif')
+               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/music.gif")
+               fake_upload = Pathname.new('/tmp/music.gif')
                def fake_upload.content_type
                 'image/gif'
                end
                def fake_upload.original_filename
-                'yo.gif'
+                'music.gif'
                end
                new_image.uploaded_data = fake_upload
                if new_image.save
