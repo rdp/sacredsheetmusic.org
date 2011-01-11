@@ -78,7 +78,7 @@ class MusicController < StoreController
 
     if temp_tag.parent
       # my own :P
-      @tag_names.unshift temp_tag.parent.name
+      # @tag_names.unshift temp_tag.parent.name
     end
 
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC")
@@ -95,7 +95,7 @@ class MusicController < StoreController
       p.replace list[pager.current.offset, pager.items_per_page]
     end
 
-    if @tag_names.length == 2 && @viewing_tags[0].bio
+    if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
     end
 
