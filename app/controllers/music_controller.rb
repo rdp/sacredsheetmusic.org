@@ -95,7 +95,7 @@ class MusicController < StoreController
       p.replace list[pager.current.offset, pager.items_per_page]
     end
 
-    if @tag_names.length == 1 && @viewing_tags[0].bio
+    if @tag_names.length == 2 && @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
     end
 
