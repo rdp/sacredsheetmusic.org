@@ -11,7 +11,7 @@ module SubstructApplicationController
       end
       
       if request.request_uri == '/'
-        redirect_to "/ward-choir-music"
+        redirect_to "/lds-ward-choir-music"
         flash.keep
         return false
       end
