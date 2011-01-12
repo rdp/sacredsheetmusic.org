@@ -40,14 +40,16 @@
       <% @product.downloads.each do |dl| %>
         <li>
           <%= 
-            filename = dl.filename.split('.')[-1].downcase
-            filename_here = filename
-            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_here}</a>"
+            filename_extension = dl.filename.split('.')[-1].downcase
+            filename_extension = 'midi' if filename_extension == 'mid'
+            filename_extension = 'wave' if filename_extension == 'wav'
+            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_extension}</a>"
           %>
-          <% if filename =~ /mid|wav/ %> <!-- TODO mp3, m4a, ogg  but they're a pretty miserable experience currently -->
+
+          <% if filename_extension =~ /midi|wave/ %>
             <br/>
- <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
-          <% elsif filename =~ /mp3/ %>
+            <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
+          <% elsif filename_extension =~ /\.mp3/ %>
                <object type="application/x-shockwave-flash"
                     data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" 
                      width="157" height="17">
@@ -56,7 +58,7 @@
              <img src="noflash.gif" 
                   width="157" height="17" alt="" />
                  </object>
-          <% elsif filename == 'pdf' %>
+          <% elsif filename_extension == 'pdf' %>
             (<a href="<%= dl.relative_path_to_web_server %>">view</a>,
             <%=
             link_to(

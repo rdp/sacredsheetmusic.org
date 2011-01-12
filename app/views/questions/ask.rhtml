@@ -5,7 +5,7 @@
 	<div class="form_block">
 		<h1>Contact Us</h1>
 	
-		<p>Ask your question below.</p>
+		<p>Ask your question/leave feedback below.</p>
 	
 		<%= form_tag :action => 'send_question' %>
 		
@@ -14,11 +14,11 @@
         <%= text_field 'question', 'email_address', :size => 50, :maxlength => 50, :class => 'textInput' %>
       	<%= error_message_on(:question, :email_address) %>
         <br/>
-        <span class="info">We won't ever sell, spam or share your email address.</span>
+        <!--span class="info">We won't ever sell, spam or share your email address.</span-->
       </div>
 
       <div style="padding-bottom:10px;">
-        <%= make_label("Question", true) %>
+        <%= make_label("Question/Comment", true) %>
         <%= text_area 'question', 'long_question', :cols => 60, :rows => 8, :class => 'textArea' %>
       	<%= error_message_on(:question, :long_question) %>
       </div>
@@ -30,6 +30,6 @@
       </p>
 	  </form>
 	</div>
-    <div> Also you can <a href="http://musicformormons.com/blog/survey-instructions">fill out our site survey</a> if you so desire.
+    <div> Also you can <a href="http://musicformormons.com/blog/survey-instructions">fill out our site survey</a> if you desire to help us know how to improve our site.
 	
 </div>
