@@ -2,6 +2,7 @@
 <div id="left">
   <h1><%= @title %></h1>
   <p>
+    <%= submit_tag 'Save This Product', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
     <%=
       link_to(
         'View on the site',
