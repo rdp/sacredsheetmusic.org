@@ -23,7 +23,7 @@
           <% if filename_extension =~ /midi|wave/ %>
             <br/>
             <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
-          <% elsif filename_extension =~ /\.mp3/ %>
+          <% elsif filename_extension == 'mp3' %>
                <object type="application/x-shockwave-flash"
                     data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" 
                      width="157" height="17">
