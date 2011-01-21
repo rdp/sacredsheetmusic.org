@@ -4,35 +4,9 @@
 		<%= @product.name %>
 		<!--span class="info"><%= @product.code %></span-->
 	</h1>
-	<ul class="navigation secondary">
+  <ul class="navigation secondary">
     <li><a href="/music">Back</a></li>
   </ul>
-	<% if @default_image %>
-		<div style="float:left; margin:20px; width: 500px;">
-      <% if @default_image.public_filename then %>
-        <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename, :width => "100%" %>
-        </a>
-      <% end %>
-			<p class="info">Click to see full view</p>
-			<!-- not thumbnails! -->
-			<% if @images.size > 1 %>
-				<h4>Other pages</h4>
-				<% for @p_image in @images do %>
-				  <% next if @p_image == @default_image %>
-					<div class="float" style="margin:5px;">
-					  <% if @p_image.public_filename() then %>
-                                             <a href="<%= @p_image.public_filename %>" 
-                                              rel="lightbox[product_image]"
-                                              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
-                                         <% end %>
-					</div>
-					<HR/>
-				<% end %>
-			<% end %>
-		</div>
-	<% end %>
-  
 <% if @product.downloads.count > 0 %>
   <h2>Song Downloads</h2>
   <p>
@@ -84,6 +58,33 @@
           <%= links.join(', ') %>
         </div>
 
+
+	<% if @default_image %>
+		<div style="float:left; margin:20px; width: 90%%;">
+      <% if @default_image.public_filename then %>
+        <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
+          <%= image_tag @default_image.public_filename, :width => "100%" %>
+        </a>
+      <% end %>
+			<p class="info">Click to see full view</p>
+			<!-- not thumbnails! -->
+			<% if @images.size > 1 %>
+				<h4>Other pages</h4>
+				<% for @p_image in @images do %>
+				  <% next if @p_image == @default_image %>
+					<div class="float" style="margin:5px;">
+					  <% if @p_image.public_filename() then %>
+                                             <a href="<%= @p_image.public_filename %>" 
+                                              rel="lightbox[product_image]"
+                                              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
+                                         <% end %>
+					</div>
+					<HR/>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+  
 	<div class="clear"></div>
 <!-- DISABLED 
 	<% if @product.related_products.size > 0 %>
@@ -128,11 +129,10 @@
   <div>Add <a href="" onMouseOver="$('comments').show()">a comment</a></div>
   <div id="comments" style="display:none">
     <form action="/music/add_comment" method="post">
-      Add your own comment about this piece:<br/>
+      Add your own [positive/constructive] comment about this piece:<br/>
       Your name: <input name="user_name" type="text" value="" /> <br/>
       Your email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
-
-URL (optional): <input name="user_url" type="text" value="" /> <br/>
+      Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
 <% for name in ['overall', 'difficulty'] do %>
       <%= name.capitalize %> rating, out of 5 (optional):
   <select name="<%= name%>_rating">
@@ -152,7 +152,7 @@ URL (optional): <input name="user_url" type="text" value="" /> <br/>
       <input name="commit" type="submit" value="Add it!" />
     </form>
   </div>
-<div>Upload <a href="/your-own-mp3">your own mp3</a> of this song.</div>
+<div>Upload <a href="/your-own-mp3">your own mp3 recording</a> of this song.</div>
 
 </div>
 <div class="clear">&nbsp;</div>
