@@ -639,7 +639,7 @@ input.error {
 .product_title {
 	height: 35px;
 	margin: 4px 0px;
-	/* ??? overflow: hidden; */
+	overflow: hidden;
 }
 .product .money {
 	display: block;

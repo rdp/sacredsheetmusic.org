@@ -34,7 +34,7 @@
     </div>
 
     <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mid/ %>
-           <embed src="<%= preferred_play_inline.relative_path_to_web_server %>" width="90" height="16" autostart="false" loop="FALSE" />
+           <embed src="<%= preferred_play_inline.relative_path_to_web_server %>" type="audio/midi" width="90" height="35" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
     <% end %>
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
