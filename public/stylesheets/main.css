@@ -606,7 +606,7 @@ input.error {
 
 /* PRODUCT 'CHIPS' */
 .product {
-	width: 150px;
+	width: 150px; /** NB that you can't just change these, as the background images have to get larger, too **/
 	margin-right: 5px;
 	float: left;
 	background-image: url(/plugin_assets/substruct/images/public-ui/item-middle.gif);
