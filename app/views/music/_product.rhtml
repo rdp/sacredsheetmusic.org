@@ -19,17 +19,30 @@
       %>
       <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
-    <div class="product_title">
+    <% preferred_play_inline = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/} %>
+    <div class="product_title" style="margin-bottom: 15px">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
+      <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mp3/ %>
+             <object type="application/x-shockwave-flash"
+                    data="/flash/button_player.swf?&song_url=<%= preferred_play_inline.relative_path_to_web_server %>&player_title=mp3&song_title=mp3"
+                     width="17" height="17">
+               <param name="movie"
+                value="/flash/button_player.swf?&song_url=<%= preferred_play_inline.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" />
+              </object>
+     <% end %>
+
     </div>
+
+    <% if false #
+         preferred_play_inline  && preferred_play_inline.filename =~ /\.mid/ %>
+           <embed src="<%= preferred_play_inline.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
+    <% end %>
+
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
          <!-- TAGS -->
          <% hymns = Tag.find_by_name('Hymns') || ' fakey'; tag_names = product.tags.select{|t| t.parent != nil && t.parent != hymns }.map{|t| t.name} %>
          (<%= tag_names.map{|t| link_to t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
     </div>
-    <% if product.display_price? %>
-      <span class="money"><%= sub_number_to_currency(product.display_price) %></span>
-    <% end %>
   </div>
   <div class="product_bottom"></div>
 </div>

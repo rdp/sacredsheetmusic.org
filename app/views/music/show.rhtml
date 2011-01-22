@@ -16,14 +16,16 @@
           <%= 
             filename_extension = dl.filename.split('.')[-1].downcase
             filename_extension = 'midi' if filename_extension == 'mid'
-            filename_extension = 'wave' if filename_extension == 'wav'
+            filename_extension = '.wav' if filename_extension == 'wav'
             "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_extension}</a>"
           %>
 
-          <% if filename_extension =~ /midi|wave/ %>
+          <% if filename_extension =~ /midi|wave|mp3/ %>
             <br/>
-            <embed src="<%= dl.relative_path_to_web_server %>" width="140" height="40" autostart="false" loop="FALSE" />
+            <%# the type=audio/mpeg forces it to quicktime... %>
+            <embed src="<%= dl.relative_path_to_web_server %>" <%= 'type="audio/mpeg"' if filename_extension =~ /mp3/ %> width="140" height="40" autostart="false" loop="FALSE" />
           <% elsif filename_extension == 'mp3' %>
+              <!--
                <object type="application/x-shockwave-flash"
                     data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" 
                      width="157" height="17">
@@ -32,6 +34,7 @@
              <img src="noflash.gif" 
                   width="157" height="17" alt="" />
                  </object>
+               -->
           <% elsif filename_extension == 'pdf' %>
             (<a href="<%= dl.relative_path_to_web_server %>">view</a>,
             <%=
