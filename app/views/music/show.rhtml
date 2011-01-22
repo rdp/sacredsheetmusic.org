@@ -20,7 +20,7 @@
             "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_extension}</a>"
           %>
 
-          <% if filename_extension =~ /midi|wave|mp3/ %>
+          <% if filename_extension =~ /midi|wav|mp3/ %>
             <br/>
             <%# the type=audio/mpeg forces it to quicktime... %>
             <embed src="<%= dl.relative_path_to_web_server %>" <%= 'type="audio/mpeg"' if filename_extension =~ /mp3/ %> width="140" height="40" autostart="false" loop="FALSE" />
