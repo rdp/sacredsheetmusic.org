@@ -1,8 +1,9 @@
 <div style="float: left">
-  Please check all that should apply.  For example if you wanted Easter music for a ward choir, then check both "SAB", "SATB", "SSAATTBB" and "Easter", then click "search".
+  <br/>
+  Please check all aspects that should apply.  For example if you wanted Easter music for a ward choir, then check both "SATB", "SAB", and "Easter", then click "search". Note that within each group you can check more than one option, like both "SATB" and "SAB".
   <form action="advanced_search_post">
   <ul>
-  <% for tag in Tag.find_ordered_parents %>
+  <% for tag in Tag.find_ordered_parents; next if tag.name == "Hymns" %>
     <li>
       <div style="min-width: 75px; float: left; margin-right: 5px;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) if tag.children.count == 0 %>
