@@ -54,6 +54,7 @@ class MusicControllerTest < ActionController::TestCase
     dl = test_download_link
     get :download_file, :download_id => dl.id
     assert_response :success
+    assert dl.count == 1
   end
   
   def test_shows_preexisting_comments
