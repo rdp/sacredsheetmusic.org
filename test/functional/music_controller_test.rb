@@ -40,6 +40,9 @@ class MusicControllerTest < ActionController::TestCase
   def test_download_link
     p = test_create_product
     dl = Download.new('filename' => 'abcdef.txt', 'content_type' => 'image/jpeg', 'size' => 1024)
+    # some antics to create the thing...
+    FileUtils.mkdir_p File.dirname(dl.full_filename)
+    File.write dl.full_filename, 'abc' # gotta be size > 0
     p.downloads << dl
     # create it
     FileUtils.mkdir_p(File.dirname(dl.full_filename))
@@ -50,11 +53,12 @@ class MusicControllerTest < ActionController::TestCase
     dl
   end
   
-  def test_can_download_without_logging_in
+  def test_can_download_without_logging_in_and_increments_count_on_download
     dl = test_download_link
+    assert dl.count == 0
     get :download_file, :download_id => dl.id
     assert_response :success
-    assert dl.count == 1
+    assert dl.reload.count == 1
   end
   
   def test_shows_preexisting_comments
@@ -173,6 +177,7 @@ class MusicControllerTest < ActionController::TestCase
     get :search, {:search_term => "tag2"}
     assert assigns['products'].length == 1
   end
+  
   
   def assert_contains regex
     raise 'not found ' + regex.to_s unless @response.body =~ regex

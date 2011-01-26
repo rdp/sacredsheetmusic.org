@@ -3,6 +3,33 @@
 require_dependency 'substruct/login_system.rb'
 require 'patch_attachment_fu'
 
+
+# abstracted from require 'facets/file' ===>
+class File
+
+  # Writes the given data to the given path and closes the file.  This is
+  # done in binary mode, complementing <tt>IO.read</tt> in standard Ruby.
+  #
+  # Returns the number of bytes written.
+  #
+  # CREDIT: facets/Gavin Sinclair
+
+  def self.write(path, data)
+    File.open(path, "w") do |file|
+      return file.write(data)
+    end
+  end unless self.respond_to?(:write)
+
+  def self.binwrite(path, data)
+    File.open(path, "wb") do |file|
+      return file.write(data)
+    end
+  end
+
+end
+
+
+
 # Globals
 ERROR_EMPTY  = 'Please fill in this field.'
 ERROR_NUMBER = 'Please enter only numbers (0-9) in this field.'

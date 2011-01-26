@@ -1,6 +1,21 @@
-require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/download"
+#require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/download"
 
-class Download < UserUpload
+# just in case...
+require 'tempfile'
+
+class Tempfile
+  def size
+    if @tmpfile
+      @tmpfile.fsync
+      @tmpfile.flush
+      @tmpfile.stat.size
+    else
+      0
+    end
+  end
+end
+
+class Download < UserUpload # user_uploads table...
 
   MAX_SIZE = 120.megabyte
 
@@ -15,5 +30,10 @@ class Download < UserUpload
     :processor => 'MiniMagick',
     :path_prefix => 'public/system/'
   )
-
+  
+  has_many :product_downloads, :dependent => :destroy
+  has_one :product, :through => :product_downloads
+  
+  # avoid validates_as_attachment, which forces it to be an attachment
+  # huh? what?
 end

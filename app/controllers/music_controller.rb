@@ -104,12 +104,13 @@ class MusicController < StoreController
   
   
   # Downloads a file using the old system :P
-  
+  # this way forces an "out of browser" download which is good...
   def download_file
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
-    
     if file && File.exist?(file.full_filename)
+      file.count += 1
+      p file.save # necessary? probably...
       send_file(file.full_filename)
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
