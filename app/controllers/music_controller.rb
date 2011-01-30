@@ -1,5 +1,5 @@
 class MusicController < StoreController
- @@per_page = 23 # lodo add in pagination if ever anybody cares
+ @@per_page = 17
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
@@ -102,19 +102,27 @@ class MusicController < StoreController
     render :action => 'index.rhtml'
   end
   
-  
   # Downloads a file using the old system :P
   # this way forces an "out of browser" download which is good...
   def download_file
+    download_helper 'attachment'
+  end
+
+  def inline_download_file
+    download_helper 'inline'
+  end
+
+  def download_helper disposition
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
       file.count += 1
-      p file.save # necessary? probably...
-      send_file(file.full_filename)
+      file.save # necessary? probably...
+      send_file(file.full_filename, :type => 'application/pdf', :disposition => disposition) # inline, attachment
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
+
   end
 
   # Our simple store index

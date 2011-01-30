@@ -36,7 +36,13 @@
                  </object>
                -->
           <% elsif filename_extension == 'pdf' %>
-            (<a href="<%= dl.relative_path_to_web_server %>">view</a>,
+            (<%=
+            link_to(
+              'view',
+              :controller => 'music',
+              :action => 'inline_download_file',
+              :params => { :download_id => dl.id }
+              )%>,
             <%=
             link_to(
               'download',
