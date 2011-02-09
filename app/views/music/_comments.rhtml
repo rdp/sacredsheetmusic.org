@@ -1,6 +1,6 @@
 <% if @product.comments.length > 0 %>
     <div>
-    Comments from other users on this piece:
+    Comments about this piece:
     <% for c in @product.comments %>
       <p>
       <%= c.user_name_with_url_and_colon %> <%= c.comment %>
@@ -11,7 +11,7 @@
 <% end %>
 
 <br />
-Add user feedback on this song <input type="checkbox" onClick="$('comments').toggle()"</div>
+Add user feedback <input type="checkbox" onClick="$('comments').toggle()"</div>
   <div id="comments" style="display:none">
     <br />
     <form action="/music/add_comment" method="post">
