@@ -3,7 +3,7 @@
     Comments about this piece:
     <% for c in @product.comments %>
       <p>
-      <%= c.user_name_with_url_and_colon %> <%= c.comment %>
+      From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
       </p>
     <% end %>
 
@@ -13,11 +13,10 @@
 <br />
 Add user <a href="#" onClick="$('comments').toggle();">feedback</a> about this piece.
   <div id="comments" style="display:none;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
-    <br />
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] comment about this piece, or ideas on how to help perform it, etc.:<br/>
-      Your name: <input name="user_name" type="text" value="" /> <br/>
-      Your email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
+      Name: <input name="user_name" type="text" value="" /> <br/>
+      Email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
       Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
 <% for name in ['overall', 'difficulty'] do %>
       Song <%= name.capitalize %> rating, out of 5 (optional):
@@ -31,7 +30,7 @@ Add user <a href="#" onClick="$('comments').toggle();">feedback</a> about this p
 </select><br/>
 
 <% end %>
-      Your comments:<br/>
+      Comments:<br/>
       <textarea name="comment" cols="40" rows="5"></textarea><br/>
       <input name="id" type="hidden" value="<%= @product.id %>"/>
       What day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
