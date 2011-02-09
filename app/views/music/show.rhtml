@@ -7,6 +7,7 @@
   <ul class="navigation secondary">
     <li><a href="/music">Back</a></li>
   </ul>
+
 <% if @product.downloads.count > 0 %>
   <h2>Song Downloads</h2>
   <p>
@@ -57,8 +58,8 @@
       <% end %>
     </ul>
   </p>
-<% end %>
-
+<% end # downloads
+ %>
 	<div>
            <%= @product.description %>
 	</div>
@@ -66,7 +67,7 @@
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
-
+</div> <!-- end left -->
 
 	<% if @default_image %>
 		<div style="float:left; margin:20px; width: 90%%;">
@@ -95,6 +96,7 @@
 	<% end %>
   
 	<div class="clear"></div>
+
 <!-- DISABLED 
 	<% if @product.related_products.size > 0 %>
 		<br/>
@@ -104,7 +106,7 @@
 		<div class="clear"></div>
 	<% end %>
 -->
-</div>
+
 <div id="right">
 
 	<!-- DISABLED div align="center" style="margin-top:10px;">

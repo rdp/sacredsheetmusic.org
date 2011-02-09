@@ -1,0 +1,44 @@
+<div style="float:left; min-height: 350; padding: 20px; border-style:dotted; border-width:1px;">
+<UL>
+					<% 
+						@main_nav_tags.each_index do |i| 
+							tag = @main_nav_tags[i]
+					%>
+						<li
+							style="<%= i == @main_nav_tags.size-1 ? 'margin-right: 0px !important;' : '' %>"
+						>
+							<%= 
+								link_to(
+									tag.name,
+									:controller => 'music',
+									:action => 'show_by_tags',
+									:tags => [tag.name]
+								)
+							%>
+
+						</li>
+					<%  if is_main_tab_active?(tag.id) %>
+             <UL>
+             <% for tag2 in @subnav_tags do; next if tag2.products.length == 0 %>
+                <LI>
+						 	<%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.3em;">' : '' %>
+							<%= 
+								link_to(
+									tag2.name,
+									:controller => 'music',
+									:action => 'show_by_tags',
+									:tags => [tag2.name]
+									# makes linda not show many? 
+ #:tags => [@main_tag_active.name, tag2.name]
+
+								)
+							%>
+						 	<%= is_main_tab_active?(tag2.id) ? '</span>' : '' %>
+
+                </LI>
+             <% end %>
+             </UL>
+          <% end %> 
+   <% end %>
+</UL>
+</div>

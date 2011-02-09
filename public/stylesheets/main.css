@@ -782,13 +782,13 @@ div.p * {
 /* Left content container */
 #left {
 	float:left;
-	width: 775px  !important;
+	width: 750px !important;
 	width: 610px;
 	margin-left: 10px;
 	border-right: 1px dashed #bfb4a9;
 	padding-right: 20px;
 	margin-right: 20px;
-	min-height: 500px;
+	/*min-height: 500px; */
 	margin-bottom: 20px;
 }
 
