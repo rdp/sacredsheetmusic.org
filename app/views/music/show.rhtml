@@ -12,13 +12,27 @@
   <h2>Song Downloads</h2>
   <p>
     <ul>
-      <% @product.downloads.each do |dl| %>
-        <li>
-          <%= 
+      <% 
+       products_with_extension = @product.downloads.map{|dl| 
             filename_extension = dl.filename.split('.')[-1].downcase
             filename_extension = 'midi' if filename_extension == 'mid'
             filename_extension = '.wav' if filename_extension == 'wav'
-            "<a href=\"#{dl.relative_path_to_web_server}\">#{filename_extension}</a>"
+            [dl, filename_extension]
+        }
+
+        products_with_extension.each do |dl, filename_extension| %>
+        <li>
+          <%= 
+            link_name = filename_extension
+            count = 0
+            products_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
+            link_name = dl.filename if count > 1
+            inline_view = link_to(
+              link_name,
+              :controller => 'music',
+              :action => 'inline_download_file',
+              :params => { :download_id => dl.id }
+            )
           %>
 
           <% if filename_extension =~ /midi|wav|mp3/ %>
@@ -39,7 +53,7 @@
           <% elsif filename_extension == 'pdf' %>
             (<%=
             link_to(
-              'view',
+              'view', # has its own name...
               :controller => 'music',
               :action => 'inline_download_file',
               :params => { :download_id => dl.id }
@@ -84,9 +98,10 @@
 				  <% next if @p_image == @default_image %>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
-                                             <a href="<%= @p_image.public_filename %>" 
+                                             <!--a href="<%= @p_image.public_filename %>" 
                                               rel="lightbox[product_image]"
-                                              ><%= image_tag @p_image.public_filename(), :width => "100%" %></a>
+                                              ></a-->
+                                              <%= image_tag @p_image.public_filename(), :width => "100%" %>
                                          <% end %>
 					</div>
 					<HR/>
