@@ -103,9 +103,9 @@
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
                                              <a href="<%= @p_image.public_filename %>" 
-                                              rel="lightbox[product_image]"
+                                              rel="lightbox[product_image]">
                                               <%= image_tag @p_image.public_filename(), :width => "100%" %>
-                                              ></a>
+                                              </a>
                                          <% end %>
 					</div>
 					<HR/>
