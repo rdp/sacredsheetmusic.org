@@ -637,7 +637,7 @@ input.error {
 	overflow: hidden;
 }
 .product_title {
-	height: 35px;
+	/* height: 35px; */
 	margin: 4px 0px;
 	/*overflow: hidden;*/
 }

@@ -11,8 +11,8 @@
 <% end %>
 
 <br />
-Add user feedback <input type="checkbox" onClick="$('comments').toggle()"</div>
-  <div id="comments" style="display:none">
+Add user <a href="#" onClick="$('comments').toggle();">feedback</a> about this piece.
+  <div id="comments" style="display:none;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
     <br />
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] comment about this piece, or ideas on how to help perform it, etc.:<br/>

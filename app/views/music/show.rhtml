@@ -78,14 +78,17 @@
 <%#= render :partial => '/boxed_categories' 
 %> <!-- already floats left -->
 <div class="clear"></div>
- <%= render :partial => 'comments' %>
+<%= render :partial => 'comments' %>
+<br />
+<br />
+<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.</div>
 </div>
 <div style="float: right; width: 75%;">
   <ul class="navigation secondary">
     <li><a href="/music">Back</a></li>
   </ul>
 
-	<% if @default_image %>
+      <% if @default_image %>
 		<div style="float:left; margin:20px; width: 90%%;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
@@ -143,7 +146,6 @@
 		</p>
 	</div-->
 	
-<div>Upload <a href="/your-own-mp3">your own mp3 recording</a> of this song.</div>
 
 </div>
 <div class="clear">&nbsp;</div>

@@ -35,7 +35,9 @@
          <div style="padding-bottom: 10px;"><%= @display_bio %></div>
         <% end %>
         <% if @products.length > 10 %>
-           <div style="padding-bottom: 10px;">(Note that you can get more precise results using an <a href="/music/advanced_search">advanced search</a>.)</div>
+           <div style="padding-bottom: 10px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.)</div>
+        <% else %>
+            <br /> <!-- force second line to be at the left -->
         <% end %>
 
 	<!-- PRODUCTS LIST -->
