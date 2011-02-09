@@ -142,8 +142,8 @@
 
 	<!-- Begin content body  -->
 	<div id="contentBody">
-    <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
-    <%= yes_box ? (render :partial => '/boxed_categories') : "" %>
+          <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
+          <%= yes_box ? (render :partial => '/boxed_categories') : "" %>
 	  <%= yield %>
 	</div>
 	<div class="clear"></div>

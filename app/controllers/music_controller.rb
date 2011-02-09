@@ -1,5 +1,5 @@
 class MusicController < StoreController
- @@per_page = 17
+ @@per_page = 16
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
