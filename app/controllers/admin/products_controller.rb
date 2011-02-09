@@ -16,11 +16,11 @@ class Admin::ProductsController < Admin::BaseController
       @product = Product.new()
     end
     @product.attributes = params[:product]
-		if @product.save
-			# Save product tags
-			# Our method doesn't save tags properly if the product doesn't already exist.
-			# Make sure it gets called after the product has an ID
-			@product.tag_ids = params[:product][:tag_ids] if params[:product][:tag_ids]
+    if @product.save
+      # Save product tags
+      # Our method doesn't save tags properly if the product doesn't already exist.
+      # Make sure it gets called after the product has an ID
+      @product.tag_ids = params[:product][:tag_ids] if params[:product][:tag_ids]
       # Build product images from upload
       image_errors = []
       unless params[:image].blank?
@@ -44,7 +44,11 @@ class Admin::ProductsController < Admin::BaseController
       # Build downloads from form
       download_errors = []
       unless params[:download].blank?
-  			params[:download].each do |i|
+        n2 = 0 # outside the loop to allow for multiple pdfs
+        @product.images.each{|old_image|
+           n2 = [old_image.product_images[0].rank, n2].max # reset so it'll add 'em at the end...
+        }
+  	params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
             new_download = Download.new
             logger.info i[:download_data].inspect
@@ -53,7 +57,7 @@ class Admin::ProductsController < Admin::BaseController
             if i[:download_data].original_filename =~ /\.pdf$/
              # also add them in as fake images
             begin
-             0.upto(100) do |n|
+             0.upto(1000) do |n|
                new_image = Image.new
                raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/music.gif")
                fake_upload = Pathname.new('/tmp/music.gif')
@@ -68,7 +72,8 @@ class Admin::ProductsController < Admin::BaseController
                 @product.images << new_image
                 # gets the rank wrong, except for the first? huh?
                 pi = new_image.product_images[0]
-                pi.rank = n
+                pi.rank = n + n2
+                n2 += 1
                 pi.save
               else
                 raise 'bad'
