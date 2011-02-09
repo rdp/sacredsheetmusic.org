@@ -1,15 +1,10 @@
 <% @two_column_layout = true %>
-<div id="left">
- 	<h1>
-		<%= @product.name %>
-		<!--span class="info"><%= @product.code %></span-->
-	</h1>
-  <ul class="navigation secondary">
-    <li><a href="/music">Back</a></li>
-  </ul>
-
+<div style="float: left; width: 25%">
+<%= render :partial => '/boxed_categories' %> <!-- already floats left -->
+<div class="clear"></div>
+<div>
 <% if @product.downloads.count > 0 %>
-  <h2>Song Downloads</h2>
+  <h2>Downloads</h2>
   <p>
     <ul>
       <% 
@@ -82,6 +77,14 @@
           <%= links.join(', ') %>
         </div>
 </div> <!-- end left -->
+</div>
+<div style="float: right; width: 75%;">
+  <h1>
+		<%= @product.name %>
+ </h1>
+  <ul class="navigation secondary">
+    <li><a href="/music">Back</a></li>
+  </ul>
 
 	<% if @default_image %>
 		<div style="float:left; margin:20px; width: 90%%;">
@@ -98,10 +101,10 @@
 				  <% next if @p_image == @default_image %>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
-                                             <!--a href="<%= @p_image.public_filename %>" 
+                                             <a href="<%= @p_image.public_filename %>" 
                                               rel="lightbox[product_image]"
-                                              ></a-->
                                               <%= image_tag @p_image.public_filename(), :width => "100%" %>
+                                              ></a>
                                          <% end %>
 					</div>
 					<HR/>
