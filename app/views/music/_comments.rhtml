@@ -1,4 +1,4 @@
-   <% if @product.comments.length > 0 %>
+<% if @product.comments.length > 0 %>
     <div>
     Comments from other users on this piece:
     <% for c in @product.comments %>
@@ -8,17 +8,19 @@
     <% end %>
 
     </div>
-  <% end %>
+<% end %>
+
 <br />
-<div>Add <a href="" onMouseOver="$('comments').show()">feedback</a></div>
+Add user feedback <input type="checkbox" onClick="$('comments').toggle()"</div>
   <div id="comments" style="display:none">
+    <br />
     <form action="/music/add_comment" method="post">
-      Add your own [positive/constructive] comment about this piece:<br/>
+      Add your own [positive/constructive] comment about this piece, or ideas on how to help perform it, etc.:<br/>
       Your name: <input name="user_name" type="text" value="" /> <br/>
       Your email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
       Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
 <% for name in ['overall', 'difficulty'] do %>
-      <%= name.capitalize %> rating, out of 5 (optional):
+      Song <%= name.capitalize %> rating, out of 5 (optional):
   <select name="<%= name%>_rating">
   <option value="-1">select</option>
   <option value="5">5 stars</option>
@@ -29,10 +31,10 @@
 </select><br/>
 
 <% end %>
-      Your review:<br/>
+      Your comments:<br/>
       <textarea name="comment" cols="40" rows="5"></textarea><br/>
       <input name="id" type="hidden" value="<%= @product.id %>"/>
       What day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
-      <input name="commit" type="submit" value="Add it!" />
+      <input name="commit" type="submit" value="Add comment!" />
     </form>
   </div>
