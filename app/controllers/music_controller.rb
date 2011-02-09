@@ -27,6 +27,24 @@ class MusicController < StoreController
   true
  end
 
+
+  def show
+    @product = Product.find_by_code(params[:id])
+    if !@product
+      flash[:notice] = "Sorry, we couldn't find the product you were looking for"
+      redirect_to :action => 'index' and return false
+    end
+    @title = @product.name
+    @images = @product.images.find(:all)
+    @default_image = @images[0]
+    @variations = @product.variations.find(
+      :all,
+      :order => '-variation_rank DESC',
+      :conditions => 'quantity > 0'
+    )
+    render :layout => 'main_no_box'
+  end
+
  def advanced_search_post
    tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
   
