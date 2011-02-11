@@ -1,8 +1,9 @@
 <% @two_column_layout = true %>
 <div style="float: left; width: 25%">
-<div>
+<div style="margin-left: 10px;">
 <% if @product.downloads.count > 0 %>
   <h2><%= @product.name %></h2>
+    <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
   <p>
     <ul>
       <% 
@@ -78,12 +79,13 @@
 <%#= render :partial => '/boxed_categories' 
 %> <!-- already floats left -->
 <div class="clear"></div>
+<br />
+<hr/>
 <%= render :partial => 'comments' %>
 <br />
 <br />
 <div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.</div>
 <br />
-    <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to Index</a>
 </div>
 <div style="float: right; width: 75%;">
 
