@@ -1,10 +1,10 @@
 <% @two_column_layout = true %>
 <div style="float: left; width: 25%">
 <div style="margin-left: 10px;">
+<h2><%= @product.name %></h2>
+<hr style="margin-bottom: 5px;"/>
+<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
 <% if @product.downloads.count > 0 %>
-  <h2><%= @product.name %></h2>
-  <hr style="margin-bottom: 5px;"/>
-  <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
   <p>
     <ul>
       <% 

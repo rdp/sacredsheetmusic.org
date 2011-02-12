@@ -23,6 +23,10 @@ class Download < UserUpload # user_uploads table...
     full_filename.gsub(RAILS_ROOT + "/public", "")
   end
 
+  def self.super_sum
+    all.inject(0) {|sum, dl| sum += dl.count; sum}
+  end
+
   has_attachment(
     :storage => :file_system,
     :max_size => MAX_SIZE,
