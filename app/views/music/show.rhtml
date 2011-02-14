@@ -1,6 +1,8 @@
 <% @two_column_layout = true %>
 <div style="float: left; width: 25%">
 <div style="margin-left: 10px;">
+<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
+<br/>
 <h2><%= @product.name %></h2>
 <hr style="margin-bottom: 5px;"/>
 <% if @product.downloads.count > 0 %>
@@ -71,9 +73,6 @@
 	<div>
            <%= @product.description %>
 	</div>
-<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
-<br/>
-<br/>
         <% if (p = @product.original_url) && (p.length > 0) %>
         <div>
            <a href="<%= p %>">Author's page</a>
