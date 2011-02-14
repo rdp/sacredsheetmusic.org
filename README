@@ -7,7 +7,7 @@ $svn checkout http://substruct.googlecode.com/svn/trunk/ vendor
 Also add in the admin_data plugin for rails2, separately.
 
 now 
-
+$ rake gems:installs # or whatever it is
 $ rake db:create
 $ rake substruct:db:bootstrap
 $ rake db:migrate
