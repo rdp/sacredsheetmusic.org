@@ -136,7 +136,13 @@ class MusicController < StoreController
     if file && File.exist?(file.full_filename)
       file.count += 1
       file.save # necessary? probably...
-      send_file(file.full_filename, :type => 'application/pdf', :disposition => disposition) # inline, attachment
+      args = {:disposition => disposition}
+      # allow for mp3 style download to not be type pdf
+      # TODO this doesn't actually inline anything else then...but at least it wurx
+      if file.full_filename =~ /\.pdf$/
+        args[:type] = 'application/pdf'
+      end
+      send_file(file.full_filename, args)
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end

@@ -46,7 +46,7 @@ class Admin::ProductsController < Admin::BaseController
       unless params[:download].blank?
         n2 = 0 # outside the loop to allow for multiple pdfs
         @product.images.each{|old_image|
-           n2 = [old_image.product_images[0].rank, n2].max # reset so it'll add 'em at the end...
+           n2 = [old_image.product_images[0].rank || 0, n2].max # reset so it'll add 'em at the end...
         }
   	params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
