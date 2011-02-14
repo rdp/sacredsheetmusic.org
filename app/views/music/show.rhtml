@@ -71,12 +71,13 @@
 	<div>
            <%= @product.description %>
 	</div>
+<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
+<br/>
+<br/>
         <div> Song topics:
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
-<br/  >
-<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
 </div> <!-- end left -->
 <%#= render :partial => '/boxed_categories' 
 %> <!-- already floats left -->
