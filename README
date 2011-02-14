@@ -1,1 +1,15 @@
-substruct site for musicformormons, rails
+substruct site for musicformormons  (rails)
+
+To use, create your vendor dir like this:
+
+$svn checkout http://substruct.googlecode.com/svn/trunk/ vendor
+
+Also add in the admin_data plugin for rails2, separately.
+
+now 
+
+$ rake db:create
+$ rake substruct:db:bootstrap
+$ rake db:migrate
+
+and it should be able to run.
