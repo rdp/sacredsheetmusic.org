@@ -75,7 +75,11 @@
 	</div>
         <% if (p = @product.original_url) && (p.length > 0) %>
         <div>
-           <a href="<%= p %>">Author's page</a>
+           <% if @product.images.count > 0 %>
+             <a href="<%= p %>">Author's page</a>
+           <% else %>
+            Some authors like to update their music frequently, so we don't post the pdf's here. Please go to the <a href="<%= p %>">AUTHOR'S PAGE</a> to see the sheet music.
+           <% end %>
         </div>
 <br/>
         <% end %>
@@ -90,8 +94,6 @@
 <hr/>
 <%= render :partial => 'comments' %>
 <br />
-<br />
-<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.</div>
 <br />
 </div>
 <div style="float: right; width: 75%;">
@@ -156,4 +158,6 @@
 	
 
 </div>
+<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.</div>
+<br />
 <div class="clear">&nbsp;</div>
