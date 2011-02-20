@@ -1,6 +1,15 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin/products_controller"
 
 class Admin::ProductsController < Admin::BaseController
+  def list
+    @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
+    @products = Product.paginate(
+      :order => "name ASC",
+      :page => params[:page],
+      :per_page => 30
+    )
+   end
+
   # Saves product from new and edit.
   #
   #
