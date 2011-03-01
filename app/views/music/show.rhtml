@@ -78,7 +78,7 @@
            <% if @product.images.count > 0 %>
              <a href="<%= p %>">Author's page</a>
            <% else %>
-            Please go to the <a href="<%= p %>">AUTHOR'S PAGE</a> to see the sheet music.
+            Please go to the <a href="<%= p %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>.
            <% end %>
         </div>
 <br/>
