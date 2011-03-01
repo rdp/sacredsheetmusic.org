@@ -59,7 +59,7 @@ class Admin::ProductsController < Admin::BaseController
       if params[:download_mp3]
           # psych it out ;)
           url = params[:download_mp3]
-          p 'downloading to', temp_file_path
+          logger.info 'downloading to', temp_file_path
           download(url, temp_file_path)
           fake_upload = Pathname.new(temp_file_path)
           fake_upload.original_filename = url.split('/')[-1]
