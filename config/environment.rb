@@ -11,6 +11,9 @@ $: << '.' if RUBY_VERSION >= '1.9.0'
 require File.join(File.dirname(__FILE__), 'boot')
 require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
+#require the plugin loader, for threadsafe engines...
+require File.join(File.dirname(__FILE__), '..', 'lib', 'eager_loader')
+
 Rails::Initializer.run do |config|
   # Necessary for us to run legacy engine migrations
   # DO NOT CHANGE THIS
@@ -38,6 +41,8 @@ Rails::Initializer.run do |config|
   # http://github.com/SunDawg/premailer
   config.gem 'sundawg_premailer', :lib => 'premailer'
   
+  #override the default loader
+  config.plugin_loader = EagerLoader
 end
 
 if RUBY_VERSION >= '1.9.0'
@@ -45,4 +50,5 @@ if RUBY_VERSION >= '1.9.0'
   require 'csv'
   FasterCSV = CSV
 end
+
 Substruct.override_ssl_production_mode = true
