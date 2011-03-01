@@ -16,7 +16,7 @@
             [dl, filename_extension]
         }
 
-        products_with_extension.each do |dl, filename_extension| %>
+        products_with_extension.sort_by{|dl, ext| ext}.reverse.each do |dl, filename_extension| %>
         <li>
           <%= 
             link_name = filename_extension
