@@ -178,6 +178,12 @@ class MusicControllerTest < ActionController::TestCase
     assert assigns['products'].length == 1
   end
   
+  def test_can_upload_with_mp3_link
+    get 
+  end
+  
+  private
+  
   def assert_contains regex
     raise 'not found ' + regex.to_s unless @response.body =~ regex
   end

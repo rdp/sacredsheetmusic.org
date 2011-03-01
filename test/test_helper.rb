@@ -39,3 +39,20 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+
+# We don't want our tests with images messing with "public/system" used in
+# development and production, and creating images with ids that only exists in
+# the test database or overwriting things.
+Image.attachment_options[:path_prefix] = "public/test/"
+
+
+# Require mocha.
+#require 'mocha'
+include Substruct::Assertions
+
+### Helper methods for test cases ###
+
+def login_as_admin
+  @request.session[:user] = User.first.id # think this is admin...
+end

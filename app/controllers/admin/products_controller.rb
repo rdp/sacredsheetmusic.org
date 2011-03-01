@@ -1,7 +1,8 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin/products_controller"
 
 class Admin::ProductsController < Admin::BaseController
-class ContinueError < StandardError; end
+  class ContinueError < StandardError; end
+  
   def list
     @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
     @products = Product.paginate(
