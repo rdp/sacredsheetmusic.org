@@ -9,7 +9,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     login_as_admin
 
     # In turn of an image, try to upload a text file in its place.
-    text_asset = fixture_file_upload("/files/text_asset.txt", 'text/plain')
+    text_asset = fixture_file_upload("/files/towel.jpg", 'image/jpeg')
 
     # Call the new form.
     get :new
@@ -39,7 +39,8 @@ class Admin::ProductsControllerTest < ActionController::TestCase
       :image_data_temp => "",
       :image_data => ""
     } ],
-    :download => []
+    :download => [],
+    :download_mp3 => 'http://freemusicformormons.com/sounds/sound.mp3'
     
     # If saved we should be redirected to edit form. 
     assert_response :redirect
@@ -48,8 +49,13 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     # Verify that the product really is there and it doesn't have images.
     a_product = Product.find_by_code('SHRUBBERY')
     assert_not_nil a_product 
-    assert_equal a_product.images.count, 0
-
+    assert_equal a_product.images.count, 1
+    assert_equal a_product.downloads.count, 1
+    
+    download = a_product.downloads[0]
+    assert download.length > 1000 # should be 30K'ish...
+    assert download.name = 'sound.mp3'
+    
     # The signal that the image has problems is a flash message
     assert !flash[:notice].blank?
   end

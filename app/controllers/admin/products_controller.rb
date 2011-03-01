@@ -2,15 +2,15 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin
 
 class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
-  
+
   def list
     @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
     @products = Product.paginate(
-      :order => "name ASC",
-      :page => params[:page],
-      :per_page => 30
+    :order => "name ASC",
+    :page => params[:page],
+    :per_page => 30
     )
-   end
+  end
 
   # Saves product from new and edit.
   #
@@ -35,7 +35,7 @@ class Admin::ProductsController < Admin::BaseController
       # Build product images from upload
       image_errors = []
       unless params[:image].blank?
-  			params[:image].each do |i|
+        params[:image].each do |i|
           if i[:image_data] && !i[:image_data].blank?
             new_image = Image.new
             logger.info i.inspect
@@ -57,47 +57,31 @@ class Admin::ProductsController < Admin::BaseController
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       unless params[:download].blank?
         n2 = 0 # outside the loop to allow for multiple pdfs
+
         @product.images.each{|old_image|
-           n2 = [old_image.product_images[0].rank || 0, n2].max # reset so it'll add 'em at the end...
+          n2 = [old_image.product_images[0].rank || 0, n2].max # calculate image rank so it'll add 'em at the end...
         }
-  	    params[:download].each do |i|
+
+        params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
             new_download = Download.new
             logger.info i[:download_data].inspect
-          
+
             new_download.uploaded_data = i[:download_data]
             if i[:download_data].original_filename =~ /\.pdf$/
-             # also add them in as fake images
-            begin
-             0.upto(1000) do |n|
-               new_image = Image.new
-               raise ContinueError unless system("convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}")
-               fake_upload = Pathname.new(temp_file)
-               def fake_upload.content_type
-                'image/gif'
-               end
-               def fake_upload.original_filename
-                'sheet_music_picture.gif'
-               end
-               new_image.uploaded_data = fake_upload
-               if new_image.save
-                @product.images << new_image
-                # gets the rank wrong, except for the first? huh?
-                pi = new_image.product_images[0]
-                pi.rank = n + n2
-                n2 += 1
-                pi.save
-                p 'saved one'
-               else
-                raise 'unexpected'
-               end
-             end
-            rescue ContinueError => e
-              logger.info e.to_s # ok
+              # also add them in as fake images
+              begin
+                0.upto(1000) do |n|
+                  raise ContinueError unless system("convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}")
+                  save_local_file_as_upload temp_file_path, 'image/gif',  'sheet_music_picture.gif', n2
+                  n2 += 1
+                end
+              rescue ContinueError => e
+                logger.info e.to_s # ok
+              end
             end
-             
-            end
-            # hacky work-around for unknown file types...
+            
+            # and a hacky work-around for unknown file types...
             if new_download.content_type == ""
               new_download.content_type = "application/#{new_download.name.split('.')[-1]}"
             end
@@ -109,8 +93,16 @@ class Admin::ProductsController < Admin::BaseController
           end
         end
       end
-      File.delete temp_file_path if File.exist?(temp_file_path)
 
+      if params[:download_mp3]
+        url = params[:download_mp3]
+        p 'downloading to', temp_file_path
+        download(url, temp_file_path)
+        save_local_file_as_upload temp_file_path, 'audio/mpeg', url.split('/')[-1], n2
+      end
+
+      # cleanup
+      File.delete temp_file_path if File.exist?(temp_file_path)
 
       # Build variations from form
       if !params[:variation].blank?
@@ -121,7 +113,7 @@ class Admin::ProductsController < Admin::BaseController
           @product.variations << variation
         end
       end
-      
+
       flash[:notice] = "Product '#{@product.name}' saved."
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
@@ -131,13 +123,43 @@ class Admin::ProductsController < Admin::BaseController
       end
       redirect_to :action => 'edit', :id => @product.id
     else
-			@image = Image.new
-			if @new_product
+      @image = Image.new
+      if @new_product
         render :action => 'new' and return
       else
         render :action => 'edit' and return
       end
-    end    
+    end
+  end
+
+  private
+  def download full_url, to_here
+    require 'open-uri'
+    writeOut = open(to_here, "wb")
+    writeOut.write(open(full_url).read)
+    writeOut.close
+  end
+
+  def save_local_file_as_upload local_path, type, filename, rank
+                  new_image = Image.new
+                  fake_upload = Pathname.new(local_path)
+                  def fake_upload.content_type
+                    type
+                  end
+                  def fake_upload.original_filename
+                    filename
+                  end
+                  new_image.uploaded_data = fake_upload
+                  if new_image.save
+                    @product.images << new_image
+                    # gets the rank wrong, except for the first? huh?
+                    pi = new_image.product_images[0]
+                    pi.rank = rank
+                    pi.save
+                    p 'saved one'
+                  else
+                    raise 'unexpected'
+                  end
   end
 
 end
