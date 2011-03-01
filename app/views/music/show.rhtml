@@ -158,6 +158,8 @@
 	
 
 </div>
-<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.</div>
+<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.
+<%= if session[:user]; link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
+</div>
 <br />
 <div class="clear">&nbsp;</div>
