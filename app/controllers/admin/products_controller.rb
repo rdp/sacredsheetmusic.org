@@ -55,12 +55,27 @@ class Admin::ProductsController < Admin::BaseController
       # Build downloads from form
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
+      
+      if params[:download_mp3]
+          # psych it out ;)
+          url = params[:download_mp3]
+          p 'downloading to', temp_file_path
+          download(url, temp_file_path)
+          fake_upload = Pathname.new(temp_file_path)
+          fake_upload.original_filename = url.split('/')[-1]
+          fake_upload.content_type = ''
+          fake_upload.content_type = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
+          new_download = {:download_data => fake_upload}
+          params[:download].unshift new_download
+      end
+      
       unless params[:download].blank?
-        n2 = 0 # outside the loop to allow for multiple pdfs
-
+        n2 = 0 # outside the loops to allow for multiple pdfs
+        # calculate highest previous image rank so it'll add 'em at the end...
         @product.images.each{|old_image|
-          n2 = [old_image.product_images[0].rank || 0, n2].max # calculate image rank so it'll add 'em at the end...
+          n2 = [old_image.product_images[0].rank || 0, n2].max
         }
+        
 
         params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
@@ -81,7 +96,7 @@ class Admin::ProductsController < Admin::BaseController
               end
             end
             
-            # and a hacky work-around for unknown file types...
+            # and a hacky work-around for unknown file content types...I guess...
             if new_download.content_type == ""
               new_download.content_type = "application/#{new_download.name.split('.')[-1]}"
             end
@@ -93,14 +108,6 @@ class Admin::ProductsController < Admin::BaseController
           end
         end
       end
-
-      if params[:download_mp3]
-        url = params[:download_mp3]
-        p 'downloading to', temp_file_path
-        download(url, temp_file_path)
-        save_local_file_as_upload temp_file_path, 'audio/mpeg', url.split('/')[-1], n2
-      end
-
       # cleanup
       File.delete temp_file_path if File.exist?(temp_file_path)
 
@@ -141,25 +148,24 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def save_local_file_as_upload local_path, type, filename, rank
-                  new_image = Image.new
-                  fake_upload = Pathname.new(local_path)
-                  def fake_upload.content_type
-                    type
-                  end
-                  def fake_upload.original_filename
-                    filename
-                  end
-                  new_image.uploaded_data = fake_upload
-                  if new_image.save
-                    @product.images << new_image
-                    # gets the rank wrong, except for the first? huh?
-                    pi = new_image.product_images[0]
-                    pi.rank = rank
-                    pi.save
-                    p 'saved one'
-                  else
-                    raise 'unexpected'
-                  end
+    new_image = Image.new
+    fake_upload = Pathname.new(local_path)
+    fake_upload.content_type = type
+    fake_upload.original_filename = filename
+    new_image.uploaded_data = fake_upload
+    if new_image.save
+      @product.images << new_image
+      pi = new_image.product_images[0]
+      pi.rank = rank
+      pi.save
+      p 'saved one'
+    else
+      raise 'unexpected!'
+    end
   end
 
 end
+
+class Pathname
+ attr_accessor :content_type, :original_filename
+end # sigh

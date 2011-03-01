@@ -53,8 +53,8 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_equal a_product.downloads.count, 1
     
     download = a_product.downloads[0]
-    assert download.length > 1000 # should be 30K'ish...
-    assert download.name = 'sound.mp3'
+    assert download.size > 1000 # should be 30K'ish...
+    assert download.name == 'sound.mp3'
     
     # The signal that the image has problems is a flash message
     assert !flash[:notice].blank?
