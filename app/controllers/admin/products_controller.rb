@@ -1,6 +1,7 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin/products_controller"
 
 class Admin::ProductsController < Admin::BaseController
+class ContinueError < StandardError; end
   def list
     @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
     @products = Product.paginate(
@@ -52,12 +53,13 @@ class Admin::ProductsController < Admin::BaseController
       # it must just inspect the file?
       # Build downloads from form
       download_errors = []
+      temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       unless params[:download].blank?
         n2 = 0 # outside the loop to allow for multiple pdfs
         @product.images.each{|old_image|
            n2 = [old_image.product_images[0].rank || 0, n2].max # reset so it'll add 'em at the end...
         }
-  	params[:download].each do |i|
+  	    params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
             new_download = Download.new
             logger.info i[:download_data].inspect
@@ -68,13 +70,13 @@ class Admin::ProductsController < Admin::BaseController
             begin
              0.upto(1000) do |n|
                new_image = Image.new
-               raise unless system("convert -density 125 #{i[:download_data].path}[#{n}] /tmp/music.gif")
-               fake_upload = Pathname.new('/tmp/music.gif')
+               raise ContinueError unless system("convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}")
+               fake_upload = Pathname.new(temp_file)
                def fake_upload.content_type
                 'image/gif'
                end
                def fake_upload.original_filename
-                'music.gif'
+                'sheet_music_picture.gif'
                end
                new_image.uploaded_data = fake_upload
                if new_image.save
@@ -84,11 +86,12 @@ class Admin::ProductsController < Admin::BaseController
                 pi.rank = n + n2
                 n2 += 1
                 pi.save
-              else
-                raise 'bad'
-                end
+                p 'saved one'
+               else
+                raise 'unexpected'
+               end
              end
-            rescue => e
+            rescue ContinueError => e
               logger.info e.to_s # ok
             end
              
@@ -105,6 +108,8 @@ class Admin::ProductsController < Admin::BaseController
           end
         end
       end
+      File.delete temp_file_path if File.exist?(temp_file_path)
+
 
       # Build variations from form
       if !params[:variation].blank?

@@ -1,6 +1,6 @@
-$: << '.'
+$: << '.' # 1.9 friendly :P
+#require 'rubygems'
 #require 'faster_require'
-require 'rubygems'
 require File.dirname(__FILE__) + '/../test_helper'
 require 'fileutils'
 require 'substruct/assertions'
@@ -177,7 +177,6 @@ class MusicControllerTest < ActionController::TestCase
     get :search, {:search_term => "tag2"}
     assert assigns['products'].length == 1
   end
-  
   
   def assert_contains regex
     raise 'not found ' + regex.to_s unless @response.body =~ regex
