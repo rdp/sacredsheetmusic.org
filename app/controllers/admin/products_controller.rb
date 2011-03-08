@@ -56,7 +56,7 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       
-      if params[:download_mp3]
+      unless params[:download_mp3].blank?
           # psych it out ;)
           url = params[:download_mp3]
           logger.info 'downloading to', temp_file_path
