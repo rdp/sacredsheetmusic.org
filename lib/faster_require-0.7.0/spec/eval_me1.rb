@@ -1,0 +1,1 @@
+eval(File.read('eval_me2.rb'), binding, File.expand_path('./eval_me2.rb'))
