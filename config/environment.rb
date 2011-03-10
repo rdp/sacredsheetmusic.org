@@ -7,7 +7,11 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 $: << '.' if RUBY_VERSION >= '1.9.0'
+
 # Bootstrap the Rails environment, frameworks, and default configuration
+
+require File.dirname(__FILE__) + "/../lib/faster_require-0.7.0/lib/faster_require" # faster speeds all around...
+
 require File.join(File.dirname(__FILE__), 'boot')
 require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
