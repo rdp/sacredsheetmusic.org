@@ -57,18 +57,23 @@ class Admin::ProductsController < Admin::BaseController
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       
       unless params[:download_mp3_url].blank?
-          # psych it out ;)
-          url = params[:download_mp3_url]
-          add_download url, temp_file_path
+        url = params[:download_mp3_url]
+        type = ''
+        type  = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
+        add_download url, temp_file_path, type
       end
-      
+
+      unless params[:download_pdf_url].blank?
+        temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
+        add_download params[:download_pdf_url], temp_file2, 'application/pdf'
+      end
+
       unless params[:download].blank?
         n2 = 0 # outside the loops to allow for multiple pdfs
         # calculate highest previous image rank so it'll add 'em at the end...
         @product.images.each{|old_image|
           n2 = [old_image.product_images[0].rank || 0, n2].max
         }
-        
 
         params[:download].each do |i|
           if i[:download_data] && !i[:download_data].blank?
@@ -80,7 +85,9 @@ class Admin::ProductsController < Admin::BaseController
               # also add them in as fake images
               begin
                 0.upto(1000) do |n|
-                  raise ContinueError unless system("convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}")
+                  command = "convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}"
+                  print command
+                  raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/gif',  'sheet_music_picture.gif', n2
                   n2 += 1
                 end
@@ -157,20 +164,20 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-          def add_download url, temp_file_path
-            logger.info 'downloading to', temp_file_path
-            download(url, temp_file_path)
-            fake_upload = Pathname.new(temp_file_path)
-            fake_upload.original_filename = url.split('/')[-1]
-            fake_upload.content_type = ''
-            fake_upload.content_type = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
-            new_download = {:download_data => fake_upload}
-            params[:download].unshift new_download
-          end
-
+  def add_download url, temp_file_path, type
+    # psych it out ;)
+    logger.info 'downloading to', temp_file_path
+    download(url, temp_file_path)
+    fake_upload = Pathname.new(temp_file_path)
+    fake_upload.original_filename = url.split('/')[-1]
+    fake_upload.content_type = type
+    new_download = {:download_data => fake_upload}
+    params[:download].unshift new_download # unshift so we can reuse that one filename...
+  end
 
 end
 
 class Pathname
  attr_accessor :content_type, :original_filename
-end # sigh
+ alias :path :to_s # for pdf's .path sake...we're sure faking out whatever it's really supposed to be here...
+end
