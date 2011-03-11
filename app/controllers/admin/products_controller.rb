@@ -58,14 +58,15 @@ class Admin::ProductsController < Admin::BaseController
       
       unless params[:download_mp3_url].blank?
         url = params[:download_mp3_url]
-        type = ''
-        type  = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
-        add_download url, temp_file_path, type
+        raise url.split('.')[-1] + "!= mp3"  unless url.split('.')[-1] == 'mp3'
+        add_download url, temp_file_path, 'audio/mpeg'
       end
 
       unless params[:download_pdf_url].blank?
+        url = params[:download_pdf_url]
+        raise  url.split('.')[-1] + "!= pdf" unless url.split('.')[-1] == 'pdf'
         temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
-        add_download params[:download_pdf_url], temp_file2, 'application/pdf'
+        add_download url, temp_file2, 'application/pdf'
       end
 
       unless params[:download].blank?
