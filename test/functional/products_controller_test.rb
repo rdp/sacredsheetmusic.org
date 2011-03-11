@@ -5,7 +5,6 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
 
   def test_can_upload_with_mp3_link
-    Product.destroy_all
     a_product = can_upload_with_mp3_link :download_mp3_url => 'http://freemusicformormons.com/examples_for_unit_testing/sound.mp3'
     
     assert_not_nil a_product
@@ -13,31 +12,34 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_equal a_product.downloads.count, 1
     
     download = a_product.downloads[0]
-    assert download.size > 1000 # should be 30K'ish...
+    assert download.size == 36429 # should be 30K'ish...
     assert download.name == 'sound.mp3'
 
   end
 
   def test_can_upload_with_pdf_link
-    Product.destroy_all
     a_product = can_upload_with_mp3_link :download_pdf_url => 'http://freemusicformormons.com/examples_for_unit_testing/17.pdf'
     assert_equal 5, a_product.images.count # 4 pages + 1 image
     assert_equal 1, a_product.downloads.count # 1 pdf
     image = a_product.images[0]
-    assert image.size > 1000
+    assert image.size > 0
   end
   
-  def test_can_upload_with_pdf_and_mp3_link
-    Product.destroy_all
+  def test_can_upload_with_both_pdf_and_mp3_link
     a_product = can_upload_with_mp3_link :download_pdf_url => 'http://freemusicformormons.com/examples_for_unit_testing/17.pdf', 
       :download_mp3_url => 'http://freemusicformormons.com/examples_for_unit_testing/sound.mp3'
     assert_equal 5, a_product.images.count # 4 pages + 1 image
-    assert_equal 3, a_product.downloads.count # 1 pdf + 1 mp3
+    assert_equal 2, a_product.downloads.count # 1 pdf + 1 mp3
+    download = a_product.downloads[1]
+    assert download.name == 'sound.mp3'
+    assert download.size == 36429
   end
 
   private
   
   def can_upload_with_mp3_link incoming
+    Product.destroy_all
+    Admin::ProductsController.density=10
     login_as_admin
 
     # In turn of an image, try to upload a text file in its place.

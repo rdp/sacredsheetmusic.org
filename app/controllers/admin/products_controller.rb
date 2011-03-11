@@ -12,9 +12,14 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
+  @@density = 125
   # Saves product from new and edit.
   #
   #
+  def self.density= to_this
+   @@density = to_this
+  end
+
   def save
     # If we have ID param this isn't a new product
     if params[:id]
@@ -87,7 +92,7 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  command = "convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}"
+                  command = "convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
                   print command
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/gif',  'sheet_music_picture.gif', n2
