@@ -5,13 +5,27 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
 
   def test_can_upload_with_mp3_link
-    can_upload_with_mp3_link  :download_mp3 => 'http://freemusicformormons.com/sounds/sound.mp3'
+    Product.destroy_all
+    a_product = can_upload_with_mp3_link  :download_mp3 => 'http://freemusicformormons.com/examples_for_unit_testing/sound.mp3'
+    
+    assert_not_nil a_product
+    assert_equal a_product.images.count, 1
+    assert_equal a_product.downloads.count, 1
+    
+    download = a_product.downloads[0]
+    assert download.size > 1000 # should be 30K'ish...
+    assert download.name == 'sound.mp3'
+
   end
 
-  def test_can_upload_with_mp3_link
-    can_upload_with_mp3_link  :download_pdf => 'http://freemusicformormons.com/sounds/sound.mp3'
+  def test_can_upload_with_pdf_link
+    Product.destroy_all
+    a_product = can_upload_with_mp3_link :download_pdf => 'http://freemusicformormons.com/examples_for_unit_testing/17.pdf'
+    assert_equal a_product.images.count, 5 # 4 pages + 1 image
+    assert_equal a_product.downloads.count, 0
+    image = a_product.images[0]
+    assert image.size > 1000
   end
-
 
   private
   
@@ -57,16 +71,10 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     
     # Verify that the product really is there and it doesn't have images.
     a_product = Product.find_by_code('SHRUBBERY')
-    assert_not_nil a_product 
-    assert_equal a_product.images.count, 1
-    assert_equal a_product.downloads.count, 1
-    
-    download = a_product.downloads[0]
-    assert download.size > 1000 # should be 30K'ish...
-    assert download.name == 'sound.mp3'
     
     # The signal that the image has problems is a flash message
     assert !flash[:notice].blank?
+    a_product
   end
   
 end
