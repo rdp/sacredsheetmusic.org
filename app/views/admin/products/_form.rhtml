@@ -19,6 +19,17 @@
 			<%= make_label('Original URL') %>
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %>
 		</div>
+    
+		<div class="float">
+      <%= make_label('Copy and paste an mp3 url here') %>
+    	<%= text_field nil, 'download_mp3_url', :class => 'textInput', :size => 30  %>
+    </div>
+		<div class="float">
+      <%= make_label('Copy and paste a pdf url here') %>
+    	<%= text_field nil, 'download_pdf_url', :class => 'textInput', :size => 30  %>
+    </div>
+
+    
 		<!--div class="float">
 			<%= make_label('Price') %>
 			<%= text_field 'product', 'price', :class => 'textInput numeric', :size => 6, :original_value => @product.price  %>
@@ -30,8 +41,8 @@
 		<div class="clear"></div>
 
 	</div>
-
-	<!-- PRODUCT VARIATIONS -->
+  
+	<!-- PRODUCT VARIATIONS >
 
 	<h2>Variations</h2>
 
@@ -43,7 +54,6 @@
   	</p>
   	
 		<div id="variation_container" class="sortable">
-			<!-- filled with variations -->
 			<%= render :partial => 'variation', :collection => @product.variations %>
 		</div>
 	
@@ -61,13 +71,13 @@
 			<%= image_tag("/indicator.gif", :plugin => 'substruct', :style => 'display:none;', :id => "add_variation_indicator") %>
 		</p>
 		<br/>
-	</div>
+	</div-->
 
 </div>
 
 <!-- 
 	DETAILS #####################################################################
--->
+>
 
 <h1>Details</h1>
 
@@ -123,11 +133,13 @@
 	  </div>
 	  <div class="clear"></div>
 	</div>
-</div>
+</div-->
 
 <div class="padLeft">
+  Description:
 	<%= text_area 'product', 'description', :rows => 10, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
+  <h1>Optional items:</h1>
 
 <%= render :partial => 'image_upload' %>
 
