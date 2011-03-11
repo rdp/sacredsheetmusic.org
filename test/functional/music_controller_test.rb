@@ -99,7 +99,7 @@ class MusicControllerTest < ActionController::TestCase
     p = test_create_product
     count = Comment.count
     post :add_comment, :id => p.id, :comment => 'new comment34', :user_name => 'user name', 
-       :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3, :recaptcha => 'monday' # no difficulty rating
+       :user_email => 'a@a.com', :user_url => 'http://fakeurl', :overall_rating => 3, :recaptcha => 'monday' # but no difficulty rating
     assert Comment.count == count + 1
     assert_redirected_to :action => :show, :controller => :music, :id => p.code
     get :show, :id => p.code

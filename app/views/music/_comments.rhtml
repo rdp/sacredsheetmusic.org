@@ -8,32 +8,32 @@
     <% end %>
 
     </div>
+<% else %>
+  No user comments yet.
 <% end %>
 
 <br />
-Add user <a href="#" onClick="$('comments').toggle();">feedback</a> about this piece.
+Add a <a href="#" onClick="$('comments').toggle();">comment</a> for this piece.
   <div id="comments" style="display:none;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
     <form action="/music/add_comment" method="post">
-      Add your own [positive/constructive] comment about this piece, or ideas on how to help perform it, etc.:<br/>
-      Name: <input name="user_name" type="text" value="" /> <br/>
+      Add your own [positive/constructive] public comment about this piece, or ideas on how to perform it, etc.:<br/>
+      Your name: <input name="user_name" type="text" value="" /> <br/>
       Email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
       Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
-<% for name in ['overall', 'difficulty'] do %>
-      Song <%= name.capitalize %> rating, out of 5 (optional):
-  <select name="<%= name%>_rating">
-  <option value="-1">select</option>
+      Comment:<br/>
+      <textarea name="comment" cols="40" rows="5"></textarea><br/>
+      <input name="id" type="hidden" value="<%= @product.id %>"/>
+      Rate this song, out of 5 stars (optional):
+  <select name="overall_rating">
+  <option value="-1">select rating</option>
   <option value="5">5 stars</option>
   <option value="4">4 stars</option>
   <option value="3">3 stars</option>
   <option value="2">2 stars</option>
   <option value="1">1 star</option>
-</select><br/>
-
-<% end %>
-      Comments:<br/>
-      <textarea name="comment" cols="40" rows="5"></textarea><br/>
-      <input name="id" type="hidden" value="<%= @product.id %>"/>
-      What day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
+  </select>
+  <br/>
+      Input what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
       <input name="commit" type="submit" value="Add comment!" />
     </form>
   </div>
