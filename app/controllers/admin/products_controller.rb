@@ -56,17 +56,10 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       
-      unless params[:download_mp3].blank?
+      unless params[:download_mp3_url].blank?
           # psych it out ;)
-          url = params[:download_mp3]
-          logger.info 'downloading to', temp_file_path
-          download(url, temp_file_path)
-          fake_upload = Pathname.new(temp_file_path)
-          fake_upload.original_filename = url.split('/')[-1]
-          fake_upload.content_type = ''
-          fake_upload.content_type = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
-          new_download = {:download_data => fake_upload}
-          params[:download].unshift new_download
+          url = params[:download_mp3_url]
+          add_download url, temp_file_path
       end
       
       unless params[:download].blank?
@@ -163,6 +156,18 @@ class Admin::ProductsController < Admin::BaseController
       raise 'unexpected!'
     end
   end
+
+          def add_download url, temp_file_path
+            logger.info 'downloading to', temp_file_path
+            download(url, temp_file_path)
+            fake_upload = Pathname.new(temp_file_path)
+            fake_upload.original_filename = url.split('/')[-1]
+            fake_upload.content_type = ''
+            fake_upload.content_type = 'audio/mpeg' if url.split('.')[-1] == 'mp3'
+            new_download = {:download_data => fake_upload}
+            params[:download].unshift new_download
+          end
+
 
 end
 
