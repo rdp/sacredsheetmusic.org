@@ -178,9 +178,7 @@ class MusicControllerTest < ActionController::TestCase
     assert assigns['products'].length == 1
   end
   
-  def test_can_upload_with_mp3_link
-    get 
-  end
+  # NB that product upload tests go in products_controller_test.rb
   
   private
   

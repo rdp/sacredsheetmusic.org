@@ -1,8 +1,23 @@
-require 'rbconfig'
+class File
+  def self.read_binny known_loc
+    open(known_loc, 'rb') {|f| f.read}
+ end
+end
+
+if(defined?($already_using_faster_require))
+  p 'warning: faster_require double load expected?' if $FAST_REQUIRE_DEBUG
+  local_version = File.read(File.dirname(__FILE__) + "/../VERSION")
+  raise 'mismatched faster_require version' unless local_version == FastRequire::VERSION
+else
+$already_using_faster_require = true
+
+# now load it...
+
+require 'rbconfig' # maybe could cache this one, too?
 
 module FastRequire
   $FAST_REQUIRE_DEBUG ||= $DEBUG # can set via $DEBUG, or on its own.
-
+  VERSION = File.read(File.dirname(__FILE__) + "/../VERSION")
   def self.setup
     begin
      @@dir = File.expand_path('~/.ruby_faster_require_cache')
@@ -177,14 +192,20 @@ module FastRequire
                 no_suffix_lib = lib.gsub(/\.[^.]+$/, '')
                 libs_path = no_suffix_full_path.gsub(no_suffix_lib, '')
                 libs_path = File.expand_path(libs_path) # strip off trailing '/'
-                $: << libs_path unless $:.index(libs_path)
+                $: << libs_path unless $:.index(libs_path) # might not need this anymore, but it feels more sane...does it slow us down, though?
+                
                 # try some more autoload conivings...so that it won't attempt to autoload if it runs into it later...
                 relative_full_path = known_loc.sub(libs_path, '')[1..-1]
+                $LOADED_FEATURES << relative_full_path unless $LOADED_FEATURES.index(relative_full_path) # add in with .rb, too, for autoload 
             #    $LOADED_FEATURES << relative_full_path.gsub('.rb', '') # don't think you need this one
-                $LOADED_FEATURES << relative_full_path # add in with .rb, too. 
                   
                 # load(known_loc, false) # too slow
-                eval(File.open(known_loc, 'rb') {|f| f.read}, TOPLEVEL_BINDING, known_loc) # note the 'rb' here--this means it's reading .rb files as binary, which *typically* works...maybe unnecessary though?
+                contents = File.read_binny(known_loc)
+                if contents =~ /require_relative/ # =~ is faster than .include? it appears
+                  load(known_loc, false) # slow, but dependent on a ruby core bug: http://redmine.ruby-lang.org/issues/4487
+                else
+                  eval(contents, TOPLEVEL_BINDING, known_loc) # note the 'rb' here--this means it's reading .rb files as binary, which *typically* works...maybe unnecessary though?
+                end
               ensure
                 raise 'unexpected' unless IN_PROCESS.pop == known_loc
               end
@@ -198,6 +219,7 @@ module FastRequire
       else
         # we don't know the location--let Ruby's original require do the heavy lifting for us here
         old = $LOADED_FEATURES.dup
+        p 'doing old non-known location require ' + lib if $FAST_REQUIRE_DEBUG
         if(original_non_cached_require(lib))
           # debugger might land here the first time you run a script and it doesn't have a require
           # cached yet...
@@ -260,10 +282,6 @@ end
 
 module Kernel
 
-  if(defined?(@already_using_faster_require))
-    raise 'loading twice not allowed...we should never get here!'
-  end
-  @already_using_faster_require = true
   # overwrite old require...
   include FastRequire
   if defined?(gem_original_require)
@@ -292,4 +310,11 @@ module Kernel
     alias :original_non_cached_require :require
     alias :require :require_cached
   end
+end
+
+
+class IO
+ alias :ready :read
+end
+
 end

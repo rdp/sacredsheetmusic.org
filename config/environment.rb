@@ -10,8 +10,9 @@ $: << '.' if RUBY_VERSION >= '1.9.0'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 
-require File.dirname(__FILE__) + "/../lib/faster_require-0.7.2/lib/faster_require" # faster speeds all around...
+require File.dirname(__FILE__) + "/../lib/faster_require-0.7.4/lib/faster_require" # faster require speeds all around...
 
+require 'thread'
 require File.join(File.dirname(__FILE__), 'boot')
 require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 

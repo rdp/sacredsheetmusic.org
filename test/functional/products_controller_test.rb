@@ -1,11 +1,21 @@
+$: << '.' if RUBY_VERSION >= '1.9.0'
 require File.dirname(__FILE__) + '/../test_helper'
 
 class Admin::ProductsControllerTest < ActionController::TestCase
 
-  # Test the save action. The save action can receive a variety of information
-  # together from the form. Here we test if a new valid product will be saved, but
-  # it should warn that the image could not be saved.
-  def test_should_save_new_product_but_not_the_image
+
+  def test_can_upload_with_mp3_link
+    can_upload_with_mp3_link  :download_mp3 => 'http://freemusicformormons.com/sounds/sound.mp3'
+  end
+
+  def test_can_upload_with_mp3_link
+    can_upload_with_mp3_link  :download_pdf => 'http://freemusicformormons.com/sounds/sound.mp3'
+  end
+
+
+  private
+  
+  def can_upload_with_mp3_link incoming
     login_as_admin
 
     # In turn of an image, try to upload a text file in its place.
@@ -17,7 +27,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_template 'new'
     
     # Post to it a product and an empty image.
-    post :save,
+    post :save, {
     :product => {
       :code => "SHRUBBERY",
       :name => "Shrubbery",
@@ -39,8 +49,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
       :image_data_temp => "",
       :image_data => ""
     } ],
-    :download => [],
-    :download_mp3 => 'http://freemusicformormons.com/sounds/sound.mp3'
+    :download => []}.merge(incoming)
     
     # If saved we should be redirected to edit form. 
     assert_response :redirect
@@ -59,6 +68,5 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     # The signal that the image has problems is a flash message
     assert !flash[:notice].blank?
   end
-
-
+  
 end
