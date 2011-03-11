@@ -83,6 +83,7 @@ class Admin::ProductsController < Admin::BaseController
             new_download.uploaded_data = i[:download_data]
             if i[:download_data].original_filename =~ /\.pdf$/
               # also add them in as fake images
+              got_one = false
               begin
                 0.upto(1000) do |n|
                   command = "convert -density 125 #{i[:download_data].path}[#{n}] #{temp_file_path}"
@@ -90,10 +91,12 @@ class Admin::ProductsController < Admin::BaseController
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/gif',  'sheet_music_picture.gif', n2
                   n2 += 1
+                  got_one = true
                 end
               rescue ContinueError => e
                 logger.info e.to_s # ok
               end
+              raise 'failed to convert pdf' unless got_one
             end
             
             # and a hacky work-around for unknown file content types...I guess...
