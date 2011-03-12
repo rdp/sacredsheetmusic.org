@@ -30,7 +30,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
       :download_mp3_url => 'http://freemusicformormons.com/examples_for_unit_testing/sound.mp3'
     assert_equal 5, a_product.images.count # 4 pages + 1 image
     assert_equal 2, a_product.downloads.count # 1 pdf + 1 mp3
-    download = a_product.downloads[1]
+    download = a_product.downloads[0]
     assert download.name == 'sound.mp3'
     assert_equal 36429, download.size
   end

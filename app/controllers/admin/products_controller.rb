@@ -61,17 +61,19 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
       
-      unless params[:download_mp3_url].blank?
-        url = params[:download_mp3_url]
-        raise url.split('.')[-1] + "!= mp3"  unless url.split('.')[-1] == 'mp3'
-        add_download url, temp_file_path, 'audio/mpeg'
-      end
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
         raise  url.split('.')[-1] + "!= pdf" unless url.split('.')[-1] == 'pdf'
         temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
         add_download url, temp_file2, 'application/pdf'
+      end
+
+      # do after the pdf for ordering sake...
+      unless params[:download_mp3_url].blank?
+        url = params[:download_mp3_url]
+        raise url.split('.')[-1] + "!= mp3"  unless url.split('.')[-1] == 'mp3'
+        add_download url, temp_file_path, 'audio/mpeg'
       end
 
       unless params[:download].blank?
