@@ -11,18 +11,6 @@ require 'substruct/assertions'
 # $ rake db:migratieRAILS_ENV=test
 # now run like:
 # $ ruby test/functional/store_controller_test.rb
-unless defined?($GO_TEST)
-  if File.exist?('pause_until_tests')
-    while(!File.exist?('go_tests'))
-      p 'sleeping...'
-      sleep 0.2
-    end
-    File.delete 'go_tests' 
-    p 'continuing on to run tests'
-  else
-   p 'touch pause_until_tests'
-  end
-end
 
 class MusicControllerTest < ActionController::TestCase
   include Substruct::Assertions
@@ -139,7 +127,6 @@ class MusicControllerTest < ActionController::TestCase
     # should work with parents, too...
     for tags in [ [t1a.id.to_s, t2a.id.to_s], [t1.id.to_s, t2.id.to_s]]
       get :advanced_search_post, {:product => {:tag_ids => tags}}
-    
       assert_contains /name2/
       assert_not_match /name1/
     end
@@ -156,7 +143,21 @@ class MusicControllerTest < ActionController::TestCase
     get :advanced_search_post, {:product => {:tag_ids => [t1a.id.to_s, t2a.id.to_s, t2b.id.to_s]}}
     assert_not_match /name1/
     assert_contains /name2/
-    
+  end
+  
+  def test_shows_email
+    Tag.destroy_all
+    Product.destroy_all
+    parent = Tag.create :name => 'Composer/arranger'
+    child = Tag.create :name => 'a name', :composer_contact => 'a@a.com', :parent => parent
+    product = Product.create :name => 'prod1', :code => 'prod1'
+    product.tags << child
+
+    get :show, :id => product.code
+#    require 'ruby-debug'
+#    debugger
+    assert_contains /contact composer/i
+
   end
   
   def test_normal_search_with_tags
@@ -190,9 +191,4 @@ class MusicControllerTest < ActionController::TestCase
     raise 'bad match' + regex.to_s if @response.body =~ regex
   end
   
-end
-
-unless defined?($GO_TEST)
-  $GO_TEST = 1
-  load File.expand_path(__FILE__)
 end

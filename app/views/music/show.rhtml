@@ -73,7 +73,7 @@
 	<div>
            <%= @product.description %>
 	</div>
-        <% if (p = @product.original_url) && (p.length > 0) %>
+      <% if (p = @product.original_url) && (p.length > 0) %>
         <div>
            <% if @product.images.count > 0 %>
              <a href="<%= p %>">Author's page</a> for this piece.
@@ -81,8 +81,9 @@
             Please go to the <a href="<%= p %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>.
            <% end %>
         </div>
-<br/>
-        <% end %>
+        
+        <br/>
+      <% end %>
         <div> Song topics:
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
@@ -95,6 +96,9 @@
 <%= render :partial => 'comments' %>
 <br />
 <br />
+<% if contact = @product.composer_contact %>
+  <a href=<%= contact%>>Contact composer</a>
+<% end %>
 </div>
 <div style="float: right; width: 75%;">
 
