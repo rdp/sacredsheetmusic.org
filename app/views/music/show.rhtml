@@ -158,11 +158,14 @@
 	
 
 </div>
+<% if @product.downloads.select{|dl| dl.name =~ /\.pdf/}.length > 0 %>
+<div>
+This song's pdf has been downloaded/viewed <%= sum = 0; @product.downloads.each{|d| sum += d.count if d.name =~ /\.pdf/
+}; [sum,1].max %> times.
+</div>
+<% end %>
 <div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.
 <%#= if session[:user]; link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
-</div>
-<div>
-This song has been downloaded/listened to <%= sum = 0; @product.downloads.each{|d| sum += d.count}; sum %> times.
 </div>
 <br />
 <div class="clear">&nbsp;</div>
