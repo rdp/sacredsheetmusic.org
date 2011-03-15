@@ -79,7 +79,7 @@ class MusicControllerTest < ActionController::TestCase
     get :show, :id => p.code
     assert_select "div", /name/i
     assert_select "div", /url/i
-    assert_select "div", /overall/i
+    assert_contains /overall/i
   end
   
   def test_should_allow_for_complex_comment_submission
