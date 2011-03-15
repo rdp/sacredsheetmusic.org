@@ -4,6 +4,7 @@ class Tag
 
   def self.sync_topics
     hymns = Tag.find_by_name("Hymns")
+    return unless hymns # for unit tests...
     raise unless hymns.children.length > 0
     for hymn in hymns.children
       share_tags_among_hymns_products hymn

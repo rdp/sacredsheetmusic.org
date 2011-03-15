@@ -60,7 +60,6 @@ class Admin::ProductsController < Admin::BaseController
       # Build downloads from form
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
-      
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
@@ -133,6 +132,7 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       flash[:notice] = "Product '#{@product.name}' saved."
+      Tag.sync_topics
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
