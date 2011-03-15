@@ -36,7 +36,7 @@ class Tag
     if all_topic_ids.length > 0
       ''
     else
-      " warning: no topics associated with hymn #{hymn.name}"
+      hymn.name
     end
   end
 end
