@@ -662,7 +662,7 @@ div.pagination {
 	padding: 10px;
 	font-size: 1.2em;
 	text-align: right;
-	margin: 20px 0px;
+	/* margin: 20px 0px; */
 }
 div.pagination a {
 	text-decoration: none;

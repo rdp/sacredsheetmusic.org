@@ -4,7 +4,7 @@
   )
 %>
 
-<% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left": "" # hacky kludgey...
+<% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left; margin: 0px;": "" # hacky kludgey...
 %>
 
 <div id="fullContent">
@@ -32,7 +32,7 @@
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
         <% if @display_bio || @display_composer_contact%>
-           <div style="padding-bottom: 10px;"><%= @display_bio %>
+           <div style="padding-bottom: 0px;"><%= @display_bio %>
            <% if @display_composer_contact %>
              <a href="<%= @display_composer_contact%>">Contact.</a>
            <% end %>
@@ -40,7 +40,7 @@
         <% end %>
 
         <% if @products.length > 10 %>
-           <div style="padding-bottom: 10px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.)</div>
+           <div style="padding-bottom: 0px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.)</div>
         <% else %>
             <br /> <!-- force second line to be at the left -->
         <% end %>
