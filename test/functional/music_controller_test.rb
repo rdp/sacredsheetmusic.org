@@ -160,13 +160,15 @@ class MusicControllerTest < ActionController::TestCase
 
     get :show, :id => product.code
     assert_contains /contact composer/i
-    require 'ruby-debug'
-#    debugger
     if use_email
       assert_contains /href="mailto:a@a.com"/
     else
       assert_contains /href="http:\/\/contact_page"/
     end
+    
+    # index should show the contact, too
+    get :show_by_tags, :tags => ['a name']
+    assert_contains /href="mailto:a@a.com"/
 
   end
   
