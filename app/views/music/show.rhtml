@@ -1,9 +1,9 @@
 <% @two_column_layout = true %>
-<div style="float: left; width: 25%; margin-left: 10px;">
-<a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
-<br/>
-<h2><%= @product.name %></h2>
-<hr style="margin-bottom: 5px;"/>
+<div style="float: left; width: 25%; padding-left: 10px;">
+  <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
+  <br/>
+  <h2><%= @product.name %></h2>
+  <hr style="margin-bottom: 5px;"/>
 <% if @product.downloads.count > 0 %>
   <p>
     <ul>
@@ -67,10 +67,9 @@
       <% end %>
     </ul>
   </p>
-<% end # downloads
- %>
+<% end %> <%# end downloads %>
 	<div>
-           <%= @product.description %>
+     <%= @product.description %>
 	</div>
       <% if (p = @product.original_url) && (p.length > 0) %>
         <div>
@@ -87,22 +86,20 @@
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
-</div> <!-- end left -->
-<%#= render :partial => '/boxed_categories' 
-%> <!-- already floats left -->
-<br />
-<hr/>
-<%= render :partial => 'comments' %>
-<br />
-<br />
-<% 
-
-if contact = @product.composer_contact
-  contact = "mailto:" + contact if contact =~ /..@../
-%>
-  Or contact composer <a href=<%= contact%>>directly</a>.
+  <%#= render :partial => '/boxed_categories'  # already floats left
+  %> 
+  <br />
+  <hr/>
+  <%= render :partial => 'comments' %>
+  <br />
+  <br />
+<% if contact = @product.composer_contact
+  contact = "mailto:" + contact if contact =~ /.@./ %>
+  Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
-</div>
+
+</div> <!-- end float left -->
+
 <div style="float: right; width: 75%;">
 
       <% if @default_image %>
@@ -144,34 +141,14 @@ if contact = @product.composer_contact
 	<% end %>
 -->
 
-<!--DISABLED div id="right">
-
-	<div align="center" style="margin-top:10px;">
-		<p>
-		<br/>
-		<%= 
-			link_to(
-				'Add this to your download queue',
-				{
-					:controller => 'customers',
-					:action => 'add_to_wishlist',
-					:id => @product.id
-				},
-				:class => 'action'
-			)
-		%>
-		</p>
-	</div>
-</div-->
-	
-<% if @product.downloads.select{|dl| dl.name =~ /\.pdf/}.length > 0 %>
+<% if (pdfs = @product.downloads.select{|dl| dl.name =~ /\.pdf/}).length > 0 %>
   <div>
-    This song's pdf has been downloaded/viewed <%= sum = 0; @product.downloads.each{|d| sum += d.count if d.name =~ /\.pdf/}; [sum,1].max %> times.
+    This song's pdf has been downloaded/viewed <%= sum = 0; pdfs.each{|d| sum += d.count }; [sum,1].max %> times.
   </div>
 <% end %>
-<div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.
-<%#= if session[:user]; link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
-</div>
-<br />
 
+  <div>
+    Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song. <%= if session[:user]; link_to('admin edit', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
+  </div>
+</div> <!-- end float right -->
 <div class="clear">&nbsp;</div>

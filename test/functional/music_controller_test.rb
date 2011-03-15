@@ -144,7 +144,7 @@ class MusicControllerTest < ActionController::TestCase
     assert_contains /name2/
   end
 
-  def test_shows_email use_email
+  def test_shows_email
     shows_email true
     shows_email false
   end
@@ -160,6 +160,8 @@ class MusicControllerTest < ActionController::TestCase
 
     get :show, :id => product.code
     assert_contains /contact composer/i
+    require 'ruby-debug'
+#    debugger
     if use_email
       assert_contains /href="mailto:a@a.com"/
     else
