@@ -2,9 +2,8 @@
 <div style="float: left; width: 25%;">
   <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
   <br/>
-  <hr style="margin-bottom: 5px;"/>
+  <hr style="margin: 10px;"/>
 <% if @product.downloads.count > 0 %>
-  <p>
     <ul>
       <% 
        products_with_extension = @product.downloads.map{|dl| 
@@ -65,7 +64,6 @@
         </li>
       <% end %>
     </ul>
-  </p>
 <% end %> <%# end downloads %>
 	<div>
      <%= @product.description %>
@@ -94,16 +92,19 @@
   <br />
 <% if contact = @product.composer_contact
   contact = "mailto:" + contact if contact =~ /.@./ %>
-  Or contact composer <a href="<%= contact%>">directly</a>.
+  Contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 
 </div> <!-- end float left -->
 
 <div style="float: right; width: 75%;">
-    <h2 style="margin-left: 50px;"><%= @product.name %></h2>
+   <% unless false#
+@default_image %>
+    <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>
+   <% end %>
 
       <% if @default_image %>
-		<div style="float:left; margin:20px; width: 100%;">
+		<div style="float:left; width: 100%;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
           <%= image_tag @default_image.public_filename, :width => "100%" %>
@@ -148,7 +149,7 @@
 <% end %>
 
   <div>
-    Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song. <%= if session[:user]; link_to('admin edit', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
+    Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song. <%= if session[:user]; link_to('admin', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
   </div>
 </div> <!-- end float right -->
 <div class="clear">&nbsp;</div>
