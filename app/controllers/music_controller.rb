@@ -118,6 +118,7 @@ class MusicController < StoreController
     end
     if @viewing_tags[0].composer_contact.present?
       @display_composer_contact = @viewing_tags[0].composer_contact
+      @display_composer_contact = "mailto:" + @display_composer_contact if @display_composer_contact =~ /.@./ 
     end
 
     render :action => 'index.rhtml'
