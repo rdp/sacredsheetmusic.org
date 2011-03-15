@@ -2,7 +2,6 @@
 <div style="float: left; width: 25%;">
   <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
   <br/>
-  <h2><%= @product.name %></h2>
   <hr style="margin-bottom: 5px;"/>
 <% if @product.downloads.count > 0 %>
   <p>
@@ -101,9 +100,10 @@
 </div> <!-- end float left -->
 
 <div style="float: right; width: 75%;">
+    <h2 style="margin-left: 50px;"><%= @product.name %></h2>
 
       <% if @default_image %>
-		<div style="float:left; margin:20px; width: 90%%;">
+		<div style="float:left; margin:20px; width: 100%;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
           <%= image_tag @default_image.public_filename, :width => "100%" %>
