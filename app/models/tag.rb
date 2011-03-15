@@ -7,11 +7,16 @@ class Tag
     return unless hymns_parent # for the other unit tests...guess I could use fixtures after all :P
     hymns = hymns_parent.children
     raise unless hymns.length > 0
-    errors = ''
+    errors = []
     for hymn in hymns
-      errors += share_tags_among_hymns_products(hymn)
+      error_message = share_tags_among_hymns_products(hymn)
+      errors << error_message if error_message.length > 0
     end
-    errors
+    if errors.length > 0
+      "Warning: no topics associated with any hymns for:" + errors.join(', ')
+    else
+      ''
+    end
   end
   
   
