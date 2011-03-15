@@ -721,7 +721,7 @@ div.p * {
 	float:right;
 	clear:right;
 	margin-right: 10px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	width: 500px;
 }
 
