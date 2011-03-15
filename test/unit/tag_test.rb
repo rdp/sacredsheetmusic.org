@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
 class ProductTest < ActiveSupport::TestCase
 
-  def test_can_propogate_all
+  def test_can_propagate_all
     # my fixtures shuck!
     Tag.destroy_all
     Product.destroy_all
@@ -21,33 +21,57 @@ class ProductTest < ActiveSupport::TestCase
     topic1 = Tag.create :name => "coolio topic", :parent => @topics
     prod2.tags << topic1
     
+    # and an author (author tag is ignored and not copied)
+    author = Tag.create :name => "arranger"
+    author_instance = Tag.create :name => "a cool person's name", :parent => author
+    prod2.tags << author_instance
+    
     # and you call 
-    Tag.sync_topics
+    Tag.sync_topics_with_warnings
     
     # then both products should end up with the topic tags, and their hymn tag
     correct_lengths = proc {
-      assert prod1.reload.tags.length == 2
-      assert prod2.reload.tags.length == 2
+      assert prod1.reload.tags.length == 3 # has the author tag
+      assert prod2.reload.tags.length == 2 # does not have the author tag
     }
     correct_lengths.call
     
     # if you call it twice, same thing
-    3.times{Tag.sync_topics}
+    3.times{Tag.sync_topics_with_warnings}
     
     correct_lengths.call
     prod1
   end
   
   def test_can_cross_polinate_tags_by_hymn
-    prod1 = test_can_propogate_all
+    prod1 = test_can_propagate_all
     # now add a third product, with its own topic
     prod3 = Product.create :name => 'prod3', :code => 'prod3'
     topic2 = Tag.create :name => 'coolio topic2', :parent => @topics
     prod3.tags << topic2
     prod3.tags << @child_hymn
-    Tag.sync_topics
-    assert prod1.reload.tags.length == 3
+    3.times { Tag.sync_topics_with_warnings }
+    assert prod1.reload.tags.length == 4 # has the author tag, plus hymn, plus 2 shared
     assert prod3.reload.tags.length == 3
+  end
+  
+  def test_gives_warnings
+    Tag.destroy_all
+    Product.destroy_all
+    
+    # given a single hymn tag (and topics tag we need too)
+    hymns = Tag.create :name => 'Hymns'
+    topics = Tag.create :name => "Topics"
+
+    # with a child hymn name
+    child_hymn = Tag.create :name => "child hymn", :parent => hymns
+    # and a product associated
+    prod3 = Product.create :name => 'prod3', :code => 'prod3'
+    prod3.tags << child_hymn
+    
+    # it should yield an error message if you sync, because no topics are associated with that hymn, through any of its children
+    assert Tag.sync_topics_with_warnings.length > 0
+
   end
 
 end
