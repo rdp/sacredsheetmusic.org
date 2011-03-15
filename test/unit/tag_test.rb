@@ -31,6 +31,8 @@ class ProductTest < ActiveSupport::TestCase
     
     # then both products should end up with the topic tags, and their hymn tag
     correct_lengths = proc {
+    require 'ruby-debug'
+    debugger
       assert prod1.reload.tags.length == 3 # has the author tag
       assert prod2.reload.tags.length == 2 # does not have the author tag
     }
