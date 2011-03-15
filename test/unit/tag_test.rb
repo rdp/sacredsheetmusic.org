@@ -8,7 +8,7 @@ class ProductTest < ActiveSupport::TestCase
     Product.destroy_all
     
     # if there's a hymns tag
-    hymns = Tag.create :name => 'Hymn arrangements'
+    hymns = Tag.create :name => 'Hymns'
     # with a child hymn name
     child_hymn = Tag.create :name => "child hymn", :parent => hymns
     # and two products under it:
@@ -18,14 +18,14 @@ class ProductTest < ActiveSupport::TestCase
     # and one product is associated with some topic
     topics = Tag.create :name => "Topics"
     topic1 = Tag.create :name => "coolio topic", :parent => topics
-    prod2.topics << topic1
+    prod2.tags << topic1
     
     # and you call 
     Tag.sync_topics
     
     # then both products should end up with the topic tags
-    assert prod1.refresh.tags.length == 1
-    assert prod2.refresh.tags.length == 1
+    assert prod1.reload.tags.length == 1
+    assert prod2.reload.tags.length == 1
   end
 
 
