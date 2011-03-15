@@ -4,7 +4,8 @@ class Tag
 
   def self.sync_topics
     hymns = Tag.find_by_name("Hymns")
-    for hymn in hymns.products
+    raise unless hymns.children.length > 0
+    for hymn in hymns.children
       share_tags_among_hymns_products hymn
     end
   end
@@ -14,10 +15,10 @@ class Tag
     all_tag_ids = {}
     for product in hymn.products
       for tag in product.tags
-        all_tag_ids[tag.id] = true
+        all_tag_ids[tag.id.to_s] = true # need to_s for the call to #tag_ids= to work
       end
     end
-    
+    raise unless all_tag_ids.length > 0
     for product in hymn.products
       product.tag_ids = all_tag_ids.keys   
     end
