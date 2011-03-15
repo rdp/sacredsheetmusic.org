@@ -144,19 +144,28 @@ class MusicControllerTest < ActionController::TestCase
     assert_not_match /name1/
     assert_contains /name2/
   end
+
+  def test_shows_email use_email
+    shows_email true
+    shows_email false
+  end
   
-  def test_shows_email
+  def shows_email use_email
     Tag.destroy_all
     Product.destroy_all
     parent = Tag.create :name => 'Composer/arranger'
-    child = Tag.create :name => 'a name', :composer_contact => 'a@a.com', :parent => parent
+    
+    child = Tag.create :name => 'a name', :composer_contact => (use_email ? 'a@a.com' : 'http://contact_page'), :parent => parent
     product = Product.create :name => 'prod1', :code => 'prod1'
     product.tags << child
 
     get :show, :id => product.code
-#    require 'ruby-debug'
-#    debugger
     assert_contains /contact composer/i
+    if use_email
+      assert_contains /href="mailto:a@a.com"/
+    else
+      assert_contains /href="http:\/\/contact_page"/
+    end
 
   end
   
