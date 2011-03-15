@@ -90,8 +90,7 @@
   <%= render :partial => 'comments' %>
   <br />
   <br />
-<% if contact = @product.composer_contact
-  contact = "mailto:" + contact if contact =~ /.@./ %>
+<% if contact = @product.composer_contact %>
   Contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 
