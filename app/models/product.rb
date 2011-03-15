@@ -14,4 +14,12 @@ class Product < Item
      cc
   end
   
+  # my own version :P
+  def tag_ids=(list)
+    tags.clear
+    for id in list
+      tags << Tag.find(id) if !id.to_s.empty?
+    end
+  end
+  
 end

@@ -16,6 +16,7 @@ class ProductTest < ActiveSupport::TestCase
     prod2 = Product.create :name => 'prod2', :code => 'prod2'
     prod1.tags << @child_hymn
     prod2.tags << @child_hymn
+    
     # and one product is associated with some topic
     @topics = Tag.create :name => "Topics"
     topic1 = Tag.create :name => "coolio topic", :parent => @topics
@@ -31,10 +32,8 @@ class ProductTest < ActiveSupport::TestCase
     
     # then both products should end up with the topic tags, and their hymn tag
     correct_lengths = proc {
-    require 'ruby-debug'
-    debugger
-      assert prod1.reload.tags.length == 3 # has the author tag
-      assert prod2.reload.tags.length == 2 # does not have the author tag
+      assert prod1.reload.tags.length == 2 # does not have the author tag
+      assert prod2.reload.tags.length == 3 # has the author tag
     }
     correct_lengths.call
     
@@ -52,9 +51,12 @@ class ProductTest < ActiveSupport::TestCase
     topic2 = Tag.create :name => 'coolio topic2', :parent => @topics
     prod3.tags << topic2
     prod3.tags << @child_hymn
-    3.times { Tag.sync_topics_with_warnings }
-    assert prod1.reload.tags.length == 4 # has the author tag, plus hymn, plus 2 shared
-    assert prod3.reload.tags.length == 3
+    3.times {
+      error_message = Tag.sync_topics_with_warnings
+      assert error_message.length == 0
+    }
+    assert prod1.reload.tags.length == 3 # hymn name, topic1, topic2
+    assert prod3.reload.tags.length == 3 # same
   end
   
   def test_gives_warnings

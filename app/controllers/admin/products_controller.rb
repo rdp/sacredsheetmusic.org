@@ -150,7 +150,7 @@ class Admin::ProductsController < Admin::BaseController
       end
     end
   end
-
+  
   private
   def download full_url, to_here
     require 'open-uri'

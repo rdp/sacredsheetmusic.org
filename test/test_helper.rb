@@ -1,5 +1,7 @@
-
-
+def _dbg
+  require 'ruby-debug'
+  debugger
+end
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
