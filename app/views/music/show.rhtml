@@ -1,6 +1,5 @@
 <% @two_column_layout = true %>
-<div style="float: left; width: 25%">
-<div style="margin-left: 10px;">
+<div style="float: left; width: 25%; margin-left: 10px;">
 <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
 <br/>
 <h2><%= @product.name %></h2>
@@ -145,9 +144,9 @@ if contact = @product.composer_contact
 	<% end %>
 -->
 
-<div id="right">
+<!--DISABLED div id="right">
 
-	<!-- DISABLED div align="center" style="margin-top:10px;">
+	<div align="center" style="margin-top:10px;">
 		<p>
 		<br/>
 		<%= 
@@ -162,18 +161,17 @@ if contact = @product.composer_contact
 			)
 		%>
 		</p>
-	</div-->
+	</div>
+</div-->
 	
-
-</div>
 <% if @product.downloads.select{|dl| dl.name =~ /\.pdf/}.length > 0 %>
-<div>
-This song's pdf has been downloaded/viewed <%= sum = 0; @product.downloads.each{|d| sum += d.count if d.name =~ /\.pdf/
-}; [sum,1].max %> times.
-</div>
+  <div>
+    This song's pdf has been downloaded/viewed <%= sum = 0; @product.downloads.each{|d| sum += d.count if d.name =~ /\.pdf/}; [sum,1].max %> times.
+  </div>
 <% end %>
 <div>Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song.
 <%#= if session[:user]; link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
 </div>
 <br />
+
 <div class="clear">&nbsp;</div>
