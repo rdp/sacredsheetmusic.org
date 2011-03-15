@@ -79,7 +79,6 @@ class MusicControllerTest < ActionController::TestCase
     get :show, :id => p.code
     assert_select "div", /name/i
     assert_select "div", /url/i
-    assert_select "div", /difficulty/i
     assert_select "div", /overall/i
   end
   

@@ -9,7 +9,7 @@ class Product < Item
     
   def composer_contact
      owner = self.tags.select{|t| t.parent && t.parent.name =~ /composer/i }[0]
-     owner.composer_contact.present? ? owner.composer_contact : nil
+     (owner && owner.composer_contact.present? ) ? owner.composer_contact : nil
   end
   
 end
