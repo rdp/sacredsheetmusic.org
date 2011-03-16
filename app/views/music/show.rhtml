@@ -97,8 +97,7 @@
 </div> <!-- end float left -->
 
 <div style="float: right; width: 75%;">
-   <% unless false#
-@default_image %>
+   <% unless @default_image %>
     <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>
    <% end %>
 
@@ -106,7 +105,7 @@
 		<div style="float:left; width: 100%;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename, :width => "100%" %>
+          <%= image_tag @default_image.public_filename, :width => "100%", :alt => @product.name%>
         </a>
       <% end %>
 			<p class="info">Click to see full view</p>
