@@ -4,7 +4,7 @@ class Tag
 
   def self.sync_topics_with_warnings
     hymns_parent = Tag.find_by_name("Hymns")
-    return unless hymns_parent # for the other unit tests...guess I could use fixtures after all :P
+    return '' unless hymns_parent # for the other unit tests.and running  adev server..guess I could use fixtures after all :P
     hymns = hymns_parent.children
     raise unless hymns.length > 0
     errors = []
