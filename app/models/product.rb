@@ -33,7 +33,7 @@ class Product < Item
   def clean_code
     if self.code.blank?
       if self.composer
-        self.code = self.composer.name # composer full name?
+        self.code = self.name.clone + self.composer.name # do we want the composer full name?
       else
         self.code = self.name.clone 
       end
