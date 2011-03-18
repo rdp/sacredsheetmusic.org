@@ -146,7 +146,7 @@
   </div>
 <% end %>
 
-  <div>
+  <div style="padding: 15px">
     Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song. <%= if session[:user]; link_to('admin', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
   </div>
 </div> <!-- end float right -->

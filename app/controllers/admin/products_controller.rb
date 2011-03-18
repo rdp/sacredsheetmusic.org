@@ -63,16 +63,16 @@ class Admin::ProductsController < Admin::BaseController
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
-        raise  url.split('.')[-1] + "!= pdf" unless url.split('.')[-1] == 'pdf'
+        flash[:notice] = 'warning--non pdf extension?' + url.split('.')[-1] unless url.split('.')[-1] == 'pdf'
         temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
-        add_download url, temp_file2, 'application/pdf'
+        add_download url, temp_file2, 'application/pdf', 'pdf'
       end
 
       # do after the pdf for ordering sake...
       unless params[:download_mp3_url].blank?
         url = params[:download_mp3_url]
-        raise url.split('.')[-1] + "!= mp3"  unless url.split('.')[-1] == 'mp3'
-        add_download url, temp_file_path, 'audio/mpeg'
+        flash[:notice] = 'warning: non mp3 extension? + ' + url  unless url.split('.')[-1] == 'mp3'
+        add_download url, temp_file_path, 'audio/mpeg', 'mp3'
       end
 
       unless params[:download].blank?
@@ -131,12 +131,13 @@ class Admin::ProductsController < Admin::BaseController
         end
       end
 
-      flash[:notice] = "Product '#{@product.name}' saved."
+      flash[:notice] ||= ''
+      flash[:notice] += " Product '#{@product.name}' saved."
       if @product.hymn_tag
-        warnings = Tag.share_tags_among_hymns_products
+        warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
         flash[:notice] += warnings
       else
-        flash[:notice] += " Warning: no hymn tag selected. This might be right if it's an original or primary piece though"
+        flash[:notice] += " Warning: no hymn tag selected. This might be right if it's an original or primary piece though (topics must be added later)"
       end
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
@@ -179,12 +180,13 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def add_download url, temp_file_path, type
+  def add_download url, temp_file_path, type, extension_if_needed
     # psych it out ;)
     logger.info 'downloading to', temp_file_path
     download(url, temp_file_path)
     fake_upload = Pathname.new(temp_file_path)
     fake_upload.original_filename = url.split('/')[-1]
+    fake_upload.original_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
     fake_upload.content_type = type
     new_download = {:download_data => fake_upload}
     params[:download].unshift new_download # unshift so we can reuse that one filename...
