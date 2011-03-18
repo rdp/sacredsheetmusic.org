@@ -3,18 +3,22 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/product"
 class Product < Item
   has_many :comments, :dependent => :destroy
   
+  # different ranking...
   has_many :images,
     :through => :product_images, :order => "-product_images.rank DESC",
     :dependent => :destroy
   
-  #
   # the arranger tag for this product...if there is one...
-  def composer
+  def composer_tag
    self.tags.select{|t| t.parent && t.parent.name =~ /composer/i }[0]
   end
   
+  def hymn_tag
+   self.tags.select{|t| t.parent && t.parent.name == 'Hymns' }[0]
+  end
+  
   def composer_contact
-     owner = composer
+     owner = composer_tag
      cc = (owner && owner.composer_contact.present? ) ? owner.composer_contact : nil
      cc = "mailto:" + cc if cc =~ /.@./
      cc

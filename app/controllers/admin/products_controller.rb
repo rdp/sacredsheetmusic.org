@@ -132,8 +132,12 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       flash[:notice] = "Product '#{@product.name}' saved."
-      warnings = Tag.sync_topics_with_warnings
-      flash[:notice] += warnings
+      if @product.hymn_tag
+        warnings = Tag.share_tags_among_hymns_products
+        flash[:notice] += warnings
+      else
+        flash[:notice] += " Warning: no hymn tag selected. This might be right if it's an original or primary piece though"
+      end
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
