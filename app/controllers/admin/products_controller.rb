@@ -133,7 +133,7 @@ class Admin::ProductsController < Admin::BaseController
 
       flash[:notice] = "Product '#{@product.name}' saved."
       if @product.hymn_tag
-        warnings = Tag.share_tags_among_hymns_products
+        warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
         flash[:notice] += warnings
       else
         flash[:notice] += " Warning: no hymn tag selected. This might be right if it's an original or primary piece though"
