@@ -11,10 +11,6 @@
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
 		<div class="float">
-			<%= make_label('Product Code') %>
-			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
-		</div>
-		<div class="float">
 			<%= make_label('Original URL') %>
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %>
 		</div>
@@ -140,6 +136,11 @@
 	<%= text_area 'product', 'description', :rows => 10, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
   <h1>Optional items:</h1>
+  
+		<div class="float">
+			<%= make_label('Product Code') %>
+			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
+		</div>
 
 <%= render :partial => 'image_upload' %>
 
