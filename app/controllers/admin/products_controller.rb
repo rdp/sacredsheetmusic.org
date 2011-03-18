@@ -174,7 +174,6 @@ class Admin::ProductsController < Admin::BaseController
       pi = new_image.product_images[0]
       pi.rank = rank
       pi.save
-      p 'saved one'
     else
       raise 'unexpected!'
     end
