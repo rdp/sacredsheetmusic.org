@@ -36,13 +36,13 @@ class Product < Item
   # Makes code safe for URL usage.
   def clean_code
     if self.code.blank?
-      if self.composer
-        self.code = self.name.clone + '-' + self.composer.name # do we want the composer full name?
+      if self.composer_tag
+        self.code = self.name.clone + '-' + self.composer_tag.name # do we want the composer full name?
       else
-        self.code = self.name.clone 
+        self.code = self.name.clone
       end
     end
-    self.code.upcase!
+#    self.code.upcase!
     self.code = self.code.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')
     self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
     self.code.strip!
