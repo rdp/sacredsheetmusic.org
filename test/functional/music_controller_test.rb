@@ -161,14 +161,15 @@ class MusicControllerTest < ActionController::TestCase
     get :show, :id => product.code
     assert_contains /contact composer/i
     if use_email
-      assert_contains /href="mailto:a@a.com"/
+      expected_link = /href="mailto:a@a.com"/
     else
-      assert_contains /href="http:\/\/contact_page"/
+      expected_link = /href="http:\/\/contact_page"/
     end
+    assert_contains expected_link
     
     # index should show the contact, too
     get :show_by_tags, :tags => ['a name']
-    assert_contains /href="mailto:a@a.com"/
+    assert_contains expected_link
 
   end
   
