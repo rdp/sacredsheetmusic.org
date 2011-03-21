@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   before_filter :get_nav_tags
   before_filter :find_customer
   
-  before_filter :redirect_to_freewardchoir
+  before_filter :redirect_to_freeldssheetmusic
   
 end

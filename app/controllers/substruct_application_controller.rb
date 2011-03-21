@@ -2,10 +2,10 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/subst
 
 module SubstructApplicationController
   
-  def redirect_to_freewardchoir
+  def redirect_to_freeldssheetmusic
     if ENV['RAILS_ENV'] == "production" 
-      if request.host !~ /freemusicformormons/
-         redirect_to "http://freemusicformormons.com" + request.request_uri
+      if request.host !~ /freeldssheetmusic.org/
+         redirect_to "http://freeldssheetmusic.org" + request.request_uri
          flash.keep
          return false
       end
