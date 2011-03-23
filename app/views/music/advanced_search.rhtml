@@ -1,7 +1,12 @@
+<div>  <br/>
+  To search, please check all aspects that should apply.  For example if you wanted Easter music for a ward choir, then check "SATB", "SAB", and "Easter", then click "search". Note that within each group you can check more than one option, like both "SATB" and "SAB" and "SSAATTBB".
+</div>
+<br/>
+<form action="advanced_search_post">
 <div style="float: left">
-  <br/>
-  Please check all aspects that should apply.  For example if you wanted Easter music for a ward choir, then check both "SATB", "SAB", and "Easter", then click "search". Note that within each group you can check more than one option, like both "SATB" and "SAB".
-  <form action="advanced_search_post">
+  <input name="commit" type="submit" value="Search checked aspects" />
+<br/>
+<br/>
   <ul>
   <% for tag in Tag.find_ordered_parents; next if tag.name == "Hymns" %>
     <li>
@@ -17,7 +22,7 @@
     <br/>
   <% end %>
   </ul>
-  <input name="commit" type="submit" value="Search!" />
+  <input name="commit" type="submit" value="Search checked aspects" />
 
 </form>
 </div>
