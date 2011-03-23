@@ -700,7 +700,7 @@ div.p * {
 }
 
 #header {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 #toplinks {
@@ -744,7 +744,7 @@ div.p * {
 	padding-top: 20px;
 	border-top: 2px solid #3b3b3b;
 	font-size: 16px;
-	margin-bottom: 20px; 
+	/*margin-bottom: 20px; */
 	margin-top: 5px;
 }
 #footer li {
@@ -838,7 +838,7 @@ div.p * {
 
 
 #navigation {
-	margin-top: 5px;
+	/*margin-top: 5px;*/
 	background-image: url(/plugin_assets/substruct/images/public-ui/nav-middle-bg.gif);
 	background-repeat: repeat-x;
 	height: 60px;
@@ -866,7 +866,7 @@ div.p * {
 }
 
 #navigation ul.navigation li {
-	background-image: none;
+background-image: none;
 	background-repeat: no-repeat;
 	height: 60px;
 	margin-right: 10px;

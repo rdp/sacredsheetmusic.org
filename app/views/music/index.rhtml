@@ -39,7 +39,7 @@
            </div>
         <% end %>
         <% if @products.length > 10 %>
-           <div style="padding-bottom: 0px; margin-left: 15px;"><%= '&nbsp;'*5 %>(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
+           <div style="padding-bottom: 5px; margin-left: 15px;"><%= '&nbsp;'*5 %>(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
              <% if @viewing_tags %>
                 <% if (@viewing_tags[0].children.count > 0) %>
                    Or by choosing a sub-category, to your left.)
@@ -67,7 +67,7 @@
     <% end %>
     </p>
   <% end %>
-  <div class="clear">&nbsp;</div>
+  <div class="clear" style="height: 1px;">&nbsp;</div>
 
   <%= will_paginate @products  unless @do_not_paginate%>
 
