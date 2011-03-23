@@ -38,9 +38,13 @@
            <% end %>
            </div>
         <% end %>
-
         <% if @products.length > 10 %>
-           <div style="padding-bottom: 0px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.)</div>
+           <div style="padding-bottom: 0px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
+             <% if @viewing_tags[0].children.count > 0 %>
+              Or by choosing a sub-category, to your left.
+            <% end %>)
+
+          </div>
         <% else %>
             <br /> <!-- force second line to be at the left -->
         <% end %>
