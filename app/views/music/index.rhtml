@@ -9,7 +9,7 @@
 
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
-                 <h1 style="<%= h1_style %>">Songs</h1>
+                 <h1 style="<%= h1_style %>">All Songs</h1>
 	<% else %>
 		<h1 style="<%= h1_style %>">
 			<!--a href="/music">Songs</a> &gt; -->
@@ -40,9 +40,13 @@
         <% end %>
         <% if @products.length > 10 %>
            <div style="padding-bottom: 0px;">(Note that you can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
-             <% if @viewing_tags[0].children.count > 0 %>
-              Or by choosing a sub-category, to your left.
-            <% end %>)
+             <% if @viewing_tags %>
+                <% if (@viewing_tags[0].children.count > 0) %>
+                   Or by choosing a sub-category, to your left.)
+                <% end %>
+            <% else %>
+                   Or by selecting a category, to your left.)
+            <% end %>
 
           </div>
         <% else %>
