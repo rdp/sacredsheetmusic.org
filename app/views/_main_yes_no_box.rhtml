@@ -122,6 +122,7 @@
 		<% if @show_subnav %>
 			<div id="subnavigation">
 				<ul class="navigation">
+                                        <li><a href="">Or choose subcategory:</a></li>
 					<% for tag in @subnav_tags do; next if tag.products.length == 0 %>
 						<li class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>">
 							<%= 
