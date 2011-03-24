@@ -45,7 +45,11 @@ class MusicController < StoreController
     render :layout => 'main_no_box'
   end
 
- def advanced_search_post
+  def advanced_search
+
+  end
+
+  def advanced_search_post
    tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
   
    parent_tag_groups = {}
