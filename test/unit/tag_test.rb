@@ -8,7 +8,7 @@ class ProductTest < ActiveSupport::TestCase
     Product.destroy_all
     
     # if there's a hymns tag
-    hymns = Tag.create :name => 'Hymns'
+    hymns = Tag.create :name => 'Hymn arrangs'
     # with a child hymn name
     @child_hymn = Tag.create :name => "child hymn", :parent => hymns
     # and two products under it:

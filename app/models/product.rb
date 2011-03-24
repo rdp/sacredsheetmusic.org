@@ -10,7 +10,7 @@ class Product < Item
   
   # the arranger tag for this product...if there is one...
   def composer_tag
-   self.tags.select{|t| t.parent && t.parent.name =~ /composer/i }[0]
+   self.tags.select{|t| t.parent && t.parent.name =~ /^composer/i }[0]
   end
   
   def hymn_tag

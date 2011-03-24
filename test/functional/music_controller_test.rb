@@ -152,7 +152,7 @@ class MusicControllerTest < ActionController::TestCase
   def shows_email use_email
     Tag.destroy_all
     Product.destroy_all
-    parent = Tag.create :name => 'Composer/arranger'
+    parent = Tag.create :name => 'Composer'
     
     child = Tag.create :name => 'a name', :composer_contact => (use_email ? 'a@a.com' : 'http://contact_page'), :parent => parent
     product = Product.create :name => 'prod1', :code => 'prod1'
