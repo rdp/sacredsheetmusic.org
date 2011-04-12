@@ -139,6 +139,8 @@ class MusicController < StoreController
   end
 
   def download_helper disposition
+    logger.info request.headers['User-Agent']
+    logger.info request.headers['Accept-Language']
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
