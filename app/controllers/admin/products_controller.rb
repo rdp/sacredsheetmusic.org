@@ -63,16 +63,22 @@ class Admin::ProductsController < Admin::BaseController
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
-        flash[:notice] = 'warning--non pdf extension?' + url.split('.')[-1] unless url.split('.')[-1] == 'pdf'
         temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
         add_download url, temp_file2, 'application/pdf', 'pdf'
+        out = `file #{temp_file2}`
+        unless out =~ /PDF/
+          flash[:notice] = 'warning--non pdf?' + url
+        end
       end
 
       # do after the pdf for ordering sake...
       unless params[:download_mp3_url].blank?
         url = params[:download_mp3_url]
-        flash[:notice] = 'warning: non mp3 extension? + ' + url  unless url.split('.')[-1] == 'mp3'
         add_download url, temp_file_path, 'audio/mpeg', 'mp3'
+        out = `file #{temp_file_path}`
+        unless out =~ /MPEG/
+           flash[:notice] = 'warning: mp3 upload was bad? + ' + url
+        end
       end
 
       unless params[:download].blank?
