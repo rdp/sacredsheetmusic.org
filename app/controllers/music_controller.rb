@@ -139,17 +139,24 @@ class MusicController < StoreController
     download_helper 'inline'
   end
 
-  def download_helper disposition
-    logger.info request.headers['User-Agent']
-    logger.info request.headers['Accept-Language']
+  def ambiguous_download
+    download_helper 'inline', false
+  end
+
+  def download_helper disposition, add_count = true
+    ua = request.headers['User-Agent']
+    accept_language = request.headers['Accept-Language']
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
-      if request.headers['Accept-Language'].present? && (request.headers['User-Agent'] !~ /bot /i)
+      if add_count && accept_language.present? && (request.headers['User-Agent'] !~ /bot /i)
         # unfortunately I think mp3's get downloaded via browser for cacheing on page view
         # so I gues they'll be half and half still...
         file.count += 1
         file.save # necessary? probably...
+        logger.info "yes [#{ua} #{accept_language}]" 
+      else
+        logger.info "no [#{ua} #{accept_language}]" 
       end
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf

@@ -38,7 +38,7 @@
     </div>
 
     <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mid/ %>
-           <embed src="<%= preferred_url %>" type="audio/midi" width="90" height="35" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
+           <embed src="<%= url_for(:action => 'ambiguous_download', :params => {:download_id => preferred_play_inline.id} ) %>" type="audio/midi" width="90" height="35" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
     <% end %>
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
