@@ -145,12 +145,12 @@ class MusicController < StoreController
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
-      if request.headers['Accept-Language'] && (request.headers['User-Agent'] !~ /bot /i)
-        # I think even mp3's get one of these hits first, before
-        # they pass it off to their browser...
+      if request.headers['Accept-Language'].present? && (request.headers['User-Agent'] !~ /bot /i)
+        # unfortunately I think mp3's get downloaded via browser for cacheing on page view
+        # so I gues they'll be half and half still...
         file.count += 1
+        file.save # necessary? probably...
       end
-      file.save # necessary? probably...
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf
       # TODO this doesn't actually inline anything else then...but at least it wurx
