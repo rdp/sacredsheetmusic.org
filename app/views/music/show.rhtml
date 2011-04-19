@@ -148,11 +148,11 @@
   @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
 %>
 <div>
-<% if @product.view_count > 0 %>
+<% if @product.view_count > 5 %>
   This song has been viewed <%= @product.view_count  %> times.
 <% end %>
 
-<% if pdf_views > 1 %>
+<% if pdf_views > 5 %>
     This song's pdf has been downloaded/viewed <%= pdf_views %> times.
 <% end %>
 </div>
