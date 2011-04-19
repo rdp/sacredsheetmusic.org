@@ -128,12 +128,13 @@ class MusicController < StoreController
     render :action => 'index.rhtml'
   end
   
-  # Downloads a file using the old system :P
+  # Downloads a file using the original way
   # this way forces an "out of browser" download which is good...
   def download_file
     download_helper 'attachment'
   end
 
+  # inline is both mp3 and pdf's...
   def inline_download_file
     download_helper 'inline'
   end
@@ -144,7 +145,11 @@ class MusicController < StoreController
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
-      file.count += 1
+      if request.headers['Accept-Language'] && (request.headers['User-Agent'] !~ /bot /i)
+        # I think even mp3's get one of these hits first, before
+        # they pass it off to their browser...
+        file.count += 1
+      end
       file.save # necessary? probably...
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf

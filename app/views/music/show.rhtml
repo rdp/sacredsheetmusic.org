@@ -31,7 +31,7 @@
           <% if filename_extension =~ /midi|wav|mp3/ %>
             <br/>
             <%# the type=audio/mpeg forces it to quicktime... %>
-            <embed src="<%= dl.relative_path_to_web_server %>" <%= 'type="audio/mpeg"' if filename_extension =~ /mp3/ %> width="140" height="40" autostart="false" loop="FALSE" />
+            <embed src="<%= dl.relative_path_to_web_server %>" <%= 'type="audio/mpeg"' if filename_extension =~ /mp3/ %> width="140" height="40" autostart="false" loop="FALSE" bgcolor="#FFFFFF" />
           <% elsif filename_extension == 'mp3' %>
               <!--
                <object type="application/x-shockwave-flash"
@@ -91,7 +91,7 @@
   <br />
   <br />
 <% if contact = @product.composer_contact %>
-  Contact composer <a href="<%= contact%>">directly</a>.
+  Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 
 </div> <!-- end float left -->

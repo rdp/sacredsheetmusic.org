@@ -47,7 +47,12 @@ class Product < Item
     self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
     self.code.strip!
     return true
-	end
+  end
 
-
+  def topic_tags
+    tags.select{|t| t.parent && t.parent.name == "Topics"}
+  end
+  def self.all_songs_without_topics
+    self.all.select{|p| p.topic_tags.length == 0}
+  end
 end

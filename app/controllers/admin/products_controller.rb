@@ -143,7 +143,9 @@ class Admin::ProductsController < Admin::BaseController
         warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
         flash[:notice] += warnings
       else
-        flash[:notice] += "<br/> Warning: no hymn tag selected. This might be right if it's an original or primary piece though (topics must be added later in that case though)"
+        if @product.topic_tags.length == 0
+          flash[:notice] += "<br/> Warning: no topics associated with song yet."
+        end
       end
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"

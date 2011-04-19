@@ -2,6 +2,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
 
+  # sync all hymns amongst themselves
   def self.sync_topics_with_warnings
     hymns_parent = Tag.all.select{|t| t.name =~ /^hymn/i}[0]
     return '' unless hymns_parent # for the other unit tests.and running  adev server..guess I could use fixtures after all :P
@@ -20,6 +21,7 @@ class Tag
   end
   
   
+
   def self.share_tags_among_hymns_products hymn
     all_topic_ids = {}
     topics = Tag.find_by_name("Topics")
