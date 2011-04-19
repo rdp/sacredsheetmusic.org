@@ -19,22 +19,26 @@
       %>
       <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
-    <% preferred_play_inline = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/} %>
+    <% preferred_play_inline = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
+       if preferred_play_inline
+          preferred_url = url_for(:action => 'inline_download_file', :params => {:download_id => preferred_play_inline.id})
+       end
+     %>
     <div class="product_title" style="margin-bottom: 15px">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
       <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mp3/ %>
              <object type="application/x-shockwave-flash"
-                    data="/flash/button_player.swf?&song_url=<%= preferred_play_inline.relative_path_to_web_server %>&player_title=mp3&song_title=mp3"
+                    data="/flash/button_player.swf?&song_url=<%= preferred_url %>&player_title=mp3&song_title=mp3"
                      width="17" height="17">
                <param name="movie"
-                value="/flash/button_player.swf?&song_url=<%= preferred_play_inline.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" />
+                value="/flash/button_player.swf?&song_url=<%= preferred_url %>&player_title=mp3&song_title=mp3" />
               </object>
      <% end %>
 
     </div>
 
     <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mid/ %>
-           <embed src="<%= preferred_play_inline.relative_path_to_web_server %>" type="audio/midi" width="90" height="35" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
+           <embed src="<%= preferred_url %>" type="audio/midi" width="90" height="35" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
     <% end %>
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 

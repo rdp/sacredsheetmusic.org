@@ -154,8 +154,11 @@ class MusicController < StoreController
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf
       # TODO this doesn't actually inline anything else then...but at least it wurx
-      if file.full_filename =~ /\.pdf$/
+      filename = file.full_filename
+      if filename =~ /\.pdf$/
         args[:type] = 'application/pdf'
+      elsif filename =~ /\.(mid|midi|mp3|wav)/
+        args[:type] = "audio/#{$1}"
       end
       send_file(file.full_filename, args)
     else
