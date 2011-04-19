@@ -147,14 +147,15 @@
   pdf_views = 0
   @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
 %>
+<div>
 <% if @product.view_count > 0 %>
-This song has been viewed <%= @product.view_count  %> times.
+  This song has been viewed <%= @product.view_count  %> times.
 <% end %>
+
 <% if pdf_views > 1 %>
-  <div>
     This song's pdf has been downloaded/viewed <%= pdf_views %> times.
-  </div>
 <% end %>
+</div>
 
   <div style="padding: 15px">
     Upload your own <a href="/your-own-mp3">mp3 recording</a> of this song. <%= if session[:user]; link_to('admin', :controller =>  'admin/products', :action => :edit, :id => @product.id); end %>
