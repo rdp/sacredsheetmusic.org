@@ -30,9 +30,14 @@ class MusicController < StoreController
 
   def show
     @product = Product.find_by_code(params[:id])
+
     if !@product
       flash[:notice] = "Sorry, we couldn't find the product you were looking for"
       redirect_to :action => 'index' and return false
+    end
+    if not_a_bot
+      @product.view_count += 1
+      @product.save
     end
     @title = @product.name
     @images = @product.images.find(:all)
@@ -46,7 +51,7 @@ class MusicController < StoreController
   end
 
   def advanced_search
-
+    # place holder...
   end
 
   def advanced_search_post
@@ -143,20 +148,29 @@ class MusicController < StoreController
     download_helper 'inline', false
   end
 
+  def not_a_bot
+    ua = request.headers['User-Agent']
+    al = request.headers['User-Agent']
+    not_bot = ua.present? && (al !~ /bot\W|wget\W/i)
+    if not_bot
+      logger.info "ok: [#{ua} #{al}]" 
+    else
+      logger.info "bot: [#{ua} #{al}]" 
+    end
+    not_bot
+  end
+
   def download_helper disposition, add_count = true
     ua = request.headers['User-Agent']
     accept_language = request.headers['Accept-Language']
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
-      if add_count && accept_language.present? && (request.headers['User-Agent'] !~ /bot /i)
+      if add_count && not_a_bot
         # unfortunately I think mp3's get downloaded via browser for cacheing on page view
         # so I gues they'll be half and half still...
         file.count += 1
         file.save # necessary? probably...
-        logger.info "yes [#{ua} #{accept_language}]" 
-      else
-        logger.info "no [#{ua} #{accept_language}]" 
       end
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf

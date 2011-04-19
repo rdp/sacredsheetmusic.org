@@ -143,9 +143,16 @@
 	<% end %>
 -->
 
-<% if (pdfs = @product.downloads.select{|dl| dl.name =~ /\.pdf/}).length > 0 %>
+<% 
+  pdf_views = 0
+  @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
+%>
+<% if @product.view_count > 0 %>
+This song has been viewed <%= @product.view_count  %> times.
+<% end %>
+<% if pdf_views > 1 %>
   <div>
-    This song's pdf has been downloaded/viewed <%= sum = 0; pdfs.each{|d| sum += d.count }; [sum,1].max %> times.
+    This song's pdf has been downloaded/viewed <%= pdf_views %> times.
   </div>
 <% end %>
 
