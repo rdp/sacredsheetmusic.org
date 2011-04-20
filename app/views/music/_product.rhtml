@@ -1,4 +1,4 @@
-<div class="product">
+<div class="product" >
   <%= 
     if product.is_on_sale?
       image_tag('public-ui/icons/on-sale.gif', :alt => 'On Sale', :class => 'icon', :plugin => 'substruct')
@@ -8,7 +8,7 @@
   %>
 
   <div class="product_top"></div>
-  <div class="product_main" style="height: 270px;">
+  <div class="product_main" style="height: 260px;">
     <div class="product_image"> 
       <%
         if product.images.empty? 
@@ -24,7 +24,7 @@
           preferred_url = url_for(:action => 'inline_download_file', :params => {:download_id => preferred_play_inline.id})
        end
      %>
-    <div class="product_title" style="margin-bottom: 15px">
+    <div class="product_title" style="margin-bottom: 10px; margin-top:5px;">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
       <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mp3/ %>
              <object type="application/x-shockwave-flash"
