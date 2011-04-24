@@ -52,7 +52,13 @@ class Product < Item
   def topic_tags
     tags.select{|t| t.parent && t.parent.name == "Topics"}
   end
+
+  # for manual use, currently...
   def self.all_songs_without_topics
     self.all.select{|p| p.topic_tags.length == 0}
+  end
+
+  def self.super_sum
+    count = 0; all.each{|dl| count += dl.view_count}; count
   end
 end

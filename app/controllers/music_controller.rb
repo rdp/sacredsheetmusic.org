@@ -150,13 +150,14 @@ class MusicController < StoreController
 
   def not_a_bot
     ua = request.headers['User-Agent']
-    al = request.headers['User-Agent']
-    not_bot = ua.present? && (al !~ /bot\W|wget\W/i)
+    al = request.headers['Accept-Language']
+    not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
     if not_bot
-      logger.info "ok: [#{ua} #{al}]" 
+      logger.info "ok:"
     else
-      logger.info "bot: [#{ua} #{al}]" 
+      logger.info "bot:"
     end
+    logger.info "not bot: #{not_bot} [#{ua}] [#{al}]\n [#{request.headers.inspect}]"  unless ua =~ /Wget/
     not_bot
   end
 
@@ -167,8 +168,8 @@ class MusicController < StoreController
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
       if add_count && not_a_bot
-        # unfortunately I think mp3's get downloaded via browser for cacheing on page view
-        # so I gues they'll be half and half still...
+        # unfortunately I think mp3's get downloaded via browser sometimes (via qt) on page view
+        # so I guess this'll be half and half still...
         file.count += 1
         file.save # necessary? probably...
       end
