@@ -152,6 +152,7 @@ class MusicController < StoreController
     ua = request.headers['User-Agent']
     al = request.headers['Accept-Language']
     not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
+    not_bot = true if ua =~ /MSIE 6/
     if not_bot
       logger.info "ok:"
     else

@@ -111,10 +111,9 @@
           <%= image_tag @default_image.public_filename, :width => "100%", :alt => @product.name%>
         </a>
       <% end %>
-			<p class="info">Click to see full view</p>
+				<h4>(Click on the pdf link, upper left, to see the full resolution music.)</h4>
 			<!-- not thumbnails! -->
 			<% if @images.size > 1 %>
-				<h4>Other pages</h4>
 				<% for @p_image in @images do %>
 				  <% next if @p_image == @default_image %>
 					<div class="float" style="margin:5px;">
