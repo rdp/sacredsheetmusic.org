@@ -9,11 +9,11 @@
        products_with_extension = @product.downloads.map{|dl| 
             filename_extension = dl.filename.split('.')[-1].downcase
             filename_extension = 'midi' if filename_extension == 'mid'
-            filename_extension = '.wav' if filename_extension == 'wav'
+            filename_extension = 'wav' if filename_extension == 'wav'
             [dl, filename_extension]
         }
 
-        products_with_extension.sort_by{|dl, ext| ext}.reverse.each do |dl, filename_extension| %>
+        products_with_extension.sort_by{|dl, ext| ext == 'pdf' ? 'z' : ext}.reverse.each do |dl, filename_extension| %>
         <li>
           <%= 
             link_name = filename_extension
