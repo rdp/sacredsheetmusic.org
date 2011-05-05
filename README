@@ -1,13 +1,15 @@
 substruct site for musicformormons  (rails)
 
 To use, create your vendor dir like this:
+$ rm -rf vendor
+$ svn checkout http://substruct.googlecode.com/svn/trunk/ vendor
 
-$svn checkout http://substruct.googlecode.com/svn/trunk/ vendor
 
-Also add in the admin_data plugin for rails2, separately.
+Add in the admin_data plugin for rails2.3.x: https://github.com/neerajdotname/admin_data/wiki/Installing-admin_data-in-a-Rails-2.3.x-project
 
-now 
-$ rake gems:installs # or whatever it is
+now create config/database.yml with mysql, then
+
+$ rake gems:install # or whatever it is
 $ rake db:create
 $ rake substruct:db:bootstrap
 $ rake db:migrate
