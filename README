@@ -9,7 +9,7 @@ Add in the admin_data plugin for rails2.3.x: https://github.com/neerajdotname/ad
 
 now create config/database.yml with mysql, then
 
-$ rake gems:install # or whatever it is
+$ rake gems:install
 $ rake db:create
 $ rake substruct:db:bootstrap
 $ rake db:migrate
