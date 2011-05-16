@@ -82,7 +82,7 @@
         
         <br/>
       <% end %>
-        <div> Song topics:
+        <div> Clickable song topics: <br/>
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
