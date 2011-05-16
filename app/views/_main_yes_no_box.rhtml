@@ -163,13 +163,8 @@
 		</ul>
     <br/>
 
-<%
-rs = ActiveRecord::Base.connection.execute("select sum(view_count) from items;")
-super_sum = rs.fetch_hash.to_a[0][1]
-rs.all_hashes # try to make it close? huh?
-%>
-    <div style="margin-top: 5px; font-size: .75em; text-align: center; color: gray">See <a href="http://mormon.org">mormon.org</a> for the official LDS church site.  Each piece is &copy; its respective composer.<br/> Total views from the site: <%= super_sum 
-%></div>
+    <div style="margin-top: 5px; font-size: .75em; text-align: center; color: gray">See <a href="http://mormon.org">mormon.org</a> for the official LDS church site.  Each piece is &copy; its respective composer.<br/> Total views from the site: <%= Product.sum(:view_count) %></div>
+
 <%#count = 0; Download.all.each{|dl| count += dl.count if dl.name =~ /pdf/}; count 
 %>
   </div> <!-- end footer -->
