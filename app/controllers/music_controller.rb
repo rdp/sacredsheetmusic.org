@@ -161,6 +161,11 @@ class MusicController < StoreController
       logger.info "bot:"
     end
     logger.info "not bot: #{not_bot} [#{ua}] [#{al}]" unless ua =~ /Wget/
+    if session[:user]
+      logger.info "logged in user, fingindo ser bot para nao adjustar numeros"
+      return false
+    end
+
     not_bot
   end
 
