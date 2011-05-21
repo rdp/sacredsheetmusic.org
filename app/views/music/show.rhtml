@@ -105,13 +105,13 @@
    <% end %>
 
       <% if @default_image %>
+		<h5 style="float: right; margin-left: 50px;">(Click the pdf link, upper left, to see full resolution music.)</h5>
 		<div style="float:left; width: 100%;">
       <% if @default_image.public_filename then %>
         <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
           <%= image_tag @default_image.public_filename, :width => "100%", :alt => @product.name%>
         </a>
       <% end %>
-				<h4>(Click on the pdf link, upper left, to see the full resolution music.)</h4>
 			<!-- not thumbnails! -->
 			<% if @images.size > 1 %>
 				<% for @p_image in @images do %>
