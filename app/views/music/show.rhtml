@@ -112,10 +112,11 @@
           <%= image_tag @default_image.public_filename, :width => "100%", :alt => @product.name%>
         </a>
       <% end %>
-			<!-- not thumbnails! -->
+			<!-- not actually thumbnails! -->
 			<% if @images.size > 1 %>
 				<% for @p_image in @images do %>
 				  <% next if @p_image == @default_image %>
+					<HR/>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
                                              <a href="<%= @p_image.public_filename %>" 
@@ -124,8 +125,9 @@
                                               </a>
                                          <% end %>
 					</div>
-					<HR/>
 				<% end %>
+			  	<HR/>
+
 			<% end %>
 		</div>
 	<% end %>
