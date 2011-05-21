@@ -115,7 +115,7 @@
 			<!-- not actually thumbnails! -->
 			<% if @images.size > 1 %>
 				<% for @p_image in @images do %>
-				  <% next if @p_image == @default_image %>
+				        <% next if @p_image == @default_image %>
 					<HR/>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename() then %>
@@ -126,9 +126,8 @@
                                          <% end %>
 					</div>
 				<% end %>
-			  	<HR/>
-
 			<% end %>
+			<HR/>
 		</div>
 	<% end %>
   
