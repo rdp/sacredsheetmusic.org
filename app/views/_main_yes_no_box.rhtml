@@ -64,7 +64,9 @@
 		
 		<!-- logo -->
 		<div style="float:left; padding-top: 15px;">
-			<a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => 'Music for Mormons free Sacred Hymns', :size => '450x100') %></a>
+                 <%# :size => '450x100' musicbannervsmall2.jpg
+                  %>
+			<a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => 'Music for Mormons Free LDS Sheet Music', :width => 450, :height => 110) %></a>
 		</div>
 		
 		<% if @customer && !@customer.new_record? %>
