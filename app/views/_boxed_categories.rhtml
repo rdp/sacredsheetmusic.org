@@ -21,7 +21,7 @@
              <UL>
              <% for tag2 in @subnav_tags do; next if tag2.products.length == 0 %>
                 <LI>
-						 	<%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.3em;">' : '' %>
+						 	<%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.3em; border-bottom: dashed 1px;">' : '' %>
 							<%= 
 								link_to(
 									tag2.name,
