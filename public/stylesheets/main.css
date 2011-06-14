@@ -882,7 +882,7 @@ background-image: none;
 	width: auto !important;
 	width: 50px;
 	text-align: center;
-	padding-right: 10px;
+	padding-right: 0px;
 	line-height: 65px;
 	color: #ffffff;
 	font-size: 17px;
@@ -912,7 +912,8 @@ background-image: none;
 }
 #subnavigation ul.navigation li {
 	height: 40px;
-	margin-left: 15px;
+	margin-left: 8px;
+        margin-right: 0px;
 }
 #subnavigation ul.navigation li a {
 	color: #5e5e5e;

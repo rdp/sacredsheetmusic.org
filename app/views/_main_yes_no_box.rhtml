@@ -121,10 +121,10 @@
 			</div>
 		</div>
 		
-		<% if @show_subnav %>
+		<% if @show_subnav && @subnav_tags.length > 0%>
 			<div id="subnavigation">
 				<ul class="navigation">
-                                        <li><a href="">Sub-category:</a></li>
+                                        <li><a href="">Sub-categories:</a></li>
 					<% for tag in @subnav_tags do; next if tag.products.length == 0 %>
 						<li class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>">
 							<%= 
