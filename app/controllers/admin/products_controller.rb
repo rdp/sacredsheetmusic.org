@@ -59,7 +59,7 @@ class Admin::ProductsController < Admin::BaseController
       # it must just inspect the file?
       # Build downloads from form
       download_errors = []
-      temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.gif"
+      temp_file_path = "/tmp/temp_sheet_music_#{Thread.current.object_id}.png"
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
@@ -102,7 +102,7 @@ class Admin::ProductsController < Admin::BaseController
                   command = "convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
                   print command
                   raise ContinueError unless system(command)
-                  save_local_file_as_upload temp_file_path, 'image/gif',  'sheet_music_picture.gif', n2
+                  save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
                   n2 += 1
                   got_one = true
                 end
