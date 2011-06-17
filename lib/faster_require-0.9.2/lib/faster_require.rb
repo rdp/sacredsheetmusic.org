@@ -1,54 +1,125 @@
+# check for and avoid a double load...because we're afraid to load twice, since we override require et al
 
 if(defined?($already_using_faster_require))
-  p 'warning: faster_require double load expected?' if $FAST_REQUIRE_DEBUG
+  p 'warning: faster_require double load--expected?' if $FAST_REQUIRE_DEBUG
   local_version = File.read(File.dirname(__FILE__) + "/../VERSION")
-  raise 'mismatched faster_require version' unless local_version == FastRequire::VERSION
+  raise "mismatched faster_require versions! #{local_version} != #{FastRequire::VERSION}" unless local_version == FastRequire::VERSION
 else
+  
 $already_using_faster_require = true
 
-# now load it...
 
-require 'rbconfig' # maybe could cache this one, too?
+require 'rbconfig' # maybe could cache this one's loc, too? probably not...
 
 module FastRequire
-  $FAST_REQUIRE_DEBUG ||= $DEBUG # can set via $DEBUG, or on its own.
+  
+  $FAST_REQUIRE_DEBUG ||= $DEBUG # can set this via $DEBUG, or on its own previously
+  
   VERSION = File.read(File.dirname(__FILE__) + "/../VERSION")
-  def self.setup
-    begin
-     @@dir = File.expand_path('~/.ruby_faster_require_cache')
-    rescue ArgumentError => e # like  couldn't find HOME environment or the like
-     whoami = `whoami`.strip
-     if File.directory?(home = "/home/#{whoami}") # assume writable :P
-      @@dir = home + '/.ruby_faster_require_cache'
-     else
-       raise e
-     end
-    end
-
-    Dir.mkdir @@dir unless File.directory?(@@dir)
-    
-    parts = [File.basename($0), RUBY_DESCRIPTION, File.basename(Dir.pwd), Dir.pwd, File.dirname($0), File.expand_path(File.dirname($0))].map{|part| sanitize(part)}
-    loc_name = (parts.map{|part| part[0..5]} + parts).join('-')[0..75] + parts.join('').hash.to_s # try to be unique, but not too long of a filename, for restrictions on filename length
-    @@loc = @@dir + '/' + loc_name
-  end
 
   def self.sanitize filename
     filename.gsub(/[\/:]/, '_')
   end
-
-  FastRequire.setup
-
-  def self.load filename
-    @@require_locs = Marshal.restore( File.open(filename, 'rb') {|f| f.read}) rescue {} 
-  end
-
-  if File.exist?(@@loc)
-    FastRequire.load @@loc
+  
+  if RUBY_VERSION >= '1.9.0'
+    # appears 1.9.x has inconsistent string hashes...so roll our own...
+    def self.string_array_cruddy_hash strings
+      # we only call this method once, so overflowing to a bignum is ok
+      hash = 1;
+      for string in strings
+        hash = hash * 31
+        string.each_byte{|b|
+          hash += b
+        }
+      end
+      hash # probably a Bignum (sigh)
+    end
+    
   else
-    @@require_locs = {}
+    
+    def self.string_array_cruddy_hash strings
+      strings.hash
+    end
+    
   end
 
-  @@already_loaded = {}
+  def self.setup
+    begin
+     @@dir = File.expand_path('~/.ruby_faster_require_cache')
+    rescue ArgumentError => e # couldn't find HOME environment or the like
+     whoami = `whoami`.strip
+     if File.directory?(home = "/home/#{whoami}")
+      @@dir = home + '/.ruby_faster_require_cache'
+     else
+       raise e.to_s + " and couldnt infer it from whoami"
+     end
+    end
+
+    unless File.directory?(@@dir)
+      Dir.mkdir @@dir 
+      raise 'unable to create user dir for faster_require ' + @@dir unless File.directory?(@@dir)
+    end
+    
+    config = RbConfig::CONFIG
+    
+    # try to be a unique, but not too long, filename, for restrictions on filename length in doze
+    ruby_bin_name = config['bindir'] + config['ruby_install_name'] # needed if you have two rubies, same box, same ruby description [version, patch number]
+    parts = [File.basename($0), RUBY_PATCHLEVEL.to_s, RUBY_PLATFORM, RUBY_VERSION, RUBY_VERSION, File.expand_path(File.dirname($0)), ruby_bin_name]
+    unless defined?($faster_require_ignore_pwd_for_cache)
+      # add in Dir.pwd
+      parts << File.basename(Dir.pwd)
+      parts << Dir.pwd
+    else
+      p 'ignoring dirpwd for cached file location' if $FAST_REQUIRE_DEBUG
+    end
+    
+    sanitized_parts = parts.map{|part| sanitize(part)}
+
+    full_parts_hash = string_array_cruddy_hash(parts).to_s
+    
+    loc_name = (sanitized_parts.map{|part| part[0..5] + (part[-5..-1] || '')}).join('-') + '-' + full_parts_hash + '.marsh'
+    
+    @@loc = @@dir + '/' + loc_name
+    
+    if File.exist?(@@loc)
+      FastRequire.load @@loc
+    else
+      @@require_locs = {}
+    end
+      
+    @@already_loaded = {}
+  
+    $LOADED_FEATURES.each{|already_loaded|
+      # in 1.8 they might be partial paths
+      # in 1.9, they might be non collapsed paths
+      # so we have to sanitize them here...
+      # XXXX File.exist? is a bit too loose, here...
+      if File.exist?(already_loaded)
+        key = File.expand_path(already_loaded)
+      else
+        key = FastRequire.guess_discover(already_loaded) || already_loaded
+      end
+      @@already_loaded[key] = true
+    }
+  
+    @@already_loaded[File.expand_path(__FILE__)] = true # this file itself isn't in loaded features, yet, but very soon will be..
+    # a special case--I hope...
+  
+    # also disallow re-loading $0
+    @@require_locs[$0] = File.expand_path($0) # so when we run into $0 on a freak require, we will skip it...
+    @@already_loaded[File.expand_path($0)] = true
+    
+  end
+  
+  def self.load filename
+    cached_marshal_data = File.open(filename, 'rb') {|f| f.read}
+    begin
+      @@require_locs = Marshal.restore( cached_marshal_data )
+    rescue ArgumentError
+      @@require_locs= {}
+    end
+  end
+
 
   # try to see where this file was loaded from, from $:
   # partial_name might be abc.rb, or might be abc
@@ -88,33 +159,9 @@ module FastRequire
       nil
     end
   end
-
-  $LOADED_FEATURES.each{|already_loaded|
-    # in 1.8 they might be partial paths
-    # in 1.9, they might be non collapsed paths
-    # so we have to sanitize them here...
-    # XXXX File.exist? is a bit too loose, here...
-    if File.exist?(already_loaded)
-      key = File.expand_path(already_loaded)
-    else
-      key = FastRequire.guess_discover(already_loaded) || already_loaded
-    end
-    @@already_loaded[key] = true
-  }
-
-  @@already_loaded[File.expand_path(__FILE__)] = true # this file itself isn't in loaded features, yet, but very soon will be..
-  # a special case--I hope...
-
-  # also disallow re- $0
-  @@require_locs[$0] = File.expand_path($0) # so when we run into it on a require, we will skip it...
-  @@already_loaded[File.expand_path($0)] = true
-
-  # XXXX within a very long depth to require fast_require,
-  # require 'a' => 'b' => 'c' => 'd' & fast_require
-  #             then
-  #             => 'b.rb'
-  # it works always
-
+  
+  FastRequire.setup
+  
   def self.already_loaded
     @@already_loaded
   end
@@ -125,6 +172,10 @@ module FastRequire
 
   def self.dir
     @@dir
+  end
+  
+  def self.loc
+    @@loc
   end
 
   at_exit {
@@ -139,11 +190,17 @@ module FastRequire
     File.open(to_file, 'wb'){|f| f.write Marshal.dump(@@require_locs)}
   end
 
+  # for testing use only, basically
   def self.clear_all!
     require 'fileutils'
-    FileUtils.rm_rf @@dir if File.exist? @@dir
+    success = false
+    if File.exist? @@dir
+      FileUtils.rm_rf @@dir 
+      success = true
+    end
     @@require_locs.clear
     setup
+    success
   end
   
   private
@@ -154,6 +211,7 @@ module FastRequire
   IN_PROCESS = []
   ALL_IN_PROCESS = []
   @@count = 0
+  
   public
   
   def require_cached lib
@@ -187,24 +245,27 @@ module FastRequire
                 no_suffix_lib = lib.gsub(/\.[^.]+$/, '')
                 libs_path = no_suffix_full_path.gsub(no_suffix_lib, '')
                 libs_path = File.expand_path(libs_path) # strip off trailing '/'
-                $: << libs_path unless $:.index(libs_path) # might not need this anymore, but it feels more sane...does it slow us down, though?
+                
+                $: << libs_path unless $:.index(libs_path) # add in this ones real require path, so that neighboring autoloads will work
+                known_locs_dir = File.dirname(known_loc)
+                $: << known_locs_dir unless $:.index(known_locs_dir) # attempt to avoid the regin loading bug...yipes.
                 
                 # try some more autoload conivings...so that it won't attempt to autoload if it runs into it later...
                 relative_full_path = known_loc.sub(libs_path, '')[1..-1]
                 $LOADED_FEATURES << relative_full_path unless $LOADED_FEATURES.index(relative_full_path) # add in with .rb, too, for autoload 
-            #    $LOADED_FEATURES << relative_full_path.gsub('.rb', '') # don't think you need this one
                   
                 # load(known_loc, false) # too slow
-                contents = File.open(known_loc, 'rb') {|f| f.read} # only costs 0.34/10 s...
-                if contents =~ /require_relative/ # =~ is faster than .include? it appears
-                  load(known_loc, false) # slow, but dependent on a ruby core bug: http://redmine.ruby-lang.org/issues/4487
+                
+                # use eval: if this fails to load breaks re-save the offending file in binary mode, or file an issue on the faster_require tracker...
+                contents = File.open(known_loc, 'rb') {|f| f.read} # read only costs 0.34/10.0 s...
+                if contents =~ /require_relative/ # =~ is faster apparently faster than .include?
+                  load(known_loc, false) # load is slow, but overcomes a ruby core bug: http://redmine.ruby-lang.org/issues/4487
                 else
                   eval(contents, TOPLEVEL_BINDING, known_loc) # note the 'rb' here--this means it's reading .rb files as binary, which *typically* works...maybe unnecessary though?
                 end
               ensure
                 raise 'unexpected' unless IN_PROCESS.pop == known_loc
               end
-              # --if it breaks re-save the offending file in binary mode, or file an issue on the tracker...
               return true
             end
           else
@@ -301,6 +362,5 @@ module Kernel
     alias :require :require_cached
   end
 end
-
 
 end

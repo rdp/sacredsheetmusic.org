@@ -9,7 +9,7 @@ RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 $: << '.' if RUBY_VERSION >= '1.9.0'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
-require File.dirname(__FILE__) + "/../lib/faster_require-0.7.5/lib/faster_require" # faster require speeds all around...
+require File.dirname(__FILE__) + "/../lib/faster_require-0.9.2/lib/faster_require" # faster require speeds all around...
 
 require 'thread'
 require File.join(File.dirname(__FILE__), 'boot')

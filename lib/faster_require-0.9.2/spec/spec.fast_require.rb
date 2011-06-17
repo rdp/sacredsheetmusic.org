@@ -1,26 +1,21 @@
 # could also  set this here if desired: $FAST_REQUIRE_DEBUG = true
 
-require 'rubygems' # faster_rubygems, perhaps?
+require 'rubygems'
 require 'sane'
-require 'benchmark'
+require 'benchmark' # Benchmark.realtime
 
-raise 'double faster_require' if defined?($already_using_faster_require) # disallowed, since who knows what version the gem one is...
+raise 'double faster_require' if defined?($already_using_faster_require) # disallowed, since who knows what version the gem one is, and even if it's the same...confusion!
 
-unless RUBY_PLATFORM =~ /java/
- require_relative '../lib/faster_require'
+unless RUBY_PLATFORM =~ /java/ # ??
+ #require_relative '../lib/faster_require'
  cached = '.cached_spec_locs' + RUBY_VERSION
  # use it for our own local test specs
- begin
-   require 'spec/autorun'
- rescue LoadError
-  # rspec 2
-  require 'rspec'
- end
- FastRequire.load cached if File.exist? cached
- FastRequire.save cached
+ require 'rspec'
+ require_relative '../lib/faster_require'
+# FastRequire.load cached if File.exist? cached
 else
-  require 'spec/autorun'
-  require_relative '../lib/faster_require'
+ require 'rspec'
+ require_relative '../lib/faster_require'
 end
 
 describe "requires faster!" do
@@ -81,10 +76,10 @@ describe "requires faster!" do
   
   it "could cache the file contents, even, too, in theory...oh my"
 
-  it "should not re-save the cache file if it hasn't changed [?]"
+  it "could not re-save the cache file if it hasn't changed [?]"
   
   it "should load .so files still, and only load them once" do
-    # ruby-prof gem
+    # from the ruby-prof gem
     3.times { require 'ruby_prof.so'; RubyProf }
     assert $LOADED_FEATURES.length == (@old_length + 1)
   end
@@ -102,7 +97,7 @@ describe "requires faster!" do
   end
   
   it "should have different caches based on the file being run, and Dir.pwd" do
-   # that wouldn't help much at all for ruby-prof runs, but...we do what we can 
+   # this doesn't use the cache right first time if you, say, profile your script with ruby-prof, but hey.
    assert Dir[FastRequire.dir + '/*'].length == 0 # all clear
    Dir.chdir('files') do
    	  assert system("ruby -I../../lib d.rb")
@@ -113,14 +108,31 @@ describe "requires faster!" do
    assert Dir[FastRequire.dir + '/*d.rb*'].length == 1 # use full path
    assert Dir[FastRequire.dir + '/*e.rb*'].length == 2 # different Dir.pwd's
   end
+  
+  it "should ignore the pwd setting if you set a certain global variable" do
+    Dir.chdir('files') do
+   	    assert system("ruby -I../../lib file_that_sets_ignore_pwd_flag.rb")
+   	    assert system("ruby -C.. -I../lib files/file_that_sets_ignore_pwd_flag.rb")
+     end
+     assert Dir[FastRequire.dir + '/*file_*'].length == 1 # re-use a cache for the file, despite different Dir.pwd's
+  end
+  
+  it "should not die if it hits a poor cache file" do
+    FastRequire.clear_all!
+    assert system("ruby -Ilib files/fast.rb")
+    files =  Dir[FastRequire.dir + '/*']
+    assert files.length == 1
+    File.open(files[0], 'w') {} # clear it, which is bad marshal data
+    assert system("ruby -Ilib files/fast.rb")
+  end
     
-  it "should work with encoded files too" # most are binary, so...low prio
+  it "should work with encoded files too" # most are ascii, so...low prio
 
   private
   
   def ruby filename
     command = @ruby + " " + filename
-    3.times { raise command unless system(command) }    
+    3.times { |n| raise command + " failed #{n}th time with zero as first" unless system(command) }    
   end
   
   it "should override rubygems' require if rubygems is loaded after the fact...maybe by hooking to Gem::const_defined or something" do
@@ -132,7 +144,7 @@ describe "requires faster!" do
   end  
   
  ['require_facets.rb', 'gem_after.rb', 'load_various_gems.rb', 'load_various_gems2.rb', 'active_support_no_double_load.rb', 'fast.rb'].each{|filename| 
-    it "should not double load gems #{filename}" do
+    it "should not double load gems #{@ruby} -v files/#{filename}" do
       3.times {
         a = `#{@ruby} -v files/#{filename} 2>&1`
         a.should_not match('already initialized')
@@ -146,7 +158,7 @@ describe "requires faster!" do
   it "should be ok if you require itself twice" do
     Dir.chdir('files') do
       3.times { assert system(@ruby + 'attempt_double_load.rb') }
-      assert `#{@ruby + 'attempt_double_load.rb'}` =~ /double load expected/
+      assert `#{@ruby + 'attempt_double_load.rb'}` =~ /double load--expected\?/
     end
   end
   
@@ -185,9 +197,14 @@ describe "requires faster!" do
     end
   end
   
-  it "should be able to infer .so files like socket.so" #do
-#    ruby "files/socket_load.rb" # LODO reproduce failure
+  it "should work for gems that tweak the load path, from within themselves, for their own autoload [boo]" do
+    ruby 'files/regin_gem.rb'
+  end
+  
+  # was there some failure like
+  # stringio or enumerator.so?
+  it "should be able to infer .so files" #do
+#    ruby "files/socket_load.rb" # LODO reproduce failure first, from this file?
 #  end
-
 
 end
