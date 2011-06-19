@@ -75,12 +75,12 @@
         <div>
            <% if @product.images.count > 0 %>
              <a href="<%= p %>">Author's page</a> for this piece.
+             <br/>
            <% else %>
-            Please go to the <a href="<%= p %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>.
+               <!-- intentionally left blank :P -->
            <% end %>
         </div>
         
-        <br/>
       <% end %>
         <div> Song topics (click to see related songs): <br/>
           <% links = @product.tags.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
@@ -101,7 +101,9 @@
 
 <div style="float: right; width: 75%;">
    <% unless @default_image %>
-    <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">Please use the link to the left to see its sheet music and downloads.</div>
+    <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">
+            Please go to the <a href="<%= p %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>.
+</div>
    <% end %>
 
       <% if @default_image %>
