@@ -29,8 +29,7 @@
         <%= link_to(h(product.name), :action => 'edit', :id => product) %>
         <br>
         <span class="info">
-          <%= product.code %><br/>
-          <%= product.description %>
+          <%= product.description ? product.description + "<br/>" : "" %> ...<%= (product.original_url || '')[-20..-1] %>
         </span>
       </td>
       <td class="numeric"><%= sub_number_to_currency(product.price) %></td>
