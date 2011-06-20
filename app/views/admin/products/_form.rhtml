@@ -14,17 +14,16 @@
 			<%= make_label('Original URL') %>
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %>
 		</div>
-   <div class="float">
-      <%= make_label('Copy and paste an mp3 url here (it will be uploaded then disappear)') %>
+      <%= make_label('Copy and paste an mp3 url here (it will be uploaded then disappear):') %>
+   <div class="float" style="margin-left: 50px">
       <%= text_field nil, 'download_mp3_url', :class => 'textInput', :size => 30  %>
    </div>
 
-   <div class="float">
-      <%= make_label('Copy and paste a pdf url here (it will be uploaded then disappear)') %>
+      <%= make_label('Copy and paste a pdf url here (it will be uploaded then disappear):') %>
+   <div class="float" style="margin-left: 50px">
       <%= text_field nil, 'download_pdf_url', :class => 'textInput', :size => 30  %>
    </div>
 
-    
 		<!--div class="float">
 			<%= make_label('Price') %>
 			<%= text_field 'product', 'price', :class => 'textInput numeric', :size => 6, :original_value => @product.price  %>
