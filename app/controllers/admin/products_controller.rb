@@ -8,11 +8,12 @@ class Admin::ProductsController < Admin::BaseController
     @products = Product.paginate(
     :order => "name ASC",
     :page => params[:page],
-    :per_page => 30
+    :per_page => params[:per_page] || 30
     )
   end
 
-  @@density = 125
+  @@density = 125 # seems reasonable...
+
   # Saves product from new and edit.
   #
   #

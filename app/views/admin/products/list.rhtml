@@ -29,7 +29,7 @@
         <%= link_to(h(product.name), :action => 'edit', :id => product) %>
         <br>
         <span class="info">
-          <%= product.description ? product.description + "<br/>" : "" %> ...<%= (product.original_url || '')[-20..-1] %>
+          <%= product.description ? product.description + "<br/>" : "" %> <%= (product.original_url || '') %>
         </span>
       </td>
       <td class="numeric"><%= sub_number_to_currency(product.price) %></td>
@@ -50,8 +50,11 @@
   <% end %>
   </table>
 
-	<br/>
-  <%= will_paginate @products %>
+  <br/>
+  <%= a = will_paginate @products %>
+  <% if a.present? %>
+    <a href="?per_page=1000000">all</a>
+  <% end %>
 
 </div>
 
