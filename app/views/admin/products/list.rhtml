@@ -35,7 +35,7 @@
          <%= (product.original_url || '') %>
         </span>
       </td>
-      <td class="numeric"><span class="info"><%= product.tags.map(&:name).join(' ') %></span></td>
+      <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
       <td class="numeric">
           <%= product.description ? product.description + "<br/>" : "" %> 
       <td style="text-align:center">
