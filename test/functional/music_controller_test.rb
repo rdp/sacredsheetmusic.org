@@ -44,6 +44,10 @@ class MusicControllerTest < ActionController::TestCase
   def test_can_download_without_logging_in_and_increments_count_on_download
     dl = test_download_link
     assert dl.count == 0
+
+    @request.env["User-Agent"]="A Real Browser"
+    @request.env["Accept-Language"]="cobol is a foreign language"
+
     get :download_file, :download_id => dl.id
     assert_response :success
     assert dl.reload.count == 1
