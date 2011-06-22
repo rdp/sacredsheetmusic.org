@@ -6,8 +6,11 @@
     <%= @title %>
   </h1>
 
-  <%= will_paginate @products %>
-	<br/>
+  <div style="float: right;"><%= a = will_paginate @products %></div>
+  <% if a.present? %>
+    <div style="float: right;"><a href="?per_page=1000000">all</a></div>
+  <br/>
+  <% end %>
 
   <table class="list" cellpadding="0" cellspacing="0">
     <colgroup>
@@ -51,10 +54,7 @@
   </table>
 
   <br/>
-  <%= a = will_paginate @products %>
-  <% if a.present? %>
-    <a href="?per_page=1000000">all</a>
-  <% end %>
+  <%=  will_paginate @products %>
 
 </div>
 
