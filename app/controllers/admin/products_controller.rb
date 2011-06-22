@@ -154,6 +154,9 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
+      if @product.downloads.length == 0 && !@product.original_url.present?
+        flash[:notice] += "<br/> <b>Warning: song has no original_url nor uploads! Not expected I don't think...</b>"
+      end
       redirect_to :action => 'edit', :id => @product.id
     else
       @image = Image.new

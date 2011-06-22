@@ -102,6 +102,9 @@
 <div style="float: right; width: 75%;">
    <% unless @default_image %>
     <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">
+            <% if !p.present? %>
+              Please report back to us that this song has no external link, nor pdf upload!
+            <% end %>
             Please go to the <a href="<%= p %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>.
 </div>
    <% end %>
