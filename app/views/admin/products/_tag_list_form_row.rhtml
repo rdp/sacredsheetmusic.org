@@ -8,14 +8,4 @@
 		<%=h tag.name %>
 	</td>
 </tr>
-<% for child in tag.children do %>
-	<tr class="<%= row_class %> <%= 'selected' if product.tags.include?(child)%>">
-		<td>&nbsp;</td>
-		<td>
-			<%= check_box_tag("product[tag_ids][]", child.id, product.tags.include?(child)) %>
-		</td>
-		<td colspan="2">
-			<%=h child.name %>
-		</td>
-	</tr>
-<% end %>
+<%= render :partial => 'tag_list_form_single_row', :locals => {:tag => tag, :row_class => row_class, :product => product, :depth => 1} %>

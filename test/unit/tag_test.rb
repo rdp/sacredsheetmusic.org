@@ -58,6 +58,10 @@ class ProductTest < ActiveSupport::TestCase
     assert prod1.reload.tags.length == 3 # hymn name, topic1, topic2
     assert prod3.reload.tags.length == 3 # same
   end
+
+  def test_with_two_hymns_ignores_its_tags
+
+  end
   
   def test_gives_warnings
     Tag.destroy_all

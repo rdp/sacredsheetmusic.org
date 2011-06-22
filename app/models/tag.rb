@@ -21,7 +21,6 @@ class Tag
   end
   
   
-
   def self.share_tags_among_hymns_products hymn
     all_topic_ids = {}
     topics = Tag.find_by_name("Topics")
@@ -31,6 +30,7 @@ class Tag
         all_topic_ids[tag.id] = true if tag.parent.id == topics.id
       end
     end
+
     for product in hymn.products
       product.tag_ids = product.tag_ids | all_topic_ids.keys # union of the two arrays of ints
     end

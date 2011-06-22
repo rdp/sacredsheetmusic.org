@@ -1,0 +1,18 @@
+
+<% for child in tag.children do %>
+   <tr class="<%= row_class %> <%= 'selected' if product.tags.include?(child)%>">
+		<% depth.times do%>
+        <td>&nbsp;</td>
+       <% end %>
+		<td>
+			<%= check_box_tag("product[tag_ids][]", child.id, product.tags.include?(child)) %>
+		</td>
+		<td colspan="<%= @max_depth - depth%>">
+			<%=h child.name %>
+		</td>
+	</tr>
+	<% if child.children.length > 0 %>
+	<%= render :partial => 'tag_list_form_single_row', :locals => {:tag => child, :row_class => row_class, :product => product, :depth => depth + 1} %>
+	<% end %>
+
+<% end %>

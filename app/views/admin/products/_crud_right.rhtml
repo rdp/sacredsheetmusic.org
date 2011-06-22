@@ -1,3 +1,15 @@
+        <%  #search for most depth
+           @max_depth = 2
+          for tag in Tag.find(:all)
+             nested_depth = 1
+             while(tag = tag.parent) do
+               nested_depth += 1
+             end
+             @max_depth = [@max_depth, nested_depth].max
+            
+           end
+
+          %>
 <!-- PRODUCTS FOR AUTO COMPLETE -->
 <script language="javascript" type="text/javascript" src="/admin/products/suggestion_js"></script>
 <!-- auto complete results div  -->
@@ -30,6 +42,18 @@
 			<th colspan="4">Tag Name</th>
 		</tr>
 		<tbody id="tag_list_tbody">
+        <%  #search for most depth
+           @max_depth = 2
+           for tag in Tag.find(:all)
+             nested_depth = 1
+             while(tag = tag.parent) do
+               nested_depth += 1
+             end
+             @max_depth = [@max_depth, nested_depth].max
+            
+           end
+
+          %>
 		<% if @tags.length > 0 %>
 			<%= render(:partial => 'tag_list_form_row', :collection => @tags, :locals => {:product => @product}) %>
 		<% else %>
