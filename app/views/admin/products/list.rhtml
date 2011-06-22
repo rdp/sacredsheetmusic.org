@@ -21,8 +21,8 @@
     </colgroup>
     <tr>
       <th>Name</th>
-      <th class="numeric">Price</th>
-      <th class="numeric">Quantity</th>
+      <th class="numeric">Tags</th>
+      <th class="numeric">Description</th>
 			<th>Published?</th>
     </tr>
   <% if @products.length > 0 then %>
@@ -32,12 +32,13 @@
         <%= link_to(h(product.name), :action => 'edit', :id => product) %>
         <br>
         <span class="info">
-          <%= product.description ? product.description + "<br/>" : "" %> <%= (product.original_url || '') %>
+         <%= (product.original_url || '') %>
         </span>
       </td>
-      <td class="numeric"><%= sub_number_to_currency(product.price) %></td>
-      <td class="numeric"><%= product.quantity %></td>
-			<td style="text-align:center">
+      <td class="numeric"><span class="info"><%= product.tags.map(&:name).join(' ') %></span></td>
+      <td class="numeric">
+          <%= product.description ? product.description + "<br/>" : "" %> 
+      <td style="text-align:center">
 				<%=
 					image_tag(
 						product.is_published? ? 'icons/png-24/16-square-green.png' : 'icons/png-24/16-square-red.png',

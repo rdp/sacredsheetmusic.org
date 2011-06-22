@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
+# basically test the functionality of the various methods I have added to Product
+
 class ProductTest < ActiveSupport::TestCase
 
   def test_existent_composer_contact

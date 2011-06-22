@@ -37,10 +37,10 @@ class ProductTest < ActiveSupport::TestCase
     }
     correct_lengths.call
     
-    # if you call it twice, same thing
+    # if you call it multiple times, it just does the same thing
     3.times{Tag.sync_topics_with_warnings}
-    
     correct_lengths.call
+
     prod1
   end
   
