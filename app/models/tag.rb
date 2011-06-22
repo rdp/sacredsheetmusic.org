@@ -20,25 +20,24 @@ class Tag
     end
   end
   
-  
-  def self.share_tags_among_hymns_products hymn
+  def self.share_tags_among_hymns_products hymn_tag
     all_topic_ids = {}
     topics = Tag.find_by_name("Topics")
     raise unless topics
-    for product in hymn.products
+    for product in hymn_tag.products
       for tag in product.tags
         all_topic_ids[tag.id] = true if tag.parent.id == topics.id
       end
     end
 
-    for product in hymn.products
+    for product in hymn_tag.products
       product.tag_ids = product.tag_ids | all_topic_ids.keys # union of the two arrays of ints
     end
     
     if all_topic_ids.length > 0
       ''
     else
-      hymn.name
+      hymn_tag.name
     end
   end
 end
