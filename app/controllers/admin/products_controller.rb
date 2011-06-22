@@ -147,6 +147,9 @@ class Admin::ProductsController < Admin::BaseController
         if @product.topic_tags.length == 0
           flash[:notice] += "<br/> Warning: no topics associated with song yet."
         end
+        if !@product.tags.detect{|t| t.name =~ /original/i}
+          flash[:notice] += "<br/> Warning: no hymn or 'original' tag for this song yet."
+        end
       end
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
