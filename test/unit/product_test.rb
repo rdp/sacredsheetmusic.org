@@ -43,6 +43,11 @@ class ProductTest < ActiveSupport::TestCase
     assert product.hymn_tag == nil
     product.tags << hymn_child
     assert product.hymn_tag.name == 'hymn child'
+    # with odd named tags should still work...
+    hymn.name = 'hymn awesome arrangements'
+    hymn.save
+    product.reload
+    assert product.hymn_tag.name == 'hymn child'
   end
   
 end

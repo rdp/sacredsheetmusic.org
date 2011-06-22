@@ -128,7 +128,7 @@ class Admin::ProductsController < Admin::BaseController
       # cleanup
       File.delete temp_file_path if File.exist?(temp_file_path)
 
-      # Build variations from form
+      # Build variations from form [unused now...]
       if !params[:variation].blank?
         params[:variation].each do |v|
           variation = @product.variations.find_or_create_by_id(v[:id])

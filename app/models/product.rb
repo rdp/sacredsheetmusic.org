@@ -14,7 +14,7 @@ class Product < Item
   end
   
   def hymn_tag
-   self.tags.select{|t| t.parent && t.parent.name == 'Hymns' }[0]
+   self.tags.select{|t| t.parent && t.parent.name =~ /^Hymn/i }[0]
   end
   
   def composer_contact
