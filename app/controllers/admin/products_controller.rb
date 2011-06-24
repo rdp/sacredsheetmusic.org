@@ -95,13 +95,12 @@ class Admin::ProductsController < Admin::BaseController
             logger.info i[:download_data].inspect
 
             new_download.uploaded_data = i[:download_data]
-            if i[:download_data].original_filename =~ /\.pdf$/
+            if i[:download_data].original_filename =~ /\.pdf$/i
               # also add them in as fake images
               got_one = false
               begin
                 0.upto(1000) do |n|
                   command = "convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
-                  print command
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
                   n2 += 1
