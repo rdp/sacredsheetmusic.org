@@ -8,9 +8,9 @@ class ProductTest < ActiveSupport::TestCase
     Product.destroy_all
     
     # if there's a hymns tag
-    hymns = Tag.create :name => 'Hymn arrangs'
+    @hymns = Tag.create :name => 'Hymn arrangs'
     # with a child hymn name
-    @child_hymn = Tag.create :name => "child hymn", :parent => hymns
+    @child_hymn = Tag.create :name => "child hymn", :parent => @hymns
     # and two products under it:
     prod1 = Product.create :name => 'prod1', :code => 'prod1'
     prod2 = Product.create :name => 'prod2', :code => 'prod2'
@@ -57,6 +57,24 @@ class ProductTest < ActiveSupport::TestCase
     }
     assert prod1.reload.tags.length == 3 # hymn name, topic1, topic2
     assert prod3.reload.tags.length == 3 # same
+
+    # now if you get a fourth product, with a "bogus" topic, associated with *2* hymns, it should maintain the status quo...
+    prod4 = Product.create :name => 'prod4', :code => 'prod4'
+    topic_bogus = Tag.create :name => 'bogus topic', :parent => @topics
+    prod4.tags << topic_bogus
+
+    # no hymn yet, so status quo
+    Tag.sync_all_topics_with_warnings
+    assert prod3.reload.tags.length == 3
+
+    prod4.tags << @child_hymn
+    child_hymn2 = Tag.create :name => "child hymn second causes ambiguity ", :parent => @hymns
+    prod4.tags << child_hymn2
+  
+    # ambiguity? status quo...
+    Tag.sync_all_topics_with_warnings
+    assert prod3.reload.tags.length == 3
+
   end
 
   def test_with_two_hymns_ignores_its_tags
@@ -73,7 +91,7 @@ class ProductTest < ActiveSupport::TestCase
 
     # with a child hymn name
     child_hymn = Tag.create :name => "child hymn", :parent => hymns
-    # and a product associated
+    # and a product associated with it
     prod3 = Product.create :name => 'prod3', :code => 'prod3'
     prod3.tags << child_hymn
     
