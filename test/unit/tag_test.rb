@@ -28,7 +28,7 @@ class ProductTest < ActiveSupport::TestCase
     prod2.tags << author_instance
     
     # and you call 
-    Tag.sync_topics_with_warnings
+    Tag.sync_all_topics_with_warnings
     
     # then both products should end up with the topic tags, and their hymn tag
     correct_lengths = proc {
@@ -38,7 +38,7 @@ class ProductTest < ActiveSupport::TestCase
     correct_lengths.call
     
     # if you call it multiple times, it just does the same thing
-    3.times{Tag.sync_topics_with_warnings}
+    3.times{Tag.sync_all_topics_with_warnings}
     correct_lengths.call
 
     prod1
@@ -52,7 +52,7 @@ class ProductTest < ActiveSupport::TestCase
     prod3.tags << topic2
     prod3.tags << @child_hymn
     3.times {
-      error_message = Tag.sync_topics_with_warnings
+      error_message = Tag.sync_all_topics_with_warnings
       assert error_message.length == 0
     }
     assert prod1.reload.tags.length == 3 # hymn name, topic1, topic2
@@ -78,7 +78,7 @@ class ProductTest < ActiveSupport::TestCase
     prod3.tags << child_hymn
     
     # it should yield an error message if you sync, because no topics are associated with that hymn, through any of its children
-    assert Tag.sync_topics_with_warnings.length > 0
+    assert Tag.sync_all_topics_with_warnings.length > 0
 
   end
 
