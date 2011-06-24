@@ -25,6 +25,10 @@ class Tag
     topics = Tag.find_by_name("Topics")
     raise unless topics
     for product in hymn_tag.products
+      count = 0
+      product.tags.each{|t| count += 1 if t.parent.name =~ /^hymn/i} 
+      next if count > 1 # that would be an ambiguous one...
+      raise unless count == 1
       for tag in product.tags
         all_topic_ids[tag.id] = true if tag.parent.id == topics.id
       end
