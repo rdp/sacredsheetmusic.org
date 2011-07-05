@@ -248,3 +248,5 @@
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
 		</div>
 
+<% problems = @product.find_problems %>
+<% "Problems: " + problems.join(',') if problems.present? %>

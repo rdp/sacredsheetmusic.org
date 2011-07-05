@@ -10,7 +10,7 @@ class Admin::ProductsController < Admin::BaseController
     :order => "name ASC",
     :page => params[:page],
     :per_page => params[:per_page] || 30,
-    :include => [:tags, :downloads]
+    :include => [:tags, :downloads] # just fer fun...
     )
   end
 

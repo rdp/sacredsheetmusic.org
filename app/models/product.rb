@@ -14,7 +14,7 @@ class Product < Item
   end
   
   def hymn_tag
-   self.tags.select{|t| t.parent && t.parent.name =~ /^Hymn/i }[0]
+   self.tags.select{|t| t.parent && (t.parent.name =~ /^Hymn/i || t.parent.name =~ /arrangements$/i) }[0]
   end
   
   def composer_contact
@@ -67,7 +67,7 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "Warning: no topics associated with song yet."
       end
-      if !!self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
+      if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "Warning: no hymn or 'original' tag for this song yet."
       end
       if self.downloads.length == 0 && !self.original_url.present?

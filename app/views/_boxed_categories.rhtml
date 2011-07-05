@@ -1,4 +1,5 @@
 <div style="float:left; min-height: 350; padding: 10px; margin: 10px; padding-left: 1px; border-style:dotted; border-width:1px; border-color: #aaaaaa ">
+
 <UL style="list-style-image: url(/images/bullet.gif);">
 
 
@@ -7,39 +8,19 @@
 							tag = @main_nav_tags[i]
 					%>
 						<li style="" >
-							<%= 
-								link_to(
-									tag.name,
-									:controller => 'music',
-									:action => 'show_by_tags',
-									:tags => [tag.name]
-								)
-							%>
-
+					  	   <%= 
+							link_to(
+								tag.name,
+								:controller => 'music',
+								:action => 'show_by_tags',
+								:tags => [tag.name]
+							)
+						   %>
 						</li>
-					        <%  if is_main_tab_active?(tag.id) %>
-                                                    <UL>
-                                                    <% for tag2 in @subnav_tags do; next if tag2.products.length == 0 %>
-                                                        <LI>
-						 	<%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
-							<%= 
-								link_to(
-									tag2.name,
-									:controller => 'music',
-									:action => 'show_by_tags',
-									:tags => [tag2.name]
-									# makes linda not show many? 
- #:tags => [@main_tag_active.name, tag2.name]
+                                                <%= render :partial => '/menu_dropdown', :locals => {:tag => tag} %>
+                                        <% end %>
 
-								)
-							%>
-						 	<%= is_main_tab_active?(tag2.id) ? '</span>' : '' %>
-
-                                                        </LI>
-                                                    <% end %>
-                                                   </UL>
-                                               <% end %> 
-   <% end %>
   <li><a href="https://github.com/rdp/freeldssheetmusic.org/wiki/list-of-pay-songs">Pay songs</a></li>
 </UL>
+
 </div>
