@@ -37,7 +37,7 @@
       </td>
       <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
       <td class="numeric">
-          <%= product.description ? product.description + "<br/>" : "" %> 
+          <%= product.description.present? ? (product.description[0..150] + "...<br/>") : "" %> 
       <td style="text-align:center">
 				<%=
 					image_tag(

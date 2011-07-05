@@ -26,7 +26,7 @@ class Tag
     raise unless topics
     for product in hymn_tag.products
       count = 0
-      product.tags.each{|t| count += 1 if t.parent.name =~ /^hymn/i} 
+      product.tags.each{|t| count += 1 if t.parent && t.parent.name =~ /^hymn/i} 
       next if count > 1 # that would be an ambiguous one...
       raise unless count == 1
       for tag in product.tags
