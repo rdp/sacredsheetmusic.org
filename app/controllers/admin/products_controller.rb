@@ -75,10 +75,14 @@ class Admin::ProductsController < Admin::BaseController
       # do after the pdf for ordering sake...
       unless params[:download_mp3_url].blank?
         url = params[:download_mp3_url]
-        add_download url, temp_file_path, 'audio/mpeg', 'mp3'
+        type = 'audio/mpeg'
+        if url =~ /\.(mid|midi)$/
+          type = 'audio/midi'
+        end 
+        add_download url, temp_file_path, type, 'mp3'
         out = `file #{temp_file_path}`
-        unless out =~ /MPEG/
-           flash[:notice] = 'warning: mp3 upload was bad? + ' + url
+        unless out =~ /MPEG|midi/i
+           flash[:notice] = 'warning: mp3/midi upload was bad? + ' + url
         end
       end
 
