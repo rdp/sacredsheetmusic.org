@@ -65,8 +65,8 @@ class Product < Item
   def find_problems
       problems = []
       if self.hymn_tag
-        warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
-        problems << warnings
+        warnings = Tag.share_tags_among_hymns_products self.hymn_tag
+        problems << warnings if warnings.present?
       else
         if self.topic_tags.length == 0
           problems << "Warning: no topics associated with song yet."
@@ -78,6 +78,7 @@ class Product < Item
       if self.downloads.length == 0 && !self.original_url.present?
         problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."
       end
+      problems
   end
 
 end

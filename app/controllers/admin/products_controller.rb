@@ -143,7 +143,7 @@ class Admin::ProductsController < Admin::BaseController
 
       flash[:notice] ||= ''
       flash[:notice] += " Product '#{@product.name}' saved."
-      flash[:notice] += @product.find_problems.map{|p| "<b>" + p + "</b><br/>")
+      flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
