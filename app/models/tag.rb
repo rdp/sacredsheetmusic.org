@@ -41,7 +41,7 @@ class Tag
     if all_topic_ids.length > 0
       ''
     else
-      hymn_tag.name
+      hymn_tag.name # it's a failure hymn!
     end
   end
 end

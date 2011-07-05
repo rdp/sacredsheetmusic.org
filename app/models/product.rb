@@ -64,16 +64,11 @@ class Product < Item
 
   def find_problems
       problems = []
-      if self.hymn_tag
-        warnings = Tag.share_tags_among_hymns_products self.hymn_tag
-        problems << warnings if warnings.present?
-      else
-        if self.topic_tags.length == 0
-          problems << "Warning: no topics associated with song yet."
-        end
-        if !self.tags.detect{|t| t.name =~ /original/i}
-          problems <<  "Warning: no hymn or 'original' tag for this song yet."
-        end
+      if self.topic_tags.length == 0
+        problems << "Warning: no topics associated with song yet."
+      end
+      if !!self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
+        problems <<  "Warning: no hymn or 'original' tag for this song yet."
       end
       if self.downloads.length == 0 && !self.original_url.present?
         problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."

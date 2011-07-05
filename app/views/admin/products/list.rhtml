@@ -14,16 +14,16 @@
 
   <table class="list" cellpadding="0" cellspacing="0">
     <colgroup>
-      <col />
+      <col style="width:300px;" />
       <col style="width:120px;" />
       <col style="width:120px;" />
-			<col style="width:60px;" />
+      <col style="width:60px;" />
     </colgroup>
     <tr>
       <th>Name</th>
       <th class="numeric">Tags</th>
       <th class="numeric">Description</th>
-			<th>Published?</th>
+			<th>Problems?</th>
     </tr>
   <% if @products.length > 0 then %>
     <% for product in @products %>
@@ -32,21 +32,16 @@
         <%= link_to(h(product.name), :action => 'edit', :id => product) %>
         <br>
         <span class="info">
-         <%= (product.original_url || '') %>
+         url:<%= product.original_url || 'none' %>
         </span>
       </td>
       <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
       <td class="numeric">
           <%= product.description.present? ? (product.description[0..150] + "...<br/>") : "" %> 
       <td style="text-align:center">
-				<%=
-					image_tag(
-						product.is_published? ? 'icons/png-24/16-square-green.png' : 'icons/png-24/16-square-red.png',
-						:style => 'margin: 5px;',
-						:plugin => 'substruct'
-					)
+				<%= product.find_problems.join("<br/>")
 				%>
-				</td>
+      </td>
     </tr>
     <% end %>
   <% else %>

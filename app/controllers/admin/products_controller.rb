@@ -4,11 +4,13 @@ class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
   def list
+   # we get here....
     @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
     @products = Product.paginate(
     :order => "name ASC",
     :page => params[:page],
-    :per_page => params[:per_page] || 30
+    :per_page => params[:per_page] || 30,
+    :include => [:tags, :downloads]
     )
   end
 
@@ -131,17 +133,15 @@ class Admin::ProductsController < Admin::BaseController
       # cleanup
       File.delete temp_file_path if File.exist?(temp_file_path)
 
-      # Build variations from form [unused now...]
-      if !params[:variation].blank?
-        params[:variation].each do |v|
-          variation = @product.variations.find_or_create_by_id(v[:id])
-          variation.attributes = v
-          variation.save
-          @product.variations << variation
+      # product was already saved...
+      flash[:notice] ||= ''
+      if @product.hymn_tag
+        failed = Tag.share_tags_among_hymns_products @product.hymn_tag
+        if failed
+          flash[:notice] +=  "this hymn has no topics!"
         end
       end
 
-      flash[:notice] ||= ''
       flash[:notice] += " Product '#{@product.name}' saved."
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0

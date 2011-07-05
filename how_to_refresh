@@ -1,2 +1,1 @@
- Tag.sync_topics_with_warnings
-self.sync_all_topics_with_warnings
+ Tag.sync_all_topics_with_warnings # shouldn't need to now though...
