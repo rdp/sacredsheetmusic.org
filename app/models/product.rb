@@ -61,4 +61,23 @@ class Product < Item
   def self.super_sum
     count = 0; all.each{|dl| count += dl.view_count}; count
   end
+
+  def find_problems
+      problems = []
+      if self.hymn_tag
+        warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
+        problems << warnings
+      else
+        if self.topic_tags.length == 0
+          problems << "Warning: no topics associated with song yet."
+        end
+        if !self.tags.detect{|t| t.name =~ /original/i}
+          problems <<  "Warning: no hymn or 'original' tag for this song yet."
+        end
+      end
+      if self.downloads.length == 0 && !self.original_url.present?
+        problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."
+      end
+  end
+
 end

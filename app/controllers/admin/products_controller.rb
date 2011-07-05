@@ -143,25 +143,12 @@ class Admin::ProductsController < Admin::BaseController
 
       flash[:notice] ||= ''
       flash[:notice] += " Product '#{@product.name}' saved."
-      if @product.hymn_tag
-        warnings = Tag.share_tags_among_hymns_products @product.hymn_tag
-        flash[:notice] += warnings
-      else
-        if @product.topic_tags.length == 0
-          flash[:notice] += "<br/> Warning: no topics associated with song yet."
-        end
-        if !@product.tags.detect{|t| t.name =~ /original/i}
-          flash[:notice] += "<br/> Warning: no hymn or 'original' tag for this song yet."
-        end
-      end
+      flash[:notice] += @product.find_problems.map{|p| "<b>" + p + "</b><br/>")
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
-      end
-      if @product.downloads.length == 0 && !@product.original_url.present?
-        flash[:notice] += "<br/> <b>Warning: song has no original_url nor uploads! Not expected I don't think...</b>"
       end
       redirect_to :action => 'edit', :id => @product.id
     else
