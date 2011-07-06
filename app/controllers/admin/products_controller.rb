@@ -137,8 +137,9 @@ class Admin::ProductsController < Admin::BaseController
       flash[:notice] ||= ''
       if @product.hymn_tag
         failed = Tag.share_tags_among_hymns_products @product.hymn_tag
-        if failed
-          flash[:notice] +=  "this hymn has no topics!"
+        @product.reload
+        if failed.present?
+          flash[:notice] +=  "this hymn has no topics yes!"
         end
       end
 
