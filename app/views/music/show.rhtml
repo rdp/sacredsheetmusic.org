@@ -103,7 +103,6 @@
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
-</div>
 
       <% if @default_image %>
 		<h5 style="float: right; margin-left: 50px;">(This is a thumbnail.  Click the pdf link, upper left, to see full resolution.)</h5>
@@ -121,7 +120,7 @@
 					  <% if @p_image.public_filename() then %>
                                              <a href="<%= @p_image.public_filename %>" 
                                               rel="lightbox[product_image]">
-                                              <%= image_tag @p_image.public_filename() %>
+                                              <%= image_tag @p_image.public_filename(), :width => "100%" %>
                                               </a>
                                          <% end %>
 					</div>
@@ -131,9 +130,8 @@
 		</div>
 	<% end %>
   
-	<div class="clear"></div>
-
 <!-- DISABLED 
+	<div class="clear"></div>
 	<% if @product.related_products.size > 0 %>
 		<br/>
 		<h2>Related Products</h2>
@@ -143,11 +141,10 @@
 	<% end %>
 -->
 
-<% 
-  pdf_views = 0
+<% pdf_views = 0
   @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
 %>
-<div style="padding-left: 15px">
+<div style="padding-left: 15px; float: right;">
 <% if @product.view_count > 5 %>
   This song has been viewed <%= @product.view_count  %> times.
 <% end %>
