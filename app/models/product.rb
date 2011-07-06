@@ -73,6 +73,9 @@ class Product < Item
       if self.downloads.length == 0 && !self.original_url.present?
         problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."
       end
+      if self.original_url =~ /\.(pdf|mp3|mid|midi)/
+        problems << "original url looks like its a pdf but should be htmlish"
+      end
       if !self.tags.detect{|t| t.is_voicing}
         problems << "Warning: no voicing [youth, SATB, etc.] seemingly found"
       end
