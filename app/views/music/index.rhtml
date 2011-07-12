@@ -56,9 +56,7 @@
         <% end %>
 
 	<!-- PRODUCTS LIST -->
-	<%= MusicController::ViewCache[@products.hash]  ||= (render :partial => 'product', :collection => @products)
-            MusicController::ViewCache[@products.hash]
-          %>
+	<%= Cache.get_or_set(@products.hash) { render :partial => 'product', :collection => @products} %>
 
   <% if @products.length == 0 %>
     <p>
