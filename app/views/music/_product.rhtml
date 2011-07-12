@@ -17,7 +17,7 @@
           image = image_tag(product.images[0].public_filename(:small), :alt => product.name) 
         end
       %>
-      <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
+      <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code, :width => '100%', :height => "100%") %>
     </div>
     <% preferred_play_inline = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
        if preferred_play_inline
