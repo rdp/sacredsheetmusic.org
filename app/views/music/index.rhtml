@@ -56,7 +56,9 @@
         <% end %>
 
 	<!-- PRODUCTS LIST -->
-	<%= render :partial => 'product', :collection => @products %>
+	<%= MusicController::ViewCache[@products]  ||= (render :partial => 'product', :collection => @products)
+            MusicController::ViewCache[@products]
+          %>
 
   <% if @products.length == 0 %>
     <p>

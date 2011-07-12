@@ -102,6 +102,9 @@ module Substruct
       :action     => 'ask'
 
     # Shorter url to show store items by tags
+    map.connect '/s/*tags',
+      :controller => 'music',
+      :action     => 'show_by_tags'
     map.connect '/music/s/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
@@ -109,7 +112,7 @@ module Substruct
       :controller => 'music',
       :action     => 'show_by_tags'
 
-
+=begin
     map.connect '/store/s/*tags',
       :controller => 'store',
       :action     => 'show_by_tags'
@@ -117,7 +120,7 @@ module Substruct
     map.connect '/store/show_by_tags/*tags',
       :controller => 'store',
       :action     => 'show_by_tags'
-
+=end
 
     # Install the default route as the lowest priority.
     map.connect ':controller/:action/:id.:format'
