@@ -91,8 +91,14 @@ class Admin::ProductsController < Admin::BaseController
       unless params[:download].blank?
         n2 = 0 # outside the loops to allow for multiple pdfs
         # calculate highest previous image rank so it'll add 'em at the end...
-        @product.images.each{|old_image|
-          n2 = [old_image.product_images[0].rank || 0, n2].max
+        @product.images.each{ |old_image|
+          old_image_rank = old_image.product_images[0].rank
+          if old_image_rank
+            old_image_rank += 1 # we want to come *after* this one
+          else
+            old_image_rank = 0 # we're ok here...
+          end
+          n2 = [old_image_rank, n2].max # calculate new max rank...
         }
 
         params[:download].each do |i|

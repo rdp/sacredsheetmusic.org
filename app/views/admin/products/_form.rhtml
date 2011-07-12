@@ -12,7 +12,7 @@
 		</div>
 		<div class="float">
 			<%= make_label('Original URL') %>
-			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %>
+			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
       <%= make_label('Copy and paste an mp3/midi url here (it will be uploaded then disappear):') %>
    <div class="float" style="margin-left: 50px">
