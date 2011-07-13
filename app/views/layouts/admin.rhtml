@@ -26,10 +26,11 @@
   %>
 	<%= 
 	  stylesheet_link_tag(
-	    'admin', 'subModal', 'lightbox', 
+	    'subModal', 'lightbox', 
 	    :plugin => 'substruct'
 	  )
 	%>
+<%= stylesheet_link_tag 'admin' %>
 	<%= yield :header %>
 </head>
 <body>
@@ -48,7 +49,7 @@
 	</script>
 <% end -%>
 
-<div id="container">
+<div id="container" style="width:100%;">
 
 	<div id="logo">
 		&nbsp;
