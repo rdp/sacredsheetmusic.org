@@ -79,6 +79,12 @@ class Product < Item
       if !self.tags.detect{|t| t.is_voicing}
         problems << "Warning: no voicing [youth, SATB, etc.] seemingly found"
       end
+      if self.composer_tag && self.composer_tag.composer_contact !~ /@/
+        problems << "Possibly lacking an original_url?" unless self.original_url.present?
+      end
+      if self.hymn_tag && self.name != self.hymn_tag.name
+         problems << "possibly mispelled name [doesnt match hymn]"
+      end
       problems
   end
 
