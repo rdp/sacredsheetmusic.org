@@ -81,7 +81,7 @@
 		<div id="searchbox">
 			<form action="/music/search" method="get">
 				<input type="image" src="/plugin_assets/substruct/images/public-ui/buttons/search.gif" style="float:right;" />
-				<input type="text" name="search_term" class="textInput big" style="float:right; margin-right: 5px;" />
+				<input type="text" name="search_term" class="textInput big" value="<%= @search_term %>" style="float:right; margin-right: 5px;" />
 			</form>
                         <div style="float: right; margin-top: 10px; margin-right: 60px;">
                             <a href="/music/advanced_search">Advanced search</a><span style="color: grey; font-size: 9px;">&nbsp;&nbsp;&nbsp; topic by specific voicing, etc...</span>
