@@ -83,7 +83,7 @@ class Product < Item
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
       end
       if self.hymn_tag && self.name != self.hymn_tag.name
-         problems << "possibly mispelled name [doesnt match hymn]"
+         problems << "possibly mispelled name or hymn [doesnt match hymn--might be expected]"
       end
       problems
   end

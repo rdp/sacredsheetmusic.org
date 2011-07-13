@@ -1,2 +1,3 @@
  Tag.sync_all_topics_with_warnings # shouldn't need to now though...
+Cache.delete_all
 TODO tag teh parent if the parent has tags :)
