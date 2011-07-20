@@ -2,6 +2,8 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
 
+  after_save { Cache.delete_all }
+
   # sync all hymns amongst themselves
   def self.sync_all_topics_with_warnings
     hymns_parent = Tag.all.select{|t| t.name =~ /^hymn/i}[0]
