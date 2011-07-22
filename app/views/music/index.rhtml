@@ -55,8 +55,7 @@
              <div style="height: 5px;"></div> <!-- don't want it too high -->
         <% end %>
 
-	<!-- PRODUCTS LIST -->
-	<%= Cache.get_or_set_records(@products, 'prod') { render :partial => 'product', :collection => @products} %>
+	<%= Cache.get_or_set(@products.hash) { render :partial => 'product', :collection => @products} %>
 
   <% if @products.length == 0 %>
     <p>

@@ -36,6 +36,7 @@ class Admin::ProductsController < Admin::BaseController
     end
     @product.attributes = params[:product]
     if @product.save
+      Cache.delete_all # clear!
       # Save product tags
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID
