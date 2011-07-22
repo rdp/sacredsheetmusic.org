@@ -1,0 +1,23 @@
+
+  <% if @products.length > 0 then %>
+    <% for product in @products %>
+    <tr class="<%= alternate %>">
+      <td>
+        <%= link_to(h(product.name), :action => 'edit', :id => product) %>
+        <br>
+        <span class="info">
+         url: <%= product.original_url || 'none' %><br/>
+         <%= 'pdf' if product.downloads.count > 0 %>
+        </span>
+      </td>
+      <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
+      <td class="numeric">
+          <%= product.description.present? ? (product.description[0..150].gsub(/href.*$/, '') + "...") : "" %> <br/>
+      <td style="text-align:center">
+          <%= product.find_problems.join("<br/>") %>
+      </td>
+    </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="4">No products to show in this view.</td></tr>
+  <% end %>

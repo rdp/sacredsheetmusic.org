@@ -1,6 +1,15 @@
 class Cache < ActiveRecord::Base
   set_table_name 'cache'
 
+  # one that uses AR instance' attributes too <yikes rails>
+  def self.get_or_set_records collection, identifier
+    if collection.length > 0
+      get_or_set( [identifier, collection.map{|record| [record, record.attributes]}].hash) { yield }
+    else
+     get_or_set( [collection, identifier].hash) { yield }
+    end 
+  end
+
   def self.get_or_set(hash)
     if a = Cache.find_by_hash_key(hash)
       # assume string for now

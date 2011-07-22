@@ -104,6 +104,9 @@
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
+    <% if @product.hymn_tag && @product.hymn_tag.products.length > 1 %>
+<br>
+    <% end %>
 
       <% if @default_image %>
 		<span style="float: right; margin-left: 50px;">(These are pdf thumbnails.  Click the pdf view link, upper left, to see full resolution.)</span>
