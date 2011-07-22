@@ -85,9 +85,6 @@ class Product < Item
       if self.hymn_tag && self.name != self.hymn_tag.name
          problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
       end
-      if self.description =~ /html/
-        problems << "Might contain a url in the description that needs to be moved to theoriginal_url field"
-      end
       problems
   end
 
