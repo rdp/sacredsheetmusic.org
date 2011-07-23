@@ -11,8 +11,7 @@
         </span>
 
   <% for image in product.images[0..1] %>
-     <%= image_tag(image.public_filename(:small), :alt => product.name)  %>
-
+     <%#= image_tag(image.public_filename(:small), :alt => product.name)  %>
   <% end %>
 
       </td>
