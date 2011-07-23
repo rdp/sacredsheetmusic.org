@@ -1,6 +1,8 @@
 class Cache < ActiveRecord::Base
   set_table_name 'cache'
-
+  def self.clear!
+     delete_all
+  end
   # one that uses AR instance' attributes too <yikes rails>
   def self.get_or_set_records collection, identifier
     if collection.length > 0

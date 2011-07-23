@@ -9,6 +9,12 @@
          url: <%= product.original_url || 'none' %><br/>
          <%= 'pdf' if product.downloads.count > 0 %>
         </span>
+
+  <% for image in product.images[0..1] %>
+     <%= image_tag(image.public_filename(:small), :alt => product.name)  %>
+
+  <% end %>
+
       </td>
       <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
       <td class="numeric">

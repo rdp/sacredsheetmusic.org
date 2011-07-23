@@ -85,6 +85,9 @@ class Product < Item
       if self.hymn_tag && self.name != self.hymn_tag.name
          problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
       end
+      if self.composer_tag && !self.composer_tag.composer_contact.present?
+         problems << "composer associated with this song has not contact info?"
+      end
       problems
   end
 
