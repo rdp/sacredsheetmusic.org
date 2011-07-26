@@ -101,7 +101,7 @@ module Substruct
       :controller => 'questions',
       :action     => 'ask'
 
-    # Shorter url to show store items by tags
+    # Shorter url to show music items by tags
     map.connect '/s/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
@@ -131,6 +131,11 @@ module Substruct
     map.connect ':name',
       :controller => 'content_nodes',
       :action     => 'show_by_name'
+
+
+  map.connect '/store/*',
+    :controller => 'nonexist'
+
   end
 
 	# For alternating row colors...

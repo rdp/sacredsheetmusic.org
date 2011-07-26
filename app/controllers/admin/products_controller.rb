@@ -23,7 +23,32 @@ class Admin::ProductsController < Admin::BaseController
    @@density = to_this
   end
 
+  def regenerate
+    raise unless id = params[:id]
+    product = Product.find(id)
+    pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
+    raise 'no pdfs' unless pdfs.present?
+    logger.warn 'no images?' unless product.images.count > 0
+    old_images = product.images
+    pdfs.each{|dl|
+      # save it with our old url, then delete the original...hmm...yeah
+      params[:product] = {}
+      params[:download] = []
+      params[:download_pdf_url] = "http://" + request.env["SERVER_NAME"] + dl.relative_path_to_web_server
+      logger.info params[:download_pdf_url]
+      save_internal false
+      dl.destroy # scaway :)
+     }
+     old_images.destroy_all
+     flash[:notice] = "regenerated images..."
+     redirect_to :action => :edit, :id => params[:id]
+  end
+
   def save
+    save_internal
+  end
+
+  def save_internal should_render = true
     # If we have ID param this isn't a new product
     if params[:id]
       @new_product = false
@@ -158,8 +183,10 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
-      redirect_to :action => 'edit', :id => @product.id
-    else
+      if should_render
+        redirect_to :action => 'edit', :id => @product.id
+      end
+    else # huh?
       @image = Image.new
       if @new_product
         render :action => 'new' and return

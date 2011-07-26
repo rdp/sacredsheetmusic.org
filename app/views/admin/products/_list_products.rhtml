@@ -7,7 +7,7 @@
         <br>
         <span class="info">
          url: <%= product.original_url || 'none' %><br/>
-         <%= 'pdf' if product.downloads.count > 0 %>
+         <%= 'has a pdf' if product.downloads.detect{|dl| dl.name =~ /pdf$/i} %>
         </span>
 
   <% for image in product.images[0..1] %>
