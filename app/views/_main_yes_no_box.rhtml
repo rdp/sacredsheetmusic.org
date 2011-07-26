@@ -63,10 +63,8 @@
 		</ul>
 		
 		<!-- logo -->
-		<div style="float:left; padding-top: 15px;">
-                 <%# :size => '450x100' musicbannervsmall2.jpg
-                  %>
-			<a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => 'Music for Mormons Free LDS Sheet Music', :width => 450, :height => 110) %></a>
+		<div style="float:left; padding-top: 15px; padding-left: 0px;">
+		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => 'Music for Mormons Free LDS Sheet Music', :width => 450, :height => 110) %></a>
 		</div>
 		
 		<% if @customer && !@customer.new_record? %>
@@ -78,7 +76,7 @@
 		<% end %>
 		
 		<!-- search box -->
-		<div id="searchbox">
+		<div id="searchbox" style="width: 350px;">
 			<form action="/music/search" method="get">
 				<input type="image" src="/plugin_assets/substruct/images/public-ui/buttons/search.gif" style="float:right;" />
 				<input type="text" name="search_term" class="textInput big" value="<%= @search_term %>" style="float:right; margin-right: 5px;" />
