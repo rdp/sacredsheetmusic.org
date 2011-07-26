@@ -7,7 +7,9 @@
         <br>
         <span class="info">
          url: <%= product.original_url || 'none' %><br/>
-         <%= 'has a pdf' if product.downloads.detect{|dl| dl.name =~ /pdf$/i} %>
+         <% pdfs =  product.downloads.select{|dl| dl.name =~ /pdf$/i} %>
+         <%= 'has a pdf' if pdfs.length == 1%>
+         <%= "has #{pdfs.length} pdfs" if pdfs.length > 1 %>
         </span>
 
   <% for image in product.images[0..1] %>
