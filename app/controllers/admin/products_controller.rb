@@ -29,7 +29,7 @@ class Admin::ProductsController < Admin::BaseController
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
     raise 'no pdfs' unless pdfs.present?
     logger.warn 'no images?' unless product.images.count > 0
-    old_images = product.images
+    old_images = product.images[0..-1]
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
       params[:product] = {}
@@ -39,7 +39,7 @@ class Admin::ProductsController < Admin::BaseController
       save_internal false
       dl.destroy # scaway :)
      }
-     old_images.destroy_all
+     old_images.each{|i| i.destroy}
      flash[:notice] = "regenerated images..."
      redirect_to :action => :edit, :id => params[:id]
   end
@@ -139,6 +139,7 @@ class Admin::ProductsController < Admin::BaseController
               begin
                 0.upto(1000) do |n|
                   command = "convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
+                  logger.info "running " + command
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
                   n2 += 1
