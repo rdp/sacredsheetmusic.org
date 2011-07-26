@@ -109,7 +109,7 @@
     <% end %>
 
       <% if @default_image %>
-		<span style="float: right; margin-left: 50px;">(These are pdf thumbnails.  Click the pdf view link, upper left, to see full resolution.)</span>
+		<span style="float: right; margin-left: 5px;">(These are pdf thumbnails.  Click the pdf view link, upper left, to see full resolution.)</span>
        <div style="float:left; width: 100%;">
         <% if @default_image.public_filename then %>
           <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
