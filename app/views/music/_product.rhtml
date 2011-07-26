@@ -24,7 +24,7 @@
           preferred_url = url_for(:action => 'inline_download_file', :params => {:download_id => preferred_play_inline.id})
        end
      %>
-    <div class="product_title" style="margin-bottom: 10px; margin-top:5px;">
+    <div class="product_title" style="margin-bottom: 0px; margin-top:5px;">
       <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
       <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mp3/ %>
              <object type="application/x-shockwave-flash"
