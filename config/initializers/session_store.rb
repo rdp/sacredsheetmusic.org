@@ -5,6 +5,7 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
+  :expire_after => 3.years,
   :key         => '_substruct_rel_1-3-1_session',
   :secret      => '8feda25171ddf3053527034ccebce4c078f7bda183185cbf4cf6eb3676b669f4f3dd86d10dde107595fe942f6a3ca284f46609a5566228619c37b1701997a42b'
 }
@@ -13,3 +14,5 @@ ActionController::Base.session = {
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rake db:sessions:create")
 # ActionController::Base.session_store = :active_record_store
+
+# I think we do this elsewhere... [the above]

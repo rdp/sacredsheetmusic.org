@@ -24,7 +24,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def regenerate
-    raise unless id = params[:id]
+    raise 'no id?' unless id = params[:id]
     product = Product.find(id)
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
     raise 'no pdfs' unless pdfs.present?
@@ -92,7 +92,7 @@ class Admin::ProductsController < Admin::BaseController
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
-        temp_file2 = '/tmp/incoming.pdf' # only one won't hurt, right...? LODO delete
+        temp_file2 = '/tmp/incoming_#{Thead.current.object_id}.pdf' # only one won't hurt, right...? LODO delete it too
         add_download url, temp_file2, 'application/pdf', 'pdf'
         out = `file #{temp_file2}`
         unless out =~ /PDF/
@@ -164,7 +164,8 @@ class Admin::ProductsController < Admin::BaseController
         end
       end
       # cleanup
-      File.delete temp_file_path if File.exist?(temp_file_path)
+      FileUtils.rm_rf temp_file_path
+      FileUtils.rm_rf temp_file2
 
       # product was already saved...
       flash[:notice] ||= ''
