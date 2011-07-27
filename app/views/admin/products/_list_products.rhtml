@@ -12,10 +12,10 @@
          <%= "has #{pdfs.length} pdfs" if pdfs.length > 1 %>
          has <%= product.images.count %> images.
         </span>
-<%= link_to 'Regenerate images', {:action => 'regenerate', :id => product}, :class => 'action' %>
+<%#= link_to 'Regenerate images', {:action => 'regenerate', :id => product}, :class => 'action' %>
 
   <% for image in product.images[0..1] %>
-     <%= image_tag(image.public_filename(:small), :alt => product.name)  %>
+     <%#= image_tag(image.public_filename(:small), :alt => product.name)  %>
   <% end %>
 
       </td>
