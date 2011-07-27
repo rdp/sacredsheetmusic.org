@@ -92,7 +92,7 @@ class Admin::ProductsController < Admin::BaseController
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
-        temp_file2 = "/tmp/incoming_#{Thead.current.object_id}.pdf"
+        temp_file2 = "/tmp/incoming_#{Thread.current.object_id}.pdf"
         add_download url, temp_file2, 'application/pdf', 'pdf'
         out = `file #{temp_file2}`
         unless out =~ /PDF/
