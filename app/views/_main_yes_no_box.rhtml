@@ -28,7 +28,7 @@
     stylesheet_link_tag('main')
   %>
 	<%= yield :header %>
-
+<% unless session[:user] %>
 <!-- google analytics -->
 <script type="text/javascript">
 
@@ -43,6 +43,8 @@
   })();
 
 </script>
+
+<% end %>
 
 </head>
 <body background="/images/trebs/trebs235.gif">

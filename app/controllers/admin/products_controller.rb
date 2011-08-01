@@ -165,7 +165,7 @@ class Admin::ProductsController < Admin::BaseController
       end
       # cleanup
       FileUtils.rm_rf temp_file_path
-      FileUtils.rm_rf temp_file2
+      FileUtils.rm_rf temp_file2 if temp_file2
 
       # product was already saved...
       flash[:notice] ||= ''
