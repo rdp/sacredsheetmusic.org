@@ -16,6 +16,10 @@ class MusicController < StoreController
      end
      product.comments << Comment.new(new_hash)
      flash[:notice] = 'Comment saved'
+     OrdersMailer.deliver_inquiry(
+          "fake@email",
+          new_hash.inspect
+      )
    end
    redirect_to :action => :show, :id => product.code
  end
