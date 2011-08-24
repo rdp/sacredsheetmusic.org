@@ -37,13 +37,13 @@ class Product < Item
   def clean_code
     if self.code.blank?
       if self.composer_tag
-        self.code = self.name.clone + '-' + self.composer_tag.name # do we want the composer full name?
+        self.code = self.name.clone + '--by-' + self.composer_tag.name # do we want the composer full name?
       else
         self.code = self.name.clone
       end
     end
 #    self.code.upcase!
-    self.code = self.code.gsub(/[^[:alnum:]]/,'-').gsub(/-{2,}/,'-')
+    self.code = self.code.gsub(/[^[:alnum:]]/,'-')#.gsub(/-{2,}/,'-')
     self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
     self.code.strip!
     return true
