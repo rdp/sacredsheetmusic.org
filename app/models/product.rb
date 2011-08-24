@@ -73,6 +73,9 @@ class Product < Item
       if self.downloads.length == 0 && !self.original_url.present?
         problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."
       end
+      if self.original_url.present? && !self.original_url.start_with?("http")
+        problems << "original url should start with http://"
+      end
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/
         problems << "original url looks like its a pdf but should be htmlish"
       end
