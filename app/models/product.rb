@@ -85,6 +85,9 @@ class Product < Item
       if self.composer_tag && self.composer_tag.composer_contact !~ /@/
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
       end
+      if (count = Product.count(:conditions => {:code => self.code})) != 1
+        problems << "probably not a unique product code please update #{count}"
+      end
       if self.hymn_tag && self.name != self.hymn_tag.name
          #problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
       end
