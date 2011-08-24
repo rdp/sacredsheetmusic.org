@@ -86,7 +86,7 @@ class Product < Item
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
       end
       if self.hymn_tag && self.name != self.hymn_tag.name
-         problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
+         #problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"
