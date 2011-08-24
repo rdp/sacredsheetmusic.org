@@ -1,0 +1,25 @@
+
+      <td>
+IN pARTIAL2
+        <%= link_to(h(product.name), :action => 'edit', :id => product) %>
+        <br>
+        <span class="info">
+         url: <%= product.original_url || 'none' %><br/>
+         <% pdfs =  product.downloads.select{|dl| dl.name =~ /pdf$/i} %>
+         <%= 'has a pdf' if pdfs.length == 1%>
+         <%= "has #{pdfs.length} pdfs" if pdfs.length > 1 %>
+         has <%= product.images.count %> images.
+        </span>
+<%#= link_to 'Regenerate images', {:action => 'regenerate', :id => product}, :class => 'action' %>
+
+  <% for image in product.images[0..1] %>
+     <%#= image_tag(image.public_filename(:small), :alt => product.name)  %>
+  <% end %>
+
+      </td>
+      <td class="numeric"><span class="info"><%= product.tags.map(&:name).join('<br/>') %></span></td>
+      <td class="numeric">
+          <%= product.description.present? ? (product.description[0..150].gsub(/href.*$/, '') + "...") : "" %> <br/>
+      <td style="text-align:center">
+          <%= product.find_problems.join("<br/>") %>
+      </td>
