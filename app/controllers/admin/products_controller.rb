@@ -61,7 +61,10 @@ class Admin::ProductsController < Admin::BaseController
     end
     @product.attributes = params[:product]
     if @product.save
-      Cache.delete_all # clear!
+
+      Cache.delete_all(:parent_id => @product.id)
+      #Cache.clear! # too aggressive :P
+
       # Save product tags
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID

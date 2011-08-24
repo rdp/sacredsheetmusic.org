@@ -61,7 +61,9 @@ class Product < Item
   def self.super_sum
     count = 0; all.each{|dl| count += dl.view_count}; count
   end
- # too strong!after_save { Cache.delete_all }
+
+  # too strong!after_save { Cache.delete_all }
+
   def find_problems
       problems = []
       if self.topic_tags.length == 0
