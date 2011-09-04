@@ -104,12 +104,12 @@
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
-    <% if @product.hymn_tag && @product.hymn_tag.products.length > 1 %>
-       <br/>Also see our <%= link_to('other arrangements', :controller => 'music', :action => 'show_by_tags', :tags => [@product.hymn_tag.name]) %> of this song.
+    <% if @product.hymn_tag && (competitors = @product.hymn_tag.products.count) > 1 %>
+       <br/>Also see our <%= link_to("other #{competitors - 1} arrangements", :controller => 'music', :action => 'show_by_tags', :tags => [@product.hymn_tag.name]) %> of this song.
     <% end %>
 
       <% if @default_image %>
-		<span style="float: right; margin-left: 5px;">(These are pdf thumbnails.  Click the pdf view link, upper left, to see full resolution.)</span>
+		<span style="float: right; margin-left: 5px;">(These are pdf thumbnails.  Click "pdf view", top left, to see full resolution or to print.)</span>
        <div style="float:left; width: 100%;">
         <% if @default_image.public_filename then %>
           <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
