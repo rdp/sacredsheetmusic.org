@@ -98,7 +98,7 @@
            <% if @product.images.count > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's page</a> for this piece.
            <% else %>
-               Please go to the <a href="<%= @product.original_url %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+               Please go to the <a href="<%= @product.original_url %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
         </div>
     <% else %>
@@ -132,22 +132,23 @@
 			<% end %>
 			<HR/>
 		</div>
-	<% end %>
+	<% else %>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+       <% end %>
   
-<!-- DISABLED 
-	<div class="clear"></div>
-	<% if @product.related_products.size > 0 %>
-		<br/>
-		<h2>Related Products</h2>
-		<br/>
-		<%= render :partial => 'product', :collection => @product.related_products %>
-		<div class="clear"></div>
-	<% end %>
--->
-
 <% pdf_views = 0
   @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
 %>
+
 <div style="padding-left: 15px; float: right;">
 <% if @product.view_count > 5 %>
   This song has been viewed <%= @product.view_count  %> times.
