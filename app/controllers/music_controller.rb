@@ -18,7 +18,7 @@ class MusicController < StoreController
      flash[:notice] = 'Comment saved'
      OrdersMailer.deliver_inquiry(
           Preference.get_value('mail_username'),
-          new_hash.inspect + ' ' + product.code
+          new_hash.pretty_inspect + ' ' + product.code
       )
    end
    redirect_to :action => :show, :id => product.code
