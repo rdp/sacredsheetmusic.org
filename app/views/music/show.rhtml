@@ -98,14 +98,14 @@
            <% if @product.images.count > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's page</a> for this piece.
            <% else %>
-               Please go to the <a href="<%= @product.original_url %>">author's original page</a> to see the sheet music<% if @product.downloads.length == 0 %> and/or recordings available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+               Please go to the <a href="<%= @product.original_url %>">author's original page</a> to see or print this song's sheet music<% if @product.downloads.length == 0 %> and/or see recordings available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
         </div>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
-    <% if @product.hymn_tag && (competitors = @product.hymn_tag.products.count) > 1 %>
-       <br/>Also see our <%= link_to("other #{competitors - 1} arrangements", :controller => 'music', :action => 'show_by_tags', :tags => [@product.hymn_tag.name]) %> of this song.
+    <% if @product.hymn_tag && (competitors = @product.hymn_tag.products.count - 1) > 0 %>
+       <br/>Also see our <%= link_to("other #{competitors} arrangements", :controller => 'music', :action => 'show_by_tags', :tags => [@product.hymn_tag.name]) %> of this song.
     <% end %>
 
       <% if @default_image %>
