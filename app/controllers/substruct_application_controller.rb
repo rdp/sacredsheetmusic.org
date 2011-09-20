@@ -12,8 +12,8 @@ module SubstructApplicationController
          return false
       end
       
-      if request.request_uri.in? ['/', '/lds-ward-choir-music']
-        redirect_to "/choir-arrangements"
+      if request.request_uri.in? ['/', '/lds-ward-choir-music', '/choir-arrangements']
+        redirect_to "/index-of-free-lds-mormon-arrangements-choir-piano-solo"
         flash.keep
         return false
       end
