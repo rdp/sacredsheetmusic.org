@@ -87,6 +87,7 @@
   Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 
+
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
@@ -142,7 +143,7 @@
           <br />
           <br />
           <br />
-          <br />
+          <br /> <!-- make footer look like a footer -->
        <% end %>
   
 <% pdf_views = 0
@@ -158,7 +159,19 @@
     This song's pdf has been downloaded/viewed <%= pdf_views %> times.
 <% end %>
 <br/>
-  You can upload your own <a href="/your-own-mp3">mp3 recording</a> of this arrangement, if you have one, to be displayed here. <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
+  You can upload your own <a href="/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed here. <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
+
 
 </div>
 
