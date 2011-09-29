@@ -95,6 +95,8 @@ class Product < Item
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"
+      elsif self.composer_tag && (self.composer_tag.composer_contact !~ /@/ && !self.composer_tag.composer_contact.start_with?('http'))
+         problems << "composer associated with this song might have bad url, should start with http?"
       end
       problems
   end
