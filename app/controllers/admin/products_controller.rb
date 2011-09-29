@@ -56,10 +56,14 @@ class Admin::ProductsController < Admin::BaseController
       @product = Product.find(params[:id])
     else
       @new_product = true
-      @title = "New Product"
-      @product = Product.new()
+      @title = "New Product" # HTML page title, not product's title
+      @product = Product.new
     end
     @product.attributes = params[:product]
+    if !@product.name.present? && params[:product][:tag_ids].select{|t| t.length > 0}.present?
+      used_temp = true
+      @product.name = 'temp name, to be replaced with hymn name' 
+    end
     if @product.save
 
       Cache.delete_all(:parent_id => @product.id)
@@ -68,7 +72,13 @@ class Admin::ProductsController < Admin::BaseController
       # Save product tags
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID
-      @product.tag_ids = params[:product][:tag_ids] if params[:product][:tag_ids]
+      if params[:product][:tag_ids]
+         @product.tag_ids = params[:product][:tag_ids] 
+         if used_temp
+           @product.name=@product.hymn_tag.name
+           @product.save!
+         end
+      end
       # Build product images from upload
       image_errors = []
       unless params[:image].blank?

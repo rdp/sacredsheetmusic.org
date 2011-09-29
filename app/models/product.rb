@@ -34,6 +34,7 @@ class Product < Item
 
   # Inserts code from product name if not entered.
   # Makes code safe for URL usage.
+  # called via a before_save :clean_code
   def clean_code
     if self.code.blank?
       if self.composer_tag
