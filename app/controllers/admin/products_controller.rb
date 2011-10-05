@@ -122,8 +122,8 @@ class Admin::ProductsController < Admin::BaseController
         end 
         add_download url, temp_file_path, type, 'mp3'
         out = `file #{temp_file_path}`
-        unless out =~ /MPEG|midi/i
-           flash[:notice] = 'warning: mp3/midi upload was bad? + ' + url
+        unless out =~ /MP3|MPEG|midi/i # MPEG? guess so...
+           flash[:notice] = 'warning: mp3/midi upload was bad? + ' + url + ' ' + out
         end
       end
 
