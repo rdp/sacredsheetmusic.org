@@ -61,7 +61,7 @@ class MusicController < StoreController
 
   def advanced_search_post
    tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
-  
+   @title = 'Advanced search:' + tags.map{|t| t.name}.join(' and ') 
    parent_tag_groups = {}
    for tag in tags
     if tag.parent
@@ -202,9 +202,9 @@ class MusicController < StoreController
 
   end
 
-  # Our simple store index
+  # Our simple all songs list
   def index
-    @title = "Songs"
+    @title = "All Songs"
     respond_to do |format|
       format.html do
         @tags = Tag.find_alpha
@@ -228,6 +228,17 @@ class MusicController < StoreController
       end
     end
   end 
+
+  def most_recently_added
+        @title = 'Recently added'
+        @products = Product.paginate(
+          :order => 'date_available DESC',
+          :conditions => Product::CONDITIONS_AVAILABLE,
+          :page => params[:page],
+          :per_page => 50
+        )
+        render :action => 'index.rhtml' and return
+  end
   
   def search
     @search_term = params[:search_term]

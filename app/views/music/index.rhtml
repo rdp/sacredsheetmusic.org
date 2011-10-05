@@ -9,7 +9,7 @@
 
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
-                 <h1 style="<%= h1_style %>"><%= controller.action_name =~ /search/ ? ' Search results ' : 'All Songs'%></h1>
+                 <h1 style="<%= h1_style %>"><%= @title %></h1>
 	<% else %>
 		<h1 style="<%= h1_style %>">
 			<!--a href="/music">Songs</a> &gt; -->
