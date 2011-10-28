@@ -18,9 +18,14 @@
         <li>
           <%= 
             link_name = filename_extension
+            # if there are 2 pdf's, then advertise them as just pdf I guess
             count = 0
             products_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
             link_name = dl.filename if count > 1
+            if link_name.size > 15
+               link_name = link_name[0..14] + '-...' + filename_extension # don't want them too big...
+            end
+          
             inline_view = link_to(
               link_name,
               :controller => 'music',
