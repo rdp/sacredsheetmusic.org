@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class Admin::ProductsControllerTest < ActionController::TestCase
 
 
-  def a_test_can_upload_with_mp3_link
+  def test_can_upload_with_mp3_link
     a_product = can_upload_with_mp3_link :download_mp3_url => 'http://freemusicformormons.com/examples_for_unit_testing/sound.mp3'
     
     assert_not_nil a_product
@@ -14,10 +14,11 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     download = a_product.downloads[0]
     assert download.size == 36429 # should be 30K'ish...
     assert download.name == 'sound.mp3'
-
   end
 
-  def a_test_can_upload_with_pdf_link
+
+  # these tests take forever...
+  def test_can_upload_with_pdf_link
     a_product = can_upload_with_mp3_link :download_pdf_url => 'http://freemusicformormons.com/examples_for_unit_testing/17.pdf'
     assert_equal 5, a_product.images.count # 4 pages + 1 image
     assert_equal 1, a_product.downloads.count # 1 pdf
@@ -35,7 +36,15 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_equal 36429, download.size
   end
 
-  private
+  def test_if_has_hymn_tag_auto_propagates
+   raise 'unimplemented'
+  end
+
+  def test_if_has_some_tags_no_hymn_tag_does_not_save
+   raise 'unimplemented'
+  end
+
+private
   
   def can_upload_with_mp3_link incoming
     Product.destroy_all

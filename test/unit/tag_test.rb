@@ -78,7 +78,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   def test_with_two_hymns_ignores_its_tags
-
+    raise 'unimplemented'
   end
   
   def test_gives_warnings

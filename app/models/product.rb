@@ -8,13 +8,14 @@ class Product < Item
     :through => :product_images, :order => "-product_images.rank DESC",
     :dependent => :destroy
   
-  # the arranger tag for this product...if there is one...
+
+  # the arranger tag for this product...if there is one...or nil if not
   def composer_tag
-   self.tags.select{|t| t.parent && t.parent.name =~ /^composer/i }[0]
+   self.tags.select{|t| t.is_composer_tag? }[0]
   end
   
   def hymn_tag
-   self.tags.select{|t| t.parent && (t.parent.name =~ /^Hymn/i || t.parent.name =~ /arrangements$/i) }[0]
+   self.tags.select{|t| t.is_hymn_tag? }[0]
   end
   
   def composer_contact
@@ -63,7 +64,9 @@ class Product < Item
     count = 0; all.each{|dl| count += dl.view_count}; count
   end
 
-  # too strong!after_save { Cache.delete_all }
+  # too strong!
+  # after_save { Cache.delete_all }
+  # done in the admin now
 
   def find_problems
       problems = []
@@ -74,7 +77,7 @@ class Product < Item
         problems <<  "Warning: no hymn or 'original' tag for this song yet."
       end
       if self.downloads.length == 0 && !self.original_url.present?
-        problems << "Warning: song has no original_url nor uploads! Not expected I don't think..."
+        problems << "Warning: song has no original_url nor pdf uploads! Not expected I don't think..."
       end
       if self.original_url.present? && !self.original_url.start_with?("http")
         problems << "original url should start with http://"
@@ -93,6 +96,9 @@ class Product < Item
       end
       if self.hymn_tag && self.name != self.hymn_tag.name
          #problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
+      end
+      unless self.composer_tag
+         problems << "song has no composer tag?"
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"

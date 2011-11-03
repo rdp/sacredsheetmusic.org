@@ -60,24 +60,33 @@ class Admin::ProductsController < Admin::BaseController
       @product = Product.new
     end
     @product.attributes = params[:product]
-    if !@product.name.present? && params[:product][:tag_ids].select{|t| t.length > 0}.present?
-      used_temp = true
-      @product.name = 'temp name, to be replaced with hymn name' 
+    if !@product.name.present? 
+      # see if we should auto-fill
+      tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
+      has_hymn_tag = tags_as_objects.detect{|t| t.is_hymn_tag?}
+      has_composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
+      if has_hymn_tag && has_composer_tag
+        used_temp = true
+        @product.name = 'temp name, to be replaced with hymn name' 
+      else
+        flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title?"      
+      end
     end
+
     if @product.save
 
       Cache.delete_all(:parent_id => @product.id)
-      #Cache.clear! # too aggressive :P
+      #Cache.clear! # too aggressive, see above :)
 
       # Save product tags
       # Our method doesn't save tags properly if the product doesn't already exist.
-      # Make sure it gets called after the product has an ID
+      # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
          @product.tag_ids = params[:product][:tag_ids] 
          if used_temp
            @product.name=@product.hymn_tag.name
-           @product.save!
          end
+         @product.save! # re-save...
       end
       # Build product images from upload
       image_errors = []
