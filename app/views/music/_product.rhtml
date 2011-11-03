@@ -40,8 +40,10 @@
     <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mid/ %>
            <embed src="<%= url_for(:action => 'ambiguous_download', :params => {:download_id => preferred_play_inline.id} ) %>" type="audio/midi" width="90" height="25" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
     <% end %>
-
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
+        <% if session[:user] %>
+           <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
+        <% end %>
          <!-- TAGS -->
          <% tag_names = product.tags.select{|t| t.name != product.name }.map{|t| t.name} %>
          (<%= tag_names.map{|t| link_to t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
