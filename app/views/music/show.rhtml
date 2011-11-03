@@ -78,7 +78,7 @@
      <%= @product.description %>
 	</div>
         <div> Related song links: <br/>
-          <% links = @product.tags.select{|t| t != @product.hymn_tag}.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
+          <% links = @product.tags.select{|t| !t.is_hymn_tag? || session[:user]}.map{|t| link_to(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left
