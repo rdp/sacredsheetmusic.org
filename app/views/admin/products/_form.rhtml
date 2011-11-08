@@ -8,7 +8,7 @@
              <%= "Current difficulties: " + problems.join(',') if problems.present? %>
 	<div class="padLeft">
 		<div class="float" style="padding-left:15px;">
-			<%= make_label('Name (not needed if tagged with hymn name)', true) %>
+			<%= make_label('Name (can leave blank if you tag with hymn name and a composer)', true) %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
 			<%= make_label('Original URL (like http://somewhere/song_name.html)') %>

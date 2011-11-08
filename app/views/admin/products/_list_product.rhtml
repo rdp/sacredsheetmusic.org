@@ -20,7 +20,7 @@
        <span class="info"><%= product.tags.map(&:name).join('<br/>') %></span>
       </td>
       <td class="numeric">
-          <%= product.description.present? ? (product.description[0..150].gsub(/href.*$/, '') + "...") : "" %> <br/>
+          <%= sanitize_html product.description %> <br/>
       <td style="text-align:center">
           <%= product.find_problems.join("<br/>") %>
       </td>

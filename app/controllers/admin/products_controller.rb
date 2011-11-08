@@ -192,11 +192,10 @@ class Admin::ProductsController < Admin::BaseController
       # product was already saved...
       flash[:notice] ||= ''
       if @product.hymn_tag
-        failed = Tag.share_tags_among_hymns_products @product.hymn_tag
-        @product.reload
-        if failed.present?
-          flash[:notice] +=  "this hymn has no topics yes!"
+        unless Tag.share_tags_among_hymns_products @product.hymn_tag
+          flash[:notice] +=  "this hymn has no topics yet!"
         end
+        @product.reload # it has new tags now
       end
 
       flash[:notice] += " Product '#{@product.name}' saved."

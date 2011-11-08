@@ -105,6 +105,9 @@ class Product < Item
       elsif self.composer_tag && (self.composer_tag.composer_contact !~ /@/ && !self.composer_tag.composer_contact.start_with?('http'))
          problems << "composer associated with this song might have bad url, should start with http?"
       end
+      if !self.hymn_tag && Tag.find_by_name(self.name)
+         problems << "song probably should be tagged with hymn name"
+      end
       problems
   end
 

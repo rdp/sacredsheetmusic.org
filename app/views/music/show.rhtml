@@ -23,7 +23,7 @@
             products_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
             link_name = dl.filename if count > 1
             if link_name.size > 15
-               link_name = link_name[0..14] + '-...' + filename_extension # don't want them too big...
+               link_name = link_name[0..14] + '-...' + filename_extension[0..10] # don't want them too big...
             end
           
             inline_view = link_to(
@@ -40,9 +40,9 @@
             <br/>
             <%# the type=audio/mpeg forces it to quicktime...except quicktime then ignores the type, but at least it's quicktime at that point... %>
             <% type = "audio/#{filename_extension}"; type = 'audio/mpeg' if filename_extension == 'mp3' %>
-            <embed src="<%= friendly_download_url %>" type="<%= type  %>" width="140" height="40" autostart="false" loop="FALSE" bgcolor="#FFFFFF" />
+             <embed src="<%= friendly_download_url %>" type="<%= type  %>" width="140" height="40" autostart="false" loop="FALSE" bgcolor="#FFFFFF" />
           <% elsif filename_extension == 'mp3' %>
-              <!--
+              <!-- unused for now, just use quicktime, above
                <object type="application/x-shockwave-flash"
                     data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" 
                      width="157" height="17">
