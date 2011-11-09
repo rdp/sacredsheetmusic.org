@@ -2,7 +2,13 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
 
-  after_save { Cache.delete_all }
+  after_save { Cache.clear! } # affects many songs
+
+  def all_products_hits
+    sum = 0
+    self.products.each{|p| sum += p.view_count}
+    sum
+  end
 
   # sync all hymns amongst themselves
   def self.sync_all_topics_with_all_hymns

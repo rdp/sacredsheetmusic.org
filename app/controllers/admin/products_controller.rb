@@ -14,6 +14,14 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
+  def with_problems
+    @products = Product.find(:all, :include => :tags).select{|p| p.find_problems.length > 0 }
+    def @products.total_pages # fake it out :P
+      1
+    end
+    render :action => :list
+  end
+
   @@density = 125 # seems reasonable...
 
   # Saves product from new and edit.
