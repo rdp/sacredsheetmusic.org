@@ -31,6 +31,18 @@ class Admin::ProductsController < Admin::BaseController
    @@density = to_this
   end
 
+  def fix_name
+    raise 'no id?' unless id = params[:id]
+    product = Product.find(id)
+    hymn_tags = product.tags.select{|t| t.is_hymn_tag?}
+    raise hymn_tags.inspect unless hymn_tags.length == 1
+    product.name = hymn_tags[0].name
+    product.save!
+    flash[:notice] = 'saved new name' + product.name
+    redirect_to :action => :edit, :id => params[:id]
+  end
+
+  # fix up any previously broken images from pdf's
   def regenerate
     raise 'no id?' unless id = params[:id]
     product = Product.find(id)
