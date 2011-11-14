@@ -38,7 +38,7 @@ class Admin::ProductsController < Admin::BaseController
     raise hymn_tags.inspect unless hymn_tags.length == 1
     product.name = hymn_tags[0].name
     product.save!
-    flash[:notice] = 'saved new name' + product.name
+    flash[:notice] = 'saved new name ' + product.name
     redirect_to :action => :edit, :id => params[:id]
   end
 
