@@ -44,7 +44,7 @@ class MusicController < StoreController
       @product.view_count += 1
       @product.save
     end
-    @title = @product.name + ' on '
+    @title = @product.name
     @images = @product.images.find(:all)
     @default_image = @images[0]
     @variations = @product.variations.find(
