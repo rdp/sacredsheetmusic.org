@@ -92,6 +92,7 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this:
     # /store/show_by_tags/tag_one/tag_two/tag_three/...
+
     @tag_names = params[:tags] || []
     # Generate tag ID list from names
     tag_ids_array = Array.new
@@ -109,14 +110,16 @@ class MusicController < StoreController
     end
 
     if temp_tag.parent
-      # my own :P
+      # my own tweak :P
       # @tag_names.unshift temp_tag.parent.name
     end
 
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC")
-    viewing_tag_names = @viewing_tags.map{|t| t.name}.join(" > ")
+    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " (Arrangements)" : t.name}
+    viewing_tag_names = @tag_names.join(" > ")
     @title = "#{viewing_tag_names}"
-    @tags = Tag.find_related_tags(tag_ids_array)
+
+    #@tags = Tag.find_related_tags(tag_ids_array)
 
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
