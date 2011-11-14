@@ -95,7 +95,7 @@ class Product < Item
         problems << "probably not a unique product code please update #{count}"
       end
       if self.hymn_tag && self.name != self.hymn_tag.name
-         #problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]"
+         problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
       end
       unless self.composer_tag
          problems << "song has no composer tag?"
