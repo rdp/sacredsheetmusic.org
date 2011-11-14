@@ -3,4 +3,8 @@ Cache.clear!
 
 TODO tag the parent if the parent has tags :)
   also if they tag the parent but its children have options...it should tag a child I guess...except primary original songs though...hmm...
-look for duplicate codes what the...
+
+if it has children options should it require them?
+  I guess not until we have dual parented tags...
+
+Primary with instrument" should also be tagged "instrumental"

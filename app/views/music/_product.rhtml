@@ -23,7 +23,7 @@
       <% 
          has_sound_file = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
          if has_sound_file
-           button_mp3_link = " " + image_tag('play_button.gif', :alt => 'has mp3', :size => "17x17")
+           button_mp3_link = " " + image_tag('play_button_small.gif', :alt => 'has mp3', :size => "17x17")
          else
            button_mp3_link = ""
          end
