@@ -19,27 +19,18 @@
       %>
       <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
-    <% preferred_play_inline = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
-       if preferred_play_inline
-          preferred_url = url_for(:action => 'inline_download_file', :params => {:download_id => preferred_play_inline.id})
-       end
-     %>
     <div class="product_title" style="margin-bottom: 0px; margin-top:5px;">
-      <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
-      <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mp3/ %>
-             <object type="application/x-shockwave-flash"
-                    data="/flash/button_player.swf?&song_url=<%= preferred_url %>&player_title=mp3&song_title=mp3"
-                     width="17" height="17">
-               <param name="movie"
-                value="/flash/button_player.swf?&song_url=<%= preferred_url %>&player_title=mp3&song_title=mp3" />
-              </object>
-     <% end %>
-
+      <% 
+         has_sound_file = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
+         if has_sound_file
+           button_mp3_link = " " + image_tag('play_button.gif', :alt => 'has mp3', :size => "17x17")
+         else
+           button_mp3_link = ""
+         end
+      %>
+      <%= link_to(product.name + button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
 
-    <% if preferred_play_inline && preferred_play_inline.filename =~ /\.mid/ %>
-           <embed src="<%= url_for(:action => 'ambiguous_download', :params => {:download_id => preferred_play_inline.id} ) %>" type="audio/midi" width="90" height="25" bgcolor="#FFFFFF" autostart="false" loop="FALSE" />
-    <% end %>
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <% if session[:user] %>
            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
