@@ -290,24 +290,23 @@ class MusicController < StoreController
     server = "http://" + request.env["SERVER_NAME"]
     dls = Download.find(:all, :order => "rand()").select{|dl| dl.name =~ /.mp3$/i}
     # create playlist
-    out = "[playlist]\n"
+    out = "#EXTM3u\n"
     dls.each_with_index{|dl,idx|
       url = server + dl.relative_path_to_web_server
       if dl.product
-        composer = dl.product.composer_tag ? " by #{dl.product.composer_tag.name}" : ''
-        name = dl.product.name + composer
+        composer = dl.product.composer_tag ? " #{dl.product.composer_tag.name}" : ''
+        name = composer + ',' + dl.product.name
       else
         name = dl.name
       end
       idx = idx + 1 # 1 based :)
     
     out  += <<-EOL
-File#{idx}=#{url}
-Title#{idx}=#{name}
+#EXTINF:-1, #{name}
+#{url}
     EOL
     }    
-    out += "NumberOfEntries=#{dls.length}"
-    render :text => out, :content_type => "audio/x-scpls" # pls
+    render :text => out, :content_type => "audio/x-mpegurl"
   end
 
 end
