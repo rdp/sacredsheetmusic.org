@@ -1,7 +1,7 @@
       <%  if is_main_tab_active?(tag.id) %>
                                                     <UL>
-                                                    <% for tag2 in tag.children do; next if tag2.products.length == 0 && tag2.children.length == 0 %>
-                                                        <LI>
+                                                    <% for tag2 in tag.children do %>
+                                                        <LI <%= 'style="list-style-image: url();"' if tag2.children.length == 0 %>>
                                                         <%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%=
                                                                 link_to(
