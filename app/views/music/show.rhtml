@@ -164,7 +164,7 @@
     This song's pdf has been downloaded/viewed <%= pdf_views %> times.
 <% end %>
 <br/>
-  You can upload your own <a href="/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed here. <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
+  You can upload your own <a href="/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to you) here. <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

@@ -2,7 +2,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
 
-  after_save { Cache.clear! } # affects many songs
+  #after_save { Cache.clear! } # we don't list it with the songs anymore...
 
   def all_products_hits
     sum = 0
@@ -58,5 +58,9 @@ class Tag
 
   def is_composer_tag?
     self.parent && (self.parent.name =~ /^composer/i)
+  end
+
+  def is_topic_tag?
+    self.parent && (self.parent.name =~ /^topic/i)
   end
 end
