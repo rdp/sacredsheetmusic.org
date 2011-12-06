@@ -7,10 +7,11 @@
       href="/images/play_button.gif">
 	<title><%=
 		if @title then
-			h @title + ' - (' + @store_name + ')'
+                   @title = @title + ' - (' + @store_name + ')'
 		else
-			h @store_name
+                   @title = @store_name
 		end
+                h @title
 		-%></title>
 	<%= javascript_include_tag :defaults, :cache => 'default' %>
 
@@ -70,7 +71,7 @@
 		
 		<!-- logo -->
 		<div style="float:left; padding-top: 15px; padding-left: 0px;">
-		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => 'Music for Mormons Free LDS Sheet Music', :width => 450, :height => 110) %></a>
+		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :width => 450, :height => 110) %></a>
 		</div>
 		
 		<% if @customer && !@customer.new_record? %>
