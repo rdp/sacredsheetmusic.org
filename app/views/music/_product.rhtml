@@ -37,7 +37,7 @@
         <% end %>
          <!-- TAGS -->
          <% tag_names = product.tags.select{|t| !t.is_hymn_tag? }.select{|t| !t.is_topic_tag?}.map{|t| t.name} %>
-         (<%= tag_names.map{|t| link_to t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
+         (<%= tag_names.map{|t| link_to2 t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
     </div>
   </div>
   <div class="product_bottom"></div>
