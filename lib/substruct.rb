@@ -361,3 +361,18 @@ LOOKING INTO OTHER OPTIONS!!!
   end
 
 end
+
+module ActionView
+  module Helpers #:nodoc:
+    # Provides a set of methods for making links and getting URLs that
+    # depend on the routing subsystem (see ActionController::Routing).
+    # This allows you to use the same format for links in views
+    # and controllers.
+    module UrlHelper
+      def link_to2 *args
+        out = link_to *args
+        out.gsub('%20', ' ')# sanitize...too ugly in google search results...
+      end   
+    end
+  end
+end
