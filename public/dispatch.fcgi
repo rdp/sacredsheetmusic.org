@@ -25,6 +25,7 @@ if Socket.gethostname =~ /bluehost.com/
   ENV['GEM_PATH'] = '/home/wilkboar/.gems:/usr/lib/ruby/gems/1.8'
   ENV['GEM_HOME'] = '/home/wilkboar/.gems'
   $: << '/home/wilkboar/ruby/gems/gems/fcgi-0.8.8/lib' # what in the world? malformed gem?
+  ENV['PATH'] = '/home1/wilkboar/dev/ghostscript-9.04/bin:' + ENV['PATH'] # newer ghostscript
 end
 require File.dirname(__FILE__) + "/../config/environment"
 require 'fcgi_handler'
