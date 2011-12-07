@@ -32,7 +32,7 @@ a {
 	text-decoration: none;
 }
 a:link { color: #1382b9; }
-a:visited {	color: rgb(165,64,235); }
+a:visited {	color: rgb(145,44,215); }
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
 	color: #fff !important;
