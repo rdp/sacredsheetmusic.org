@@ -58,7 +58,8 @@ class Admin::ProductsController < Admin::BaseController
     old_images = product.images[0..-1]
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
-      params[:product] = {:tag_ids => []}
+      # resets ids! params[:product] = {:tag_ids => []}
+      params[:product] = {}
       params[:download] = []
       params[:download_pdf_url] = "http://" + request.env["SERVER_NAME"] + dl.relative_path_to_web_server
       logger.info params[:download_pdf_url]
@@ -78,14 +79,14 @@ class Admin::ProductsController < Admin::BaseController
       @new_product = false
       @title = "Editing Product"
       @product = Product.find(params[:id])
-      old_tag_ids = @product.tag_ids
+      old_tag_ids = @product.tag_ids # for warnings later
     else
       @new_product = true
       @title = "New Product" # HTML page title, not product's title
       @product = Product.new
     end
  
-    @product.attributes = params[:product] # actually performs a tag save...
+    @product.attributes = params[:product] # actually performs a tag save...if the product already existed.
     if !@product.name.present? 
       # see if we should auto-fill
       tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
@@ -93,7 +94,7 @@ class Admin::ProductsController < Admin::BaseController
       has_composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
       if has_hymn_tag && has_composer_tag
         used_temp = true
-        @product.name = 'temp name, to be replaced with hymn name' 
+        @product.name = 'name to be replaced programmatically with hymn name' 
       else
         flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title?"      
       end
@@ -108,13 +109,14 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
-         Rails.logger.info "assigning new tag ids #{params[:product][:tag_ids]}"
          @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is wrong...
          @product.sync_all_parent_tags
          if used_temp
            @product.name=@product.hymn_tag.name
            @product.save! # re-save... 
          end
+      else
+        # regenerate doesn't have them...leave the same...
       end
 
       # Build product images from upload
@@ -226,12 +228,11 @@ class Admin::ProductsController < Admin::BaseController
         end
         @product.reload # it has new tags now
 
-         desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
-         logger.info desired_tags.inspect
-         logger.info old_tag_ids.inspect
-         logger.info @product.tag_ids.inspect
-         if old_tag_ids.sort == @product.tag_ids.sort && desired_tags != old_tag_ids.sort
-           flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
+         if params[:product][:tag_ids]
+           desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
+           if old_tag_ids.sort == @product.tag_ids.sort && desired_tags != old_tag_ids.sort
+             flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
+           end
          end
 
       end
