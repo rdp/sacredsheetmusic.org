@@ -74,12 +74,14 @@ class Admin::ProductsController < Admin::BaseController
       @new_product = false
       @title = "Editing Product"
       @product = Product.find(params[:id])
+      old_tag_ids = @product.tag_ids
     else
       @new_product = true
       @title = "New Product" # HTML page title, not product's title
       @product = Product.new
     end
-    @product.attributes = params[:product]
+ 
+    @product.attributes = params[:product] # actually performs a tag save...
     if !@product.name.present? 
       # see if we should auto-fill
       tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
@@ -102,12 +104,14 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
-         @product.tag_ids = params[:product][:tag_ids] 
+         Rails.logger.info "assigning new tag ids #{params[:product][:tag_ids]}"
+         @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is wrong...
          if used_temp
            @product.name=@product.hymn_tag.name
+           @product.save! # re-save... 
          end
-         @product.save! # re-save...
       end
+
       # Build product images from upload
       image_errors = []
       unless params[:image].blank?
@@ -216,6 +220,11 @@ class Admin::ProductsController < Admin::BaseController
           flash[:notice] +=  "this hymn has no topics yet!"
         end
         @product.reload # it has new tags now
+
+         if old_tag_ids == @product.tag_ids && old_tag_ids != params[:product][:tag_ids].select{|id| id.to_s.empty? }
+           flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
+         end
+
       end
 
       flash[:notice] += " Product '#{@product.name}' saved."
@@ -229,7 +238,7 @@ class Admin::ProductsController < Admin::BaseController
       if should_render
         redirect_to :action => 'edit', :id => @product.id
       end
-    else # huh?
+    else # save failed
       @image = Image.new
       if @new_product
         render :action => 'new' and return

@@ -27,9 +27,13 @@ class Product < Item
   
   # my own version :P
   def tag_ids=(list)
+    Rails.logger.info "clearing tags" + caller.join("\n")
     tags.clear
     for id in list
-      tags << Tag.find(id) if !id.to_s.empty?
+      if !id.to_s.empty?
+        Rails.logger.info "adding #{id}"
+        tags << Tag.find(id) if !id.to_s.empty?
+      end
     end
   end
 
