@@ -20,7 +20,8 @@
        <span class="info"><%= product.tags.map(&:name).join('<br/>') %></span>
       </td>
       <td class="numeric">
-          <%= sanitize_html(product.description)[0..150] %>... <br/>
+          <%= sanitize_html(product.description)[0..151] %>... <br/>
+      </td>
       <td style="text-align:center">
           <%= product.find_problems.join("<br/>") %>
       </td>
