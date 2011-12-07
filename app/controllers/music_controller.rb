@@ -34,7 +34,7 @@ class MusicController < StoreController
 
 
   def show
-    @product = Product.find_by_code(params[:id])
+    @product = Product.find_by_code(params[:id], :include => :images)
 
     if !@product
       flash[:notice] = "Sorry, we couldn't find the product you were looking for"
@@ -44,14 +44,18 @@ class MusicController < StoreController
       @product.view_count += 1
       @product.save
     end
-    @title = @product.name
-    @images = @product.images.find(:all)
+    if @product.composer_tag
+      @title = "#{@product.name} by #{@product.composer_tag.name}"
+    else
+       @title = @product.name
+    end
+    @images = @product.images
     @default_image = @images[0]
-    @variations = @product.variations.find(
-      :all,
-      :order => '-variation_rank DESC',
-      :conditions => 'quantity > 0'
-    )
+    #@variations = @product.variations.find(
+    #  :all,
+    #  :order => '-variation_rank DESC',
+    #  :conditions => 'quantity > 0'
+    #)
     render :layout => 'main_no_box'
   end
 
