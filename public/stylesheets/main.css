@@ -31,7 +31,7 @@ a {
 	font-weight: bold;
 	text-decoration: none;
 }
-a:link { color: #1382b9; }
+a:link { color: rgb(09,120,175); }
 a:visited {	color: rgb(145,44,215); }
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
