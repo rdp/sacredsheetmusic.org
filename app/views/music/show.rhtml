@@ -77,8 +77,15 @@
 	<div>
      <%= @product.description %>
 	</div>
+        <% if @product.composer_tag %>
+           <div>
+              More by <%= link_to2(@product.composer_tag.name, :controller => :music, :action => 'show_by_tags', :tags => [@product.composer_tag.name]) %>
+             <br />
+             <br />
+           </div>
+         <% end %>
         <div> Related song links: <br/>
-          <% links = @product.tags.select{|t| !t.is_hymn_tag? || session[:user]}.map{|t| link_to2(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
+          <% links = @product.tags.select{|t| !(t.is_hymn_tag? || t.is_composer_tag?) || session[:user]}.map{|t| link_to2(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left

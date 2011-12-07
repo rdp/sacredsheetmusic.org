@@ -45,7 +45,7 @@ class MusicController < StoreController
       @product.save
     end
     if @product.composer_tag
-      @title = "#{@product.name} by #{@product.composer_tag.name}"
+      @title = "#{@product.name} (by #{@product.composer_tag.name})"
     else
        @title = @product.name
     end
