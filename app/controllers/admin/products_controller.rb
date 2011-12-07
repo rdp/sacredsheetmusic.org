@@ -221,7 +221,11 @@ class Admin::ProductsController < Admin::BaseController
         end
         @product.reload # it has new tags now
 
-         if old_tag_ids == @product.tag_ids && old_tag_ids != params[:product][:tag_ids].select{|id| id.to_s.empty? }
+         desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
+         logger.info desired_tags.inspect
+         logger.info old_tag_ids.inspect
+         logger.info @product.tag_ids.inspect
+         if old_tag_ids.sort == @product.tag_ids.sort && desired_tags != old_tag_ids.sort
            flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
          end
 
