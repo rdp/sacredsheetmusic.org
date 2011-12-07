@@ -106,6 +106,7 @@ class Admin::ProductsController < Admin::BaseController
       if params[:product][:tag_ids]
          Rails.logger.info "assigning new tag ids #{params[:product][:tag_ids]}"
          @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is wrong...
+         @product.sync_all_parent_tags
          if used_temp
            @product.name=@product.hymn_tag.name
            @product.save! # re-save... 
