@@ -26,7 +26,11 @@ class Product < Item
   def hymn_tag
    self.tags.select{|t| t.is_hymn_tag? }[0]
   end
-  
+
+  def original_tag
+   self.tags.select{|t| t.is_original_tag? }[0]
+  end 
+
   def composer_contact
      owner = composer_tag
      cc = (owner && owner.composer_contact.present? ) ? owner.composer_contact : nil
@@ -116,8 +120,10 @@ class Product < Item
       elsif self.composer_tag && (self.composer_tag.composer_contact !~ /@/ && !self.composer_tag.composer_contact.start_with?('http'))
          problems << "composer associated with this song might have bad url, should start with http?"
       end
-      if !self.hymn_tag && Tag.find_by_name(self.name)
-         problems << "song probably should be tagged with hymn name"
+      if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
+         unless t.id.in? self.tag_ids
+           problems << "song probably should be tagged with hymn name, or topic"
+         end
       end
       for tag in self.tags
         if tag.children.length > 0

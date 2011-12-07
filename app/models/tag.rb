@@ -63,4 +63,8 @@ class Tag
   def is_topic_tag?
     self.parent && (self.parent.name =~ /^topic/i)
   end
+
+  def is_original_tag?
+    self.name =~ /original/i
+  end
 end
