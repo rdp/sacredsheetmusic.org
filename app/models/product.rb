@@ -119,6 +119,13 @@ class Product < Item
       if !self.hymn_tag && Tag.find_by_name(self.name)
          problems << "song probably should be tagged with hymn name"
       end
+      for tag in self.tags
+        if tag.children.length > 0
+          if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
+            problems << "probably needs a child tag beneath #{tag.name}"
+          end
+        end
+      end
       problems
   end
 

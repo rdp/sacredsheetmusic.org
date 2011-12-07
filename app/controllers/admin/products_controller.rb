@@ -45,6 +45,12 @@ class Admin::ProductsController < Admin::BaseController
   # fix up any previously broken images from pdf's
   def regenerate
     raise 'no id?' unless id = params[:id]
+    regenerate_internal params[:id]
+    flash[:notice] = "regenerated images..."
+    redirect_to :action => :edit, :id => params[:id]
+  end
+
+  def regenerate_internal id
     product = Product.find(id)
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
     raise 'no pdfs' unless pdfs.present?
@@ -52,7 +58,7 @@ class Admin::ProductsController < Admin::BaseController
     old_images = product.images[0..-1]
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
-      params[:product] = {}
+      params[:product] = {:tag_ids => []}
       params[:download] = []
       params[:download_pdf_url] = "http://" + request.env["SERVER_NAME"] + dl.relative_path_to_web_server
       logger.info params[:download_pdf_url]
@@ -60,8 +66,6 @@ class Admin::ProductsController < Admin::BaseController
       dl.destroy # scaway :)
      }
      old_images.each{|i| i.destroy}
-     flash[:notice] = "regenerated images..."
-     redirect_to :action => :edit, :id => params[:id]
   end
 
   def save
