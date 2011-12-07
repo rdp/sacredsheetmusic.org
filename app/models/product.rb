@@ -87,7 +87,7 @@ class Product < Item
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "Warning: no hymn or 'original' tag for this song yet."
       end
-      if self.downloads.length == 0 && !self.original_url.present?
+      if self.downloads.size == 0 && !self.original_url.present?
         problems << "Warning: song has no original_url nor pdf uploads! Not expected I don't think..."
       end
       if self.original_url.present? && !self.original_url.start_with?("http")
