@@ -36,8 +36,8 @@
            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
         <% end %>
          <!-- TAGS -->
-         <% tag_names = product.tags.select{|t| !t.is_hymn_tag? }.select{|t| !t.is_topic_tag?}.select{|t| !(t.children.size > 0) }.map{|t| t.name} %>
-         (<%= tag_names.map{|t| link_to2 t, :controller => 'music', :action => 'show_by_tags', :tags => [t]}.join(', ') %>)
+         <% tags = product.linkable_tags(session[:user]) %>
+         (<%= tags.map{|t| link_to2 t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name]}.join(', ') %>)
     </div>
   </div>
   <div class="product_bottom"></div>

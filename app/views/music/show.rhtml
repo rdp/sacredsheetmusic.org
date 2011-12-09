@@ -83,9 +83,13 @@
              <br />
              <br />
            </div>
-         <% end %>
+        <% end %>
+        <% voicing_tags = @product.linkable_tags(nil).select{|t| t.is_voicing}
+           if voicing_tags.length > 0 %>
+          Voicing/Instrumentation: <%= voicing_tags.map(&:name).join(', ') %><br/><br/>
+        <% end %>
         <div> Related song links: <br/>
-          <% links = @product.tags.select{|t| !(t.is_hymn_tag? || t.is_composer_tag?) || session[:user]}.map{|t| link_to2(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
+          <% links = @product.linkable_tags(session[:user]).map{|t| link_to2(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
           <%= links.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left

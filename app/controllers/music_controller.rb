@@ -251,7 +251,7 @@ class MusicController < StoreController
     @search_term = params[:search_term]
     @title = "Search Results for: #{@search_term}"
     
-    super_search_terms = params[:search_term].split.map{|name| "%#{name}%"}
+    super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| "%#{name}%"}
     super_search_query = super_search_terms.map{|unused|"name like ?"}.join(" and ")
     
     # XXX paginate :)

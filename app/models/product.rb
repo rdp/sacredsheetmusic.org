@@ -2,6 +2,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/product"
 
 class Product < Item
   has_many :comments, :dependent => :destroy
+  has_and_belongs_to_many :tags, :order => :name
   
   # different ranking...
   has_many :images,
@@ -133,6 +134,14 @@ class Product < Item
         end
       end
       problems
+  end
+
+  def linkable_tags user
+    if user
+      tags
+    else
+      tags.select{|t| !(t.is_hymn_tag? || t.is_composer_tag?)}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}
+     end
   end
 
 end
