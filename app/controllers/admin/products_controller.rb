@@ -50,7 +50,24 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :action => :edit, :id => params[:id]
   end
 
-  def regenerate_internal id
+  def self.regenerate_all_images this_servers_name # needs to be self because we cannot run this in fcgi...
+    products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/}}
+    p = products_with_images[0..1]
+    out = []
+    p.each{|p|
+      instance = self.new
+      instance.params = {:id => p.id}
+      def instance.flash() 
+        @flash ||= {}
+      end
+      instance.regenerate_internal(p.id, this_servers_name)
+      out << p.code
+      puts p.code
+    }
+    out
+  end
+
+  def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME']
     product = Product.find(id)
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
     raise 'no pdfs' unless pdfs.present?
@@ -61,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
       # resets ids! params[:product] = {:tag_ids => []}
       params[:product] = {} # doesn't  reset tags...
       params[:download] = []
-      params[:download_pdf_url] = "http://" + request.env["SERVER_NAME"] + dl.relative_path_to_web_server
+      params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
       logger.info params[:download_pdf_url]
       save_internal false
       dl.destroy # scaway :)
