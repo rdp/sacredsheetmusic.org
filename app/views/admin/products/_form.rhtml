@@ -3,7 +3,10 @@
 	PRODUCT AND VARIATIONS ######################################################
 -->
 <div class="padLeft">
-  <div style="float:right;"><%= submit_tag 'Save Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %></div>
+  <div style="float:right;"><%= submit_tag 'Save This Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
+<br/>
+ <%= link_to 'New Song', {:action => 'new'}, :class => 'button hundredfifty' %>
+  </div>
              <% problems = @product.find_problems %>
              <%= "Current difficulties: " + problems.join(',') if problems.present? %>
 	<div class="padLeft">

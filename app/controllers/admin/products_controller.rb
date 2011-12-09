@@ -247,7 +247,7 @@ class Admin::ProductsController < Admin::BaseController
 
          if params[:product][:tag_ids]
            desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
-           if old_tag_ids.sort == @product.tag_ids.sort && desired_tags != old_tag_ids.sort
+           if old_tag_ids && (old_tag_ids.sort == @product.tag_ids.sort) && (desired_tags != old_tag_ids.sort)
              flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
            end
          end
