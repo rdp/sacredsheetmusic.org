@@ -50,6 +50,10 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :action => :edit, :id => params[:id]
   end
 
+  def self.regenerate_all_images
+    products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/}}.size
+  end
+
   def regenerate_internal id
     product = Product.find(id)
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
