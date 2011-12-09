@@ -51,10 +51,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def self.regenerate_all_images this_servers_name # needs to be self because we cannot run this in fcgi...
-    products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/}}
-    p = products_with_images[0..1]
+    products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/i}}
+    mini = products_with_images[0..2]
     out = []
-    p.each{|p|
+    mini.each{|p|
       instance = self.new
       instance.params = {:id => p.id}
       def instance.flash() 
@@ -69,10 +69,10 @@ class Admin::ProductsController < Admin::BaseController
 
   def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME']
     product = Product.find(id)
-    pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/ }
+    pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/i }
     raise 'no pdfs' unless pdfs.present?
     logger.warn 'no images?' unless product.images.count > 0
-    old_images = product.images[0..-1]
+    old_images = product.images[0..-1] # force it to load so we get an old snapshot of the original images
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
       # resets ids! params[:product] = {:tag_ids => []}
@@ -83,7 +83,7 @@ class Admin::ProductsController < Admin::BaseController
       save_internal false
       dl.destroy # scaway :)
      }
-     old_images.each{|i| i.destroy}
+     old_images.each{|i| i.destroy unless i.name =~ /\.jpg$/i} # our one user contrib image is a jpeg :P
   end
 
   def save
