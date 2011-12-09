@@ -2,6 +2,7 @@
 <div style="float: left; width: 18%;">
   <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
   <br/>
+  <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
 <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
 <% if @product.downloads.count > 0 %>
@@ -103,7 +104,6 @@
   Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 
-<%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
 
 
 </div> <!-- end float left -->

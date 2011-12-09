@@ -140,7 +140,7 @@ class Product < Item
     if user
       tags
     else
-      tags.select{|t| !(t.is_hymn_tag? || t.is_composer_tag?)}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}
+      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}
      end
   end
 
