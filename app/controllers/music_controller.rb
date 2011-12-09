@@ -37,7 +37,7 @@ class MusicController < StoreController
     @product = Product.find_by_code(params[:id], :include => :images)
 
     if !@product
-      flash[:notice] = "Sorry, we couldn't find the product you were looking for"
+      flash[:notice] = "Sorry, we couldn't find the song you were looking for"
       redirect_to :action => 'index' and return false
     end
     if not_a_bot
