@@ -59,7 +59,7 @@ class Admin::ProductsController < Admin::BaseController
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
       # resets ids! params[:product] = {:tag_ids => []}
-      params[:product] = {}
+      params[:product] = {} # doesn't  reset tags...
       params[:download] = []
       params[:download_pdf_url] = "http://" + request.env["SERVER_NAME"] + dl.relative_path_to_web_server
       logger.info params[:download_pdf_url]
