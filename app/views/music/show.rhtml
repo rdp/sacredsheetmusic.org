@@ -4,8 +4,8 @@
   <br/>
   <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
-<h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
 <% if @product.downloads.count > 0 %>
+  <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
     <ul>
       <% 
        products_with_extension = @product.downloads.map{|dl| 
