@@ -78,9 +78,9 @@
 	<div>
      <%= @product.description %>
 	</div>
-        <% if @product.composer_tag %>
+        <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
            <div>
-              More by <%= link_to2(@product.composer_tag.name, :controller => :music, :action => 'show_by_tags', :tags => [@product.composer_tag.name]) %>
+              More by <%= link_to2(composer_tag.name, :controller => :music, :action => 'show_by_tags', :tags => [composer_tag.name]) %>
              <br />
              <br />
            </div>
