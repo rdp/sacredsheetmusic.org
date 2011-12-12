@@ -129,7 +129,7 @@ class Product < Item
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
-            problems << "probably needs a child tag beneath #{tag.name}"
+            problems << "might need a child tag beneath #{tag.name}"
           end
         end
       end
