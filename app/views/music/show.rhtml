@@ -1,6 +1,6 @@
 <% @two_column_layout = true %>
 <div style="float: left; width: 18%;">
-  <a href="/music" ONCLICK="history.go(-1); return false"> <<< &nbsp; Back to index</a>
+  <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; &nbsp; Back to index</a>
   <br/>
   <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
@@ -76,7 +76,7 @@
     </ul>
 <% end %> <%# end downloads %>
 	<div>
-     <%= @product.description %>
+          <%= @product.description %>
 	</div>
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
            <div>
@@ -103,8 +103,6 @@
 <% if contact = @product.composer_contact %>
   Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
-
-
 
 </div> <!-- end float left -->
 
@@ -191,7 +189,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
-
 
 </div>
 
