@@ -10,7 +10,7 @@ class Product < Item
     :dependent => :destroy
   
 
-  def sync_all_parent_tags
+  def sync_all_parent_tags # that should be checked
     tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent}
      tags.each{|t|
       if t.parent && t.parent.products.count > 0 && !t.parent.id.in?(self.tag_ids)
@@ -68,19 +68,18 @@ class Product < Item
   end
 
   def topic_tags
-    tags.select{|t| t.parent && t.parent.name == "Topics"}
+    tags.select{|t| t.is_topic_tag?}
   end
 
-  # for manual use, currently...
-  def self.all_songs_without_topics
-    self.all.select{|p| p.topic_tags.length == 0}
+  def hymn_tags
+    tags.select{|t| t.is_hymn_tag?}
   end
 
   def self.super_sum
     count = 0; all.each{|dl| count += dl.view_count}; count
   end
 
-  # too strong!
+  # below is too strong!
   # after_save { Cache.delete_all }
   # done in the admin now
 

@@ -12,8 +12,10 @@ class Tag
 
   # sync all hymns amongst themselves
   def self.sync_all_topics_with_all_hymns
-    hymns_parent = Tag.all.select{|t| t.name =~ /^hymn/i}[0]
-    return '' unless hymns_parent # for the other unit tests.and running  adev server..guess I could use fixtures after all :P
+    hymns_parent = Tag.all.select{|t| t.name =~ /^hymn/i}
+    raise if hymns_parent.size > 1
+    return '' unless hymns_parent.size == 1 # for the other unit tests.and running  adev server..guess I could use fixtures after all :P
+    hymns_parent = hymns_parent[0]
     hymns = hymns_parent.children
     raise unless hymns.length > 0
     errors = []
@@ -35,7 +37,9 @@ class Tag
     products = hymn_tag.products
     for product in products
       hymn_tags = product.tags.select{|t| t.is_hymn_tag?}
-      next if hymn_tags.length > 1 
+      if hymn_tags.length > 1 
+        next
+      end
       for tag in product.tags
         all_topic_ids[tag.id] = true if tag.parent.id == topics.id
       end
