@@ -80,17 +80,17 @@
 	</div>
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
            <div>
-              More by <%= tag_link(composer_tag) %>
+              More/About <%= tag_link(composer_tag) %>.
              <br />
              <br />
            </div>
         <% end %>
         <% voicing_tags = @product.linkable_tags(nil).select{|t| t.is_voicing}
            if voicing_tags.length > 0 %>
-          Voicing/Instrumentation: <%= voicing_tags.map(&:name).join(', ') %><br/><br/>
+          Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %><br/><br/>
         <% end %>
         <div> Related song links: <br/>
-          <%= @product.linkable_tags(session[:user]).map{|t| tag_link(t)}.join(', ') %>
+          <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing}.map{|t| tag_link(t)}.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left
   %> 
