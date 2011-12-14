@@ -8,14 +8,7 @@
 							tag = @main_nav_tags[i]
 					%>
 						<li style="" >
-					  	   <%= 
-							link_to2(
-								tag.name,
-								:controller => 'music',
-								:action => 'show_by_tags',
-								:tags => [tag.name]
-							)
-						   %>
+					  	   <%= tag_link(tag) %>
 						</li>
                                                 <%= render :partial => '/menu_dropdown', :locals => {:tag => tag} %>
                                         <% end %>

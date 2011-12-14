@@ -90,8 +90,7 @@
           Voicing/Instrumentation: <%= voicing_tags.map(&:name).join(', ') %><br/><br/>
         <% end %>
         <div> Related song links: <br/>
-          <% links = @product.linkable_tags(session[:user]).map{|t| link_to2(t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name])} %>
-          <%= links.join(', ') %>
+          <%= @product.linkable_tags(session[:user]).map{|t| tag_link(t)}.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left
   %> 

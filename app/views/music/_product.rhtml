@@ -37,7 +37,7 @@
         <% end %>
          <!-- TAGS -->
          <% tags = product.linkable_tags(session[:user]) %>
-         (<%= tags.map{|t| link_to2 t.name, :controller => 'music', :action => 'show_by_tags', :tags => [t.name]}.join(', ') %>)
+         (<%= tags.map{|t| tag_link(t) }.join(', ') %>)
     </div>
   </div>
   <div class="product_bottom"></div>
