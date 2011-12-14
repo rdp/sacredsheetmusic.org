@@ -74,7 +74,22 @@ class ProductTest < ActiveSupport::TestCase
     # now with 2 hymns on prod4? prod3 status quo...
     Tag.sync_all_topics_with_all_hymns
     assert prod3.reload.tags.length == 3
+  end
 
+  def test_can_morph_primary_arrangements
+    test_can_cross_polinate_tags_by_hymn
+    # now with also primary arrangements thrown in there...
+    prod5 = Product.create :name => 'prod5', :code => 'prod5'
+    primary = Tag.create :name => 'primary arrangements' # todo nested parent too?
+    subprimary = Tag.create :name => 'a primary song', :parent => primary
+    prod5.tags << primary
+    prod5.tags << subprimary
+    prod6 = Product.create :name => 'prod6', :code => 'prod6'
+    prod6.tags << subprimary
+    prod5.tags << Tag.find_by_name("coolio topic2") 
+    assert prod6.reload.tags.size == 1
+    Tag.sync_all_topics_with_all_hymns
+    assert prod6.reload.tags.size == 2
   end
 
   def test_gives_warnings

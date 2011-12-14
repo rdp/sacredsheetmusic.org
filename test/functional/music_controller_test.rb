@@ -152,7 +152,8 @@ class MusicControllerTest < ActionController::TestCase
     shows_email true
     shows_email false
   end
-  
+ 
+  private 
   def shows_email use_email
     Tag.destroy_all
     Product.destroy_all
@@ -176,11 +177,12 @@ class MusicControllerTest < ActionController::TestCase
     assert_contains expected_link
 
   end
-  
+ 
+  public 
   def test_normal_search_with_tags
     test_advanced_search
     get :search, {:search_term => "name1"}
-    assert assigns['products'].length == 1
+    assert assigns['products'].length == 2 # it strips off the '1' so gives us both
     get :search, {:search_term => "t1.a"}
     assert assigns['products'].length == 2
   end
