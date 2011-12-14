@@ -58,8 +58,11 @@ module ApplicationHelper
       @show_subnav = true
       return true
     end
-
     return false
+  end
+
+  def tag_link tag
+    link_to2(tag.name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
   end
   
 end

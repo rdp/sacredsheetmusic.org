@@ -80,7 +80,7 @@
 	</div>
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
            <div>
-              More by <%= link_to2(composer_tag.name, :controller => :music, :action => 'show_by_tags', :tags => [composer_tag.name]) %>
+              More by <%= tag_link(composer_tag) %>
              <br />
              <br />
            </div>
