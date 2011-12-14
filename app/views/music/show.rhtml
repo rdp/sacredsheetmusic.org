@@ -123,8 +123,10 @@
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
-    <% if @product.hymn_tag && (competitors = @product.hymn_tag.products.count - 1) > 0 %>
-       <br/>Also see our <%= link_to2("other #{competitors} arrangement#{ competitors > 1 ? 's' : ''}", :controller => 'music', :action => 'show_by_tags', :tags => [@product.hymn_tag.name]) %> of this song.
+    <% for hymn_tag in @product.hymn_tags %>
+     <% if hymn_tag && (competitors_count = hymn_tag.products.count - 1) > 0 %>
+       <br/>Also see our <%= link_to2("other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}", :controller => 'music', :action => 'show_by_tags', :tags => [hymn_tag.name]) %> of this song.
+     <% end %>
     <% end %>
 
       <% if @default_image %>
