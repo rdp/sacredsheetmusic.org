@@ -165,6 +165,7 @@ class MusicController < StoreController
     al = request.headers['Accept-Language']
     not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
     not_bot = false if us =~ /web spider/i
+    not_bot = false if us =~ /robot/i
     
     not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player/i
 
