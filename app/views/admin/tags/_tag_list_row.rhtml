@@ -48,7 +48,8 @@
                 <a href="/admin_data/klass/tag/<%= tag_list_row.id%>/edit">edit tag</a><br/>
                  <%= pluralize(tag_list_row.children.size, 'tag') %> below 
                  <%= link_to 'show songs', :controller => '/music', :action => 'show_by_tags', :tags => [tag_list_row.name] %>
-                 total hits: <%= tag_list_row.all_products_hits %>
+                  total downloads: <%= tag_list_row.all_products_downloads %>
+                  total hits: <%= tag_list_row.all_products_hits %>
                 </span>
 	</span>
 

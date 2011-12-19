@@ -10,6 +10,12 @@ class Tag
     sum
   end
 
+  def all_products_downloads
+    sum = 0
+    self.products.each{|p| p.downloads.each{|d| sum += d.count}}
+    sum
+  end
+
   # sync all hymns amongst themselves
   def self.sync_all_topics_with_all_hymns
     hymns_children = Tag.all.select{|t| t.is_hymn_tag?}
