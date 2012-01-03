@@ -126,7 +126,7 @@ class Product < Item
          end
       end
       for download in downloads
-        if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz)$/i
+        if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz|wma|mus|m4a)$/i
           problems << "might have bad download file #{download.filename}"
         end 
       end

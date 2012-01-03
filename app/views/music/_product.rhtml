@@ -35,6 +35,10 @@
         <% if session[:user] %>
            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
         <% end %>
+         <% if product.downloads.length == 0%>
+           (<a href="<%=product.original_url%>">original page</a>)
+           <br/>
+         <% end %>
          <!-- TAGS -->
          <% tags = product.linkable_tags(session[:user]) %>
          (<%= tags.map{|t| tag_link(t) }.join(', ') %>)

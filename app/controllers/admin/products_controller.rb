@@ -5,11 +5,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def list
    # we get here....
-    @title = "All Product List (<a href=\"/admin_data/quick_search/product\">Other view</a>)"
+    @title = "All Product List"
     @products = Product.paginate(
     :order => "name ASC",
     :page => params[:page],
-    :per_page => params[:per_page] || 30,
+    :per_page => params[:per_page] || 100,
     :include => [:tags, :downloads] # just fer fun...
     )
   end
