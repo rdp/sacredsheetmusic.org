@@ -10,6 +10,10 @@ class Tag
     sum
   end
 
+  def remove_other_tag_from_all_my_children offending_tag
+    self.products.each{|p| p.tags=p.tags.reject{|t| t.id == offending_tag.id}} # use tags= method
+  end
+
   def all_products_pdf_downloads
     sum = 0
     self.products.each{|p| p.downloads.select{|d| d.name =~ /\.pdf$/i}.each{|d| sum += d.count}}
