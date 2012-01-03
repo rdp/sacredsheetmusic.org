@@ -125,6 +125,11 @@ class Product < Item
            problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title]"
          end
       end
+      for download in downloads
+        if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz)$/i
+          problems << "might have bad download file #{download.filename}"
+        end 
+      end
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
