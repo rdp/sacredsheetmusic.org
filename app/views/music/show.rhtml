@@ -76,7 +76,7 @@
       <% end %>
     </ul>
 <% end %> <%# end downloads %>
-	<div>
+	<div width=100>
           <%= @product.description %>
 	</div>
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>

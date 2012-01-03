@@ -28,7 +28,11 @@ class File
 
 end
 
-
+class ::String
+  def strip_html_tags
+    gsub(/[<].*?[>]/, '')
+  end
+end
 
 # Globals
 ERROR_EMPTY  = 'Please fill in this field.'
