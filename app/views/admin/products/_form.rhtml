@@ -8,7 +8,7 @@
  <%= link_to 'New Song', {:action => 'new'}, :class => 'button hundredfifty' %>
   </div>
              <% problems = @product.find_problems %>
-             <%= "Current difficulties: " + problems.join(',') if problems.present? %>
+             <%= "Current difficulties: " + problems.join(',') if @product.id.present? && problems.present? %>
 	<div class="padLeft">
 		<div class="float" style="padding-left:15px;">
 			<%= make_label('Name (can leave blank if you tag with hymn name and a composer)', true) %>
