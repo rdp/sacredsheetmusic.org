@@ -112,7 +112,6 @@
       <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">
     <% end %>
     <% if @product.original_url.present? %>
-        <div style="float:left;">
            <% if @product.images.count > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
            <% else %>
@@ -121,7 +120,6 @@
 <br />
                Please visit the <a href="<%= @product.original_url %>">author's original page</a> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
-        </div>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
