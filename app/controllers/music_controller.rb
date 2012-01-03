@@ -184,8 +184,6 @@ class MusicController < StoreController
   end
 
   def download_helper disposition, add_count = true
-    ua = request.headers['User-Agent']
-    accept_language = request.headers['Accept-Language']
     # find download...
     file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
     if file && File.exist?(file.full_filename)
@@ -208,7 +206,6 @@ class MusicController < StoreController
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
-
   end
 
   # Our simple all songs list

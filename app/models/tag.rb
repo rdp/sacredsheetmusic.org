@@ -16,6 +16,14 @@ class Tag
     sum
   end
 
+  def super_children
+    if self.children.length > 0
+      [self, self.children.map{|c| c.super_children}].flatten
+    else
+     self
+    end
+  end
+
   # sync all hymns amongst themselves
   def self.sync_all_topics_with_all_hymns
     hymns_children = Tag.all.select{|t| t.is_hymn_tag?}
