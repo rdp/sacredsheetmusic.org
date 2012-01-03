@@ -34,7 +34,8 @@
         <% if @display_bio || @display_composer_contact%>
            <div style="padding-bottom: 0px;"><%= @display_bio %> <br/>
            <% if @display_composer_contact %>
-             <a href="<%= @display_composer_contact%>"><%= @display_composer_contact =~ /mailto/ ? 'Email composer' : 'Visit composer\'s website'%></a> if you'd like to send them a personal note or see their site.
+             
+             <a href="<%= @display_composer_contact%>"><%= @display_composer_contact =~ /mailto/ ? "Email " + @composer_tag.name : "Visit #{@composer_tag.name}\'s website"%></a> if you'd like to send them a personal note or see their site.
            <% end %>
            </div>
         <% end %>
