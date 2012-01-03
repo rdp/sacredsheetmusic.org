@@ -77,11 +77,12 @@
     </ul>
 <% end %> <%# end downloads %>
 	<div width=100>
-          <%= @product.description %>
+          <%= @product.description.strip_html_tags %>
 	</div>
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
+           <br />
            <div>
-              More/About <%= tag_link(composer_tag) %>.
+              See more from <%= tag_link(composer_tag) %>.
              <br />
              <br />
            </div>
