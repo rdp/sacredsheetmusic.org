@@ -24,7 +24,8 @@
             products_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
             link_name = dl.filename if count > 1
             if link_name.size > 15
-               link_name = link_name[0..14] + '-' + filename_extension[0..10] # don't want them too big...
+               extension_sans_dot = filename_extension[0..10]
+               link_name = link_name[0..10] + '-' + link_name[-5..-(extension_sans_dot.length + 2)] + ' ' + extension_sans_dot # don't want them too big...sometimes even the extension is too large weird
             end
           
             inline_view = link_to(
