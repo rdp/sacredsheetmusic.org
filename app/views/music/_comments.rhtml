@@ -13,7 +13,8 @@
 <% end %>
 
 <br />
-Add a public <a href="#" onClick="$('comments').toggle();">comment/rating</a> for this piece.
+<button onClick="$('comments').toggle();">Add a comment/rating&nbsp;</button> for this piece.
+
   <div id="comments" style="display:none;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] public comment about this piece, or ideas on how to perform it, etc.:<br/>
