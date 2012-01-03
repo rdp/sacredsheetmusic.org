@@ -112,9 +112,12 @@
     <% if @product.original_url.present? %>
         <div style="float:left;">
            <% if @product.images.count > 0 %>
-             Or visit the <a href="<%= @product.original_url %>">author's page</a> for this piece.
+             Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
            <% else %>
-               Please go to the <a href="<%= @product.original_url %>">author's original page</a> to see or print this song's sheet music<% if @product.downloads.length == 0 %> and/or see recordings available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+<br />
+<br />
+<br />
+               Please visit the <a href="<%= @product.original_url %>">author's original page</a> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
         </div>
     <% else %>
