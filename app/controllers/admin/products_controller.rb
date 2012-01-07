@@ -305,7 +305,8 @@ class Admin::ProductsController < Admin::BaseController
     logger.info 'downloading to', temp_file_path
     download(url, temp_file_path)
     fake_upload = Pathname.new(temp_file_path)
-    fake_upload.original_filename = url.split('/')[-1]
+     # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a787040b902c68d5680cfbe5ea065&l_sid=21117&l_eid=&l_mid=2660741&expiration=1325969215&hwt=28bdd0536f3512d6ba1d60cb3e38d23d -> DormanSeason.mp3
+    fake_upload.original_filename = url.split('/')[-1].split('?')[0..-2].join('?')
     fake_upload.original_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
     fake_upload.content_type = type
     new_download = {:download_data => fake_upload}
