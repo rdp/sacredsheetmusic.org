@@ -16,7 +16,7 @@ class Tag
 
   def all_products_pdf_downloads
     sum = 0
-    self.products.each{|p| p.downloads.select{|d| d.name =~ /\.pdf$/i}.each{|d| sum += d.count}}
+    self.products.each{|p| sum += p.pdf_download_count}
     sum
   end
 

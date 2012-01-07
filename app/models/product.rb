@@ -79,6 +79,11 @@ class Product < Item
     count = 0; all.each{|dl| count += dl.view_count}; count
   end
 
+  def pdf_download_count
+    sum = 0;downloads.select{|d| d.name =~ /\.pdf$/i}.each{|d| sum += d.count}
+    sum
+  end
+
   # below is too strong!
   # after_save { Cache.delete_all }
   # done in the admin now
@@ -114,6 +119,9 @@ class Product < Item
       end
       unless self.composer_tag
          problems << "song has no composer tag?"
+      end
+      if self.tags.detect{|t| t.name =~ /piano/} && self.tags.detect{|t| t.name =~ /choir/}
+         problems << "song has both piano and choir tags--probably not expected"
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"
