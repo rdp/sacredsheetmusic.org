@@ -91,13 +91,16 @@ class Product < Item
   def find_problems
       problems = []
       if self.topic_tags.length == 0
-        problems << "Warning: no topics associated with song yet."
+        problems << "no topics associated with song yet."
+      end
+      if self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || t.name =~ /solo/i}.length > 1
+        problems << "has dual voicing like SATB and SAB or solo, possibly needs to be split."
       end
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
-        problems <<  "Warning: no hymn or 'original' tag for this song yet."
+        problems <<  "no hymn or 'original' tag for this song yet."
       end
       if self.downloads.size == 0 && !self.original_url.present?
-        problems << "Warning: song has no original_url nor pdf uploads! Not expected I don't think..."
+        problems << "song has no original_url nor pdf uploads! Not expected I don't think..."
       end
       if self.original_url.present? && !self.original_url.start_with?("http")
         problems << "original url should start with http://"
@@ -145,7 +148,7 @@ class Product < Item
           end
         end
       end
-      problems
+      problems.map{|p| "warning:" + p}
   end
 
   def linkable_tags user
