@@ -251,19 +251,21 @@ class MusicController < StoreController
     @search_term = params[:search_term]
     @title = "Search Results for: #{@search_term}"
     
-    super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| "%#{name}%"}
-    super_search_query = super_search_terms.map{|unused|"(name like ?)"}.join(" and ")
+    super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*2}.flatten
+    super_search_query = (["(items.name like ? or tags.name like ?)"]*(super_search_terms.length/2)).join(" and ")
 
     # XXX can search by code
     
     # XXX paginate :)
       conds = [
-        "(name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
-        "%#{@search_term}%", @search_term
+        "(items.name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
+        "%#{@search_term}%", @search_term # name, code
       ] + super_search_terms
-   logger.info conds.inspect 
+
+    logger.info conds.inspect 
+
     @products = Product.find(:all, :include => [:tags],
-      :order => 'name ASC', :conditions => conds
+      :order => 'items.name ASC', :conditions => conds
     )
 
     # search for matching tags, too
