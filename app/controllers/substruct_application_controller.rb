@@ -6,7 +6,7 @@ module SubstructApplicationController
   def redirect_to_freeldssheetmusic
     if ENV['RAILS_ENV'] == "production" 
       #if( (request.host !~ /freeldssheetmusic.org/) || (request.host =~ /choirarrangements.freeldssheetmusic.org/) )
-      if request.host =~ /^www/ || (request.host !~ /freeldssheetmusic.org/)
+      if request.host =~ /^(www|choirarrangements)/ || (request.host !~ /freeldssheetmusic.org/)
          redirect_to "http://freeldssheetmusic.org" + request.request_uri
          flash.keep
          return false
