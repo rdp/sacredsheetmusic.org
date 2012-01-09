@@ -253,6 +253,8 @@ class MusicController < StoreController
     
     super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| "%#{name}%"}
     super_search_query = super_search_terms.map{|unused|"name like ?"}.join(" and ")
+
+    # XXX can search by code
     
     # XXX paginate :)
       conds = [
@@ -260,11 +262,11 @@ class MusicController < StoreController
         "%#{@search_term}%", @search_term
       ] + super_search_terms
    logger.info conds.inspect 
-    @products = Product.find(:all,
+    @products = Product.find(:all, :include => [:tags],
       :order => 'name ASC', :conditions => conds
     )
 
-    # search for tags, too
+    # search for matching tags, too
     @tags = Tag.find(:all,
       :order => 'name ASC',
       :conditions => [
