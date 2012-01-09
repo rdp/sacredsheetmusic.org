@@ -93,8 +93,9 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
-      if self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || t.name =~ /solo/i}.length > 1
-        problems << "has dual voicing like SATB and SAB or solo, possibly needs to be split."
+      distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}
+      if distinct_voicing_tags.length > 1
+        problems << "has dual voicing #{distinct_voicing_tags.map(&:name).join(',')}, possibly needs to be split."
       end
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "no hymn or 'original' tag for this song yet."
