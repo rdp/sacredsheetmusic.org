@@ -8,7 +8,7 @@
 							tag = @main_nav_tags[i]
 					%>
 						<li style="" >
-					  	   <%= tag_link(tag) %>
+					  	   <%= tag_link_nav(tag) %>
 						</li>
                                                 <%= render :partial => '/menu_dropdown', :locals => {:tag => tag} %>
                                         <% end %>

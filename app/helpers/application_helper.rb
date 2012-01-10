@@ -61,6 +61,10 @@ module ApplicationHelper
     return false
   end
 
+  def tag_link_nav tag
+    link_to2(tag.name_in_nav.present? ? tag.name_in_nav : tag.name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
+  end
+
   def tag_link tag
     link_to2(tag.name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
   end
