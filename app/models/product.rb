@@ -86,16 +86,16 @@ class Product < Item
 
   # below is too strong!
   # after_save { Cache.delete_all }
-  # done in the admin now
+  # done in the admin controller for now XXXX
 
   def find_problems
       problems = []
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
-      distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}
+      distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato/i}
       if distinct_voicing_tags.length > 1
-        problems << "has dual voicing #{distinct_voicing_tags.map(&:name).join(',')}, possibly needs to be split."
+        problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split."
       end
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "no hymn or 'original' tag for this song yet."
@@ -145,7 +145,7 @@ class Product < Item
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
-            problems << "might need a child tag beneath #{tag.name}"
+            problems << "might need a child tag beneath #{tag.name}, or for that tag to be removed possibly"
           end
         end
       end
