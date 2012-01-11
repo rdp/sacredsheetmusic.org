@@ -33,7 +33,8 @@
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <% if session[:user] %>
-           <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
+            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
+            <%= link_to 'fix piano', {:controller => 'admin/products', :action => 'fix_remove_piano_tag', :id => @product}, :class => 'action' %>
            <%= product.find_problems.inspect if product.find_problems.present? %>
         <% end %>
          <!-- TAGS -->
