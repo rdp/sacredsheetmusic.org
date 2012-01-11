@@ -36,7 +36,7 @@ class Admin::ProductsController < Admin::BaseController
     raise 'no id?' unless id = params[:id]
     product = Product.find(id)
     raise unless product
-    product.tags = product.tags.reject{|t| t.name =~ /piano/i}
+    product.tags = product.tags.reject{|t| t.name =~ /piano/i || t.name == "Instrumental"}
     redirect_to :action => :edit, :id => params[:id]
   end
 
@@ -117,10 +117,7 @@ class Admin::ProductsController < Admin::BaseController
 
     if @product.save
 
-      Cache.delete_all(:parent_id => @product.id)
-      #Cache.clear! # too aggressive, see above :)
-
-      # Save product tags
+      # Now save product tags
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
@@ -251,6 +248,8 @@ class Admin::ProductsController < Admin::BaseController
          end
 
       end
+
+      @product.clear_my_cache
 
       flash[:notice] += " Product '#{@product.name}' saved."
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')

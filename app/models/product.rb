@@ -84,9 +84,9 @@ class Product < Item
     sum
   end
 
-  # below is too strong!
-  # after_save { Cache.delete_all }
-  # done in the admin controller for now XXXX
+  def clear_my_cache
+    Cache.delete_all(:parent_id => self.id) # can't even do this in an after_save {} because of view_count being incremented so frequently...well I guess I could...
+  end
 
   def find_problems
       problems = []
