@@ -35,9 +35,6 @@
         <% if session[:user] %>
             <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
             <% if (probs = product.find_problems).present? %>
-              <% if probs.inspect =~ /BOTH/ %>
-                <%= link_to 'fix piano', {:controller => 'admin/products', :action => 'fix_remove_piano_tag', :id => product}, :class => 'action' %>
-              <% end %>
               <%= probs.inspect%>
             <% end %>
         <% end %>
