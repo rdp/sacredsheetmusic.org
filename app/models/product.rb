@@ -95,7 +95,7 @@ class Product < Item
       end
       distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato/i}
       if distinct_voicing_tags.length > 1
-        problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split."
+        problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split or one removed."
       end
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "no hymn or 'original' tag for this song yet."
@@ -124,8 +124,8 @@ class Product < Item
       unless self.composer_tag
          problems << "song has no composer tag?"
       end
-      if self.tags.detect{|t| t.name =~ /piano/i} && self.tags.detect{|t| t.name =~ /choir/i}
-         problems << "song has both piano and choir tags--probably not expected"
+      if (piano = self.tags.detect{|t| t.name =~ /piano/i}) && (choir = self.tags.detect{|t| t.name =~ /choir/i})
+         problems << "song has both piano #{piano.name} and choir #{choir.name} tags--probably not expected"
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"

@@ -34,6 +34,7 @@
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <% if session[:user] %>
            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
+           <%= product.find_problems.inspect if product.find_problems.present? %>
         <% end %>
          <!-- TAGS -->
          <% tags = product.linkable_tags(session[:user]) %>
