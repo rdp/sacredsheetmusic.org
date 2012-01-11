@@ -36,7 +36,11 @@ class Admin::ProductsController < Admin::BaseController
     raise 'no id?' unless id = params[:id]
     product = Product.find(id)
     raise unless product
+    init = product.tags.size
     product.tags = product.tags.reject{|t| t.name =~ /piano/i || t.name == "Instrumental"}
+    now = product.tags.size
+    product.clear_my_cache
+    flash[:notice] = "removed #{init} -> #{now} tags"
     redirect_to :action => :edit, :id => params[:id]
   end
 
