@@ -125,7 +125,7 @@ class Product < Item
          problems << "song has no composer tag?"
       end
       if (piano = self.tags.detect{|t| t.name =~ /piano/i}) && (choir = self.tags.detect{|t| t.name =~ /choir/i})
-         problems << "song has both piano #{piano.name} and choir #{choir.name} tags--probably not expected"
+         problems << "song has BOTH PIANO piano #{piano.name} and choir #{choir.name} tags--probably not expected"
       end
       if self.composer_tag && !self.composer_tag.composer_contact.present?
          problems << "composer associated with this song has not contact info?"
