@@ -32,9 +32,9 @@
               link_name,
               :controller => 'music',
               :action => 'inline_download_file',
-              :params => { :download_id => dl.id }
+              :params => { :download_id => dl.id, :name => dl.filename }
             )
-            friendly_download_url = url_for(:action => 'inline_download_file', :params => {:download_id => dl.id})
+            friendly_download_url = url_for(:action => 'inline_download_file', :params => {:download_id => dl.id, :name => dl.filename})
             inline_view
           %>
 
