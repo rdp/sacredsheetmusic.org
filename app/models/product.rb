@@ -8,9 +8,8 @@ class Product < Item
   has_many :images,
     :through => :product_images, :order => "-product_images.rank DESC",
     :dependent => :destroy
-  
 
-  def sync_all_parent_tags # that should be checked
+  def sync_all_parent_tags # check parent tags that should be checked but weren't
     tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent}
      tags.each{|t|
       if t.parent && t.parent.products.count > 0 && !t.parent.id.in?(self.tag_ids)
@@ -93,7 +92,7 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
-      distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato/i}
+      distinct_voicing_tags =  self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir/i}
       if distinct_voicing_tags.length > 1
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
       end
