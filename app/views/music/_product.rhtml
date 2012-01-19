@@ -40,7 +40,7 @@
         <% end %>
          <!-- TAGS -->
          <% tags = product.linkable_tags(session[:user]) %>
-         (<%= tags.map{|t| tag_link(t) }.join(', ') %>)
+         (<%= tags.map{|t| tag_link(t).gsub(',', '') }.join(', ') %>)
          <% if product.downloads.length == 0%>
            (<a href="<%=product.original_url%>">author's page</a>)
            <br/>

@@ -92,4 +92,15 @@ class Tag
   def is_original_tag?
     self.name =~ /original/i
   end
+
+  # Finds ordered parent tags by rank.
+  def self.find_ordered_parents
+    find(
+      :all,
+      :conditions => "parent_id IS NULL OR parent_id = 0",
+#      :include => [:parent, :children], # we don't want *all* children though...that seems kind of wasteful
+      :order => "-rank DESC"
+    )
+  end
+
 end

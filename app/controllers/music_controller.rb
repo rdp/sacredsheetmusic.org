@@ -173,7 +173,7 @@ class MusicController < StoreController
     if not_bot
       prefix= "not bot:"
     else
-      prefix "yes bot:"
+      prefix= "yes bot:"
     end
     logger.info "#{prefix} #{not_bot} [#{ua}] [#{al}]" unless ua =~ /Wget/
     if session[:user]
