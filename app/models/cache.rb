@@ -13,10 +13,6 @@ class Cache < ActiveRecord::Base
     get_or_set_int( collection.map{|record| [record, record.attributes]}, identifier) { yield }
   end
 
-  def self.get_or_set_ints(ints, identifier)
-
-  end
-
   def self.get_or_set_int(int, identifier)
     hash = [int, identifier].hash
     if a = Cache.find_by_hash_key(hash)
