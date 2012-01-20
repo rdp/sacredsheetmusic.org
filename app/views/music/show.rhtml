@@ -26,7 +26,10 @@
             if link_name.size > 15
                extension_sans_dot = filename_extension[0..10]
                link_name = link_name[0..(-filename_extension.length-1)] # strip off extension
-               link_name = link_name[0..7] + '...' + link_name[8..-1][-(9-extension_sans_dot.length)..-2] + ' ' + extension_sans_dot # don't want them too big...sometimes even the extension is too large weird
+               first_part = link_name[0..7]
+               # now I want the last...9 characters or so
+               second_part = link_name[8..-1][-(9-extension_sans_dot.length)..-2] || link_name[8..-1] # no #last method?
+               link_name = first_part + '...' + second_part+ ' ' + extension_sans_dot
             end
           
             inline_view = link_to(
