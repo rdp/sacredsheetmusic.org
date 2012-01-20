@@ -255,7 +255,7 @@ class MusicController < StoreController
     end
     @title = "Search Results for: #{@search_term}"
     
-    super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*2}.flatten
+    super_search_terms = params[:search_term].split.map{|word| word.split("'")[0]}.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*2}.flatten
     super_search_query = (["(items.name like ? or tags.name like ?)"]*(super_search_terms.length/2)).join(" and ")
 
     # XXX can search by code
