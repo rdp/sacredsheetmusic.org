@@ -255,8 +255,8 @@ class MusicController < StoreController
     end
     @title = "Search Results for: #{@search_term}"
     
-    super_search_terms = params[:search_term].split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*2}.flatten
-    super_search_query = (["(items.name like ? or tags.name like ?)"]*(super_search_terms.length/2)).join(" and ")
+    super_search_terms = params[:search_term].split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX can search by code
     
