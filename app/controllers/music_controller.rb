@@ -262,8 +262,6 @@ class MusicController < StoreController
         "%#{@search_term}%", @search_term # name, code
       ] + super_search_terms
 
-    logger.info conds.inspect 
-
     @products = Product.find(:all, :include => [:tags],
       :order => 'items.name ASC', :conditions => conds
     )

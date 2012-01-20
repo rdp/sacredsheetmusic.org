@@ -40,6 +40,7 @@ module ApplicationHelper
   # is the main "parent" tag or tag group.
   #
   # This lets us display the "active" state in the UI
+  # appears to vary based on @viewing_tags
   #
   def is_main_tab_active?(tab_id)
     if (@viewing_tags && @viewing_tags[0].id == tab_id) || (@viewing_tags && @viewing_tags[0].parent && @viewing_tags[0].parent.id == tab_id)
