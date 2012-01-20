@@ -133,7 +133,7 @@ class Product < Item
       end
       if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
          unless t.id.in? self.tag_ids
-           problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title]"
+           problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title #{self.name}]"
          end
       end
       for download in downloads
