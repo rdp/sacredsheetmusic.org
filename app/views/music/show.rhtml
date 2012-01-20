@@ -25,8 +25,8 @@
             link_name = dl.filename if count > 1
             if link_name.size > 15
                extension_sans_dot = filename_extension[0..10]
-               link_name = link_name[0..(0-filename_extension.length)] # strip off extension
-               link_name = link_name[0..7] + '-' + link_name[8..-1][-(9-extension_sans_dot.length)..-1] + ' ' + extension_sans_dot # don't want them too big...sometimes even the extension is too large weird
+               link_name = link_name[0..(-filename_extension.length-1)] # strip off extension
+               link_name = link_name[0..7] + '...' + link_name[8..-1][-(9-extension_sans_dot.length)..-2] + ' ' + extension_sans_dot # don't want them too big...sometimes even the extension is too large weird
             end
           
             inline_view = link_to(
