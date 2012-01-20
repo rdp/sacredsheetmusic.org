@@ -119,7 +119,7 @@ class MusicController < StoreController
     end
 
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC")
-    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music/arrangements" : t.name}
+    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music/free arrangements" : t.name}
     viewing_tag_names = @tag_names.join(" > ")
     @title = "#{viewing_tag_names}"
 
