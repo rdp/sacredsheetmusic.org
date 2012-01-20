@@ -105,15 +105,15 @@ class Admin::ProductsController < Admin::BaseController
       @product = Product.new
     end
  
-    @product.attributes = params[:product] # actually performs a tag save...if the product already existed.
+    @product.attributes = params[:product] # actually performs a tag save...if the product already existed.  Which thing is wrong, again.
+
     if !@product.name.present? 
       # see if we should auto-fill
       tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
-      has_hymn_tag = tags_as_objects.detect{|t| t.is_hymn_tag?}
-      has_composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
-      if has_hymn_tag && has_composer_tag
-        used_temp = true
-        @product.name = 'name to be replaced programmatically with hymn name' 
+      hymn_tag = tags_as_objects.detect{|t| t.is_hymn_tag?}
+      composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
+      if hymn_tag && composer_tag
+        @product.name = hymn_tag.name
       else
         flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title?"      
       end
@@ -125,12 +125,8 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
-         @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is wrong...
+         @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is so wrong...
          @product.sync_all_parent_tags
-         if used_temp
-           @product.name=@product.hymn_tag.name
-           @product.save! # re-save... 
-         end
       else
         # regenerate doesn't have them...leave the same...
       end
