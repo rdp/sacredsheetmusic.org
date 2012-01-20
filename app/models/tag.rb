@@ -93,12 +93,14 @@ class Tag
     self.name =~ /original/i
   end
 
+  after_save { Cache.clear! } # cached left side is messed now, possibly other things as well...
+
   # Finds ordered parent tags by rank.
   def self.find_ordered_parents
     find(
       :all,
       :conditions => "parent_id IS NULL OR parent_id = 0",
-#      :include => [:parent, :children], # we don't want *all* children though...that seems kind of wasteful
+#      :include => [:parent, :children], # we don't want *all* children though...that seems kind of wasteful, esp. since we cache output anyway now
       :order => "-rank DESC"
     )
   end
