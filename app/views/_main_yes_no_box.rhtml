@@ -144,7 +144,11 @@
 	<div id="contentBody">
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
-              <%= Cache.get_or_set_int(@viewing_tags.map(&:id).hash,'boxed') {render :partial => '/boxed_categories' }%>
+              <%= 
+               Cache.get_or_set_int(@viewing_tags.andand.map(&:id).hash,'boxed') {
+                 render :partial => '/boxed_categories' 
+               }
+               %>
           <% end %>
 	  <%= yield %>
 	</div><!-- End content body -->
