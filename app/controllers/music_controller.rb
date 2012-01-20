@@ -165,7 +165,7 @@ class MusicController < StoreController
     ua = request.headers['User-Agent']
     al = request.headers['Accept-Language']
     not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
-    not_bot = false if ua =~ /web spider/i
+    not_bot = false if ua =~ /spider/i
     not_bot = false if ua =~ /robot/i
     
     not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player/i
@@ -249,6 +249,9 @@ class MusicController < StoreController
   
   def search
     @search_term = params[:search_term]
+    unless @search_term
+      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+    end
     @title = "Search Results for: #{@search_term}"
     
     super_search_terms = params[:search_term].split.map{|name| name.gsub(/[^a-z]/, '')}.map{|name| ["%#{name}%"]*2}.flatten
