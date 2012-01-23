@@ -168,9 +168,7 @@
           <br /> <!-- make footer look like a footer -->
        <% end %>
   
-<% pdf_views = 0
-  @product.downloads.each{|dl| pdf_views += dl.count if dl.name =~ /\.pdf/}
-%>
+<% pdf_views = @product.pdf_download_count %>
 
 <div style="padding-left: 15px; float: right;">
 <% if @product.view_count > 5 %>
