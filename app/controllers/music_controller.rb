@@ -34,7 +34,8 @@ class MusicController < StoreController
 
 
   def show
-    @product = Product.find_by_code(params[:id], :include => [:images, :downloads, :tags])
+#{:tags => [:parent, :children]}
+    @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
 
     if !@product
       flash[:notice] = "Sorry, we couldn't find the song you were looking for"
