@@ -4,7 +4,7 @@
   <br/>
   <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
-<% if @product.downloads.count > 0 %>
+<% if @product.downloads.length > 0 %>
   <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
     <ul>
       <% 
@@ -114,7 +114,7 @@
       <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">
     <% end %>
     <% if @product.original_url.present? %>
-           <% if @product.images.count > 0 %>
+           <% if @product.images.length > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
            <% else %>
 <br />
@@ -126,7 +126,7 @@
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
     <% for hymn_tag in @product.hymn_tags %>
-     <% if hymn_tag && (competitors_count = hymn_tag.products.count - 1) > 0 %>
+     <% if hymn_tag && (competitors_count = hymn_tag.products.size - 1) > 0 %>
        <br/>Also see our <%= link_to2("other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}", :controller => 'music', :action => 'show_by_tags', :tags => [hymn_tag.name]) %> of this song (<%= hymn_tag.name %>).
      <% end %>
     <% end %>
