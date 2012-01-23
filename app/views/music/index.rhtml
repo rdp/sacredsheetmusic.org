@@ -21,7 +21,8 @@
 					tag_name_list << tag
 			%>
 				<% if i > 0 then %>&gt;<% end %>
-                                <%# custom %> <%= link_to2 tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %>
+                                  <%#= link_to2 tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %> <%# we don't really use navigation right anymore anyway, and this link was at times broken %>
+                                  <%= tag %>
 			<%
 				i += 1
 				end
@@ -42,7 +43,7 @@
         <% if @products.length > 20 %>
            <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
              <% if @viewing_tags %>
-                <% if (@viewing_tags[0].children.count > 0) %>
+                <% if (@viewing_tags[0].children.size > 0) %>
                    Or by choosing a sub-category, to your left.)
                 <% else %>
                   ) <!-- ugly, I know -->
