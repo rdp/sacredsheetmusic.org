@@ -42,8 +42,8 @@ class MusicController < StoreController
       redirect_to :action => 'index' and return false
     end
     if not_a_bot
-      @product.view_count += 1
-      @product.save
+      # avoid after_save blocks ...
+      Product.increment_counter(:view_count, @product.id)
     end
     if @product.composer_tag
       @title = "#{@product.name} (by #{@product.composer_tag.name})"
