@@ -1,9 +1,3 @@
-<%= 
-  auto_discovery_link_tag(
-    :rss, {:action => 'index', :format => 'rss'}, {:title => @title}
-  )
-%>
-
 <% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left; margin: 0px;": "" # hacky kludgey...
 %>
 
