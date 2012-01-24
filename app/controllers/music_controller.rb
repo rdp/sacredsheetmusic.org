@@ -171,6 +171,7 @@ class MusicController < StoreController
     # slightly prefer to undercount uh guess
     not_bot = false if ua =~ /spider/i
     not_bot = false if ua =~ /robot/i
+    not_bot = false if ua =~ /googlebot/i # googlebot
 
     if not_bot
       prefix= "not bot:"
