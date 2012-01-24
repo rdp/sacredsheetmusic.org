@@ -60,7 +60,7 @@ class Product < Item
       end
     end
 #    self.code.upcase!
-    self.code = self.code.gsub(/[ $]i'm /, 'Im ')
+    self.code = self.code.gsub('\'', '')
     self.code = self.code.gsub(/[^[:alnum:]]/,'-')#.gsub(/-{2,}/,'-')
     self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
     self.code.strip!
