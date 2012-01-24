@@ -60,6 +60,7 @@ class Product < Item
       end
     end
 #    self.code.upcase!
+    self.code = self.code.gsub(/[ $]i'm /, 'Im ')
     self.code = self.code.gsub(/[^[:alnum:]]/,'-')#.gsub(/-{2,}/,'-')
     self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
     self.code.strip!
@@ -153,7 +154,7 @@ class Product < Item
 
   def linkable_tags user
     if user
-      tags
+      tags # all :)
     else
       tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}
      end
