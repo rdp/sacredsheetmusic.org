@@ -26,7 +26,7 @@
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
-        <% if @display_bio || @display_composer_contact%>
+        <% if @display_bio.present? || @display_composer_contact%>
            <div style="padding-bottom: 0px;"><%= @display_bio %> <br/>
            <% if @display_composer_contact %>
              
