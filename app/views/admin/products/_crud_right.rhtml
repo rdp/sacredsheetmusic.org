@@ -70,14 +70,11 @@
 <p class="info">
 	Tags will be assigned when you save this product.
 </p>
-<p class="info">
-	<i>(Button at the bottom of this page)</i>
-</p>
 
 <!-- 
 	RELATED PRODUCTS ############################################################
 -->
-<h1>Related Products</h1>
+<!--h1>Related Products</h1>
 <%
 	i = 0
 	for relative in @product.related_products do
@@ -88,10 +85,10 @@
 <% (i..4).each do |i| %>
 	<%= render :partial => 'relative', :locals => { :input_id => "relative_box_#{i}" } %>
 <% end%>
-
 <span class="info">
 	Type in the product name or code here. It will be auto-completed for you.
 </span>
+ -->
 
 </div>
 <div class="clear">&nbsp;</div>
