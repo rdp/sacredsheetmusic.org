@@ -87,6 +87,7 @@ class Product < Item
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id) # can't even do this in an after_save {} because of view_count being incremented so frequently...well I guess I could...
   end
+  after_save { Cache.clear! }
 
   def find_problems
       problems = []
