@@ -9,7 +9,7 @@ class Admin::ProductsController < Admin::BaseController
     @products = Product.paginate(
     :order => "name ASC",
     :page => params[:page],
-    :per_page => params[:per_page] || 100,
+    :per_page => params[:per_page] || 20,
     :include => [:tags, :downloads] # just fer fun...
     )
   end
