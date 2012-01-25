@@ -1,6 +1,5 @@
 class MusicController < StoreController
- ViewCache = {}
- @@per_page = 1116
+ @@per_page = 11116
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
