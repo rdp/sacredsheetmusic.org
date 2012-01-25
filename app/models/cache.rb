@@ -4,23 +4,34 @@ class Cache < ActiveRecord::Base
   # parent_id
 
   set_table_name 'cache'
+
   def self.clear!
      delete_all
   end
 
-  # uses AR instance' attributes too <yikes rails' #hash ...>
-  def self.get_or_set_records_with_attributes collection, identifier
-    get_or_set_int( collection.map{|record| [record, record.attributes]}, identifier) { yield }
+  def self.delete_by_type type
+    verify_type type
+    delete_all(:conditions => ["type = ?", type])
   end
 
-  def self.get_or_set_int(int, some_unique_identifier)
-    hash = [int, some_unique_identifier].hash
+  # uses AR instance' attributes too <yikes rails' #hash ...>
+  #def self.get_or_set_records_with_attributes collection, identifier
+  #  get_or_set_int( collection.map{|record| [record, record.attributes]}, identifier) { yield }
+  #end
+
+  def self.verify_type type
+    raise unless ['tags', 'single_product', 'group_products'].contain? type
+  end
+
+  def self.get_or_set_int(int, some_unique_identifier, type)
+    verify_type type
+    hash = [int, some_unique_identifier, type].hash
     if a = Cache.find_by_hash_key(hash)
       # assume string for now
       a.string_value
     else
       string_value = yield
-      outgoing = Cache.new :hash_key => hash, :string_value => string_value, :parent_id => int
+      outgoing = Cache.new :hash_key => hash, :string_value => string_value, :parent_id => int, :cache_type => type
       outgoing.save
       string_value 
     end

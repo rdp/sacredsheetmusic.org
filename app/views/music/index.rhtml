@@ -51,10 +51,10 @@
              <div style="height: 5px;"></div> <!-- don't want it too high -->
         <% end %>
 
-	<%= Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s) { 
+	<%= Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
            out = '' # is there some elegant way? hmm...
            for product in @products
-              this_product_box = Cache.get_or_set_int(product.id, 'music_box_display2' + session[:user].to_s) { render :partial => 'product', :locals => {:product => product}, :to => :string } 
+              this_product_box = Cache.get_or_set_int(product.id, 'music_box_display2' + session[:user].to_s, 'single_product') { render :partial => 'product', :locals => {:product => product}, :to => :string } 
               out << this_product_box
            end
            out 
