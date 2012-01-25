@@ -2,8 +2,6 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
 
-  #after_save { Cache.clear! } # we don't list it with the songs anymore...
-
   def all_products_hits
     sum = 0
     self.products.each{|p| sum += p.view_count}
@@ -93,7 +91,13 @@ class Tag
     self.name =~ /original/i
   end
 
-  after_save { Cache.clear! } # cached left side is messed now, possibly other things as well...
+  after_update {
+    Cache.clear! # no idea what damage this did...
+  }
+
+  after_save { 
+    Cache.delete_by_type 'tags'
+  } # cached left side is messed now, possibly other things as well...
 
   # Finds ordered parent tags by rank.
   def self.find_ordered_parents

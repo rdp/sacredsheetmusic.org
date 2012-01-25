@@ -11,7 +11,7 @@ class Cache < ActiveRecord::Base
 
   def self.delete_by_type type
     verify_type type
-    delete_all(:conditions => ["type = ?", type])
+    delete_all(["cache_type = ?", type])
   end
 
   # uses AR instance' attributes too <yikes rails' #hash ...>

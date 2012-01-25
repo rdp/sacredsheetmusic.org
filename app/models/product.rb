@@ -88,7 +88,7 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id) # can't even do this in an after_save {} because of view_count being incremented so frequently...well I guess I could...
   end
 
-  after_save { Cache.clear! } # the groups are now messed up...or could be if I changed the name or tags, at least.
+  after_save { Cache.delete_by_type('group_products') }
 
   def find_problems
       problems = []
