@@ -7,12 +7,12 @@ module SubstructApplicationController
     if ENV['RAILS_ENV'] == "production" 
       #if( (request.host !~ /freeldssheetmusic.org/) || (request.host =~ /choirarrangements.freeldssheetmusic.org/) )
       if request.host =~ /^(www|choirarrangements)/ || (request.host !~ /freeldssheetmusic.org/)
-         redirect_to "http://freeldssheetmusic.org" + request.request_uri
+         redirect_to "http://freeldssheetmusic.org" + request.request_uri, :status => :moved_permanently 
          flash.keep
          return false
       end
       if request.request_uri.in? ['/', '/lds-ward-choir-music', '/choir-arrangements']
-        redirect_to "/index-of-free-lds-mormon-arrangements-choir-piano-solo"
+        redirect_to "/index-of-free-lds-mormon-arrangements-choir-piano-solo", :status => :moved_permanently
         flash.keep
         return false
       end
