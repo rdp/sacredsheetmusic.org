@@ -158,7 +158,7 @@ class Product < Item
     if user
       tags # all :)
     else
-      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}
+      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.name =~ /original song/i}
      end
   end
 
