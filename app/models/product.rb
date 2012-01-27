@@ -90,6 +90,14 @@ class Product < Item
 
   after_save { Cache.delete_by_type('group_products') }
 
+  def is_five_star?
+   if self.comments.map(&:overall_rating).ave >= 4.5
+     true
+   else
+     false
+   end
+  end
+
   def find_problems
       problems = []
       if self.topic_tags.length == 0
