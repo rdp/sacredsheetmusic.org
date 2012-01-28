@@ -1,5 +1,5 @@
 ruby script/runner -e production "Cache.clear!; Session.delete_all"
-rm log/*
+#rm log/*
 echo m4m
 A=`date`
 B=`echo $A | tr -d \\n`
