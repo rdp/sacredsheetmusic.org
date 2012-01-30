@@ -78,13 +78,13 @@
       <% end %>
     </ul>
 <% end %> <%# end downloads %>
-	<div width=100>
+	<div width=100 style="padding-top:10px;">
           <%= @product.description.strip_html_tags %>
 	</div>
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
-             <br />
              See more from <%= tag_link(composer_tag) %>.
+             <br />
              <br />
         <% end %>
         </div>
@@ -126,7 +126,7 @@
     <% end %>
     <% for hymn_tag in @product.hymn_tags %>
      <% if hymn_tag && (competitors_count = hymn_tag.products.size - 1) > 0 %>
-       <br/>Also see our <%= link_to2("other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}", :controller => 'music', :action => 'show_by_tags', :tags => [hymn_tag.name]) %> of this song (<%= hymn_tag.name %>).
+       Also see our <%= link_to2("other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}", :controller => 'music', :action => 'show_by_tags', :tags => [hymn_tag.name]) %> (<%= hymn_tag.name %>).
      <% end %>
     <% end %>
 
