@@ -4,6 +4,10 @@
     <% for c in @product.comments %>
       <p>
       From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
+      <br/>
+       <% if c.overall_rating %>
+         <%= c.overall_rating %> stars.
+       <% end %>
       </p>
     <% end %>
 
