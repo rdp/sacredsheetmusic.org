@@ -81,14 +81,13 @@
 	<div width=100>
           <%= @product.description.strip_html_tags %>
 	</div>
+        <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
-           <br />
-           <div>
-              See more from <%= tag_link(composer_tag) %>.
              <br />
+             See more from <%= tag_link(composer_tag) %>.
              <br />
-           </div>
         <% end %>
+        </div>
         <% voicing_tags = @product.linkable_tags(nil).select{|t| t.is_voicing}
            if voicing_tags.length > 0 %>
              Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %><br/><br/>
