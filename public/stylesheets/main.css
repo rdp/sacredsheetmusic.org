@@ -177,8 +177,8 @@ h1 {
 	color: #3b3b3b;
 	font-size: 23px;
 	line-height: 35px;
-	padding-bottom:5px;
-	margin-bottom: 10px;
+	/*padding-bottom:5px;*/
+	margin-bottom: 5px;
 	font-weight: normal;
 }
 h1 .info {

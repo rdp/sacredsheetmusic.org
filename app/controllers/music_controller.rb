@@ -117,12 +117,6 @@ class MusicController < StoreController
       # my own tweak :P
       # @tag_names.unshift temp_tag.parent.name
     #end
-
-    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
-    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music/free arrangements" : t.name}
-    viewing_tag_names = @tag_names.join(" > ")
-    @title = "#{viewing_tag_names}"
-
     #@tags = Tag.find_related_tags(tag_ids_array)
 
     # Paginate products so we don't have a ton of ugly SQL
@@ -133,6 +127,11 @@ class MusicController < StoreController
     @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
       p.replace list[pager.current.offset, pager.items_per_page]
     end
+
+    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
+    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
+    viewing_tag_names = @tag_names.join(" > ")
+    @title = "#{viewing_tag_names}"
 
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
