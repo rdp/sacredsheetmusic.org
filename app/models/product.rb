@@ -98,6 +98,17 @@ class Product < Item
    end
   end
 
+  def cached_find_problems
+    out = Cache.get_or_set_int(self.id, 'probs', 'probs') {
+      find_problems
+    }
+    if out =~ /---/
+     YAML.load out # rails' auto-yaml'ing is a bit odd here...
+    else
+     out
+    end
+  end
+
   def find_problems
       problems = []
       if self.topic_tags.length == 0

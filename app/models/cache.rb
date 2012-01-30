@@ -20,7 +20,7 @@ class Cache < ActiveRecord::Base
   #end
 
   def self.verify_type type
-    raise unless ['tags', 'single_product', 'group_products'].contain? type
+    raise unless ['probs', 'tags', 'single_product', 'group_products'].contain? type
   end
 
   def self.get_or_set_int(int, some_unique_identifier, type)

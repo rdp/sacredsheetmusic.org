@@ -15,7 +15,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def with_problems
-    @products = Product.find(:all, :include => [:downloads, {:tags => [:parent, :children]}]).select{|p| p.find_problems.length > 0 }
+    @products = Product.find(:all, :include => [:downloads, {:tags => [:parent, :children]}])
+    @products.select!{|p| 
+      p.cached_find_problems.length > 0 
+    }
     @title = 'all products with any problems listed'
     def @products.total_pages # fake it out :P
       1
