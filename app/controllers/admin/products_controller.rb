@@ -235,8 +235,10 @@ class Admin::ProductsController < Admin::BaseController
       # product was already saved...
       flash[:notice] ||= ''
       if @product.hymn_tag
-        unless Tag.share_tags_among_hymns_products @product.hymn_tag
-          flash[:notice] +=  "this hymn has no topics yet!"
+        for tag in @product.hymn_tags
+          unless Tag.share_tags_among_hymns_products tag
+            flash[:notice] +=  "this hymn has no topics yet! #{tag.name}"
+          end
         end
         @product.reload # it has new tags now
 
