@@ -89,7 +89,7 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id) # can't even do this in an after_save {} because of view_count being incremented so frequently...well I guess I could...
   end
 
-  after_save { Cache.delete_by_type('group_products') }
+  after_save { Cache.delete_by_type('group_products') } # can't do clear_my_cache, guess this is singleton...
 
   def is_five_star?
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5

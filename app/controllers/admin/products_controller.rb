@@ -253,6 +253,8 @@ class Admin::ProductsController < Admin::BaseController
          end
 
       end
+ 
+      @product.clear_my_cache # needed since after_save is a "singleton"
 
       if @product.duplicate_download_md5s.length > 0
          flash[:notice] += "warning--appears song has duplicate downloads!"
