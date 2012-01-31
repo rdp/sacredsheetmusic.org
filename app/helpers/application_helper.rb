@@ -63,11 +63,14 @@ module ApplicationHelper
   end
 
   def tag_link_nav tag
-    link_to2(tag.name_in_nav.present? ? tag.name_in_nav : tag.name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
+    if tag.name_in_nav.present?
+      tag_link(tag, tag.name_in_nav)
+    else
+      tag_link(tag)
+    end
   end
-
-  def tag_link tag
-    link_to2(tag.name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
+  def tag_link tag, name=tag.name
+    link_to(name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
   end
   
 end

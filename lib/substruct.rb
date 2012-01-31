@@ -373,10 +373,10 @@ module ActionView
     # This allows you to use the same format for links in views
     # and controllers.
     module UrlHelper
-      def link_to2 *args
-        out = link_to *args
-        out.gsub('%20', ' ')# sanitize...too ugly in google search results...
-      end   
+      #def link_to2 *args # this probably belongs in the application helper...
+      #  out = link_to *args
+      #  out.gsub('%20', ' ')# sanitize...too ugly in google search results...
+      #end   
     end
   end
 end

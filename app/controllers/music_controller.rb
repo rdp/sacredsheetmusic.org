@@ -101,7 +101,7 @@ class MusicController < StoreController
     # Generate tag ID list from names
     tag_ids_array = Array.new
     for name in @tag_names
-      temp_tag = Tag.find_by_name(name)
+      temp_tag = Tag.find_by_name(name.gsub('_', ' ')) # allow for cleaner google links coming in...
       if temp_tag then
         tag_ids_array << temp_tag.id
       else

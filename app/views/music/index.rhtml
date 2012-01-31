@@ -15,7 +15,7 @@
 					tag_name_list << tag
 			%>
 				<% if i > 0 then %>&gt;<% end %>
-                                  <%#= link_to2 tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %> <%# we don't really use navigation right anymore anyway, and this link was at times broken %>
+                                  <%#= link_to tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %> <%# we don't really use navigation right anymore anyway, and this link was at times broken, also NB it was non tag_link... %>
                                   <%= tag %>
 			<%
 				i += 1
