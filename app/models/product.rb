@@ -116,6 +116,9 @@ class Product < Item
 
   def find_problems
       problems = []
+      if duplicate_download_md5s.length > 0
+        problems << "possibly has duplicate downloads accidentally"
+      end
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
