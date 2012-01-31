@@ -92,12 +92,12 @@ class Tag
   end
 
   after_update {
-    Cache.clear! # no idea what damage this did...
+    Cache.clear! # no idea what damage this did...probs changed, normals changed...
   }
 
-  after_save { 
+  after_save { # case of creating a "new" one I guess...
     Cache.delete_by_type 'tags'
-  } # cached left side is messed now, possibly other things as well...
+  } # cached left side is messed now
 
   # Finds ordered parent tags by rank.
   def self.find_ordered_parents

@@ -54,7 +54,7 @@ class Product < Item
   def clean_code
     if self.code.blank?
       if self.composer_tag
-        self.code = self.name.clone + '--by-' + self.composer_tag.name
+        self.code = self.name.clone + '-by-' + self.composer_tag.name
       else
         self.code = self.name.clone
       end
