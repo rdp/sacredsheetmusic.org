@@ -110,6 +110,10 @@ class Product < Item
     end
   end
 
+  def duplicate_download_md5s
+    downloads.map{|dl| `md5sum #{dl.full_absolute_path}`.split[0]}.dups
+  end
+
   def find_problems
       problems = []
       if self.topic_tags.length == 0
