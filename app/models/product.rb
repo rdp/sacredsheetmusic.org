@@ -159,7 +159,7 @@ class Product < Item
       if (count = Product.count(:conditions => {:code => self.code})) != 1
         problems << "probably not a unique product code please update #{count}"
       end
-      if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original version/i
+      if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original version/i && self.hymn_tag.name !~ /theme/i
          problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
       end
       unless self.composer_tag
