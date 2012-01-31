@@ -91,7 +91,7 @@ class Product < Item
   after_save { Cache.delete_by_type('group_products') }
 
   def is_five_star?
-   if self.comments.map(&:overall_rating).ave >= 4.5
+   if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
      true
    else
      false
