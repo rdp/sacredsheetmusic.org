@@ -70,7 +70,7 @@ module ApplicationHelper
     end
   end
   def tag_link tag, name=tag.name
-    link_to(name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name])
+    link_to(name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name]).gsub("%20", "_")
   end
   
 end
