@@ -294,7 +294,7 @@ class MusicController < StoreController
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
     if @products.size == 1
-      flash[:notice] = 'Found one song that matches...'
+      flash[:notice] = 'Found one song that matches...' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return
     else
       render :action => 'index.rhtml'

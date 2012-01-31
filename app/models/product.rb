@@ -61,8 +61,9 @@ class Product < Item
     end
 #    self.code.upcase!
     self.code = self.code.gsub('\'', '')
-    self.code = self.code.gsub(/[^[:alnum:]]/,'-')#.gsub(/-{2,}/,'-')
-    self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'')
+    self.code = self.code.gsub(/[^[:alnum:]]/,'-') # non alnum => -
+    self.code = self.code.gsub(/-{2,}/,'-') # -- => -
+    self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'') # beginning dash
     self.code.strip!
     return true
   end
