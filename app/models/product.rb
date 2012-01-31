@@ -114,9 +114,19 @@ class Product < Item
     downloads.map{|dl| `md5sum #{dl.full_absolute_path}`.split[0]}.dups
   end
 
+  def duplicate_download_lengths
+    downloads.map{|dl| 
+      if File.exist? dl.full_absolute_path
+        File.size dl.full_absolute_path
+      else
+        -1
+      end
+    }.dups
+  end
+
   def find_problems
       problems = []
-      if duplicate_download_md5s.length > 0
+      if duplicate_download_lengths.length > 0
         problems << "possibly has duplicate downloads accidentally"
       end
       if self.topic_tags.length == 0
