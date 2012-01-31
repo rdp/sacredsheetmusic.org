@@ -249,7 +249,7 @@ class MusicController < StoreController
   end
   
   def search
-    @search_term = params[:search_term]
+    @search_term = params[:search_term] || ''
     unless @search_term
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
@@ -266,7 +266,7 @@ class MusicController < StoreController
         "%#{@search_term}%", @search_term # name, code
       ] + super_search_terms
 
-    @products = Product.find(:all, :include => [:tags],
+    products = Product.find(:all, :include => [:tags],
       :order => 'items.name ASC', :conditions => conds
     )
 
@@ -278,10 +278,13 @@ class MusicController < StoreController
         "%#{@search_term}%"
       ]
     )
+
+    good_hits = Product.find(:all, :conditions => ['name like ?',  "%#{@search_term}%"])
     
-    all_ids = @products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
+    all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
+
     # re map to fellas...
-    @products = all_ids.uniq.map{|id| Product.find(id) }
+    @products = all_ids_merged.uniq.map{|id| Product.find(id) }
 
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
@@ -294,7 +297,7 @@ class MusicController < StoreController
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
     if @products.size == 1
-      flash[:notice] = 'Found one song that matches...' + @search_term
+      flash[:notice] = 'Found one song that matches: ' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return
     else
       render :action => 'index.rhtml'
