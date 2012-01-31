@@ -22,6 +22,9 @@ class Download < UserUpload # user_uploads table...
   def relative_path_to_web_server
     full_filename.gsub(RAILS_ROOT + "/public", "")
   end
+  def full_absolute_path
+    full_filename
+  end
 
   def self.super_sum
     all.inject(0) {|sum, dl| sum += dl.count; sum}

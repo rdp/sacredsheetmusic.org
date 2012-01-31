@@ -251,6 +251,10 @@ class Admin::ProductsController < Admin::BaseController
              flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
            end
          end
+         if @product.downloads.map{|dl| `md5sum #{dl.full_absolute_path}`}.dups.length > 0 
+            flash[:notice] += "warning--appears you have duplicate downloads!"
+         end
+
 
       end
 
