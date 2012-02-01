@@ -9,7 +9,9 @@
 						<li>
 					  	   <%= tag_link_nav(tag) %>
 						</li>
-                                                <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
+                                                <% if is_main_tab_active?(tag.id) %>
+                                                   <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
+                                                <% end %>
                                         <% end %>
 
   <li><a href="/music/most_recently_added">Songs Recently Added</a></li>
