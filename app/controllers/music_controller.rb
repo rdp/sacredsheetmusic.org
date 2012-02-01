@@ -37,8 +37,8 @@ class MusicController < StoreController
     @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
 
     if !@product
-      flash[:notice] = "Sorry, we couldn't find the song you were looking for"
-      redirect_to :action => 'index' and return false
+      flash[:notice] = "Sorry, we couldn't find the song you were looking for " + params[:id].to_s
+      redirect_to :action => 'index', :status => 303 and return false # 303 is not found
     end
     if not_a_bot
       # avoid after_save blocks ...
