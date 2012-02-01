@@ -105,6 +105,11 @@ module Substruct
       :controller => 'questions',
       :action     => 'ask'
 
+    # Shorter show url
+    map.connect '/m/:id',
+      :controller => 'music',
+      :action => 'show'
+
     # Shorter url to show music items by tags
     map.connect '/s/*tags',
       :controller => 'music',
