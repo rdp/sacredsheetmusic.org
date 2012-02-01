@@ -1,7 +1,7 @@
       <%  if is_main_tab_active?(tag.id) %>
                                                     <UL>
                                                     <% for tag2 in tag.children do 
- next unless tag2.products.size > 0 %>
+                                                        next unless tag2.products.size > 0 %>
                                                         <LI <%= 'style="list-style-image: url();"' if tag2.children.size == 0 %>>
                                                         <%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%= tag_link_nav(tag2) %>

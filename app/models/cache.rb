@@ -19,8 +19,9 @@ class Cache < ActiveRecord::Base
   #  get_or_set_int( collection.map{|record| [record, record.attributes]}, identifier) { yield }
   #end
 
+  CACHE_TYPES = ['probs', 'tags', 'single_product', 'group_products'] 
   def self.verify_type type
-    raise unless ['probs', 'tags', 'single_product', 'group_products'].contain? type
+    raise 'not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
   def self.get_or_set_int(int, some_unique_identifier, type)
