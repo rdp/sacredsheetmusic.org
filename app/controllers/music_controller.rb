@@ -227,12 +227,7 @@ class MusicController < StoreController
         render :action => 'index.rhtml' and return
       end
       format.rss do
-        @products = Product.find(
-          :all,
-          :conditions => Product::CONDITIONS_AVAILABLE,
-          :order => "date_available DESC"
-        )
-        render :action => 'index.rxml', :layout => false and return
+        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook uh guess :P
       end
     end
   end 
@@ -250,8 +245,9 @@ class MusicController < StoreController
   
   def search
     @search_term = params[:search_term] || ''
-    unless @search_term
-      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+    unless @search_term.present?
+      flash[:notice] = "please enter a search query"
+      redirect_to :action => 'index' and return false
     end
     @title = "Search Results for: #{@search_term}"
     
