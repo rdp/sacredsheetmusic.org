@@ -6,9 +6,6 @@
 					<% 
 						@main_nav_tags.each do |tag| 
 					%>
-						<li>
-					  	   <%= tag_link_nav(tag) %>
-						</li>
                                                 <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
                                         <% end %>
 
