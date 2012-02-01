@@ -4,13 +4,12 @@
 
 
 					<% 
-						@main_nav_tags.each_index do |i| 
-							tag = @main_nav_tags[i]
+						@main_nav_tags.each do |tag| 
 					%>
-						<li style="" >
+						<li>
 					  	   <%= tag_link_nav(tag) %>
 						</li>
-                                                <%= render :partial => '/menu_dropdown', :locals => {:tag => tag} %>
+                                                <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
                                         <% end %>
 
   <li><a href="/music/most_recently_added">Songs Recently Added</a></li>

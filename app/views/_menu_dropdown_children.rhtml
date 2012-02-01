@@ -6,10 +6,10 @@
                                                         <%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%= tag_link_nav(tag2) %>
                                                         <%= is_main_tab_active?(tag2.id) ? '</span>' : '' %>
-                                                         <% if is_main_tab_active?(tag2.id) && tag2.children.size > 0 %>
-                                                           <%= render :partial => '/menu_dropdown', :locals => {:tag => tag2} %>
+                                                         <% if tag2.children.size > 0 %>
+                                                           <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag2} %>
                                                          <% end %>
                                                         </LI>
                                                     <% end %>
                                                    </UL>
-                                               <% end %>
+       <% end %>
