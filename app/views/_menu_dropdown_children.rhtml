@@ -1,3 +1,4 @@
+<% if is_main_tab_active?(tag.id) %>
                                                     <UL>
                                                     <% for tag2 in tag.children do 
                                                         next unless tag2.products.size > 0 %>
@@ -5,9 +6,8 @@
                                                         <%= is_main_tab_active?(tag2.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%= tag_link_nav(tag2) %>
                                                         <%= is_main_tab_active?(tag2.id) ? '</span>' : '' %>
-                                                         <% if is_main_tab_active?(tag2.id) %>
-                                                           <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag2} %>
-                                                         <% end %>
+                                                        <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag2} %>
                                                         </LI>
                                                     <% end %>
                                                    </UL>
+<% end %>
