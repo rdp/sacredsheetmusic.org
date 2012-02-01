@@ -151,7 +151,7 @@ class Product < Item
         problems << "original url looks like its a pdf but should be htmlish"
       end
       if !self.tags.detect{|t| t.is_voicing}
-        problems << "Warning: no voicing [youth, SATB, etc.] seemingly found"
+        problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact !~ /@/
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
