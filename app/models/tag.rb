@@ -1,6 +1,12 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
+  validate :no_underscores
+  def no_underscores
+    if self.name =~ /_/
+     errors.add(:name, "has _")
+    end
+  end
 
   def all_products_hits
     sum = 0
