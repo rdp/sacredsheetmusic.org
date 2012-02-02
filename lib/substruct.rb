@@ -106,6 +106,9 @@ module Substruct
       :action     => 'ask'
 
     # Shorter url to show music song
+    map.connect '/m/:id',
+      :controller => 'music',
+      :action => 'show'
 
     # Shorter url to show music items by tags
     map.connect '/s/*tags',
@@ -117,6 +120,11 @@ module Substruct
     map.connect '/music/show_by_tags/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
+    map.connect '/arrangements/*tags',
+      :controller => 'music',
+      :action => 'show_by_tags',
+      :as => :arrangements
+
 
 =begin
     map.connect '/store/s/*tags',
@@ -138,8 +146,7 @@ module Substruct
       :controller => 'content_nodes',
       :action     => 'show_by_name'
 
-
-  map.connect '/store/*',
+   map.connect '/store/*',
     :controller => 'nonexist'
 
   end
