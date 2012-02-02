@@ -6,7 +6,7 @@ class Cache < ActiveRecord::Base
   set_table_name 'cache'
 
   def self.clear!
-     delete_all
+     delete_all # skips validations
   end
 
   def self.delete_by_type type
