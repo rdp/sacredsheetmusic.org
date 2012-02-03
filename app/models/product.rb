@@ -31,9 +31,9 @@ class Product < Item
    self.tags.select{|t| t.is_original_tag? }[0]
   end 
 
-  def composer_contact
-     owner = composer_tag
-     cc = (owner && owner.composer_contact.present? ) ? owner.composer_contact : nil
+  def composer_contact_url
+     composer = composer_tag
+     cc = (composer && composer.composer_contact.present? ) ? composer.composer_contact : nil
      cc = "mailto:" + cc if cc =~ /.@./
      cc
   end

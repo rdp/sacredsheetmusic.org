@@ -26,12 +26,14 @@
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
-        <% if @display_bio.present? || @display_composer_contact%>
+        <% if @display_bio.present? || @composer_tag%>
            <div style="padding-bottom: 0px;"><%= @display_bio %> <br/>
-           <% if @display_composer_contact %>
-             
-             <a href="<%= @display_composer_contact%>"><%= @display_composer_contact =~ /mailto/ ? "Email " + @composer_tag.name : "Visit #{@composer_tag.name}\'s website"%></a> if you'd like to send them a personal note or see their site.
-           <% end %>
+              <% if @composer_tag.composer_url.present? %>
+                 Visit <a href="<%= @composer_tag.composer_url %>"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
+             <% end %>
+             <% if @composer_tag.composer_contact =~ /.@./ %>  
+               <a href="mailto:<%= @composer_tag.composer_contact%>">Email <%= @composer_tag.name %></a> if you'd like to send a personal note.
+             <% end %>
            </div>
         <% end %>
         <% if @products.length > 20 %>
