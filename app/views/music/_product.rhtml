@@ -41,7 +41,7 @@
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <% if session[:user] %>
             <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
-            <% if (probs = product.find_problems).present? %>
+            <% if false && (probs = product.find_problems).present? %>
               <%= probs.inspect%>
             <% end %>
         <% end %>

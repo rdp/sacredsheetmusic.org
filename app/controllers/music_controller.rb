@@ -45,7 +45,7 @@ class MusicController < StoreController
 
     if !@product
       if Tag.find_by_name(params[:id])
-       redirect_to '/' + params[:id], :status => :moved_permanently and return false
+       redirect_to '/' + params[:id].gsub('/', '%2F'), :status => :moved_permanently and return false
       else
        flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
        redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect
