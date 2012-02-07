@@ -60,10 +60,10 @@ class Product < Item
       end
     end
 #    self.code.upcase!
-    self.code = self.code.gsub('\'', '')
-    self.code = self.code.gsub(/[^[:alnum:]]/,'-') # non alnum => -
-    self.code = self.code.gsub(/-{2,}/,'-') # -- => -
-    self.code = self.code.gsub(/^[-]/,'').gsub(/[-]$/,'') # beginning dash
+    self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
+    self.code.gsub!(/-{2,}/,'-') # -- => -
+    self.code.gsub!(/^[-]+/,'') # beginning dash
+    self.code.gsub!(/[-]+$/,'') # ending dash
     self.code.strip!
     return true
   end
@@ -127,7 +127,9 @@ class Product < Item
   def find_problems
       problems = []
       if duplicate_download_lengths.length > 0
-        problems << "possibly has duplicate downloads accidentally"
+        if duplicate_download_md5s.length > 0
+            problems << "possibly has duplicate downloads accidentally"
+        end
       end
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
