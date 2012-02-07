@@ -104,7 +104,7 @@ class MusicController < StoreController
     # /tag_one/tag_two/tag_three/...
 
     @tag_names = params[:tags] || []
-    if @tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo']
+    if @tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo'] # LODO could make this a route...
         render_component(
               :controller => "content_nodes",
               :action => "show_by_name",
@@ -112,9 +112,6 @@ class MusicController < StoreController
                 :name => @tag_names[0],
               }
             )
-      return
-    elsif @tag_names == ['all']
-      index
       return
     end
     # Generate tag ID list from names

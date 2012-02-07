@@ -128,12 +128,16 @@ module Substruct
     map.connect '/store/*',
       :controller => 'nonexist' # I think I've ferreted out all the links now...
 
+    map.connect '/all',
+      :controller => 'music',
+      :action => :index
+
     # Install the default route as the lowest priority.
     map.connect ':controller/:action/:id.:format'
     map.connect ':controller/:action.:format'
     map.connect ':controller/:action/:id'
 
-    # putting this last forces me to do some finagling to actually *use* it...hmm...
+    # putting this last (which I'm forced to do to be able to use the others) forces me to do some finagling to *use* it...hmm...
     map.connect '/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
