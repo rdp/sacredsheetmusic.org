@@ -72,10 +72,10 @@ module ApplicationHelper
 
   def tag_link tag, name=tag.name
     if false#tag.is_hymn_tag?
-      escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       "<a href=/arrangements/#{escaped_name.gsub("%20", "_")}>#{name}</a>" # doesn't quite seem worth it even...maybe just for the main page
     else
-      link_to(name, :controller => :music, :action => 'show_by_tags', :tags => [tag.name]).gsub("%20", "_")
+      escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      "<a href=/#{escaped_name.gsub("%20", "_")}>#{name}</a>"
     end
   end
   

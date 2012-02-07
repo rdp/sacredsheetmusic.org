@@ -111,9 +111,6 @@ module Substruct
       :action => 'show'
 
     # Shorter url to show music items by tags
-    map.connect '/*tags',
-      :controller => 'music',
-      :action     => 'show_by_tags'
     #map.connect '/s/*tags',
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
@@ -138,6 +135,10 @@ module Substruct
     map.connect ':controller/:action/:id.:format'
     map.connect ':controller/:action.:format'
     map.connect ':controller/:action/:id'
+
+    map.connect '/*tags',
+      :controller => 'music',
+      :action     => 'show_by_tags'
 
     # For things like /about_us, etc
     # map.connect ':name',
