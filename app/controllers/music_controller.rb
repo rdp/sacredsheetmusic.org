@@ -33,9 +33,10 @@ class MusicController < StoreController
  
  def wake_up
   Cache.first
-  Product.first
+  #Product.first
+  #Download.first # sigh
   #Tag.first # might be cached LOL
-  render :text => "ok" and return # for cron
+  render :text => "what a beautiful morning!" and return # for cron
  end
 
  def show
@@ -43,8 +44,12 @@ class MusicController < StoreController
     @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
 
     if !@product
-      flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
-      redirect_to :action => 'index', :status => 303 and return false # 303 is not found
+      if Tag.find_by_name(params[:id])
+       redirect_to '/' + params[:id], :status => :moved_permanently and return false
+      else
+       flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
+       redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect
+      end
     end
     if not_a_bot
       # avoid after_save blocks ...
