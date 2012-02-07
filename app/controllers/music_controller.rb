@@ -186,7 +186,7 @@ class MusicController < StoreController
     not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player?
     # slightly prefer to undercount uh guess
     not_bot = false if ua =~ /spider/i
-    not_bot = false if ua =~ /robot/i
+    not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above)
     not_bot = false if ua =~ /crawler/i # maybe unneeded
     not_bot = false if ua =~ /googlebot/i
 
