@@ -38,7 +38,7 @@
               :action => 'inline_download_file',
               :params => { :name => dl.filename, :download_id => dl.id }
             )
-            friendly_download_url = url_for(:action => 'inline_download_file', :params => {:name => dl.filename, :download_id => dl.id})
+            friendly_download_url = url_for(:action => 'inline_download_file', :escape => false, :name => dl.filename, :download_id => dl.id) # escape => false? what? seriously what? rails bug...inserts an extra &amp; in there otherwise...I think we're ok since it has quotes around it when we use it...
             inline_view
           %>
 

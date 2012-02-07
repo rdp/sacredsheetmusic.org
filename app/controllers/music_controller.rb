@@ -30,9 +30,15 @@ class MusicController < StoreController
   end
   true
  end
+ 
+ def wake_up
+  Cache.first
+  Product.first
+  #Tag.first # might be cached LOL
+  render :text => "ok" and return # for cron
+ end
 
-
-  def show
+ def show
 #{:tags => [:parent, :children]}
     @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
 
@@ -177,10 +183,12 @@ class MusicController < StoreController
     not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
 
     not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i
+    not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player?
     # slightly prefer to undercount uh guess
     not_bot = false if ua =~ /spider/i
     not_bot = false if ua =~ /robot/i
-    not_bot = false if ua =~ /googlebot/i # googlebot
+    not_bot = false if ua =~ /crawler/i # maybe unneeded
+    not_bot = false if ua =~ /googlebot/i
 
     if not_bot
       prefix= "not bot:"
