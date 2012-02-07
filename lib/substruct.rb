@@ -106,25 +106,23 @@ module Substruct
       :action     => 'ask'
 
     # Shorter url to show music song
-    map.connect '/m/:id',
+    map.connect '/s/:id',
       :controller => 'music',
       :action => 'show'
 
     # Shorter url to show music items by tags
-    map.connect '/s/*tags',
+    map.connect '/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
-    map.connect '/music/s/*tags',
-      :controller => 'music',
-      :action     => 'show_by_tags'
-    map.connect '/music/show_by_tags/*tags',
-      :controller => 'music',
-      :action     => 'show_by_tags'
-    map.connect '/arrangements/*tags',
-      :controller => 'music',
-      :action => 'show_by_tags',
-      :as => :arrangements
-
+    #map.connect '/s/*tags',
+    #  :controller => 'music',
+    #  :action     => 'show_by_tags'
+    #map.connect '/music/s/*tags',
+    #  :controller => 'music',
+    #  :action     => 'show_by_tags'
+    #map.connect '/music/show_by_tags/*tags',
+    #  :controller => 'music',
+    #  :action     => 'show_by_tags'
 
 =begin
     map.connect '/store/s/*tags',
@@ -142,12 +140,12 @@ module Substruct
     map.connect ':controller/:action/:id'
 
     # For things like /about_us, etc
-    map.connect ':name',
-      :controller => 'content_nodes',
-      :action     => 'show_by_name'
+    # map.connect ':name',
+    #   :controller => 'content_nodes',
+    #   :action     => 'show_by_name'
 
-   map.connect '/store/*',
-    :controller => 'nonexist'
+    map.connect '/store/*',
+      :controller => 'nonexist' # LODO better
 
   end
 

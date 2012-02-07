@@ -95,9 +95,22 @@ class MusicController < StoreController
   def show_by_tags
     # Tags are passed in as an array.
     # Passed into this controller like this:
-    # /store/show_by_tags/tag_one/tag_two/tag_three/...
+    # /tag_one/tag_two/tag_three/...
 
     @tag_names = params[:tags] || []
+    if @tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo']
+        render_component(
+              :controller => "content_nodes",
+              :action => "show_by_name",
+              :params => {
+                :name => @tag_names[0],
+              }
+            )
+      return
+    elsif @tag_names == ['all']
+      index
+      return
+    end
     # Generate tag ID list from names
     tag_ids_array = Array.new
     for name in @tag_names

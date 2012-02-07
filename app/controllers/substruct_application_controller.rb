@@ -19,5 +19,19 @@ module SubstructApplicationController
     end
     
   end
+
+  def set_substruct_view_defaults
+    # TODO - Clean up this messy navigation generation stuff...
+        @cname = self.controller_name
+        @aname = self.action_name
+        @store_name = Preference.get_value('store_name') || 'Substruct'
+        # Is this a blog post?
+        @blog_post = false
+        if (@cname == 'content_nodes' && @content_node) then
+                if (@content_node.is_blog_post?) then
+                        @blog_post = true
+                end
+        end
+  end
   
 end
