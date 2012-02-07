@@ -84,7 +84,7 @@ module Substruct
       :action     => 'index'
 
     map.connect '/admin/customers/:action.:format', :controller => 'admin/customers'
-
+=begin
     map.connect '/blog',
       :controller => 'content_nodes',
       :action     => 'index'
@@ -100,13 +100,13 @@ module Substruct
 
     map.connect 'blog/:action.:format',
       :controller => 'content_nodes'
-
-    map.connect '/contact',
-      :controller => 'questions',
-      :action     => 'ask'
+=end
+    #map.connect '/contact',
+    #  :controller => 'questions',
+    #  :action     => 'ask'
 
     # Shorter url to show music song
-    map.connect '/s/:id',
+    map.connect '/s/:id', # s for song!
       :controller => 'music',
       :action => 'show'
 
@@ -130,6 +130,9 @@ module Substruct
       :controller => 'store',
       :action     => 'show_by_tags'
 =end
+    map.connect '/about/:name',
+       :controller => 'content_nodes',
+       :action     => 'show_by_name'
 
     # Install the default route as the lowest priority.
     map.connect ':controller/:action/:id.:format'

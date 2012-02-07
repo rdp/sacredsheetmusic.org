@@ -65,7 +65,8 @@
 			</li-->
 			<!--li><a href="/customers/wishlist">Download Queue</a></li-->
 			<li><a href="/questions/ask">Contact Us</a></li>
-                        <li><a href="/upload">Publish/list your own works with us</a></li>
+                        <li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
+
                         <!--li><a href="/customers/orders">Track an Order</a></li-->
 		</ul>
 		
@@ -150,13 +151,12 @@
 	<div id="footer" style="background-image:url('/images/trebs/trebs240.gif');">
 		<ul class="navigation">
 			<li style="margin-left: 75px;"><a href="/">Home</a></li>
-                        <li><a href="/about">About Us</a></li>
+                        <li><%=link_to 'About Us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'about' %></li>
 			<!--li><a href="/questions/faq">FAQ</a></li-->
 			<li><a href="/questions/ask">Feedback</a></li>
-			<!--li><a href="/blog">Blog</a></li-->
 			<!--li><a href="/customers/wishlist">Download Queue</a></li-->
-                        <li><a href="/upload">Add your works</a></li>
-                        <li><a href="/all-resources">Resources/Other Music</a></li>
+                        <li><%=link_to 'Add your works', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
+                        <li><%=link_to 'Resources/Other Music', :controller => 'content_nodes', :action => 'show_by_name', :name => 'all-resources'%></li>
                         <li><a href="https://github.com/rdp/freeldssheetmusic.org/wiki/list-of-pay-songs">Pay songs</a></li>
                         <% if session[:user] %>
                            <!--li><a href="/admin">Admin</a></li-->
