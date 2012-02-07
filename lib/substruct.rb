@@ -111,34 +111,29 @@ module Substruct
       :action => 'show'
 
     # Shorter url to show music items by tags
-    #map.connect '/s/*tags',
+    #map.connect '/s/*tags', # was replaced! may as well...
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
-    #map.connect '/music/s/*tags',
-    #  :controller => 'music',
-    #  :action     => 'show_by_tags'
-    #map.connect '/music/show_by_tags/*tags',
+    map.connect '/m/:id', # LODO disable
+      :controller => 'music',
+      :action => 'show'
+    #map.connect '/music/show_by_tags/*tags', # TOO old
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
 
-=begin
-    map.connect '/store/s/*tags',
-      :controller => 'store',
-      :action     => 'show_by_tags'
-
-    map.connect '/store/show_by_tags/*tags',
-      :controller => 'store',
-      :action     => 'show_by_tags'
-=end
     map.connect '/about/:name',
        :controller => 'content_nodes',
        :action     => 'show_by_name'
+
+    map.connect '/store/*',
+      :controller => 'nonexist' # I think I've ferreted out all the links now...
 
     # Install the default route as the lowest priority.
     map.connect ':controller/:action/:id.:format'
     map.connect ':controller/:action.:format'
     map.connect ':controller/:action/:id'
 
+    # putting this last forces me to do some finagling to actually *use* it...hmm...
     map.connect '/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
@@ -148,8 +143,6 @@ module Substruct
     #   :controller => 'content_nodes',
     #   :action     => 'show_by_name'
 
-    map.connect '/store/*',
-      :controller => 'nonexist' # LODO better
 
   end
 
