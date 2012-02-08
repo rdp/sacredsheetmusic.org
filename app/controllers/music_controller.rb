@@ -49,7 +49,7 @@ class MusicController < StoreController
        redirect_to '/' + id.gsub(' ', '_').gsub('/', '%2F'), :status => :moved_permanently and return false
       else
        flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
-       redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect
+       redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect 301 is moved permanently
       end
     end
     if not_a_bot

@@ -1,7 +1,8 @@
-<div style="float: left; width: 700px;"><%= @content_node.content %>
+<div style="float: left; width: 700px;">
 
+<%= @content_node.content %>
 
-<% if @content_node.name == 'index-of-free-lds-mormon-arrangements-choir-piano-solo'%>
+<% if @content_node.name == 'index-of-free-lds-mormon-arrangements-choir-piano-solo'%> <!-- LODO ughly -->
   <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -12,7 +13,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div style="float:left;" class="fb-like-box" data-href="http://www.facebook.com/pages/Free-LDS-sheet-music/252663114775187" data-width="300" data-show-faces="false" data-stream="false" data-header="false"></div>
-<% end %>
 <!-- Place this tag in the <head> of your document -->
 <link href="https://plus.google.com/115223088896069158171" rel="publisher" /><script type="text/javascript">
 (function() 
@@ -24,5 +24,6 @@ s.parentNode.insertBefore(po, s);
 
 <!-- Place this tag where you want the badge to render -->
 <g:plus href="https://plus.google.com/115223088896069158171" size="badge"></g:plus>
+<% end %>
 
 </div>
