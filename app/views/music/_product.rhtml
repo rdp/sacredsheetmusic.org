@@ -24,7 +24,11 @@
           image = image_tag(product.images[0].public_filename(:small), :alt => product.name, :width => "100%", :height => "100%") 
         end
       %>
-      <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
+      <% if product.downloads.size == 0 %>
+        <%= link_to(image, product.original_url) %>
+      <% else %>
+        <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
+      <% end %>
     </div>
     <div class="product_title" style="margin-bottom: 0px; margin-top:5px;">
       <% 
