@@ -78,7 +78,7 @@
       <% end %>
     </ul>
 <% end %> <%# end downloads %>
-	<div width=100 style="padding-top:10px;">
+	<div style="padding-top:10px; width: 100px;">
           <%= @product.description.strip_html_tags %>
 	</div>
         <div style="padding-top: 10px; padding-bottom: 10px">
@@ -109,9 +109,8 @@
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
-    <% unless @default_image %>
-      <h2 style="margin: 0px; margin-left: 100px;"><%= @product.name %></h2>  <div style="margin-left: 15px;">
-    <% end %>
+    <% extra_style = "display:none;" if @default_image %>
+    <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tag.andand.name %> </h1>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
@@ -137,7 +136,7 @@
     <% end %>
 
       <% if @default_image %>
-		<span style="float: right; margin-left: 5px;">(Click "pdf view", top left, to see full resolution pdf or to print music.)</span>
+       <span style="float: right; margin-left: 5px;">(Click "pdf view", top left, to see full resolution pdf or to print music.)</span>
        <div style="float:left; width: 100%;">
         <% if @default_image.public_filename then %>
           <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">

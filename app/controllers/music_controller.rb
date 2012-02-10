@@ -202,15 +202,16 @@ class MusicController < StoreController
   def not_a_bot
     ua = request.headers['User-Agent']
     al = request.headers['Accept-Language']
-    not_bot = al.present? && (ua !~ /yahoo.*slurp|bot\W/i)
+    not_bot = al.present?
 
-    not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i
-    not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player?
+    not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i # players
+    not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player? # This kind of kills our whole system though...
+    # but it's fun to try and perfect :P
     # slightly prefer to undercount uh guess
-    not_bot = false if ua =~ /spider/i
+    not_bot = false if ua =~ /yahoo.*slurp/i
+    not_bot = false if ua =~ /spider/i # baiduspider
     not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above)
-    not_bot = false if ua =~ /crawler/i # maybe unneeded
-    not_bot = false if ua =~ /googlebot/i
+    not_bot = false if ua =~ /crawler/i # alexa crawler
 
     if not_bot
       prefix= "not bot:"

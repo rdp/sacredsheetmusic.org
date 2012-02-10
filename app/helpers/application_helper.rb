@@ -75,7 +75,7 @@ module ApplicationHelper
       "<a href=/arrangements/#{escaped_name.gsub("%20", "_")}>#{name}</a>" # doesn't quite seem worth it even...maybe just for the main page
     else
       escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-      "<a href=/#{escaped_name.gsub("%20", "_")}>#{name}</a>"
+      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name}</a>"
     end
   end
   
