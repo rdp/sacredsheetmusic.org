@@ -18,9 +18,12 @@ class Product < Item
     }
   end
 
-  # the arranger tag for this product...if there is one...or nil if not
   def composer_tag
-   self.tags.select{|t| t.is_composer_tag? }[0]
+   composer_tags[0]
+  end
+
+  def composer_tags
+   self.tags.select{|t| t.is_composer_tag? }
   end
   
   def hymn_tag

@@ -82,7 +82,7 @@
           <%= @product.description.strip_html_tags %>
 	</div>
         <div style="padding-top: 10px; padding-bottom: 10px">
-        <% for composer_tag in @product.tags.select{|t| t.is_composer_tag?} %>
+        <% for composer_tag in @product.composer_tags %>
              See more from <%= tag_link(composer_tag) %>.
              <br />
              <br />
@@ -110,7 +110,7 @@
 
 <div style="float: right; width: 82%;">
     <% extra_style = "display:none;" if @default_image %>
-    <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tag.andand.name %> </h1>
+    <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tags.map(&:name).join(', ') %> </h1>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
