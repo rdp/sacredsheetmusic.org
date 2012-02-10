@@ -11,7 +11,6 @@
     if product.is_five_star?
       image_tag('public-ui/icons/star.png', :alt => '5star', :class => 'icon')
     end 
-    
   %>
 
   <div class="product_top"></div>
@@ -25,7 +24,7 @@
         end
       %>
       <% if product.downloads.size == 0 %>
-        <%= link_to(image, product.original_url) %>
+        <%= link_to(image, :controller=>'music', :action=>'redirect_to_original_url', :id => product.code) %>
       <% else %>
         <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
       <% end %>

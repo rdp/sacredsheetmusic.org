@@ -39,6 +39,19 @@ class MusicController < StoreController
   render :text => "what a beautiful morning!" and return # for cron
  end
 
+ def redirect_to_original_url
+   product = Product.find_by_code(params[:id])
+   if !product
+     flash[:notice] = 'unexpected pelase report'
+     redirect_to :back && return
+   end
+    if not_a_bot
+      # avoid after_save blocks ...
+      Product.increment_counter(:view_count, product.id)
+    end
+   redirect_to product.original_url
+ end 
+
  def show
 #{:tags => [:parent, :children]}
     @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
