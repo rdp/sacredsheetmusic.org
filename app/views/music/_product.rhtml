@@ -24,8 +24,7 @@
         end
       %>
       <% if product.downloads.size == 0 %>
-        <%= link_to(image, :controller=>'music', :action=>'redirect_to_original_url', :id => product.code) %>
-      <% else %>
+      
         <%= link_to(image, :controller=>'music', :action=>'show', :id => product.code) %>
       <% end %>
     </div>
@@ -52,7 +51,7 @@
          <% tags = product.linkable_tags(session[:user]) %>
          (<%= tags.map{|t| tag_link(t).gsub(',', '') }.join(', ') %>)
          <% if product.downloads.length == 0%>
-           (<a href="<%=product.original_url%>">author's page</a>)
+           (<%=link_to('quick go', :controller=>'music', :action=>'redirect_to_original_url', :id => product.code)%>)
            <br/>
          <% end %>
     </div>
