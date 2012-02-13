@@ -52,6 +52,13 @@ class MusicController < StoreController
    redirect_to product.original_url
  end 
 
+ private
+ def redirect_to_tag name
+   redirect_to '/' + name.gsub(' ', '_').gsub('/', '%2F'), :status => :moved_permanently
+   true
+ end
+
+ public 
  def show
 #{:tags => [:parent, :children]}
     @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
@@ -64,7 +71,7 @@ class MusicController < StoreController
       else
         id = id.gsub('_', ' ')
         if Tag.find_by_name(id)
-          redirect_to '/' + id.gsub(' ', '_').gsub('/', '%2F'), :status => :moved_permanently and return false
+          redirect_to_tag(id) and return
         else
           flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
           redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect 301 is moved permanently
@@ -142,6 +149,9 @@ class MusicController < StoreController
     # Generate tag ID list from names
     tag_ids_array = Array.new
     for name in @tag_names
+      if name =~ / /
+        redirect_to_tag(name) and return
+      end
       temp_tag = Tag.find_by_name(name.gsub('_', ' ')) # allow for cleaner google links coming in...
       if temp_tag then
         tag_ids_array << temp_tag.id
