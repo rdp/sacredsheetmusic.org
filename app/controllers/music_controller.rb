@@ -60,30 +60,34 @@ class MusicController < StoreController
 
  public 
  def show
-#{:tags => [:parent, :children]}
-    @product = Product.find_by_code(params[:id], :include => [:images, :downloads, {:tags => [:parent]}])
+    id = params[:id]
+    if !id.present?
+      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+    end
+
+    @product = Product.find_by_code(id, :include => [:images, :downloads, {:tags => [:parent]}]) # no cacheing yet...
 
     if !@product || request.request_uri =~ /music.show/
-      id = params[:id]
-      if Product.find_by_code(new_id = params[:id].gsub(/[-]+/, '-'))
+      if Product.find_by_code(new_id = id.gsub(/[-]+/, '-'))
         redirect_to :action => 'show', :id => new_id, :status => :moved_permanently
         return false
       else
-        id = id.gsub('_', ' ')
-        if Tag.find_by_name(id)
-          redirect_to_tag(id) and return
+        check_id = id.gsub('_', ' ')
+        if Tag.find_by_name(check_id)
+          redirect_to_tag(check_id) and return
         else
-          flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + params[:id].to_s
+          flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + id.to_s
           redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect 301 is moved permanently
         end
       end
+      # never get here...
     end
     if not_a_bot
       # avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
     if @product.composer_tag
-      @title = "#{@product.name} (by #{@product.composer_tag.name})"
+       @title = "#{@product.name} (by #{@product.composer_tag.name})"
     else
        @title = @product.name
     end
@@ -152,12 +156,16 @@ class MusicController < StoreController
       if name =~ / /
         redirect_to_tag(name) and return
       end
-      temp_tag = Tag.find_by_name(name.gsub('_', ' ')) # allow for cleaner google links coming in...
+      real_name = name.gsub('_', ' ')# allow for cleaner google links coming in...
+      temp_tag = Tag.find_by_name(real_name) 
       if temp_tag then
         tag_ids_array << temp_tag.id
       else
         render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
       end
+      if temp_tag.name != real_name # capitalization fail
+        redirect_to_tag(temp_tag.name) and return
+      end  
     end
 
     if tag_ids_array.size == 0

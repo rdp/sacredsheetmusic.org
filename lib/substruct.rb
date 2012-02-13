@@ -69,48 +69,33 @@ module Substruct
   # This allows for overriding the default mapping for /home
   def self.route(map)
     # Default / home mapping
+=begin
     map.connect '',
       :controller => 'content_nodes',
       :action     => 'show_by_name',
       :name       => 'home'
+
     map.connect '/',
       :controller => 'content_nodes',
       :action     => 'show_by_name',
       :name       => 'home'
-
+=end
     # Default administration mapping
     map.connect 'admin',
       :controller => 'admin/products',
       :action     => 'index'
 
     map.connect '/admin/customers/:action.:format', :controller => 'admin/customers'
-=begin
-    map.connect '/blog',
-      :controller => 'content_nodes',
-      :action     => 'index'
 
-    map.connect '/blog/section/:section_name',
-      :controller => 'content_nodes',
-      :action     => 'list_by_section'
-
-    # Static route blog content through our content_node controller
-    map.connect '/blog/:name',
-      :controller => 'content_nodes',
-      :action     => 'show_by_name'
-
-    map.connect 'blog/:action.:format',
-      :controller => 'content_nodes'
-=end
-    #map.connect '/contact',
-    #  :controller => 'questions',
-    #  :action     => 'ask'
-
-    # Shorter url to show music song
+    # Shorter url to show song
     map.connect '/s/:id', # s for song!
       :controller => 'music',
       :action => 'show'
 
-    map.connect '/music/s/:id', # LODO disable, just here for tags...
+    map.connect '/music/s/:id', # LODO disable, just here for tags redirect...
+      :controller => 'music',
+      :action => 'show'
+    map.connect '/m/:id', # LODO disable just here for pass through...
       :controller => 'music',
       :action => 'show'
 
@@ -118,9 +103,7 @@ module Substruct
     #map.connect '/s/*tags', # was replaced! see above...
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
-    map.connect '/m/:id', # LODO disable
-      :controller => 'music',
-      :action => 'show'
+
     #map.connect '/music/show_by_tags/*tags', # TOO old
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
@@ -129,8 +112,8 @@ module Substruct
        :controller => 'content_nodes',
        :action     => 'show_by_name'
 
-    map.connect '/store/*',
-      :controller => 'nonexist' # I think I've ferreted out all the links now...
+    map.connect '/store/*asdf',
+      :controller => 'nonexist' # I think I've ferreted out all the links by now actually...
 
     map.connect '/all',
       :controller => 'music',
