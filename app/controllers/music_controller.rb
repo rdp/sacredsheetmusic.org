@@ -42,8 +42,8 @@ class MusicController < StoreController
  def redirect_to_original_url
    product = Product.find_by_code(params[:id])
    if !product
-     flash[:notice] = 'unexpected pelase report'
-     redirect_to :back && return
+     flash[:notice] = 'unexpected this should never happen'
+     render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
    end
     if not_a_bot
       # avoid after_save blocks ...
@@ -298,7 +298,7 @@ class MusicController < StoreController
   def search
     @search_term = params[:search_term] || ''
     unless @search_term.present?
-      flash[:notice] = "please enter a search query"
+      flash[:notice] = "please enter a search query at all!"
       redirect_to :action => 'index' and return false
     end
     @title = "Search Results for: #{@search_term}"

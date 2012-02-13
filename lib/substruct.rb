@@ -110,12 +110,12 @@ module Substruct
       :controller => 'music',
       :action => 'show'
 
-    map.connect '/music/s/:id', # LODO disable
+    map.connect '/music/s/:id', # LODO disable, just here for tags...
       :controller => 'music',
       :action => 'show'
 
     # Shorter url to show music items by tags
-    #map.connect '/s/*tags', # was replaced! may as well...
+    #map.connect '/s/*tags', # was replaced! see above...
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
     map.connect '/m/:id', # LODO disable
@@ -141,7 +141,7 @@ module Substruct
     map.connect ':controller/:action.:format'
     map.connect ':controller/:action/:id'
 
-    # putting this last (which I'm forced to do to be able to use the others) forces me to do some finagling to *use* it...hmm...
+    # putting this last (which I'm forced to do to be able to use the others at all) forces me to do some finagling to *use* it...hmm...
     map.connect '/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
