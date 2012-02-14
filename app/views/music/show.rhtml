@@ -139,7 +139,7 @@
        <div style="float:left; width: 100%;">
         <% if @default_image.public_filename then %>
           <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename, :width => "100%", :alt => @product.name%> </a>
+          <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%> </a>
         <% end %>
 			<!-- not actually thumbnails! -->
 			<% if @images.size > 1 %>
@@ -147,10 +147,10 @@
 				        <% next if @p_image == @default_image %>
 					<HR/>
 					<div class="float" style="margin:5px;">
-					  <% if @p_image.public_filename() then %>
+					  <% if @p_image.public_filename then %>
                                              <a href="<%= @p_image.public_filename %>" 
                                               rel="lightbox[product_image]">
-                                              <%= image_tag @p_image.public_filename(), :width => "100%" %>
+                                              <%= image_tag @p_image.public_filename, :width => "100%" %>
                                               </a>
                                          <% end %>
 					</div>

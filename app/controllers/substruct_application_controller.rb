@@ -16,6 +16,11 @@ module SubstructApplicationController
         flash.keep
         return false
       end
+      if request.request_uri.start_with? '/store'
+        redirect_to request.request_uri.sub('store', 'music'), :status => :moved_permanently
+        flash.keep
+        return false
+      end
     end
     
   end

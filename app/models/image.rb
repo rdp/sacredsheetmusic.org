@@ -10,7 +10,7 @@ class Image < UserUpload
   SIZES = {
     :thumb => '75x75>', 
     :small => '200x200',
-    :medium => '400x400'
+    :medium => '820'
   }
 
   has_attachment :content_type => :image,
