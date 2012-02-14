@@ -62,15 +62,13 @@
 		<ul class="navigation" id="toplinks" style="width: 385px;">
                         <!--li style="margin-right:0px;"> <a href="/store/show_cart" class="submodal-600-400">Cart</a> </li-->
 			<!--li><a href="/customers/wishlist">Download Queue</a></li-->
-			<li><a href="/questions/ask">Contact Us</a></li>
-                        <li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
-
-                        <!--li><a href="/customers/orders">Track an Order</a></li-->
+			<!--li><a href="/questions/ask">Contact Us</a></li-->
+                        <!--li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li-->
 		</ul>
 		
 		<!-- logo -->
-		<div style="float:left; padding-top: 15px; padding-left: 0px;">
-		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :width => 400, :height => 95) %></a>
+		<div style="float:left; padding-top: 15px; padding-left: 5px;">
+		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
 		</div>
 		
 		<% if @customer && !@customer.new_record? %>
@@ -82,12 +80,12 @@
 		<% end %>
 		
 		<!-- search box -->
-		<div id="searchbox" style="width: 350px;">
+		<div id="searchbox" style="width: 350px; margin-top: 10px;">
 			<form action="/music/search" method="get">
 				<input type="image" src="/plugin_assets/substruct/images/public-ui/buttons/search.gif" style="float:right;" />
 				<input type="text" name="search_term" class="textInput big" value="<%= session.delete(:last_search) %>" style="float:right; margin-right: 5px;" />
 			</form>
-                        <div style="float: right; margin-top: 10px; margin-right: 60px;">
+                        <div style="float: right; margin-top: 15px; margin-right: 60px;">
                             <a href="/music/advanced_search">Advanced search</a><span style="color: grey; font-size: 9px;">&nbsp;&nbsp;&nbsp; topic with specific voicing, etc...</span>
                        </div>
 		</div>
@@ -151,9 +149,9 @@
 			<li style="margin-left: 75px;"><a href="/">Home</a></li>
                         <li><%=link_to 'About Us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'about' %></li>
 			<!--li><a href="/questions/faq">FAQ</a></li-->
-			<li><a href="/questions/ask">Feedback</a></li>
+			<li><a href="/questions/ask">Contact Us</a></li>
 			<!--li><a href="/customers/wishlist">Download Queue</a></li-->
-                        <li><%=link_to 'Add your works', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
+                        <li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
                         <li><%=link_to 'Resources/Other Music', :controller => 'content_nodes', :action => 'show_by_name', :name => 'all-resources'%></li>
                         <li><a href="https://github.com/rdp/freeldssheetmusic.org/wiki/list-of-pay-songs">Pay songs</a></li>
                         <% if session[:user] %>
