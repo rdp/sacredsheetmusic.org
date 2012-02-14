@@ -42,14 +42,14 @@ class MusicController < StoreController
  def redirect_to_original_url
    product = Product.find_by_code(params[:id])
    if !product
-     flash[:notice] = 'unexpected this should never happen'
+     flash[:notice] = 'unexpected redirect not found this should never happen'
      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
    end
-    if not_a_bot
-      # avoid after_save blocks ...
-      Product.increment_counter(:view_count, product.id)
-    end
-   redirect_to product.original_url
+   if not_a_bot
+     # avoid after_save blocks ...
+     Product.increment_counter(:view_count, product.id)
+   end
+   redirect_to product.original_url # not permanent...not sure
  end 
 
  private
@@ -81,6 +81,12 @@ class MusicController < StoreController
         end
       end
       # never get here...
+    end
+
+    if @product.code != id
+      # mis capitalized
+      redirect_to :action => 'show', :id => @product.code, :status => :moved_permanently
+      return
     end
     if not_a_bot
       # avoid after_save blocks ...
@@ -272,6 +278,10 @@ class MusicController < StoreController
 
   # Our simple all songs list
   def index
+    if request.request_uri == '/music'
+      redirect_to :action => :index, :status => :moved_permanently
+      return
+    end
     @title = "All Songs"
     respond_to do |format|
       format.html do
