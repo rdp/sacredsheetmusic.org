@@ -120,7 +120,6 @@
 <br />
                Please visit the <a href="<%= @product.original_url %>">author's original page</a> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
-      <br/>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
