@@ -63,6 +63,18 @@ img.floater2 {
 	margin-right:10px;
 	margin-bottom:10px;
 }
+
+img.transparent2 { /* class transparent2 */
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+  /*padding-top: 3px; 
+  border: 1px solid #FFFFFF; */
+}
+img.transparent2:hover { 
+  opacity:8.0;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
 p {
 	padding-top: 5px;
 	padding-bottom: 10px;
