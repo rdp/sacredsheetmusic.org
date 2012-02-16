@@ -44,12 +44,13 @@
               <%= probs.inspect%>
             <% end %>
         <% end %>
+        <!-- TAGS -->
+        <% tags = product.linkable_tags(session[:user]) %>
+        (<%= tags.map{|t| t.name = t.name.gsub(',', '').gsub('/', ' / ');tag_link(t)}.join(', ') %>
         <% if product.downloads.length == 0 %>
            <%=link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), :controller=>'music', :action=>'redirect_to_original_url', :id => product.code)%>
         <% end %>
-        <!-- TAGS -->
-        <% tags = product.linkable_tags(session[:user]) %>
-        (<%= tags.map{|t| t.name = t.name.gsub(',', '').gsub('/', ', ');tag_link(t)}.join(', ') %>)
+         
         <% if false #product.downloads.length == 0%>
            (<%=link_to('quick go', :controller=>'music', :action=>'redirect_to_original_url', :id => product.code)%>)
            <br/>
