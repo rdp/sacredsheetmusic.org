@@ -67,7 +67,7 @@ class MusicController < StoreController
 
     @product = Product.find_by_code(id, :include => [:images, :downloads, {:tags => [:parent]}]) # no cacheing yet...
 
-    if !@product || request.request_uri =~ /music.show/
+    if !@product || request.request_uri =~ /music.show/ || request.request_uri.start_with?( '/m/')
       if Product.find_by_code(new_id = id.gsub(/[-]+/, '-'))
         redirect_to :action => 'show', :id => new_id, :status => :moved_permanently
         return false
