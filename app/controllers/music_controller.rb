@@ -228,14 +228,15 @@ class MusicController < StoreController
     al = request.headers['Accept-Language']
     not_bot = al.present?
 
-    not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i # players
+    not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i # players and browser players, etc.
     not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player? # This kind of kills our whole system though...
+    not_bot = true if ua =~ /stagefright/ # android player
     # but it's fun to try and perfect :P
     # slightly prefer to undercount uh guess
     not_bot = false if ua =~ /yahoo.*slurp/i
     not_bot = false if ua =~ /spider/i # baiduspider
-    not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above)
-    not_bot = false if ua =~ /crawler/i # alexa crawler
+    not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above), various others calling themselves 'bot'
+    not_bot = false if ua =~ /crawler/i # alexa crawler etc.
 
     if not_bot
       prefix= "not bot:"
@@ -317,6 +318,7 @@ class MusicController < StoreController
     @search_term = params[:search_term] || ''
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
+      logger.debug("no search terms?" + params.inspect)
       redirect_to :action => 'index' and return false
     end
     @title = "Search Results for: #{@search_term}"
