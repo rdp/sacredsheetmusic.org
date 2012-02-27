@@ -166,6 +166,16 @@ class Product < Item
       if self.original_url.present? && !self.original_url.start_with?("http")
         problems << "original url should start with http://"
       end
+      topic_tag_root = Tag.find_by_name "Topics", :include => :children
+      for topic_tag in topic_tag_root.children
+        name_reg =  Regexp.new(topic_tag.name, Regexp::IGNORECASE)
+        if (self.name =~ name_reg) || (self.description =~ name_reg)
+          if !self.tags.detect{|t| t.id == topic_tag.id}
+            problems << "probably wants the #{topic_tag.name} tag, since its name is included"
+         end
+        end     
+      end
+      
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/
         problems << "original url looks like its a pdf but should be htmlish"
       end
