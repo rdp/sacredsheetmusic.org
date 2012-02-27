@@ -137,8 +137,22 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
+      for composer_tag in self.composer_tags
+        if composer_tag.products.detect{|p| p.tags.detect{|t| t.name =~ /only on this site/i} }
+          if !self.tags.detect{|t| t.name =~ /only on this site/i}
+             problems << "probably needs the only on this site tag, since its composer has others only on this site"
+          end
+        end
+        if composer_tag.composer_contact !~ /^http/
+          if !self.tags.detect{|t| t.name =~ /only on this site/i}
+            problems << "probably needs the only on this site tag, since its composer has no web page"
+          end
+          # no web page...
+        end
+      end
+      
 
-      # disallow SAB and SATB
+      # disallow SAB and SATB on same song
       distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and/i}
       if distinct_voicing_tags.length > 1
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
