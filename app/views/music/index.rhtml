@@ -37,17 +37,15 @@
            </div>
         <% end %>
         <% if @products.length > 20 %>
-           <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can get more refined results using the <a href="/music/advanced_search">advanced</a> search.
+           <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can get more refined by 
              <% if @viewing_tags %>
                 <% if (@viewing_tags[0].children.size > 0) %>
-                   Or by choosing a sub-category, to your left.)
-                <% else %>
-                  ) <!-- ugly, I know -->
+                   choosing a sub-category, on the left-hand side.
                 <% end %>
             <% else %>
-                   Or by selecting a category, to your left.) <!-- NB this is used only for root tags -->
+                   selecting a category, on the left hand side. <!-- NB this is used only for root tags -->
             <% end %>
-
+          Or by using the <a href="/music/advanced_search">advanced</a> search.)
           </div>
         <% else %>
              <div style="height: 5px;"></div> <!-- don't want it too high -->
