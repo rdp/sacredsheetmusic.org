@@ -13,6 +13,7 @@
   <li><a href="/music/most_recently_added">Songs Recently Added</a></li>
   <li><a href="https://github.com/rdp/freeldssheetmusic.org/wiki/list-of-pay-songs">Pay songs</a></li>
 </UL>
+<% if Time.now.wday != 0 %>
 </div>
 <!-- &nbsp;&nbsp; Your advertisement here! -->
 Sponsored links:
@@ -29,3 +30,4 @@ google_ad_height = 200;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 </div>
+<% end %>
