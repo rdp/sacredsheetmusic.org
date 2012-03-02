@@ -138,6 +138,9 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
+      if self.original_tag && self.hymn_tag
+        problems << "is tagged with both original and hymn? probably wants to be just hymn tag"
+      end
 
       for composer_tag in self.composer_tags
         if composer_tag.products.detect{|p| p.tags.detect{|t| t.name =~ /only on this site/i} }
