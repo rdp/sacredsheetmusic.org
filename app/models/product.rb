@@ -134,9 +134,11 @@ class Product < Item
             problems << "possibly has duplicate downloads accidentally"
         end
       end
+
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
+
       for composer_tag in self.composer_tags
         if composer_tag.products.detect{|p| p.tags.detect{|t| t.name =~ /only on this site/i} }
           if !self.tags.detect{|t| t.name =~ /only on this site/i}
@@ -151,7 +153,6 @@ class Product < Item
         end
       end
       
-
       # disallow SAB and SATB on same song
       distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and/i}
       if distinct_voicing_tags.length > 1
@@ -171,7 +172,7 @@ class Product < Item
         name_reg =  Regexp.new(topic_tag.name, Regexp::IGNORECASE)
         if (self.name =~ name_reg) || (self.description =~ name_reg)
           if !self.tags.detect{|t| t.id == topic_tag.id}
-            problems << "probably wants the #{topic_tag.name} tag, since its name is included"
+            problems << "probably wants the #{topic_tag.name} tag, since its name is included in the title or description"
          end
         end     
       end
