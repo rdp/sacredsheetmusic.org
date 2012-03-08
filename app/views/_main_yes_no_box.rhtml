@@ -135,9 +135,9 @@
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
               <%= 
-               Cache.get_or_set_int([Time.now.wday, @viewing_tags.andand.map(&:id)].hash, 'boxed', 'tags') {
+               # bwokded for now Cache.get_or_set_int([Time.now.wday, @viewing_tags.andand.map(&:id)].hash, 'boxed', 'tags') {
                  render :partial => '/boxed_categories' 
-               }
+               #}
                %>
           <% end %>
 	  <%= yield %>
