@@ -65,7 +65,8 @@ class MusicController < StoreController
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
 
-    @product = Product.find_by_code(id, :include => [:images, :downloads, {:tags => [:parent]}]) # no cacheing yet...
+    @product = Product.find_by_code(id, :include => [:downloads, {:tags => [:parent]}]) # no cacheing yet on the show page...
+    # nb that we can't include :images because it comes in unsorted...Rails!!!
 
     if !@product || request.request_uri =~ /music.show/ || request.request_uri.start_with?( '/m/')
       if Product.find_by_code(new_id = id.gsub(/[-]+/, '-'))
@@ -99,6 +100,7 @@ class MusicController < StoreController
     end
     @images = @product.images
     @default_image = @images[0]
+    logger.info "images:" + @images.inspect + "default:" + @default_image.to_s
     #@variations = @product.variations.find(
     #  :all,
     #  :order => '-variation_rank DESC',
