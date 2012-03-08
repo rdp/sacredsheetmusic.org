@@ -100,12 +100,13 @@ class MusicController < StoreController
     end
     @images = @product.images
     @default_image = @images[0]
-    logger.info "images:" + @images.inspect + "default:" + @default_image.to_s
+
     #@variations = @product.variations.find(
     #  :all,
     #  :order => '-variation_rank DESC',
     #  :conditions => 'quantity > 0'
     #)
+
     render :layout => 'main_no_box'
   end
 

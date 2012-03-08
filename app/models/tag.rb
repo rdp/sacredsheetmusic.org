@@ -94,7 +94,7 @@ class Tag
   end
 
   def is_original_tag?
-    self.name =~ /original/i
+    self.name =~ /^original/i
   end
 
   after_update {
