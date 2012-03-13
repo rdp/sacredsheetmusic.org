@@ -115,12 +115,12 @@ Composers love to from you if you've used their music!
     <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tags.map(&:name).join(', ') %> </h1>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
-             Or visit the <a href="<%= @product.original_url %>">author's original page</a> for this piece.
+             Or visit the <%=link_to('author\'s original page', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> for this piece.
            <% else %>
 <br />
 <br />
 <br />
-               Please visit the <a href="<%= @product.original_url %>">author's original page</a> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+               Please visit the <%=link_to('author\'s original page', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
