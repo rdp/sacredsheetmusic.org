@@ -161,6 +161,9 @@ class Product < Item
       if distinct_voicing_tags.length > 1
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
       end
+      for download in self.downloads
+       problems << "has empty download?" + download.filename unless download.size > 0
+      end
       if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
         problems <<  "no hymn or 'original' tag for this song yet."
       end
