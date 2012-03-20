@@ -175,6 +175,7 @@ class Product < Item
       end
       topic_tag_root = Tag.find_by_name "Topics", :include => :children
       for topic_tag in topic_tag_root.children
+        next if topic_tag.name.in? ['Christ']
         name_reg =  Regexp.new(topic_tag.name, Regexp::IGNORECASE)
         if (self.name =~ name_reg) || (self.description =~ name_reg)
           if !self.tags.detect{|t| t.id == topic_tag.id}
