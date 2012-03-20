@@ -137,11 +137,10 @@ Composers love to from you if you've used their music!
     <% end %>
 
       <% if @default_image %>
-       <span style="float: right; margin-left: 5px;">(Click "pdf view", top left, to see full resolution pdf or to print music.)</span>
+       <span style="float: right; margin-left: 5px;">(To print, click "pdf view", top left.)</span>
        <div style="float:left; width: 100%;">
         <% if @default_image.public_filename then %>
-          <a href="<%= @default_image.public_filename %>" rel="lightbox[product_image]">
-          <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%> </a>
+          <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%>
         <% end %>
 			<!-- not actually thumbnails! -->
 			<% if @images.size > 1 %>
@@ -150,10 +149,7 @@ Composers love to from you if you've used their music!
 					<HR/>
 					<div class="float" style="margin:5px;">
 					  <% if @p_image.public_filename then %>
-                                             <a href="<%= @p_image.public_filename %>" 
-                                              rel="lightbox[product_image]">
                                               <%= image_tag @p_image.public_filename, :width => "100%" %>
-                                              </a>
                                          <% end %>
 					</div>
 				<% end %>
