@@ -155,6 +155,17 @@ class Product < Item
           # no web page...
         end
       end
+
+      for tag in self.tags
+        bad_whitespace_reg = /^ | $/
+        if tag.name =~ bad_whitespace_reg
+          problems << "tag has beginning or trailing whitespace?" + tag.name
+        end
+        if tag.composer_contact.present? && tag.composer_contact =~ bad_whitespace_reg
+          problems << "tag composer contact has beginning or trailing whitespace?" + tag.name
+        end
+
+      end
       
       # disallow SAB and SATB on same song
       distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and/i}
@@ -175,7 +186,7 @@ class Product < Item
       end
       topic_tag_root = Tag.find_by_name "Topics", :include => :children
       for topic_tag in topic_tag_root.children
-        next if topic_tag.name.in? ['Christ']
+        next if topic_tag.name.in? ['Christ', 'Work', 'Music']
         name_reg =  Regexp.new(topic_tag.name, Regexp::IGNORECASE)
         if (self.name =~ name_reg) || (self.description =~ name_reg)
           if !self.tags.detect{|t| t.id == topic_tag.id}
@@ -215,7 +226,9 @@ class Product < Item
       end
       if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
          unless t.id.in? self.tag_ids
-           problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title #{self.name}]"
+           unless self.description =~ /original/i
+             problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title #{self.name}]"
+           end
          end
       end
       for download in downloads
