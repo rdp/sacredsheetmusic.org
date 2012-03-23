@@ -127,11 +127,12 @@ Composers love to from you if you've used their music!
     <% end %>
     <% for hymn_tag in @product.hymn_tags %>
      <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
+      <br/>
        Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
        <% if @product.hymn_tags.length > 1 %>
           (<%= hymn_tag.name %>).
        <% else %>
-          of this song.
+          for this song.
        <% end%>
      <% end %>
     <% end %>
