@@ -206,7 +206,7 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  command = "convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
+                  command = "nice convert -density #{@@density} #{i[:download_data].path}[#{n}] #{temp_file_path}"
                   logger.info "running " + command
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
