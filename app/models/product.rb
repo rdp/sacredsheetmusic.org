@@ -187,10 +187,10 @@ class Product < Item
 
       topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
-      for topic_tag in topic_tags + instrument_tags
+      for topic_tag in Tag.all#topic_tags + instrument_tags
         next if topic_tag.name.in? ['Christ', 'Work', 'Music'] # too common :)
         for topic_tag_name in topic_tag.name.split('/')
-          name_reg =  Regexp.new(Regexp.escape(topic_tag_name.strip) + "\\W", Regexp::IGNORECASE)
+          name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name.strip) + "\\W", Regexp::IGNORECASE)
           if (self.name =~ name_reg) || (self.description =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
               problems << "probably wants the #{topic_tag.name} tag, since its name is included in the title or description"
