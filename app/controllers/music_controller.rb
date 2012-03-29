@@ -130,7 +130,7 @@ class MusicController < StoreController
      parent_tag_groups[parent_id] << child_id
    end
 
-   all_products = Product.find(:all) # LODO sql for all this :)
+   all_products = Product.find(:all, :conditions => Product::CONDITIONS_AVAILABLE) # LODO sql for all the above :)
   
    @products = all_products.select{|p|
      product_matches(p, parent_tag_groups)
