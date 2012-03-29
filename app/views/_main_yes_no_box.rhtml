@@ -35,6 +35,7 @@
     stylesheet_link_tag('main')
   %>
 	<%= yield :header %>
+
 <% unless session[:user] %>
 <!-- google analytics -->
 <script type="text/javascript">
@@ -72,15 +73,10 @@
 		<div style="float:left; padding-top: 15px; padding-left: 5px;">
 		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
 		</div>
-		
-		<% if @customer && !@customer.new_record? %>
-			<div id="customer_msg">
-				<%= @customer.email_address %>
-				<br/>
-				<a href="/customers/logout">log out</a>
-			</div>
-		<% end %>
-		
+	
+                <%=  'Welcome to Free LDS Sheet Music, home to over 1500 free songs for church choir, solo, etc. use' unless request.env["HTTP_REFERER"] =~ /freeldssheet/
+
+                %>	
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
 			<form action="/music/search" method="get">
