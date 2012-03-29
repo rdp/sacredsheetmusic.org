@@ -45,11 +45,14 @@ class MusicController < StoreController
      flash[:notice] = 'unexpected redirect not found this should never happen'
      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
    end
+   logger.info("should update... #{product.id}")
    if not_a_bot
      # avoid after_save blocks ...
+     Product.increment_counter(:redirect_count, product.id)
      Product.increment_counter(:view_count, product.id)
+     logger.info("updated #{product.id}")
    end
-   redirect_to product.original_url # not permanent...not sure
+   redirect_to product.original_url # not permanent redirect code...not sure if that's right...
  end 
 
  private
