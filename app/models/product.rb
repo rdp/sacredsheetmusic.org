@@ -10,9 +10,9 @@ class Product < Item
     :dependent => :destroy
 
   def sync_all_parent_tags # check parent tags that should be checked but weren't
-    tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent}
-     tags.each{|t|
-      if t.parent && t.parent.products.count > 0 && !t.parent.id.in?(self.tag_ids)
+    tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent} # plus parent to go 2 deep here
+    tags.each{|t|
+      if t.products.size > 0 && t.parent && t.parent.products.size > 0 && !t.parent.id.in?(self.tag_ids)
         self.tags << t.parent
       end
     }
@@ -62,7 +62,7 @@ class Product < Item
         self.code = self.name.clone
       end
     end
-#    self.code.upcase!
+#    self.code.upcase! # too ugly
     self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
     self.code.gsub!(/-{2,}/,'-') # -- => -
     self.code.gsub!(/^[-]+/,'') # beginning dash
@@ -89,10 +89,10 @@ class Product < Item
   end
 
   def clear_my_cache
-    Cache.delete_all(:parent_id => self.id) # can't even do this in an after_save {} because of view_count being incremented so frequently...well I guess I could...
+    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now
   end
 
-  after_save { Cache.delete_by_type('group_products') } # can't do clear_my_cache, guess this is singleton...
+  after_save { Cache.delete_by_type('group_products') } 
 
   def is_five_star?
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
@@ -168,7 +168,7 @@ class Product < Item
       end
       
       # disallow SAB and SATB on same song
-      distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.name !~ /choir/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and/i}
+      distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.name !~ /choir/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and|song type/i}
       if distinct_voicing_tags.length > 1
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
       end
@@ -186,7 +186,7 @@ class Product < Item
       end
       topic_tag_root = Tag.find_by_name "Topics", :include => :children
       for topic_tag in topic_tag_root.children
-        next if topic_tag.name.in? ['Christ', 'Work', 'Music']
+        next if topic_tag.name.in? ['Christ', 'Work', 'Music'] # too common :)
         name_reg =  Regexp.new(topic_tag.name, Regexp::IGNORECASE)
         if (self.name =~ name_reg) || (self.description =~ name_reg)
           if !self.tags.detect{|t| t.id == topic_tag.id}
