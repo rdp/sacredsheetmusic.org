@@ -40,6 +40,15 @@ class MusicController < StoreController
  end
 
  def redirect_to_original_url
+   redirect_to_original_url_helper false
+ end
+
+ def redirect_to_original_url_v # v meaning "with view" :P
+   redirect_to_original_url_helper true
+ end
+
+ private
+ def redirect_to_original_url_helper inc_view
    product = Product.find_by_code(params[:id])
    if !product
      flash[:notice] = 'unexpected redirect not found this should never happen'
@@ -49,7 +58,7 @@ class MusicController < StoreController
    if not_a_bot
      # avoid after_save blocks ...
      Product.increment_counter(:redirect_count, product.id)
-     Product.increment_counter(:view_count, product.id)
+     Product.increment_counter(:view_count, product.id) if inc_view
      logger.info("updated #{product.id}")
    end
    redirect_to product.original_url # not permanent redirect code...not sure if that's right...
