@@ -189,13 +189,14 @@ class Product < Item
 
       for topic_tag in Tag.find(:all)
         next if topic_tag.name.in? ['Christ', 'Work', 'Music'] # too common :)
-        topic_tag_name = topic_tag.name
-          name_reg =  Regexp.new(topic_tag_name, Regexp::IGNORECASE)
+        for topic_tag_name in topic_tag.name.split('/')
+          name_reg =  Regexp.new(topic_tag_name.strip, Regexp::IGNORECASE)
           if (self.name =~ name_reg) || (self.description =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
               problems << "probably wants the #{topic_tag.name} tag, since its name is included in the title or description"
            end
-          end     
+          end 
+        end
       end
       
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/
