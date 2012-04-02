@@ -40,8 +40,8 @@
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <% if session[:user] %>
             <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
-            <% if false && (probs = product.find_problems).present? %>
-              <%= probs.inspect%>
+            <% if false && product.cached_find_problems.present? %>
+              <%= product.cached_find_problems.inspect%>
             <% end %>
         <% end %>
         <!-- TAGS -->
@@ -49,11 +49,6 @@
         (<%= tags.map{|t| t.name = t.name.gsub(',', '').gsub('/', ' / ');tag_link(t)}.join(', ') %>
         <% if product.downloads.length == 0 %>
            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), :controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code) %>
-        <% end %>
-         
-        <% if false #product.downloads.length == 0%>
-           (<%=link_to('quick go', :controller=>'music', :action=>'redirect_to_original_url', :id => product.code)%>)
-           <br/>
         <% end %>
     </div>
   </div>

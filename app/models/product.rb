@@ -188,7 +188,7 @@ class Product < Item
       topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
-        next if topic_tag.name.in? ['Christ', 'Work', 'Music'] # too common :)
+        next if topic_tag.name.in? ['Christ', 'Work', 'Music', 'Piano'] # too common :)
         for topic_tag_name in topic_tag.name.split('/')
           name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name.strip) + "\\W", Regexp::IGNORECASE)
           if (self.name =~ name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
