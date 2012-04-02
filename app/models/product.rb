@@ -89,10 +89,16 @@ class Product < Item
   end
 
   def clear_my_cache
-    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now
+    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method <sigh>
+    delete_group_caches
   end
 
-  after_save { Cache.delete_by_type('group_products') } 
+  after_save { 
+    delete_group_caches
+  } 
+  def delete_group_caches
+    Cache.delete_by_type('group_products') 
+  end
 
   def is_five_star?
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
