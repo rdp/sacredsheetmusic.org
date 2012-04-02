@@ -17,8 +17,9 @@ class MusicController < StoreController
      flash[:notice] = 'Comment saved'
      OrdersMailer.deliver_inquiry(
           Preference.get_value('mail_username'),
-          new_hash.pretty_inspect + ' ' + product.code
+          new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code
       )
+     product.clear_my_cache
    end
    redirect_to :action => :show, :id => product.code
  end
