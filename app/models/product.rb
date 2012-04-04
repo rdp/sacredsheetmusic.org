@@ -156,7 +156,7 @@ class Product < Item
         end
         if composer_tag.composer_contact !~ /^http/
           if !self.tags.detect{|t| t.name =~ /only on this site/i}
-            problems << "probably needs the only on this site tag, since its composer has no web page"
+            problems << "probably needs the only on this site tag, since its composer has no web page, or fix the composer tag"
           end
           # no web page...
         end
