@@ -90,13 +90,14 @@ class Product < Item
 
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method <sigh>
-    delete_group_caches
+    class.delete_group_caches
   end
 
-  after_save { 
+  after_save {  # singleton!
     delete_group_caches
   } 
-  def delete_group_caches
+
+  def self.delete_group_caches
     Cache.delete_by_type('group_products') 
   end
 
