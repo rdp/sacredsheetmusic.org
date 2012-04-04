@@ -216,7 +216,7 @@ class Product < Item
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
       end
       if self.composer_tag && self.composer_tag.composer_url.present? && self.composer_tag.composer_contact !~ /http/
-         problems << "composer probably needs to not use an email address for contact info"
+         problems << "composer probably needs to not use an email address for contact info, since they probably have some contact url they could use instead"
       end
       if (count = Product.count(:conditions => {:code => self.code})) != 1
         problems << "probably not a unique product code please update #{count}"
