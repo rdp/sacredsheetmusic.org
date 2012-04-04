@@ -188,8 +188,19 @@ class Product < Item
       if self.downloads.size == 0 && !self.original_url.present?
         problems << "song has no original_url nor pdf uploads! Not expected I don't think..."
       end
-      if self.original_url.present? && !self.original_url.start_with?("http")
-        problems << "original url should start with http://"
+      if self.original_url.present? 
+        if !self.original_url.start_with?("http")
+          problems << "original url should start with http://"
+        else
+          require 'open-uri'
+          logger.info "trying:" + self.original_url
+          begin
+            # doesn't work within BH?
+            # open(self.original_url).close
+          rescue OpenURI::HTTPError
+            problems << "original url is now a 404?"
+          end
+        end
       end
 
       topic_tags = Tag.find_by_name( "Topics", :include => :children).children
@@ -261,7 +272,7 @@ class Product < Item
     if user
       tags # all :)
     else
-      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}
+      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| t.is_composer_tag? ? 0 : 1} # composer first :)
      end
   end
 

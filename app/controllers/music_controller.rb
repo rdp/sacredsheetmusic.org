@@ -340,13 +340,11 @@ class MusicController < StoreController
     super_search_terms = params[:search_term].split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
     super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
-    # XXX can search by code
-    
     # XXX paginate :)
-      conds = [
+    conds = [
         "(items.name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
         "%#{@search_term}%", @search_term # name, code
-      ] + super_search_terms
+    ] + super_search_terms
 
     products = Product.find(:all, :include => [:tags],
       :order => 'items.name ASC', :conditions => conds
