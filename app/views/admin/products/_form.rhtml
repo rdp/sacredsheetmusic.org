@@ -7,7 +7,7 @@
 <br/>
  <%= link_to 'New Song Page', {:action => 'new'}, :class => 'button hundredfifty' %>
   </div>
-             <% problems = @product.find_problems %>
+             <% problems = @product.find_problems(true) %>
              <%= "Current difficulties: " + problems.join(',') if @product.id.present? && problems.present? %>
 	<div class="padLeft">
 		<div class="float" style="padding-left:15px;">

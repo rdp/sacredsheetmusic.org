@@ -134,11 +134,11 @@ class Product < Item
     }.dups
   end
 
-  def find_problems
+  def find_problems expensive=false
       problems = []
-      if duplicate_download_lengths.length > 0
+      if expensive && duplicate_download_lengths.length > 0
         if duplicate_download_md5s.length > 0
-            problems << "possibly has duplicate downloads accidentally"
+          problems << "possibly has duplicate downloads accidentally"
         end
       end
 
@@ -192,19 +192,23 @@ class Product < Item
         if !self.original_url.start_with?("http")
           problems << "original url should start with http://"
         else
-          require 'open-uri'
-          logger.info "trying:" + self.original_url
-          begin
-            # doesn't work within BH?
-            # open(self.original_url).close
-          rescue OpenURI::HTTPError
-            problems << "original url is now a 404?"
-          end
+          if expensive
+            require 'open-uri'
+            begin
+              # doesn't work within BH?
+              a = open(self.original_url)
+              got = a.read
+              a.close
+              raise OpenURI::HTTPError.new("hello", "k?") if got =~ /Not Found/ # lindy kerby uses 302 redirs yikes
+            rescue OpenURI::HTTPError
+              problems << "original url is now a 404?"
+            end
+           end
         end
       end
 
-      topic_tags = Tag.find_by_name( "Topics", :include => :children).children
-      instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
+      #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
+      #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
         next if topic_tag.name.in? ['Christ', 'Work', 'Music', 'Piano'] # too common :)
         for topic_tag_name in topic_tag.name.split('/')
