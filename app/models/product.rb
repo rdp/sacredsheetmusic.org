@@ -134,7 +134,7 @@ class Product < Item
     }.dups
   end
 
-  def find_problems expensive=false
+  def find_problems expensive=true# true until I can figure out what in the world I am doing wrong here...
       problems = []
       if expensive && duplicate_download_lengths.length > 0
         if duplicate_download_md5s.length > 0
