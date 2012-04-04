@@ -68,15 +68,17 @@
 			<!--li><a href="/questions/ask">Contact Us</a></li-->
                         <!--li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li-->
 		</ul>
-		
-		<!-- logo -->
-		<div style="float:left; padding-top: 15px; padding-left: 5px;">
-		   <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
-		</div>
 	
-                <%=  'Welcome to Free LDS Sheet Music, home to over 1500 free songs for church choir, solo, etc. use' unless request.env["HTTP_REFERER"] =~ /freeldssheet/
-
-                %>	
+              	
+	
+                <% if  request.env["HTTP_REFERER"] =~ /^http:\/\/freeldssheet/ %>
+                <% else %> 
+                  <%= 'Welcome to Free LDS Sheet Music, home to over 1500 free songs/arrangements for church choir, solo, etc. use from over 40 composers' %>
+                <% end %>
+		  <!-- logo -->
+		  <div style="float:left; padding-top: 15px; padding-left: 5px;">
+		     <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
+		  </div>
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
 			<form action="/music/search" method="get">
