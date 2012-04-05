@@ -192,7 +192,7 @@ class Product < Item
         if !self.original_url.start_with?("http")
           problems << "original url should start with http://"
         else
-          if expensive
+          if false
             require 'open-uri'
             begin
               # doesn't work within BH?
