@@ -70,12 +70,12 @@ module ApplicationHelper
     end
   end
 
-  def tag_link tag, name=tag.name
+  def tag_link tag, name_use_instead=tag.name
     if false#tag.is_hymn_tag?
       "<a href=/arrangements/#{escaped_name.gsub("%20", "_")}>#{name}</a>" # doesn't quite seem worth it even...maybe just for the main page
     else
       escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name}</a>"
+      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_use_instead}</a>"
     end
   end
   
