@@ -16,8 +16,8 @@ class MusicController < StoreController
      product.comments << Comment.new(new_hash)
      flash[:notice] = 'Comment saved'
      OrdersMailer.deliver_inquiry(
-          Preference.get_value('mail_username'),
-          new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code
+       Preference.get_value('mail_username'),
+       new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + ' ' + product.composer_tag.inspect
       )
      product.clear_my_cache
    end
