@@ -276,7 +276,7 @@ class Product < Item
     if user
       tags # all :)
     else
-      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| t.is_composer_tag? ? 0 : 1} # composer first :)
+      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| t.is_composer_tag? ? 1 : t.is_topic_tag? ? 3 : 2}
      end
   end
 
