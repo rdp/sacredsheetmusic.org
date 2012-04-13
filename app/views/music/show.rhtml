@@ -111,6 +111,7 @@ Composers love to hear from you if you've used their music!
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
+    <div id="text_at_top" style="margin-left: 10px;"> 
     <% extra_style = "display:none;" if @default_image %>
     <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tags.map(&:name).join(', ') %> </h1>
     <% if @product.original_url.present? %>
@@ -120,7 +121,7 @@ Composers love to hear from you if you've used their music!
 <br />
 <br />
 <br />
-               Please visit the <%=link_to('author\'s original page', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+               Please visit the author's original page by clicking <%=link_to('here', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
            <% end %>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
@@ -132,11 +133,11 @@ Composers love to hear from you if you've used their music!
        <% if @product.hymn_tags.length > 1 %>
           (<%= hymn_tag.name %>).
        <% else %>
-          of this song.
+          for this song.
        <% end%>
      <% end %>
     <% end %>
-
+   </div>
       <% if @default_image %>
        <span style="float: right; margin-left: 5px;">(To print, click "pdf view", top left.)</span>
        <div style="float:left; width: 100%;">
