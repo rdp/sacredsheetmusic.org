@@ -124,7 +124,10 @@ Composers love to hear from you if you've used their music!
 <br />
 <br />
 <br />
-               Please visit the author's original page by clicking <%=link_to('here', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> to access this song's free sheet music<% if @product.downloads.length == 0 %> and/or see recordings if available<% end %>. <!-- if we have local recordings, then don't tell them they have to leave us -->
+               The free sheet music for this song can be found on the author's page by <%=link_to('clicking here', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%>.
+<br />
+<br />
+<br />
            <% end %>
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
@@ -133,16 +136,16 @@ Composers love to hear from you if you've used their music!
      <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
       <br/>
        Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
-       <% if @product.hymn_tags.length > 1 %>
-          (<%= hymn_tag.name %>).
+       <% if true#@product.hymn_tags.length > 1 %>
+          for "<%= hymn_tag.name %>".
        <% else %>
           for this song.
        <% end%>
      <% end %>
     <% end %>
    </div>
+     <div style="float: left; width: 100%;">
       <% if @default_image %>
-       <div style="float: left; width: 100%;">
         <% if @default_image.public_filename then %>
           <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%>
         <% end %>
@@ -159,7 +162,6 @@ Composers love to hear from you if you've used their music!
 				<% end %>
 			<% end %>
 			<HR/>
-		</div>
 	<% else %>
           <br />
           <br />
@@ -172,6 +174,7 @@ Composers love to hear from you if you've used their music!
           <br />
           <br /> <!-- make footer look like a footer -->
        <% end %>
+     </div>
   
 <% pdf_views = @product.pdf_download_count %>
 
