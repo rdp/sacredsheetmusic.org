@@ -111,9 +111,12 @@ Composers love to hear from you if you've used their music!
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
-    <div id="text_at_top" style="margin-left: 10px;"> 
+    <div id="text_at_top" style="margin-left: 10px; float: left;"> 
     <% extra_style = "display:none;" if @default_image %>
     <h1 style="margin: 0px; margin-left: 100px;<%= extra_style %>"><%= @product.name %> by <%= @product.composer_tags.map(&:name).join(', ') %> </h1>
+      <% if @default_image %> 
+       To print, click pdf "view", top left.&nbsp;&nbsp;&nbsp;&nbsp;
+      <% end %>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              Or visit the <%=link_to('author\'s original page', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> for this piece.
@@ -139,8 +142,7 @@ Composers love to hear from you if you've used their music!
     <% end %>
    </div>
       <% if @default_image %>
-       <span style="float: right; margin-left: 5px;">(To print, click "pdf view", top left.)</span>
-       <div style="float:left; width: 100%;">
+       <div style="float: left; width: 100%;">
         <% if @default_image.public_filename then %>
           <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%>
         <% end %>
