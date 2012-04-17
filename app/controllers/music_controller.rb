@@ -183,7 +183,7 @@ class MusicController < StoreController
       else
         render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
       end
-      if temp_tag.name != real_name # capitalization fail
+      if temp_tag.name != real_name # redirect capitalization fail
         redirect_to_tag(temp_tag.name) and return
       end  
     end
@@ -192,16 +192,27 @@ class MusicController < StoreController
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
 
+    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
-    all_products = all_products.sort_by{|p| p.name}
+    if @viewing_tags[0].is_hymn_tag?
+      logger.info 'is hymn'
+      session['rand_seed'] ||= rand(300000) # the irony
+      srand(session['rand_seed'])
+      logger.info "sranded with #{session['rand_seed']}"
+      all_products = all_products.sort_by{ rand }
+      logger.info "sorting array is #{[1,2,3,4,5,6].sort_by { rand } }"
+      srand # re-enable randomizer
+    else
+      logger.info 'non hymn'
+      #all_products = all_products.sort_by{|p| p.name} # already sorted  by :date_available
+    end
     pager = Paginator.new(all_products, all_products.size, @@per_page, params[:page])
     @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, all_products.size) do |p|
       p.replace all_products[pager.current.offset, pager.items_per_page]
     end
 
-    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
     @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
     viewing_tag_names = @tag_names.join(" > ")
     @title = "#{viewing_tag_names}"
