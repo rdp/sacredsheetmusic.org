@@ -197,15 +197,11 @@ class MusicController < StoreController
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
     if @viewing_tags[0].is_hymn_tag?
-      logger.info 'is hymn'
       session['rand_seed'] ||= rand(300000) # the irony
       srand(session['rand_seed'])
-      logger.info "sranded with #{session['rand_seed']}"
       all_products = all_products.sort_by{ rand }
-      logger.info "sorting array is #{[1,2,3,4,5,6].sort_by { rand } }"
       srand # re-enable randomizer
     else
-      logger.info 'non hymn'
       #all_products = all_products.sort_by{|p| p.name} # already sorted  by :date_available
     end
     pager = Paginator.new(all_products, all_products.size, @@per_page, params[:page])
