@@ -192,12 +192,6 @@ class MusicController < StoreController
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
 
-    #if temp_tag.parent
-      # my own tweak :P
-      # @tag_names.unshift temp_tag.parent.name
-    #end
-    #@tags = Tag.find_related_tags(tag_ids_array)
-
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     list = Product.find_by_tags(tag_ids_array, true)
@@ -215,6 +209,7 @@ class MusicController < StoreController
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
     end
+
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
