@@ -194,11 +194,11 @@ class MusicController < StoreController
 
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
-    list = Product.find_by_tags(tag_ids_array, true)
-    list = list.sort_by{|p| p.name}
-    pager = Paginator.new(list, list.size, @@per_page, params[:page])
-    @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
-      p.replace list[pager.current.offset, pager.items_per_page]
+    all_products = Product.find_by_tags(tag_ids_array, true)
+    all_products = all_products.sort_by{|p| p.name}
+    pager = Paginator.new(all_products, all_products.size, @@per_page, params[:page])
+    @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, all_products.size) do |p|
+      p.replace all_products[pager.current.offset, pager.items_per_page]
     end
 
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
