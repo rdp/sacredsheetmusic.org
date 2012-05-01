@@ -113,6 +113,11 @@ Composers love to hear from you if you've used their music!
 <div style="float: right; width: 82%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
     <% extra_style = "display:none;" if @default_image %>
+     <% if  request.env["HTTP_REFERER"] =~ /^http:\/\/freeldssheet/ %>
+                    <% else %>
+                      <%= '<br/>Welcome to Free LDS Sheet Music, home to over 1500 free songs/arrangements for ward choir, etc. <br/>' %>
+               <% end %>
+
     <h1 style="margin: 0px; margin-left: 50px;<%= extra_style %>"><%= @product.name %> (by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
       <% if @default_image %> 
        To print, click pdf "view", top left.&nbsp;&nbsp;&nbsp;&nbsp;
