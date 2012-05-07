@@ -168,6 +168,10 @@ class Product < Item
         end
       end
 
+      if self.tags.detect{|t| t.name =~ /only on this site/i} && self.original_url.present?
+         problems << "probably does not want the only on this site tag, since it has an original url"
+      end
+
       for tag in self.tags
         bad_whitespace_reg = /^ | $/
         if tag.name =~ bad_whitespace_reg
