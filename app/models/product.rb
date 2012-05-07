@@ -51,6 +51,11 @@ class Product < Item
     end
   end
 
+  def remove_tag_id id # guess there's also a tags= method but...hmm...using ruby-like Arrays to manage this stuff is a bit scary...
+    raise unless id.is_a? Fixnum
+    self.tag_ids=self.tag_ids.select{|id2| id2 != id}
+  end
+
   # Inserts code from product name if not entered.
   # Makes code safe for URL usage.
   # called via a before_save :clean_code

@@ -15,7 +15,7 @@ class Tag
   end
 
   def remove_other_tag_from_all_my_children offending_tag
-    self.products.each{|p| p.tags=p.tags.reject{|t| t.id == offending_tag.id}} # use tags= method
+    self.products.each{|p| p.remove_tag_id offending_tag.id}
   end
 
   def all_products_pdf_downloads
