@@ -50,20 +50,6 @@
         <% else %>
              <div style="height: 5px;"></div> <!-- don't want it too high -->
         <% end %>
-
-         <% if @viewing_tags[0].is_topic_tag? %>
-           <div>You can get a list of some other hymn names that also match this topic <a href="http://www.lds.org/cm/topicsearchalpha/1,18284,4789-1-1,00.html">here</a>.</div>
-         <% end %>
-         <% if @viewing_tags[0].is_hymn_tag? %>
-           <div>You can also (probably) get an original sheet music for this song (in an interactive player, that allows you to modify key signatures on the fly and print it modified) from
-            <% if @viewing_tags[0].parent.name =~ /primary/i %>
-              <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4958-1-2,00.html#nullLink">here</a>.
-            <% else %>
-              <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4782-1-1,00.html">here</a>.
-            <% end %>
-            </div>
-         <% end %>
-
 	<%= Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
            out = '' # is there some elegant way? hmm...
            for product in @products
@@ -83,10 +69,23 @@
     <% end %>
     </p>
   <% end %>
-  <div class="clear" style="height: 1px;">&nbsp;</div>
+        <% if @viewing_tags %>
+         <% if @viewing_tags[0].is_topic_tag? %>
+           <div>You can get a list of some other hymn names that also might match this topic (<%= @viewing_tags[0].name %>) <a href="http://www.lds.org/cm/topicsearchalpha/1,18284,4789-1-1,00.html">here</a>.</div>
+         <% end %>
+         <% if @viewing_tags[0].is_hymn_tag? %>
+           <div>You can also (probably) get an original sheet music for <%= @viewing_tags[0].name %> (in an interactive player, that allows you to modify key signatures/print) by clicking 
+            <% if @viewing_tags[0].parent.name =~ /primary/i %>
+              <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4958-1-2,00.html#nullLink">here</a>.
+            <% else %>
+              <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4782-1-1,00.html">here</a>.
+            <% end %>
+            </div>
+         <% end %>
+        <% end %>
 
-  <%= will_paginate @products  unless @do_not_paginate%>
-
+  <div class="clear" style="height: 1px;">&nbsp;</div> <!-- bottom -->
+  <%#= will_paginate @products  unless @do_not_paginate%>
 	<!-- takes up space so we can see the bottom content on this page -->
 	<!--div id="bottomSpacer">&nbsp;</div-->
 </div>
