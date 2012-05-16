@@ -82,7 +82,7 @@ class Tag
   end
 
   def is_hymn_tag?
-    self.parent && (self.parent.name =~ /^Hymn/i || self.parent.name =~ /arrangements$/i)
+    self.parent && (self.parent.name =~ /^Hymn/i || self.parent.name =~ /arrangements/i)
   end
 
   def is_composer_tag?
