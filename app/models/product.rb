@@ -172,8 +172,14 @@ class Product < Item
          problems << "probably does not want the only on this site tag, since it has an original url"
       end
 
+      bad_whitespace_reg = /^\s|\s$/
+      for string in [self.name, self.original_url, self.code]
+        if string.present? && string =~ bad_whitespace_reg
+          problems << "#{string} has some extra beginning or trailing whitespace?"
+        end
+      end
+
       for tag in self.tags
-        bad_whitespace_reg = /^ | $/
         if tag.name =~ bad_whitespace_reg
           problems << "tag has beginning or trailing whitespace?" + tag.name
         end
