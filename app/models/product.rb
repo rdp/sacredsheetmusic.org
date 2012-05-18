@@ -230,7 +230,7 @@ class Product < Item
           name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name.strip) + "\\W", Regexp::IGNORECASE)
           if (self.name =~ name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
-              problems << "probably wants the #{topic_tag.name} tag, since its name is included in the title or description"
+              problems << "might want the #{topic_tag.name} tag, since its name is included in the title or description"
             end
           end 
         end
