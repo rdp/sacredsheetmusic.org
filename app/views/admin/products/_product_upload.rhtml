@@ -13,7 +13,7 @@
 			<ul>
 			<% for @d in @product.downloads.find(:all) %>
 				<li id="download_<%= @d.id %>">
-					<a href="<%= @d.public_filename() %>"><%= @d.name %></a>
+					<a href="<%= @d.public_filename() %>"><%= @d.name %></a> <%= @d.size %> Bytes
 					<div style="float:right;margin-top:10px;">
 						<%= 
 							link_to_remote image_tag("icons/png-24/16-em-cross.png", :plugin => 'substruct', :alt => 'Delete'),
