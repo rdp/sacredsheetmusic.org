@@ -236,8 +236,8 @@ class Product < Item
         end
       end
       
-      if self.original_url =~ /\.(pdf|mp3|mid|midi)/
-        problems << "original url looks like its a pdf but should be htmlish"
+      if self.original_url =~ /\.(mp3|mid|midi)/
+        problems << "original url looks like its non htmlish"
       end
       if !self.tags.detect{|t| t.is_voicing}
         problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
