@@ -15,21 +15,20 @@
 				No items are in your wishlist at this time.
 			</h3>
 		<% else %>
-			<% for item in @wishlist_items do %>
-				<div id="item_<%= item.id %>">
+			<% for wl, item in @wishlist_items.map{|wl| [wl, wl.item]}  do %>
+				<div id="item_<%= wl.id %>">
 					<%= render :partial => '/store/product', :locals => { :product => item } %>
 					<!-- remove link -->
 					<%= 
 						link_to_remote(
 							image_tag("icons/png-24/16-em-cross.png", 
-								:id => "trash_#{item.id}", :plugin => 'substruct', :alt => 'Delete'),
+								:id => "trash_#{wl.id}", :plugin => 'substruct', :alt => 'Delete'),
 							{	
 					    :url => {
-					        :controller => "customers",
 					        :action => "remove_wishlist_item", 
-					        :id => item.id},
-					    :loading => "$('trash_#{item.id}').hide();$('spin_#{item.id}').show();",
-							:complete => "new Effect.Fade($('item_#{item.id}'));"
+					        :id => wl.id},
+					    :loading => "$('trash_#{wl.id}').hide();$('spin_#{wl.id}').show();",
+							:complete => "new Effect.Fade($('item_#{wl.id}'));"
 							},
 							{
 								:class => "product_icon_floater"
@@ -37,14 +36,13 @@
 						)
 					%>
 					<!-- delete indicator -->
-					<%= image_tag 'indicator.gif', :id => "spin_#{item.id}", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
+					<%= image_tag 'indicator.gif', :id => "spin_#{wl.id}", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
 				</div>
 			<% end %>
 		<% end %>
 	</div>
 	
 	<div class="clear"></div>
-	<%= will_paginate @wishlist_items %>
 </div>
 
 <div id="right">

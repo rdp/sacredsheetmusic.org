@@ -3,16 +3,33 @@ class MusicController < StoreController
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
-   # Wishlist items
-     def wishlist
-         @title = "Saved Bookmarkeds"
-             @wishlist_items = Session.find_by_sessid(request.session_options[:id]).wishlist_items.paginate(
-                   :page => params[:page],
-                   :per_page => 20
-                   )
-     end
-  
+  def session_object
+    @_session_object ||= Session.find_by_sessid(request.session_options[:id])
+  end
 
+   # Wishlist items
+  def wishlist
+       @title = "Saved Bookmarkeds"
+       @wishlist_items = session_object.wishlist_items # lacks pagination...
+  end
+  
+  def add_to_wishlist
+    if params[:id]
+      if item = Item.find_by_id(params[:id])
+        session_object.wishlist_items << WishlistItem.new(:item_id => item.id)
+      else
+        flash[:notice] = "Sorry, we couldn't find the item that you wanted to add to your wishlist. Please try again."
+      end
+    else
+      flash[:notice] = "You didn't specify an item to add to your wishlist..."
+    end
+    redirect_to :action => 'wishlist' and return
+  end
+
+  def remove_wishlist_item
+    WishlistItem.find(params[:id]).destroy
+    render :text => '' # render nothing...
+  end
 
  def add_comment
   product = Product.find(params['id'])
