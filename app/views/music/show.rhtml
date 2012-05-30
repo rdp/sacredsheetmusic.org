@@ -98,6 +98,18 @@
   <%#= render :partial => '/boxed_categories'  # already floats left
   %> 
   <br />
+Bookmark/save this song
+ <%=
+                        link_to(
+                                'here',
+                                {
+                                        :controller => 'music',
+                                        :action => 'add_to_wishlist',
+                                        :id => @product.id
+                                },
+                                :class => 'actiony'
+                        )
+                %>
   <hr style="margin-bottom: 10px;"/>
   <%= render :partial => 'comments' %>
   <br />
@@ -192,17 +204,6 @@ Composers love to hear from you if you've used their music!
 <% end %>
 <br/>
 <!-- we're just not popular enough yet! Or something!  You can upload your own <a href="/about/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to your site).  -->
- <%=
-                        link_to(
-                                'Save this song',
-                                {
-                                        :controller => 'music',
-                                        :action => 'add_to_wishlist',
-                                        :id => @product.id
-                                },
-                                :class => 'actiony'
-                        )
-                %>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
