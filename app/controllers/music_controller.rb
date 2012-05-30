@@ -3,6 +3,17 @@ class MusicController < StoreController
 
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
+   # Wishlist items
+     def wishlist
+         @title = "Saved Bookmarkeds"
+             @wishlist_items = Session.find_by_sessid(request.session_options[:id]).wishlist_items.paginate(
+                   :page => params[:page],
+                   :per_page => 20
+                   )
+     end
+  
+
+
  def add_comment
   product = Product.find(params['id'])
    if (params['recaptcha'] || '').downcase != 'monday'
