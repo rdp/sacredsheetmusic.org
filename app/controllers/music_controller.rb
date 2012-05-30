@@ -4,7 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
   def session_object
-    @_session_object ||= Session.find_by_sessid(request.session_options[:id])
+    @_session_object ||= Session.find_or_create_by_sessid(request.session_options[:id])
   end
 
    # Wishlist items
