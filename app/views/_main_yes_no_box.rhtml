@@ -140,15 +140,15 @@
 	</div><!-- End content body -->
 	<div class="clear"></div>
 
-	<div id="footer" style="background-image:url('/images/trebs/trebs240.gif'); margin-left: 75px;"">
+	<div id="footer" style="background-image:url('/images/trebs/trebs240.gif'); margin-left: 50px;">
 		<ul class="navigation">
 			<!--li><a href="/">Home</a></li-->
                         <li><%=link_to 'About Us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'about' %></li>
 			<!--li><a href="/questions/faq">FAQ</a></li-->
 			<li><a href="/questions/ask">Contact Us</a></li>
-			<li><a href="/music/wishlist">Saved Songs</a></li>
+			<li><a href="/music/wishlist">Bookmarked Songs</a></li>
                         <li><%=link_to 'Publish/list your own works with us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
-                        <li><%=link_to 'Resources/Other Music', :controller => 'content_nodes', :action => 'show_by_name', :name => 'all-resources'%></li>
+                        <li><%=link_to 'Other Resources', :controller => 'content_nodes', :action => 'show_by_name', :name => 'all-resources'%></li>
                         <li><a href="https://github.com/rdp/freeldssheetmusic.org/wiki/list-of-pay-songs">Pay songs</a></li>
                         <% if session[:user] %>
                            <!--li><a href="/admin">Admin</a></li-->
