@@ -244,10 +244,7 @@ class MusicController < StoreController
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
     if @viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
-      session['rand_seed'] ||= rand(300000) # the irony
-      srand(session['rand_seed'])
-      all_products = all_products.sort_by{ rand }
-      srand # re-enable randomizer
+      all_products = randomize(all_products)
     else
       #all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently
     end
@@ -266,6 +263,14 @@ class MusicController < StoreController
     end
 
     render :action => 'index.rhtml'
+  end
+
+  def randomize all_products
+      session['rand_seed'] ||= rand(300000) # the irony
+      srand(session['rand_seed'])
+      all_products = all_products.sort_by{ rand }
+      srand # re-enable randomizer
+      all_products
   end
   
   # Downloads a file using the original way
@@ -409,13 +414,15 @@ class MusicController < StoreController
     
     all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
 
-    # re map to fellas...
-    @products = all_ids_merged.uniq.map{|id| Product.find(id) }
-    @products = paginate_and_filter @products
+    # re map to product objects...
+    all_products = all_ids_merged.uniq.map{|id| Product.find(id) }
+    all_products = randomize(all_products)
+    @products = paginate_and_filter all_products
  
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
-    if @products.size == 1
+    if all_ids_merged.uniq.size == 1
+      # only redirect if one query matches, not if their filter gets it down to just 1 possible, since we don't list filters at all on the show page
       flash[:notice] = 'Found (showing) one song that matches: ' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return
     else
