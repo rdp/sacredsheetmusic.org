@@ -21,7 +21,7 @@ class Cache < ActiveRecord::Base
 
   CACHE_TYPES = ['probs', 'tags', 'single_product', 'group_products'] 
   def self.verify_type type
-    raise 'not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
+    raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
   def self.get_or_set_int(int, some_unique_identifier, type)

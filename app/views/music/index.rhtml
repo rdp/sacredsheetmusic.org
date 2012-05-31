@@ -55,11 +55,14 @@
 
 <% if @was_filtered_able %>
   <%  if @old_global_filter.present?; blank_text = '-remove filter-' %>
-    Song list currently limited currently to only:
+    This list currently limited to only songs that include:
   <% else; blank_text = '(currently showing all)' %>
     You can also filter these songs (limit them):
   <% end %>
-  <%= select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, {:onchange => remote_function(:url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();" )}) %>
+   <%= Cache.get_or_set_int(@old_global_filter.hash, 'global_filter', 'tags') { 
+         select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, {:onchange => remote_function(:url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();" )}) 
+       }
+%>
 <% end %>
 
         </div>
