@@ -62,7 +62,7 @@
    <%= Cache.get_or_set_int([@old_global_filter, @products.map(&:id)].hash, 'global_filter', 'tags') { 
          select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
-             :onchange => "new Effect.Fade($('main_filter_'));" + remote_function(:url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
+             :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
        }
 %>
