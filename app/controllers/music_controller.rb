@@ -350,12 +350,10 @@ class MusicController < StoreController
         @tags = Tag.find_alpha
         @tag_names = nil
         @viewing_tags = nil
-        @products = Product.paginate(
+        @products = paginate(Product.find(:all,
           :order => 'name ASC',
-          :conditions => Product::CONDITIONS_AVAILABLE,
-          :page => params[:page],
-          :per_page => @@per_page
-        )
+          :conditions => Product::CONDITIONS_AVAILABLE
+        ))
         render :action => 'index.rhtml' and return
       end
       format.rss do
@@ -366,12 +364,10 @@ class MusicController < StoreController
 
   def most_recently_added
         @title = 'Recently added'
-        @products = Product.paginate(
+        @products = paginate(Product.find(:all,
           :order => 'date_available DESC',
-          :conditions => Product::CONDITIONS_AVAILABLE,
-          :page => params[:page],
-          :per_page => 50
-        )
+          :conditions => Product::CONDITIONS_AVAILABLE
+        ), 50)
         render :action => 'index.rhtml' and return
   end
   
@@ -424,12 +420,13 @@ class MusicController < StoreController
     end
   end
 
-  def paginate products
+  def paginate products, per_page
+    per_page ||= @@per_page
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     list = products
-    pager = Paginator.new(list, list.size, @@per_page, params[:page])
-    returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
+    pager = Paginator.new(list, list.size, per_page, params[:page])
+    returning WillPaginate::Collection.new(params[:page] || 1, per_page, list.size) do |p|
       p.replace list[pager.current.offset, pager.items_per_page]
     end
   end
