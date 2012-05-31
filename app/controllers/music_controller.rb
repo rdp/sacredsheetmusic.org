@@ -187,6 +187,7 @@ class MusicController < StoreController
       old_id = session['filter_all_tag_id']
       if old_id.present?
         @old_global_filter = old_id.to_i 
+        @total_count_before_filtering = these_products.length
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
       end
     end
