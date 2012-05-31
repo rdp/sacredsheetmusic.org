@@ -40,7 +40,7 @@
 
 <% if @was_filtered_able %>
   <%  if @old_global_filter.present? %>
-    Results currently filtered:
+    Song list currently limited to:
   <% else %>
     You can also filter these songs (limit them):
   <% end %>
@@ -48,7 +48,7 @@
 <% end %>
 
         <% if @products.length > 20 %>
-           <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can get more refined by 
+           <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can also get a more precise list by 
              <% if @viewing_tags %>
                 <% if (@viewing_tags[0].children.size > 0) %>
                    choosing a sub-category, on the left-hand side.
