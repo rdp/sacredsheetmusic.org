@@ -240,7 +240,6 @@ class MusicController < StoreController
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
-    filter_by_current_main_tag! all_products
     if @viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
       session['rand_seed'] ||= rand(300000) # the irony
       srand(session['rand_seed'])
@@ -249,10 +248,7 @@ class MusicController < StoreController
     else
       #all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently
     end
-    pager = Paginator.new(all_products, all_products.size, @@per_page, params[:page])
-    @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, all_products.size) do |p|
-      p.replace all_products[pager.current.offset, pager.items_per_page]
-    end
+    @products = paginate_and_filter(all_products)
 
     @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
     viewing_tag_names = @tag_names.join(" > ")
@@ -350,7 +346,7 @@ class MusicController < StoreController
         @tags = Tag.find_alpha
         @tag_names = nil
         @viewing_tags = nil
-        @products = paginate(Product.find(:all,
+        @products = paginate_and_filter(Product.find(:all,
           :order => 'name ASC',
           :conditions => Product::CONDITIONS_AVAILABLE
         ))
@@ -363,12 +359,12 @@ class MusicController < StoreController
   end 
 
   def most_recently_added
-        @title = 'Recently added'
-        @products = paginate(Product.find(:all,
-          :order => 'date_available DESC',
-          :conditions => Product::CONDITIONS_AVAILABLE
-        ), 50)
-        render :action => 'index.rhtml' and return
+    @title = 'Recently added'
+    @products = paginate_and_filter(Product.find(:all,
+      :order => 'date_available DESC',
+      :conditions => Product::CONDITIONS_AVAILABLE
+    ), 50)
+    render :action => 'index.rhtml' and return
   end
   
   def search
@@ -383,7 +379,7 @@ class MusicController < StoreController
     super_search_terms = params[:search_term].split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
     super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
-    # XXX paginate :)
+    # XXX paginate within the query itself LOL :)
     conds = [
         "(items.name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
         "%#{@search_term}%", @search_term # name, code
@@ -408,7 +404,7 @@ class MusicController < StoreController
 
     # re map to fellas...
     @products = all_ids_merged.uniq.map{|id| Product.find(id) }
-    @products = paginate(@products)
+    @products = paginate_and_filter @products
  
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
@@ -420,8 +416,9 @@ class MusicController < StoreController
     end
   end
 
-  def paginate products, per_page
-    per_page ||= @@per_page
+  def paginate_and_filter products, per_page = @@per_page
+    # filter first
+    filter_by_current_main_tag! products
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     list = products
