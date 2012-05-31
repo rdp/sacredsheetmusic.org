@@ -412,14 +412,7 @@ class MusicController < StoreController
 
     # re map to fellas...
     @products = all_ids_merged.uniq.map{|id| Product.find(id) }
-
-    # Paginate products so we don't have a ton of ugly SQL
-    # and conditions in the controller
-    list = @products
-    pager = Paginator.new(list, list.size, @@per_page, params[:page])
-    @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
-      p.replace list[pager.current.offset, pager.items_per_page]
-    end
+    @products = paginate(@products)
  
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
@@ -428,6 +421,16 @@ class MusicController < StoreController
       redirect_to :action => 'show', :id => @products[0].code and return
     else
       render :action => 'index.rhtml'
+    end
+  end
+
+  def paginate products
+    # Paginate products so we don't have a ton of ugly SQL
+    # and conditions in the controller
+    list = products
+    pager = Paginator.new(list, list.size, @@per_page, params[:page])
+    returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, list.size) do |p|
+      p.replace list[pager.current.offset, pager.items_per_page]
     end
   end
 
