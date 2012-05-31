@@ -182,16 +182,20 @@ class MusicController < StoreController
   def filter_by_current_main_tag! these_products
     if these_products.length > 0
       @was_filtered_able = true
-      if @old_main_filter = session['filter_all_tag_id']
-        these_products # .map!
+      old_id = session['filter_all_tag_id']
+      if old_id.present?
+        @old_global_filter = old_id.to_i 
+        these_products.select!{|p| p.tag_ids.include? @old_global_filter }
       end
     end
   end 
 
-  def change_global
-   # id
+  def change_global_filter
+   logger.info session.inspect
    session['filter_all_tag_id'] = params['id']
-   render :text => "window.location.reload();"
+   logger.info "yo"
+   logger.info session.inspect
+   render :text => "alert('asdf');"
   end
 
   # Shows products by tag or tags.

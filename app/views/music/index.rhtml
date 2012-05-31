@@ -1,10 +1,6 @@
 <% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left; margin: 0px;": "" # hacky kludgey...
 %>
 
-<% if @was_filtered_able %>
-  Or filter your output (limit to just this category):
-  <%= select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => true, :selected => @old_main_filter }, {:onchange => remote_function(:url => {:action => :change_global}, :with => "'id=' + $('main_filter_').value" )}) %>
-<% end %>
 
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
@@ -41,6 +37,16 @@
              <% end %>
            </div>
         <% end %>
+
+<% if @was_filtered_able %>
+  <%  if @old_global_filter.present? %>
+    Results currently filtered:
+  <% else %>
+    You can also filter these songs (limit them):
+  <% end %>
+  <%= select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => '(showing all)', :selected => @old_global_filter }, {:onchange => remote_function(:url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();" )}) %>
+<% end %>
+
         <% if @products.length > 20 %>
            <div style="padding-bottom: 5px; margin-left: 15px;">(Showing <%= @products.length %> songs. You can get more refined by 
              <% if @viewing_tags %>
