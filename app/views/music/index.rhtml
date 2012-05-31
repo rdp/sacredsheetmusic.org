@@ -54,7 +54,7 @@
         <% end %>
 
 <% if @was_filtered_able %>
-  <%  if @old_global_filter.present?; blank_text = '-show all-' %>
+  <%  if @old_global_filter.present?; blank_text = '-remove filter-' %>
     Song list currently limited currently to only:
   <% else; blank_text = '(currently showing all)' %>
     You can also filter these songs (limit them):
