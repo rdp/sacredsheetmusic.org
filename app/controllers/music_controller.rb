@@ -9,14 +9,16 @@ class MusicController < StoreController
 
    # Wishlist items
   def wishlist
-       @title = "Saved Bookmarkeds"
-       @wishlist_items = session_object.wishlist_items # lacks pagination...
+     @title = "Saved Bookmarkeds"
+     @wishlist_items = session_object.wishlist_items # lacks pagination...
   end
   
   def add_to_wishlist
     if params[:id]
       if item = Item.find_by_id(params[:id])
-        session_object.wishlist_items << WishlistItem.new(:item_id => item.id)
+        if not_a_bot || logged_in_user?
+          session_object.wishlist_items << WishlistItem.new(:item_id => item.id)
+        end
       else
         flash[:notice] = "Sorry, we couldn't find the item that you wanted to add to your wishlist. Please try again."
       end
@@ -305,12 +307,16 @@ class MusicController < StoreController
       prefix= "yes bot:"
     end
     logger.info "#{prefix} [#{ua}] [#{al}]" unless ua =~ /Wget/
-    if session[:user]
+    if logged_in_user?
       logger.info "logged in user, fingindo ser bot para nao adjustar numeros"
       return false
     end
 
     not_bot
+  end
+
+  def logged_in_user?
+    session[:user]
   end
 
   def download_helper disposition, add_count = true
