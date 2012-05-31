@@ -179,6 +179,21 @@ class MusicController < StoreController
    render :action => 'index.rhtml'
  end
 
+  def filter_by_current_main_tag! these_products
+    if these_products.length > 0
+      @was_filtered_able = true
+      if @old_main_filter = session['filter_all_tag_id']
+        these_products # .map!
+      end
+    end
+  end 
+
+  def change_global
+   # id
+   session['filter_all_tag_id'] = params['id']
+   render :text => "window.location.reload();"
+  end
+
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
   #
@@ -224,13 +239,14 @@ class MusicController < StoreController
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
+    filter_by_current_main_tag! all_products
     if @viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
       session['rand_seed'] ||= rand(300000) # the irony
       srand(session['rand_seed'])
       all_products = all_products.sort_by{ rand }
       srand # re-enable randomizer
     else
-      #all_products = all_products.sort_by{|p| p.name} # already sorted  by :date_available
+      #all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently
     end
     pager = Paginator.new(all_products, all_products.size, @@per_page, params[:page])
     @products = returning WillPaginate::Collection.new(params[:page] || 1, @@per_page, all_products.size) do |p|

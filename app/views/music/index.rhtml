@@ -1,6 +1,11 @@
 <% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left; margin: 0px;": "" # hacky kludgey...
 %>
 
+<% if @was_filtered_able %>
+  Or filter your output (limit to just this category):
+  <%= select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => true, :selected => @old_main_filter }, {:onchange => remote_function(:url => {:action => :change_global}, :with => "'id=' + $('main_filter_').value" )}) %>
+<% end %>
+
 <div id="fullContent">
 	<% if @viewing_tags == nil then %>
                  <h1 style="<%= h1_style %>"><%= @title %></h1>
