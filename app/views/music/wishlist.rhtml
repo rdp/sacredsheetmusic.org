@@ -12,7 +12,7 @@
 	<div class="padLeft">
 		<% if @wishlist_items.size == 0 %>
 			<h3>
-				No items are in your wishlist at this time.
+				No items are in your wishlist at this time.  You can add them by clicking "Bookmark/save this song" on a song's page.
 			</h3>
 		<% else %>
 			<% for wl, item in @wishlist_items.map{|wl| [wl, wl.item]}  do %>
