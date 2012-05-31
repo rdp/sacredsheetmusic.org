@@ -191,11 +191,8 @@ class MusicController < StoreController
   end 
 
   def change_global_filter
-   logger.info session.inspect
    session['filter_all_tag_id'] = params['id']
-   logger.info "yo"
-   logger.info session.inspect
-   render :text => "alert('asdf');"
+   render :text => "alert('asdf');" # does nothing [?!]
   end
 
   # Shows products by tag or tags.
