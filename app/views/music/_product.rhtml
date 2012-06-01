@@ -48,7 +48,7 @@
         <% tags = product.linkable_tags(session[:user]) %>
         (<%= tags.map{|t| name_to_use = t.name.gsub(',', '').gsub('/', ' / '); tag_link(t, name_to_use)}.join(', ') %>
         <% if product.downloads.length == 0 %>
-           <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), :controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code) %>
+           <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
         <% end %>
     </div>
   </div>

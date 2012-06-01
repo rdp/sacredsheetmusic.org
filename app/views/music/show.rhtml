@@ -98,18 +98,6 @@
   <%#= render :partial => '/boxed_categories'  # already floats left
   %> 
   <br />
-Bookmark/save this song
- <%=
-                        link_to(
-                                'here',
-                                {
-                                        :controller => 'music',
-                                        :action => 'add_to_wishlist',
-                                        :id => @product.id
-                                },
-                                :class => 'actiony'
-                        )
-                %>
   <hr style="margin-bottom: 10px;"/>
   <%= render :partial => 'comments' %>
   <br />
@@ -140,7 +128,7 @@ Composers love to hear from you if you've used their music!
 <br />
 <br />
 <br />
-               The free sheet music for this song can be found on the author's page by <%=link_to('clicking here', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%>.
+               The free sheet music for this song can be found on the author's page by <%=link_to('clicking here', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank' )%>.
 <br />
 <br />
 <br />
@@ -148,6 +136,20 @@ Composers love to hear from you if you've used their music!
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
+
+Bookmark/save this song
+ <%=
+                        link_to(
+                                'here',
+                                {
+                                        :controller => 'music',
+                                        :action => 'add_to_wishlist',
+                                        :id => @product.id
+                                },
+                                :class => 'actiony'
+                        )
+                %>
+
     <% for hymn_tag in @product.hymn_tags %>
      <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
       <br/>
