@@ -26,10 +26,14 @@ class Tag
 
   def super_children_tags
     if self.children.length > 0
-      [self, self.children.map{|c| c.super_children}].flatten
+      [self, self.children.map{|c| c.super_children_tags}].flatten
     else
      self
     end
+  end
+
+  def super_children_products_with_dups
+    super_children_tags.map{|t| t.products}.flatten
   end
 
   # sync all hymns amongst themselves

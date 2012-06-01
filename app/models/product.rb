@@ -309,6 +309,7 @@ class Product < Item
     unless tag_ids.include?(t.id)
       tags << t
     end
+    tags
   end
 
 end
