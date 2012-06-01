@@ -2,7 +2,7 @@
                                                         <%= is_main_tab_active?(tag.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%= tag_link_nav(tag) %>
                                                         <%= is_main_tab_active?(tag.id) ? '</span>' : '' %>
-                                                    <% if is_main_tab_active?(tag.id) %>
+                                                    <% if is_main_tab_active?(tag.id) && tag.children.size > 0 %>
                                                       <UL style="margin-top: 5px;">
                                                       <% for tag2 in tag.children do 
                                                         #next unless tag2.products.size > 0 %>
