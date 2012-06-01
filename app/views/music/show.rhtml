@@ -123,7 +123,10 @@ Composers love to hear from you if you've used their music!
       <% end %>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
-             You could also visit the author's <%=link_to('original page', :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%> for this piece.
+             <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
+             You could also visit the author's <%= link_to('original page ' + img, :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%>
+
+ for this piece.
            <% else %>
 <br />
 <br />
