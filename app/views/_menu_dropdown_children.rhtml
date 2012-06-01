@@ -2,14 +2,14 @@
                                                         <%= is_main_tab_active?(tag.id) ? '<span style="font-size: 1.2em; border-bottom: dashed 1px;">' : '' %>
                                                         <%= tag_link_nav(tag) %>
                                                         <%= is_main_tab_active?(tag.id) ? '</span>' : '' %>
-<% if is_main_tab_active?(tag.id) %>
-                                                    <UL style="margin-top: 5px;">
-                                                    <% for tag2 in tag.children do 
+                                                    <% if is_main_tab_active?(tag.id) %>
+                                                      <UL style="margin-top: 5px;">
+                                                      <% for tag2 in tag.children do 
                                                         #next unless tag2.products.size > 0 %>
                                                         <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag2} %>
                                                         </LI>
+                                                      <% end %>
+                                                      </UL>
                                                     <% end %>
-                                                   </UL>
-<% end %>
 
 <!-- end LI is in the parent. weird -->
