@@ -136,11 +136,10 @@ Composers love to hear from you if you've used their music!
     <% else %>
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
-
-Bookmark/save this song
+<b>
  <%=
                         link_to(
-                                'here',
+                                'Bookmark/save',
                                 {
                                         :controller => 'music',
                                         :action => 'add_to_wishlist',
@@ -148,7 +147,7 @@ Bookmark/save this song
                                 },
                                 :class => 'actiony'
                         )
-                %>
+                %> this song.</b>
 
     <% for hymn_tag in @product.hymn_tags %>
      <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
