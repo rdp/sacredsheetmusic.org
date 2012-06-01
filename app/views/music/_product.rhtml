@@ -18,7 +18,7 @@
     <div class="product_image"> 
       <%
         if product.images.empty? 
-          image = image_tag('trebs.gif', :alt=>product.name )
+          image = image_tag('trebs.gif', :alt=>product.name, :style=>"padding-top: 20px; opacity: 0.90;" )
         else
           image = image_tag(product.images[0].public_filename(:small), :alt => product.name, :width => "100%", :height => "100%") 
         end
