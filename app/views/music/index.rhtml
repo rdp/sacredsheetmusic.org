@@ -56,11 +56,11 @@
 <% if @was_filtered_able %>
   <%  if @old_global_filter.present?; blank_text = "-show all #{@total_count_before_filtering}-" %>
     This list currently limited to only songs that include:
-  <% else; blank_text = "(showing all)" %>
+  <% else; blank_text = "showing all (#{@products.size})" %>
     You can also filter these songs (limit them):
   <% end %>
    <%= Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text].hash, 'global_filter', 'tags') { 
-         select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
+         select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
              :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
