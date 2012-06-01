@@ -17,7 +17,7 @@
 		<% else %>
 			<% for wl, item in @wishlist_items.map{|wl| [wl, wl.item]}  do %>
 				<div id="item_<%= wl.id %>">
-					<%= render :partial => '/store/product', :locals => { :product => item } %>
+					<%= render :partial => '/music/product', :locals => { :product => item } %>
 					<!-- remove link -->
 					<%= 
 						link_to_remote(
