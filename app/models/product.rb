@@ -305,4 +305,10 @@ class Product < Item
      end
   end
 
+  def add_tag_unless_already_there t
+    unless tag_ids.include?(t.id)
+      tags << t
+    end
+  end
+
 end
