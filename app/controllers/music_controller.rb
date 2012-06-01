@@ -147,6 +147,8 @@ class MusicController < StoreController
     #  :order => '-variation_rank DESC',
     #  :conditions => 'quantity > 0'
     #)
+    #
+    @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
 
     render :layout => 'main_no_box'
   end
