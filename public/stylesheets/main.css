@@ -32,7 +32,7 @@ a {
 	text-decoration: none;
 }
 a:link { color: rgb(0,90,155); }
-a:visited {	color: rgb(125,24,195); }
+/*a:visited {	color: rgb(125,24,195); } too ugly */
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
 	color: #fff !important;
