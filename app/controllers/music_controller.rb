@@ -415,7 +415,7 @@ class MusicController < StoreController
     all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
 
     # re map to product objects...
-    all_products = all_ids_merged.uniq.map{|id| Product.find(id) }
+    all_products = all_ids_merged.uniq.map{|id| Product.find(id) }.select{|p| p.date_available < Time.now}
     all_products = randomize(all_products)
     @products = paginate_and_filter all_products
  
