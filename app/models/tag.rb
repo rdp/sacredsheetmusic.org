@@ -24,7 +24,7 @@ class Tag
     sum
   end
 
-  def super_children
+  def super_children_tags
     if self.children.length > 0
       [self, self.children.map{|c| c.super_children}].flatten
     else
