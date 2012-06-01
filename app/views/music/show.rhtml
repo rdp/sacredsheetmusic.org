@@ -42,37 +42,30 @@
             inline_view
           %>
 
+          <% links = [] %>
+          <% if filename_extension == 'pdf'
+            
+            links << link_to(
+              'view', # has its own name...
+              :controller => 'music',
+              :action => 'inline_download_file',
+              :params => { :download_id => dl.id, :name => dl.filename}
+            )
+            end   
+            links << link_to(
+              'download',
+              :controller => 'music',
+              :action => 'download_file',
+              :params => { :download_id => dl.id, :name => dl.filename }
+             )
+          %>
+          (<%= links.join(', ') %>)
+
           <% if filename_extension =~ /midi|wav|mp3/ %>
             <br/>
             <%# the type=audio/mpeg forces it to quicktime...except quicktime then ignores the type, but at least it's quicktime at that point... %>
             <% type = "audio/#{filename_extension}"; type = 'audio/mpeg' if filename_extension == 'mp3' %>
              <embed src="<%= friendly_download_url %>" type="<%= type  %>" width="140" height="40" autostart="false" loop="FALSE" bgcolor="#FFFFFF" />
-          <% elsif filename_extension == 'mp3' %>
-              <!-- unused for now, just use quicktime, above
-               <object type="application/x-shockwave-flash"
-                    data="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" 
-                     width="157" height="17">
-               <param name="movie" 
-                value="/flash/xspf_player_slim.swf?&song_url=<%= dl.relative_path_to_web_server %>&player_title=mp3&song_title=mp3" />
-             <img src="noflash.gif" 
-                  width="157" height="17" alt="" />
-                 </object>
-               -->
-          <% elsif filename_extension == 'pdf' %>
-            (<%=
-            link_to(
-              'view', # has its own name...
-              :controller => 'music',
-              :action => 'inline_download_file',
-              :params => { :download_id => dl.id, :name => dl.filename}
-              )%>,
-            <%=
-            link_to(
-              'download',
-              :controller => 'music',
-              :action => 'download_file',
-              :params => { :download_id => dl.id, :name => dl.filename }
-            )%>)
           <% end %>
         </li>
       <% end %>
