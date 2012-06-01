@@ -243,7 +243,8 @@ class MusicController < StoreController
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     all_products = Product.find_by_tags(tag_ids_array, true)
-    if @viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
+    if true #@viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
+      # I can't think of when you wouldn't want this...
       all_products = randomize(all_products)
     else
       #all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently
