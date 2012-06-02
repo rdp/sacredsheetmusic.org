@@ -44,7 +44,7 @@
 		<tbody id="tag_list_tbody">
         <%  #search for most depth
            @max_depth = 2
-           for tag in Tag.find(:all)
+           for tag in Tag.find(:all, :include => :parent) # include parent to speedup
              nested_depth = 1
              while(tag = tag.parent) do
                nested_depth += 1

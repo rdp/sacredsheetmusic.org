@@ -50,10 +50,6 @@
                  <%= link_to 'show songs', :controller => '/music', :action => 'show_by_tags', :tags => [tag_list_row.name] %>
                  <%= link_to 'admin list', :controller => 'admin/products', :action => 'list_by_tags', :key => tag_list_row.id %>
 
-                  <% if tag_list_row.is_composer_tag? %>
-                    total downloads: <%= tag_list_row.all_products_pdf_downloads %>
-                    total hits: <%= tag_list_row.all_products_hits %>
-                 <% end %>
                 </span>
 	</span>
 

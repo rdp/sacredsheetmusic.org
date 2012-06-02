@@ -14,6 +14,12 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
+  def edit
+    @product = Product.find(params[:id])
+                @image = Image.new
+    @title = "Editing #{@product.name}"
+  end
+
   def with_problems
     @products = Product.find(:all, :include => [:downloads, {:tags => [:parent, :children]}])
     @products.select!{|p| 

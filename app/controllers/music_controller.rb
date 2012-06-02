@@ -424,7 +424,7 @@ class MusicController < StoreController
  
     # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
-    if all_ids_merged.uniq.size == 1
+    if all_ids_merged.uniq.size == 1 && @products.length > 0 # we're showing it
       # only redirect if one query matches, not if their filter gets it down to just 1 possible, since we don't list filters at all on the show page
       flash[:notice] = 'Found (showing) one song that matches: ' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return

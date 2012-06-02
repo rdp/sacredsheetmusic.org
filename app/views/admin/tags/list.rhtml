@@ -148,6 +148,13 @@
 		<%= render(:partial => 'tag_list_row', :collection => @tags) %>
 	</ul>
 	<div id="no_tags_row" style="display:<%= @tags.size > 0 ? 'none' : '' %>;">No tags to show...</div>
+
+ <% if @parent_tag && @parent_tag.is_composer_tag? %>
+                    total downloads: <%= @parent_tag.all_products_pdf_downloads %>
+                    total hits: <%= @parent_tag.all_products_hits %>
+                 <% end %>
+
+
 	<%= 
 		sortable_element(
 			'tag_list',
