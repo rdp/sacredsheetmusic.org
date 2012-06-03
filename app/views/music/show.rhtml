@@ -117,7 +117,7 @@ Composers love to hear from you if you've used their music!
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
-             You could also visit the author's <%= link_to('original page ' + img, :controller=>'music', :action=>'redirect_to_original_url', :id => @product.code)%>
+             You could also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank')%>
 
  for this piece.
            <% else %>
@@ -134,7 +134,7 @@ Composers love to hear from you if you've used their music!
     <% end %>
 
 <% if @already_bookmarked %>
-(This song is in your <%= link_to('bookmarks', :action => :wishlist) %> already).
+(This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
 You can also <i>
  <%=
@@ -145,7 +145,7 @@ You can also <i>
                                         :action => 'add_to_wishlist',
                                         :id => @product.id
                                 },
-                                :class => 'actiony'
+                                :class => 'actiony', :target => '_blank'
                         )
                 %></i> this song.
 <% end %>
