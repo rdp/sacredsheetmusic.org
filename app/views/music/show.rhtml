@@ -136,10 +136,10 @@ Composers love to hear from you if you've used their music!
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', :action => :wishlist) %> already).
 <% else %>
-<b>
+You can also <i>
  <%=
                         link_to(
-                                'Bookmark/save',
+                                'bookmark/save',
                                 {
                                         :controller => 'music',
                                         :action => 'add_to_wishlist',
@@ -147,7 +147,7 @@ Composers love to hear from you if you've used their music!
                                 },
                                 :class => 'actiony'
                         )
-                %> this song.</b>
+                %></i> this song.
 <% end %>
 
     <% for hymn_tag in @product.hymn_tags %>
