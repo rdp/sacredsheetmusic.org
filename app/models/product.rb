@@ -34,6 +34,17 @@ class Product < Item
    self.tags.select{|t| t.is_original_tag? }[0]
   end 
 
+  def self.find_by_tags(tag_ids, find_available=false, order_by="items.date_available DESC")
+                sql =  "SELECT * "
+                sql << "FROM items "
+                sql << "JOIN products_tags on items.id = products_tags.product_id "
+                sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
+                sql << "AND #{CONDITIONS_AVAILABLE}" if find_available==true
+                sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
+                sql << "ORDER BY #{order_by};"
+                find_by_sql(sql)
+  end
+
   def composer_contact_url
      composer = composer_tag
      cc = (composer && composer.composer_contact.present? ) ? composer.composer_contact : nil

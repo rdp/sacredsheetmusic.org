@@ -435,6 +435,11 @@ class MusicController < StoreController
     end
   end
 
+  def search_and_paginate_and_filter terms
+    products = Product.find terms
+    paginate_and_filter(products)
+  end
+
   def paginate_and_filter products, per_page = @@per_page
     # filter first
     filter_by_current_main_tag! products
