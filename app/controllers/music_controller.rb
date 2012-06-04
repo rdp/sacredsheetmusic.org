@@ -62,15 +62,14 @@ class MusicController < StoreController
   true
  end
 
-  def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
-    sql = ''
-    sql << "products_tags.tag_id IN (#{tag_ids.join(",")}) "
+ # this is an "or" currently, for if it has any tags...
+ def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
+    sql = "products_tags.tag_id IN (?)"
     sql << "AND #{Product::CONDITIONS_AVAILABLE}" if find_available==true
   #  sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
-#    sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
-    Product.find(:all, :include => [:tags], :conditions => [sql], :order => order_by).map{|p| p.reload} # propagate tag_ids...hmm...
-  end
- 
+    Product.find(:all, :group => 'items.id', :joins => :tags, :group => 'items.id', :include => :tags, :conditions => [sql, tag_ids], :order => order_by)
+ end 
+
  def wake_up
   Cache.first
   #Product.first
