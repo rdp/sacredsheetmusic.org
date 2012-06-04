@@ -224,8 +224,8 @@ class MusicController < StoreController
     end
     # Generate tag ID list from names
     tag_ids_array = Array.new
-    for name in tag_names
-      if name =~ / /
+    tag_names.map!{|name|
+      if name =~ / / # old school name 
         redirect_to_tag(name) and return
       end
       real_name = name.gsub('_', ' ')# allow for cleaner google links coming in...
@@ -238,7 +238,8 @@ class MusicController < StoreController
       if temp_tag.name != real_name # redirect capitalization fail
         redirect_to_tag(temp_tag.name) and return
       end  
-    end
+      real_name
+    }
 
     if tag_ids_array.size == 0
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
@@ -253,12 +254,12 @@ class MusicController < StoreController
     else
       all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently, but we want name for hymn arrangements <sigh>
     end
-    tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
 
     viewing_tag_names = tag_names.join(" > ")
     @title = "#{viewing_tag_names}"
 
     @products = paginate_and_filter(all_products)
+    tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
 
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
@@ -362,11 +363,14 @@ class MusicController < StoreController
     respond_to do |format|
       format.html do
         @tags = Tag.find_alpha
-        @viewing_tags = nil
-        @products = paginate_and_filter(Product.find(:all,
+        @viewing_tags = nil # paginate_and_filter
+        @products = Product.find(:all,
           :order => 'name ASC',
           :conditions => Product::CONDITIONS_AVAILABLE
-        ))
+        )
+        def @products.total_pages # fake it out :P
+          1
+        end
         render :action => 'index.rhtml' and return
       end
       format.rss do
