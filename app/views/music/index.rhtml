@@ -3,26 +3,10 @@
 
 
 <div id="fullContent">
-	<% if @viewing_tags == nil then %>
+	<% if true then %>
                  <h1 style="<%= h1_style %>"><%= @title %></h1>
 	<% else %>
-		<h1 style="<%= h1_style %>">
-			<!--a href="/music">Songs</a> &gt; -->
-			<%
-				# Show breadcrumb navigation for store
-				tag_name_list = Array.new
-				i = 0
-				for tag in @tag_names
-					tag_name_list << tag
-			%>
-				<% if i > 0 then %>&gt;<% end %>
-                                  <%#= link_to tag, :controller => 'music', :action => 'show_by_tags', :tags => tag_name_list %> <%# we don't really use navigation right anymore anyway, and this link was at times broken, also NB it was non tag_link... %>
-                                  <%= tag %>
-			<%
-				i += 1
-				end
-			%>
-		</h1>
+unused!
 	<% end %>
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
@@ -48,7 +32,7 @@
            <% else %>
                   selecting a category, on the left hand side, or by <!-- NB this is used only for root tags -->
            <% end %>
-           using an <a href="/music/advanced_search">advanced</a> search.)
+           using an <a href="/music/advanced_search">advanced</a> search or by searching by <%= tag_link(Tag.find_by_name("Topics"))%>.)
         <% else %>
              <div style="padding-bottom: 5px;">
         <% end %>

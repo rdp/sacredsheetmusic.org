@@ -191,6 +191,9 @@ class MusicController < StoreController
         @old_global_filter = old_id.to_i 
         @total_count_before_filtering = these_products.length
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
+        if @title
+           @title += " (filtered to only #{Tag.find(old_id).name})"
+        end
       end
     end
   end 
@@ -208,20 +211,20 @@ class MusicController < StoreController
     # Passed into this controller like this:
     # /tag_one/tag_two/tag_three/...
 
-    @tag_names = params[:tags] || []
-    if @tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo'] # LODO could make this a route...
+    tag_names = params[:tags] || []
+    if tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo'] # LODO could make this a route...
         render_component(
               :controller => "content_nodes",
               :action => "show_by_name",
               :params => {
-                :name => @tag_names[0],
+                :name => tag_names[0],
               }
             )
       return
     end
     # Generate tag ID list from names
     tag_ids_array = Array.new
-    for name in @tag_names
+    for name in tag_names
       if name =~ / /
         redirect_to_tag(name) and return
       end
@@ -250,11 +253,12 @@ class MusicController < StoreController
     else
       all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently, but we want name for hymn arrangements <sigh>
     end
-    @products = paginate_and_filter(all_products)
+    tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
 
-    @tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
-    viewing_tag_names = @tag_names.join(" > ")
+    viewing_tag_names = tag_names.join(" > ")
     @title = "#{viewing_tag_names}"
+
+    @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
@@ -358,7 +362,6 @@ class MusicController < StoreController
     respond_to do |format|
       format.html do
         @tags = Tag.find_alpha
-        @tag_names = nil
         @viewing_tags = nil
         @products = paginate_and_filter(Product.find(:all,
           :order => 'name ASC',
