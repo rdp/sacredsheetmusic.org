@@ -61,12 +61,21 @@ class MusicController < StoreController
   end
   true
  end
+
+  def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
+    sql = ''
+    sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
+    sql << "AND #{CONDITIONS_AVAILABLE}" if find_available==true
+    sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
+    sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
+    find(:all, :include => [:tags], :conditions => [sql])
+  end
  
  def wake_up
   Cache.first
-  Product.first
-  #Download.first # sigh
-  #Tag.first # might be cached LOL
+  #Product.first
+  #Download.first
+  Tag.first # might be cached so might not need this LOL
   render :text => "what a beautiful morning!" and return # for cron
  end
 
@@ -248,7 +257,7 @@ class MusicController < StoreController
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
-    all_products = Product.find_by_tags(tag_ids_array, true)
+    all_products = find_by_tag_ids(tag_ids_array)
     if @viewing_tags[0].name !~ /arrangements/i #@viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
       all_products = randomize(all_products)
     else
