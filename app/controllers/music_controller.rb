@@ -64,11 +64,11 @@ class MusicController < StoreController
 
   def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
     sql = ''
-    sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
-    sql << "AND #{CONDITIONS_AVAILABLE}" if find_available==true
-    sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
-    sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
-    find(:all, :include => [:tags], :conditions => [sql])
+    sql << "products_tags.tag_id IN (#{tag_ids.join(",")}) "
+    sql << "AND #{Product::CONDITIONS_AVAILABLE}" if find_available==true
+  #  sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
+#    sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
+    Product.find(:all, :include => [:tags], :conditions => [sql], :order => order_by).map{|p| p.reload} # propagate tag_ids...hmm...
   end
  
  def wake_up
@@ -196,9 +196,12 @@ class MusicController < StoreController
     if these_products.length > 0
       @was_filtered_able = true
       old_id = session['filter_all_tag_id']
+      logger.info old_id
       if old_id.present?
         @old_global_filter = old_id.to_i 
         @total_count_before_filtering = these_products.length
+      logger.info these_products.map{|p| p.tag_ids}.inspect
+        
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
         if @title
            @title += " (filtered to only #{Tag.find(old_id).name})"
@@ -448,10 +451,10 @@ class MusicController < StoreController
     end
   end
 
-  def search_and_paginate_and_filter terms
-    products = Product.find terms
-    paginate_and_filter(products)
-  end
+#  def search_and_paginate_and_filter terms
+#    products = Product.find terms
+#    paginate_and_filter(products)
+#  end
 
   def paginate_and_filter products, per_page = @@per_page
     # filter first
