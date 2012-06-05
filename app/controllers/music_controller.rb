@@ -260,7 +260,7 @@ start_time = Time.now
 
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
-    all_products = Product.find_by_tags(tag_ids_array)
+    all_products = Product.find_by_tags(tag_ids_array, true)
     if @viewing_tags[0].name !~ /arrangements/i && !@viewing_tags[0].is_composer_tag?
       all_products = randomize(all_products)
     else

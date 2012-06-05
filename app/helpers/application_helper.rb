@@ -43,12 +43,17 @@ module ApplicationHelper
   # appears to vary based on @viewing_tags
   #
   def is_main_tab_active?(tab_id)
-    if (@viewing_tags && @viewing_tags[0].id == tab_id) || (@viewing_tags && @viewing_tags[0].parent && @viewing_tags[0].parent.id == tab_id)
-      @show_subnav = true
-      @main_tag_active = Tag.find(tab_id)
-      @subnav_tags = @main_tag_active.children
-      @show_subnav = false if (@main_tag_active.products.length==0)  # don't show ones that we want them to choose another subcat on 
-      return true
+    if @viewing_tags
+      for tag in [@viewing_tags[0], @viewing_tags[0].parent, @viewing_tags[0].parent.andand.parent]
+        if tag.andand.id == tab_id
+          # main bar subnav disabled currently...
+          #@show_subnav = true
+          #@main_tag_active = Tag.find(tab_id)
+          #@subnav_tags = @main_tag_active.children
+          #@show_subnav = false if (@main_tag_active.products.size==0)  # don't show ones that we want them to choose another subcat on 
+          return true
+        end
+      end
     end
     
     return false
