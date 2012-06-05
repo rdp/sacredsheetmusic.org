@@ -24,6 +24,14 @@ class Cache < ActiveRecord::Base
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
+  def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc)
+    collection.map{|item|
+      int = get_int_proc[item]
+      get_or_set_int(int, some_unique_identifier, type)
+   }
+
+  end
+
   def self.get_or_set_int(int, some_unique_identifier, type)
     verify_type type
     hash = [int, some_unique_identifier, type].hash
