@@ -132,8 +132,11 @@
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
               <%= 
+                 start = Time.now
                # bwokded for now Cache.get_or_set_int([Time.now.wday, @viewing_tags.andand.map(&:id)].hash, 'boxed', 'tags') {
-                 render :partial => '/boxed_categories' 
+                 text = render :partial => '/boxed_categories' 
+                 Rails.logger.info "boxed cats took #{Time.now - start}"
+                 text
                #}
                %>
           <% end %>
