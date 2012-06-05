@@ -12,7 +12,8 @@ unused!
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
         <% if @display_bio.present? || @composer_tag%>
-           <div style="padding-bottom: 0px;"><%= @display_bio %> <br/>
+           <div style="padding-bottom: 0px;">
+              <%= @display_bio.present? ? @display_bio + "<br/>" : "" %>
               <% if @composer_tag.andand.composer_url.present? %>
                  Visit <a href="<%= @composer_tag.composer_url %>" target="_blank"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
              <% end %>
@@ -32,7 +33,7 @@ unused!
            <% else %>
                   selecting a category, on the left hand side, or by <!-- NB this is used only for root tags -->
            <% end %>
-           searching by topic, etc., or by using the search box (upper right) or an <a href="/music/advanced_search">advanced</a> search.)
+           searching, or selecting by topic, etc., or use an <a href="/music/advanced_search">advanced</a> search.)
         <% else %>
              <div style="padding-bottom: 5px;">
         <% end %>
@@ -41,10 +42,9 @@ unused!
   <%  if @old_global_filter.present?; blank_text = "-show all #{@total_count_before_filtering}-" %>
     This list currently limited to <b>only</b> songs that include:
   <% else; blank_text = "showing all (#{@products.size})" %>
-    You can also filter these songs (limit them):
+    <br/>You can also filter these songs (limit them):
   <% end %>
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
-   <div id="contains_filter_select">
    <%= Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text].hash, 'global_filter', 'tags') { 
          select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
@@ -52,7 +52,6 @@ unused!
         }) 
        }
     %>
-   </div>
 <% end %>
 
         </div>

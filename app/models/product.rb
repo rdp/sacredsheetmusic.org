@@ -310,7 +310,7 @@ class Product < Item
     if user
       tags # all :)
     else
-      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| 
+      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.reject{|t| t.name =~ /only on this site/i}.sort_by{|t| 
          if t.is_voicing?
            1
          elsif t.is_composer_tag?
