@@ -24,11 +24,20 @@ class Cache < ActiveRecord::Base
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
-  def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc)
-    collection.map{|item|
-      int = get_int_proc[item]
-      get_or_set_int(int, some_unique_identifier, type)
+  def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc, &block)
+   
+   ints = collection.map{|item|
+     [get_int_proc[item], some_unique_identifier, type].hash
    }
+   s = Time.now
+   all_got = Cache.find(:all, :conditions => ['hash_key in (?)', ints])
+   logger.info "pre found #{Time.now - s}:" + all_got.length.to_s
+   s= Time.now
+   got = collection.map{|int| 
+     get_or_set_int(get_int_proc[int], some_unique_identifier, type, &block) 
+   }
+    logger.info "normal speed: #{Time.now - s}"
+   got
 
   end
 
