@@ -199,7 +199,7 @@ class MusicController < StoreController
       if old_id.present?
         @old_global_filter = old_id.to_i 
         @total_count_before_filtering = these_products.length
-      logger.info these_products.map{|p| p.tag_ids}.inspect
+      #logger.info these_products.map{|p| p.tag_ids}.inspect
         
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
         if @title
@@ -256,11 +256,11 @@ class MusicController < StoreController
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
 
-    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
+    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => [:parent, :children])
 
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
-    all_products = find_by_tag_ids(tag_ids_array)
+    all_products = Product.find_by_tags(tag_ids_array)
     if @viewing_tags[0].name !~ /arrangements/i && !@viewing_tags[0].is_composer_tag?
       all_products = randomize(all_products)
     else

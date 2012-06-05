@@ -89,6 +89,10 @@ class Tag
     self.parent && (self.parent.name =~ /^hymn/i || self.parent.name =~ /arrangements/i)
   end
 
+  def valid_products
+   self.products.select{|p| p.date_available < Time.now}
+  end
+
   def is_composer_tag?
     self.parent && (self.parent.name =~ /^composer/i)
   end

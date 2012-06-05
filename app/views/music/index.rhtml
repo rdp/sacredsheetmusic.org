@@ -32,7 +32,7 @@ unused!
            <% else %>
                   selecting a category, on the left hand side, or by <!-- NB this is used only for root tags -->
            <% end %>
-           searching by topic, etc., or by using an <a href="/music/advanced_search">advanced</a> search.)
+           searching by topic, etc., or by using the search box (upper right) or an <a href="/music/advanced_search">advanced</a> search.)
         <% else %>
              <div style="padding-bottom: 5px;">
         <% end %>
@@ -43,13 +43,15 @@ unused!
   <% else; blank_text = "showing all (#{@products.size})" %>
     You can also filter these songs (limit them):
   <% end %>
+   <div id="contains_filter_select">
    <%= Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text].hash, 'global_filter', 'tags') { 
          select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.size > 0}.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : t.name, t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
              :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
        }
-%>
+    %>
+   </div>
 <% end %>
 
         </div>
