@@ -63,7 +63,7 @@ class MusicController < StoreController
  end
 
  # this is an "or" currently, for if it has any tags...
- def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
+ def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name ASC")
     sql = "products_tags.tag_id IN (?)"
     sql << "AND #{Product::CONDITIONS_AVAILABLE}" if find_available==true
   #  sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
@@ -257,13 +257,14 @@ class MusicController < StoreController
     end
 
     @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => :parent)
+
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     all_products = find_by_tag_ids(tag_ids_array)
-    if @viewing_tags[0].name !~ /arrangements/i #@viewing_tags[0].is_hymn_tag? || @viewing_tags[0].is_topic_tag?
+    if @viewing_tags[0].name !~ /arrangements/i && !@viewing_tags[0].is_composer_tag?
       all_products = randomize(all_products)
     else
-      all_products = all_products.sort_by{|p| p.name} # already sorted by :date_available apparently, but we want name for hymn arrangements <sigh>
+#      all_products = all_products.sort_by{|p| p.name} # already sorted by name
     end
 
     viewing_tag_names = tag_names.join(" > ")
@@ -286,7 +287,9 @@ class MusicController < StoreController
   def randomize all_products
       session['rand_seed'] ||= rand(300000) # the irony
       srand(session['rand_seed'])
-      all_products = all_products.sort_by{ rand }
+      titles = {} # keep them organized by title.
+      # keep them random within title though :P
+      all_products = all_products.sort_by{ rand }.sort_by{|p| titles[p.name] ||= rand }
       srand # re-enable randomizer
       all_products
   end
