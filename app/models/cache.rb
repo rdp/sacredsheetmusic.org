@@ -25,20 +25,24 @@ class Cache < ActiveRecord::Base
   end
 
   def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc, &block)
-   
-   ints = collection.map{|item|
+   # lodo not need get_int_proc at all...
+    
+   hash_keys = collection.map{|item|
      [get_int_proc[item], some_unique_identifier, type].hash
    }
-   s = Time.now
-   all_got = Cache.find(:all, :conditions => ['hash_key in (?)', ints])
-   logger.info "pre found #{Time.now - s}:" + all_got.length.to_s
-   s= Time.now
-   got = collection.map{|int| 
-     get_or_set_int(get_int_proc[int], some_unique_identifier, type, &block) 
+   all_got = Cache.find(:all, :conditions => ['hash_key in (?)', hash_keys])
+   # hash them and search them, in case the order comes back weird...
+   hashed = {}
+   all_got.each{|cache| hashed[cache.hash_key] = cache.string_value}
+   out = []
+   hash_keys.each_with_index{|hash_key, idx| 
+      if hashed[hash_key]
+       out << hashed[hash_key]
+      else
+       out << get_or_set_int(get_int_proc[collection[idx]], some_unique_identifier, type) { block.call(collection[idx]) }
+      end
    }
-    logger.info "normal speed: #{Time.now - s}"
-   got
-
+   out
   end
 
   def self.get_or_set_int(int, some_unique_identifier, type)

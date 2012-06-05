@@ -169,7 +169,7 @@ class Product < Item
         problems << "no topics associated with song yet."
       end
       if self.original_tag && self.hymn_tag
-        problems << "is tagged with both original and hymn? probably wants to be just hymn tag"
+        problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i
       end
 
       for composer_tag in self.composer_tags
