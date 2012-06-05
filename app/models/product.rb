@@ -121,6 +121,7 @@ class Product < Item
 
   def self.delete_group_caches
     Cache.delete_by_type('group_products') 
+    Cache.delete_by_type('tags') # if date_available has changed, we're changed here to...
   end
 
   def is_five_star?
