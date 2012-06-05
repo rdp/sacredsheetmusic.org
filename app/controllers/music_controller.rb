@@ -268,10 +268,11 @@ start_time = Time.now
     end
 
     viewing_tag_names = tag_names.join(" > ")
-    @title = "#{viewing_tag_names}"
 
     @products = paginate_and_filter(all_products)
-    tag_names = @viewing_tags.map{|t| t.is_hymn_tag? ? t.name + " sheet music (#{@products.size} free arrangements)" : t.name}
+    t = @viewing_tags[0]
+    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{@products.size} arrangements)" : t.name + " LDS Sheet Music Free (#{@products.size} pieces)" 
+    @title = tag_names
 
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
