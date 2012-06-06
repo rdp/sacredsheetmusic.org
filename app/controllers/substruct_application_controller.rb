@@ -11,16 +11,20 @@ module SubstructApplicationController
          flash.keep
          return false
       end
-      if request.request_uri.in? ['/', '/lds-ward-choir-music', '/choir-arrangements']
-        redirect_to "/index-of-free-lds-mormon-arrangements-choir-piano-solo", :status => :moved_permanently
+
+      if request.request_uri.in? ['/index-of-free-lds-mormon-arrangements-choir-piano-solo', '/lds-ward-choir-music', '/choir-arrangements']
+        redirect_to "/", :status => :moved_permanently
         flash.keep
         return false
       end
+
+      # hope this is relic...
       if request.request_uri.start_with? '/store'
         redirect_to request.request_uri.sub('store', 'music'), :status => :moved_permanently
         flash.keep
         return false
       end
+      
     end
     
   end

@@ -214,6 +214,16 @@ class MusicController < StoreController
    render :text => "alert('asdf');" # does nothing [?!]
   end
 
+  def render_home
+        render_component(
+              :controller => "content_nodes",
+              :action => "show_by_name",
+              :params => {
+                :name => 'index-of-free-lds-mormon-arrangements-choir-piano-solo',
+              }
+            )
+  end
+
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
   #
@@ -221,18 +231,8 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this:
     # /tag_one/tag_two/tag_three/...
-start_time = Time.now
-    tag_names = params[:tags] || []
-    if tag_names == ['index-of-free-lds-mormon-arrangements-choir-piano-solo'] # LODO could make this a route...
-        render_component(
-              :controller => "content_nodes",
-              :action => "show_by_name",
-              :params => {
-                :name => tag_names[0],
-              }
-            )
-      return
-    end
+    start_time = Time.now
+    tag_names = params[:tags] || [] # || ??
     # Generate tag ID list from names
     tag_ids_array = Array.new
     tag_names.map!{|name|

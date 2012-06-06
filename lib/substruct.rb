@@ -124,6 +124,10 @@ module Substruct
     map.connect ':controller/:action.:format'
     map.connect ':controller/:action/:id'
 
+    map.connect '/',
+      :controller => 'music',
+      :action     => 'render_home' # or can you pass a parameter in here...
+
     # putting this last (which I'm forced to do to be able to use the others at all) forces me to do some finagling to *use* it...hmm...
     map.connect '/*tags',
       :controller => 'music',
