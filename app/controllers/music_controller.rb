@@ -272,7 +272,7 @@ start_time = Time.now
     viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
-    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : "LDS " t.name + " Sheet Music Free (#{original_size} arrangements)" 
+    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : "LDS " + t.name + " Sheet Music Free (#{original_size} arrangements)" 
     @title = tag_names
     @products = paginate_and_filter(all_products)
 
