@@ -266,15 +266,15 @@ start_time = Time.now
     if !@viewing_tags[0].is_composer_tag?#~ /arrangements/i
       all_products = randomize(all_products)
     else
-#      all_products = all_products.sort_by{|p| p.name} # already sorted by name
+      # all_products = all_products.sort_by{|p| p.name} # already sorted by name
     end
 
     viewing_tag_names = tag_names.join(" > ")
-
-    @products = paginate_and_filter(all_products)
+    original_size = all_products.size
     t = @viewing_tags[0]
-    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{@products.size} arrangements)" : t.name + " LDS Sheet Music Free (#{@products.size} pieces)" 
+    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : t.name + " LDS Sheet Music Free (#{original_size} pieces)" 
     @title = tag_names
+    @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio
       @display_bio = @viewing_tags[0].bio
