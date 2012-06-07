@@ -46,7 +46,17 @@
         <% end %>
         <!-- TAGS -->
         <% tags = product.linkable_tags(session[:user]) %>
-        <%= tags.map{|t| name_to_use = t.name.gsub(',', '').gsub('/', ' / '); name_to_use = "By " + name_to_use if t.is_composer_tag?; tag_link(t, name_to_use)}.join(', ') %>
+        <%= first_topic = true
+           tags.map{|t| 
+            name_to_use = t.name.gsub(',', '').gsub('/', ' / ')
+            name_to_use = "By " + name_to_use if t.is_composer_tag?
+            if first_topic && t.is_topic_tag?
+              name_to_use = "Topics: " + name_to_use
+              first_topic=false
+            end 
+            tag_link(t, name_to_use)
+           }.join(', ')
+        %>
         <% if product.downloads.length == 0 %>
            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
         <% end %>
