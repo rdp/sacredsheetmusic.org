@@ -192,7 +192,7 @@ class MusicController < StoreController
  end
 
   def filter_by_current_main_tag! these_products
-    if these_products.length > 0
+    if these_products.length > 1
       @was_filtered_able = true
       old_id = session['filter_all_tag_id']
       logger.info old_id
@@ -272,7 +272,7 @@ class MusicController < StoreController
     #viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
-    @title = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : t.name + " LDS Sheet Music (Free)" 
+    @title = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : t.name + " (LDS Sheet Music Free)" 
     @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio
