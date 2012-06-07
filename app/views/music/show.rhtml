@@ -218,6 +218,10 @@ You can also <i>
 
 <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
 
+<div style="float:left;">
+<a href="http://pinterest.com/pin/create/button/?url=<%= request.url %><%=  @default_image ? '&media=http://' + request.host + @default_image.public_filename : '' %>&description=<%= CGI.escape(@title) %>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+</div>
+
 <!-- Place this tag where you want the +1 button to render -->
 <div style="float:right; width: 250px;" ><g:plusone annotation="inline"></g:plusone></div>
 <!-- Place this render call where appropriate -->
