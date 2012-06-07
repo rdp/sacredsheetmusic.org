@@ -74,12 +74,12 @@
 	<div style="padding-top:10px;">
           <%= @product.description.strip_html_tags %>
 	</div>
+        <br/>
+        If you use this song, please contact the composer to thank them!
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.composer_tags %>
              See more from <%= tag_link(composer_tag) %>.
              <br />
-<br/>
-If you use this song, please remember to contact the composer to thank them!
              <br />
         <% end %>
         </div>

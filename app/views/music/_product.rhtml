@@ -49,7 +49,7 @@
         <%= first_topic = true
            tags.map{|t| 
             name_to_use = t.name.gsub(',', '').gsub('/', ' / ')
-            name_to_use = "By " + name_to_use if t.is_composer_tag?
+            name_to_use = "By: " + name_to_use if t.is_composer_tag?
             if first_topic && t.is_topic_tag?
               name_to_use = "Topics: " + name_to_use
               first_topic=false
