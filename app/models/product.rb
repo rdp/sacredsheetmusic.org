@@ -85,6 +85,7 @@ class Product < Item
       end
     end
 #    self.code.upcase! # too ugly
+    self.code.gsub!("'", '')
     self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
     self.code.gsub!(/-{2,}/,'-') # -- => -
     self.code.gsub!(/^[-]+/,'') # beginning dash
