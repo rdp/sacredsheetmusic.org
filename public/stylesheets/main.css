@@ -618,7 +618,7 @@ input.error {
 
 /* PRODUCT 'CHIPS' */
 .product {
-	width: 150px; /** NB that you can't just change these, as the background images have to get larger, too **/
+	width: 157px; /** NB that you can't just change these, as the background images have to get larger, too **/
 	/*margin-right: 5px; */
 	float: left;
 	background-image: url(/plugin_assets/substruct/images/public-ui/item-middle.gif);
@@ -639,8 +639,8 @@ input.error {
 .product_main {
 	margin-left: 8px;
 	margin-right: 20px;
-	margin-top: 10px;
-	width: 126px; 
+	margin-top: 5px;
+	/*width: 126px;  */
 	overflow:hidden;
 	text-align: center;
 }
