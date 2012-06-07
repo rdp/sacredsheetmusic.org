@@ -203,7 +203,7 @@ class MusicController < StoreController
         
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
         if @title
-           @title += " (filtered to only #{Tag.find(old_id).name} [#{these_products.length}])"
+           @title += " (#{@total_count_before_filtering} arrangements limited to only #{Tag.find(old_id).name} [#{these_products.length}])"
         end
       end
     end
@@ -269,11 +269,10 @@ class MusicController < StoreController
       # all_products = all_products.sort_by{|p| p.name} # already sorted by name
     end
 
-    viewing_tag_names = tag_names.join(" > ")
+    #viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
-    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : "LDS " + t.name + " Sheet Music Free (#{original_size} arrangements)" 
-    @title = tag_names
+    @title = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : t.name + " LDS Sheet Music (Free)" 
     @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio
