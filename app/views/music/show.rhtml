@@ -44,14 +44,14 @@
 
           <% links = [] %>
           <% if filename_extension == 'pdf'
-            
-            links << link_to(
-              'view', # has its own name...
-              :controller => 'music',
-              :action => 'inline_download_file',
-              :params => { :download_id => dl.id, :name => dl.filename}
-            )
+              links << link_to(
+                'print', # has its own name...
+                :controller => 'music',
+                :action => 'inline_download_file',
+                :params => { :download_id => dl.id, :name => dl.filename}
+              )
             end   
+
             links << link_to(
               'download',
               :controller => 'music',
@@ -106,14 +106,7 @@
 <div style="float: right; width: 82%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
     <% extra_style = "display:none;" if @default_image %>
-     <% if request.env["HTTP_REFERER"] =~ /google|bing/ %>
-                      <%= 'Welcome to Free LDS Sheet Music, home to over 1500 free songs/arrangements for ward choir, etc. <br/>' %>
-               <% end %>
-
     <h1 style="margin: 0px; margin-left: 50px;<%= extra_style %>"><%= @product.name %> (by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
-      <% if @default_image %> 
-       To print, click pdf "view", top left.&nbsp;&nbsp;&nbsp;&nbsp;
-      <% end %>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
