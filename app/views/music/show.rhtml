@@ -75,7 +75,7 @@
           <%= @product.description.strip_html_tags %>
 	</div>
         <br/>
-        If you use this song, please contact the composer to thank them!
+        If you use this song, please contact the composer to say thanks!
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.composer_tags %>
              See more from <%= tag_link(composer_tag) %>.
@@ -144,14 +144,12 @@ You can also <i>
 <% end %>
 
     <% for hymn_tag in @product.hymn_tags %>
+     <br/>
      <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
-      <br/>
        Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
-       <% if true#@product.hymn_tags.length > 1 %>
-          of "<%= hymn_tag.name %>".
-       <% else %>
-          for this song.
-       <% end%>
+       of "<%= hymn_tag.name %>".
+     <% else %>
+       <!-- See info about <%=tag_link(hymn_tag)%>. -->
      <% end %>
     <% end %>
    </div>
