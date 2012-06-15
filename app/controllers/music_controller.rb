@@ -231,7 +231,6 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this:
     # /tag_one/tag_two/tag_three/...
-    start_time = Time.now
     tag_names = params[:tags] || [] # || ??
     # Generate tag ID list from names
     tag_ids_array = Array.new
@@ -282,10 +281,7 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
-    logger.info "controller time: #{Time.now - start_time}"
-    start_view_time = Time.now
     render :action => 'index.rhtml'
-    logger.info "view time #{Time.now - start_view_time}"
   end
 
   def randomize all_products

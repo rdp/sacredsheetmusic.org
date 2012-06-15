@@ -132,14 +132,11 @@
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
               <%= 
-               start = Time.now
                hash = Time.now.wday*3
-               @viewing_tags.each{|t| hash += t.id*5} # primes, attempt avoid collision LOL :)
-               Rails.logger.info "got tags #{@viewing_tags.map{|t| t.id}} got hash #{hash}"
+               @viewing_tags.andand.each{|t| hash += t.id*5} # primes, attempt avoid collision LOL :)
                text = Cache.get_or_set_int(hash, 'boxed', 'tags') {
-                 text = render :partial => '/boxed_categories' 
+                 render :partial => '/boxed_categories' 
                }
-               Rails.logger.info "boxed cats took #{Time.now - start}"
                text
                %>
           <% end %>
