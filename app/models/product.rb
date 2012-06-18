@@ -216,7 +216,7 @@ class Product < Item
       for download in self.downloads
        problems << "has empty download?" + download.filename unless download.size > 0
       end
-      if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
+      if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
         problems <<  "no hymn or 'original' tag for this song yet."
       end
       if self.downloads.size == 0 && !self.original_url.present?
