@@ -7,6 +7,7 @@ class Session
     :order => "created_on DESC"
 
   def self.clear!
+   raise 'dont call this'
    delete_all # skips validation...
   end  
 end

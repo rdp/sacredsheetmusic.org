@@ -1,4 +1,4 @@
-ruby script/runner -e production "Cache.clear!; Session.clear!"
+ruby script/runner -e production "Cache.clear!; Session.all.each{|s| s.delete unless s.wishlist_items.count > 0}"
 #rm log/*
 echo m4m
 A=`date`
