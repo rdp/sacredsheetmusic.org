@@ -105,6 +105,13 @@ class Tag
     self.name =~ /^original/i
   end
 
+  def get_composer_contact_url
+     composer = self
+     cc = (composer && composer.composer_contact.present? ) ? composer.composer_contact : nil
+     cc = "mailto:" + cc if cc =~ /.@./
+     cc
+  end
+
   after_update {
     Cache.clear! # no idea what damage this did...probs changed, normals changed...
   }

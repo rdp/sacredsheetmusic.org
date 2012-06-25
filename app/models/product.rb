@@ -51,11 +51,8 @@ class Product < Item
    #   :order => 'items.name ASC', :conditions => conds
    # )
 
-  def composer_contact_url
-     composer = composer_tag
-     cc = (composer && composer.composer_contact.present? ) ? composer.composer_contact : nil
-     cc = "mailto:" + cc if cc =~ /.@./
-     cc
+  def composer_contact_url 
+    composer_tag.get_composer_contact_url
   end
   
   # my own version :P
@@ -273,7 +270,7 @@ class Product < Item
         problems << "probably not a unique product code please update #{count}"
       end
       if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i
-         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(')
+         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1)
            problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
          end
       end
