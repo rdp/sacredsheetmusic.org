@@ -76,7 +76,7 @@
 	</div>
         <% unless @product.composer_contact_url =~ /lds.org/ %>
           <br/>
-          If you sing this song, please contact the composer to <a href="<%@product.composer_contact_url%>">say thanks<a>!
+          If you sing this song, please contact the composer to <a href="<%= @product.composer_contact_url%>">say thanks<a>!
         <% end %>
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.composer_tags %>
