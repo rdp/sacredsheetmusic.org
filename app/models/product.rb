@@ -23,7 +23,7 @@ class Product < Item
   end
 
   def composer_tags
-   self.tags.select{|t| t.is_composer_tag? }
+   self.tags.select{|t| t.is_composer_tag? }.sort_by{|t| t.name =~ /church pub/i ? 1 : 0 }
   end
   
   def hymn_tag
