@@ -105,7 +105,7 @@
 						 	class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>"
 							style="<%= i == @main_nav_tags.size-1 ? 'margin-right: 0px !important;' : '' %>"
 						>
-							<%= tag_link_nav(tag) %>
+							<%= tag_link(tag) %>
 						</li>
 					<% end %>
 				</ul>
@@ -132,8 +132,8 @@
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
               <%= 
-               hash = Time.now.wday*3
-               @viewing_tags.andand.each{|t| hash += t.id*5} # primes, attempt avoid collision LOL :)
+               hash = Time.now.wday*11
+               @viewing_tags.andand.each{|t| hash += t.id*13} # primes, attempt avoid collision LOL :)
                text = Cache.get_or_set_int(hash, 'boxed', 'tags') {
                  render :partial => '/boxed_categories' 
                }
