@@ -74,7 +74,7 @@
 	
 		  <!-- logo -->
 		  <div style="float:left; padding-top: 15px; padding-left: 5px;">
-		     <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
+		     <a href="/"><%= image_tag('blue_small.jpg', :alt => @title, :height => 85) %></a>
 		  </div>
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
@@ -135,7 +135,7 @@
                hash = Time.now.wday*11
                @viewing_tags.andand.each{|t| hash += t.id*13} # primes, attempt avoid collision LOL :)
                text = Cache.get_or_set_int(hash, 'boxed', 'tags') {
-                 render :partial => '/boxed_categories' 
+                 text =render :partial => '/boxed_categories'  # for easy commenting out :P
                }
                text
                %>
