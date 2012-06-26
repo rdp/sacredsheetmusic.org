@@ -368,6 +368,14 @@ class MusicController < StoreController
   end
 
   def all_no_cache
+    count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
+    if count_including_us < 2
+      # bump it :P
+      got = `curl http://freeldssheetmusic.org/music/wake_up`
+      logger.info "bumped it"
+    else
+      logger.info "already high enough #{count_including_us}"
+     end
     @no_individ_cache = true
     index
   end
