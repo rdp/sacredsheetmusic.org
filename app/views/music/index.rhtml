@@ -55,15 +55,23 @@ unused!
 <% end %>
 
         </div>
-
-	<%= Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
-           out = '' # is there some elegant way? hmm...
-           partials = Cache.map_get_or_set(@products, 'music_box_display2' + session[:user].to_s, 'single_product', proc{|p| p.id}) {|product|
-             render :partial => 'product', :locals => {:product => product}, :to => :string 
+        <%
+           get_all = proc {
+             partials = Cache.map_get_or_set(@products, 'music_box_display2' + session[:user].to_s, 'single_product', proc{|p| p.id}) {|product|
+               render :partial => 'product', :locals => {:product => product}, :to => :string 
+             } 
+             partials.join 
            } 
-           partials.join 
-           }
         %>
+        <%= if @no_individ_cache
+             get_all.call
+            else
+	     Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
+              get_all.call
+             }
+           end
+        %>
+
 
   <% if @products.length == 0 %>
     <p>

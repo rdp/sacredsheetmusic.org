@@ -367,6 +367,11 @@ class MusicController < StoreController
     end
   end
 
+  def all_no_cache
+    @no_individ_cache = true
+    index
+  end
+
   # Our simple all songs list
   def index
     if request.request_uri == '/music'
