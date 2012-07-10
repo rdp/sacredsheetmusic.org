@@ -12,6 +12,8 @@ config.action_controller.perform_caching             = true
 #config.action_view.cache_template_loading            = true
 config.action_view.cache_template_loading            = false
 
+::SQLITE_DB_LOCATION=RAILS_ROOT  + '/db/production.sqlite3'
+
 # See everything in the log (default is :info)
 # config.log_level = :debug
 
