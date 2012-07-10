@@ -23,7 +23,7 @@ class Product < Item
   end
 
   def composer_tags
-   self.tags.select{|t| t.is_composer_tag? }
+   self.tags.select{|t| t.is_composer_tag? }.sort_by{|t| t.name =~ /church pub/i ? 1 : 0 }
   end
   
   def hymn_tag
@@ -51,11 +51,8 @@ class Product < Item
    #   :order => 'items.name ASC', :conditions => conds
    # )
 
-  def composer_contact_url
-     composer = composer_tag
-     cc = (composer && composer.composer_contact.present? ) ? composer.composer_contact : nil
-     cc = "mailto:" + cc if cc =~ /.@./
-     cc
+  def composer_contact_url 
+    composer_tag.get_composer_contact_url
   end
   
   # my own version :P
@@ -85,6 +82,7 @@ class Product < Item
       end
     end
 #    self.code.upcase! # too ugly
+    self.code.gsub!("'", '')
     self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
     self.code.gsub!(/-{2,}/,'-') # -- => -
     self.code.gsub!(/^[-]+/,'') # beginning dash
@@ -215,7 +213,7 @@ class Product < Item
       for download in self.downloads
        problems << "has empty download?" + download.filename unless download.size > 0
       end
-      if !self.hymn_tag && !self.tags.detect{|t| t.name =~ /original/i}
+      if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
         problems <<  "no hymn or 'original' tag for this song yet."
       end
       if self.downloads.size == 0 && !self.original_url.present?
@@ -245,8 +243,10 @@ class Product < Item
       for topic_tag in Tag.all#topic_tags + instrument_tags
         next if topic_tag.name.in? ['Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
         for topic_tag_name in topic_tag.name.split('/')
-          name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name.strip) + "\\W", Regexp::IGNORECASE)
-          if (self.name =~ name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
+          topic_tag_name.strip!
+          bare_name_reg = Regexp.new(Regexp.escape(topic_tag_name), Regexp::IGNORECASE)
+          name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name) + "\\W", Regexp::IGNORECASE)
+          if (self.name =~ bare_name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
               problems << "might want the #{topic_tag.name} tag, since its name is included in the title or description"
             end
@@ -270,7 +270,7 @@ class Product < Item
         problems << "probably not a unique product code please update #{count}"
       end
       if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i
-         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(')
+         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1)
            problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
          end
       end

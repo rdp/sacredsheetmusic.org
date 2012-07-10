@@ -192,7 +192,7 @@ class MusicController < StoreController
  end
 
   def filter_by_current_main_tag! these_products
-    if these_products.length > 0
+    if these_products.length > 1
       @was_filtered_able = true
       old_id = session['filter_all_tag_id']
       logger.info old_id
@@ -203,7 +203,7 @@ class MusicController < StoreController
         
         these_products.select!{|p| p.tag_ids.include? @old_global_filter }
         if @title
-           @title += " (filtered to only #{Tag.find(old_id).name} [#{these_products.length}])"
+           @title += " (#{@total_count_before_filtering} arrangements limited to only #{Tag.find(old_id).name} [#{these_products.length}])"
         end
       end
     end
@@ -231,7 +231,6 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this:
     # /tag_one/tag_two/tag_three/...
-    start_time = Time.now
     tag_names = params[:tags] || [] # || ??
     # Generate tag ID list from names
     tag_ids_array = Array.new
@@ -269,11 +268,10 @@ class MusicController < StoreController
       # all_products = all_products.sort_by{|p| p.name} # already sorted by name
     end
 
-    viewing_tag_names = tag_names.join(" > ")
+    #viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
-    tag_names = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : "LDS " + t.name + " Sheet Music Free (#{original_size} arrangements)" 
-    @title = tag_names
+    @title = t.is_hymn_tag? ? t.name + " sheet music free (#{original_size} arrangements)" : t.name + " (LDS Sheet Music -- Free)" 
     @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio
@@ -283,10 +281,7 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
-    logger.info "controller time: #{Time.now - start_time}"
-    start_view_time = Time.now
     render :action => 'index.rhtml'
-    logger.info "view time #{Time.now - start_view_time}"
   end
 
   def randomize all_products
@@ -370,6 +365,19 @@ class MusicController < StoreController
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
+  end
+
+  def all_no_cache
+    count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
+    if count_including_us < 2
+      # bump it :P
+      got = `curl http://freeldssheetmusic.org/music/wake_up`
+      logger.info "bumped it"
+    else
+      logger.info "already high enough #{count_including_us}"
+     end
+    @no_individ_cache = true
+    index
   end
 
   # Our simple all songs list

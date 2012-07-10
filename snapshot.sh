@@ -1,4 +1,5 @@
-ruby script/runner -e production "Cache.clear!; Session.clear!"
+./sessions_clear.sh
+./cache_clear.sh
 #rm log/*
 echo m4m
 A=`date`

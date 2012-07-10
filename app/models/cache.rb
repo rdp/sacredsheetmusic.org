@@ -32,7 +32,7 @@ class Cache < ActiveRecord::Base
    hash_keys = collection.map{|item|
      [get_int_proc[item], some_unique_identifier, type].hash
    }
-   all_got = Cache.find(:all, :conditions => ['hash_key in (?)', hash_keys])
+   all_got = Cache.find(:all, :conditions => ['hash_key in (?) and cache_type = ?', hash_keys, type])
    # hash them and search them, in case the order comes back weird...
    hashed = {}
    all_got.each{|cache| hashed[cache.hash_key] = cache.string_value}
@@ -50,7 +50,7 @@ class Cache < ActiveRecord::Base
   def self.get_or_set_int(int, some_unique_identifier, type)
     verify_type type
     hash = [int, some_unique_identifier, type].hash
-    if a = Cache.find_by_hash_key(hash)
+    if a = Cache.find_by_hash_key_and_cache_type(hash, type)
       # assume string for now
       a.string_value
     else

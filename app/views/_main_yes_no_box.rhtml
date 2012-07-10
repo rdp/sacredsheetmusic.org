@@ -14,7 +14,7 @@
 		else
                    @title = @store_name
 		end
-                 ' ' + h(@title) + " &#9834;" # ruby weirdness, h infects it?
+                 h(@title) #+ " &#9835;" # ruby weirdness, h infects it?
 		-%></title>
 	<%= javascript_include_tag :defaults, :cache => 'default' %>
 
@@ -74,7 +74,7 @@
 	
 		  <!-- logo -->
 		  <div style="float:left; padding-top: 15px; padding-left: 5px;">
-		     <a href="/"><%= image_tag('musicbannervsmall.jpg', :alt => @title, :height => 85) %></a>
+		     <a href="/"><%= image_tag('blue_small.jpg', :alt => @title, :height => 85) %></a>
 		  </div>
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
@@ -132,11 +132,11 @@
           <%= render :partial => '/shared/flash', :locals => { :flash => flash } %>
           <% if yes_box %>
               <%= 
-               start = Time.now
-               text = Cache.get_or_set_int([Time.now.wday, @viewing_tags.andand.map(&:id)].hash, 'boxed', 'tags') {
-                 text = render :partial => '/boxed_categories' 
+               hash = Time.now.wday*11
+               @viewing_tags.andand.each{|t| hash += t.id*13} # primes, attempt avoid collision LOL :)
+               text = Cache.get_or_set_int(hash, 'boxed', 'tags') {
+                 text =render :partial => '/boxed_categories'  # for easy commenting out :P
                }
-               Rails.logger.info "boxed cats took #{Time.now - start}"
                text
                %>
           <% end %>
@@ -168,6 +168,8 @@
         </div> <!-- end footer -->
 	
 </div> <!-- end container -->
+
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
 
 </body>
 </html>

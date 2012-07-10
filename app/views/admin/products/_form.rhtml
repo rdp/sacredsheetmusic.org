@@ -94,10 +94,6 @@
   			</span>
   		</p>
 	
-  		<p>
-  			<%= make_label('Date available') %>
-  			<%= date_select 'product', 'date_available', {:order => [:month, :day, :year]}   %>
-  		</p>
 		</div>
     <div class="floatHalf">
   		<div class="float">
@@ -248,7 +244,10 @@
   PRODUCT.init();
 //-->
 </script>
-Date Added: <%= @product.date_available %>
+  		<p>
+  			<%= make_label('Date available') %>
+  			<%= date_select 'product', 'date_available', {:order => [:month, :day, :year], :end_year => Time.now.year + 100}   %>
+  		</p>
 		<div class="float">
 			<%= make_label('Product Code (auto-filled)') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>

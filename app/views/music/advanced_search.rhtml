@@ -11,7 +11,7 @@ To do an advanced search, please check all aspects that should apply.  For examp
 <br/>
 <br/>
   <ul>
-  <% for tag in Tag.find_ordered_parents; next if tag.name == "Hymns" %>
+  <% for tag in Tag.find(:all, :conditions => ['parent_id = 0'], :include => {:children => {:children=> :children}}, :order => 'name asc') %>
     <li>
       <div style="min-width: 75px; float: left; margin-right: 5px;"><%= tag.name %></div>
 			<%= check_box_tag("product[tag_ids][]", tag.id) if tag.children.count == 0 %>
@@ -19,6 +19,9 @@ To do an advanced search, please check all aspects that should apply.  For examp
       <table>
          <% for child in tag.children; next if child.products.length == 0 %>
           <tr><td style="padding-right: 5px;"><%= child.name %></td><td><%= check_box_tag("product[tag_ids][]", child.id) %></td></tr>
+           <% for child2 in child.children; next if child2.products.length == 0 %>
+            <tr><td style="padding-right: 5px;"><%= child2.name %></td><td><%= check_box_tag("product[tag_ids][]", child2.id) %></td></tr>
+           <% end %>
          <% end %>
       </table>
     </li>
