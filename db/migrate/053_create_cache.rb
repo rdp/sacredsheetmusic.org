@@ -1,7 +1,5 @@
 class CreateCache < ActiveRecord::Migration
   def self.up
-    raise 'need sqlite3' if Cache.connection.class.to_s =~ /mysql/i
-
     create_table :cache do |t|
       #t.column <sigh> 
     end
