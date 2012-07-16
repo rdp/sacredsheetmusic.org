@@ -5,7 +5,7 @@ class Cache < ActiveRecord::Base
 
   set_table_name 'cache'
   # use sqlite for this table...
-  establish_connection(:adapter => 'sqlite3', :database =>  SQLITE3_LOCATION)
+  establish_connection(:adapter => 'sqlite3', :database =>  SQLITE3_LOCATION, :timeout => 100000)
 
   def self.clear!
      delete_all # skips validations
