@@ -207,7 +207,7 @@ class Product < Item
       
       # disallow SAB and SATB on same song
       distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.name !~ /choir/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and|song type/i}
-      if distinct_voicing_tags.length > 1
+      if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i}
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
       end
       for download in self.downloads

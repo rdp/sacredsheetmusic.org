@@ -215,7 +215,7 @@ class MusicController < StoreController
    if id.present?
      flash[:notice] = "Ok, all future results will now be filtered/limited to just #{Tag.find(id).name}"
    else
-     flash[:notice] = "Ok, will show *all* results now"
+     flash[:notice] = "Ok, showing *all* results now"
    end
    render :text => "alert('asdf');" # does nothing [?!]
   end
