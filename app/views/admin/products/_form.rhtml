@@ -9,7 +9,7 @@
   </div>
           <% if @product.id.present? %>
              <% problems = @product.find_problems(true) %>
-             <%= "Current difficulties: " + problems.join(',') if problems.present? %>
+             <%= "Current difficulties: " + problems.join(',<br>') if problems.present? %>
           <% end %>
 	<div class="padLeft">
 		<div class="float" style="padding-left:15px;">

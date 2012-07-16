@@ -212,7 +212,11 @@ class MusicController < StoreController
   def change_global_filter
    id = params['id']
    session['filter_all_tag_id'] = id
-   flash[:notice] = "Ok, all future results will now be filtered/limited to just #{Tag.find(id).name}"
+   if id.present?
+     flash[:notice] = "Ok, all future results will now be filtered/limited to just #{Tag.find(id).name}"
+   else
+     flash[:notice] = "Ok, will show *all* results now"
+   end
    render :text => "alert('asdf');" # does nothing [?!]
   end
 
