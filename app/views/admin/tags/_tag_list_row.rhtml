@@ -49,6 +49,7 @@
                  <%= pluralize(tag_list_row.children.size, 'tag') %> below 
                  <%= link_to 'show songs', :controller => '/music', :action => 'show_by_tags', :tags => [tag_list_row.name] %>
                  <%= link_to 'admin list', :controller => 'admin/products', :action => 'list_by_tags', :key => tag_list_row.id %>
+                 <%= 'Voicing' if tag_list_row.is_voicing? %>
 
                 </span>
 	</span>

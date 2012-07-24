@@ -313,11 +313,17 @@ class Product < Item
     else
       tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.reject{|t| t.name =~ /only on this site/i}.sort_by{|t| 
          if t.is_voicing?
-           1
+           if t.name =~ /^[A-Z]+$/
+            0 # SATB
+           else
+            1 # Harmonica
+           end
          elsif t.is_composer_tag?
            2
-         else
+         elsif t.is_topic_tag?
            3
+         else
+           4
          end
        }
      end
