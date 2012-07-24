@@ -47,12 +47,16 @@
         <!-- TAGS -->
         <% tags = product.linkable_tags(session[:user]) %>
         <%= first_topic = true
+            first_composer= true
            tags.map{|t| 
             name_to_use = t.name.gsub(',', '')
             if name_to_use =~ /\//
-              name_to_use = name_to_use.split('/')[0] + ' etc.'
+              name_to_use = name_to_use.split('/')[0] + ' ...'
             end
-            name_to_use = "By: " + name_to_use if t.is_composer_tag?
+            if t.is_composer_tag? && first_composer
+              name_to_use = "By: " + name_to_use
+              first_composer = false
+            end
             if first_topic && t.is_topic_tag?
               name_to_use = "Topics: " + name_to_use
               first_topic=false
