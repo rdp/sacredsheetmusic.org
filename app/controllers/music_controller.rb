@@ -488,27 +488,4 @@ class MusicController < StoreController
     end
   end
 
-  def radio_playlist_all
-    server = "http://" + request.env["SERVER_NAME"]
-    dls = Download.find(:all, :order => "rand()").select{|dl| dl.name =~ /.mp3$/i}
-    # create playlist
-    out = "#EXTM3u\n"
-    dls.each_with_index{|dl,idx|
-      url = server + dl.relative_path_to_web_server
-      if dl.product
-        composer = dl.product.composer_tag ? " #{dl.product.composer_tag.name}" : ''
-        name = composer + ',' + dl.product.name
-      else
-        name = dl.name
-      end
-      idx = idx + 1 # 1 based :)
-    
-    out  += <<-EOL
-#EXTINF:-1, #{name}
-#{url}
-    EOL
-    }    
-    render :text => out, :content_type => "audio/x-mpegurl"
-  end
-
 end
