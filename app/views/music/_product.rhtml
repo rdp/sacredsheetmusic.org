@@ -52,7 +52,7 @@
             name_to_use = t.name.gsub(',', '')
             if name_to_use =~ /\// 
               if t != tags[-1] # ending ... feels tacky...
-                name_to_use = name_to_use.split('/')[0] + ' (...)'
+                name_to_use = name_to_use.split(/\//)[0] + ' (...)'
               else
                 name_to_use = name_to_use.gsub('/', ' / ')
               end

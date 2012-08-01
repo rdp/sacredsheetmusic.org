@@ -213,7 +213,7 @@ class MusicController < StoreController
    id = params['id']
    session['filter_all_tag_id'] = id
    if id.present?
-     flash[:notice] = "Ok, all future results will now be filtered/limited to just #{Tag.find(id).name}"
+     flash[:notice] = "Ok, results (and future results) now filtered/limited to just #{Tag.find(id).name}"
    else
      flash[:notice] = "Ok, showing *all* results now"
    end
@@ -376,8 +376,8 @@ class MusicController < StoreController
   def all_no_cache
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
     if count_including_us < 2
-      # bump it :P
-      got = `curl http://freeldssheetmusic.org/music/wake_up`
+      got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline
+      # otherwise the request just gets processed by this process again. 
       logger.info "bumped it"
     else
       logger.info "already high enough #{count_including_us}"
