@@ -349,18 +349,17 @@ class MusicController < StoreController
   end
 
   def download_helper disposition, add_count = true
-    # find download...
-    file = Download.find(:first, :conditions => ["id = ?", params[:download_id]])
+    file = Download.find(params[:download_id])
     if file && File.exist?(file.full_filename)
       if add_count && not_a_bot
-        # unfortunately I think mp3's get downloaded via browser sometimes (via qt) on page view
-        # so I guess this'll be half and half still...
-        file.count += 1
-        file.save # necessary? probably...
+       # unfortunately I think mp3's get downloaded via browser sometimes (via qt) on page view
+       # so I guess this'll be half and half still...
+       file.update_attribute(:count, file.count + 1) # waaay faster than file.save gah
+       logger.info("line 2.7 at #{Time.now - start}")
       end
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf
-      # TODO this doesn't actually inline anything else then...but at least it wurx
+      # TODO this doesn't actually inline anything else...but at least it wurx
       filename = file.full_filename
       if filename =~ /\.pdf$/
         args[:type] = 'application/pdf'
