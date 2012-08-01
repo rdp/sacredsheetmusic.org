@@ -355,7 +355,6 @@ class MusicController < StoreController
        # unfortunately I think mp3's get downloaded via browser sometimes (via qt) on page view
        # so I guess this'll be half and half still...
        file.update_attribute(:count, file.count + 1) # waaay faster than file.save gah
-       logger.info("line 2.7 at #{Time.now - start}")
       end
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf
