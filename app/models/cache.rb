@@ -75,7 +75,7 @@ class Cache < ActiveRecord::Base
     elsif entry = Cache.find_by_hash_key_and_cache_type(hash, type)
       # assume string for now
       logger.info "cache semihit"
-      Rails.cache.write(hash, entry.string_value)
+      Rails.cache.write(hash, entry.string_value) unless type == 'group_products' # the big, varying kind...
       return entry.string_value
     else
       logger.info "cache mis"

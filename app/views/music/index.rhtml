@@ -68,7 +68,7 @@ unused!
             end
            } 
         %>
-        <%= if true#@no_individ_cache
+        <%= if false#true#@no_individ_cache
              get_all.call
             else # BIG, wasteful...
 	     Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
