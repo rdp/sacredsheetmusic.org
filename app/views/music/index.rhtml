@@ -57,17 +57,22 @@ unused!
         </div>
         <%
            get_all = proc {
+             do_all_separate = true
+             if !do_all_separate
              partials = Cache.map_get_or_set(@products, 'music_box_display2' + session[:user].to_s, 'single_product', proc{|p| p.id}) {|product|
                render :partial => 'product', :locals => {:product => product}, :to => :string 
              } 
              partials.join 
+            else
+             @products.map{|p| Cache.get_or_set_int(p.id, 'music_box_display3', 'single_product') { render :partial => 'product', :locals => {:product => p}, :to => :string }}.join
+            end
            } 
         %>
-        <%= if @no_individ_cache
-             get_all.call
+        <%= if true#@no_individ_cache
+               get_all.call
             else
 	     Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
-              get_all.call
+               get_all.call
              }
            end
         %>
