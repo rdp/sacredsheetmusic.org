@@ -381,7 +381,7 @@ class MusicController < StoreController
       logger.info "already high enough #{count_including_us}"
      end
     @no_individ_cache = true
-    index
+    index # reads them all
   end
 
   # Our simple all songs list
