@@ -85,11 +85,11 @@ class Cache < ActiveRecord::Base
      return val
     elsif entry = Cache.find_by_hash_key_and_cache_type(hash, type)
       # assume string for now
-      logger.info "cache semihit #{hash} #{Rails.cache.inspect}"
+      logger.info "cache semihit"
       Rails.cache.write(hash, entry.string_value)
       return entry.string_value
     else
-      logger.info "cache mis"
+      logger.info "cache real mis"
       string_value = yield
       unless type == 'group_products'
         entry = Cache.new :hash_key => hash, :string_value => string_value, :parent_id => int, :cache_type => type
