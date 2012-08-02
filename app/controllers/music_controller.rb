@@ -373,20 +373,17 @@ class MusicController < StoreController
   end
 
   def all_no_cache
-
-    # the logic now is...if your the only one, you'll want to warm up your cache
-    # or if it gets called through to wake_up...
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
     if count_including_us < 2
-      Cache.warmup_in_other_thread
       got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline
       # otherwise the request just gets processed by this process again. 
       logger.info "bumped it"
     else
       logger.info "already high enough #{count_including_us}"
     end
-    @no_individ_cache = true
-    index # reads them all
+    #@no_individ_cache = true
+    #index # reads them all
+    render :text => 'ok'
   end
 
   # Our simple all songs list
