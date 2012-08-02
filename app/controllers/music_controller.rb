@@ -372,6 +372,9 @@ class MusicController < StoreController
   end
 
   def all_no_cache
+
+    # the logic now is...if your the only one, you'll want to warm up your cache
+    # or if it gets called through to wake_up...
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
     if count_including_us < 2
       got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline

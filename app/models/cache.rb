@@ -30,22 +30,36 @@ class Cache < ActiveRecord::Base
 
   def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc, &block)
    # lodo not need get_int_proc at all...
-    
+   hits = 0 
+   hashed_results = {}
+   to_look_for = []
    hash_keys = collection.map{|item|
-     [get_int_proc[item], some_unique_identifier, type].hash
+     hash_key = [get_int_proc[item], some_unique_identifier, type].hash
+     if (val = Rails.cache.read(hash_key))
+      hashed_results[hash_key] = val
+      hits+=1
+     else
+      to_look_for << hash_key
+     end
+     hash_key
    }
-   all_got = Cache.find(:all, :conditions => ['hash_key in (?) and cache_type = ?', hash_keys, type])
+
+   all_got = Cache.find(:all, :conditions => ['hash_key in (?) and cache_type = ?', to_look_for, type])
+   
    # hash them and search them, in case the order comes back weird...
-   hashed = {}
-   all_got.each{|cache| hashed[cache.hash_key] = cache.string_value}
+   all_got.each{|cache| 
+     hashed_results[cache.hash_key] = cache.string_value
+     Rails.cache.write(cache.hash_key, cache.string_value)
+   }
    out = []
    hash_keys.each_with_index{|hash_key, idx| 
-      if hashed[hash_key]
-       out << hashed[hash_key]
+      if val = hashed_results[hash_key]
+        out << val
       else
-       out << get_or_set_int(get_int_proc[collection[idx]], some_unique_identifier, type) { block.call(collection[idx]) }
+        out << get_or_set_int(get_int_proc[collection[idx]], some_unique_identifier, type) { block.call(collection[idx]) }
       end
    }
+   logger.info "after previous semi/mis, had #{hits} hits/#{collection.length}"
    out
   end
 
