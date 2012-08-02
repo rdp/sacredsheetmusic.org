@@ -30,12 +30,10 @@ class Cache < ActiveRecord::Base
 
   def self.warmup_in_other_thread
     Thread.new {
-      size = 0
-      for entry in Cache.find(:all, :conditions => ['cache_type = ?', 'single_product'])
+      for entry in Cache.find(:all)
         Rails.cache.write(entry.hash_key, entry.string_value)
-        size += 1
       end
-      Rails.logger.info "warmed it up with #{size}"
+      Rails.logger.info "warmed it up with #{size}" # doesn't output for some reason...odd...
     }
   end
 
