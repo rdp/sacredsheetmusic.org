@@ -3,7 +3,6 @@
 require_dependency 'substruct/login_system.rb'
 require 'patch_attachment_fu'
 
-
 # abstracted from require 'facets/file' ===>
 class File
 
