@@ -1,0 +1,461 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test
+END
+hello_xml_world.builder
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_xml_world.builder
+END
+sub_template_raise.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/sub_template_raise.html.erb
+END
+content_for_with_parameter.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/content_for_with_parameter.erb
+END
+_labelling_form.erb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_labelling_form.erb
+END
+_two.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_two.html.erb
+END
+list.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/list.erb
+END
+hello_world_with_layout_false.erb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world_with_layout_false.erb
+END
+delete_with_js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/delete_with_js.rjs
+END
+_counter.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_counter.html.erb
+END
+hello.builder
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello.builder
+END
+_local_inspector.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_local_inspector.html.erb
+END
+_one.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_one.html.erb
+END
+scoped_array_translation.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/scoped_array_translation.erb
+END
+render_implicit_html_template_from_xhr_request.da.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_implicit_html_template_from_xhr_request.da.html.erb
+END
+_partial.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial.erb
+END
+capturing.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/capturing.erb
+END
+_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial.html.erb
+END
+render_file_from_template.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_file_from_template.html.erb
+END
+render_explicit_html_template.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_explicit_html_template.js.rjs
+END
+_layout_for_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_layout_for_partial.html.erb
+END
+potential_conflicts.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/potential_conflicts.erb
+END
+_partial_for_use_in_layout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial_for_use_in_layout.html.erb
+END
+hyphen-ated.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hyphen-ated.erb
+END
+_hash_greeting.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_hash_greeting.erb
+END
+render_to_string_test.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_to_string_test.erb
+END
+hello_world.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world.erb
+END
+template.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/template.erb
+END
+calling_partial_with_layout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/calling_partial_with_layout.html.erb
+END
+dont_pick_me
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/dont_pick_me
+END
+utf8_magic_with_bare_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/utf8_magic_with_bare_partial.html.erb
+END
+utf8.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/utf8.html.erb
+END
+array_translation.erb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/array_translation.erb
+END
+translation.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/translation.erb
+END
+_customer_counter.erb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_customer_counter.erb
+END
+_customer.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_customer.erb
+END
+formatted_xml_erb.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/formatted_xml_erb.html.erb
+END
+hello_world.pt-BR.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world.pt-BR.html.erb
+END
+_from_helper.erb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_from_helper.erb
+END
+_customer_with_var.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_customer_with_var.erb
+END
+greeting.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/greeting.erb
+END
+formatted_html_erb.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/formatted_html_erb.html.erb
+END
+greeting.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/greeting.js.rjs
+END
+_person.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_person.erb
+END
+_hash_object.erb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_hash_object.erb
+END
+using_layout_around_block_with_args.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/using_layout_around_block_with_args.html.erb
+END
+nested_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/nested_layout.erb
+END
+_hello.builder
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_hello.builder
+END
+implicit_content_type.atom.builder
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/implicit_content_type.atom.builder
+END
+_customer_greeting.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_customer_greeting.erb
+END
+formatted_xml_erb.xml.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/formatted_xml_erb.xml.erb
+END
+_partial_only.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial_only.erb
+END
+_utf8_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_utf8_partial.html.erb
+END
+_utf8_partial_magic.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_utf8_partial_magic.html.erb
+END
+_raise.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_raise.html.erb
+END
+_partial.js.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial.js.erb
+END
+_layout_for_block_with_args.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_layout_for_block_with_args.html.erb
+END
+render_file_with_locals.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_file_with_locals.erb
+END
+enum_rjs_test.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/enum_rjs_test.rjs
+END
+render_implicit_html_template_from_xhr_request.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_implicit_html_template_from_xhr_request.html.erb
+END
+update_element_with_capture.erb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/update_element_with_capture.erb
+END
+non_erb_block_content_for.builder
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/non_erb_block_content_for.builder
+END
+formatted_xml_erb.builder
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/formatted_xml_erb.builder
+END
+_customer_counter_with_as.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_customer_counter_with_as.erb
+END
+hello_world_from_rxml.builder
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world_from_rxml.builder
+END
+content_for.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/content_for.erb
+END
+_partial_with_only_html_version.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_partial_with_only_html_version.html.erb
+END
+action_talk_to_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/action_talk_to_layout.erb
+END
+content_for_concatenated.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/content_for_concatenated.erb
+END
+render_implicit_html_template.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_implicit_html_template.js.rjs
+END
+utf8_magic.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/utf8_magic.html.erb
+END
+render_file_with_ivar.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_file_with_ivar.erb
+END
+hello_world_container.builder
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world_container.builder
+END
+render_implicit_js_template_without_layout.js.erb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/render_implicit_js_template_without_layout.js.erb
+END
+hello_world.da.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/hello_world.da.html.erb
+END
+_form.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/_form.erb
+END
+using_layout_around_block.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/test/using_layout_around_block.html.erb
+END

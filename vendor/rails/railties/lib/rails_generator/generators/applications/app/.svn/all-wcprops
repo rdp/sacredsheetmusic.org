@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/USAGE
+END
+template_runner.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/template_runner.rb
+END
+app_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/app_generator.rb
+END

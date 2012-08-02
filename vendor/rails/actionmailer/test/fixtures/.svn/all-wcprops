@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures
+END
+raw_email_quoted_with_0d0a
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email_quoted_with_0d0a
+END
+raw_email_with_invalid_characters_in_content_type
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email_with_invalid_characters_in_content_type
+END
+raw_email2
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email2
+END
+raw_email3
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email3
+END
+raw_email4
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email4
+END
+raw_email5
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email5
+END
+raw_email6
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email6
+END
+raw_email7
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email7
+END
+raw_email8
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email8
+END
+raw_email9
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email9
+END
+raw_email
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email
+END
+raw_email10
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email10
+END
+raw_email12
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email12
+END
+raw_email13
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email13
+END
+raw_email_with_nested_attachment
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email_with_nested_attachment
+END
+raw_email_with_partially_quoted_subject
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/raw_email_with_partially_quoted_subject
+END

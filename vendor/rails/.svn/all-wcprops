@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/371/trunk/rails
+END
+release.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/272/trunk/rails/release.rb
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/272/trunk/rails/Rakefile
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/272/trunk/rails/.gitignore
+END
+pushgems.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/272/trunk/rails/pushgems.rb
+END

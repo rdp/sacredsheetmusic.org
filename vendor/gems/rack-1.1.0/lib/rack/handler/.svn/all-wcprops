@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler
+END
+evented_mongrel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/evented_mongrel.rb
+END
+fastcgi.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/fastcgi.rb
+END
+thin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/thin.rb
+END
+cgi.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/cgi.rb
+END
+mongrel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/mongrel.rb
+END
+scgi.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/scgi.rb
+END
+swiftiplied_mongrel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/swiftiplied_mongrel.rb
+END
+webrick.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/webrick.rb
+END
+lsws.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/lib/rack/handler/lsws.rb
+END

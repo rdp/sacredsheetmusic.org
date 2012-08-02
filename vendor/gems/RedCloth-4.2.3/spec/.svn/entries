@@ -1,0 +1,109 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/RedCloth-4.2.3/spec
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+differs
+dir
+
+custom_tags_spec.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+4b0adc15a103f78c03838f9a893bf15b
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+erb_spec.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+e6a76593e559070071dd5ad26a0417fc
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+formatters
+dir
+
+extension_spec.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+33f4be197037fbaf3bbab5f8ae026c9b
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+parser_spec.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+a54822657b395cbdf4a2bed456e30bc0
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+fixtures
+dir
+
+spec_helper.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+43a828a5587ffb623fbc6c30f978b4f9
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+spec.opts
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+b525ecb73b3f50eaf29d7d4a891bbb86
+2010-09-12T07:48:50.956465Z
+352
+subimage
+

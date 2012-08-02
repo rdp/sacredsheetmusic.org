@@ -1,0 +1,109 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/text-hyphen-1.0.0
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+tests
+dir
+
+Rakefile
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+d98cae88cfd3011a6b5bd6f2adca9e8d
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+LICENCE
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+2bf73d517f174f29d15c8d8c1f3e3e87
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+lib
+dir
+
+INSTALL
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+5fb10ccf19e9526ef2b30990077fb97a
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+ChangeLog
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+bb30c49e15a2b424e76932d82fb22b05
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+bin
+dir
+
+README
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+c0d5c73c25267f6b37c409c1a949d945
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+.specification
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+ea328526b32228f1c5f6f27212d5eaac
+2010-09-12T06:40:48.320466Z
+350
+subimage
+

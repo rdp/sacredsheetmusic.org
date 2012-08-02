@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/357/trunk/plugins/substruct/app/views/admin/preferences
+END
+_shipping_variation.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/111/trunk/plugins/substruct/app/views/admin/preferences/_shipping_variation.rhtml
+END
+shipping.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/preferences/shipping.rhtml
+END
+_shipping_type.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/111/trunk/plugins/substruct/app/views/admin/preferences/_shipping_type.rhtml
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/357/trunk/plugins/substruct/app/views/admin/preferences/index.rhtml
+END
+_sidebar.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/preferences/_sidebar.rhtml
+END

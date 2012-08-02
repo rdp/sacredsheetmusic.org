@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/211/trunk/plugins/substruct/app/views/accounts
+END
+welcome.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/accounts/welcome.rhtml
+END
+login.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/93/trunk/plugins/substruct/app/views/accounts/login.rhtml
+END
+logout.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/accounts/logout.rhtml
+END

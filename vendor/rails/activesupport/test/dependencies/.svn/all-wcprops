@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies
+END
+requires_nonexistent0.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/requires_nonexistent0.rb
+END
+requires_nonexistent1.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/requires_nonexistent1.rb
+END
+mutual_two.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/mutual_two.rb
+END
+conflict.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/conflict.rb
+END
+service_one.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/service_one.rb
+END
+cross_site_depender.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/cross_site_depender.rb
+END
+raises_exception.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/raises_exception.rb
+END
+check_warnings.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/check_warnings.rb
+END
+mutual_one.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/mutual_one.rb
+END
+service_two.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activesupport/test/dependencies/service_two.rb
+END

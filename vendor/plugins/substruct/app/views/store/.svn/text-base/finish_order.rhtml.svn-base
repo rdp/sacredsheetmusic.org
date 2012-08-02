@@ -1,0 +1,89 @@
+<style type="text/css">
+  .floatHalf {
+    width: 395px !important;
+  }
+  .floatHalf.last {
+    margin-right: 0px;
+  }
+  .order_price {
+    color: #999;
+    font-size: 0.8em;
+  }
+</style>
+
+<div>
+  <h1 class="super_big">
+    Thank you for your order
+  </h1>
+
+  <div>
+    <div class="floatHalf">
+      <h1>
+        Order #<%= @order.order_number %>
+        <div class="order_price">
+          <%= number_to_currency(@order.total) %>
+        </div>
+      </h1>
+      <h4>Please print this page for your records</h4>
+      <p style="font-weight:bold;">
+      	<% if @payment_message %>
+      	  <%= @payment_message %>
+      	<% end %>
+      </p>
+    </div>
+    <div class="floatHalf last">
+      <p>
+        A confirmation email was also sent to <i><%= @order.customer.email_address %></i>.
+      </p>
+      <p>
+        If you don't receive that email in a reasonable time
+        <br/>
+        please check your spam folder.
+      </p>
+    </div>
+    <div class="clear"></div>
+    <div class="line"></div>
+    
+    <%= render :partial => '/shared/product_downloads' %>
+  </div>
+
+  <div>
+    <div class="floatHalf">
+      <h2>Billing Address</h2>
+      <%= 
+        render(
+          :partial => '/store/address_table', 
+          :locals => {
+            :address => @order.billing_address
+          }
+        ) 
+      %>
+    </div>
+
+    <div class="floatHalf last">
+      <h2>Shipping Address</h2>
+      <%= 
+        render(
+          :partial => '/store/address_table', 
+          :locals => {
+            :address => @order.shipping_address
+          }
+        )
+      %>
+    </div>
+    
+    <div class="clear"></div>
+    
+    <div style="margin-top:20px;">
+      <h2>Order Details</h2>
+      <%= render(:partial => '/store/cart_contents', :locals => {:cart => @order}) %>
+    </div>
+  </div>
+
+
+
+	<div style="clear:both;"></div>	
+	
+	<h3 style="margin:30px 0px;"><a href="/">Back to the home page</a></h3>
+
+</div>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/349/trunk/plugins/substruct/app/views/layouts
+END
+receipt.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/341/trunk/plugins/substruct/app/views/layouts/receipt.rhtml
+END
+modal.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/layouts/modal.rhtml
+END
+accounts.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/55/trunk/plugins/substruct/app/views/layouts/accounts.rhtml
+END
+main.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/301/trunk/plugins/substruct/app/views/layouts/main.rhtml
+END
+affiliate.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/220/trunk/plugins/substruct/app/views/layouts/affiliate.rhtml
+END
+admin_modal.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/327/trunk/plugins/substruct/app/views/layouts/admin_modal.rhtml
+END
+checkout.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/144/trunk/plugins/substruct/app/views/layouts/checkout.rhtml
+END
+admin.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/336/trunk/plugins/substruct/app/views/layouts/admin.rhtml
+END

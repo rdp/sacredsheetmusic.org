@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini
+END
+jdom_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/jdom_engine_test.rb
+END
+nokogirisax_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/nokogirisax_engine_test.rb
+END
+nokogiri_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/nokogiri_engine_test.rb
+END
+libxmlsax_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/libxmlsax_engine_test.rb
+END
+libxml_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/libxml_engine_test.rb
+END
+rexml_engine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/activesupport/test/xml_mini/rexml_engine_test.rb
+END

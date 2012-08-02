@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/366/trunk/rails/activesupport/lib/active_support/testing
+END
+deprecation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/testing/deprecation.rb
+END
+performance.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/testing/performance.rb
+END
+declarative.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/testing/declarative.rb
+END
+default.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/testing/default.rb
+END
+setup_and_teardown.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/366/trunk/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb
+END
+assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/testing/assertions.rb
+END

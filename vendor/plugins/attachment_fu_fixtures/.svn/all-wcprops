@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures/init.rb
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures/.gitignore
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures/MIT-LICENSE
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/143/trunk/plugins/attachment_fu_fixtures/README
+END

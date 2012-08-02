@@ -1,0 +1,67 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/railties/lib/rails_generator/generators/components
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+helper
+dir
+
+model
+dir
+
+performance_test
+dir
+
+scaffold
+dir
+
+metal
+dir
+
+integration_test
+dir
+
+controller
+dir
+
+resource
+dir
+
+observer
+dir
+
+mailer
+dir
+
+migration
+dir
+
+session_migration
+dir
+
+plugin
+dir
+

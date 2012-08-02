@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching
+END
+html_fragment_cached_with_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/html_fragment_cached_with_partial.html.erb
+END
+_partial.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/_partial.erb
+END
+inline_fragment_cached.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/inline_fragment_cached.html.erb
+END
+formatted_fragment_cached.xml.builder
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/formatted_fragment_cached.xml.builder
+END
+fragment_cached.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/fragment_cached.html.erb
+END
+js_fragment_cached_with_partial.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/js_fragment_cached_with_partial.js.rjs
+END
+formatted_fragment_cached.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/formatted_fragment_cached.js.rjs
+END
+formatted_fragment_cached.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/functional_caching/formatted_fragment_cached.html.erb
+END

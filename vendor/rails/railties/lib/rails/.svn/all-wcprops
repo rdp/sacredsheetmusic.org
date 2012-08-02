@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails
+END
+gem_builder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/gem_builder.rb
+END
+plugin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/plugin.rb
+END
+rack.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/rack.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/version.rb
+END
+gem_dependency.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/gem_dependency.rb
+END
+backtrace_cleaner.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/backtrace_cleaner.rb
+END
+vendor_gem_source_index.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails/vendor_gem_source_index.rb
+END

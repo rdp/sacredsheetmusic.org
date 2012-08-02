@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/helper.rb
+END
+console
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/console
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/database.yml
+END
+boot.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/boot.rb
+END
+tasks.rake
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/tasks.rake
+END
+finder_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/finder_test.rb
+END
+view_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/view_test.rb
+END
+collection_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/133/trunk/plugins/will_paginate/test/collection_test.rb
+END

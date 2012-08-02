@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/duplicate_names
+END
+20080507052938_chunky.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/duplicate_names/20080507052938_chunky.rb
+END
+20080507053028_chunky.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/duplicate_names/20080507053028_chunky.rb
+END

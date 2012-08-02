@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/286/trunk/plugins/substruct/app/views/admin/affiliates
+END
+list_payments.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/286/trunk/plugins/substruct/app/views/admin/affiliates/list_payments.rhtml
+END
+_subnav.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/_subnav.rhtml
+END
+make_payments.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/216/trunk/plugins/substruct/app/views/admin/affiliates/make_payments.rhtml
+END
+orders.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/orders.rhtml
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/220/trunk/plugins/substruct/app/views/admin/affiliates/_form.rhtml
+END
+_orders_table.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/_orders_table.rhtml
+END
+_payments_table.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/_payments_table.rhtml
+END
+earnings.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/215/trunk/plugins/substruct/app/views/admin/affiliates/earnings.rhtml
+END
+payments_for_affiliate.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/payments_for_affiliate.rhtml
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/286/trunk/plugins/substruct/app/views/admin/affiliates/list.rhtml
+END
+show_payment.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/218/trunk/plugins/substruct/app/views/admin/affiliates/show_payment.rhtml
+END
+_right_side.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/210/trunk/plugins/substruct/app/views/admin/affiliates/_right_side.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/218/trunk/plugins/substruct/app/views/admin/affiliates/edit.rhtml
+END
+_subnav_list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/286/trunk/plugins/substruct/app/views/admin/affiliates/_subnav_list.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/188/trunk/plugins/substruct/app/views/admin/affiliates/new.rhtml
+END

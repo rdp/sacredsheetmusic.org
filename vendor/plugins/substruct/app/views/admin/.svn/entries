@@ -1,0 +1,76 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/substruct/app/views/admin
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-14T04:29:07.480714Z
+357
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+roles
+dir
+
+customers
+dir
+
+sections
+dir
+
+questions
+dir
+
+orders
+dir
+
+tags
+dir
+
+users
+dir
+
+preferences
+dir
+
+files
+dir
+
+content_nodes
+dir
+
+products
+dir
+
+affiliates
+dir
+
+order_addresses
+dir
+
+promotions
+dir
+
+order_accounts
+dir
+
+general
+dir
+

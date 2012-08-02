@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/scm
+END
+scm.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/scm/scm.rb
+END
+git.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/scm/git.rb
+END
+svn.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/applications/app/scm/svn.rb
+END

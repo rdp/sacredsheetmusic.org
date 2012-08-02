@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model
+END
+validations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/validations.rb
+END
+observing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/observing.rb
+END
+callbacks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/callbacks.rb
+END
+state_machine.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine.rb
+END
+core.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/core.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/base.rb
+END
+errors.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/errors.rb
+END
+deprecated_error_methods.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/deprecated_error_methods.rb
+END

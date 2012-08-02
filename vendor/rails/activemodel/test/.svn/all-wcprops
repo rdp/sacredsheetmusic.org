@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/272/trunk/rails/activemodel/test
+END
+observing_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/activemodel/test/observing_test.rb
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/activemodel/test/test_helper.rb
+END
+state_machine_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activemodel/test/state_machine_test.rb
+END

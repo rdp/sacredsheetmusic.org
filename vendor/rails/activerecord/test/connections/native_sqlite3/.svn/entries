@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activerecord/test/connections/native_sqlite3
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+in_memory_connection.rb
+file
+
+
+
+
+2011-05-16T04:19:10.000000Z
+cd51af0eb467e9c258f5fa62a9f3bd36
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+connection.rb
+file
+
+
+
+
+2011-05-16T04:19:10.000000Z
+aafeeeee4b4939b74366fcd8116feb41
+2010-08-26T10:09:03.301270Z
+272
+subimage
+

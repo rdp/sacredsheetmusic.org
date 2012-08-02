@@ -1,0 +1,40 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activesupport/lib/active_support/vendor
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+i18n-0.3.7
+dir
+
+memcache-client-1.7.4
+dir
+
+builder-2.1.2
+dir
+
+tzinfo-0.3.12
+dir
+

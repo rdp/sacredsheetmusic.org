@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/test/fixtures
+END
+import-circular-reference.css
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/test/fixtures/import-circular-reference.css
+END
+simple.css
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/test/fixtures/simple.css
+END
+import1.css
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/test/fixtures/import1.css
+END
+import-with-media-types.css
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/test/fixtures/import-with-media-types.css
+END

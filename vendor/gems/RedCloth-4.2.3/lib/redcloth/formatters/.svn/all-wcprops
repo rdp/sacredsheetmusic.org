@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/formatters
+END
+latex.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/formatters/latex.rb
+END
+latex_entities.yml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/formatters/latex_entities.yml
+END
+html.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/formatters/html.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/formatters/base.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/quickpay
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/quickpay/helper.rb
+END
+notification.rb
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/quickpay/notification.rb
+END

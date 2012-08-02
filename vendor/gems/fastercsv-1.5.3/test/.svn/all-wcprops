@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test
+END
+tc_row.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_row.rb
+END
+tc_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_table.rb
+END
+ts_all.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/ts_all.rb
+END
+tc_encodings.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_encodings.rb
+END
+test_data.csv
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/test_data.csv
+END
+tc_headers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_headers.rb
+END
+tc_serialization.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_serialization.rb
+END
+tc_features.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_features.rb
+END
+tc_csv_writing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_csv_writing.rb
+END
+tc_csv_parsing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_csv_parsing.rb
+END
+tc_speed.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_speed.rb
+END
+tc_interface.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_interface.rb
+END
+tc_data_converters.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/tc_data_converters.rb
+END
+line_endings.gz
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/test/line_endings.gz
+END

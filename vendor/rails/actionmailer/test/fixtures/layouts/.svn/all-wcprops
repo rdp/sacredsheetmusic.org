@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/layouts
+END
+auto_layout_mailer.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/layouts/auto_layout_mailer.html.erb
+END
+auto_layout_mailer.text.erb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/layouts/auto_layout_mailer.text.erb
+END
+spam.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/layouts/spam.html.erb
+END

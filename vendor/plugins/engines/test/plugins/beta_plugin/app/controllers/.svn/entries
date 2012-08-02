@@ -1,0 +1,55 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/engines/test/plugins/beta_plugin/app/controllers
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:25:19.335742Z
+273
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+app_and_plugin_controller.rb
+file
+
+
+
+
+2011-05-16T04:18:31.000000Z
+6c633d0dcb606e532dd906bd2567bf57
+2010-08-26T10:25:19.335742Z
+273
+subimage
+
+shared_plugin_controller.rb
+file
+
+
+
+
+2011-05-16T04:18:31.000000Z
+df7f8bb84aa9fcbe07534d5aa59e11b8
+2010-08-26T10:25:19.335742Z
+273
+subimage
+
+namespace
+dir
+

@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/272/trunk/rails/railties/guides/source
+END
+contributing_to_rails.textile
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/contributing_to_rails.textile
+END
+credits.erb.textile
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/credits.erb.textile
+END
+rails_on_rack.textile
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/rails_on_rack.textile
+END
+action_controller_overview.textile
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/action_controller_overview.textile
+END
+activerecord_validations_callbacks.textile
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/activerecord_validations_callbacks.textile
+END
+security.textile
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/security.textile
+END
+nested_model_forms.textile
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/nested_model_forms.textile
+END
+layout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/layout.html.erb
+END
+configuring.textile
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/configuring.textile
+END
+migrations.textile
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/migrations.textile
+END
+testing.textile
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/testing.textile
+END
+index.erb.textile
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/index.erb.textile
+END
+contribute.textile
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/contribute.textile
+END
+layouts_and_rendering.textile
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/layouts_and_rendering.textile
+END
+i18n.textile
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/i18n.textile
+END
+caching_with_rails.textile
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/caching_with_rails.textile
+END
+plugins.textile
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/plugins.textile
+END
+command_line.textile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/command_line.textile
+END
+form_helpers.textile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/form_helpers.textile
+END
+getting_started.textile
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/getting_started.textile
+END
+routing.textile
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/routing.textile
+END
+action_mailer_basics.textile
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/action_mailer_basics.textile
+END
+2_2_release_notes.textile
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/2_2_release_notes.textile
+END
+2_3_release_notes.textile
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/2_3_release_notes.textile
+END
+debugging_rails_applications.textile
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/debugging_rails_applications.textile
+END
+active_record_querying.textile
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/active_record_querying.textile
+END
+active_record_basics.textile
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/active_record_basics.textile
+END
+performance_testing.textile
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/performance_testing.textile
+END
+association_basics.textile
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/railties/guides/source/association_basics.textile
+END

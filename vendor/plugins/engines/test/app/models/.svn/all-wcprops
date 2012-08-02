@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/273/trunk/plugins/engines/test/app/models
+END
+app_and_plugin_model.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/273/trunk/plugins/engines/test/app/models/app_and_plugin_model.rb
+END
+notify_mail.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/273/trunk/plugins/engines/test/app/models/notify_mail.rb
+END

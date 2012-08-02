@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/substruct/assets/javascripts/tiny_mce/plugins/bbcode
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+editor_plugin.js
+file
+
+
+
+
+2011-05-16T04:18:56.000000Z
+0539055daa100b90540707c5eb5ea67b
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+editor_plugin_src.js
+file
+
+
+
+
+2011-05-16T04:18:56.000000Z
+5b9a03862f199c73456dbbea745bc29d
+2010-08-25T08:30:10.021785Z
+257
+subimage
+

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine
+END
+state.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine/state.rb
+END
+event.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine/event.rb
+END
+machine.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine/machine.rb
+END
+state_transition.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/activemodel/lib/active_model/state_machine/state_transition.rb
+END

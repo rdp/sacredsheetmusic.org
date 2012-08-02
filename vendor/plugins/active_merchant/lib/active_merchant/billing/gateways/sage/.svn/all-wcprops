@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateways/sage
+END
+sage_virtual_check.rb
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateways/sage/sage_virtual_check.rb
+END
+sage_bankcard.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateways/sage/sage_bankcard.rb
+END
+sage_core.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateways/sage/sage_core.rb
+END

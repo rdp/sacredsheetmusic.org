@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/272/trunk/rails/actionmailer/test
+END
+test_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/test_helper_test.rb
+END
+mail_layout_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/mail_layout_test.rb
+END
+mail_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/mail_helper_test.rb
+END
+mail_render_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/mail_render_test.rb
+END
+url_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/url_test.rb
+END
+mail_service_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/mail_service_test.rb
+END
+abstract_unit.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/abstract_unit.rb
+END
+delivery_method_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/delivery_method_test.rb
+END
+tmail_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/tmail_test.rb
+END
+quoting_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/quoting_test.rb
+END
+asset_host_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/asset_host_test.rb
+END

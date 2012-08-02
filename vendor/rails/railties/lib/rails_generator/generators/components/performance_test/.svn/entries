@@ -1,0 +1,55 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/railties/lib/rails_generator/generators/components/performance_test
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+USAGE
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+1d1c4acaeddc9e870fd3d66a48a02641
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+performance_test_generator.rb
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+f2bd5a1fc7edc00f4001d1854d7353da
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+templates
+dir
+

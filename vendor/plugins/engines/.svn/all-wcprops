@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/318/trunk/plugins/engines
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/273/trunk/plugins/engines/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/273/trunk/plugins/engines/init.rb
+END
+boot.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/273/trunk/plugins/engines/boot.rb
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/273/trunk/plugins/engines/.gitignore
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/273/trunk/plugins/engines/CHANGELOG
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/273/trunk/plugins/engines/MIT-LICENSE
+END
+about.yml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/273/trunk/plugins/engines/about.yml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/273/trunk/plugins/engines/README
+END

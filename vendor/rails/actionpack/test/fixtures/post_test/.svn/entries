@@ -1,0 +1,37 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/actionpack/test/fixtures/post_test
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+layouts
+dir
+
+super_post
+dir
+
+post
+dir
+

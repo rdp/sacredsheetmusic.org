@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates
+END
+helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/helper_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/helper.rb
+END
+integration.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/integration.rb
+END
+module_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/module_test.rb
+END
+notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/notification_test.rb
+END
+notification.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/templates/notification.rb
+END

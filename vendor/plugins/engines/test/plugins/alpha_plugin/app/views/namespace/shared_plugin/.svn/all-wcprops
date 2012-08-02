@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/alpha_plugin/app/views/namespace/shared_plugin
+END
+a_view.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/alpha_plugin/app/views/namespace/shared_plugin/a_view.html.erb
+END

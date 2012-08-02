@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel
+END
+requires.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel/requires.rb
+END
+daemonizing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel/daemonizing.rb
+END
+debugger.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel/debugger.rb
+END
+reporting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel/reporting.rb
+END
+agnostics.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/kernel/agnostics.rb
+END

@@ -1,0 +1,61 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+css_parser-1.0.1
+dir
+
+ezcrypto-0.7.2
+dir
+
+sundawg_premailer-0.0.1
+dir
+
+fastercsv-1.5.3
+dir
+
+RedCloth-4.2.3
+dir
+
+text-reform-0.2.0
+dir
+
+text-hyphen-1.0.0
+dir
+
+mini_magick-1.3.3
+dir
+
+htmlentities-4.2.1
+dir
+
+rack-1.1.0
+dir
+
+mime-types-1.16
+dir
+

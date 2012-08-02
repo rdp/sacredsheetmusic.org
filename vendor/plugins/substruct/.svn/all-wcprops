@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/370/trunk/plugins/substruct
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/4/trunk/plugins/substruct/LICENSE
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/320/trunk/plugins/substruct/init.rb
+END
+.autotest
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/186/trunk/plugins/substruct/.autotest
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/364/trunk/plugins/substruct/CHANGELOG
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/288/trunk/plugins/substruct/README
+END

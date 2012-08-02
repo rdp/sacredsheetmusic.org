@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/lib/generators/missing_templates
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/lib/generators/missing_templates/.gitignore
+END

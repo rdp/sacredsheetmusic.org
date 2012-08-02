@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/about_yml_plugins/bad_about_yml
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/about_yml_plugins/bad_about_yml/init.rb
+END
+about.yml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/about_yml_plugins/bad_about_yml/about.yml
+END

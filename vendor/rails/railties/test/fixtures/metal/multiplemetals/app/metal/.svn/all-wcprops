@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/metal/multiplemetals/app/metal
+END
+metal_a.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/metal/multiplemetals/app/metal/metal_a.rb
+END
+metal_b.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/metal/multiplemetals/app/metal/metal_b.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/367/trunk/plugins/substruct/test/integration
+END
+buyer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/367/trunk/plugins/substruct/test/integration/buyer_test.rb
+END
+promotion_checkout_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/367/trunk/plugins/substruct/test/integration/promotion_checkout_test.rb
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache
+END
+mem_cache_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/mem_cache_store.rb
+END
+compressed_mem_cache_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/compressed_mem_cache_store.rb
+END
+synchronized_memory_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/synchronized_memory_store.rb
+END
+drb_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/drb_store.rb
+END
+memory_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/memory_store.rb
+END
+file_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/cache/file_store.rb
+END

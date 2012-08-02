@@ -1,0 +1,148 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/sundawg_premailer-0.0.1
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+tests
+dir
+
+Rakefile
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+4cf1f011ae5f51981fbb5a0d70183ded
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+premailer.gemspec
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+2831c804dfc82178ef10debcd0b6d6be
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+README.rdoc
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+de416ef7c3266413a52648c7f8685209
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+init.rb
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+ffd8e78e7c1efae5edd41e9544de4f8b
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+lib
+dir
+
+Manifest
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+964466faa6ed78dff12c50efae1d533e
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+bin
+dir
+
+LICENSE.rdoc
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+1c232a5b022b1cc7c112392d88dfd4ab
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+sundawg_premailer.gemspec
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+eb5095e2ebd1b64a317a8aaf80a03d1d
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+misc
+dir
+
+CHANGELOG.rdoc
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+896d35040dd88385a53aada5a8987107
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+.specification
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+5b32b90d3c1fdaf13028a4993a9d7613
+2010-09-12T06:40:48.320466Z
+350
+subimage
+

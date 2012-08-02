@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands
+END
+plugin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/plugin.rb
+END
+console.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/console.rb
+END
+update.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/update.rb
+END
+server.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/server.rb
+END
+dbconsole.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/dbconsole.rb
+END
+runner.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/runner.rb
+END
+destroy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/destroy.rb
+END
+about.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/about.rb
+END
+generate.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/railties/lib/commands/generate.rb
+END

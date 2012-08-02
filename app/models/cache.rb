@@ -65,6 +65,7 @@ class Cache < ActiveRecord::Base
    logger.info "after previous semi/mis, had #{hits} hits/#{collection.length}"
    out
   end
+  MEM_STORE=BoundedMemoryStore.new(:size => 50.megabytes)
 
   def self.get_or_set_int(int, some_unique_identifier, type)
     verify_type type

@@ -1,0 +1,97 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/htmlentities-4.2.1
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+test
+dir
+
+History.txt
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+5bb8f173e8ef01aedbe5b875724ff576
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+setup.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+611e22f2567a26c9a6d3cfc559684967
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+lib
+dir
+
+COPYING.txt
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+18c4de7a62e9b3cf1a489b85e39590a0
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+README.txt
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+c45b168a30728350eb08c510b1133fd3
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+perf
+dir
+
+.specification
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+4dea79d88e541cf3361858208f06d4da
+2010-09-12T06:40:48.320466Z
+350
+subimage
+

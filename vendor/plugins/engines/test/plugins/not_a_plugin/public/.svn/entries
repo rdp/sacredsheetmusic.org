@@ -1,0 +1,40 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/engines/test/plugins/not_a_plugin/public
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:25:19.335742Z
+273
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+should_not_be_copied.txt
+file
+
+
+
+
+2011-05-16T04:18:31.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2010-08-26T10:25:19.335742Z
+273
+subimage
+

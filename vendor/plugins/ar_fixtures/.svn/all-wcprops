@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/273/trunk/plugins/ar_fixtures
+END
+History.txt
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/History.txt
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/Rakefile
+END
+Manifest.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/Manifest.txt
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/CHANGELOG
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/MIT-LICENSE
+END
+about.yml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/about.yml
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/README.txt
+END

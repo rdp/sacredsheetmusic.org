@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record
+END
+named_scope.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/named_scope.rb
+END
+serialization.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/serialization.rb
+END
+validations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/validations.rb
+END
+callbacks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/callbacks.rb
+END
+calculations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/calculations.rb
+END
+association_preload.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/association_preload.rb
+END
+autosave_association.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/autosave_association.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/version.rb
+END
+attribute_methods.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/attribute_methods.rb
+END
+observer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/observer.rb
+END
+dynamic_finder_match.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/dynamic_finder_match.rb
+END
+query_cache.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/query_cache.rb
+END
+nested_attributes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/nested_attributes.rb
+END
+dynamic_scope_match.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/dynamic_scope_match.rb
+END
+migration.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/migration.rb
+END
+reflection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/reflection.rb
+END
+dirty.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/dirty.rb
+END
+session_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/session_store.rb
+END
+associations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/associations.rb
+END
+schema.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/schema.rb
+END
+timestamp.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/timestamp.rb
+END
+transactions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/transactions.rb
+END
+fixtures.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/fixtures.rb
+END
+batches.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/batches.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/base.rb
+END
+test_case.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/test_case.rb
+END
+aggregations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/aggregations.rb
+END
+schema_dumper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/lib/active_record/schema_dumper.rb
+END

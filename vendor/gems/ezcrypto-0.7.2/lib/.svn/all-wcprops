@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/lib
+END
+ezcrypto.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/lib/ezcrypto.rb
+END
+ezsig.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/lib/ezsig.rb
+END
+trusted.pem
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/lib/trusted.pem
+END
+active_crypto.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/lib/active_crypto.rb
+END

@@ -1,0 +1,67 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/substruct/assets/javascripts/tiny_mce/plugins/inlinepopups
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+editor_plugin.js
+file
+
+
+
+
+2011-05-16T04:18:53.000000Z
+bfaaa63c2867a7c1aa80783e423a9b87
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+template.htm
+file
+
+
+
+
+2011-05-16T04:18:53.000000Z
+3d7e3ae05511a9f64c5da924b9e971ba
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+editor_plugin_src.js
+file
+
+
+
+
+2011-05-16T04:18:53.000000Z
+d56834d4575ad417e587201164dda415
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+skins
+dir
+

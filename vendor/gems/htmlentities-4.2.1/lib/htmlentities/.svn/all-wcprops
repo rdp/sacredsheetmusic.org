@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities
+END
+encoder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities/encoder.rb
+END
+legacy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities/legacy.rb
+END
+decoder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities/decoder.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities/version.rb
+END
+flavors.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/lib/htmlentities/flavors.rb
+END

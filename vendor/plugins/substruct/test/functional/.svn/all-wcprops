@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/369/trunk/plugins/substruct/test/functional
+END
+countries_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/countries_controller_test.rb
+END
+store_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/store_controller_test.rb
+END
+accounts_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/accounts_controller_test.rb
+END
+content_nodes_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/content_nodes_controller_test.rb
+END
+customers_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/customers_controller_test.rb
+END
+main_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/main_controller_test.rb
+END
+paypal_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/369/trunk/plugins/substruct/test/functional/paypal_controller_test.rb
+END
+affiliates_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/affiliates_controller_test.rb
+END
+questions_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/367/trunk/plugins/substruct/test/functional/questions_controller_test.rb
+END

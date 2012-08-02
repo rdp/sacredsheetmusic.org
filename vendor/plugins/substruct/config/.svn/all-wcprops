@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/366/trunk/plugins/substruct/config
+END
+application.rb.example
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/296/trunk/plugins/substruct/config/application.rb.example
+END
+routes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/321/trunk/plugins/substruct/config/routes.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4/trunk/plugins/substruct/config/database.yml
+END
+environment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/366/trunk/plugins/substruct/config/environment.rb
+END

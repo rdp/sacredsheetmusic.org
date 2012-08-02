@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures
+END
+raises_name_error.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/raises_name_error.rb
+END
+class_folder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/class_folder.rb
+END
+conflict.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/conflict.rb
+END
+application.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/application.rb
+END
+multiple_constant_file.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/multiple_constant_file.rb
+END
+e.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/e.rb
+END
+raises_no_method_error.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/raises_no_method_error.rb
+END
+cross_site_dependency.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/cross_site_dependency.rb
+END
+counting_loader.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/counting_loader.rb
+END

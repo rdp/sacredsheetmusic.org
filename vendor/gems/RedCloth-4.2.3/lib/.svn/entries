@@ -1,0 +1,49 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/RedCloth-4.2.3/lib
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T07:48:50.956465Z
+352
+subimage
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+case_sensitive_require
+dir
+
+redcloth
+dir
+
+tasks
+dir
+
+redcloth.rb
+file
+
+
+
+
+2011-05-16T04:19:27.000000Z
+526f0ca45410442981c2385a236dcbd6
+2010-09-12T07:48:50.956465Z
+352
+subimage
+

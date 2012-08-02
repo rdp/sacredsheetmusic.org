@@ -1,0 +1,58 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/substruct/assets/javascripts/tiny_mce/plugins/pagebreak
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+editor_plugin.js
+file
+
+
+
+
+2011-05-16T04:18:53.000000Z
+895bcb74c5c6941dd8f7e6c9bd1b29c8
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+editor_plugin_src.js
+file
+
+
+
+
+2011-05-16T04:18:53.000000Z
+a3619dfb7e2f1764691326f38d088b10
+2010-08-25T08:30:10.021785Z
+257
+subimage
+
+css
+dir
+
+img
+dir
+

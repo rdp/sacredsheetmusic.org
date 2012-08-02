@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/list.rhtml
+END
+_right_side.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/_right_side.rhtml
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/show.rhtml
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/_form.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/edit.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/questions/new.rhtml
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/lib/css_parser
+END
+regexps.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/lib/css_parser/regexps.rb
+END
+rule_set.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/lib/css_parser/rule_set.rb
+END
+parser.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/350/trunk/gems/css_parser-1.0.1/lib/css_parser/parser.rb
+END

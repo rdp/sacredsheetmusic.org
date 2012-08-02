@@ -1,0 +1,323 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways
+END
+remote_exact_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_exact_test.rb
+END
+remote_usa_epay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_usa_epay_test.rb
+END
+remote_ogone_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_ogone_test.rb
+END
+remote_linkpoint_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_linkpoint_test.rb
+END
+remote_authorize_net_cim_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_authorize_net_cim_test.rb
+END
+remote_braintree_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_braintree_test.rb
+END
+remote_net_registry_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_net_registry_test.rb
+END
+remote_sage_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_sage_test.rb
+END
+remote_payflow_uk_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_payflow_uk_test.rb
+END
+remote_payflow_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_payflow_test.rb
+END
+remote_efsnet_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_efsnet_test.rb
+END
+remote_merchant_e_solutions_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_merchant_e_solutions_test.rb
+END
+remote_elavon_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_elavon_test.rb
+END
+remote_secure_pay_au_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_secure_pay_au_test.rb
+END
+remote_beanstream_interac_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_beanstream_interac_test.rb
+END
+remote_quickpay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_quickpay_test.rb
+END
+remote_psl_card_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_psl_card_test.rb
+END
+remote_instapay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_instapay_test.rb
+END
+remote_jetpay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_jetpay_test.rb
+END
+remote_trans_first_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_trans_first_test.rb
+END
+remote_secure_pay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_secure_pay_test.rb
+END
+remote_plugnpay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_plugnpay_test.rb
+END
+remote_paypal_express_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_paypal_express_test.rb
+END
+remote_skipjack_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_skipjack_test.rb
+END
+remote_first_pay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_first_pay_test.rb
+END
+remote_secure_pay_tech_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_secure_pay_tech_test.rb
+END
+remote_modern_payments_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_modern_payments_test.rb
+END
+remote_sage_bankcard_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_sage_bankcard_test.rb
+END
+remote_eway_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_eway_test.rb
+END
+remote_viaklix_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_viaklix_test.rb
+END
+remote_data_cash_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_data_cash_test.rb
+END
+remote_moneris_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_moneris_test.rb
+END
+remote_merchant_ware_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_merchant_ware_test.rb
+END
+remote_authorize_net_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_authorize_net_test.rb
+END
+remote_transax_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_transax_test.rb
+END
+remote_realex_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_realex_test.rb
+END
+remote_beanstream_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_beanstream_test.rb
+END
+remote_sage_virtual_check_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_sage_virtual_check_test.rb
+END
+remote_card_stream_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_card_stream_test.rb
+END
+remote_cyber_source_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_cyber_source_test.rb
+END
+remote_verifi_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_verifi_test.rb
+END
+remote_payment_express_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_payment_express_test.rb
+END
+remote_paypal_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_paypal_test.rb
+END
+remote_netbilling_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_netbilling_test.rb
+END
+remote_sage_pay_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_sage_pay_test.rb
+END
+remote_payflow_express_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_payflow_express_test.rb
+END
+remote_trust_commerce_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_trust_commerce_test.rb
+END
+remote_sallie_mae_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_sallie_mae_test.rb
+END
+remote_modern_payments_cim_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_modern_payments_cim_test.rb
+END
+remote_psigate_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_psigate_test.rb
+END
+remote_pay_secure_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_pay_secure_test.rb
+END
+remote_wirecard_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_wirecard_test.rb
+END
+remote_pay_junction_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/remote/gateways/remote_pay_junction_test.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/core_ext/hash
+END
+slice.rb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/core_ext/hash/slice.rb
+END
+except.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/core_ext/hash/except.rb
+END

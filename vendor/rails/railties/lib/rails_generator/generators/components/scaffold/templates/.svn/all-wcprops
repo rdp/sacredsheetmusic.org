@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates
+END
+helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/helper_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/helper.rb
+END
+functional_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/functional_test.rb
+END
+view_show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/view_show.html.erb
+END
+controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/controller.rb
+END
+layout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/layout.html.erb
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/style.css
+END
+view_edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/view_edit.html.erb
+END
+view_index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/view_index.html.erb
+END
+view_new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/scaffold/templates/view_new.html.erb
+END

@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/test/connections/jdbc_jdbcsqlite3
+END
+connection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activerecord/test/connections/jdbc_jdbcsqlite3/connection.rb
+END

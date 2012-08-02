@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/365/trunk/plugins/substruct/lib/tasks
+END
+substruct.rake
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/365/trunk/plugins/substruct/lib/tasks/substruct.rake
+END
+substruct_upgrade.rake
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/273/trunk/plugins/substruct/lib/tasks/substruct_upgrade.rake
+END

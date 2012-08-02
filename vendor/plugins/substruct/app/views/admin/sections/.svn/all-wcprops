@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/sections
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/sections/list.rhtml
+END
+_section_list_row.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/sections/_section_list_row.rhtml
+END

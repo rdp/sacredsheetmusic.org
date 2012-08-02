@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/actionpack/test/activerecord
+END
+active_record_store_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/activerecord/active_record_store_test.rb
+END
+render_partial_with_record_identification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/272/trunk/rails/actionpack/test/activerecord/render_partial_with_record_identification_test.rb
+END

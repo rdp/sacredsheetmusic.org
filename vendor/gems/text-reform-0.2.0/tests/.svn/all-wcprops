@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/350/trunk/gems/text-reform-0.2.0/tests
+END
+tc_text_reform.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/350/trunk/gems/text-reform-0.2.0/tests/tc_text_reform.rb
+END
+testall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/350/trunk/gems/text-reform-0.2.0/tests/testall.rb
+END

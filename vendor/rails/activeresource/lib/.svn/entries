@@ -1,0 +1,55 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activeresource/lib
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+active_resource
+dir
+
+active_resource.rb
+file
+
+
+
+
+2011-05-16T04:19:00.000000Z
+92294165565bf2009b270fc3d4be2a0e
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+activeresource.rb
+file
+
+
+
+
+2011-05-16T04:19:00.000000Z
+7b67808823f96f0e222f1814cf3ef27f
+2010-08-26T10:09:03.301270Z
+272
+subimage
+

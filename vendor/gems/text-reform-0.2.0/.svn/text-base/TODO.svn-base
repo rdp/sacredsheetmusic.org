@@ -1,0 +1,5 @@
+
+- For page header and footer, if you mix :center, :left and :right
+  in the same hash, only one of them will get used. 
+
+  It would be nice if those were combined. 

@@ -1,0 +1,7 @@
+K 10
+svn:ignore
+V 30
+redcloth_scan.bundle
+Makefile
+
+END

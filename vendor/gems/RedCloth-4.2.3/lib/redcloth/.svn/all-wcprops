@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth
+END
+textile_doc.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/textile_doc.rb
+END
+erb_extension.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/erb_extension.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/lib/redcloth/version.rb
+END

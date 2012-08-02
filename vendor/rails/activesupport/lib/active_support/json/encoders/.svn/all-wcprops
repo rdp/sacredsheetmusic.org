@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders
+END
+date.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/date.rb
+END
+time.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/time.rb
+END
+enumerable.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/enumerable.rb
+END
+false_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/false_class.rb
+END
+numeric.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/numeric.rb
+END
+hash.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/hash.rb
+END
+true_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/true_class.rb
+END
+symbol.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/symbol.rb
+END
+string.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/string.rb
+END
+object.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/object.rb
+END
+nil_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/nil_class.rb
+END
+regexp.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/regexp.rb
+END
+date_time.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/json/encoders/date_time.rb
+END

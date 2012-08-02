@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts
+END
+talk_from_action.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/talk_from_action.erb
+END
+default_html.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/default_html.html.erb
+END
+_column.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/_column.html.erb
+END
+standard.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/standard.erb
+END
+block_with_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/block_with_layout.erb
+END
+partial_with_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/partial_with_layout.erb
+END
+xhr.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/xhr.html.erb
+END
+builder.builder
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/builder.builder
+END
+yield.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/layouts/yield.erb
+END

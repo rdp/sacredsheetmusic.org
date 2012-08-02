@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_view/template_handlers
+END
+rjs.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_view/template_handlers/rjs.rb
+END
+builder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_view/template_handlers/builder.rb
+END
+erb.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_view/template_handlers/erb.rb
+END

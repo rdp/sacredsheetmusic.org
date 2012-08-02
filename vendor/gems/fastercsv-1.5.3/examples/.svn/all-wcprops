@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples
+END
+csv_writing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/csv_writing.rb
+END
+csv_filter.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/csv_filter.rb
+END
+purchase.csv
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/purchase.csv
+END
+csv_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/csv_table.rb
+END
+csv_reading.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/csv_reading.rb
+END
+csv_converters.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/csv_converters.rb
+END
+shortcut_interface.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/267/trunk/gems/fastercsv-1.5.3/examples/shortcut_interface.rb
+END

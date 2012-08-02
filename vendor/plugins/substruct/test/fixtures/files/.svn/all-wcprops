@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/144/trunk/plugins/substruct/test/fixtures/files
+END
+text_asset.txt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/text_asset.txt
+END
+shrub1.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/shrub1.jpg
+END
+lightsaber_green.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/lightsaber_green.jpg
+END
+shrub2.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/shrub2.jpg
+END
+lightsabers.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/lightsabers.jpg
+END
+towel.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/144/trunk/plugins/substruct/test/fixtures/files/towel.jpg
+END
+lightsaber_blue.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/lightsaber_blue.jpg
+END
+lightsaber_red.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/files/lightsaber_red.jpg
+END

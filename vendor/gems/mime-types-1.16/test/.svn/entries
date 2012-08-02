@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/mime-types-1.16/test
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T06:54:34.834767Z
+267
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+test_mime_type.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+9cf2d68a2034a39cf5a74b88244f36ca
+2010-08-26T06:54:34.834767Z
+267
+subimage
+
+test_mime_types.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+3204954408923f7f0f697b1283f37a44
+2010-08-26T06:54:34.834767Z
+267
+subimage
+

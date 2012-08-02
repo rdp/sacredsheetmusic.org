@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini
+END
+nokogirisax.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/nokogirisax.rb
+END
+nokogiri.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/nokogiri.rb
+END
+libxmlsax.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/libxmlsax.rb
+END
+rexml.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/rexml.rb
+END
+libxml.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/libxml.rb
+END
+jdom.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/xml_mini/jdom.rb
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/350/trunk/gems/sundawg_premailer-0.0.1/tests
+END
+test_link_resolver.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/350/trunk/gems/sundawg_premailer-0.0.1/tests/test_link_resolver.rb
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/350/trunk/gems/sundawg_premailer-0.0.1/tests/test_helper.rb
+END
+test_premailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/350/trunk/gems/sundawg_premailer-0.0.1/tests/test_premailer.rb
+END
+test_html_to_plain_text.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/350/trunk/gems/sundawg_premailer-0.0.1/tests/test_html_to_plain_text.rb
+END

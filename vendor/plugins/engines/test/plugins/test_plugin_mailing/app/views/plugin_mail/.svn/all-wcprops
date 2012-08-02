@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail
+END
+multipart_from_plugin_plain.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail/multipart_from_plugin_plain.html.erb
+END
+multipart_from_plugin_html.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail/multipart_from_plugin_html.html.erb
+END
+multipart_from_plugin_with_application_template_plain.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail/multipart_from_plugin_with_application_template_plain.html.erb
+END
+multipart_from_plugin_with_application_template_html.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail/multipart_from_plugin_with_application_template_html.html.erb
+END
+mail_from_plugin.erb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_plugin_mailing/app/views/plugin_mail/mail_from_plugin.erb
+END

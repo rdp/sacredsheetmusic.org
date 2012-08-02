@@ -1,0 +1,76 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activerecord/test/connections
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+jdbc_jdbchsqldb
+dir
+
+jdbc_jdbcsqlite3
+dir
+
+native_frontbase
+dir
+
+native_sqlite3
+dir
+
+native_sybase
+dir
+
+native_firebird
+dir
+
+native_openbase
+dir
+
+native_sqlite
+dir
+
+jdbc_jdbcpostgresql
+dir
+
+native_postgresql
+dir
+
+jdbc_jdbcmysql
+dir
+
+jdbc_jdbcderby
+dir
+
+native_oracle
+dir
+
+native_mysql
+dir
+
+native_db2
+dir
+
+jdbc_jdbch2
+dir
+

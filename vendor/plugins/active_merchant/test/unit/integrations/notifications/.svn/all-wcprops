@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications
+END
+gestpay_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/gestpay_notification_test.rb
+END
+two_checkout_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/two_checkout_notification_test.rb
+END
+notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/notification_test.rb
+END
+hi_trust_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/hi_trust_notification_test.rb
+END
+chronopay_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/chronopay_notification_test.rb
+END
+nochex_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/nochex_notification_test.rb
+END
+paypal_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/paypal_notification_test.rb
+END
+quickpay_notification_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/notifications/quickpay_notification_test.rb
+END

@@ -1,0 +1,135 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+td.header {
+	height: 80px;
+	border-bottom: 1px solid #ddd;
+}
+
+td.header h1 {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 44px;
+	padding-left: 10px;
+	font-weight: bold;
+	color: #000000;
+	display: inline;
+}
+
+table.sidebar td {
+	border-bottom: 1px solid #ddd;
+	padding: 20px 0 20px 0;
+}
+
+table.list {
+  width: 100%;
+}
+
+table.list th {
+  text-transform: uppercase;
+  background-color: #efefef;
+  color: #666;
+  text-align: left;
+  padding: 4px;
+}
+table.list th.numeric {
+  text-align:right;
+}
+table.list td {
+  padding: 4px;
+}
+
+table.list tr.footer td {
+  background-color: #efefef;
+  color: #666;
+}
+
+td h3 {
+	font-family: 'Trebuchet MS', sans-serif;
+	color: #666;
+}
+
+h4.meta {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #999999;
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+td.mainbar h2 {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 18px;
+	line-height: 1.5em;
+	font-weight: normal;
+	color: #000000;
+	margin: 20px 0 8px 0;
+	padding: 0;
+}
+
+td.mainbar h2 a {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+
+h2 span.details {
+  color: #550010;
+  padding:10px;
+  font-size:0.9em;
+  line-height: 1.5em;
+}
+
+td.mainbar p {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: #333333;
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+td.mainbar p.top {
+	padding: 0 0 6px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+td.mainbar p.top a {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #cc0000;
+}
+
+td.mainbar ul {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: #333333;
+}
+
+td.footer {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333333;
+	padding: 10px 0 10px 0;
+}
+
+td.footer span {
+	font-weight: bold;
+}
+
+span.order_price {
+  color: #999;
+  font-size: 0.8em;
+}
+
+.numeric {
+  text-align: right;
+}

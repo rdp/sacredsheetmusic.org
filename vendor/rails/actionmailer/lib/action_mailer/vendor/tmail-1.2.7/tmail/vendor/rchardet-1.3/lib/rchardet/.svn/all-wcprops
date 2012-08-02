@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet
+END
+chardistribution.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/chardistribution.rb
+END
+gb2312freq.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/gb2312freq.rb
+END
+langgreekmodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langgreekmodel.rb
+END
+charsetgroupprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/charsetgroupprober.rb
+END
+mbcharsetprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/mbcharsetprober.rb
+END
+mbcssm.rb
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/mbcssm.rb
+END
+escprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/escprober.rb
+END
+hebrewprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/hebrewprober.rb
+END
+sbcharsetprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/sbcharsetprober.rb
+END
+codingstatemachine.rb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/codingstatemachine.rb
+END
+utf8prober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/utf8prober.rb
+END
+euctwprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/euctwprober.rb
+END
+charsetprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/charsetprober.rb
+END
+euctwfreq.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/euctwfreq.rb
+END
+jpcntx.rb
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/jpcntx.rb
+END
+langthaimodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langthaimodel.rb
+END
+mbcsgroupprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/mbcsgroupprober.rb
+END
+constants.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/constants.rb
+END
+eucjpprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/eucjpprober.rb
+END
+sbcsgroupprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/sbcsgroupprober.rb
+END
+sjisprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/sjisprober.rb
+END
+euckrprober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/euckrprober.rb
+END
+euckrfreq.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/euckrfreq.rb
+END
+langbulgarianmodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langbulgarianmodel.rb
+END
+langcyrillicmodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langcyrillicmodel.rb
+END
+langhungarianmodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langhungarianmodel.rb
+END
+langhebrewmodel.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/langhebrewmodel.rb
+END
+big5prober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/big5prober.rb
+END
+latin1prober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/latin1prober.rb
+END
+universaldetector.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/universaldetector.rb
+END
+jisfreq.rb
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/jisfreq.rb
+END
+big5freq.rb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/big5freq.rb
+END
+gb2312prober.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/gb2312prober.rb
+END
+escsm.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/!svn/ver/272/trunk/rails/actionmailer/lib/action_mailer/vendor/tmail-1.2.7/tmail/vendor/rchardet-1.3/lib/rchardet/escsm.rb
+END

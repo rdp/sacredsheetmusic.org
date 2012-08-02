@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/generators
+END
+test_generator_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/generators/test_generator_helper.rb
+END
+test_gateway_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/generators/test_gateway_generator.rb
+END
+test_integration_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/generators/test_integration_generator.rb
+END

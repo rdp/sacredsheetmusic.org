@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/fun/games
+END
+_game.erb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/fun/games/_game.erb
+END
+hello_world.erb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/fun/games/hello_world.erb
+END

@@ -1,0 +1,58 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/actionmailer/lib/action_mailer/vendor
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+tmail.rb
+file
+
+
+
+
+2011-05-16T04:19:03.000000Z
+23c14b962a05a5c44d0f4a4c2a72b5da
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+tmail-1.2.7
+dir
+
+text-format-0.6.3
+dir
+
+text_format.rb
+file
+
+
+
+
+2011-05-16T04:19:03.000000Z
+782011c12e27f2970c62fa43057a4015
+2010-08-26T10:09:03.301270Z
+272
+subimage
+

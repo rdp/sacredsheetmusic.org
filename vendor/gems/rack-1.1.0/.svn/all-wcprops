@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0
+END
+rack.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/rack.gemspec
+END
+KNOWN-ISSUES
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/KNOWN-ISSUES
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/COPYING
+END
+SPEC
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/SPEC
+END
+RDOX
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/RDOX
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/README
+END
+.specification
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/355/trunk/gems/rack-1.1.0/.specification
+END

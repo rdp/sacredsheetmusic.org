@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/371/trunk/rails/railties/lib/tasks
+END
+tmp.rake
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/tmp.rake
+END
+routes.rake
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/routes.rake
+END
+log.rake
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/log.rake
+END
+databases.rake
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/371/trunk/rails/railties/lib/tasks/databases.rake
+END
+documentation.rake
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/documentation.rake
+END
+statistics.rake
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/statistics.rake
+END
+rails.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/rails.rb
+END
+misc.rake
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/misc.rake
+END
+gems.rake
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/gems.rake
+END
+middleware.rake
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/middleware.rake
+END
+testing.rake
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/testing.rake
+END
+annotations.rake
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/annotations.rake
+END
+framework.rake
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/railties/lib/tasks/framework.rake
+END

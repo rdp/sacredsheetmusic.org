@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n
+END
+demo_localized_pirate.png
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n/demo_localized_pirate.png
+END
+demo_translated_en.png
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n/demo_translated_en.png
+END
+demo_untranslated.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n/demo_untranslated.png
+END
+demo_translated_pirate.png
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n/demo_translated_pirate.png
+END
+demo_translation_missing.png
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/railties/guides/images/i18n/demo_translation_missing.png
+END

@@ -1,0 +1,257 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/354/trunk/plugins/substruct/db/migrate
+END
+028_fix_text_content.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/36/trunk/plugins/substruct/db/migrate/028_fix_text_content.rb
+END
+038_migrate_content_away_from_textile.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/319/trunk/plugins/substruct/db/migrate/038_migrate_content_away_from_textile.rb
+END
+039_increase_product_code_length.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/306/trunk/plugins/substruct/db/migrate/039_increase_product_code_length.rb
+END
+026_product_image_cleanup.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/026_product_image_cleanup.rb
+END
+037_refactor_content_nodes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/287/trunk/plugins/substruct/db/migrate/037_refactor_content_nodes.rb
+END
+019_add_content_sections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/019_add_content_sections.rb
+END
+016_product_codes_required.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/016_product_codes_required.rb
+END
+010_tweak_promo_codes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/010_tweak_promo_codes.rb
+END
+005_add_country_index.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/005_add_country_index.rb
+END
+023_fix_shipping_associations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/023_fix_shipping_associations.rb
+END
+011_condense_order_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/157/trunk/plugins/substruct/db/migrate/011_condense_order_users.rb
+END
+034_affiliate_preferences.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/207/trunk/plugins/substruct/db/migrate/034_affiliate_preferences.rb
+END
+018_boost_indexes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/018_boost_indexes.rb
+END
+024_add_preferences.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/024_add_preferences.rb
+END
+012_add_wishlist.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/012_add_wishlist.rb
+END
+021_order_address_state.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/021_order_address_state.rb
+END
+040_add_variation_rank.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/314/trunk/plugins/substruct/db/migrate/040_add_variation_rank.rb
+END
+020_wishlist_datetime.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/020_wishlist_datetime.rb
+END
+033_add_affiliates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/188/trunk/plugins/substruct/db/migrate/033_add_affiliates.rb
+END
+002_add_user_and_contact.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/002_add_user_and_contact.rb
+END
+014_content_node_fix.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/253/trunk/plugins/substruct/db/migrate/014_content_node_fix.rb
+END
+013_add_discontinued_flag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/013_add_discontinued_flag.rb
+END
+001_initialize.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/001_initialize.rb
+END
+006_product_image_tweaks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/006_product_image_tweaks.rb
+END
+036_affiliate_enabled.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/220/trunk/plugins/substruct/db/migrate/036_affiliate_enabled.rb
+END
+032_add_product_downloads.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/144/trunk/plugins/substruct/db/migrate/032_add_product_downloads.rb
+END
+029_add_encryption_support.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/81/trunk/plugins/substruct/db/migrate/029_add_encryption_support.rb
+END
+015_related_products.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/015_related_products.rb
+END
+003_add_tags.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/003_add_tags.rb
+END
+031_gmail_ssl_support.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/140/trunk/plugins/substruct/db/migrate/031_gmail_ssl_support.rb
+END
+035_affiliate_payments.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/210/trunk/plugins/substruct/db/migrate/035_affiliate_payments.rb
+END
+027_add_paypal_ipn.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/33/trunk/plugins/substruct/db/migrate/027_add_paypal_ipn.rb
+END
+025_user_upload_switch_to_attachment_fu.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/157/trunk/plugins/substruct/db/migrate/025_user_upload_switch_to_attachment_fu.rb
+END
+022_add_assets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/022_add_assets.rb
+END
+042_allow_nil_price_for_items.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/354/trunk/plugins/substruct/db/migrate/042_allow_nil_price_for_items.rb
+END
+030_update_countries.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/120/trunk/plugins/substruct/db/migrate/030_update_countries.rb
+END
+009_promo_codes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/009_promo_codes.rb
+END
+004_add_rbac.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/004_add_rbac.rb
+END
+017_add_order_shipping_weights.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/017_add_order_shipping_weights.rb
+END
+007_product_variations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/007_product_variations.rb
+END
+041_product_display_preferences.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/338/trunk/plugins/substruct/db/migrate/041_product_display_preferences.rb
+END
+008_tag_grouping.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4/trunk/plugins/substruct/db/migrate/008_tag_grouping.rb
+END

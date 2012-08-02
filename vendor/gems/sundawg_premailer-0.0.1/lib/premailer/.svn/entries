@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/sundawg_premailer-0.0.1/lib/premailer
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+html_to_plain_text.rb
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+5c114aa07a743f2d46683687454dfd67
+2010-09-12T06:40:48.320466Z
+350
+subimage
+
+premailer.rb
+file
+
+
+
+
+2011-05-16T04:19:26.000000Z
+fcca8499f68d8ea8e8a3ec4376215971
+2010-09-12T06:40:48.320466Z
+350
+subimage
+

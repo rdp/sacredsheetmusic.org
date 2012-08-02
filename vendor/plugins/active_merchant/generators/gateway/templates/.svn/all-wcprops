@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/gateway/templates
+END
+gateway_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/gateway/templates/gateway_test.rb
+END
+gateway.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/gateway/templates/gateway.rb
+END
+remote_gateway_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/gateway/templates/remote_gateway_test.rb
+END

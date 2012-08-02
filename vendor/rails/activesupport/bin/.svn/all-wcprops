@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/272/trunk/rails/activesupport/bin
+END
+generate_tables
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/activesupport/bin/generate_tables
+END

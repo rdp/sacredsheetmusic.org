@@ -1,0 +1,55 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/railties/lib/rails_generator/generators/components/controller
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+USAGE
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+b14915974a6187abb8818a1361666103
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+controller_generator.rb
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+fbb857d374b0f3ce5e42af574a44bc9b
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+templates
+dir
+

@@ -1,0 +1,31 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/acts_as_tree/lib
+http://substruct.googlecode.com/svn
+
+
+
+2008-02-09T05:04:33.647139Z
+4
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+active_record
+dir
+

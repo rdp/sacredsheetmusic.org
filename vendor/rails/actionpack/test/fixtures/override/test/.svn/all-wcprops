@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/override/test
+END
+hello_world.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/override/test/hello_world.erb
+END

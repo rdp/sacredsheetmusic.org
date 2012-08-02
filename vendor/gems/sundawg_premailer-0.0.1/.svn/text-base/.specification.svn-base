@@ -1,0 +1,169 @@
+--- !ruby/object:Gem::Specification 
+name: sundawg_premailer
+version: !ruby/object:Gem::Version 
+  hash: 29
+  prerelease: false
+  segments: 
+  - 0
+  - 0
+  - 1
+  version: 0.0.1
+platform: ruby
+authors: 
+- Christopher Sun
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-09-11 00:00:00 -07:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: hpricot
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 7
+        segments: 
+        - 0
+        - 6
+        version: "0.6"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: css_parser
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 23
+        segments: 
+        - 1
+        - 0
+        - 0
+        version: 1.0.0
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: text-reform
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 23
+        segments: 
+        - 0
+        - 2
+        - 0
+        version: 0.2.0
+  type: :runtime
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: htmlentities
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 63
+        segments: 
+        - 4
+        - 0
+        - 0
+        version: 4.0.0
+  type: :runtime
+  version_requirements: *id004
+description: Fork of premailer project to accomodate in memory HTML (http://premailer.dialect.ca/).
+email: christopher.sun@gmail.com
+executables: 
+- premailer
+- trollop.rb
+extensions: []
+
+extra_rdoc_files: 
+- CHANGELOG.rdoc
+- LICENSE.rdoc
+- README.rdoc
+- bin/premailer
+- bin/trollop.rb
+- lib/premailer.rb
+- lib/premailer/html_to_plain_text.rb
+- lib/premailer/premailer.rb
+files: 
+- CHANGELOG.rdoc
+- LICENSE.rdoc
+- README.rdoc
+- Rakefile
+- bin/premailer
+- bin/trollop.rb
+- init.rb
+- lib/premailer.rb
+- lib/premailer/html_to_plain_text.rb
+- lib/premailer/premailer.rb
+- misc/client_support.yaml
+- premailer.gemspec
+- tests/files/base.html
+- tests/files/contact_bg.png
+- tests/files/dialect.png
+- tests/files/dots_end.png
+- tests/files/dots_h.gif
+- tests/files/import.css
+- tests/files/inc/2009-placeholder.png
+- tests/files/noimport.css
+- tests/files/styles.css
+- tests/test_helper.rb
+- tests/test_html_to_plain_text.rb
+- tests/test_link_resolver.rb
+- tests/test_premailer.rb
+- Manifest
+- sundawg_premailer.gemspec
+has_rdoc: true
+homepage: http://github.com/SunDawg/premailer
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --inline-source
+- --title
+- Sundawg_premailer
+- --main
+- README.rdoc
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 11
+      segments: 
+      - 1
+      - 2
+      version: "1.2"
+requirements: []
+
+rubyforge_project: sundawg_premailer
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: Fork of premailer project to accomodate in memory HTML (http://premailer.dialect.ca/).
+test_files: []
+

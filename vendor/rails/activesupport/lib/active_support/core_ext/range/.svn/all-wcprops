@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/range
+END
+include_range.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/range/include_range.rb
+END
+conversions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/range/conversions.rb
+END
+overlaps.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/range/overlaps.rb
+END
+blockless_step.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/range/blockless_step.rb
+END

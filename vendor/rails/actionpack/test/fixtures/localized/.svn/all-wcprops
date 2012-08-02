@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/localized
+END
+hello_world.de.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/localized/hello_world.de.html
+END
+hello_world.en.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/localized/hello_world.en.html
+END

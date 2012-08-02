@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing
+END
+expiry_date.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/expiry_date.rb
+END
+credit_card_formatting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/credit_card_formatting.rb
+END
+check.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/check.rb
+END
+response.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/response.rb
+END
+gateway.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateway.rb
+END
+credit_card.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/credit_card.rb
+END
+gateways.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/gateways.rb
+END
+integrations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations.rb
+END
+credit_card_methods.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/credit_card_methods.rb
+END
+avs_result.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/avs_result.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/base.rb
+END
+cvv_result.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/cvv_result.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/public/foo
+END
+bar.html
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/public/foo/bar.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/public/foo/index.html
+END

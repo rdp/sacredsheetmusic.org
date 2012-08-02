@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/post_test/layouts
+END
+post.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/post_test/layouts/post.html.erb
+END
+super_post.iphone.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/post_test/layouts/super_post.iphone.erb
+END

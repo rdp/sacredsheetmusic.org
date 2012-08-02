@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2
+END
+rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/rakefile
+END
+README.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/README.rdoc
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/CHANGELOG
+END
+README_ACTIVE_CRYPTO
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/README_ACTIVE_CRYPTO
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/MIT-LICENSE
+END
+.specification
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/.specification
+END
+README_DIGITAL_SIGNATURES
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/267/trunk/gems/ezcrypto-0.7.2/README_DIGITAL_SIGNATURES
+END

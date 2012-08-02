@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/370/trunk/plugins/substruct/test/unit
+END
+preference_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/preference_test.rb
+END
+asset_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/asset_test.rb
+END
+product_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/product_test.rb
+END
+affiliate_payment_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/affiliate_payment_test.rb
+END
+product_image_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/product_image_test.rb
+END
+snippet_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/snippet_test.rb
+END
+session_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/session_test.rb
+END
+affiliate_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/affiliate_test.rb
+END
+promotion_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/promotion_test.rb
+END
+order_account_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_account_test.rb
+END
+variation_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/variation_test.rb
+END
+item_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/item_test.rb
+END
+order_line_item_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_line_item_test.rb
+END
+role_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/role_test.rb
+END
+country_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/country_test.rb
+END
+section_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/section_test.rb
+END
+order_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_test.rb
+END
+page_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/page_test.rb
+END
+order_shipping_type_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_shipping_type_test.rb
+END
+right_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/right_test.rb
+END
+user_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/370/trunk/plugins/substruct/test/unit/user_test.rb
+END
+content_node_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/content_node_test.rb
+END
+order_address_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_address_test.rb
+END
+user_upload_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/user_upload_test.rb
+END
+image_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/image_test.rb
+END
+order_shipping_weight_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_shipping_weight_test.rb
+END
+blog_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/blog_test.rb
+END
+wishlist_item_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/wishlist_item_test.rb
+END
+orders_mailer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/orders_mailer_test.rb
+END
+order_account_type_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_account_type_test.rb
+END
+question_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/question_test.rb
+END
+order_status_code_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_status_code_test.rb
+END
+order_user_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/order_user_test.rb
+END
+tag_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/367/trunk/plugins/substruct/test/unit/tag_test.rb
+END

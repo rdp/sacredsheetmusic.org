@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/212/trunk/plugins/active_merchant/script
+END
+destroy
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/212/trunk/plugins/active_merchant/script/destroy
+END
+generate
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/212/trunk/plugins/active_merchant/script/generate
+END

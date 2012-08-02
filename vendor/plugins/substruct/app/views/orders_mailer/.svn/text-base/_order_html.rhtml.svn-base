@@ -1,0 +1,126 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="header" height="77">
+      <!-- store name as header -->
+      <h1><%= Preference.get_value('store_name') || 'Substruct' %></h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    
+      <table width="580" border="0" cellspacing="20" cellpadding="0">
+        <tr>
+          <td width="580" align="left" valign="top" class="mainbar">
+            
+            <h2>
+              Thank you for your order 
+              <br/>
+              <span class="details">
+                Order <%= @order.order_number %>
+                <span style="color:#ddd;padding:10px 0px;font-weight:bold;">/</span>
+                <%= number_to_currency(@order.total) %>
+              </span>
+            </h2>
+            
+            <table width="100%">
+              <tr>
+                <td width="50%">
+                  <h3>Account Information</h3>
+                  <table cellpadding="0" cellspacing="0" class="list">
+                  	<colgroup>
+                  		<col style="width:35%;"/>
+                  		<col />
+                  	</colgroup>
+                    <tr>
+                      <th>Email</th>
+                      <td><%= @order.order_user.email_address %></td>
+                    </tr>
+                    <% if @order.account.cc_number.length > 16 || @order.account.cc_number == 'XXXXXXXXX0000'  %>
+                      <tr>
+                        <th>Payment method</th>
+                        <td>No credit card number on file</td>
+                      </tr>
+                      <% elsif @order.account.order_account_type_id == OrderAccount::TYPES['Credit Card']  %>
+                        <tr>
+                          <th>CC Number</th>
+                          <td><%= @order.account.cc_number_last_four %></td>
+                        </tr>
+                        <tr>
+                          <th>CC Exp Month</th>
+                          <td><%= @order.account.expiration_month %></td>
+                        </tr>
+                        <tr>
+                          <th>CC Exp Year</th>
+                          <td><%= @order.account.expiration_year %></td>
+                        </tr>
+                      <% else %>
+                        <tr>
+                          <th>Bank Name</th>
+                          <td><%= @order.account.bank_name %></td>
+                        </tr>
+                        <tr>
+                          <th>Account Number</th>
+                          <td><%= @order.account.account_number %></td>
+                        </tr>
+                        <tr>
+                          <th>Routing Number</th>
+                          <td><%= @order.account.routing_number %></td>
+                        </tr>
+                      <% end %>
+                  </table>
+                  <br/>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td width="50%">
+                  <h3>Billing Address</h3>
+                  <%= 
+                    render(
+                      :partial => '/store/address_table', 
+                      :locals => {
+                        :address => @order.billing_address
+                      }
+                    ) 
+                  %>
+                </td>
+                <td width="50%">
+                  <h3>Shipping Address</h3>
+                  <%= 
+                    render(
+                      :partial => '/store/address_table', 
+                      :locals => {
+                        :address => @order.shipping_address
+                      }
+                    ) 
+                  %>
+                </td>
+              </tr>
+            </table>
+            
+            <br/>
+
+            <h3>Order Details</h3>
+            <%= 
+              render(
+                :partial => '/store/cart_contents', 
+                :locals => {:cart => @order}
+              ) 
+            %>
+                            
+            <p class="top">&nbsp;</p>
+            <!-- custom message from snippet goes here -->
+            <%= @email_text %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" class="footer">
+      <!-- can place footer content here -->
+    </td>
+  </tr>
+</table>

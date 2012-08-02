@@ -1,0 +1,148 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activesupport/test/autoloading_fixtures
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+a
+dir
+
+class_folder
+dir
+
+module_folder
+dir
+
+raises_name_error.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+03c24d97ddba2bbc9632289f1fd00db6
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+class_folder.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+bb9a1f31850737efa88c0fcef0cf8ea7
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+conflict.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+258a2512bb79d082d012f7ebfe489915
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+application.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+81f7a53f9f7faaf79c5e1dec3bf4869b
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+multiple_constant_file.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+cd83149c69091c76f6fda910afa5b139
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+e.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+b82e738b4a4f9120f6d86e04cbb6b51a
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+module_with_custom_const_missing
+dir
+
+raises_no_method_error.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+7c0d6e11d399fda204a65417803252bb
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+cross_site_dependency.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+57ed873dc41b832b272fa3486503953d
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+counting_loader.rb
+file
+
+
+
+
+2011-05-16T04:19:04.000000Z
+ce8da8c5250fb02c5e4de0617d7779df
+2010-08-26T10:09:03.301270Z
+272
+subimage
+

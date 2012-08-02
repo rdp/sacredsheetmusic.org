@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec
+END
+custom_tags_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/custom_tags_spec.rb
+END
+erb_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/erb_spec.rb
+END
+extension_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/extension_spec.rb
+END
+parser_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/parser_spec.rb
+END
+spec_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/spec_helper.rb
+END
+spec.opts
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/spec.opts
+END

@@ -1,0 +1,136 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/RedCloth-4.2.3
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+ext
+dir
+
+Rakefile
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+98696e61d677e84d9e7f2829ab2f14af
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+setup.rb
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+f3e96d4b9eeb3d0c4d841c7c7ea6259c
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+lib
+dir
+
+RedCloth.gemspec
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+4e0d592be78bb23746bf7d15f1a4e8fc
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+Manifest
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+1c53fb18ff47dd88f7909e78caf95a59
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+CHANGELOG
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+77771abbe2b124d506ba128a7c4d2db4
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+bin
+dir
+
+COPYING
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+25818719fcb8da2c53db56e8d835cc49
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+spec
+dir
+
+README
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+fa485367f6d3cb15b2eb4a57da78c0e9
+2010-09-12T07:48:50.956465Z
+352
+subimage
+
+.specification
+file
+
+
+
+
+2011-05-16T04:19:28.000000Z
+ee4c539de463d2f674f828157f1d6a31
+2010-09-12T07:48:50.956465Z
+352
+subimage
+

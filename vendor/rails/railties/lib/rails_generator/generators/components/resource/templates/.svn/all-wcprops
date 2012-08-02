@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/resource/templates
+END
+helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/resource/templates/helper_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/resource/templates/helper.rb
+END
+functional_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/resource/templates/functional_test.rb
+END
+controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/resource/templates/controller.rb
+END

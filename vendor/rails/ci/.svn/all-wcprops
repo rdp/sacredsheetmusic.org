@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/272/trunk/rails/ci
+END
+ci_setup_notes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/272/trunk/rails/ci/ci_setup_notes.txt
+END
+cruise_config.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/272/trunk/rails/ci/cruise_config.rb
+END
+geminstaller.yml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/272/trunk/rails/ci/geminstaller.yml
+END
+site_config.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/272/trunk/rails/ci/site_config.rb
+END
+site.css
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/272/trunk/rails/ci/site.css
+END
+ci_build.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/272/trunk/rails/ci/ci_build.rb
+END

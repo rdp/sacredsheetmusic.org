@@ -1,0 +1,40 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/substruct/app
+http://substruct.googlecode.com/svn
+
+
+
+2011-03-13T07:33:49.882504Z
+369
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+helpers
+dir
+
+models
+dir
+
+controllers
+dir
+
+views
+dir
+

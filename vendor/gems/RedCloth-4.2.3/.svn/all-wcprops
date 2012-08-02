@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/Rakefile
+END
+setup.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/setup.rb
+END
+RedCloth.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/RedCloth.gemspec
+END
+Manifest
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/Manifest
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/CHANGELOG
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/COPYING
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/README
+END
+.specification
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/.specification
+END

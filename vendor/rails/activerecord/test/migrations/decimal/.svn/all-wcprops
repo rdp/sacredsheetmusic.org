@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/decimal
+END
+1_give_me_big_numbers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/decimal/1_give_me_big_numbers.rb
+END

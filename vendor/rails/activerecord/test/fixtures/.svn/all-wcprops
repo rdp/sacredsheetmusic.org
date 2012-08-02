@@ -1,0 +1,383 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures
+END
+interests.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/interests.yml
+END
+fk_test_has_pk.yml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/fk_test_has_pk.yml
+END
+vertices.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/vertices.yml
+END
+customers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/customers.yml
+END
+authors.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/authors.yml
+END
+ships.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/ships.yml
+END
+subscribers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/subscribers.yml
+END
+edges.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/edges.yml
+END
+projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/projects.yml
+END
+warehouse-things.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/warehouse-things.yml
+END
+jobs.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/jobs.yml
+END
+pets.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/pets.yml
+END
+treasures.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/treasures.yml
+END
+memberships.yml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/memberships.yml
+END
+price_estimates.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/price_estimates.yml
+END
+legacy_things.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/legacy_things.yml
+END
+items.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/items.yml
+END
+readers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/readers.yml
+END
+organizations.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/organizations.yml
+END
+members.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/members.yml
+END
+member_types.yml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/member_types.yml
+END
+author_addresses.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/author_addresses.yml
+END
+mateys.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/mateys.yml
+END
+minimalistics.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/minimalistics.yml
+END
+categorizations.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/categorizations.yml
+END
+pirates.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/pirates.yml
+END
+posts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/posts.yml
+END
+clubs.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/clubs.yml
+END
+fk_test_has_fk.yml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/fk_test_has_fk.yml
+END
+categories_posts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/categories_posts.yml
+END
+men.yml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/men.yml
+END
+developers_projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/developers_projects.yml
+END
+author_favorites.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/author_favorites.yml
+END
+people.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/people.yml
+END
+tasks.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/tasks.yml
+END
+sponsors.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/sponsors.yml
+END
+zines.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/zines.yml
+END
+categories_ordered.yml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/categories_ordered.yml
+END
+funny_jokes.yml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/funny_jokes.yml
+END
+parrots.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/parrots.yml
+END
+binaries.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/binaries.yml
+END
+entrants.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/entrants.yml
+END
+toys.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/toys.yml
+END
+topics.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/topics.yml
+END
+taggings.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/taggings.yml
+END
+mixins.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/mixins.yml
+END
+subscriptions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/subscriptions.yml
+END
+developers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/developers.yml
+END
+owners.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/owners.yml
+END
+companies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/companies.yml
+END
+accounts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/accounts.yml
+END
+references.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/references.yml
+END
+parrots_pirates.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/parrots_pirates.yml
+END
+computers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/computers.yml
+END
+faces.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/faces.yml
+END
+courses.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/courses.yml
+END
+comments.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/comments.yml
+END
+categories.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/categories.yml
+END
+tags.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/tags.yml
+END
+movies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/movies.yml
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/.gitignore
+END
+mixed_case_monkeys.yml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/mixed_case_monkeys.yml
+END
+books.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/books.yml
+END

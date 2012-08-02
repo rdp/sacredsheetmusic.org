@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/366/trunk/plugins/substruct/app/models
+END
+order_shipping_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/337/trunk/plugins/substruct/app/models/order_shipping_type.rb
+END
+right.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/right.rb
+END
+preference.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/359/trunk/plugins/substruct/app/models/preference.rb
+END
+content_node.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/305/trunk/plugins/substruct/app/models/content_node.rb
+END
+product.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/337/trunk/plugins/substruct/app/models/product.rb
+END
+product_image.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/product_image.rb
+END
+snippet.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/snippet.rb
+END
+blog.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/blog.rb
+END
+order_shipping_weight.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/90/trunk/plugins/substruct/app/models/order_shipping_weight.rb
+END
+affiliate.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/337/trunk/plugins/substruct/app/models/affiliate.rb
+END
+promotion.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/promotion.rb
+END
+orders_mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/350/trunk/plugins/substruct/app/models/orders_mailer.rb
+END
+variation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/306/trunk/plugins/substruct/app/models/variation.rb
+END
+item.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/354/trunk/plugins/substruct/app/models/item.rb
+END
+order_line_item.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/175/trunk/plugins/substruct/app/models/order_line_item.rb
+END
+section.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/section.rb
+END
+download.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/144/trunk/plugins/substruct/app/models/download.rb
+END
+question.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/92/trunk/plugins/substruct/app/models/question.rb
+END
+order_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/366/trunk/plugins/substruct/app/models/order_user.rb
+END
+tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/tag.rb
+END
+page.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/page.rb
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/79/trunk/plugins/substruct/app/models/user.rb
+END
+asset.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/asset.rb
+END
+order_address.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/339/trunk/plugins/substruct/app/models/order_address.rb
+END
+affiliate_payment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/366/trunk/plugins/substruct/app/models/affiliate_payment.rb
+END
+user_upload.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/user_upload.rb
+END
+image.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/264/trunk/plugins/substruct/app/models/image.rb
+END
+session.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/session.rb
+END
+wishlist_item.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/wishlist_item.rb
+END
+order_account.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/167/trunk/plugins/substruct/app/models/order_account.rb
+END
+order_account_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/plugins/substruct/app/models/order_account_type.rb
+END
+role.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/64/trunk/plugins/substruct/app/models/role.rb
+END
+country.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/53/trunk/plugins/substruct/app/models/country.rb
+END
+product_download.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/144/trunk/plugins/substruct/app/models/product_download.rb
+END
+order_status_code.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/325/trunk/plugins/substruct/app/models/order_status_code.rb
+END
+order.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/366/trunk/plugins/substruct/app/models/order.rb
+END

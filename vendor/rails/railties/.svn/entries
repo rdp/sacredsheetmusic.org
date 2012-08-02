@@ -1,0 +1,122 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/railties
+http://substruct.googlecode.com/svn
+
+
+
+2011-05-05T13:57:28.636795Z
+371
+rogerdpack@gmail.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+test
+dir
+
+guides
+dir
+
+Rakefile
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+b53a30ccdd30c0d37c2edf6e8ed863db
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+CHANGELOG
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+2d701290e080327a5582a59186c7047f
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+dispatches
+dir
+
+environments
+dir
+
+configs
+dir
+
+README
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+a58e68a7599c976f071d5b9c6fa67fb3
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+helpers
+dir
+
+html
+dir
+
+doc
+dir
+
+builtin
+dir
+
+lib
+dir
+
+bin
+dir
+
+MIT-LICENSE
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+926e98e1d21ba2e0f06eb5757d2ac04f
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+fresh_rakefile
+file
+
+
+
+
+2011-05-16T04:19:25.000000Z
+17f2f134da4cd31ea095d5868ca89e86
+2010-08-26T10:09:03.301270Z
+272
+subimage
+has-props
+

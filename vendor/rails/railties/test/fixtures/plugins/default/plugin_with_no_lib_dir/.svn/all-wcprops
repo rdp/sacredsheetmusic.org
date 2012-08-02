@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/plugins/default/plugin_with_no_lib_dir
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/272/trunk/rails/railties/test/fixtures/plugins/default/plugin_with_no_lib_dir/init.rb
+END

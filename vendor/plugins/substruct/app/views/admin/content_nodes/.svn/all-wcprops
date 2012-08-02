@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/294/trunk/plugins/substruct/app/views/admin/content_nodes
+END
+_content_right_side.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/294/trunk/plugins/substruct/app/views/admin/content_nodes/_content_right_side.rhtml
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/289/trunk/plugins/substruct/app/views/admin/content_nodes/list.rhtml
+END
+_subnav.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/282/trunk/plugins/substruct/app/views/admin/content_nodes/_subnav.rhtml
+END
+list_sections.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/content_nodes/list_sections.rhtml
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/264/trunk/plugins/substruct/app/views/admin/content_nodes/_form.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/273/trunk/plugins/substruct/app/views/admin/content_nodes/edit.rhtml
+END
+_crud_sidebar.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/258/trunk/plugins/substruct/app/views/admin/content_nodes/_crud_sidebar.rhtml
+END
+_section_list_view_item.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/content_nodes/_section_list_view_item.rhtml
+END
+_section_text.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/content_nodes/_section_text.rhtml
+END
+_section_list_form_row.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/admin/content_nodes/_section_list_form_row.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/273/trunk/plugins/substruct/app/views/admin/content_nodes/new.rhtml
+END

@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom
+END
+Selection.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Selection.js
+END
+TreeWalker.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/TreeWalker.js
+END
+Element.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Element.js
+END
+Serializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Serializer.js
+END
+ScriptLoader.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/ScriptLoader.js
+END
+Range.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Range.js
+END
+RangeUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/RangeUtils.js
+END
+XMLWriter.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/XMLWriter.js
+END
+TridentSelection.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/TridentSelection.js
+END
+Sizzle.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Sizzle.js
+END
+DOMUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/DOMUtils.js
+END
+Schema.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/Schema.js
+END
+EventUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/EventUtils.js
+END
+StringWriter.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/257/trunk/plugins/substruct/assets/javascripts/tiny_mce/classes/dom/StringWriter.js
+END

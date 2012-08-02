@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/rack-1.1.0/lib/rack/auth/abstract
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+handler.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+a19fcd188839530965ebd6382d7113b6
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+request.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+732bcaa3d7da7f3b6b6bae1a67bacb5b
+2010-09-13T20:50:26.393066Z
+355
+subimage
+

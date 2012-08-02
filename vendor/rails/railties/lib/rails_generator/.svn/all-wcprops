@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator
+END
+commands.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/commands.rb
+END
+generated_attribute.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generated_attribute.rb
+END
+secret_key_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/secret_key_generator.rb
+END
+manifest.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/manifest.rb
+END
+scripts.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/scripts.rb
+END
+simple_logger.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/simple_logger.rb
+END
+lookup.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/lookup.rb
+END
+spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/spec.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/base.rb
+END
+options.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/options.rb
+END

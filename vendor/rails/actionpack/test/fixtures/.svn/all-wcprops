@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures
+END
+shared.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/shared.html.erb
+END
+topic.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/topic.rb
+END
+developers_projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/developers_projects.yml
+END
+developer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/developer.rb
+END
+mascot.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/mascot.rb
+END
+projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/projects.yml
+END
+reply.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/reply.rb
+END
+topics.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/topics.yml
+END
+replies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/replies.yml
+END
+company.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/company.rb
+END
+project.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/project.rb
+END
+developers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/developers.yml
+END
+mascots.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/mascots.yml
+END
+_top_level_partial_only.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/_top_level_partial_only.erb
+END
+_top_level_partial.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/_top_level_partial.html.erb
+END
+companies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/companies.yml
+END

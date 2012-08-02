@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/class_folder
+END
+class_folder_subclass.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/class_folder/class_folder_subclass.rb
+END
+inline_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/class_folder/inline_class.rb
+END
+nested_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/activesupport/test/autoloading_fixtures/class_folder/nested_class.rb
+END

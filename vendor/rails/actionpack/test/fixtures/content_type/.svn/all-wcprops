@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/content_type
+END
+render_default_for_rhtml.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/content_type/render_default_for_rhtml.rhtml
+END
+render_default_for_rjs.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/content_type/render_default_for_rjs.rjs
+END
+render_default_content_types_for_respond_to.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/content_type/render_default_content_types_for_respond_to.rhtml
+END
+render_default_for_rxml.rxml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/content_type/render_default_for_rxml.rxml
+END

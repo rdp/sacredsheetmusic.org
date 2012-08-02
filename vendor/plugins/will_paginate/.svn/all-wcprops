@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/133/trunk/plugins/will_paginate
+END
+will_paginate.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/133/trunk/plugins/will_paginate/will_paginate.gemspec
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/133/trunk/plugins/will_paginate/LICENSE
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/133/trunk/plugins/will_paginate/Rakefile
+END
+README.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/133/trunk/plugins/will_paginate/README.rdoc
+END
+.manifest
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/133/trunk/plugins/will_paginate/.manifest
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/133/trunk/plugins/will_paginate/init.rb
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/133/trunk/plugins/will_paginate/.gitignore
+END
+CHANGELOG.rdoc
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/133/trunk/plugins/will_paginate/CHANGELOG.rdoc
+END

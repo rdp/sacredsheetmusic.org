@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/deprecation
+END
+deprecated_base_methods_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/deprecation/deprecated_base_methods_test.rb
+END

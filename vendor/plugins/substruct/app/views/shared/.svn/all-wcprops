@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/265/trunk/plugins/substruct/app/views/shared
+END
+modal_refresh.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/265/trunk/plugins/substruct/app/views/shared/modal_refresh.rhtml
+END
+_flash.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/239/trunk/plugins/substruct/app/views/shared/_flash.rhtml
+END
+_multiple_upload.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/155/trunk/plugins/substruct/app/views/shared/_multiple_upload.rhtml
+END
+_pagination.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/plugins/substruct/app/views/shared/_pagination.rhtml
+END
+_product_downloads.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/144/trunk/plugins/substruct/app/views/shared/_product_downloads.rhtml
+END

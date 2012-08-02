@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/asset_host_mailer
+END
+email_with_asset.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/272/trunk/rails/actionmailer/test/fixtures/asset_host_mailer/email_with_asset.html.erb
+END

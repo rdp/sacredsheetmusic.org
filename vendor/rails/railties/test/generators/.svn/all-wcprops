@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/272/trunk/rails/railties/test/generators
+END
+rails_template_runner_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_template_runner_test.rb
+END
+rails_helper_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_helper_generator_test.rb
+END
+rails_model_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_model_generator_test.rb
+END
+generated_attribute_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/generated_attribute_test.rb
+END
+rails_scaffold_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_scaffold_generator_test.rb
+END
+rails_controller_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_controller_generator_test.rb
+END
+generator_test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/generator_test_helper.rb
+END
+rails_resource_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_resource_generator_test.rb
+END
+rails_mailer_generator_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/railties/test/generators/rails_mailer_generator_test.rb
+END

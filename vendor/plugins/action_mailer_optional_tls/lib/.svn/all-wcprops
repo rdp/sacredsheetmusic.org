@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/348/trunk/plugins/action_mailer_optional_tls/lib
+END
+smtp_tls.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/348/trunk/plugins/action_mailer_optional_tls/lib/smtp_tls.rb
+END
+action_mailer_tls.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/348/trunk/plugins/action_mailer_optional_tls/lib/action_mailer_tls.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/alpha_plugin/lib
+END
+app_and_plugin_lib_model.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/alpha_plugin/lib/app_and_plugin_lib_model.rb
+END
+alpha_plugin_lib_model.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/alpha_plugin/lib/alpha_plugin_lib_model.rb
+END

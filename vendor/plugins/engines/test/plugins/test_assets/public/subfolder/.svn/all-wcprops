@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_assets/public/subfolder
+END
+file_in_subfolder.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/273/trunk/plugins/engines/test/plugins/test_assets/public/subfolder/file_in_subfolder.txt
+END

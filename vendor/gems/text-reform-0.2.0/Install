@@ -1,0 +1,4 @@
+Make sure that you have Phil Thomson's install-package on your system.
+
+Simply run:
+% ruby install.rb

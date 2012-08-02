@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/plugins/attachment_fu/test/backends/remote
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-23T07:38:10.627877Z
+248
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+s3_test.rb
+file
+
+
+
+
+2011-05-16T04:18:28.000000Z
+fb9d4bb28acbdb440d903022eb51fd2c
+2010-08-23T07:38:10.627877Z
+248
+subimage
+
+cloudfiles_test.rb
+file
+
+
+
+
+2011-05-16T04:18:28.000000Z
+76462823e11a10c56c79d5a367420fce
+2010-08-23T07:38:10.627877Z
+248
+subimage
+

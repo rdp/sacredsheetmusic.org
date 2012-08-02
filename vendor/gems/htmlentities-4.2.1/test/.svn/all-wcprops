@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test
+END
+entities_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/entities_test.rb
+END
+legacy_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/legacy_test.rb
+END
+roundtrip_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/roundtrip_test.rb
+END
+expanded_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/expanded_test.rb
+END
+test_all.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/test_all.rb
+END
+html4_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/html4_test.rb
+END
+xhtml1_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/350/trunk/gems/htmlentities-4.2.1/test/xhtml1_test.rb
+END

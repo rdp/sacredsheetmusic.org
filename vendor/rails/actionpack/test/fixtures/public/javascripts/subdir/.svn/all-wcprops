@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public/javascripts/subdir
+END
+subdir.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public/javascripts/subdir/subdir.js
+END

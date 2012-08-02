@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/test_helper.rb
+END
+schema.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/schema.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/database.yml
+END
+ar_fixtures_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/ar_fixtures_test.rb
+END

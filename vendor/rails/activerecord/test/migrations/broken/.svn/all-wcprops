@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/broken
+END
+100_migration_that_raises_exception.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/broken/100_migration_that_raises_exception.rb
+END

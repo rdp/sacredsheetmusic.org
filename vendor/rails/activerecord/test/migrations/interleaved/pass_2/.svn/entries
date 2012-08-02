@@ -1,0 +1,52 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/rails/activerecord/test/migrations/interleaved/pass_2
+http://substruct.googlecode.com/svn
+
+
+
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+1_people_have_last_names.rb
+file
+
+
+
+
+2011-05-16T04:19:11.000000Z
+a20fc47ca8dc17c8985575c00c9a4319
+2010-08-26T10:09:03.301270Z
+272
+subimage
+
+3_innocent_jointable.rb
+file
+
+
+
+
+2011-05-16T04:19:11.000000Z
+dc7faab20220214b138dbb3a1527613b
+2010-08-26T10:09:03.301270Z
+272
+subimage
+

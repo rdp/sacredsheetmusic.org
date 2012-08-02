@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates
+END
+plugin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/plugin.rb
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/test_helper.rb
+END
+unit_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/unit_test.rb
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/Rakefile
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/USAGE
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/init.rb
+END
+tasks.rake
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/tasks.rake
+END
+generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/generator.rb
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/MIT-LICENSE
+END
+uninstall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/uninstall.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/plugin/templates/README
+END

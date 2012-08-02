@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions
+END
+routing_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/routing_assertions.rb
+END
+tag_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/tag_assertions.rb
+END
+response_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/response_assertions.rb
+END
+dom_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/dom_assertions.rb
+END
+selector_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/selector_assertions.rb
+END
+model_assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/actionpack/lib/action_controller/assertions/model_assertions.rb
+END

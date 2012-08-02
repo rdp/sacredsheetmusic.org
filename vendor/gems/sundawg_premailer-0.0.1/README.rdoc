@@ -1,0 +1,71 @@
+= Premailer (Sundawg Fork) README
+
+This a small modification to the outstanding gem provided by Alex Dunae.
+
+http://code.dunae.ca/premailer.web/
+
+Please visit the premailer github page for the authoritative guide on how to use premailer:
+
+http://github.com/alexdunae/premailer/
+
+This project was forked on February 8th, 2010 from version 1.5.4.
+
+= Instructions Specific To This Version
+
+This version was created to provide an easier way to perform in-memory css-inlining given a String with HTML content. This was added to provide better integration with existing ActionMailer functionality.
+
+To use premailer with your existing HTML emails, you must change your Action Mailer action as so:
+
+  def hello_world(params)
+    content = Premailer.new(render_message("hello_world.text.html.erb", params), :in_memory => true).to_inline_css
+    subject       "Hello World"
+    recipients    "somebody@somewhere.com" 
+    from          "somebody@sundawg.net" 
+    sent_on       Time.now.utc
+    content_type  "text/html"
+    body          content
+  end
+
+Calling render_message will execute your view template with whatever arguments and models you require for the view to render properly. The additional argument, is :in_memory => true so that premailer does not attempt to perform HTTP GET or load from local disk your view template. Once you have premailer instantiated, you can then call the standard to_inline_css so that your email sends HTML email with the CSS attributes properly in element style attributes.
+
+When you are working with ActionMailer layouts with multipart/alternative emails, it can get a bit messy registering the HTML content and TEXT content. Currently on Rails 2.3.x, the TEXT content was wrapped within the HTML layout. In order to get the layouts working when you are using render_message for inline style attributes, it is helpful to do something like this:
+
+  class MyMailer < ActionMailer::Base
+  ...
+    def foo(params = {})
+      recipients    "you@somebody.com"
+      from          "sundawg@premailer.com" 
+      sent_on       Time.now.utc
+      content_type  'multipart/alternative'
+      subject       "test"
+
+      setup_email("foo", params)
+    end
+
+    # template represents the action mailer method you're invoking, like foo
+    def setup_email(template, params)
+
+      part :content_type => "text/plain" do |p|
+        # user render to specify layout to plain text, else will grab html layout :(
+        p.body = render(:file => "#{template}.text.plain", :layout => 'my_mailer.text.plain', :body => params)
+        p.transfer_encoding = "base64"
+      end
+
+      part :content_type => "text/html" do |p|
+        p.body = Premailer.new(render_message("#{template}.text.html", params), :in_memory => true).to_inline_css
+      end
+    end
+
+Assuming you have in your app/views/layouts a my_mailer.text.html.erb and my_mailer.text.plain.erb, this will properly render the foo presentation templates that you want to email out for app/views/my_mailer/foo.text.html.erb and app/views/my_mailer/foo.text.plain.erb.
+
+To learn more about multipart/alternative and how it can help you dual support HTML and TEXT emails irregardless of client support, you can view the specification here:
+
+- http://webee.technion.ac.il/labs/comnet/netcourse/CIE/RFC/1521/18.htm
+
+= Additional Changes
+
+Added echoe gem to help build, package, and install locally this project as a gem.
+
+= Disclaimer
+
+Along with any disclaimer provided with the original software, I have not fully tested to make sure all original functionality continues to work as is.

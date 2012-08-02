@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/337/trunk/plugins/substruct/lib/substruct
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/337/trunk/plugins/substruct/lib/substruct/version.rb
+END
+assertions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/273/trunk/plugins/substruct/lib/substruct/assertions.rb
+END
+login_system.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4/trunk/plugins/substruct/lib/substruct/login_system.rb
+END

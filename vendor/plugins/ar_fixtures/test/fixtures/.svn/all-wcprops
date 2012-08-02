@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures
+END
+beer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/beer.rb
+END
+beers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/beers.yml
+END
+glasses.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/glasses.yml
+END
+glass.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/glass.rb
+END
+drunkard.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/drunkard.rb
+END
+drunkards.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/drunkards.yml
+END
+beers_drunkards.yml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/trunk/plugins/ar_fixtures/test/fixtures/beers_drunkards.yml
+END

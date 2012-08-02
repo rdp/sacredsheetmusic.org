@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend
+END
+links.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/links.rb
+END
+metadata.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/metadata.rb
+END
+interpolation_compiler.rb
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/interpolation_compiler.rb
+END
+fallbacks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/fallbacks.rb
+END
+chain.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/chain.rb
+END
+cascade.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/cascade.rb
+END
+cldr.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/cldr.rb
+END
+gettext.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/gettext.rb
+END
+simple.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/simple.rb
+END
+pluralization.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/pluralization.rb
+END
+fast.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/fast.rb
+END
+helpers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/helpers.rb
+END
+cache.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/cache.rb
+END
+active_record.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/active_record.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/base.rb
+END

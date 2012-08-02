@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/4/trunk/plugins/acts_as_tree/test/fixtures
+END
+mixin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/trunk/plugins/acts_as_tree/test/fixtures/mixin.rb
+END
+mixins.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/plugins/acts_as_tree/test/fixtures/mixins.yml
+END

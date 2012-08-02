@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/symlink_parent
+END
+symlinked_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/symlink_parent/symlinked_layout.erb
+END

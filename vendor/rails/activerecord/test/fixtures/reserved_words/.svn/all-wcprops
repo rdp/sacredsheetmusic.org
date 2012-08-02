@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words
+END
+values.yml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words/values.yml
+END
+select.yml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words/select.yml
+END
+distinct.yml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words/distinct.yml
+END
+distincts_selects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words/distincts_selects.yml
+END
+group.yml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/272/trunk/rails/activerecord/test/fixtures/reserved_words/group.yml
+END

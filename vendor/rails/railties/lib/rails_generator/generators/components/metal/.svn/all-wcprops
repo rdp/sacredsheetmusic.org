@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/metal
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/metal/USAGE
+END
+metal_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/railties/lib/rails_generator/generators/components/metal/metal_generator.rb
+END

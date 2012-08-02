@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/337/trunk/plugins/substruct/test/functional/admin
+END
+general_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/62/trunk/plugins/substruct/test/functional/admin/general_controller_test.rb
+END
+roles_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/203/trunk/plugins/substruct/test/functional/admin/roles_controller_test.rb
+END
+customers_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/203/trunk/plugins/substruct/test/functional/admin/customers_controller_test.rb
+END
+sections_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/108/trunk/plugins/substruct/test/functional/admin/sections_controller_test.rb
+END
+questions_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/273/trunk/plugins/substruct/test/functional/admin/questions_controller_test.rb
+END
+orders_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/325/trunk/plugins/substruct/test/functional/admin/orders_controller_test.rb
+END
+tags_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/108/trunk/plugins/substruct/test/functional/admin/tags_controller_test.rb
+END
+users_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/203/trunk/plugins/substruct/test/functional/admin/users_controller_test.rb
+END
+preferences_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/337/trunk/plugins/substruct/test/functional/admin/preferences_controller_test.rb
+END
+files_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/327/trunk/plugins/substruct/test/functional/admin/files_controller_test.rb
+END
+content_nodes_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/308/trunk/plugins/substruct/test/functional/admin/content_nodes_controller_test.rb
+END
+products_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/307/trunk/plugins/substruct/test/functional/admin/products_controller_test.rb
+END
+affiliates_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/210/trunk/plugins/substruct/test/functional/admin/affiliates_controller_test.rb
+END
+promotions_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/108/trunk/plugins/substruct/test/functional/admin/promotions_controller_test.rb
+END
+base_controller_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/62/trunk/plugins/substruct/test/functional/admin/base_controller_test.rb
+END

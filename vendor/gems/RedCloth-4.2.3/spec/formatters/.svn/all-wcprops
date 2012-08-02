@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters
+END
+html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/html_spec.rb
+END
+lite_mode_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/lite_mode_html_spec.rb
+END
+no_span_caps_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/no_span_caps_html_spec.rb
+END
+html_no_breaks_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/html_no_breaks_spec.rb
+END
+class_filtered_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/class_filtered_html_spec.rb
+END
+latex_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/latex_spec.rb
+END
+sanitized_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/sanitized_html_spec.rb
+END
+id_filtered_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/id_filtered_html_spec.rb
+END
+filtered_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/filtered_html_spec.rb
+END
+style_filtered_html_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/352/trunk/gems/RedCloth-4.2.3/spec/formatters/style_filtered_html_spec.rb
+END

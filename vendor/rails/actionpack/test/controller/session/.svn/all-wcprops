@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/session
+END
+test_session_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/session/test_session_test.rb
+END
+cookie_store_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/session/cookie_store_test.rb
+END
+mem_cache_store_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/session/mem_cache_store_test.rb
+END

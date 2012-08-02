@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/368/trunk/plugins/substruct/app/controllers/admin
+END
+base_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/287/trunk/plugins/substruct/app/controllers/admin/base_controller.rb
+END
+general_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/4/trunk/plugins/substruct/app/controllers/admin/general_controller.rb
+END
+customers_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/366/trunk/plugins/substruct/app/controllers/admin/customers_controller.rb
+END
+roles_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/4/trunk/plugins/substruct/app/controllers/admin/roles_controller.rb
+END
+sections_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/51/trunk/plugins/substruct/app/controllers/admin/sections_controller.rb
+END
+questions_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/4/trunk/plugins/substruct/app/controllers/admin/questions_controller.rb
+END
+orders_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/368/trunk/plugins/substruct/app/controllers/admin/orders_controller.rb
+END
+tags_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/47/trunk/plugins/substruct/app/controllers/admin/tags_controller.rb
+END
+preferences_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/337/trunk/plugins/substruct/app/controllers/admin/preferences_controller.rb
+END
+users_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/203/trunk/plugins/substruct/app/controllers/admin/users_controller.rb
+END
+content_nodes_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/308/trunk/plugins/substruct/app/controllers/admin/content_nodes_controller.rb
+END
+files_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/327/trunk/plugins/substruct/app/controllers/admin/files_controller.rb
+END
+products_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/307/trunk/plugins/substruct/app/controllers/admin/products_controller.rb
+END
+affiliates_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/220/trunk/plugins/substruct/app/controllers/admin/affiliates_controller.rb
+END
+promotions_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/4/trunk/plugins/substruct/app/controllers/admin/promotions_controller.rb
+END

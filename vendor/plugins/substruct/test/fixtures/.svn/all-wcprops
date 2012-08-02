@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/337/trunk/plugins/substruct/test/fixtures
+END
+items.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/144/trunk/plugins/substruct/test/fixtures/items.yml
+END
+order_line_items.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/108/trunk/plugins/substruct/test/fixtures/order_line_items.yml
+END
+roles.yml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/203/trunk/plugins/substruct/test/fixtures/roles.yml
+END
+sections.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/sections.yml
+END
+product_downloads.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/144/trunk/plugins/substruct/test/fixtures/product_downloads.yml
+END
+questions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/questions.yml
+END
+order_status_codes.yml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/108/trunk/plugins/substruct/test/fixtures/order_status_codes.yml
+END
+order_users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/203/trunk/plugins/substruct/test/fixtures/order_users.yml
+END
+orders.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/210/trunk/plugins/substruct/test/fixtures/orders.yml
+END
+tags.yml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/tags.yml
+END
+rights.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/203/trunk/plugins/substruct/test/fixtures/rights.yml
+END
+order_shipping_types.yml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/225/trunk/plugins/substruct/test/fixtures/order_shipping_types.yml
+END
+preferences.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/337/trunk/plugins/substruct/test/fixtures/preferences.yml
+END
+users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/users.yml
+END
+content_nodes.yml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/291/trunk/plugins/substruct/test/fixtures/content_nodes.yml
+END
+affiliate_payments.yml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/210/trunk/plugins/substruct/test/fixtures/affiliate_payments.yml
+END
+product_images.yml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/product_images.yml
+END
+user_uploads.yml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/188/trunk/plugins/substruct/test/fixtures/user_uploads.yml
+END
+order_shipping_weights.yml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/62/trunk/plugins/substruct/test/fixtures/order_shipping_weights.yml
+END
+affiliates.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/220/trunk/plugins/substruct/test/fixtures/affiliates.yml
+END
+wishlist_items.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/160/trunk/plugins/substruct/test/fixtures/wishlist_items.yml
+END
+order_addresses.yml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/186/trunk/plugins/substruct/test/fixtures/order_addresses.yml
+END
+promotions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/227/trunk/plugins/substruct/test/fixtures/promotions.yml
+END
+order_accounts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/108/trunk/plugins/substruct/test/fixtures/order_accounts.yml
+END
+countries.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/120/trunk/plugins/substruct/test/fixtures/countries.yml
+END

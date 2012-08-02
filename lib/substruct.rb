@@ -2,6 +2,7 @@
 # http://www.subimage.com
 require_dependency 'substruct/login_system.rb'
 require 'patch_attachment_fu'
+require 'bounded_memory_store'
 
 # abstracted from require 'facets/file' ===>
 class File

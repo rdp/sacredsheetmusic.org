@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object
+END
+extending.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/extending.rb
+END
+singleton_class.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/singleton_class.rb
+END
+blank.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/blank.rb
+END
+conversions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/conversions.rb
+END
+misc.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/misc.rb
+END
+instance_variables.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/instance_variables.rb
+END
+metaclass.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/core_ext/object/metaclass.rb
+END

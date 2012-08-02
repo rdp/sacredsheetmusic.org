@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/365/trunk/plugins/substruct/lib
+END
+substruct.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/321/trunk/plugins/substruct/lib/substruct.rb
+END
+substruct_deprecated.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/73/trunk/plugins/substruct/lib/substruct_deprecated.rb
+END
+patch_attachment_fu.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/173/trunk/plugins/substruct/lib/patch_attachment_fu.rb
+END
+substruct_annotation_extractor.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/104/trunk/plugins/substruct/lib/substruct_annotation_extractor.rb
+END
+pagination.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/135/trunk/plugins/substruct/lib/pagination.rb
+END

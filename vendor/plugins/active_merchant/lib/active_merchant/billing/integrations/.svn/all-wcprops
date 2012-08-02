@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations
+END
+two_checkout.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/two_checkout.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/helper.rb
+END
+bogus.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/bogus.rb
+END
+return.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/return.rb
+END
+hi_trust.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/hi_trust.rb
+END
+chronopay.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/chronopay.rb
+END
+nochex.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/nochex.rb
+END
+paypal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/paypal.rb
+END
+quickpay.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/quickpay.rb
+END
+notification.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/notification.rb
+END
+action_view_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/action_view_helper.rb
+END
+gestpay.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/212/trunk/plugins/active_merchant/lib/active_merchant/billing/integrations/gestpay.rb
+END

@@ -1,0 +1,36 @@
+Text::Reform README
+===================
+
+Text::Reform class is a rewrite from the Perl module with the same name by
+Damian Conway (damian@conway.org). Much of this documentation has been copied
+from the original documentation and adapted to the Ruby version.
+
+The interface is subject to change, since it will undergo major Rubyfication;
+additionally, some features may have not been ported yet.
+
+Synopsis
+--------
+  require 'text/reform'
+  f = Text::Reform.new
+
+  puts f.format(template, data)
+
+Author
+------
+Kaspar Schiess (eule@space.ch).
+
+Ported from the original Perl library and documentation by Damian Conway
+(damian@conway.org).
+
+Bugs
+----
+There are undoubtedly serious bugs lurking somewhere in code this funky :-) Bug
+reports and other feedback are most welcome.
+
+Copyright
+---------
+Copyright (c) 2005, Kaspar Schiess. All Rights Reserved. This module is free
+software. It may be used, redistributed and/or modified under the terms of the
+Ruby License (see http://www.ruby-lang.org/en/LICENSE.txt)
+
+$Id: README,v 1.1.1.1 2005/01/18 11:15:40 eule Exp $

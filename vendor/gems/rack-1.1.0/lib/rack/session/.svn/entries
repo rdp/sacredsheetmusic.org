@@ -1,0 +1,67 @@
+8
+
+dir
+371
+http://substruct.googlecode.com/svn/trunk/gems/rack-1.1.0/lib/rack/session
+http://substruct.googlecode.com/svn
+
+
+
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6a1f77cc-a145-0410-afd8-bd7963fcc59f
+
+abstract
+dir
+
+memcache.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+ca7c60be6ba374b0239ada6f9c423df9
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+pool.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+c58d5de7fb8793ea4bf7f82f7d2f783e
+2010-09-13T20:50:26.393066Z
+355
+subimage
+
+cookie.rb
+file
+
+
+
+
+2011-05-16T04:19:29.000000Z
+053fef548ebabed2dc75dd02ed8aeb2a
+2010-09-13T20:50:26.393066Z
+355
+subimage
+

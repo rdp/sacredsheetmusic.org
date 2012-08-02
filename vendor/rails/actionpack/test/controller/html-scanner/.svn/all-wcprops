@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner
+END
+document_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/document_test.rb
+END
+tag_node_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/tag_node_test.rb
+END
+cdata_node_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/cdata_node_test.rb
+END
+node_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/node_test.rb
+END
+sanitizer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/sanitizer_test.rb
+END
+text_node_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/text_node_test.rb
+END
+tokenizer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/272/trunk/rails/actionpack/test/controller/html-scanner/tokenizer_test.rb
+END

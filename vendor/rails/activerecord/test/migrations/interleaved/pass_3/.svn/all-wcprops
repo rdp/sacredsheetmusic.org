@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/interleaved/pass_3
+END
+1_people_have_last_names.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/interleaved/pass_3/1_people_have_last_names.rb
+END
+2_i_raise_on_down.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/interleaved/pass_3/2_i_raise_on_down.rb
+END
+3_innocent_jointable.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/272/trunk/rails/activerecord/test/migrations/interleaved/pass_3/3_innocent_jointable.rb
+END

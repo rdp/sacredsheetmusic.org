@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/301/trunk/plugins/substruct/app/views/admin/files
+END
+_file.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/301/trunk/plugins/substruct/app/views/admin/files/_file.rhtml
+END
+_image_select.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/258/trunk/plugins/substruct/app/views/admin/files/_image_select.rhtml
+END
+image_library.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/265/trunk/plugins/substruct/app/views/admin/files/image_library.rhtml
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/282/trunk/plugins/substruct/app/views/admin/files/index.rhtml
+END

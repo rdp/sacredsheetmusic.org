@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/active_record
+END
+translation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/active_record/translation.rb
+END
+store_procs.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/active_record/store_procs.rb
+END
+missing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/272/trunk/rails/activesupport/lib/active_support/vendor/i18n-0.3.7/i18n/backend/active_record/missing.rb
+END

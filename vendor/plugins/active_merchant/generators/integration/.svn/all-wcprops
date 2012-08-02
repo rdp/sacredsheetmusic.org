@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/USAGE
+END
+integration_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/212/trunk/plugins/active_merchant/generators/integration/integration_generator.rb
+END

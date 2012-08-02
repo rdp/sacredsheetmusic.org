@@ -1,0 +1,5 @@
+== Text::Reform 0.2.0
+* Initial release. Ported from the Perl by Kaspar Schiess with assistance from
+  Austin Ziegler.
+
+$Id: Changelog,v 1.2 2005/01/18 11:21:01 eule Exp $

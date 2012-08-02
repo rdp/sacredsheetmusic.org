@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test
+END
+trogdor.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/trogdor.jpg
+END
+actually_a_gif.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/actually_a_gif.jpg
+END
+image_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/image_test.rb
+END
+animation.gif
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/animation.gif
+END
+command_builder_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/command_builder_test.rb
+END
+not_an_image.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/not_an_image.php
+END
+leaves.tiff
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/leaves.tiff
+END
+simple-minus.gif
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/simple-minus.gif
+END
+simple.gif
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/267/trunk/gems/mini_magick-1.3.3/test/simple.gif
+END

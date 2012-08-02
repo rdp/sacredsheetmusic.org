@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns
+END
+return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/return_test.rb
+END
+hi_trust_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/hi_trust_return_test.rb
+END
+chronopay_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/chronopay_return_test.rb
+END
+nochex_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/nochex_return_test.rb
+END
+paypal_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/paypal_return_test.rb
+END
+gestpay_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/gestpay_return_test.rb
+END
+two_checkout_return_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/212/trunk/plugins/active_merchant/test/unit/integrations/returns/two_checkout_return_test.rb
+END

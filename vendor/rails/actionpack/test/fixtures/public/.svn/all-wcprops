@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public
+END
+500.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public/500.html
+END
+404.html
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public/404.html
+END
+500.da.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/272/trunk/rails/actionpack/test/fixtures/public/500.da.html
+END
