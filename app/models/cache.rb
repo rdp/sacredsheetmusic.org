@@ -43,8 +43,11 @@ class Cache < ActiveRecord::Base
      end
      hash_key
    }
-
-   all_got = Cache.find(:all, :conditions => ['hash_key in (?) and cache_type = ?', to_look_for, type])
+   if to_look_for.length > 0
+     all_got = Cache.find(:all, :conditions => ['hash_key in (?) and cache_type = ?', to_look_for, type])
+   else
+     all_got =[]
+   end
    
    # hash them and search them, in case the order comes back weird...
    all_got.each{|cache| 
