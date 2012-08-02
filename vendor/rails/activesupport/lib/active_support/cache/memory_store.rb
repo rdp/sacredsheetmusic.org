@@ -15,6 +15,7 @@ module ActiveSupport
     # of the maximum size by removing the least recently used entries.
     #
     # MemoryStore is thread-safe.
+    p Store
     class MemoryStore < Store
       def initialize(options = nil)
         options ||= {}
@@ -119,6 +120,14 @@ module ActiveSupport
       # is not thread safe.
       def synchronize(&block) # :nodoc:
         @monitor.synchronize(&block)
+      end
+
+      def read(key)
+        read_entry(key, {})
+      end
+
+      def write(key, value)
+        write_entry(key, value, {})
       end
 
       protected

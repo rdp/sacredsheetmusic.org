@@ -287,6 +287,7 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
+    not_a_bot # for logging purposes :P
     render :action => 'index.rhtml'
   end
 
@@ -377,12 +378,13 @@ class MusicController < StoreController
     # or if it gets called through to wake_up...
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
     if count_including_us < 2
+      Cache.warmup_in_other_thread
       got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline
       # otherwise the request just gets processed by this process again. 
       logger.info "bumped it"
     else
       logger.info "already high enough #{count_including_us}"
-     end
+    end
     @no_individ_cache = true
     index # reads them all
   end
