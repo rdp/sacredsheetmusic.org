@@ -30,10 +30,11 @@ class Cache < ActiveRecord::Base
 
   def self.warmup_in_other_thread
     Thread.new {
-      for entry in Cache.find(:all)
+      list = Cache.find(:all)
+      for entry in list
         Rails.cache.write(entry.hash_key, entry.string_value)
       end
-      Rails.logger.info "warmed it up with #{size}" # doesn't output for some reason...odd...
+      Rails.logger.info "warmed it up with #{list.size}" # doesn't output for some reason...odd...
     }
   end
 
