@@ -10,6 +10,7 @@ class Cache < ActiveRecord::Base
   def self.clear!
     delete_all # skips validations
     Rails.cache.clear
+    clear_html_cache
   end
 
   def self.delete_by_type type
@@ -36,6 +37,12 @@ class Cache < ActiveRecord::Base
       end
       Rails.logger.info "warmed it up with #{list.size}" # doesn't output for some reason...odd...
     }
+  end
+
+  def self.clear_html_cache
+    for file in Dir[RAILS_ROOT+"/public/cache/*"]
+      File.delete file # should be safe...
+    end
   end
 
   def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc, &block)

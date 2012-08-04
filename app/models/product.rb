@@ -115,6 +115,7 @@ class Product < Item
 
   after_save {  # singleton!
     Product.delete_group_caches
+    Cache.clear_html_cache # why not :P
   } 
 
   def self.delete_group_caches
