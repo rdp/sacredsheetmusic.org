@@ -247,7 +247,7 @@ class MusicController < StoreController
     tag_names = params[:tags] || [] # || ??
     raise if tag_names.length > 1
     if tag_names.length == 1
-      cache_name = tag_names[0]
+      cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
       filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
       if File.file? filename
        if !session['filter_all_tag_id'].present?
@@ -307,13 +307,13 @@ class MusicController < StoreController
     end
     not_a_bot # for logging purposes :P
     if !session['filter_all_tag_id'].present?
-      render_and_save 'index.rhtml', cache_name
+      render_and_cache 'index.rhtml', cache_name
     else
-      render :action => 'index.rhtml'
+      render 'index.rhtml'
     end
   end
 
-  def render_and_save rhtml_name, url_name
+  def render_and_cache rhtml_name, url_name
     text = render_to_string rhtml_name
     if url_name
       File.write(RAILS_ROOT+"/public/cache/#{url_name}.html", text)
