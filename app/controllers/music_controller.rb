@@ -71,10 +71,10 @@ class MusicController < StoreController
  end 
 
  def wake_up
-  Cache.first
+  #Cache.first
   #Product.first
   #Download.first
-  Tag.first # might be cached so might not need this LOL
+  #Tag.first # might be cached so might not need this LOL
   render :text => "what a beautiful morning!" and return # for cron
  end
 
