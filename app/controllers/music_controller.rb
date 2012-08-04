@@ -94,11 +94,11 @@ class MusicController < StoreController
      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
    end
    if not_a_bot
-     # avoid after_save blocks ...
+     # avoid all after_save procs ...
      Product.increment_counter(:redirect_count, product.id)
      Product.increment_counter(:view_count, product.id) if inc_view
    end
-   redirect_to product.original_url # not permanent redirect code...not sure if that's right...
+   redirect_to product.original_url # not permanent redirect code...not sure which is right...
  end 
 
  private
