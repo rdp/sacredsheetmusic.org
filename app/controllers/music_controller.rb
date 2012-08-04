@@ -372,14 +372,20 @@ class MusicController < StoreController
     end
   end
 
-  def all_no_cache
+  def current_count_including_us
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
-    if count_including_us < 2
-      got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline
+  end
+  def all_no_cache
+    if current_count_including_us < 2
+      Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
+      start = Time.now
+      while((Time.now - start) < 5 && current_count_including_us < 2)
+        sleep 0.1
+      end
       # otherwise the request just gets processed by this process again. 
-      logger.info "bumped it"
+      logger.info "bumped it to #{current_count_including_us}"
     else
-      logger.info "already high enough #{count_including_us}"
+      logger.info "already high enough #{current_count_including_us}"
     end
     #@no_individ_cache = true
     #index # reads them all
