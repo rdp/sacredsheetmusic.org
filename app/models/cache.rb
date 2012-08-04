@@ -28,6 +28,16 @@ class Cache < ActiveRecord::Base
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
+  def self.warmup_in_other_thread
+    Thread.new {
+      list = Cache.find(:all)
+      for entry in list
+        Rails.cache.write(entry.hash_key, entry.string_value)
+      end
+      Rails.logger.info "warmed it up with #{list.size}" # doesn't output for some reason...odd...
+    }
+  end
+
   def self.map_get_or_set(collection, some_unique_identifier, type, get_int_proc, &block)
    # lodo not need get_int_proc at all...
    hits = 0 
@@ -65,7 +75,6 @@ class Cache < ActiveRecord::Base
    logger.info "after previous semi/mis, had #{hits} hits/#{collection.length}"
    out
   end
-  MEM_STORE=BoundedMemoryStore.new(:size => 50.megabytes)
 
   def self.get_or_set_int(int, some_unique_identifier, type)
     verify_type type
@@ -76,13 +85,15 @@ class Cache < ActiveRecord::Base
     elsif entry = Cache.find_by_hash_key_and_cache_type(hash, type)
       # assume string for now
       logger.info "cache semihit"
-      Rails.cache.write(hash, entry.string_value) unless type == 'group_products' # the big, varying kind...
+      Rails.cache.write(hash, entry.string_value)
       return entry.string_value
     else
-      logger.info "cache mis"
+      logger.info "cache real mis"
       string_value = yield
-      outgoing = Cache.new :hash_key => hash, :string_value => string_value, :parent_id => int, :cache_type => type
-      outgoing.save
+      unless type == 'group_products'
+        entry = Cache.new :hash_key => hash, :string_value => string_value, :parent_id => int, :cache_type => type
+        entry.save
+      end
       Rails.cache.write(hash, string_value)
       string_value 
     end

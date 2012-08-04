@@ -71,10 +71,10 @@ class MusicController < StoreController
  end 
 
  def wake_up
-  Cache.first
+  #Cache.first
   #Product.first
   #Download.first
-  Tag.first # might be cached so might not need this LOL
+  #Tag.first # might be cached so might not need this LOL
   render :text => "what a beautiful morning!" and return # for cron
  end
 
@@ -287,6 +287,7 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
+    not_a_bot # for logging purposes :P
     render :action => 'index.rhtml'
   end
 
@@ -371,20 +372,24 @@ class MusicController < StoreController
     end
   end
 
-  def all_no_cache
-
-    # the logic now is...if your the only one, you'll want to warm up your cache
-    # or if it gets called through to wake_up...
+  def current_count_including_us
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
-    if count_including_us < 2
-      got = `curl http://freeldssheetmusic.org/music/wake_up` # unfortunately have to 'wait' for this inline
+  end
+  def all_no_cache
+    if current_count_including_us < 2
+      Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
+      start = Time.now
+      while((Time.now - start) < 5 && current_count_including_us < 2)
+        sleep 0.1
+      end
       # otherwise the request just gets processed by this process again. 
-      logger.info "bumped it"
+      logger.info "bumped it to #{current_count_including_us}"
     else
-      logger.info "already high enough #{count_including_us}"
-     end
-    @no_individ_cache = true
-    index # reads them all
+      logger.info "already high enough #{current_count_including_us}"
+    end
+    #@no_individ_cache = true
+    #index # reads them all
+    render :text => 'ok'
   end
 
   # Our simple all songs list
