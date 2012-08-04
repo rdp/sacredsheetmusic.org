@@ -235,16 +235,27 @@ class MusicController < StoreController
     render :text => "ok reset 'em"
   end
 
-  caches_page :show_by_tags, :index
+  #caches_page :show_by_tags, :index
 
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
   #
   def show_by_tags
     # Tags are passed in as an array.
-    # Passed into this controller like this:
+    # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
     tag_names = params[:tags] || [] # || ??
+    raise if tag_names.length > 1
+    if tag_names.length == 1
+      cache_name = tag_names[0]
+      filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
+      if File.file? filename
+       if !session['filter_all_tag_id'].present?
+         logger.info "rendering early cache..."
+         render :text => File.read(filename) and return 
+       end
+      end
+    end
     # Generate tag ID list from names
     tag_ids_array = Array.new
     tag_names.map!{|name|
@@ -295,7 +306,19 @@ class MusicController < StoreController
       @composer_tag = @viewing_tags[0]
     end
     not_a_bot # for logging purposes :P
-    render :action => 'index.rhtml'
+    if !session['filter_all_tag_id'].present?
+      render_and_save 'index.rhtml', cache_name
+    else
+      render :action => 'index.rhtml'
+    end
+  end
+
+  def render_and_save rhtml_name, url_name
+    text = render_to_string rhtml_name
+    if url_name
+      File.write(RAILS_ROOT+"/public/cache/#{url_name}.html", text)
+    end
+    render :text => text 
   end
 
   def randomize all_products

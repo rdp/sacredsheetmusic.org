@@ -28,8 +28,8 @@ RewriteEngine On
 #   Alias /myrailsapp /path/to/myrailsapp/public
 #   RewriteBase /myrailsapp
 
-RewriteRule ^$ cache/index.html [QSA] 
-RewriteRule ^([^.]+)$ cache/$1.html [QSA] 
+#RewriteRule ^$ cache/index.html [QSA] 
+#RewriteRule ^([^.]+)$ cache/$1.html [QSA] 
 RewriteRule ^$ index.html [QSA]
 RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
