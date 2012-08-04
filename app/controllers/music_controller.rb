@@ -230,6 +230,13 @@ class MusicController < StoreController
             )
   end
 
+  def reset
+    expire_page :action => :show_by_tags   
+    render :text => "ok reset 'em"
+  end
+
+  caches_page :show_by_tags, :index
+
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
   #

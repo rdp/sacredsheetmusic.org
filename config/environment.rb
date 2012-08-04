@@ -50,6 +50,7 @@ Rails::Initializer.run do |config|
   #override the default loader
   # ? config.plugin_loader = EagerLoader
   config.after_initialize { Cache.warmup_in_other_thread }
+  config.action_controller.page_cache_directory = RAILS_ROOT+"/public/cache/" 
 end
 
 if RUBY_VERSION >= '1.9.0'
