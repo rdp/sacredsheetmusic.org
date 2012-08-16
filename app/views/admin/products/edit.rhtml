@@ -31,7 +31,7 @@
 
 </div>
 
-<%= render(:partial => 'crud_right') %>
+<%= Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }%>
 
 <!-- end form tag here to grab tags on products -->
 </form>

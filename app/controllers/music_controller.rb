@@ -250,7 +250,7 @@ class MusicController < StoreController
       cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
       filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
       if File.file? filename
-       if !session['filter_all_tag_id'].present?
+       if !session['filter_all_tag_id'].present? && !flash[:notice].present?
          logger.info "rendering early cache..."
          render :text => File.read(filename) and return 
        end
@@ -306,10 +306,10 @@ class MusicController < StoreController
       @composer_tag = @viewing_tags[0]
     end
     not_a_bot # for logging purposes :P
-    if !session['filter_all_tag_id'].present?
-      render_and_cache 'index.rhtml', cache_name
+    if !session['filter_all_tag_id'].present? && !flash[:notice].present?
+      render_and_cache('index.rhtml', cache_name)
     else
-      render 'index.rhtml'
+      render 'index.rhtml' # render every time...
     end
   end
 
