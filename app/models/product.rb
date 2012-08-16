@@ -244,7 +244,7 @@ class Product < Item
       #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
-        next if topic_tag.name.in? ['Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
+        next if topic_tag.name.in? ['SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
         for topic_tag_name in topic_tag.name.split('/')
           topic_tag_name.strip!
           bare_name_reg = Regexp.new(Regexp.escape(topic_tag_name), Regexp::IGNORECASE)
@@ -273,7 +273,7 @@ class Product < Item
         problems << "probably not a unique product code please update #{count}"
       end
       if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i && !self.name.contain?(hymn_tag.name)
-         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1)
+         if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1) && !self.description.include?(self.hymn_tag.name)
            problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
          end
       end
