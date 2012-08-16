@@ -4,8 +4,8 @@ class Cache < ActiveRecord::Base
   # parent_id
 
   set_table_name 'cache'
-  # use sqlite for this table...
-  establish_connection(:adapter => 'sqlite3', :database =>  SQLITE3_LOCATION, :timeout => 100000)
+
+  CACHE_TYPES = ['probs', 'tags', 'single_product', 'group_products'] 
 
   def self.clear!
     delete_all # skips validations
@@ -24,7 +24,6 @@ class Cache < ActiveRecord::Base
   #  get_or_set_int( collection.map{|record| [record, record.attributes]}, identifier) { yield }
   #end
 
-  CACHE_TYPES = ['probs', 'tags', 'single_product', 'group_products'] 
   def self.verify_type type
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end

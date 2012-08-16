@@ -76,7 +76,9 @@ class Product < Item
   def clean_code
     if self.code.blank?
       if self.composer_tag
-        self.code = self.name.clone + '-by-' + self.composer_tag.name
+        voicing = self.tags.detect{|t| t.is_voicing} 
+        voicing_name = voicing.andand.name || ''
+        self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
       else
         self.code = self.name.clone
       end
@@ -270,7 +272,7 @@ class Product < Item
       if (count = Product.count(:conditions => {:code => self.code})) != 1
         problems << "probably not a unique product code please update #{count}"
       end
-      if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i
+      if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i && !self.name.contain?(hymn_tag.name)
          if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1)
            problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
          end
