@@ -244,8 +244,9 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
-    tag_names = params[:tags] || [] # || ??
-    raise if tag_names.length > 1
+    tag_names = params[:tags] || [] # 
+    raise if tag_names.length > 1 # LOL
+    not_a_bot # for logging purposes :P
     if tag_names.length == 1
       cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
       filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
@@ -305,7 +306,6 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
-    not_a_bot # for logging purposes :P
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       render_and_cache('index.rhtml', cache_name)
     else
