@@ -237,6 +237,9 @@ class MusicController < StoreController
 
   #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
+    if  Time.now.wday == 0 # Sunday
+      cache_name = cache_name + '_sunday'
+    end
     filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
     if File.file? filename
      logger.info "rendering early cache..."
@@ -253,7 +256,7 @@ class MusicController < StoreController
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
     tag_names = params[:tags] || [] # 
-    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length > 1 # LOL
+    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length != 1 # LODO check
     not_a_bot # for logging purposes :P
     cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
@@ -315,11 +318,12 @@ class MusicController < StoreController
     end
   end
 
-  def render_and_cache rhtml_name, url_name
-    text = render_to_string rhtml_name
-    if url_name
-      File.write(RAILS_ROOT+"/public/cache/#{url_name}.html", text)
+  def render_and_cache rhtml_name, cache_name
+    if Time.now.wday == 0 # Sunday
+      cache_name = cache_name + '_sunday'
     end
+    text = render_to_string rhtml_name
+    File.write(RAILS_ROOT+"/public/cache/#{cache_name}.html", text)
     render :text => text 
   end
 
