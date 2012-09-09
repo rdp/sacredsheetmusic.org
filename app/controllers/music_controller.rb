@@ -236,6 +236,14 @@ class MusicController < StoreController
   end
 
   #caches_page :show_by_tags, :index
+  def render_cached_if_exists cache_name
+    filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
+    if File.file? filename
+     logger.info "rendering early cache..."
+     render :text => File.read(filename) and return true
+    end
+    false
+  end
 
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
@@ -245,17 +253,11 @@ class MusicController < StoreController
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
     tag_names = params[:tags] || [] # 
-    raise if tag_names.length > 1 # LOL
+    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length > 1 # LOL
     not_a_bot # for logging purposes :P
-    if tag_names.length == 1
-      cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
-      filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
-      if File.file? filename
-       if !session['filter_all_tag_id'].present? && !flash[:notice].present?
-         logger.info "rendering early cache..."
-         render :text => File.read(filename) and return 
-       end
-      end
+    cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
+    if !session['filter_all_tag_id'].present? && !flash[:notice].present?
+      return if render_cached_if_exists(cache_name)
     end
     # Generate tag ID list from names
     tag_ids_array = Array.new
@@ -322,13 +324,13 @@ class MusicController < StoreController
   end
 
   def randomize all_products
-      session['rand_seed'] ||= rand(300000) # the irony
-      srand(session['rand_seed'])
-      titles = {} # keep them organized by title.
-      # keep them random within title though :P
-      all_products = all_products.sort_by{ rand }.sort_by{|p| titles[p.name] ||= rand }
-      srand # re-enable randomizer
-      all_products
+    session['rand_seed'] ||= rand(300000) # the irony  LODO remove per session randomization...
+    srand(session['rand_seed'])
+    titles = {} # keep them organized by title.
+    # keep them random within title though :P
+    all_products = all_products.sort_by{ rand }.sort_by{|p| titles[p.name] ||= rand }
+    srand # re-enable randomizer
+    all_products
   end
   
   # Downloads a file using the original way
@@ -424,7 +426,6 @@ class MusicController < StoreController
   end
 
   # Our simple all songs list
-  # Not cached because...who even goes here?
   def index
     @title = "All Songs"
     respond_to do |format|
