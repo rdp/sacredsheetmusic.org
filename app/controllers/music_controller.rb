@@ -405,6 +405,7 @@ class MusicController < StoreController
   def current_count_including_us
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
   end
+
   def all_no_cache
     if current_count_including_us < 2
       Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
@@ -417,17 +418,14 @@ class MusicController < StoreController
     else
       logger.info "already high enough #{current_count_including_us}"
     end
-    #@no_individ_cache = true
+    #@no_individ_cache = true # LODO remove...
     #index # reads them all
     render :text => 'ok'
   end
 
   # Our simple all songs list
+  # Not cached because...who even goes here?
   def index
-    if request.request_uri == '/music'
-      redirect_to :action => :index, :status => :moved_permanently
-      return
-    end
     @title = "All Songs"
     respond_to do |format|
       format.html do
