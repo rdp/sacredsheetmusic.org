@@ -427,6 +427,7 @@ class MusicController < StoreController
 
   # Our simple all songs list
   def index
+    return if render_cached_if_exists('all_songs')
     @title = "All Songs"
     respond_to do |format|
       format.html do
@@ -439,7 +440,7 @@ class MusicController < StoreController
         def @products.total_pages # fake it out :P
           1
         end
-        render :action => 'index.rhtml' and return
+        render_and_cache('index.rhtml', 'all_songs') and return
       end
       format.rss do
         render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook uh guess :P
