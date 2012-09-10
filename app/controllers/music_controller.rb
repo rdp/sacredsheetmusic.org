@@ -336,6 +336,14 @@ class MusicController < StoreController
     end
   end
 
+  def only_on_this_site
+    @products = Tag.find_all_by_only_on_this_site(true).map{|t| t.products}.flatten 
+    def @products.total_pages # fake it out :P
+      1
+    end
+    render 'index.rhtml'
+  end
+
   def randomize all_products
     session['rand_seed'] ||= rand(300000) # the irony  LODO remove per session randomization...
     srand(session['rand_seed'])
