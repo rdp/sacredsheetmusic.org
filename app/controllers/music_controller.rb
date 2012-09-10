@@ -412,22 +412,20 @@ class MusicController < StoreController
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
   end
 
-  def warmup_cache_in_other_thread
-    Thread.new { Dir[RAILS_ROOT + '/public/cache/*'].each{|f| File.read(f) }} # warm up thread LOL
-  end 
+#  def warmup_cache_in_other_thread
+#    Thread.new { Dir[RAILS_ROOT + '/public/cache/*'].each{|f| File.read(f) }} # warm up thread LOL
+#  end 
 
   def all_no_cache
     if current_count_including_us < 2
       Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
       # otherwise the request just gets handled by this process again. 
-      warmup_cache_in_other_thread
       start = Time.now
       while((Time.now - start) < 5 && current_count_including_us < 2)
         sleep 0.1
       end
       logger.info "bumped it to #{current_count_including_us}"
     else
-      warmup_cache_in_other_thread
       logger.info "already high enough #{current_count_including_us}"
     end
     #@no_individ_cache = true # LODO remove...
