@@ -413,13 +413,14 @@ class MusicController < StoreController
   end
 
   def all_no_cache
+    Thread.new { Dir[RAILS_ROOT + '/public/cache/*'].each{|f| File.read(f) }} # warm up thread LOL
     if current_count_including_us < 2
       Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
+      # otherwise the request just gets handled by this process again. 
       start = Time.now
       while((Time.now - start) < 5 && current_count_including_us < 2)
         sleep 0.1
       end
-      # otherwise the request just gets processed by this process again. 
       logger.info "bumped it to #{current_count_including_us}"
     else
       logger.info "already high enough #{current_count_including_us}"
