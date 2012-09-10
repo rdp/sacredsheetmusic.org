@@ -174,20 +174,15 @@ class Product < Item
       end
 
       for composer_tag in self.composer_tags
-        if composer_tag.products.detect{|p| p.tags.detect{|t| t.name =~ /only on this site/i} }
-          if !self.tags.detect{|t| t.name =~ /only on this site/i}
-             problems << "probably needs the only on this site tag, since its composer has others only on this site"
-          end
-        end
         if composer_tag.composer_contact !~ /^http/
-          if !self.tags.detect{|t| t.name =~ /only on this site/i}
-            problems << "probably needs the only on this site tag, since its composer has no web page, or fix the composer tag"
+          if !composer_tag.only_on_this_site
+            problems << "since its composer has no web page, composer probably wants the only_on_this_site attribute"
           end
           # no web page...
         end
       end
 
-      if self.tags.detect{|t| t.name =~ /only on this site/i} && self.original_url.present?
+      if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
          problems << "probably does not want the only on this site tag, since it has an original url"
       end
 
