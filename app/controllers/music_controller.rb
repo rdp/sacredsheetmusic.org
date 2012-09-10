@@ -242,8 +242,10 @@ class MusicController < StoreController
     end
     filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
     if File.file? filename
-     logger.info "rendering early cache..."
+     logger.info "rendering early cache #{cache_name}..."
      render :text => File.read(filename) and return true
+    else
+     logger.info "early cache doesn't exist #{cache_name}..."
     end
     false
   end
