@@ -237,8 +237,11 @@ class MusicController < StoreController
 
   #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
-    if  Time.now.wday == 0 # Sunday
+    if Time.now.wday == 0 # Sunday
       cache_name = cache_name + '_sunday'
+    end
+    if logged_in_user?
+      cache_name = cache_name + '_admin'
     end
     filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
     if File.file? filename
@@ -249,6 +252,19 @@ class MusicController < StoreController
     end
     false
   end
+
+  def render_and_cache rhtml_name, cache_name
+    if Time.now.wday == 0 # Sunday
+      cache_name = cache_name + '_sunday'
+    end
+    if logged_in_user?
+      cache_name = cache_name + '_admin'
+    end
+    text = render_to_string rhtml_name
+    File.write(RAILS_ROOT+"/public/cache/#{cache_name}.html", text)
+    render :text => text 
+  end
+
 
   # Shows products by tag or tags.
   # Tags are passed in as id #'s separated by commas.
@@ -318,15 +334,6 @@ class MusicController < StoreController
     else
       render 'index.rhtml' # render every time...
     end
-  end
-
-  def render_and_cache rhtml_name, cache_name
-    if Time.now.wday == 0 # Sunday
-      cache_name = cache_name + '_sunday'
-    end
-    text = render_to_string rhtml_name
-    File.write(RAILS_ROOT+"/public/cache/#{cache_name}.html", text)
-    render :text => text 
   end
 
   def randomize all_products
