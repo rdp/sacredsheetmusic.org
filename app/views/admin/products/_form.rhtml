@@ -246,7 +246,7 @@
 </script>
   		<p>
   			<%= make_label('Date available') %>
-  			<%= date_select 'product', 'date_available', {:order => [:month, :day, :year], :end_year => Time.now.year + 100, :start_year => Time.now.year}   %>
+  			<%= date_select 'product', 'date_available', {:order => [:month, :day, :year], :end_year => Time.now.year + 100, :start_year => 2010}   %>
   		</p>
 		<div class="float">
 			<%= make_label('Product Code (auto-filled)') %>

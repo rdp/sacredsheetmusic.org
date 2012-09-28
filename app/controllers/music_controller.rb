@@ -402,30 +402,29 @@ class MusicController < StoreController
     session[:user]
   end
 
-  def download_helper disposition, add_count = true
+  def download_helper disposition, add_count = true # this can get down to 7ms
     file = Download.find(params[:download_id])
-    if file && File.exist?(file.full_filename)
+    if file && File.exist?(filename = file.full_filename)
       if add_count && not_a_bot
        # unfortunately I think mp3's get downloaded via browser sometimes (via qt) on page view
        # so I guess this'll be half and half still...
-       file.update_attribute(:count, file.count + 1) # waaay faster than file.save gah
+       file.update_attribute(:count, file.count + 1) # waaay faster than file.save gah, could use update_attributes here?
       end
       args = {:disposition => disposition}
       # allow for mp3 style download to not be type pdf
-      # TODO this doesn't actually inline anything else...but at least it wurx
-      filename = file.full_filename
+      # LODO this doesn't actually inline anything else besides pdf...but at least it wurx
       if filename =~ /\.pdf$/
         args[:type] = 'application/pdf'
       elsif filename =~ /\.(mid|midi|mp3|wav)/
         args[:type] = "audio/#{$1}"
       end
-      send_file(file.full_filename, args)
+      send_file(filename, args)
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
   end
 
-  def current_count_including_us
+  def current_process_count_including_us
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
   end
 
@@ -434,16 +433,16 @@ class MusicController < StoreController
 #  end 
 
   def all_no_cache
-    if current_count_including_us < 2
+    if current_process_count_including_us < 2
       Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
       # otherwise the request just gets handled by this process again. 
       start = Time.now
-      while((Time.now - start) < 5 && current_count_including_us < 2)
+      while((Time.now - start) < 5 && current_process_count_including_us < 2)
         sleep 0.1
       end
-      logger.info "bumped it to #{current_count_including_us}"
+      logger.info "bumped it to #{current_process_count_including_us}"
     else
-      logger.info "already high enough #{current_count_including_us}"
+      logger.info "already high enough #{current_process_count_including_us}"
     end
     #@no_individ_cache = true # LODO remove...
     #index # reads them all

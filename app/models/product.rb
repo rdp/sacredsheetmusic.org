@@ -298,7 +298,9 @@ class Product < Item
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
-            problems << "might need a child tag beneath #{tag.name}, or for that tag to be removed possibly"
+            if tag.name !~ /original/i
+              problems << "might need a child tag beneath #{tag.name}, or for that tag to be removed possibly"
+            end
           end
         end
       end

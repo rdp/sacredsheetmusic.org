@@ -41,20 +41,8 @@ class Admin::ProductsController < Admin::BaseController
    @@density = to_this
   end
 
-  def fix_remove_piano_tag
-    raise 'no id?' unless id = params[:id]
-    product = Product.find(id)
-    raise unless product
-    init = product.tags.size
-    product.tags = product.tags.reject{|t| t.name =~ /piano/i || t.name == "Instrumental"}
-    now = product.tags.size
-    product.clear_my_cache
-    flash[:notice] = "removed #{init} -> #{now} tags"
-    redirect_to :action => :edit, :id => params[:id]
-  end
-
-  # fix up any previously broken images from pdf's
-  def regenerate
+  # fix up any previously ugly images from pdf's
+  def regenerate # images
     raise 'no id?' unless id = params[:id]
     regenerate_internal params[:id]
     flash[:notice] = "regenerated images..."
@@ -108,6 +96,7 @@ class Admin::ProductsController < Admin::BaseController
       @title = "Editing Product"
       @product = Product.find(params[:id])
       old_tag_ids = @product.tag_ids # for warnings later
+      logger.info "product #{params[:id]} started as #{@product.date_available}"
     else
       @new_product = true
       @title = "New Product" # HTML page title, not product's title
@@ -251,12 +240,12 @@ class Admin::ProductsController < Admin::BaseController
         end
         @product.reload # it has new tags now
 
-         if params[:product][:tag_ids]
-           desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
-           if old_tag_ids && (old_tag_ids.sort == @product.tag_ids.sort) && (desired_tags != old_tag_ids.sort)
-             flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
-           end
-         end
+        if params[:product][:tag_ids]
+          desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
+          if old_tag_ids && (old_tag_ids.sort == @product.tag_ids.sort) && (desired_tags != old_tag_ids.sort)
+            flash[:notice] += "warning--you cannot remove a tag from something tagged with a hymn easily, have roger do it"
+          end
+        end
 
       end
  
@@ -274,6 +263,7 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
+      logger.info "ended as #{@product.date_available}"
       if should_render
         redirect_to :action => 'edit', :id => @product.id
       end
