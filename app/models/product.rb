@@ -252,6 +252,13 @@ class Product < Item
         end
       end
       
+      for product in Product.find_all_by_name(self.name)
+        next if product.id == self.id
+        if product.tags.map(&:id).sort == self.tags.map(&:id).sort
+          problems << "this song is possibly a duplicate of song id #{product.id}"
+        end
+      end
+      
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/i 
         problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok
       end
