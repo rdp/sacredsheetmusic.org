@@ -261,7 +261,9 @@ class MusicController < StoreController
       cache_name = cache_name + '_admin'
     end
     text = render_to_string rhtml_name
-    File.write(RAILS_ROOT+"/public/cache/#{cache_name}.html", text)
+    cache_dir = RAILS_ROOT+"/public/cache"
+    Dir.mkdir cache_dir unless File.directory?(cache_dir)
+    File.write("#{cache_dir}/#{cache_name}.html", text)
     render :text => text 
   end
 
