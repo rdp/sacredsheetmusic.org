@@ -52,7 +52,7 @@ class Product < Item
    # )
 
   def composer_contact_url 
-    composer_tag.get_composer_contact_url
+    composer_tag.andand.get_composer_contact_url
   end
   
   # my own version :P
@@ -255,7 +255,7 @@ class Product < Item
       for product in Product.find_all_by_name(self.name)
         next if product.id == self.id
         if product.tags.map(&:id).sort == self.tags.map(&:id).sort
-          problems << "this song is possibly a duplicate of song id #{product.id}"
+          problems << "this song is possibly a duplicate of another song--id #{product.id}"
         end
       end
       
