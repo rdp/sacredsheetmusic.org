@@ -278,8 +278,8 @@ class MusicController < StoreController
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
     tag_names = params[:tags] || [] # 
-    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length != 1 # LODO check
     not_a_bot # for logging purposes :P
+    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length != 1 # LODO check
     cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(cache_name)

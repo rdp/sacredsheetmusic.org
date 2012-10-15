@@ -19,7 +19,8 @@ require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 require File.join(File.dirname(__FILE__), '..', 'lib', 'eager_loader')
 
 ::SQLITE3_LOCATION=YAML.load_file(RAILS_ROOT + '/config/database.yml')[RAILS_ENV]['sqlite3_location']
-raise 'need sqlite3_location IN DB' unless SQLITE3_LOCATION.present?
+# unused for now...
+# raise 'need sqlite3_location IN DB' unless SQLITE3_LOCATION.present?
 Rails::Initializer.run do |config|
   # Necessary for us to run legacy engine migrations
   # DO NOT CHANGE THIS
