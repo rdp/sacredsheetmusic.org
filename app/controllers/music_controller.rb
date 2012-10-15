@@ -263,7 +263,9 @@ class MusicController < StoreController
     text = render_to_string rhtml_name
     cache_dir = RAILS_ROOT+"/public/cache"
     Dir.mkdir cache_dir unless File.directory?(cache_dir)
-    File.write("#{cache_dir}/#{cache_name}.html", text)
+    if !flash[:notice].present?
+      File.write("#{cache_dir}/#{cache_name}.html", text)
+    end
     render :text => text 
   end
 
@@ -331,7 +333,7 @@ class MusicController < StoreController
     if @viewing_tags[0].composer_contact.present?
       @composer_tag = @viewing_tags[0]
     end
-    if !session['filter_all_tag_id'].present? && !flash[:notice].present?
+    if !session['filter_all_tag_id'].present?
       render_and_cache('index.rhtml', cache_name)
     else
       render 'index.rhtml' # render every time...
