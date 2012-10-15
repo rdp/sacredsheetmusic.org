@@ -3,11 +3,8 @@
 
 
 <div id="fullContent">
-	<% if true then %>
-                 <h1 style="<%= h1_style %>"><%= @title %> &#9835;</h1>
-	<% else %>
-unused!
-	<% end %>
+
+        <h1 style="<%= h1_style %>"><%= @title %></h1>
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
