@@ -182,8 +182,12 @@ class Product < Item
         end
       end
 
+      if self.original_url.present? && self.composer_tags.detect{|t| t.only_on_this_site}
+        problems << "one of its composers may be marked as only on this site in vain?"
+      end
+
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
-         problems << "probably does not want the only on this site tag, since it has an original url"
+        problems << "may want the only on this site tag, since it lacks an original url"
       end
 
       bad_whitespace_reg = /^\s|\s$/
@@ -239,7 +243,7 @@ class Product < Item
       #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
-        next if topic_tag.name.in? ['SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
+        next if topic_tag.name.in? ['ST', 'SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
         for topic_tag_name in topic_tag.name.split('/')
           topic_tag_name.strip!
           bare_name_reg = Regexp.new(Regexp.escape(topic_tag_name), Regexp::IGNORECASE)
