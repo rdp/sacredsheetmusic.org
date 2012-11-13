@@ -323,7 +323,11 @@ class MusicController < StoreController
     #viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
-    @title = t.is_hymn_tag? ? t.name + " (#{original_size} Free Sheet Music Arrangements)" : t.name + " (Free LDS Sheet Music -- #{original_size} Arrangements)" 
+    if original_size > 0
+      @title = "#{t.name} (#{original_size} Free Arrangements)"
+    else
+      # don't say Topics (0 free arrangements) LOL
+    end
     @products = paginate_and_filter(all_products)
 
     if @viewing_tags[0].bio

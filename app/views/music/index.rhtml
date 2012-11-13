@@ -22,7 +22,8 @@
 
 
         <% if @products.length > 20 %>
-           <div style="padding-bottom: 5px; margin-left: 15px;">Showing <%= @products.length %> songs. 
+           <div style="padding-bottom: 5px; margin-left: 15px;">
+            <!--Showing <%= @products.length %> songs. too redundant... -->
            <% if @viewing_tags %>
                <% if (@viewing_tags[0].children.size > 0) %>
                   You can also get a more precise list by choosing a sub-category, at the left.
@@ -39,7 +40,7 @@
   <%  if @old_global_filter.present?; blank_text = "-show all (#{@total_count_before_filtering})-" %>
     This list currently limited to <b>only</b> songs that include:
 <% else; blank_text = "showing all (#{@products.size})" %>
-    <br/>You can also filter these songs (limit them) by type. Currently:
+    You can also filter these songs (limit them) by type. Currently:
 <% end %>
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
