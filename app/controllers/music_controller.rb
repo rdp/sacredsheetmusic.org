@@ -429,6 +429,8 @@ class MusicController < StoreController
         args[:type] = 'application/pdf'
       elsif filename =~ /\.(mid|midi|mp3|wav)/
         args[:type] = "audio/#{$1}"
+      else
+        logger.info "whoa unknown type from filename? #{filename}" 
       end
       send_file(filename, args)
     else
