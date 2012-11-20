@@ -131,6 +131,10 @@
          <%= "Please report back to us that this particular song has no external link, nor pdf upload!" unless @product.downloads.length > 0 %>
     <% end %>
 
+<% if @product.youtube_video_id.present? %>
+  <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/<%= @product.youtube_video_id %>" frameborder="0">
+<% end %>
+
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
