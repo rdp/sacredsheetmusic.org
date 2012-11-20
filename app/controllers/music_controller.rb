@@ -394,8 +394,14 @@ class MusicController < StoreController
     not_bot = false if ua =~ /yahoo.*slurp/i
     not_bot = false if ua =~ /spider/i # baiduspider
     not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above), various others calling themselves 'bot'
+    not_bot = false if ua =~ /robot/i #  http://help.naver.com/robots/ Yeti
     not_bot = false if ua =~ /crawler/i # alexa crawler etc.
     not_bot = false if ua =~ /webfilter/ # genio crawler
+    not_bot = false if ua =~ /walker/i # webwalker
+    not_bot = false if ua =~ /nutch/i # aghaven/nutch crawler
+    not_bot = false if ua =~ /Chilkat/ # might be a crawler...prolly http://www.forumpostersunion.com/showthread.php?t=4895
+    not_bot = false if ua =~ /search.goo.ne.jp/ # ichiro
+
     if not_bot
       prefix= "not bot:"
     else
