@@ -349,13 +349,17 @@ class MusicController < StoreController
   end
 
   def randomize all_products
-    session['rand_seed'] ||= rand(300000) # the irony  LODO remove per session randomization...
-    srand(session['rand_seed'])
     titles = {} # keep them organized by title.
     # keep them random within title though :P
-    all_products = all_products.sort_by{ rand }.sort_by{|p| titles[p.name] ||= rand }
-    srand # re-enable randomizer
-    all_products
+    all_products.sort_by{ rand }.sort_by{|p| 
+      if p.hymn_tags.length > 0
+        hymn_tag = p.hymn_tags.sort_by{|t| t.name}.first 
+        titles[hymn_tag] ||= rand
+        titles[hymn_tag]
+      else
+        rand # an original, I presume
+      end
+    }
   end
   
   # Downloads a file using the original way
