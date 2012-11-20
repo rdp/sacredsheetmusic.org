@@ -324,7 +324,11 @@ class MusicController < StoreController
     original_size = all_products.size
     t = @viewing_tags[0]
     if original_size > 0
-      @title = "#{t.name} (#{original_size} Free Arrangements)"
+      if t.is_topic_tag?
+        @title = "#{t.name} sheet music (#{original_size} Free Arrangements)"
+      else # arrangement...
+        @title = "#{t.name} (#{original_size} Free Arrangements)"
+      end
     else
       # don't say Topics (0 free arrangements) LOL
     end
