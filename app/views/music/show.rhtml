@@ -92,7 +92,7 @@
            if voicing_tags.length > 0 %>
              Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %><br/><br/>
         <% end %>
-        <div> Related song links: <br/>
+        <div> Related song categories: <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left
@@ -122,7 +122,7 @@
 <br />
 <br />
 <br />
-               The free sheet music for this song can be found on the author's page by <%=link_to('clicking here', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank' )%>.
+               The free sheet music for this song can be found/downloaded from the author's page by <%=link_to('clicking here', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank' )%>.
 <br />
 <br />
 <br />
@@ -132,6 +132,7 @@
     <% end %>
 
 <% if @product.youtube_video_id.present? %>
+  Sheet music playthrough video:
   <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/<%= @product.youtube_video_id %>" frameborder="0">
 <% end %>
 
