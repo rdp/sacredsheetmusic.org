@@ -45,7 +45,7 @@
           <% links = [] %>
           <% if filename_extension == 'pdf'
               links << link_to(
-                'print', # has its own name...
+                'view', # has its own name...
                 :controller => 'music',
                 :action => 'inline_download_file',
                 :params => { :download_id => dl.id, :name => dl.filename}
@@ -115,7 +115,7 @@
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
-             You could also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank')%>
+             You can also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank')%>
 
  for this piece.
            <% else %>
@@ -150,7 +150,7 @@ You can also <i>
                                 },
                                 :class => 'actiony', :target => '_blank'
                         )
-                %></i> this song to your freeldssheetmusic bookmark list.
+                %></i> this song to your freeldssheetmusic bookmark save list.
 <% end %>
 
     <% for hymn_tag in @product.hymn_tags %>
