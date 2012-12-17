@@ -4,7 +4,22 @@
                                                         <%= is_main_tab_active?(tag.id) ? '</span>' : '' %>
                                                     <% if is_main_tab_active?(tag.id) && tag.children.size > 0 %>
                                                       <UL style="margin-top: 5px;">
-                                                      <% for tag2 in tag.children do 
+                                                      <% children_tags = tag.children 
+                                                         if children_tags.length > 50
+                                                           # add the selected child at the top, too, just...to make it sane...I think this won't cause freaky duplicates...because of the 50...hmm...
+                                                           children_tags.each_with_index do |tag2, idx|
+                                                             if is_main_tab_active?(tag2.id)
+                                                               if idx > 15
+                                                                 children_tags.unshift tag2
+                                                               end
+                                                               break # works with loops? whoa!
+                                                             end
+                                                           end
+                                                             
+                                                         end
+
+                                                      %>
+                                                      <% for tag2 in children_tags do 
                                                          next unless tag2.valid_products.size > 0  || tag2.children.size > 0
                                                      %>
                                                         <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag2} %>
