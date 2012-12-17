@@ -243,7 +243,7 @@ class Product < Item
       #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
-        next if topic_tag.name.in? ['ST', 'SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
+        next if topic_tag.name.in? ['Choir', 'ST', 'SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
         for topic_tag_name in topic_tag.name.split('/')
           topic_tag_name.strip!
           bare_name_reg = Regexp.new(Regexp.escape(topic_tag_name), Regexp::IGNORECASE)

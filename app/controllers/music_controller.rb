@@ -506,15 +506,15 @@ class MusicController < StoreController
   end
   
   def search
-    @search_term = params[:search_term] || ''
+    @search_term = params[:q] || ''
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
       logger.debug("no search terms?" + params.inspect)
       redirect_to :action => 'index' and return false
     end
+
     @title = "Search Results for: #{@search_term}"
-    
-    super_search_terms = params[:search_term].split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]; word.downcase == 'oh' ? 'o' : word}.map{|name| name.downcase.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
     super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX paginate within the query itself LOL :)
