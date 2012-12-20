@@ -225,8 +225,8 @@ class Product < Item
         if !self.original_url.start_with?("http")
           problems << "original url should start with http://"
         else
-          if false
-            require 'open-uri'
+          if true
+            require 'open-uri' # like calling out to curl/wget kind of...
             begin
               # doesn't work within BH?
               a = open(self.original_url)
