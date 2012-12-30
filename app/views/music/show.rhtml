@@ -72,7 +72,7 @@
     </ul>
 <% end %> <%# end downloads %>
 	<div style="padding-top:10px;">
-          <%= @product.description.strip_html_tags %>
+          <%= @product.description %>
 	</div>
         <% unless @product.composer_contact_url =~ /lds.org/ %>
           <br/>
