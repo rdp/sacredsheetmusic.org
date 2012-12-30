@@ -137,6 +137,16 @@
 <br/>
 <% end %>
 
+
+    <% for hymn_tag in @product.hymn_tags %>
+     <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
+       Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
+       of "<%= hymn_tag.name %>".
+       <br/>
+     <% else %>
+       <!-- See info about <%=tag_link(hymn_tag)%>. -->
+     <% end %>
+    <% end %>
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
@@ -151,18 +161,8 @@ You can also <i>
                                 },
                                 :class => 'actiony', :target => '_blank'
                         )
-                %></i> this song to your freeldssheetmusic bookmark save list.
+                %></i> this song arrangement to your freeldssheetmusic bookmark <%= link_to('save list', {:action => :wishlist}, :target => '_blank') %>.
 <% end %>
-
-    <% for hymn_tag in @product.hymn_tags %>
-     <br/>
-     <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
-       Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
-       of "<%= hymn_tag.name %>".
-     <% else %>
-       <!-- See info about <%=tag_link(hymn_tag)%>. -->
-     <% end %>
-    <% end %>
    </div>
      <div style="float: left; width: 100%;">
       <% if @default_image %>
