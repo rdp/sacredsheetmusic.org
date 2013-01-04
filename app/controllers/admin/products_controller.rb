@@ -129,8 +129,29 @@ class Admin::ProductsController < Admin::BaseController
         # regenerate doesn't have them...leave the same...
       end
 
-      # Build product images from upload
       image_errors = []
+
+      # add copied url, if requested
+      logger.info "params are #{params}"
+      if params['re_use_url'] 
+        if @product.composer_tag
+          if old_prod = @product.composer_tag.products.detect{|p| p.original_url.present?}
+            @product.original_url = old_prod.original_url
+            @product.save
+          elsif @product.composer_tag.composer_url.present?
+            @product.original_url = @product.composer_tag.composer_url  
+            @product.save
+            image_errors.push("warning, using product's composer generic url, which might be expected...")
+          else
+            image_errors.push("check to re use url and has composer tag but has no songs with url's set and composer's url isn't set either, not setting it!")
+          end
+        else
+          image_errors.push("check to re use url but no composer selected!")
+        end
+      end
+
+
+      # Build product images from upload
       unless params[:image].blank?
         params[:image].each do |i|
           if i[:image_data] && !i[:image_data].blank?
