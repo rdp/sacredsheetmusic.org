@@ -2,10 +2,11 @@
 <% row_class = alternate() %>
 <tr class="<%= row_class %> <%= 'selected' if product.tags.include?(tag)%>">
 	<td>
-		<%= check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag)) if tag.products.count > 0 %>
+	    <%= check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag)) if tag.products.count > 0 %>
 	</td>
 	<td colspan="3">
-		<%=h tag.name %>
+          <%=h tag.name.gsub(',', '') %>
 	</td>
 </tr>
+<!-- now do all of the children recursively -->
 <%= render :partial => 'tag_list_form_single_row', :locals => {:tag => tag, :row_class => row_class, :product => product, :depth => 1} %>

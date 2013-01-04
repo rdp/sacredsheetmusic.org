@@ -8,7 +8,7 @@
 			<%= check_box_tag("product[tag_ids][]", child.id, product.tags.include?(child)) %>
 		</td>
 		<td colspan="<%= @max_depth - depth%>">
-			<%=h child.name %>
+			<%=h child.name.gsub(', ', ' ') %>
 		</td>
 	</tr>
 	<% if child.children.length > 0 %>
