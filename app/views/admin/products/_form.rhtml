@@ -1,4 +1,11 @@
-<%= error_messages_for 'product' %>
+<%= 
+out = error_messages_for 'product'
+if out.present?
+  out += " (if it's a new save, you may need to re-add its tags)"
+end
+out
+
+ %>
 <!-- 
 	PRODUCT AND VARIATIONS ######################################################
 -->
