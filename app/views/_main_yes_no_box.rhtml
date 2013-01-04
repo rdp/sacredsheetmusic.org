@@ -73,9 +73,15 @@
               	
 	
 		  <!-- logo -->
-		  <div style="float:left; padding-top: 15px; padding-left: 5px;">
+		  <div style="float:left; padding-top: 5px; padding-left: 5px;">
 		     <a href="/"><%= image_tag('blue_small.jpg', :alt => @title, :height => 85) %></a>
+
 		  </div>
+                 <!-- message -->
+                  <div style="float:left; width: 300px; padding-left: 10px;">
+                     We will be having a sheet music competition ($) and also composer potluck in early 2013.  <%= link_to "Sign up for more info here.", :controller => :questions, :action => :ask, :init_text => "Send me more info about the sheet music competition and composer potluck once you've got it figured out!" %>
+                  </div>
+
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
 			<form action="/music/search" method="get">
