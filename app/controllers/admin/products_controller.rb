@@ -132,7 +132,6 @@ class Admin::ProductsController < Admin::BaseController
       image_errors = []
 
       # add copied url, if requested
-      logger.info "params are #{params}"
       if params['re_use_url'] 
         if @product.composer_tag
           if old_prod = @product.composer_tag.products.detect{|p| p.original_url.present?}
