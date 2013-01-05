@@ -6,7 +6,8 @@
   </ul>
 
     <%= render :partial => 'form' %>
-    <%# disabled since it doesn't get disabled right with the other button...= submit_tag "Save New Product", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
+    <%# maybe should disable since it doesn't get disabled right when you click the other save button... %>
+    <%= submit_tag "Save New Product", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
 
 </div>
 

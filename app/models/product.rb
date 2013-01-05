@@ -75,15 +75,15 @@ class Product < Item
   # called via a before_save :clean_code
   def clean_code
     if self.code.blank?
-      if self.composer_tag
-        voicing = self.tags.detect{|t| t.is_voicing} 
-        voicing_name = voicing.andand.name || ''
+      if self.composer_tag && (voicing = self.tags.detect{|t| t.is_voicing})
+        voicing_name = voicing.name
+        voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
         self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
       else
-        self.code = self.name.clone
+        raise 'please setup code or tag with voicing and composer' # otherwise it isn't explicit why it failed...return # make them set this up well enough for us :)
       end
     end
-#    self.code.upcase! # too ugly
+#    self.code.upcase! # too ugly!
     self.code.gsub!("'", '')
     self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
     self.code.gsub!(/-{2,}/,'-') # -- => -
@@ -246,11 +246,12 @@ class Product < Item
         next if topic_tag.name.in? ['Choir', 'ST', 'SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
         for topic_tag_name in topic_tag.name.split('/')
           topic_tag_name.strip!
+          next if topic_tag_name.downcase == 'accompaniment' # don't want to match violin/accompaniment with anything that mentions accompaniment
           bare_name_reg = Regexp.new(Regexp.escape(topic_tag_name), Regexp::IGNORECASE)
           name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name) + "\\W", Regexp::IGNORECASE)
           if (self.name =~ bare_name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
-              problems << "might want the #{topic_tag.name} tag, since its name is included in the title or description"
+              problems << "might want the #{topic_tag.name} tag, since its name #{topic_tag_name} is included in the title or description"
             end
           end 
         end
