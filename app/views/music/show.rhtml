@@ -15,7 +15,7 @@
             [dl, filename_extension]
         }
 
-        products_with_extension.sort_by{|dl, ext| ext == 'pdf' ? 'z' : ext}.reverse.each do |dl, filename_extension| %>
+        products_with_extension.sort_by{|dl, ext| ext == 'pdf' ? 0 : 1}.each do |dl, filename_extension| %>
         <li>
           <%= 
             link_name = filename_extension
