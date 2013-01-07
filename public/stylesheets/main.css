@@ -32,10 +32,12 @@ a {
 	text-decoration: none;
 }
 
+a:link { 
+  color: #005A80; 
+  font-weight: normal;
+} 
 
-a:link { color: #005A80; } 
-
-a:visited { color: #4E236B; }
+a:visited { color: #005a80; font-weight: bold;}
 
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;

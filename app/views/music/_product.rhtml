@@ -57,15 +57,16 @@
                 name_to_use = name_to_use.gsub('/', ' / ')
               end
             end
+            extra = ''
             if t.is_composer_tag? && first_composer
-              name_to_use = "By: " + name_to_use
+              extra = 'By: '
               first_composer = false
             end
             if first_topic && t.is_topic_tag?
               name_to_use = "Topics: " + name_to_use
               first_topic=false
             end 
-            tag_link(t, name_to_use)
+            extra + tag_link(t, name_to_use)
            }.join(', ')
         %>
         <% if product.downloads.length == 0 %>
