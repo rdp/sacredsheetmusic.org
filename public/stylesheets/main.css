@@ -31,8 +31,12 @@ a {
 	font-weight: bold;
 	text-decoration: none;
 }
-a:link { color: rgb(0,90,155); }
-/*a:visited {	color: rgb(125,24,195); } too ugly */
+
+
+a:link { color: #005A80; } 
+
+a:visited { color: #4E236B; }
+
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
 	color: #fff !important;
