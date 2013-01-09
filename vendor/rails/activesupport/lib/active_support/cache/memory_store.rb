@@ -1,5 +1,8 @@
 require 'monitor'
 
+
+# my guess is this was copied from rails 3 at some point?
+# since rails 3 has...sizing options, etc.
 module ActiveSupport
   module Cache
     # A cache store implementation which stores everything into memory in the
@@ -15,7 +18,7 @@ module ActiveSupport
     # of the maximum size by removing the least recently used entries.
     #
     # MemoryStore is thread-safe.
-    p Store
+    #
     class MemoryStore < Store
       def initialize(options = nil)
         options ||= {}
@@ -37,8 +40,8 @@ module ActiveSupport
         end
       end
 
-      def cleanup(options = nil)
-        options = merged_options(options)
+      def cleanup(options = {})
+        options = options.dup
         instrument(:cleanup, :size => @data.size) do
           keys = synchronize{ @data.keys }
           keys.each do |key|

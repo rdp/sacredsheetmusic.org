@@ -46,7 +46,6 @@ module ActiveSupport
       when Symbol
         store_class_name = (store == :drb_store ? "DRbStore" : store.to_s.camelize)
         store_class = ActiveSupport::Cache.const_get(store_class_name)
- p store_class
         store_class.new(*parameters)
       when nil
         ActiveSupport::Cache::MemoryStore.new
@@ -232,6 +231,14 @@ module ActiveSupport
         end
       end
 
+   # rails 3.0 ?
+  def merged_options(call_options) # :nodoc:
+          if call_options
+            options.merge(call_options)
+          else
+            options.dup
+          end
+        end
       private
         def expires_in(options)
           expires_in = options && options[:expires_in]

@@ -32,9 +32,10 @@ class Cache < ActiveRecord::Base
     Thread.new {
       list = Cache.find(:all)
       for entry in list
+        # copy them into proc cache 
         Rails.cache.write(entry.hash_key, entry.string_value)
       end
-      Rails.logger.info "warmed it up with #{list.size}" # doesn't output for some reason...odd...
+      Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...
     }
   end
 
