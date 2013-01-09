@@ -42,13 +42,13 @@ module ActiveSupport
 
       def cleanup(options = {})
         options = options.dup
-        instrument(:cleanup, :size => @data.size) do
+        #//instrument(:cleanup, :size => @data.size) do
           keys = synchronize{ @data.keys }
           keys.each do |key|
             entry = @data[key]
             delete_entry(key, options) if entry && entry.expired?
           end
-        end
+        #end
       end
 
       # To ensure entries fit within the specified memory prune the cache by removing the least
@@ -62,7 +62,7 @@ module ActiveSupport
           instrument(:prune, target_size, :from => @cache_size) do
             keys = synchronize{ @key_access.keys.sort{|a,b| @key_access[a].to_f <=> @key_access[b].to_f} }
             keys.each do |key|
-              Rails.logger.info("pruning from internal cache")
+              Rails.logger.info("pruning something from internal cache")
               delete_entry(key, options)
               return if @cache_size <= target_size || (max_time && Time.now - start_time > max_time)
             end
@@ -155,7 +155,8 @@ module ActiveSupport
             @cache_size += entry.size
             @key_access[key] = Time.now.to_f
             @data[key] = entry
-            prune(@max_size * 0.75, @max_prune_time) if @cache_size > @max_size
+            #prune(@max_size * 0.75, @max_prune_time) if @cache_size > @max_size
+            Rails.logger.info("should prune #{@cache_size} > #{@max_size}") if @cache_size > @max_size
             true
           end
         end
