@@ -19,7 +19,7 @@ config.action_view.cache_template_loading            = false
 # config.logger = SyslogLogger.new
 
 # Use a different cache store in production
-config.cache_store = :memory_store, {:size => 100.megabytes}
+config.cache_store = :memory_store, {:size => 150.megabytes}
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"
