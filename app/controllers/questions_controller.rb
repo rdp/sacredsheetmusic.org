@@ -18,8 +18,12 @@ class QuestionsController < ApplicationController
 	def ask
 	  @title = "Contact us"
     	  @question = Question.new
-          @question.long_question = params[:init_text]
-    @snippet = ContentNode.find(:first, :conditions => ["name = ?", params[:content_node_name]]).andand.content || ''
+          @snippet = ContentNode.find(:first, :conditions => ["name = ?", params[:name]]).andand.content || ''
+          if @snippet.present?
+            # pre filled question
+            @question.long_question = "(Please fill in your email address <-----)\nSend me more info about the sheet music competition and composer potluck once you've got the dates!"
+            @title = params[:name]
+          end
 	end
 	
 	def create_faq
