@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
 	  @title = "Contact us"
     	  @question = Question.new
           @question.long_question = params[:init_text]
+    @snippet = ContentNode.find(:first, :conditions => ["name = ?", params[:content_node_name]]).andand.content || ''
 	end
 	
 	def create_faq
