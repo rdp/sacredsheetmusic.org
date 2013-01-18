@@ -99,6 +99,7 @@ module Substruct
     #  :action => 'show'
 
     # Shorter url to show music items by tags
+    #
     #map.connect '/s/*tags', # was replaced! see above...
     #  :controller => 'music',
     #  :action     => 'show_by_tags'
