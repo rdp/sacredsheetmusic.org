@@ -91,12 +91,12 @@ module Substruct
       :controller => 'music',
       :action => 'show'
 
-    map.connect '/music/s/:id', # LODO disable, just here for tags redirect...
-      :controller => 'music',
-      :action => 'show'
-    map.connect '/m/:id', # LODO disable just here for pass through...
-      :controller => 'music',
-      :action => 'show'
+    #map.connect '/music/s/:id', # LODO disable, just here for tags redirect...
+    #  :controller => 'music',
+    #  :action => 'show'
+    #map.connect '/m/:id', # LODO disable just here for pass through...
+    #  :controller => 'music',
+    #  :action => 'show'
 
     # Shorter url to show music items by tags
     #map.connect '/s/*tags', # was replaced! see above...
@@ -118,6 +118,7 @@ module Substruct
       :controller => 'music',
       :action => :index
 
+    # easier logout :)
     map.connect '/logout', :controller => "/accounts", :action=>"logout"
 
     # Install the default route as the lowest priority.
