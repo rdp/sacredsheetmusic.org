@@ -108,7 +108,7 @@ class MusicController < StoreController
  end
 
  def render_404_to_home string
-    flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + string.to_s
+    flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again! " + string.to_s
     redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently
  end
 
