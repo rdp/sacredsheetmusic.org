@@ -107,6 +107,11 @@ class MusicController < StoreController
    true
  end
 
+ def render_404_to_home string
+    flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + string.to_s
+    redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently
+ end
+
  public 
  def show
     id = params[:id]
@@ -126,8 +131,7 @@ class MusicController < StoreController
         if Tag.find_by_name(check_id)
           redirect_to_tag(check_id) and return
         else
-          flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again it may have moved! " + id.to_s
-          redirect_to :action => 'index', :status => 303 and return false # 303 is not found redirect 301 is moved permanently
+          render_404_to_home("unable to find song or tag named #{check_id}") && return
         end
       end
       # never get here...
@@ -217,7 +221,7 @@ class MusicController < StoreController
    else
      flash[:notice] = "Ok, showing *all* results now"
    end
-   render :text => "alert('asdf');" # does nothing [?!]
+   render :text => "alert('xyz');" # does nothing [?!]
   end
 
   def render_home
@@ -279,7 +283,9 @@ class MusicController < StoreController
     # /tag_one/tag_two/tag_three/...
     tag_names = params[:tags] || [] # 
     not_a_bot # for logging purposes :P
-    raise 'multiple tags names not expected?' + tag_names.inspect if tag_names.length != 1 # LODO check
+    if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
+      render_404_to_home("got odd tag input #{tag_names.inspect}") && return
+    end
     cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(cache_name)
