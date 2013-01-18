@@ -35,13 +35,20 @@ class Cache < ActiveRecord::Base
         # copy them into proc cache 
         Rails.cache.write(entry.hash_key, entry.string_value)
       end
+      for file in all_cache_files
+        File.read(file)
+      end
       Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...
     }
   end
 
+  def self.all_cache_files
+    Dir[RAILS_ROOT+"/public/cache/*"]
+  end
+
   def self.clear_html_cache
-    for file in Dir[RAILS_ROOT+"/public/cache/*"]
-      File.delete file # should be safe...
+    for file in all_cache_files
+      File.delete file # should be safe to delete files...
     end
   end
 
