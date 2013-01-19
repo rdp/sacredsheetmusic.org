@@ -8,14 +8,15 @@
       type="image/png" 
       href="/images/note.png" />
 
-	<title><%=
+<title><%=
 		if @title then
                    @title = @title 
 		else
                    @title = @store_name
 		end
                  h(@title) #+ " &#9835;" # ruby weirdness, h infects it?
-		-%></title>
+		-%>
+</title>
 	<%= javascript_include_tag :defaults, :cache => 'default' %>
 
   <%= 
@@ -74,7 +75,7 @@
 	
 		  <!-- logo -->
 		  <div style="float:left; padding-top: 5px; padding-left: 5px;">
-		     <a href="/"><%= image_tag('blue_small.jpg', :alt => @title, :height => 85) %></a>
+		     <a href="/" rel="home"><%= image_tag('blue_small.jpg', :alt => @title, :height => 85) %></a>
 
 		  </div>
                  <!-- message -->
