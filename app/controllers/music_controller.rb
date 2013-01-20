@@ -460,17 +460,17 @@ class MusicController < StoreController
 
   def all_no_cache
     if current_process_count_including_us < 2
-      Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
+      Thread.new { `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
       # otherwise the request just gets handled by this process again. 
       start = Time.now
       while((Time.now - start) < 5 && current_process_count_including_us < 2)
-        sleep 0.1
+        sleep 0.03 # try to let the other one "barely start" but not be done loading its cache, etc.
       end
       logger.info "bumped it to #{current_process_count_including_us}"
     else
       logger.info "already high enough #{current_process_count_including_us}"
     end
-    #@no_individ_cache = true # LODO remove...
+    #@no_individ_cache = true # LODO totally remove...
     #index # reads them all
     render :text => 'ok'
   end
