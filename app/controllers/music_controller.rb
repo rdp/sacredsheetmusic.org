@@ -458,10 +458,6 @@ class MusicController < StoreController
     count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
   end
 
-#  def warmup_cache_in_other_thread
-#    Thread.new { Dir[RAILS_ROOT + '/public/cache/*'].each{|f| File.read(f) }} # warm up thread LOL
-#  end 
-
   def all_no_cache
     if current_process_count_including_us < 2
       Thread.new {  `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline

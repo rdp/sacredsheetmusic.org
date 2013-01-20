@@ -28,18 +28,18 @@ class Cache < ActiveRecord::Base
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
-  def self.warmup_in_other_thread
-    Thread.new {
-      list = Cache.find(:all)
-      for entry in list
-        # copy them into proc cache 
-        Rails.cache.write(entry.hash_key, entry.string_value)
-      end
+  def self.warmup_in_other_thread # kind of other thread...
+    list = Cache.find(:all)
+    for entry in list
+      # copy them into local process cache...
+      Rails.cache.write(entry.hash_key, entry.string_value)
+    end
+    Thread.new { 
       for file in all_cache_files
         File.read(file)
       end
-      Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...
     }
+    Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...
   end
 
   def self.all_cache_files

@@ -40,7 +40,7 @@
   <%  if @old_global_filter.present?; blank_text = "-show all (#{@total_count_before_filtering})-" %>
     This list currently limited to <b>only</b> songs that include:
 <% else; blank_text = "showing all (#{@products.size})" %>
-    You can also filter these songs (limit them) by type. Currently:
+    You could also filter these songs (limit them) by type. Currently:
 <% end %>
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
