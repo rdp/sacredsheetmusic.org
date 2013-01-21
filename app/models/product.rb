@@ -18,6 +18,14 @@ class Product < Item
     }
   end
 
+
+        # Is this product new?
+                 def is_new?
+                       weeks_new = Preference.get_value('product_is_new_week_range')
+                       weeks_new ||= 1
+                       Time.parse(self.date_available.to_s) >= (weeks_new.to_i).weeks.ago
+                end
+
   def composer_tag
    composer_tags[0]
   end

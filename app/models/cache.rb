@@ -28,7 +28,7 @@ class Cache < ActiveRecord::Base
     raise type + ' not in types ' + CACHE_TYPES.inspect unless CACHE_TYPES.contain? type
   end
 
-  def self.warmup_in_other_thread # kind of other thread...called in like init.rb or something
+  def self.warmup_in_other_thread # kind of other thread...called in like config/environment.rb or something
     list = Cache.find(:all)
     for entry in list
       # copy them into local process cache...

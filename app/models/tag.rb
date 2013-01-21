@@ -14,6 +14,12 @@ class Tag
     sum
   end
 
+  def all_products_redirects
+    sum = 0
+    self.products.each{|p| sum += p.redirect_count}
+    sum
+  end
+
   def remove_other_tag_from_all_my_children offending_tag
     self.products.each{|p| p.remove_tag_id offending_tag.id}
   end
