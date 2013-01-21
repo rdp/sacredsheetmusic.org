@@ -36,7 +36,7 @@ class Cache < ActiveRecord::Base
     end
     Thread.new { 
       for file in all_cache_files
-        File.read(file)
+        File.read(file) rescue nil # hope this avoids disappearing files throwing...
       end
     }
     Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...

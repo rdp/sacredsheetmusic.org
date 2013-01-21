@@ -96,7 +96,9 @@ class MusicController < StoreController
    if not_a_bot
      # avoid all after_save procs ...
      Product.increment_counter(:redirect_count, product.id)
-     Product.increment_counter(:view_count, product.id) if inc_view
+     if inc_view
+       Product.increment_counter(:view_count, product.id)
+     end
    end
    redirect_to product.original_url # not permanent redirect code...not sure which is right...
  end 
