@@ -10,7 +10,7 @@ class Admin::ProductsController < Admin::BaseController
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
     end
-    render :text => "spammed #{count} of them"
+    render :text => "spammed #{count} of them #{Time.now}"
   end
 
   def go
