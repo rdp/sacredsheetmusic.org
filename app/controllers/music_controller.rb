@@ -44,11 +44,12 @@ class MusicController < StoreController
       new_hash[key] = params[key]
      end
      product.comments << Comment.new(new_hash)
-     flash[:notice] = 'Comment saved! Thanks!'
-     OrdersMailer.deliver_inquiry(
-       Preference.get_value('mail_username'),
+     flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
+
+     OrdersMailer.deliver_inquiry('Thanks for song',
        new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_tag.andand.composer_contact
       )
+
      product.clear_my_cache
    end
    redirect_to :action => :show, :id => product.code

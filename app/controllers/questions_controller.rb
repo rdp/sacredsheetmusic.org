@@ -50,17 +50,20 @@ class QuestionsController < ApplicationController
           else
 	    begin
               OrdersMailer.deliver_inquiry(
-                params[:question][:email_address],
-                params[:question][:long_question]
+                'Feedback/question from site',
+                params[:question][:long_question],
+                params[:question][:email_address]
               )
               flash[:notice] = "Message sent successfully."
               redirect_to '/' and return
-            rescue
-              flash[:notice] = "There was a problem sending your email please try again"
+            rescue => e
+              flash[:notice] = "There was a problem sending your email please try again #{e}"
   	      ask()
   	      render :action => 'ask' and return
             end
           end
         end
 	
+
+
 end
