@@ -244,6 +244,7 @@ class MusicController < StoreController
 
   #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
+    cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
     if Time.now.wday == 0 # Sunday
       cache_name = cache_name + '_sunday'
     end
@@ -289,14 +290,14 @@ class MusicController < StoreController
     if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
       render_404_to_home("got odd tag input #{tag_names.inspect}") && return
     end
-    cache_name = tag_names[0].gsub('/', '_') # filenames can't have slashes...
+    cache_name = tag_names[0]
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(cache_name)
     end
     # Generate tag ID list from names
     tag_ids_array = Array.new
     tag_names.map!{|name|
-      if name =~ / / # old school name 
+      if name =~ / / # an old school name 
         redirect_to_tag(name) and return
       end
       real_name = name.gsub('_', ' ')# allow for cleaner google links coming in...
@@ -329,7 +330,6 @@ class MusicController < StoreController
       # all_products = all_products.sort_by{|p| p.name} # already sorted by name
     end
 
-    #viewing_tag_names = tag_names.join(" > ")
     original_size = all_products.size
     t = @viewing_tags[0]
     if original_size > 0
