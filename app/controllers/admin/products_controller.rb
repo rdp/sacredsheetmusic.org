@@ -3,6 +3,20 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin
 class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
+  def spam_all_composers
+    count = 0
+    for composer in Tag.find_by_name("composers").children
+      next unless composer.composer_email_if_contacted.present?
+      OrdersMailer.deliver_spam_composer(composer)
+      count += 1
+    end
+    render :text => "spammed #{count} of them"
+  end
+
+  def go
+   render :text => "now try spam_all_composers"
+  end
+
   def list
    # we get here....
     @title = "All Product List"
@@ -297,13 +311,6 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def spam_all_composers
-    for composer in Tag.find_by_name("composers").children
-      next unless composer.composer_email_if_contacted.present?
-      OrdersMailer.deliver_spam_composer(composer)
-    end
-  end
-  
   private
   def download full_url, to_here
     require 'open-uri'
