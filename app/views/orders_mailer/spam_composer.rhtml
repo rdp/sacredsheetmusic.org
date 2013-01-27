@@ -1,25 +1,30 @@
-Warn greetings from my wife and I (Roger and Melissa Pack) the freeldssheetmusic.org team :)
+Warm greetings from my wife and I (Roger and Melissa Pack) the freeldssheetmusic.org team :)
 
 We wanted to thank you for allowing your participation in our website, and for your contribution to LDS music!
 We have received reports of the site getting lots of use, and hope to 
 continue to grow it even more in the future.
-But what we're really writing about today (sorry for the spam) is to advise you that we will be 
-having our own inaugural "Sacred Music for Mormons Sheet Music Competition" in late February,
-and also a "composer potluck" in March, and we'd like to invite everyone to both :)
+But what we're really writing about today (sorry for the spam) is to advise you that 
+we will be having our own inaugural "Sacred Music for Mormons Sheet Music Competition" 
+in late February, and also a "composer potluck" in March, and we'd like to invite everyone to both :)
 
 You can get more precise details here: http://freeldssheetmusic.org/questions/ask?name=sheet-music-competition
 
-We look forward to meeting as many as you as we can :)
+We would love to meet as many as you as we can, but if you can't make it we undestand :)
 
-While we're at it, we thought that maybe yearly we would send out statistics on how many views your songs have received,
-so here they are:
+While we're at it, we thought that (maybe yearly?) we would send out statistics 
+on how many views your songs have received, so here they are:
 
-<%= @composer.name %>
+Composer: <%= @composer.name %>
 total views of songs: <%= @composer.all_products_hits %> 
-total pdf downloads: <%= @composer.all_products_pdf_downloads %>
-total redirs: <%= @composer.all_products_redirects %>
+<% if @composer.all_products_pdf_downloads > 0 %>
+total pdf views/downloads: <%= @composer.all_products_pdf_downloads %>
+<% end %>
+<% if @composer.all_products_redirects > 0 %>
+total redirects from our site to yours: <%= @composer.all_products_redirects %>
+<% end %>
 
 Thanks so much for your time and effort you put into these!
+If you have any feature requests or thought for the site, please don't be afraid to let us know!
 ~Roger and Melissa Pack
 
-We realize even a yearly email may be "too spammy for some of you out there, if it is, do reply and let us know!
+We realize even this yearly email may be "too spammy" for some of you out there, if it is, do reply and let us know!
