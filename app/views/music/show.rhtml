@@ -74,14 +74,14 @@
 	<div style="padding-top:10px;">
           <%= @product.description %>
 	</div>
-        <% unless @product.composer_generic_contact_url =~ /lds.org/ %>
+        <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
-          If you sing/use this song, please contact the composer and <a href="<%= @product.composer_generic_contact_url%>">say thanks</a>!
+          If you sing/use this song, please contact the composer and <a href="<%= url %>">say thanks</a>!
         <% end %>
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.composer_tags %>
              <% if composer_tag.products.count > 1 %>
-               See more from <%= tag_link(composer_tag) %>.
+               See more from/about <%= tag_link(composer_tag) %>.
              <% else %>
                About <%= tag_link(composer_tag, 'the composer') %>.
              <% end %>
