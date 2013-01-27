@@ -6,11 +6,19 @@ class OrdersMailer
   def spam_composer composer_object
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
-    subject("Hello composer!")      
+    @bcc = nil
+    subject "freeldssheetmusic.org update"
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
     from         email_addy_from
+  end
+
+  def setup_defaults
+      @bcc        = Preference.get_value('mail_copy_to').split(',')
+      @from       = Preference.get_value('mail_username')
+      @sent_on    = Time.now
+      @headers    = {}
   end
 
   # called like... deliver_inquiry(...)...I guess... 
