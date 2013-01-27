@@ -6,7 +6,7 @@ class OrdersMailer
   def spam_composer composer_object
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
-    subject("Hello composer")      
+    subject("Hello composer!")      
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted

@@ -59,7 +59,7 @@ class Product < Item
    #   :order => 'items.name ASC', :conditions => conds
    # )
 
-  def composer_contact_url 
+  def composer_generic_contact_url 
     composer_tag.andand.get_composer_contact_url
   end
   
@@ -182,7 +182,7 @@ class Product < Item
       end
 
       for composer_tag in self.composer_tags
-        if composer_tag.composer_contact !~ /^http/
+        if !composer_tag.composer_contact_url.present?
           if !composer_tag.only_on_this_site
             problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute"
           end
@@ -209,8 +209,8 @@ class Product < Item
         if tag.name =~ bad_whitespace_reg
           problems << "tag has beginning or trailing whitespace?" + tag.name
         end
-        if tag.composer_contact.present? && tag.composer_contact =~ bad_whitespace_reg
-          problems << "tag composer contact has beginning or trailing whitespace?" + tag.name
+        if tag.composer_contact_url.present? && tag.composer_contact_url =~ bad_whitespace_reg
+          problems << "tag composer contact url has beginning or trailing whitespace?" + tag.name
         end
 
       end
@@ -278,11 +278,8 @@ class Product < Item
       if !self.tags.detect{|t| t.is_voicing}
         problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
       end
-      if self.composer_tag && self.composer_tag.composer_contact !~ /@/
+      if self.composer_tag && self.composer_tag.composer_contact_url.present?
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
-      end
-      if self.composer_tag && self.composer_tag.composer_url.present? && self.composer_tag.composer_contact !~ /http/
-         problems << "composer tag probably needs to not use an email address for contact info, since they probably have some contact url they could use instead"
       end
       if (count = Product.count(:conditions => {:code => self.code})) != 1
         problems << "probably not a unique product code please update #{count}"
@@ -298,11 +295,27 @@ class Product < Item
       if (piano = self.tags.detect{|t| t.name =~ /piano/i && (t.children.size==0) && t.name !~ /accompaniment/}) && (choir = self.tags.detect{|t| t.name =~ /choir/i})
          problems << "song has BOTH piano #{piano.name} and choir #{choir.name} tags--probably not expected"
       end
-      if self.composer_tag && !self.composer_tag.composer_contact.present?
-         problems << "composer tag associated with this song has not contact info?"
-      elsif self.composer_tag && (self.composer_tag.composer_contact !~ /@/ && !self.composer_tag.composer_contact.start_with?('http'))
-         problems << "composer tag associated with this song might have bad url, should start with http?"
+
+      if composer_tag = self.composer_tag
+
+        if !composer_tag.composer_contact_url.present? && !composer_tag.composer_email_if_contacted.present?
+          problems << "composer tag associated with this song has not contact info?"
+        elsif composer_tag.composer_contact_url.present? && !composer_tag.composer_contact_url.start_with?('http')
+           problems << "composer tag associated with this song might have bad url, should start with http?"
+        elsif composer_tag.composer_url.present? && !composer_tag.composer_url.start_with?('http')
+          problems << "composer_url probably wants to start with http?"
+        end
+
+        if composer_tag.composer_url.present? && !composer_tag.composer_contact_url.present?
+          problems << "composer has a url but not contact url? they probably want one set..."
+        end
+
+        if composer_tag.composer_email_if_contacted.andand.contain?("mailto:")
+          problems << "composer tag email_if_contacted should not contain mailto in it!"
+        end
+        
       end
+
       if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
          unless t.id.in? self.tag_ids
            unless self.description =~ /original/i

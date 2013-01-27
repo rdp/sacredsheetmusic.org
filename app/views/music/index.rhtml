@@ -11,11 +11,12 @@
         <% if @display_bio.present? || @composer_tag%>
            <div style="padding-bottom: 0px;">
               <%= @display_bio.present? ? @display_bio + "<br/>" : "" %>
-              <% if @composer_tag.andand.composer_url.present? %>
-                 Visit <a href="<%= @composer_tag.composer_url %>" target="_blank"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
-             <% end %>
-             <% if @composer_tag.andand.composer_contact =~ /.@./ %>  
-               <a href="mailto:<%= @composer_tag.composer_contact%>">Email <%= @composer_tag.name %></a> if you'd like to send a personal note.
+              <% if @composer_tag %>
+                <% if @composer_tag.composer_url.present? %>
+                   Visit <a href="<%= @composer_tag.composer_url %>" target="_blank"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
+                 <% elsif @composer_tag.composer_email_if_contacted.present? %>
+                   <a href="mailto:<%= @composer_tag.composer_email_if_contacted%>">Email <%= @composer_tag.name %></a> if you'd like to send them a personal note.
+                 <% end %>
              <% end %>
            </div>
         <% end %>

@@ -112,10 +112,13 @@ class Tag
   end
 
   def get_composer_contact_url
-     composer = self
-     cc = composer.composer_contact.present? ? composer.composer_contact : nil
-     cc = "mailto:" + cc if cc =~ /.@./
-     cc
+     if composer_contact_url.present? 
+       composer_contact_url
+     elsif composer_email_if_contacted.present?
+       "mailto:" + composer_email_if_contacted
+     else
+       nil # I'm not a composer tag...
+     end
   end
 
   after_update {

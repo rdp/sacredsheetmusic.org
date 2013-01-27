@@ -296,6 +296,13 @@ class Admin::ProductsController < Admin::BaseController
       end
     end
   end
+
+  def spam_all_composers
+    for composer in Tag.find_by_name("composers").children
+      next unless composer.composer_email_if_contacted.present?
+      OrdersMailer.deliver_spam_composer(composer)
+    end
+  end
   
   private
   def download full_url, to_here
@@ -334,6 +341,7 @@ class Admin::ProductsController < Admin::BaseController
     new_download = {:download_data => fake_upload}
     params[:download].unshift new_download # unshift so we can reuse that one filename...
   end
+
 
 end
 

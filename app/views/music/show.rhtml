@@ -74,9 +74,9 @@
 	<div style="padding-top:10px;">
           <%= @product.description %>
 	</div>
-        <% unless @product.composer_contact_url =~ /lds.org/ %>
+        <% unless @product.composer_generic_contact_url =~ /lds.org/ %>
           <br/>
-          If you sing/use this song, please contact the composer and <a href="<%= @product.composer_contact_url%>">say thanks</a>!
+          If you sing/use this song, please contact the composer and <a href="<%= @product.composer_generic_contact_url%>">say thanks</a>!
         <% end %>
         <div style="padding-top: 10px; padding-bottom: 10px">
         <% for composer_tag in @product.composer_tags %>
@@ -102,7 +102,7 @@
   <%= render :partial => 'comments' %>
   <br />
   <br />
-<% if contact = @product.composer_contact_url %>
+<% if contact = @product.composer_generic_contact_url %>
   Or contact composer <a href="<%= contact%>">directly</a>.
 <% end %>
 <br/>

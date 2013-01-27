@@ -47,7 +47,7 @@ class MusicController < StoreController
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
 
      OrdersMailer.deliver_inquiry('Thanks for song',
-       new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_tag.andand.composer_contact
+       new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_generic_contact_url.to_s
       )
 
      product.clear_my_cache
@@ -111,7 +111,7 @@ class MusicController < StoreController
  end
 
  def render_404_to_home string
-    flash[:notice] = "Sorry, we couldn't find the song you were looking for, we've been under a bit of construction so please search again! " + string.to_s
+    flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string.to_s
     redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently
  end
 
@@ -347,9 +347,10 @@ class MusicController < StoreController
       @display_bio = @viewing_tags[0].bio
     end
 
-    if @viewing_tags[0].composer_contact.present?
+    if @viewing_tags[0].get_composer_contact_url.present?
       @composer_tag = @viewing_tags[0]
     end
+
     if !session['filter_all_tag_id'].present?
       render_and_cache('index.rhtml', cache_name)
     else
