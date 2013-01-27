@@ -21,8 +21,8 @@ class QuestionsController < ApplicationController
          
           content_node = ContentNode.find(:first, :conditions => ["name = ?", params[:name]])
           if content_node
-            @snippet = content_node.content
             # pre fill question text
+            @snippet = content_node.content
             @question.long_question = "(Please fill in your email address <-----)\nSend me more info about the sheet music competition and composer potluck once you've got the dates!"
             @title = content_node.title
           end
@@ -47,20 +47,20 @@ class QuestionsController < ApplicationController
 	    flash[:notice] = "Please enter an email address and message"
 	    ask()
 	    render :action => 'ask' and return
-    else
+          else
 	    begin
-        OrdersMailer.deliver_inquiry(
-          params[:question][:email_address],
-          params[:question][:long_question]
-        )
-        flash[:notice] = "Message sent successfully."
-        redirect_to '/' and return
-      rescue
-        flash[:notice] = "There was a problem sending your email please try again"
-  	    ask()
-  	    render :action => 'ask' and return
-      end
-    end
-  end
+              OrdersMailer.deliver_inquiry(
+                params[:question][:email_address],
+                params[:question][:long_question]
+              )
+              flash[:notice] = "Message sent successfully."
+              redirect_to '/' and return
+            rescue
+              flash[:notice] = "There was a problem sending your email please try again"
+  	      ask()
+  	      render :action => 'ask' and return
+            end
+          end
+        end
 	
 end
