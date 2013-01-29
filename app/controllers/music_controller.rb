@@ -254,6 +254,8 @@ class MusicController < StoreController
     if File.file? filename
      logger.info "rendering early cache #{cache_name}..."
      render :text => File.read(filename) and return true
+     #send_file(filename) # needs more settings...
+     #return true
     else
      logger.info "early cache doesn't exist #{cache_name}..."
     end
@@ -416,6 +418,7 @@ class MusicController < StoreController
     not_bot = false if ua =~ /nutch/i # aghaven/nutch crawler
     not_bot = false if ua =~ /Chilkat/ # might be a crawler...prolly http://www.forumpostersunion.com/showthread.php?t=4895
     not_bot = false if ua =~ /search.goo.ne.jp/ # ichiro
+    not_bot = false if ua =~ /Preview/ # BingPreview Google Web Preview I don't think those are humans...
 
     if not_bot
       prefix= "not bot:"
@@ -453,6 +456,7 @@ class MusicController < StoreController
       else
         logger.info "whoa unknown type from filename? #{filename}" 
       end
+      args[:filename] = File.basename(filename)
       send_file(filename, args)
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
