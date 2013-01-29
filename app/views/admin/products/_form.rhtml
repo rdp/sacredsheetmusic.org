@@ -39,11 +39,12 @@ out
    </div>
 
 
-		<!--div class="float">
-			<%= make_label('Price') %>
+		<div class="float">
+			<%= make_label('Price (enter non zero if nonfree)') %>
 			<%= text_field 'product', 'price', :class => 'textInput numeric', :size => 6, :original_value => @product.price  %>
 		</div>
-		<div class="float">
+
+		<!--div class="float">
 			<%= make_label('Quantity') %>
 			<%= text_field 'product', 'quantity', :class => 'textInput numeric', :size => 6, :disabled => @product.variations.size > 0  %>
 		</div-->

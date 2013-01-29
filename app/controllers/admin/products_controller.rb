@@ -5,8 +5,8 @@ class Admin::ProductsController < Admin::BaseController
 
   def spam_all_composers
     count = 0
-    #composers = Tag.find_by_name("composers").children
-    composers = [Tag.find_by_name "Melissa Pack"]
+    composers = Tag.find_by_name("composers").children
+    #composers = [Tag.find_by_name "Melissa Pack"]
     for composer in composers
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)

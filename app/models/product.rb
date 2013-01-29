@@ -3,7 +3,14 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/product"
 class Product < Item
   has_many :comments, :dependent => :destroy
   has_and_belongs_to_many :tags, :order => :name
-  
+
+  CONDITIONS_AVAILABLE = %Q/
+      CURRENT_DATE() >= DATE(items.date_available)
+      AND PRICE = 0.0
+      AND items.is_discontinued = 0
+      OR (items.is_discontinued = 1 AND (items.quantity > 0 OR items.variation_quantity > 0))
+  /  
+
   # different ranking...
   has_many :images,
     :through => :product_images, :order => "-product_images.rank DESC",
