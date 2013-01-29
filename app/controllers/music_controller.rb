@@ -528,7 +528,9 @@ class MusicController < StoreController
     # let's => let
     # oh => o
     # duets => duet
-    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    # and => ''
+    # (a => a
+    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
     super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX paginate within the query itself LOL :)
