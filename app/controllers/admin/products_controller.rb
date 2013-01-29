@@ -5,11 +5,12 @@ class Admin::ProductsController < Admin::BaseController
 
   def spam_all_composers
     count = 0
-    composers = Tag.find_by_name("composers").children
-    for composer in composers
+    #composers = Tag.find_by_name("composers").children
+    for composer in [Tag.find_by_name "Melissa Pack"]
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
+      sleep 0.5
     end
     render :text => "spammed #{count} of them #{Time.now}"
   end

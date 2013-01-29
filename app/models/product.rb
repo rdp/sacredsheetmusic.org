@@ -27,20 +27,24 @@ class Product < Item
                 end
 
   def composer_tag
-   composer_tags[0]
+    composer_tags[0]
   end
 
   def composer_tags
-   self.tags.select{|t| t.is_composer_tag? }.sort_by{|t| t.name =~ /church pub/i ? 1 : 0 }
+    self.tags.select{|t| t.is_composer_tag? }.sort_by{|t| t.name =~ /church pub/i ? 1 : 0 }
   end
   
   def hymn_tag
-   self.tags.select{|t| t.is_hymn_tag? }[0]
+    self.tags.select{|t| t.is_hymn_tag? }[0]
   end
 
   def original_tag
-   self.tags.select{|t| t.is_original_tag? }[0]
+    self.tags.select{|t| t.is_original_tag? }[0]
   end 
+
+  def voicing_tags
+    self.tags.select{|t| t.is_voicing? }
+  end
 
   def self.find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
                 sql = ''
@@ -83,7 +87,7 @@ class Product < Item
   # called via a before_save :clean_code
   def clean_code
     if self.code.blank?
-      if self.composer_tag && (voicing = self.tags.detect{|t| t.is_voicing})
+      if self.composer_tag && (voicing = self.voicing_tags[0])
         voicing_name = voicing.name
         voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
         self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
@@ -120,12 +124,12 @@ class Product < Item
 
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method <sigh>
-    Product.delete_group_caches
+    #Product.delete_group_caches # ??
   end
 
   after_save {  # singleton!
-    Product.delete_group_caches
-    Cache.clear_html_cache # why not :P
+    #Product.delete_group_caches # ??
+    #Cache.clear_html_cache # why not :P
   } 
 
   def self.delete_group_caches
@@ -275,7 +279,7 @@ class Product < Item
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/i 
         problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok
       end
-      if !self.tags.detect{|t| t.is_voicing}
+      if self.voicing_tags.length == 0
         problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact_url.present?

@@ -6,7 +6,7 @@ class OrdersMailer
   def spam_composer composer_object
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
-    @bcc = nil
+#    @bcc = nil
     subject "freeldssheetmusic.org update"
     # renders a .rhtml file...
     body         :composer => composer_object

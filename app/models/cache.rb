@@ -29,17 +29,18 @@ class Cache < ActiveRecord::Base
   end
 
   def self.warmup_in_other_thread # kind of other thread...called in like config/environment.rb or something
+    start = Time.now
     list = Cache.find(:all)
     for entry in list
       # copy them into local process cache...
       Rails.cache.write(entry.hash_key, entry.string_value)
     end
-    Thread.new { 
-      for file in all_cache_files
-        File.read(file) rescue nil # hope this avoids disappearing files throwing...
-      end
-    }
-    Rails.logger.info "warmed it up [copied to proc cache] with #{list.size}" # doesn't output for some reason...odd...
+#    Thread.new { 
+#      for file in all_cache_files
+#        File.read(file) rescue nil # hope this avoids disappearing files throwing...
+#      end
+#    }
+    Rails.logger.info "warmed it up [copied to proc cache] with #{list.size} in #{Time.now - start}s" # doesn't output for some reason...odd...
   end
 
   def self.all_cache_files

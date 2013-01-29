@@ -149,8 +149,8 @@ class MusicController < StoreController
       # avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
-    if @product.composer_tag
-       @title = "#{@product.name} (by #{@product.composer_tag.name})"
+    if @product.composer_tag && @product.voicing_tags[0]
+       @title = "#{@product.name} (by #{@product.composer_tag.name} -- Voicing: #{@product.voicing_tags.map{|t| t.name}.join(', ')})"
     else
        @title = @product.name
     end
