@@ -534,7 +534,6 @@ class MusicController < StoreController
     super_search_query = (["(items.name like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX paginate within the query itself LOL :)
-    Rails.logger.info "cond are #{Product::CONDITIONS_AVAILABLE}"
     conds = [
         "(items.name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
         "%#{@search_term}%", @search_term # name, code
@@ -546,9 +545,10 @@ class MusicController < StoreController
 
     # search for matching tags, too
     @tags = Tag.find(:all,
-      :order => 'name ASC',
+      :order => 'tags.name ASC',
+      :include => :products,
       :conditions => [
-        "(name LIKE ?)", 
+        "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", 
         "%#{@search_term}%"
       ]
     )

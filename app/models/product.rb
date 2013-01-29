@@ -6,7 +6,7 @@ class Product < Item
 
   CONDITIONS_AVAILABLE = %Q/
       CURRENT_DATE() >= DATE(items.date_available)
-      AND PRICE = 0.0
+      AND items.price = 0.0
       AND items.is_discontinued = 0
       OR (items.is_discontinued = 1 AND (items.quantity > 0 OR items.variation_quantity > 0))
   /  
