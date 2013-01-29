@@ -553,7 +553,7 @@ class MusicController < StoreController
       ]
     )
 
-    good_hits = Product.find(:all, :conditions => ['name like ?',  "%#{@search_term}%"])
+    good_hits = Product.find(:all, :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"])
     
     all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
 
