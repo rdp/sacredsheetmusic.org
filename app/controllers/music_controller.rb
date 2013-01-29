@@ -49,7 +49,6 @@ class MusicController < StoreController
      OrdersMailer.deliver_inquiry('Thanks for song',
        new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_generic_contact_url.to_s
       )
-
      product.clear_my_cache
    end
    redirect_to :action => :show, :id => product.code

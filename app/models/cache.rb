@@ -49,7 +49,7 @@ class Cache < ActiveRecord::Base
 
   def self.clear_html_cache
     for file in all_cache_files
-      File.delete file # should be safe to delete files...
+      File.delete file # not multiple processs safe though...
     end
   end
 
