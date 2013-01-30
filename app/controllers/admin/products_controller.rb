@@ -11,13 +11,23 @@ class Admin::ProductsController < Admin::BaseController
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
-      sleep 0.5
+      sleep 0.3
     end
     render :text => "spammed #{count} of them #{Time.now}"
   end
 
   def go
    render :text => "now try spam_all_composers"
+  end
+
+  def spam_single_composer
+    composer = Tag.find(params[:id]) 
+    if composer
+      OrdersMailer.deliver_spam_composer(composer)
+      render :text => "spammed #{composer.name}"
+    else
+      render :text => "not found #{params}"
+    end
   end
 
   def list
