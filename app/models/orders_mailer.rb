@@ -3,10 +3,21 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/orders_mai
 class OrdersMailer
  
   # called like... deliver_inquiry(...)...I guess... 
+  def composer_stats composer_object
+    email_addy_from=Preference.get_value('mail_username')
+    setup_defaults
+#    @bcc = nil # uncomment if I don't want extra copies to me...
+    subject "freeldssheetmusic.org update"
+    # renders a .rhtml file...
+    body         :composer => composer_object
+    recipients   composer_object.composer_email_if_contacted
+    from         email_addy_from
+  end
+
   def spam_composer composer_object
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
-#    @bcc = nil
+#    @bcc = nil # uncomment if I don't want extra copies to me...
     subject "freeldssheetmusic.org update"
     # renders a .rhtml file...
     body         :composer => composer_object

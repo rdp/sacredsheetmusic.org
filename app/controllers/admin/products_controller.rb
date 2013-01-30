@@ -20,11 +20,11 @@ class Admin::ProductsController < Admin::BaseController
    render :text => "now try spam_all_composers"
   end
 
-  def spam_single_composer
+  def single_composer_stats
     composer = Tag.find(params[:id]) 
     if composer
-      OrdersMailer.deliver_spam_composer(composer)
-      render :text => "spammed #{composer.name}"
+      OrdersMailer.deliver_composer_stats(composer)
+      render :text => "statted #{composer.name}"
     else
       render :text => "not found #{params}"
     end
