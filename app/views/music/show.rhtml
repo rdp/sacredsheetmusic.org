@@ -92,7 +92,7 @@
            if voicing_tags.length > 0 %>
              Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %><br/><br/>
         <% end %>
-        <div> Related song categories: <br/>
+        <div> Related song categories: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left

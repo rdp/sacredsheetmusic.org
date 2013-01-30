@@ -1,3 +1,11 @@
+	<h4>Upload pdf/mp3/other (non images):</h4>
+	<%= 
+		render :partial => '/shared/multiple_upload',
+			:locals => {
+				:name => 'download',
+				:input_size => '30'
+			}
+	%>
 <!-- 
 	DOWNLOADS ######################################################################
 -->
@@ -5,7 +13,7 @@
 <h1>Downloads</h1>
 <div class="padLeft">
 	<p class="info">
-	  These are digital downloads.
+	  These are digital downloads. (song view count <%= @product.view_count %>, song redir count <%= @product.redirect_count %>)
 	  <br/>
 	</p>
 	<% if @product.downloads.length > 0 then %>
@@ -35,13 +43,5 @@
 		This product has no downloads associated with it currently.
 	<% end %>
 	
-	<h4>Upload pdf/mp3/other (non images):</h4>
-	<%= 
-		render :partial => '/shared/multiple_upload',
-			:locals => {
-				:name => 'download',
-				:input_size => '30'
-			}
-	%>
 
 </div>
