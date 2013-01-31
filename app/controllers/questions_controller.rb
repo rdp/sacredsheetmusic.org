@@ -25,6 +25,8 @@ class QuestionsController < ApplicationController
             @snippet = content_node.content
             @question.long_question = "(Please fill in your email address <-----)\nSend me more info about the sheet music competition and composer potluck once you've got the dates!"
             @title = content_node.title
+          elsif params[:pre_fill].present?
+            @question.long_question = params[:pre_fill]
           end
 	end
 	

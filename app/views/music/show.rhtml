@@ -207,6 +207,9 @@ You can also <i>
     This song's pdf has been viewed/downloaded <%= pdf_views %> times.
 <% end %>
 <br/>
+
+Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTIOJNn:)" %> with this song.
+
 <!-- we're just not popular enough yet! Or something!  You can upload your own <a href="/about/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to your site).  -->
 
 <div id="fb-root"></div>
