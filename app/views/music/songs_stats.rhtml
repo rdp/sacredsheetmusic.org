@@ -1,0 +1,13 @@
+<% 
+
+all = Tag.find(:all).select{|t| t.is_hymn_tag?}
+
+mass_sum = 0; all.each{|t| t.products.each{|p| mass_sum += p.view_count}}
+ %>
+<pre>
+
+<% for tag in all %>
+  Name <%= tag.name %>
+  view percent of all views: <%= local_sum = 0; tag.products.each{|p| local_sum += p.view_count}; 100*local_sum/mass_sum.to_f %> 
+
+<% end %>
