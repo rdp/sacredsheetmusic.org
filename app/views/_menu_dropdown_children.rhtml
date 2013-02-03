@@ -4,13 +4,14 @@
                                                         <%= is_main_tab_active?(tag.id) ? '</span>' : '' %>
                                                     <% if is_main_tab_active?(tag.id) && tag.children.size > 0 %>
                                                       <UL style="margin-top: 5px;">
-                                                      <% children_tags = tag.children 
+                                                      <% children_tags = tag.children.map{|t| t} # avoid #delete calls removing the tag itself? what the...rails!
                                                          if children_tags.length > 50
                                                            # add the selected child at the top, too, just...to make it sane...I think this won't cause freaky duplicates...because of the 50...hmm...
                                                            children_tags.each_with_index do |tag2, idx|
                                                              if is_main_tab_active?(tag2.id)
                                                                if idx > 15
-                                                                 children_tags.unshift tag2
+                                                                 children_tags.delete tag2
+                                                                 children_tags.unshift tag2 # move it to just the top
                                                                end
                                                                break # works with loops? whoa!
                                                              end
