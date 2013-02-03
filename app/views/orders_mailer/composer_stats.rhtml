@@ -1,17 +1,16 @@
-Some stats:
+Some stats for songs:
 
 Composer: <%= @composer.name %>
-total views of songs: <%= @composer.all_products_hits %> 
+total views of all songs: <%= @composer.all_products_hits %> 
 <% if @composer.all_products_pdf_downloads > 0 %> total pdf views/downloads: <%= @composer.all_products_pdf_downloads %>
 <% end %>
 <% if @composer.all_products_redirects > 0 %> total redirects from our site to yours: <%= @composer.all_products_redirects %>
 <% end %>
 
-
-Songs:
+stats for individual songs:
 
 <% for song in @composer.products %>
-  <%= song.name %>
-
+  <%= song.name %>, pdf downloads/views <%= song.pdf_download_count %>, views on the site <%= song.view_count %>, redirects to your site (if you have one) <%= song.redirect_count %>
 <% end %>
 
+You can also see global song arrangement stats here: <%= url_for :controller => 'music', :action => :songs_stats, :only_path => false, :host => 'freeldssheetmusic.org' %>
