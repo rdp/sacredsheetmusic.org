@@ -6,8 +6,13 @@ mass_sum = 0; all.each{|t| t.products.each{|p| mass_sum += p.view_count}}
  %>
 <pre>
 
-<% for tag in all %>
-  Name <%= tag.name %>
-  view percent of all views: <%= local_sum = 0; tag.products.each{|p| local_sum += p.view_count}; 100*local_sum/mass_sum.to_f %> 
+List of all songs that have arrangements, and the percentage of total views on the site
+that each gets (alphabetized).  If you want even more detailed information, like
+geography, contact us and we can give you access to our google analytics statistics.
+It's quite fascinating really :)
+
+<% for tag in all.sort_by{|t| t.name} %>
+  Song <%= tag.name %>
+  view percent of all views: <%= local_sum = 0; tag.products.each{|p| local_sum += p.view_count}; percent = 100*local_sum/mass_sum.to_f; "%.02f" % percent %>%
 
 <% end %>
