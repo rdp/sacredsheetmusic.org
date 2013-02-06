@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
           else
 	    begin
               OrdersMailer.deliver_inquiry(
-                'Feedback/question from site',
+                'Feedback/question from global site',
                 params[:question][:long_question],
                 params[:question][:email_address]
               )
