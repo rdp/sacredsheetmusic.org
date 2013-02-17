@@ -236,10 +236,10 @@ class MusicController < StoreController
             )
   end
 
-  def reset
-    expire_page :action => :show_by_tags   
-    render :text => "ok reset 'em"
-  end
+#  def reset
+#    expire_page :action => :show_by_tags   
+#    render :text => "ok reset 'em"
+#  end
 
   #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
@@ -330,7 +330,7 @@ class MusicController < StoreController
     if !@viewing_tags[0].is_composer_tag?#~ /arrangements/i
       all_products = randomize(all_products)
     else
-      # all_products = all_products.sort_by{|p| p.name} # already sorted by name
+      # all_products = all_products.sort_by{|p| p.name} # already sorted by name in sql, above
     end
 
     original_size = all_products.size
@@ -502,10 +502,19 @@ class MusicController < StoreController
         render_and_cache('index.rhtml', 'all_songs') and return
       end
       format.rss do
-        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook uh guess :P
+        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook maybe requested this once?
       end
     end
   end 
+
+  def competition
+    @title = "competition entries..."
+    @products = paginate_and_filter(Product.find(:all,
+      :order => 'rand()',
+      :conditions => ["is_competition=?", 1]
+    ), 50000)
+    render :action => 'index.rhtml' and return
+  end
 
   def most_recently_added
     @title = 'Recently added'
