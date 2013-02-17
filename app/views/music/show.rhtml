@@ -201,7 +201,7 @@ You can also <i>
   
 <% pdf_views = @product.pdf_download_count %>
 
-<div style="padding-left: 15px; float: right;">
+<div style="padding-left: 15px; float: left;">
 <% if @product.view_count > 5 %>
   This song has been viewed <%= @product.view_count  %> times on this site.
 <% end %>
@@ -209,9 +209,8 @@ You can also <i>
 <% if pdf_views > 5 %>
     This song's pdf has been viewed/downloaded <%= pdf_views %> times.
 <% end %>
-<br/>
 
-Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTIOJNn:)" %> with this song.
+<br/>
 
 <!-- we're just not popular enough yet! Or something!  You can upload your own <a href="/about/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to your site).  -->
 
@@ -224,7 +223,18 @@ Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pr
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
+
+<% if @product.is_competition? %>
+  <div style="float;left; font-size:large;">
+  Tell your friends how sweet this song is! Get it some more votes!
+  </div>
+  <div style="float:left;" class="fb-comments" data-href="<%= CGI::escape(request.url) %>" data-width="350" data-num-posts="10"></div>
+<% else %>
+  <div style="float:left;">
+    Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)" %> with this song.
+  </div>
+  <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
+<% end %>
 
 <div style="float:left; margin-right: 35px;">
 <% image_relative_url = @default_image ? @default_image.public_filename : '/images/trebs.gif' %>
