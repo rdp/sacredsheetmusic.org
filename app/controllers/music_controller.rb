@@ -34,12 +34,20 @@ class MusicController < StoreController
   end
 
   def add_comment_competition
+    old_comment = Comment.find_by_product_id_and_created_ip(params['id'], request.remote_ip)
     product, comment = add_comment_helper true
+    # update created_ip
     comment.created_ip = request.remote_ip
     comment.save
-    flash[:notice] = "Vote recorded! You can vote once a day, and also check out our songs from other composers.
+    if old_comment && old_comment.created_at > 1.day.ago
+      flash[:notice] = "looks like you already voted for this song within the last day
+at #{old_comment.created_at} please try again after 24 hours"
+      comment.delete
+    else
+      flash[:notice] = "Vote recorded! You can vote once a day, and also check out our songs from other composers.
  Song now has #{product.total_competition_points} points, thanks!
  Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
+    end
     redirect_to :action => :show, :id => product.code
   end
 
