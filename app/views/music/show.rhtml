@@ -70,10 +70,12 @@
         </li>
       <% end %>
     </ul>
-<% end %> <%# end downloads %>
+<% end %> <!-- end downloads -->
 	<div style="padding-top:10px;">
           <%= @product.description %>
 	</div>
+       <% if !@product.is_competition? %> 
+
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
           If you sing/use this song, please contact the composer to <a href="<%= url %>">say thanks</a>!
@@ -96,26 +98,27 @@
         <% end %>
         <br/>
 
-     <% for hymn_tag in @product.hymn_tags %>
-     <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
-       Also see our <%= "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}" %>
-       of "<%= tag_link(hymn_tag, hymn_tag.name) %>".
-       <br/>
-     <% else %>
-       <!-- See info about <%=tag_link(hymn_tag)%>. -->
-     <% end %>
-    <% end %>
-    <br/>
+        <% for hymn_tag in @product.hymn_tags %>
+          <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
+            Also see our <%= "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}" %>
+            of "<%= tag_link(hymn_tag, hymn_tag.name) %>".
+            <br/>
+          <% else %>
+             <!-- See info about <%=tag_link(hymn_tag)%>. -->
+          <% end %>
+        <% end %>
+        <br/>
 
         <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
-  <%#= render :partial => '/boxed_categories'  # already floats left
-  %> 
-  <br />
-  <hr style="margin-bottom: 10px;"/>
-  <%= render :partial => 'comments' %>
-<br/>
+        <%#= render :partial => '/boxed_categories'
+         %> 
+        <br />
+      <% end %>
+        <hr style="margin-bottom: 10px;"/>
+         <%= render :partial => 'comments' %>
+        <br/>
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
@@ -146,7 +149,6 @@
   <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/<%= @product.youtube_video_id %>" frameborder="0"></iframe>
 <br/>
 <% end %>
-
 
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
