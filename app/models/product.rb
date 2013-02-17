@@ -149,7 +149,11 @@ class Product < Item
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
      true
    else
-     false
+     if self.is_competition? # everything in the competition deserves a star :)
+       true
+     else
+       false
+     end
    end
   end
 
