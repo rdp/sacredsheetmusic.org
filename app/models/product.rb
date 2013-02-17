@@ -145,6 +145,10 @@ class Product < Item
     Cache.delete_by_type('tags') # if date_available has changed, we're changed here to...
   end
 
+  def total_competition_points
+    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition?}.map(&:overall_rating).sum
+  end
+
   def is_five_star?
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
      true

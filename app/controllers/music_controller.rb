@@ -1,7 +1,7 @@
 class MusicController < StoreController
  @@per_page = 11116
 
- skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
+ skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search, :add_comment_competition]
 
   def session_object
     @_session_object ||= Session.find_or_create_by_sessid(request.session_options[:id]) # used for session_object method...
@@ -33,12 +33,20 @@ class MusicController < StoreController
     render :text => '' # render nothing...
   end
 
-  def add_comment
-    product, comment = add_comment_helper
+  def add_comment_competition
+    product, comment = add_comment_helper true
+    comment.created_ip = request.remote_ip
+    comment.save
+    flash[:notice] = "Vote saved! You can vote once a day, and also check out our songs from other composers. Song now has #{product.total_competition_points} points thanks! #{comment.created_ip}"
     redirect_to :action => :show, :id => product.code
   end
 
-  def add_comment_helper
+  def add_comment
+    product, comment = add_comment_helper false
+    redirect_to :action => :show, :id => product.code
+  end
+
+  def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
    if (params['recaptcha'] || '').downcase != 'monday'
      flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
@@ -49,6 +57,7 @@ class MusicController < StoreController
      for key in [:id, :comment, :user_name, :user_email, :user_url, :overall_rating, :difficulty_rating]
       new_hash[key] = params[key]
      end
+     new_hash[:is_competition] = is_competition
      comment = Comment.new(new_hash)
      product.comments << comment
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'

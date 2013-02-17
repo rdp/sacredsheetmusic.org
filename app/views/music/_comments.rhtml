@@ -1,11 +1,31 @@
 <% if @product.is_competition? %>
   Vote for this piece!
-<% else %>
-<button onclick="$('comments').toggle();">
-Add a comment/rating&nbsp;</button> of your own for this piece.
-<% end %>
+<form action="/music/add_comment_competition" method="post">
+  Rate this song, out of 5 stars:
+  <select name="overall_rating">
+  <option value="-1">choose how many stars</option>
+  <option value="5">5 stars</option>
+  <option value="4">4 stars</option>
+  <option value="3">3 stars</option>
+  <option value="2">2 stars</option>
+  <option value="1">1 star</option>
+  <option value="-1">none (I'm just leaving a review)</option>
+  </select>
+  Review (optional, only sent to composer):<br/>
+  <textarea name="comment" cols="40" rows="5"></textarea><br/>
+  <input name="id" type="hidden" value="<%= @product.id %>"/>
+  <br/>
+      Type what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
+      <input name="commit" type="submit" value="Cast your Vote!" style="width:200px;" />
+</form>
 
-  <div id="comments" style="<%= @product.is_competition? ? "" : "display:none" %>;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
+
+<% else %>
+
+  <button onclick="$('comments').toggle();">
+  Add a comment/rating&nbsp;</button> of your own for this piece.
+
+  <div id="comments" style="display:none;">
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] public comment about this piece, or ideas on how to perform it, etc.:<br/>
       Your name: <input name="user_name" type="text" value="" /> <br/>
@@ -24,10 +44,12 @@ Add a comment/rating&nbsp;</button> of your own for this piece.
   <option value="1">1 star</option>
   </select>
   <br/>
-      Input what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
+      Type what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
       <input name="commit" type="submit" value="Add my comment!" />
-    </form>
+  </form>
   </div>
+
+<% end %>
 
 <% if @product.comments.length > 0 %>
     <div>
@@ -46,6 +68,6 @@ Add a comment/rating&nbsp;</button> of your own for this piece.
 
     </div>
 <% else %>
-  No user comments/ratings for this song yet. Leave yours!
+  No user comments/ratings/votes for this song yet. Leave yours!
 <% end %>
 
