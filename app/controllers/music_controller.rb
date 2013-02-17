@@ -33,26 +33,33 @@ class MusicController < StoreController
     render :text => '' # render nothing...
   end
 
- def add_comment
-  product = Product.find(params['id'])
+  def add_comment
+    product, comment = add_comment_helper
+    redirect_to :action => :show, :id => product.code
+  end
+
+  def add_comment_helper
+   product = Product.find(params['id']) # don't handle 404 LOL
    if (params['recaptcha'] || '').downcase != 'monday'
-    flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
+     flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
+     return false
    else
      new_hash = {}
      # extract the ones we care about
      for key in [:id, :comment, :user_name, :user_email, :user_url, :overall_rating, :difficulty_rating]
       new_hash[key] = params[key]
      end
-     product.comments << Comment.new(new_hash)
+     comment = Comment.new(new_hash)
+     product.comments << comment
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
 
-     OrdersMailer.deliver_inquiry('Thanks for song',
+     OrdersMailer.deliver_inquiry('Thanks for song or vote',
        new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_generic_contact_url.to_s
       )
      product.clear_my_cache
    end
-   redirect_to :action => :show, :id => product.code
- end
+   [product, comment]
+  end
 
  def product_matches p, parent_tag_groups
   # it must match one member of each group
