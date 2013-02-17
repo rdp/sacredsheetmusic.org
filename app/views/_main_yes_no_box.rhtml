@@ -36,11 +36,12 @@
   <%=
     stylesheet_link_tag('main')
   %>
-	<%= yield :header %>
+
+  <%= yield :header %>
 
 <% unless session[:user] %>
-<!-- google analytics -->
-<script type="text/javascript">
+  <!-- google analytics -->
+  <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-4531218-4']);
@@ -52,8 +53,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script>
-
+  </script>
 <% end %>
 
 </head>
@@ -76,9 +76,10 @@
 		  <!-- logo -->
 		  <div style="float:left; padding-top: 5px; padding-left: 5px;">
 		     <a href="/" rel="home"><%= image_tag('blue_small.jpg', :alt => 'home', :height => 85) %></a>
-
+                     <br/>
+                     <span style="font-size:small;">Over 2500 free LDS/Christian arrangements.</span>
 		  </div>
-                 <!-- message -->
+                 <!-- middle message -->
                   <div style="float:left; width: 300px; padding-left: 10px;">
                      <%= link_to image_tag('advert.potluck.png', :width => '325px'), :controller => :questions, :action => :ask, :name => 'sheet-music-competition' %>
                   </div>
