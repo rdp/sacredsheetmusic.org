@@ -40,11 +40,11 @@ class MusicController < StoreController
     comment.created_ip = request.remote_ip
     comment.save
     if old_comment && old_comment.created_at > 1.day.ago
-      flash[:notice] = "looks like you already voted for this song within the last day
+      flash[:notice] = "Looks like you already voted for this song within the last day
 at #{old_comment.created_at} please try again after 24 hours"
       comment.delete
     else
-      flash[:notice] = "Vote recorded! You can vote once a day, and also check out our songs from other composers.
+      flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
  Song now has #{product.total_competition_points} points, thanks!
  Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
     end
