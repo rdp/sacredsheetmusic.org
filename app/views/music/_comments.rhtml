@@ -1,25 +1,11 @@
-<% if @product.comments.length > 0 %>
-    <div>
-    Comments about this piece:
-    <% for c in @product.comments %>
-      <p>
-      From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
-      <br/>
-       <% if c.overall_rating > -1 %>
-         <%= c.overall_rating %> stars.
-       <% end %>
-      </p>
-    <% end %>
-
-    </div>
+<% if @product.is_competition? %>
+  Vote for this piece!
 <% else %>
-  No user comments yet.
+<button onclick="$('comments').toggle();">
+Add a comment/rating&nbsp;</button> of your own for this piece.
 <% end %>
 
-<br />
-<button onclick="$('comments').toggle();">Add a comment/rating&nbsp;</button> of your own for this piece.
-
-  <div id="comments" style="display:none;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
+  <div id="comments" style="<%= @product.is_competition? ? "" : "display:none" %>;  border-style:dotted; border-width:1px; border-color: #aaaaaa; padding: 5px;">
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] public comment about this piece, or ideas on how to perform it, etc.:<br/>
       Your name: <input name="user_name" type="text" value="" /> <br/>
@@ -42,3 +28,24 @@
       <input name="commit" type="submit" value="Add my comment!" />
     </form>
   </div>
+
+<% if @product.comments.length > 0 %>
+    <div>
+    Comments about this piece:
+    <% for c in @product.comments %>
+      <br/>
+      <% if !c.is_competition? %>
+        From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
+        <br/>
+      <% end%>
+       <% if c.overall_rating > -1 %>
+         <%= c.overall_rating %> stars.
+       <% end %>
+      </p>
+    <% end %>
+
+    </div>
+<% else %>
+  No user comments/ratings for this song yet. Leave yours!
+<% end %>
+
