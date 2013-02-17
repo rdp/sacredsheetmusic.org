@@ -2,7 +2,7 @@
   Vote for this piece!
 <form action="/music/add_comment_competition" method="post">
   Rate this song, out of 5 stars:
-  <select name="overall_rating">
+  <select name="overall_rating" style="width:200px;">
   <option value="-1">choose how many stars</option>
   <option value="5">5 stars</option>
   <option value="4">4 stars</option>
@@ -12,7 +12,7 @@
   <option value="-1">none (I'm just leaving a review)</option>
   </select>
   Review (optional, only sent to composer):<br/>
-  <textarea name="comment" cols="40" rows="5"></textarea><br/>
+  <textarea name="comment" cols="28" rows="5"></textarea><br/>
   <input name="id" type="hidden" value="<%= @product.id %>"/>
   <br/>
       Type what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
@@ -32,7 +32,7 @@
       Email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
       Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
       Comment:<br/>
-      <textarea name="comment" cols="40" rows="5"></textarea><br/>
+      <textarea name="comment" cols="28" rows="5"></textarea><br/>
       <input name="id" type="hidden" value="<%= @product.id %>"/>
       Rate this song, out of 5 stars (optional):
   <select name="overall_rating">
@@ -52,8 +52,8 @@
 <% end %>
 
 <% if @product.comments.length > 0 %>
-    <div>
-    Comments about this piece:
+    <br/>
+    <%= @product.is_competition? ? "Votes" : "Comments" %> for this piece:
     <% for c in @product.comments %>
       <br/>
       <% if !c.is_competition? %>
@@ -65,8 +65,6 @@
        <% end %>
       </p>
     <% end %>
-
-    </div>
 <% else %>
   No user comments/ratings/votes for this song yet. Leave yours!
 <% end %>
