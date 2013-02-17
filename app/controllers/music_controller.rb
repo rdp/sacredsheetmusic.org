@@ -37,7 +37,7 @@ class MusicController < StoreController
     product, comment = add_comment_helper true
     comment.created_ip = request.remote_ip
     comment.save
-    flash[:notice] = "Vote saved! You can vote once a day, and also check out our songs from other composers. Song now has #{product.total_competition_points} points thanks! #{comment.created_ip}"
+    flash[:notice] = "Vote saved! You can vote once a day, and also check out our songs from other composers. Song now has #{product.total_competition_points} points thanks!"
     redirect_to :action => :show, :id => product.code
   end
 
