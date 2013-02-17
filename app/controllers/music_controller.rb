@@ -4,7 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search]
 
   def session_object
-    @_session_object ||= Session.find_or_create_by_sessid(request.session_options[:id])
+    @_session_object ||= Session.find_or_create_by_sessid(request.session_options[:id]) # used for session_object method...
   end
 
    # Wishlist items
@@ -509,11 +509,12 @@ class MusicController < StoreController
 
   def competition
     @title = "competition entries..."
+    # request.session_options[:id] is like "abcdefrandomrandomrandom"
     @products = paginate_and_filter(Product.find(:all,
-      :order => 'rand()',
-      :conditions => ["is_competition=?", 1]
+      :order => "rand(#{request.session_options[:id].hash})", # stable, but just for them :)
+      :conditions => ["is_competition=?", true]
     ), 50000)
-    render :action => 'index.rhtml' and return
+    render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
   def most_recently_added
