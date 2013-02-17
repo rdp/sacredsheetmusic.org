@@ -76,9 +76,16 @@
 	</div>
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
-          If you sing/use this song, please contact the composer and <a href="<%= url %>">say thanks</a>!
+          If you sing/use this song, please contact the composer to <a href="<%= url %>">say thanks</a>!
         <% end %>
-        <div style="padding-top: 10px; padding-bottom: 10px">
+        <br/>
+        <br/>
+        <% voicing_tags = @product.linkable_tags(nil).select{|t| t.is_voicing}
+           if voicing_tags.length > 0 %>
+             Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %>
+           <br/><br/>
+        <% end %>
+
         <% for composer_tag in @product.composer_tags %>
              <% if composer_tag.products.count > 1 %>
                See more from/about <%= tag_link(composer_tag) %>.
@@ -87,12 +94,20 @@
              <% end %>
              <br />
         <% end %>
-        </div>
-        <% voicing_tags = @product.linkable_tags(nil).select{|t| t.is_voicing}
-           if voicing_tags.length > 0 %>
-             Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %><br/><br/>
-        <% end %>
-        <div> Related song categories: <%= 'admin list (all):' if session[:user] %> <br/>
+        <br/>
+
+     <% for hymn_tag in @product.hymn_tags %>
+     <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
+       Also see our <%= "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}" %>
+       of "<%= tag_link(hymn_tag, hymn_tag.name) %>".
+       <br/>
+     <% else %>
+       <!-- See info about <%=tag_link(hymn_tag)%>. -->
+     <% end %>
+    <% end %>
+    <br/>
+
+        <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
   <%#= render :partial => '/boxed_categories'  # already floats left
@@ -138,15 +153,6 @@
 <% end %>
 
 
-    <% for hymn_tag in @product.hymn_tags %>
-     <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
-       Also see our <%= tag_link(hymn_tag, "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}") %>
-       of "<%= hymn_tag.name %>".
-       <br/>
-     <% else %>
-       <!-- See info about <%=tag_link(hymn_tag)%>. -->
-     <% end %>
-    <% end %>
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
