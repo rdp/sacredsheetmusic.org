@@ -2,7 +2,12 @@
 <% row_class = alternate() %>
 <tr class="<%= row_class %> <%= 'selected' if product.tags.include?(tag)%>">
 	<td>
-	    <%= check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag)) if tag.products.count > 0 %>
+	    <%= 
+ if tag.children.size > 0 || tag.products.count > 0
+  check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag))
+end
+
+ %>
 	</td>
 	<td colspan="3">
           <%=h tag.name.gsub(',', '') %>
