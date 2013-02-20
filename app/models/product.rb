@@ -150,14 +150,13 @@ class Product < Item
   end
 
   def is_five_star?
+   if self.is_competition?
+     return false # all non starred for now
+   end
    if self.comments.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
      true
    else
-     if self.is_competition? # everything in the competition deserves a star :)
-       true
-     else
-       false
-     end
+     false
    end
   end
 

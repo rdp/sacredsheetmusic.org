@@ -540,6 +540,7 @@ at #{old_comment.created_at} please try again after 24 hours"
       :order => "rand(#{request.session_options[:id].hash})", # stable, but just for them :)
       :conditions => ["is_competition=?", true]
     ), 50000)
+    @was_filtered_able = false
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
