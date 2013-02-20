@@ -1,10 +1,9 @@
 <% h1_style = (!@do_not_paginate && will_paginate(@products)) ? "float: left; margin: 0px;": "" # hacky kludgey...
 %>
 
-
 <div id="fullContent">
 
-        <h1 style="<%= h1_style %>"><%= @title %></h1>
+        <h1 style="<%= h1_style %>"><%= @header || @title %></h1>
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 

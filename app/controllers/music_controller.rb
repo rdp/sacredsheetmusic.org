@@ -535,13 +535,15 @@ at #{old_comment.created_at} please try again after 24 hours"
   end 
 
   def competition
-    @title = "Welcome to the inaugural<br/>Sacred Music for Mormons Sheet Music Competition!"
+    @title = "Sheet Music Competition!"
+    @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
     # request.session_options[:id] is like "abcdefrandomrandomrandom"
     @products = paginate_and_filter(Product.find(:all,
       :order => "rand(#{request.session_options[:id].hash})", # stable, but random just for them :)
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
+    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback.<br>Feel free to daily vote for as many songs as you'd like!"
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
