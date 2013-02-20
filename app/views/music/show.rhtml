@@ -1,3 +1,13 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <% @two_column_layout = true %>
 <div style="float: left; width: 18%;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
@@ -118,7 +128,14 @@
       <% end %>
         <hr style="margin-bottom: 10px;"/>
          <%= render :partial => 'comments' %>
-        <br/>
+        <hr/>
+<% if @product.is_competition? %>
+  <div style="float;left;">
+  Tell your friends to vote for this song!
+  </div>
+  <div style="float:left;" class="fb-comments" data-href="<%= CGI::escape(request.url) %>" data-width="180" data-num-posts="10"></div>
+<% end %>
+
 </div> <!-- end float left -->
 
 <div style="float: right; width: 82%;">
@@ -214,27 +231,10 @@ You can also <i>
 
 <!-- we're just not popular enough yet! Or something!  You can upload your own <a href="/about/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to your site).  -->
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-<% if @product.is_competition? %>
-  <div style="float;left; font-size:large;">
-  Tell your friends how sweet this song is! Get it some more votes!
-  </div>
-  <div style="float:left;" class="fb-comments" data-href="<%= CGI::escape(request.url) %>" data-width="350" data-num-posts="10"></div>
-<% else %>
   <div style="float:left;">
     Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)" %> with this song.
   </div>
   <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
-<% end %>
 
 <div style="float:left; margin-right: 35px;">
 <% image_relative_url = @default_image ? @default_image.public_filename : '/images/trebs.gif' %>

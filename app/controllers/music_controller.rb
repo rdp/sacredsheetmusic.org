@@ -53,7 +53,7 @@ at please try again later."
       comment.delete
     else
       flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
- Song now has #{product.total_competition_points} points, thanks!
+ This song now has #{product.total_competition_points} points, thanks!
  Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
     end
     redirect_to :action => :show, :id => product.code
@@ -67,8 +67,7 @@ at please try again later."
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
    if (params['recaptcha'] || '').downcase != 'monday'
-     flash[:notice] = 'Recaptcha failed -- hit back in your browser and try again'
-     return false
+     raise "Recaptcha question entry failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and try again"
    else
      new_hash = {}
      # extract the ones we care about
