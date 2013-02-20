@@ -81,9 +81,11 @@
       <% end %>
     </ul>
 <% end %> <!-- end downloads -->
+        <% if @product.description.present? %>
 	<div style="padding-top:10px;">
-          <%= @product.description %>
+          Author commentary: <%= @product.description %>
 	</div>
+        <% end %>
        <% if !@product.is_competition? %> 
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
