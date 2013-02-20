@@ -33,15 +33,23 @@ class MusicController < StoreController
     render :text => '' # render nothing...
   end
 
+  def look_for_recent_comment id
+    old_comment = Comment.find_by_product_id_and_created_ip(id, request.remote_ip)
+    if old_comment && old_comment.created_at > 1.day.ago
+      @old_comment = old_comment
+    end
+  end
+
   def add_comment_competition
-    old_comment = Comment.find_by_product_id_and_created_ip(params['id'], request.remote_ip)
+    look_for_recent_comment params['id']
     product, comment = add_comment_helper true
-    # update created_ip
+    # set created_ip
     comment.created_ip = request.remote_ip
     comment.save
-    if old_comment && old_comment.created_at > 1.day.ago
+    if @old_comment # smelly
+      # we never really get here LOL
       flash[:notice] = "Looks like you already voted for this song within the last day
-at #{old_comment.created_at} please try again after 24 hours"
+at please try again later."
       comment.delete
     else
       flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
@@ -69,7 +77,7 @@ at #{old_comment.created_at} please try again after 24 hours"
      end
      new_hash[:is_competition] = is_competition
      comment = Comment.new(new_hash)
-     product.comments << comment
+     product.comments << comment # does this perform the save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
 
      OrdersMailer.deliver_inquiry('Thanks for song or vote',
@@ -164,6 +172,8 @@ at #{old_comment.created_at} please try again after 24 hours"
       end
       # never get here...
     end
+
+    look_for_recent_comment @product.id# for competition...
 
     if @product.code != id
       # mis capitalized
@@ -543,7 +553,9 @@ at #{old_comment.created_at} please try again after 24 hours"
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback.<br>Feel free to daily vote for as many songs as you'd like!"
+    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback.
+Now you get the chance to vote for them!
+Feel free to daily vote for as many songs as you'd like!".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 

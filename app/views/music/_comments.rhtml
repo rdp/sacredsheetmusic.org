@@ -1,8 +1,13 @@
 <% if @product.is_competition? %>
-  Vote for this piece!
+  <% Rails.logger.info "old comment is" + @old_comment.inspect %>
+   <% if @old_comment %>
+     Thanks for your vote! You can vote again for this piece in <%=(24-(Time.now - @old_comment.created_at)/3600).ceil %> hours.  In the meantime you could vote for other songs in the <%= link_to "competition", :action => :competition %>.
+   <% else %>
+This piece is participating in our music <%= link_to "competition", :action => :competition %>.
+Vote for this piece!
 <form action="/music/add_comment_competition" method="post">
-  Rate this song, out of 5 stars:
-  <select name="overall_rating" style="width:200px;">
+  Out of 5 stars:
+  <select name="overall_rating" style="width:175px;">
   <option value="-1">choose how many stars</option>
   <option value="5">5 stars</option>
   <option value="4">4 stars</option>
@@ -11,14 +16,14 @@
   <option value="1">1 star</option>
   <option value="-1">none (I'm just leaving a review)</option>
   </select>
-  Review (optional, only sent to composer):<br/>
-  <textarea name="comment" cols="28" rows="5"></textarea><br/>
+  Review (optional, only sent to composer, not displayed):<br/>
+  <textarea name="comment" cols="26" rows="5"></textarea><br/>
   <input name="id" type="hidden" value="<%= @product.id %>"/>
   <br/>
       Type what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
       <input name="commit" type="submit" value="Cast your Vote!" style="width:200px;" />
 </form>
-
+  <% end %>
 
 <% else %>
 
@@ -51,9 +56,11 @@
 
 <% end %>
 
+<% if !@product.is_competition? %>
+
 <% if @product.comments.length > 0 %>
     <br/>
-    <%= @product.is_competition? ? "Votes" : "Comments" %> for this piece:
+    Comments for this piece:
     <% for c in @product.comments %>
       <br/>
       <% if !c.is_competition? %>
@@ -66,6 +73,7 @@
       </p>
     <% end %>
 <% else %>
-  No user comments/ratings/votes for this song yet. Leave yours!
+  No user ratings for this song yet. Leave yours!
 <% end %>
 
+<% end %>
