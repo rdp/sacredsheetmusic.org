@@ -2,7 +2,7 @@
 <h1 style="color: rgb(92, 0, 255);">Vote for it!</h1>
 This piece is participating in our music <%= link_to "competition", :action => :competition %>
 
-<% if( (count=@product.total_competition_points) > 10) %>
+<% if( (count=@product.total_competition_points) >= 5) %>
  and already has <%= count %> points
 <% end %>
 !
