@@ -34,7 +34,7 @@ class MusicController < StoreController
   end
 
   def look_for_recent_comment id
-    old_comment = Comment.find_by_product_id_and_created_ip(id, request.remote_ip)
+    old_comment = Comment.find_by_product_id_and_created_ip(id, request.remote_ip, :order => "created_at desc")
     if old_comment && old_comment.created_at > 1.day.ago
       @old_comment = old_comment
     end
@@ -171,8 +171,7 @@ at please try again later."
       end
       # never get here...
     end
-
-    look_for_recent_comment @product.id# for competition...
+    look_for_recent_comment @product.id # for competition...
 
     if @product.code != id
       # mis capitalized
