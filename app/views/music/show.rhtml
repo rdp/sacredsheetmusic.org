@@ -83,7 +83,7 @@
 <% end %> <!-- end downloads -->
         <% if @product.description.present? %>
 	<div style="padding-top:10px;">
-          Author commentary: <%= @product.description %>
+          Notes: <%= @product.description %>
 	</div>
         <% end %>
        <% if !@product.is_competition? %> 
@@ -130,7 +130,7 @@
       <% end %>
         <hr style="margin-bottom: 10px;"/>
          <%= render :partial => 'comments' %>
-        <hr/>
+        <hr style="padding-top: 10px;"/>
 <% if @product.is_competition? %>
   <div style="float;left;">
   Tell your friends to vote for this song!
@@ -169,6 +169,8 @@
 <br/>
 <% end %>
 
+<% unless @product.is_competition? %>
+
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
@@ -185,6 +187,9 @@ You can also <i>
                         )
                 %></i> this song arrangement to your freeldssheetmusic bookmark <%= link_to('save list', {:action => :wishlist}, :target => '_blank') %>.
 <% end %>
+
+<% end %>
+
    </div>
      <div style="float: left; width: 100%;">
       <% if @default_image %>

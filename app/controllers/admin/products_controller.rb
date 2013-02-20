@@ -198,7 +198,7 @@ class Admin::ProductsController < Admin::BaseController
       # it must just inspect the file?
       # Build downloads from form
       download_errors = []
-      temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.jpg"
+      temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
 
       unless params[:download_pdf_url].blank?
         url = params[:download_pdf_url]
@@ -248,10 +248,10 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}" # jpg for faster...
+                  command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}"
                   logger.info "running " + command
                   raise ContinueError unless system(command)
-                  save_local_file_as_upload temp_file_path, 'image/jpeg',  'sheet_music_picture.jpg', n2
+                  save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
                   n2 += 1
                   got_one = true
                 end

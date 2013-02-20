@@ -10,7 +10,7 @@ class Cache < ActiveRecord::Base
   def self.clear!
     delete_all # skips validations
     Rails.cache.clear
-    clear_html_cache
+    #clear_html_cache
   end
 
   def self.delete_by_type type
