@@ -369,6 +369,7 @@ at #{old_comment.created_at} please try again after 24 hours"
       end
     else
       # don't say Topics (0 free arrangements) LOL
+      @title = t.name
     end
     @products = paginate_and_filter(all_products)
 
@@ -534,10 +535,10 @@ at #{old_comment.created_at} please try again after 24 hours"
   end 
 
   def competition
-    @title = "competition entries..."
+    @title = "Welcome to the inaugural<br/>Sacred Music for Mormons Sheet Music Competition!"
     # request.session_options[:id] is like "abcdefrandomrandomrandom"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{request.session_options[:id].hash})", # stable, but just for them :)
+      :order => "rand(#{request.session_options[:id].hash})", # stable, but random just for them :)
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
