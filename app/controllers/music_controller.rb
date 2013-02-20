@@ -552,10 +552,10 @@ at please try again later."
     ), 50000)
     @was_filtered_able = false
     @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback.
-Now you get the chance to vote for them!
+Now you get the chance to vote for them.
 Feel free to daily vote for as many songs as you'd like!
 Each song accrues points based on how many votes it gets.
-Happy voting!".gsub("\n", "<br/>")
+Happy voting! (Click on the songs below to listen and cast your vote!)".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
