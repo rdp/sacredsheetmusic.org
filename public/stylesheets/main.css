@@ -37,7 +37,7 @@ a:link {
   font-weight: normal;
 } 
 
-a:visited { color: #005a80; font-weight: bold;}
+a:visited { color: #005a80; } /* just annoying, only shows in i.e. [?] -> font-weight: bold;} */
 
 a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
