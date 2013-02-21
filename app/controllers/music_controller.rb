@@ -553,11 +553,11 @@ at please try again later."
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback.
-Now you get the chance to vote for them.
+    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in our first ever competition!
+Now you get the chance to vote for them.  Please check out the songs and give them a rating.
+Each song accrues points as it receives votes.
 Feel free to daily vote for as many songs as you'd like!
-Each song accrues points based on how many votes it gets.
-Happy voting! (Click on the songs below to listen and cast your vote!)".gsub("\n", "<br/>")
+Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 

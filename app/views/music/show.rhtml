@@ -242,7 +242,8 @@ You can also <i>
   <div style="float:left;">
     Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)" %> with this song.
   </div>
-  <div style="float:left; width:250px;margin-right:5px;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
+  <!-- can't really give fb-like a width, it knows how big it will grow... -->
+  <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
 
 <div style="float:left; margin-right: 10px;">
 <% image_relative_url = @default_image ? @default_image.public_filename : '/images/trebs.gif' %>
