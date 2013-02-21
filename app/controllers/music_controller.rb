@@ -142,9 +142,11 @@ at please try again later."
    true
  end
 
- def render_404_to_home string
-    flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string.to_s
-    redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently
+ def render_404_to_home string = nil
+    if string
+      flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string.to_s
+    end
+    redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :)
  end
 
  public 
@@ -325,7 +327,7 @@ at please try again later."
     tag_names = params[:tags] || [] # 
     not_a_bot # for logging purposes :P
     if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
-      render_404_to_home("got odd tag input #{tag_names.inspect}") && return
+      render_404_to_home() && return
     end
     cache_name = tag_names[0]
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
@@ -522,7 +524,7 @@ at please try again later."
   # Our simple all songs list
   def index
     return if render_cached_if_exists('all_songs')
-    @title = "All Songs"
+    @title = "All Songs (alphabetic order)"
     respond_to do |format|
       format.html do
         @tags = Tag.find_alpha
