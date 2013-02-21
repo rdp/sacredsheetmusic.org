@@ -35,7 +35,7 @@ class MusicController < StoreController
 
   def look_for_recent_comment id
     old_comment = Comment.find_by_product_id_and_created_ip(id, request.remote_ip, :order => "created_at desc")
-    if old_comment && old_comment.created_at > 1.day.ago
+    if old_comment && old_comment.created_at > 23.hours.ago
       @old_comment = old_comment
     end
   end

@@ -7,7 +7,7 @@ This piece is participating in our music <%= link_to "competition", :action => :
 <% end %>
 !
 <% if @old_comment %>
-     Thanks for your vote! You can vote again for this piece in <%=(24-(Time.now - @old_comment.created_at)/3600).ceil %> hours.  In the meantime you could vote for other songs in the <%= link_to "competition", :action => :competition %>.
+     Thanks for your vote! You can vote again for this piece in <%=(23-(Time.now - @old_comment.created_at)/3600).ceil %> hours.  In the meantime you could vote for other songs in the <%= link_to "competition", :action => :competition %>.
 <% else %>
 Add your vote for this piece!
 <form action="/music/add_comment_competition" method="post">
