@@ -18,7 +18,8 @@
   <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
     <ul>
       <% 
-       products_with_extension = @product.downloads.map{|dl| 
+
+        products_with_extension = @product.downloads.map{|dl| 
             filename_extension = dl.filename.split('.')[-1].downcase
             filename_extension = 'midi' if filename_extension == 'mid'
             filename_extension = 'wav' if filename_extension == 'wav'
