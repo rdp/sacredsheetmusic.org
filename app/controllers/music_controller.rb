@@ -80,7 +80,7 @@ at please try again later."
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
 
      OrdersMailer.deliver_inquiry('Thanks for song, or vote',
-       new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_generic_contact_url.to_s + "\n"  + product.composer.composer_email_if_contacted.to_s
+       new_hash.pretty_inspect + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + product.composer_generic_contact_url.to_s + "\n"  + product.composer_tag.composer_email_if_contacted.to_s
       )
      product.clear_my_cache
    end
