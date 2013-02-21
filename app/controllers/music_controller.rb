@@ -43,9 +43,6 @@ class MusicController < StoreController
   def add_comment_competition
     look_for_recent_comment params['id']
     product, comment = add_comment_helper true
-    # set created_ip
-    comment.created_ip = request.remote_ip
-    comment.save
     if @old_comment # smelly
       # we never really get here LOL
       flash[:notice] = "Looks like you already voted for this song within the last day
@@ -76,12 +73,15 @@ at please try again later."
      end
      new_hash[:is_competition] = is_competition
      comment = Comment.new(new_hash)
-     product.comments << comment # does this perform the save?
+     comment.created_ip = request.remote_ip
+     comment.save
+     product.comments << comment # does this perform a save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
-
-     OrdersMailer.deliver_inquiry('Thanks for song, or vote',
-       new_hash.select{|k, v| v && k != :id && k != :is_competition}.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + (product.composer_tag.andand.composer_email_if_contacted || product.composer_generic_contact_url).to_s
+     if !comment.is_competition? || comment.comment.present?
+       OrdersMailer.deliver_inquiry('Thanks for song, or vote',
+       new_hash.select{|k, v| v.present? && k != :id && k != :is_competition}.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + (product.composer_tag.andand.composer_email_if_contacted || product.composer_generic_contact_url).to_s
       )
+     end
      product.clear_my_cache
    end
    [product, comment]
