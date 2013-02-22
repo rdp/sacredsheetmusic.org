@@ -68,7 +68,7 @@ at please try again later."
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
    if (params['recaptcha'] || '').downcase != 'monday'
-     raise "Recaptcha question entry failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and try again"
+     raise "Challenge question entry failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and try again"
    else
      new_hash = {}
      # extract the ones we care about
