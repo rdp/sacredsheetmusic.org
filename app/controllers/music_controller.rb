@@ -4,7 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search, :add_comment_competition]
 
   def session_object
-    @_session_object ||= Session.find_or_create_by_sessid(request.session_options[:id]) # used for session_object method...
+    @_session_object ||= Session.find_or_create_by_sessid(session_id) # used for session_object method...
   end
 
    # Wishlist items
@@ -33,8 +33,12 @@ class MusicController < StoreController
     render :text => '' # render nothing...
   end
 
+  def session_id
+    request.session_options[:id]
+  end
+
   def look_for_recent_comment id
-    old_comment = Comment.find_by_product_id_and_created_ip(id, request.remote_ip, :order => "created_at desc")
+    old_comment = Comment.find_by_product_id_and_created_ip(id, session_id, :order => "created_at desc")
     if old_comment && old_comment.created_at > 23.hours.ago
       @old_comment = old_comment
     end
@@ -73,7 +77,7 @@ at please try again later."
      end
      new_hash[:is_competition] = is_competition
      comment = Comment.new(new_hash)
-     comment.created_ip = request.remote_ip
+     comment.created_ip = session_id
      comment.save
      product.comments << comment # does this perform a save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
@@ -547,9 +551,9 @@ at please try again later."
   def competition
     @title = "Sheet Music Competition!"
     @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
-    # request.session_options[:id] is like "abcdefrandomrandomrandom"
+    # session_id is like "abcdefrandomrandomrandom"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{request.session_options[:id].hash})", # stable, but random just for them :)
+      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
