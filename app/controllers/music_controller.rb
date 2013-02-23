@@ -79,11 +79,21 @@ at please try again later."
      comment = Comment.new(new_hash)
      comment.created_ip = session_id
      comment.save
-     product.comments << comment # does this perform a save?
+     product.comments << comment # might also perform a comment save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
-     if !comment.is_competition? || comment.comment.present?
-       OrdersMailer.deliver_inquiry('Thanks for song, or vote',
-       new_hash.select{|k, v| v.present? && k != :id && k != :is_competition}.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code + "\n" + (product.composer_tag.andand.composer_email_if_contacted || product.composer_generic_contact_url).to_s
+     if !comment.is_competition? || (comment.is_competition? && comment.comment.present?)
+       composer_email = product.composer_tag.andand.composer_email_if_contacted
+       if comment.is_competition?
+         subject = "Comment received from competition."
+       else
+         subject = "Thanks for song comment."
+       end
+       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition}.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code
+       unless composer_email.present?
+         subject += " Please forward!" unless composer_email.present?
+         content += "\n" + (product.composer_generic_contact_url).to_s
+       end
+       OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email
       )
      end
      product.clear_my_cache

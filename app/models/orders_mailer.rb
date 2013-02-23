@@ -2,7 +2,6 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/orders_mai
 
 class OrdersMailer
  
-  # called like... deliver_inquiry(...)...I guess... 
   def composer_stats composer_object
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
@@ -26,20 +25,26 @@ class OrdersMailer
   end
 
   def setup_defaults
-      @bcc        = Preference.get_value('mail_copy_to').split(',')
-      @from       = Preference.get_value('mail_username')
-      @sent_on    = Time.now
-      @headers    = {}
+    @bcc        = Preference.get_value('mail_copy_to').split(',')
+    @from       = Preference.get_value('mail_username')
+    @sent_on    = Time.now
+    @headers    = {}
   end
 
   # called like... deliver_inquiry(...)...I guess... 
-  def inquiry(subjectt, email_text, email_addy_from=Preference.get_value('mail_username'))
+  # email_addy_from is "their submitted form email addy" for questions...
+  def inquiry(subjectt, email_text, email_addy_from, extra_email_to=nil)
     setup_defaults
-    subject(subjectt)      
+    # @bcc = nil # uncomment to not send copy to us...
+    subject(subjectt)
     # renders a .rhtml file...
-    body         :from => email_addy_from, :email_text => email_text
-    recipients   Preference.get_value('mail_copy_to').split(',')
-    from         email_addy_from
+    body :from => email_addy_from, :email_text => email_text
+    #recipients   Preference.get_value('mail_copy_to').split(',')
+    if extra_email_to.present?
+      recipients [extra_email_to]
+      # @bcc = nil
+    end
+    from email_addy_from
   end
 
 end
