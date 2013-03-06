@@ -571,6 +571,7 @@ at please try again later."
     Feel free to remark on anything about musicality, presentation, reaction, hints/suggestions to help
     prepare the piece for the church's music submission contest as well.  These composers have
     specifically opted in for any feedback, and it will be greatly welcome!
+    You can give it a star rating or choose \"just leaving a review\" from the rating box.
     If you'd like to do a review for all the pieces, that's great!
     You don't have to review them all though.
     This list is a different order for each person that views it, so basically if everybody reviews the first \"few\" pieces on their list, they'll all get some feedback from somebody, so review as many as you are able from the start of the list.
