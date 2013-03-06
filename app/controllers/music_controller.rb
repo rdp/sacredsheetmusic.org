@@ -558,6 +558,22 @@ at please try again later."
     end
   end 
 
+  def competition_reviews
+    @title = "Sheet Music Competition music reviews"
+    @products = paginate_and_filter(Product.find(:all,
+      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
+      :conditions => ["wants_reviews=?", true]
+    ), 50000)
+    @was_filtered_able = false
+    @display_bio = "Many composers would love some positive analysis/constructive criticism for their pieces in our recent sheet music competition.
+    To give them feedback, click on the links below and leave \"as lengthy as review as you'd like\"
+    Basically, to do so, leave your review in the \"review\" box
+
+
+ "
+    render :action => 'index.rhtml' and return # no cacheing here :)
+  end
+
   def competition
     @title = "Sheet Music Competition!"
     @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
