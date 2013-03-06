@@ -565,12 +565,18 @@ at please try again later."
       :conditions => ["wants_reviews=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers would love some positive analysis/constructive criticism for their pieces in our recent sheet music competition.
+    @display_bio = "Many composers would love some positive analysis/constructive criticism for pieces from our recent sheet music competition.
     To give them feedback, click on the links below and leave \"as lengthy as review as you'd like\"
-    Basically, to do so, leave your review in the \"review\" box
-
-
- "
+    Basically, to do so, leave your review in the song's \"review\" box (suggest positive feedback then constructive criticism).
+    Feel free to remark on anything about musicality, presentation, reaction, hints/suggestions to help
+    prepare the piece for the church's music submission contest as well.  These composers have
+    specifically opted in for any feedback, and it will be greatly welcome!
+    If you'd like to do a review for all the pieces, that's great!
+    You don't have to review them all though.
+    This list is a different order for each person that views it, so basically if everybody reviews the first \"few\" pieces on their list, they'll all get some feedback from somebody, so review as many as you are able from the start of the list.
+    If you do want to review them all, we may be able to offer you some pay for doing it (if desired).  If interested, please, contact us for terms.
+    Thanks so much!
+ ".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
