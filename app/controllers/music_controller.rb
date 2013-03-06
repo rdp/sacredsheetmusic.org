@@ -88,7 +88,7 @@ at please try again later."
        else
          subject = "Thanks for song comment."
        end
-       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition}.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code
+       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition && v.to_s != "-1" }.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code
        unless composer_email.present?
          subject += " Please forward!" unless composer_email.present?
          content += "\n" + (product.composer_generic_contact_url).to_s
