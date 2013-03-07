@@ -151,7 +151,7 @@ class Product < Item
   end
 
   def total_competition_points
-    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition?}.map(&:overall_rating).sum
+    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.map(&:overall_rating).sum
   end
 
   def is_five_star?

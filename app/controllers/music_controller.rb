@@ -53,7 +53,7 @@ at please try again later."
       comment.delete
     elsif comment
       flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
- This song now has #{product.total_competition_points} points, thanks!
+ This song now has #{product.total_competition_points} points, so thanks!
  Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
     end
 
@@ -574,7 +574,7 @@ These composers have specifically opted in for any feedback, and it will be grea
 
 To give them feedback,1) click on the links below,  2) leave your review in the song's "review" box 
 (we suggest first positive feedback then constructive criticism).
-Feel free to remark on anything about musicality, presentation, reaction, hints/suggestions, and feel free to make your review as lengthy as you need.  3) You can give it a star rating or choose "just leaving a review" from the rating box.
+Feel free to remark on anything about musicality, presentation, reaction, lyrics, hints/suggestions, and feel free to make your review as lengthy as you need.  3) You can give it a star rating or choose "just leaving a review" from the rating box.
 
 This list is in a different order for each person that views it, so if everybody reviews the first "few" pieces on their list, all the songs should get some feedback from somebody. You can review as many, or as few, as you are able.
 If you would like to review them all, we may be able to offer you some pay for doing it (if desired). If interested, please, contact us for terms first.
