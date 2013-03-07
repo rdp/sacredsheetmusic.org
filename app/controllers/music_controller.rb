@@ -76,6 +76,9 @@ at please try again later."
       new_hash[key] = params[key]
      end
      new_hash[:is_competition] = is_competition
+     if is_competition && params[:overall_rating].to_i > 0
+       #raise "voting has ended for this year"
+     end
      comment = Comment.new(new_hash)
      comment.created_ip = session_id
      comment.save
@@ -565,7 +568,7 @@ at please try again later."
       :conditions => ["wants_reviews=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = %|Many composers would like constructive feedback/critique for pieces from our recent sheet music competition.
+    @display_bio = %|Though the online balloting has ended, many composers would love constructive feedback/critique for pieces from our recent sheet music competition.
 These composers have specifically opted in for any feedback, and it will be greatly welcome!
 
 To give them feedback,1) click on the links below,  2) leave your review in the song's "review" box 
@@ -593,6 +596,9 @@ Now you get the chance to vote for them.  Please check out the songs and give th
 Each song accrues points as it receives votes.
 Feel free to daily vote for as many songs as you'd like!
 Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<br/>")
+    @display_bio = "This year's sheet music competition has ended, thanks much to all participants!
+    You can still leave reviews of the pieces, though, see <a href=/music/competition_reviews>here</a>.
+".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 

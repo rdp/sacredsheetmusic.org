@@ -19,23 +19,19 @@
 </title>
 	<%= javascript_include_tag :defaults, :cache => 'default' %>
 
-  <%= 
-    javascript_include_tag(
+  <%= javascript_include_tag(
       'substruct', 'subModal', 'lightbox', 
       :plugin => 'substruct', 
       :cache => 'substruct_cache'
     ) 
   %>
-  <%= 
-    stylesheet_link_tag(
+  <%= stylesheet_link_tag(
       'subModal', 'lightbox',
       :plugin => 'substruct', 
       :cache => 'substruct_main'
     ) 
   %>
-  <%=
-    stylesheet_link_tag('main')
-  %>
+  <%= stylesheet_link_tag('main') %>
 
   <%= yield :header %>
 
@@ -80,9 +76,10 @@
                      <div style="font-size:small; padding-left: 15px;">Over 2500 free LDS/Christian arrangements!</div>
 		  </div>
                  <!-- middle message -->
-                  <div style="float:left; width: 300px; padding-left: 10px;">
+
+                  <!--div style="float:left; width: 300px; padding-left: 10px;">
                      <%= link_to image_tag('vote.png', :width => '315px'), :controller => :music, :action => :competition %>
-                  </div>
+                  </div-->
 
 		<!-- search box -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
