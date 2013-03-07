@@ -1,17 +1,18 @@
 <% if @product.is_competition? %>
 <h1 style="color: rgb(92, 0, 255);">Vote for it!</h1>
-This piece is participating in our music <%= link_to "competition", :action => :competition %>
+This piece participated in our music <%= link_to "competition", :action => :competition %>
 
 <% if( (count=@product.total_competition_points) >= 5) %>
- and already has <%= count %> points
+ and earned <%= count %> points
 <% end %>
 !
 <% if @old_comment %>
      Looks like you already voted for this piece today, thanks for your vote! You can vote again for this piece in <%=(23-(Time.now - @old_comment.created_at)/3600).ceil %> hours.  In the meantime, you could vote for other songs in the <%= link_to "competition", :action => :competition %>.
 <% else %>
-Add your vote for this piece!
+<!--Add your vote for this piece!-->
+You can still give it a review/comments if desired:
 <form action="/music/add_comment_competition" method="post">
-  Choose how many stars:
+  <!--Choose how many stars:
   <select name="overall_rating" style="width:175px;">
   <option value="-1">choose how many stars</option>
   <option value="5" selected>5 stars</option>
@@ -21,12 +22,13 @@ Add your vote for this piece!
   <option value="1">1 star</option>
   <option value="-1">none (I'm just leaving a review)</option>
   </select>
+  -->
   Review (optional, only sent to composer, not displayed, include your name if desired):<br/>
   <textarea name="comment" cols="26" rows="5"></textarea>
   <input name="id" type="hidden" value="<%= @product.id %>"/>
   <br/>
       Type what day comes after Sunday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
-      <input name="commit" type="submit" value="Cast your Vote!" style="width:180px;" />
+      <input name="commit" type="submit" value="leave review!" style="width:180px;" />
 </form>
   <% end %>
 

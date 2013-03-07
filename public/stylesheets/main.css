@@ -43,8 +43,8 @@ a.action:link, a.action:visited, a.action.bad:link, a.action.bad:visited {
 	background-color: #049abe;
 	color: #fff !important;
 	font-weight:normal;
-	font-size: 12px;
-	padding: 4px;
+	/*font-size: 12px;
+	padding: 4px; jus i.e.? */
 	text-decoration:none !important;
 }
 a.action.bad:link, a.action.bad:visited {
