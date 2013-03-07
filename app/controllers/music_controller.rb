@@ -48,27 +48,28 @@ class MusicController < StoreController
     look_for_recent_comment params['id']
     product, comment = add_comment_helper true
     if @old_comment # smelly
-      # we never really get here LOL
       flash[:notice] = "Looks like you already voted for this song within the last day
 at please try again later."
       comment.delete
-    else
+    elsif comment
       flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
  This song now has #{product.total_competition_points} points, thanks!
  Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
     end
+
     redirect_to :action => :show, :id => product.code
   end
 
   def add_comment
-    product, comment = add_comment_helper false
+    product, possible_comment = add_comment_helper false
     redirect_to :action => :show, :id => product.code
   end
 
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
    if (params['recaptcha'] || '').downcase != 'monday'
-     raise "Challenge question entry failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and try again"
+     flash[:notice] = "Spam avoidance question answer failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to try again!"
+     return [product, nil]
    else
      new_hash = {}
      # extract the ones we care about
