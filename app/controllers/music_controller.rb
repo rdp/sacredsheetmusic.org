@@ -44,6 +44,11 @@ class MusicController < StoreController
     end
   end
 
+  def competition_results
+    @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'competition-results'])
+    @products = Product.find(:all, :conditions => {:is_competition => true}).select{|p| p.is_competition?}.sort_by{|p| -p.total_valid_competition_points }
+  end
+
   def add_comment_competition
     look_for_recent_comment params['id']
     product, comment = add_comment_helper true
