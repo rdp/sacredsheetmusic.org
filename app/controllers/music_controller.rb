@@ -82,6 +82,7 @@ at please try again later."
      end
      comment = Comment.new(new_hash)
      comment.created_ip = session_id
+     comment.overall_rating ||= -1 # guess a DB default isn't enough [?] that is so weird...rails defaulting everything to nil...
      comment.save
      product.comments << comment # might also perform a comment save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
