@@ -122,6 +122,7 @@ module Substruct
     # easier logout :)
     map.connect '/logout', :controller => "/accounts", :action=>"logout"
     map.connect '/Competition', :controller => "music", :action=>"competition"
+    map.connect '/competition', :controller => "music", :action=>"competition"
 
     # Install the default route as the lowest priority.
     map.connect ':controller/:action/:id.:format'

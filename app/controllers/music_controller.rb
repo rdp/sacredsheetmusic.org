@@ -52,9 +52,9 @@ class MusicController < StoreController
 at please try again later."
       comment.delete
     elsif comment
-      flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
- This song now has #{product.total_competition_points} points, so thanks!
- Also feel free to vote for our <a href=/music/competition>other songs</a> in the competition!"
+       # competition
+#      flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
+      flash[:notice] = "Review recorded! Thanks!"
     end
 
     redirect_to :action => :show, :id => product.code
