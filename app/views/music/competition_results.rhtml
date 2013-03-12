@@ -1,0 +1,9 @@
+<div style="float: left; width: 700px;">
+
+<%= @content_node.content %>
+
+<% for p in @products %>
+  <%= p.total_valid_competition_points %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
+  <br/>
+<% end %>
+</div>
