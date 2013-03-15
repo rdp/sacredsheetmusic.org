@@ -1,4 +1,4 @@
-<% if @product.is_competition? %>
+<% if @product.is_competition?  || @product.wants_reviews? %>
 <h1 style="color: rgb(92, 0, 255);">Vote for it!</h1>
 This piece participated in our music <%= link_to "competition", :action => :competition %>
 
@@ -10,7 +10,7 @@ This piece participated in our music <%= link_to "competition", :action => :comp
      Looks like you already voted for this piece today, thanks for your vote! You can vote again for this piece in <%=(23-(Time.now - @old_comment.created_at)/3600).ceil %> hours.  In the meantime, you could vote for other songs in the <%= link_to "competition", :action => :competition %>.
 <% else %>
 <!--Add your vote for this piece!-->
-You can still give it a review/comments if desired:
+You can still give it a review or comment if desired:
 <form action="/music/add_comment_competition" method="post">
   <!--Choose how many stars:
   <select name="overall_rating" style="width:175px;">
