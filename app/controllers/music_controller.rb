@@ -591,6 +591,9 @@ Thanks so much!
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
+  #def popular_songs # songs_stats is straight rhtml...
+  #end
+
   def competition
     @title = "Sheet Music Competition!"
     @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
