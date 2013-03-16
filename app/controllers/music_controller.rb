@@ -668,6 +668,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # re map to product objects...
     all_products = all_ids_merged.uniq.map{|id| Product.find(id) }.select{|p| p.date_available < Time.now}
     all_products = randomize(all_products)
+    Rails.logger.info "search returned #{all_products.length} results"
     @products = paginate_and_filter all_products
  
     # If only one product comes back, take em directly to it.
