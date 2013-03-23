@@ -627,7 +627,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     @search_term = params[:q]
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
-      logger.debug("no search terms?" + params.inspect)
       redirect_to :action => 'index' and return false
     end
 
@@ -655,18 +654,19 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     # search for all products of (basically) precise matching tags, too
     # this might be redundant to the above these days though...
-    @tags = Tag.find(:all,
+    tags = Tag.find(:all,
       :include => :products,
       :order => "rand(#{session_id.hash})",
       :conditions => [ "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", "%#{@search_term}%"]
     )
 
-    # put more precise results first...
+    # put more precise hits first...
     good_hits = Product.find(:all, 
        :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})")
+       :order => "rand(#{session_id.hash})"
+    )
 
-    all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten.uniq
+    all_ids_merged = (good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
