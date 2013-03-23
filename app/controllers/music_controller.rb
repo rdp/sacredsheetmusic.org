@@ -34,7 +34,7 @@ class MusicController < StoreController
   end
 
   def session_id
-    request.session_options[:id]
+    request.session_options[:id] # a big long string I believe..
   end
 
   def look_for_recent_comment id
@@ -624,7 +624,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   end
   
   def search
-    @search_term = params[:q] || ''
+    @search_term = params[:q]
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
       logger.debug("no search terms?" + params.inspect)
@@ -647,33 +647,34 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
         "%#{@search_term}%", @search_term # name, code
     ] + super_search_terms
 
-    products = Product.find(:all, :include => [:tags],
-      :order => 'items.name ASC', :conditions => conds
+    products = Product.find(:all, 
+      :conditions => conds,
+      :order => "rand(#{session_id.hash})"
     )
 
-    # search for matching tags, too
+    # search for all products of (basically) precise matching tags, too
     @tags = Tag.find(:all,
-      :order => 'tags.name ASC',
       :include => :products,
-      :conditions => [
-        "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", 
-        "%#{@search_term}%"
-      ]
+      :order => "rand(#{session_id.hash})",
+      :conditions => [ "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", "%#{@search_term}%"]
     )
 
-    good_hits = Product.find(:all, :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"])
-    
-    all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten
+    # put more precise results first...
+    good_hits = Product.find(:all, 
+       :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
+       :order => "rand(#{session_id.hash})",)
+
+    all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten.uniq
 
     # re map to product objects...
-    all_products = all_ids_merged.uniq.map{|id| Product.find(id) }.select{|p| p.date_available < Time.now}
-    all_products = randomize(all_products)
+    all_products = all_ids_merged.map{|id| Product.find(id) }
     Rails.logger.info "search returned #{all_products.length} results"
     @products = paginate_and_filter all_products
  
-    # If only one product comes back, take em directly to it.
     session[:last_search] = @search_term
-    if all_ids_merged.uniq.size == 1 && @products.length > 0 # we're showing it
+
+    # If only one product comes back, take em directly to it.
+    if all_ids_merged.size == 1 && @products.length > 0
       # only redirect if one query matches, not if their filter gets it down to just 1 possible, since we don't list filters at all on the show page
       flash[:notice] = 'Found (showing) one song that matches: ' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return
