@@ -647,12 +647,14 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
         "%#{@search_term}%", @search_term # name, code
     ] + super_search_terms
 
-    products = Product.find(:all, 
+    # need to include tags so that the query can work...
+    products = Product.find(:all, :include => :tags,
       :conditions => conds,
       :order => "rand(#{session_id.hash})"
     )
 
     # search for all products of (basically) precise matching tags, too
+    # this might be redundant to the above these days though...
     @tags = Tag.find(:all,
       :include => :products,
       :order => "rand(#{session_id.hash})",
