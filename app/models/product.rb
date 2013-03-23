@@ -130,14 +130,13 @@ class Product < Item
   end
 
   def clear_my_cache
-    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method <sigh>
+    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method? <sigh>
     #Product.delete_group_caches # ??
-    Rails.cache.clear # it has some of our junk in it too, like saved product boxes...I guess that means
+    Rails.cache.clear # it has some old junk in it too, like saved product boxes...I guess that means
     # the other instances still up may be stale too?
     for tag in self.tags
-      # TODO delete public/cache files... 
+      tag.clear_public_cached
     end
-    
   end
 
   after_save {  # singleton!

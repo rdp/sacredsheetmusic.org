@@ -133,6 +133,11 @@ class Tag
     #Cache.delete_by_type 'tags'
   } # cached left side is messed now
 
+  def clear_public_cached
+    files = Dir[RAILS_ROOT + '/public/cache/' + (self.name.gsub('/', '_')) + '*']
+    Rails.logger.info "would clear #{files.inspect}"
+  end
+
   # Finds ordered parent tags by rank.
   def self.find_ordered_parents
     find(
