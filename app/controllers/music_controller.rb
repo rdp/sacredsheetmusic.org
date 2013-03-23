@@ -662,7 +662,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # put more precise results first...
     good_hits = Product.find(:all, 
        :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})",)
+       :order => "rand(#{session_id.hash})")
 
     all_ids_merged = good_hits.map(&:id) + products.map(&:id) + @tags.map{|t| t.products.map(&:id)}.flatten.uniq
 
