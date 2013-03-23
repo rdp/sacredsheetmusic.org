@@ -661,16 +661,12 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     )
 
     # put more precise hits first...
-    precise_hits = Product.find(:all, 
+    good_hits = Product.find(:all, 
        :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
        :order => "rand(#{session_id.hash})"
     )
-    @precise_tags = Tag.find(:all, :conditions => ["name like ?", "%#{@search_term}%"])
-    if @precise_tags.length > 0
-      #@display_bio = render_to_string "matching_categories.rhtml"
-    end
 
-    all_ids_merged = (precise_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
+    all_ids_merged = (good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
