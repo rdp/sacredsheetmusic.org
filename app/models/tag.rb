@@ -134,8 +134,10 @@ class Tag
   } # cached left side is messed now
 
   def clear_public_cached
-    files = Dir[RAILS_ROOT + '/public/cache/' + (self.name.gsub('/', '_')) + '*']
-    Rails.logger.info "would clear #{files.inspect}"
+    files = Dir[RAILS_ROOT + '/public/cache/' + (self.name.gsub('/', '_')) + '*'] # SATB clears SATBB too but...
+    Rails.logger.info "clearing #{files.inspect}"
+    files.each{|f| File.delete f}
+    files
   end
 
   # Finds ordered parent tags by rank.
