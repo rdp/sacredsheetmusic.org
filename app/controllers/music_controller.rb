@@ -550,6 +550,7 @@ at please try again later."
   def index
     return if render_cached_if_exists('all_songs')
     @title = "All Songs (alphabetic order)"
+    @display_bio = "Choose a different category from the list on the left for a more precise list."
     respond_to do |format|
       format.html do
         @tags = Tag.find_alpha

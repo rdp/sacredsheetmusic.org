@@ -134,7 +134,7 @@ class Tag
   } # cached left side is messed now
 
   def clear_public_cached
-    files = Dir[RAILS_ROOT + '/public/cache/' + (self.name.gsub('/', '_')) + '*'] # SATB causes SATBB clear too but...
+    files = Dir[RAILS_ROOT + '/public/cache/' + self.name.gsub('/', '_').gsub(' ', '_') + '*'] # SATB causes SATBB clear too but...
     files += Dir[RAILS_ROOT + '/public/cache/all_songs*'] # this one too :)
     Rails.logger.info "clearing #{files.length}"
     files.each{|f| File.delete f}
