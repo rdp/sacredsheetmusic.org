@@ -14,7 +14,7 @@
                 <% if @composer_tag.composer_url.present? %>
                    Visit <a href="<%= @composer_tag.composer_url %>" target="_blank"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
                  <% elsif @composer_tag.composer_email_if_contacted.present? %>
-                   <a href="mailto:<%= @composer_tag.composer_email_if_contacted%>">Email <%= @composer_tag.name %></a> if you'd like to send them a personal note.
+                   <a href="mailto:<%= @composer_tag.composer_email_if_contacted%>">Email <%= @composer_tag.name %></a> if you'd like to send a personal note.
                  <% end %>
              <% end %>
            </div>

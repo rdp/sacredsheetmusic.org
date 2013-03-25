@@ -219,7 +219,7 @@ class Product < Item
       end
 
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
-        problems << "may want the only on this site tag, since it lacks an original url"
+        problems << "may want its composer tag to be marked only on this site, since this song lacks an original url"
       end
 
       bad_whitespace_reg = /^\s|\s$/
