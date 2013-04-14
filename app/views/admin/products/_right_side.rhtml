@@ -5,7 +5,7 @@
 	<div class="clear">&nbsp;</div>
 
 	<h1>Search All Products</h1>
-	<%= form_tag :controller => 'products', :action => 'search' %>
+	<%= form_tag({:controller => 'products', :action => 'search'}, :method => :get) %>
 	  <input class="textInput" type="text" name="term" size="28" style="width:135px;float:left;margin-right:5px;" /> <%= submit_tag('Go', {:class => 'button fifty'}) %>
 	  <div class="clear info">&nbsp;</div>
 	  <span class="info">Product Name, Code or Description</span>
