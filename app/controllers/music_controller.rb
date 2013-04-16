@@ -210,7 +210,7 @@ at please try again later."
       Product.increment_counter(:view_count, @product.id)
     end
     if @product.composer_tag && @product.voicing_tags[0]
-       @title = "#{@product.name} (by #{@product.composer_tag.name} -- Voicing: #{@product.voicing_tags.map{|t| t.name}.join(', ')})"
+       @title = "#{@product.name} (by #{@product.composer_tag.name} -- #{@product.voicing_tags.map{|t| t.name}.join(', ')})"
     else
        @title = @product.name
     end
