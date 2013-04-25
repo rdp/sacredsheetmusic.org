@@ -129,9 +129,11 @@ class Tag
     #Cache.clear! 
   } # some were marked with it, left side is messed up...may as well start over...
 
-  after_save { # case of creating a "new" one I guess...
-    #Cache.delete_by_type 'tags'
-  } # cached left side is messed now
+  after_save { |record|
+    # case of creating a "new" one I guess...
+    #Cache.delete_by_type 'tags'# cached left side is messed now
+    record.clear_public_cached
+  } 
 
   def clear_public_cached
     files = Dir[RAILS_ROOT + '/public/cache/' + self.name.gsub('/', '_').gsub(' ', '_') + '*'] # SATB causes SATBB clear too but...
