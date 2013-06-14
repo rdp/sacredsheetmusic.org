@@ -1,5 +1,4 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/substruct_application_controller"
-require 'sane'
 
 module SubstructApplicationController
   

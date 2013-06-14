@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   
   config.gem 'RedCloth', :lib => 'redcloth', :version => '3.0.4'
   config.gem 'sane'
+  config.gem 'andand'
   config.gem 'fastercsv' if RUBY_VERSION < '1.9.0'
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem 'rake', :version=> '0.9.6'
