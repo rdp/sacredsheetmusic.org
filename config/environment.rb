@@ -29,7 +29,8 @@ Rails::Initializer.run do |config|
   # It seems Rack 1.1.0 SPECIFICALLY is required by Rails 2.3.8
   config.gem "rack", :version => '1.1.0'
   
-  config.gem 'RedCloth', :lib => 'redcloth'
+  config.gem 'RedCloth', :lib => 'redcloth', :version => '3.0.4'
+  config.gem 'sane'
   config.gem 'fastercsv' if RUBY_VERSION < '1.9.0'
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem 'mini_magick', :version => '1.3.3'
