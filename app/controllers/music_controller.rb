@@ -526,27 +526,16 @@ at please try again later."
   end
 
   def current_process_count_including_us
-    count_including_us = `ps -ef | egrep wilkboar.*dispatch.fcgi | wc -l`.to_i-2
+    count_including_us = `ps -ef | egrep ruby | wc -l`.to_i-2
   end
 
   def all_no_cache
-    if current_process_count_including_us < 3 # TODO not have 3 here, but we also don't want to freeze this one to wait for the new one, if we have only 2...
-      Thread.new { `curl http://freeldssheetmusic.org/music/wake_up` }# unfortunately have to 'wait' for this inline
-      # otherwise the request just gets handled by this process again. 
-      start = Time.now
-      while((Time.now - start) < 5 && current_process_count_including_us < 3)
-        sleep 0.1 # try to let the other one "barely start" but not be done loading its cache, etc.
-      end
-      logger.info "bumped it to #{current_process_count_including_us}"
-    else
-      logger.info "already high enough #{current_process_count_including_us}"
-    end
-    #@no_individ_cache = true # LODO totally remove...
-    #index # reads them all
     render :text => 'ok'
+    # @no_individ_cache = true # LODO totally remove this junk... 
+    # index # reads them all
   end
 
-  # Our simple all songs list
+  # Our "all songs" list
   def index
     return if render_cached_if_exists('all_songs')
     @title = "All Songs (alphabetic order)"
