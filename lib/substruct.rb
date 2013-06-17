@@ -87,14 +87,17 @@ module Substruct
     map.connect '/admin/customers/:action.:format', :controller => 'admin/customers'
 
     # Shorter url to show song
-    map.connect '/s/:id', # s for song!
+    map.connect '/song/:id', # s for song!
+      :controller => 'music',
+      :action => 'show'
+    map.connect '/s/:id', # s for song! # lodo remove, this is antiquated
       :controller => 'music',
       :action => 'show'
 
-    #map.connect '/music/s/:id', # LODO disable, just here for tags redirect...
+    #map.connect '/music/s/:id', # LODO remove
     #  :controller => 'music',
     #  :action => 'show'
-    #map.connect '/m/:id', # LODO disable just here for pass through...
+    #map.connect '/m/:id', # LODO remove just here for pass through...
     #  :controller => 'music',
     #  :action => 'show'
 
