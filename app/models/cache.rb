@@ -30,8 +30,14 @@ class Cache < ActiveRecord::Base
 
   def self.warmup_in_other_thread # kind of other thread...called in like config/environment.rb or something
     start = Time.now
-    list = Cache.find(:all)
+     puts 'about to warmup'
+
+     raise 'dont use this anymore for now, was causing RAM failure'
+    #list = Cache.find(:all)
+    puts 'warmup 2'
     Thread.new {
+       puts 'warmup start thred'
+      
       Rails.logger.info "just getting list took #{Time.now - start}"
       for entry in list
       # copy them into local process cache...
@@ -39,7 +45,6 @@ class Cache < ActiveRecord::Base
       end
       Rails.logger.info "warmed it up [copied to proc cache] in other thread with #{list.size} in #{Time.now - start}s" # doesn't output for some reason...odd... takes 3s sometimes?
      }
-#    don't have enough DB conn's [?]
 #    Thread.new { 
 #      for file in all_cache_files
 #        File.read(file) rescue nil # hope this avoids disappearing files throwing...

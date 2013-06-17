@@ -171,7 +171,7 @@ at please try again later."
     if string
       flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string.to_s
     end
-    redirect_to :action => 'index', :status => 404 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :)
+    redirect_to :action => '/', :status => 404 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :)
  end
 
  public 
@@ -349,8 +349,14 @@ at please try again later."
     # Tags are passed in as an array.
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
-    tag_names = params[:tags] || [] # 
     not_a_bot # for logging purposes :P
+    tag_names = params[:tags] || [] # 
+    logger.info "tag names #{tag_names}"
+    if tag_names.length > 1
+      # passenger or nginx bug, Primary%2FYouth gets translated to Primary/Youth
+      tag_names = [tag_names.join('/')]
+    end
+    
     if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
       render_404_to_home() && return
     end
