@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
   config.gem 'andand'
   config.gem 'fastercsv' if RUBY_VERSION < '1.9.0'
   config.gem 'mime-types', :lib => 'mime/types'
-  config.gem 'rake', :version=> '0.9.6'
+  config.gem 'rake', :version=> '0.8.7'
   config.gem 'mini_magick', :version => '1.3.3'
   config.gem 'ezcrypto'
   config.gem 'subexec'
