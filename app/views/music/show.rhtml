@@ -10,7 +10,7 @@
 <% raise 'we dont do these yet' if @product.price > 0 %>
 
 <% @two_column_layout = true %>
-<div style="float: left; width: 18%;">
+<div style="float: left; width: 18%; margin-left: 2px;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
   <br/>
   <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
