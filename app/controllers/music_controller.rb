@@ -167,11 +167,9 @@ at please try again later."
    true
  end
 
- def render_404_to_home string = nil
-    if string
-      flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string.to_s
-    end
-    redirect_to :action => '/', :status => 404 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :)
+ def render_404_to_home string  # redirect them...
+    flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string
+    redirect_to :action => :search, :q => string, :status => 303 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
  end
 
  public 
@@ -193,7 +191,7 @@ at please try again later."
         if Tag.find_by_name(check_id)
           redirect_to_tag(check_id) and return
         else
-          render_404_to_home("unable to find song or tag named #{check_id}") && return
+          render_404_to_home(check_id) && return
         end
       end
       # never get here...
@@ -206,7 +204,7 @@ at please try again later."
       return
     end
     if not_a_bot
-      # avoid after_save blocks ...
+      # also avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
     if @product.composer_tag && @product.voicing_tags[0]
@@ -360,7 +358,7 @@ at please try again later."
     end
     
     if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
-      render_404_to_home() && return
+      render_404_to_home(tag_names.join(' ')) && return
     end
     cache_name = tag_names[0]
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?

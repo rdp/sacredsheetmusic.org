@@ -12,7 +12,7 @@ module SubstructApplicationController
       end
 
       if request.request_uri.in? ['/index-of-free-lds-mormon-arrangements-choir-piano-solo', '/lds-ward-choir-music', '/choir-arrangements']
-        redirect_to "/", :status => :moved_permanently
+        redirect_to "/", :status => :moved_permanently # this is a 301, apparently preferred, viz: http://webdesign.about.com/od/http/qt/tip301v302redir.htm
         flash.keep
         return false
       end
