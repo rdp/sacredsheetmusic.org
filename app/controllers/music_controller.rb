@@ -288,13 +288,15 @@ at please try again later."
   end
 
   def render_home
-        render_component(
-              :controller => "content_nodes",
-              :action => "show_by_name",
-              :params => {
-                :name => 'index-of-free-lds-mormon-arrangements-choir-piano-solo',
-              }
-            )
+    not_a_bot # for logging purposes :)
+    # I think we could just put this into the routing itself, and not have to do the render component junk...sigh...
+    render_component(
+           :controller => "content_nodes",
+           :action => "show_by_name",
+           :params => {
+             :name => 'index-of-free-lds-mormon-arrangements-choir-piano-solo',
+           }
+    )
   end
 
 #  def reset
