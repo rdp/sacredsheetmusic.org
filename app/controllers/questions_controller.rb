@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
 	    render :action => 'ask' and return
           else
 	    begin
-              if params[:question][:long_question].contain? "a href"
+              if params[:question][:long_question].contain? "<a href="
                 raise "your question appears to have a link in it, which might mean it's spam, could you try editing it and try again, or send email directly to freeldssheetmusic@gmail.com instead please?"
               end
   
