@@ -8,6 +8,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <% raise 'we dont do these yet' if @product.price > 0 %>
+<% raise 'song disabled?' if @product.date_available > Time.now %>
 
 <% @two_column_layout = true %>
 <div style="float: left; width: 18%; margin-left: 2px;">
