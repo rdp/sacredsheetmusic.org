@@ -1,16 +1,18 @@
 class Admin::TagsController < Admin::BaseController
+
   def index
     list
     render :action => 'list'
   end
 
-	# List manages addition/deletion of items through ajax
+  # List manages addition/deletion of items through ajax
   def list
     @title = 'Manage Tags'
     @tags = Tag.find_ordered_parents()
     
     if params[:id]
-      @parent_tag = Tag.find_by_name(params[:id])
+      @parent_tag = Tag.find_by_id(params[:id])
+      @parent_tag ||= Tag.find_by_name(params[:id])
       @parent_tag ||= Tag.find_by_name(params[:id] + '.' + params[:format])
       # If given faulty parent tag, redirect back to list with no ID
       # ...and show an error.

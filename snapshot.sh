@@ -1,10 +1,13 @@
-echo "snapshotting production [broke]"
+echo "snapshotting production"
 ./sessions_clear.sh
 #./cache_clear.sh
+# partial clear instead, except it zips so well, who cares?
+#ruby script/runner -e production "p Cache.clear!" 
 #rm log/* # we don't zip files anymore FWIW...
-echo old password was m4m
+cat config/database.yml
+echo old password was m4m, enter new
 A=`date`
 B=`echo $A | tr -d \\n`
-mysqldump -uwilkboar_m4m wilkboar_m4m -p > "snap$B.sql"
+mysqldump -uprod_lds flds_production -p > "snap$B.sql"
 gzip "snap$B.sql"
 echo "not snapping pub files..."
