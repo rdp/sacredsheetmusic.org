@@ -150,14 +150,14 @@
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
-             You can also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank')%>
+             You can also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url }, :target => '_blank' )%>
 
  for this piece.
            <% else %>
 <br />
 <br />
 <br />
-               The free sheet music for this song can be found/downloaded from the author's page by <%=link_to('clicking here', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code}, :target => '_blank' )%>.
+               The free sheet music for this song can be found/downloaded from the author's page by <%=link_to('clicking here', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url}, :target => '_blank' )%>.
 <br />
 <br />
 <br />
