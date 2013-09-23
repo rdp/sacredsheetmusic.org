@@ -146,7 +146,9 @@
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
     <% extra_style = "display:none;" if @default_image %>
-    <h1 style="margin: 0px; margin-left: 50px;<%= extra_style %>"><%= @product.name %> (by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
+    <h1 style="margin: 0px; margin-left: 50px;<%= extra_style %>">
+ <%=link_to(@product.name, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' ) %>
+(by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
