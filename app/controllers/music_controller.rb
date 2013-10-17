@@ -682,7 +682,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
-    Rails.logger.info "search returned #{all_products.length} results"
+    Rails.logger.info "search #{@search_term} returned #{all_products.length} results"
     @products = paginate_and_filter all_products
  
     session[:last_search] = @search_term
