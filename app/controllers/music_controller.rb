@@ -618,12 +618,28 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     ), 50)
     render :action => 'index.rhtml' and return
   end
+
+  def look_for_matching_tags
+    exact_match = Tag.find(:all, :conditions => ["REPLACE(tags.name , '\\'', '') = ?", @search_term.gsub("'", "")])
+    logger.info "got back size #{exact_match.size} from #{@search_term}"
+    if exact_match.size > 0
+      @tags = exact_match
+      render :action => 'search_found_tags.rhtml'
+      true
+    else
+      false
+    end
+  end
   
   def search
     @search_term = params[:q]
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
       redirect_to :action => 'index' and return false
+    end
+
+    if look_for_matching_tags
+      return
     end
 
     @title = "Search Results for: #{@search_term}"
