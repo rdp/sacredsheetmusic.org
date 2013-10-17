@@ -117,6 +117,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def save_internal should_render = true
+    logger.info "doing save"
     # If we have ID param this isn't a new product
     if params[:id]
       @new_product = false
@@ -248,8 +249,12 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}" # uses more cpu, at least...I think so. Enable for scanned documents...
-                  # command = "nice convert -density #{@@density} #{i[:download_data].path}[#{n}] -quality 90 #{temp_file_path}" # less cpu, ok for non scanned...odd
+                  use_scanned = false
+                  if use_scanned
+                    command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}" # uses more cpu, at least...I think so. Enable for scanned documents...
+                  else
+                    command = "nice convert -density #{@@density} #{i[:download_data].path}[#{n}] -quality 90 #{temp_file_path}" # less cpu, ok for non scanned...odd
+                  end
                   logger.info "running " + command
                   raise ContinueError unless system(command)
                   save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
