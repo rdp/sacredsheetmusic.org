@@ -1,4 +1,4 @@
-echo 'clearing just cache and public/cache/*, not sessions'
+echo 'clearing just cache and public/cache/*, not clearing sessions'
 sleep 2
 rm public/cache/*
 ruby script/runner -e production "p Cache.clear!;" # just in case :P

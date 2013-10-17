@@ -15,7 +15,7 @@
 		<%= form_tag :action => 'send_question' %>
 		
       <div style="padding-bottom:10px; float: left;">
-        <%= make_label("Your Email Address (if you want a response)", true) %>
+        <%= make_label("Your Email Address (required)", true) %>
         <%= text_field 'question', 'email_address', :size => 50, :maxlength => 50, :class => 'textInput' %>
       	<%= error_message_on(:question, :email_address) %>
         <br/>
