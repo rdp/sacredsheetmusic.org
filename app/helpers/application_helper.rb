@@ -69,18 +69,18 @@ module ApplicationHelper
 
   def tag_link_nav tag
     if tag.name_in_nav.present?
-      tag_link(tag, tag.name_in_nav)
+      tag_link(tag, tag.name_in_nav, true)
     else
-      tag_link(tag)
+      tag_link(tag, tag.name, true)
     end
   end
 
-  def tag_link tag, name_use_instead=tag.name
-    if false#tag.is_hymn_tag?
-      "<a href=/arrangements/#{escaped_name.gsub("%20", "_")}>#{name}</a>" # doesn't quite seem worth it even...maybe just for the main page
+  def tag_link tag, name_to_use=tag.name, is_bullet=false
+    escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+    if is_bullet
+      "<a style=\"margin-left: -20px; padding-left: 20px;\" href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_to_use}</a>"
     else
-      escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_use_instead}</a>"
+      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_to_use}</a>"
     end
   end
   
