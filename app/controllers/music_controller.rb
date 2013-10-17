@@ -163,7 +163,7 @@ at please try again later."
 
  private
  def redirect_to_tag name
-   redirect_to '/' + name.gsub(' ', '_').gsub('/', '%2F'), :status => :moved_permanently
+   redirect_to '/' + name.gsub(' ', '_').gsub('/', '%2F'), :status => :moved_permanently # show_by_tags?
    true
  end
 
@@ -620,9 +620,13 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   end
 
   def look_for_matching_tags
-    exact_match = Tag.find(:all, :conditions => ["REPLACE(tags.name , '\\'', '') = ?", @search_term.gsub("'", "")])
-    logger.info "got back size #{exact_match.size} from #{@search_term}"
-    if exact_match.size > 0
+    exact_match = Tag.find(:all, :conditions => ["REPLACE(tags.name , '\\'', '') = ?", @search_term.gsub("'", "")]) # already case insensitive
+    if exact_match.size  == 1
+      # this causes a cache miss, so don't do it: flash[:notice] = "Displaying the #{exact_match[0].name} category"
+      redirect_to_tag(exact_match[0].name)
+      true
+    elsif exact_match.size > 1
+      # prolly never get here...legacy code...
       @tags = exact_match
       render :action => 'search_found_tags.rhtml'
       true
