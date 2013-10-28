@@ -83,5 +83,5 @@ module ApplicationHelper
       "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_to_use}</a>"
     end
   end
-  
+
 end

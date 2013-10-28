@@ -51,6 +51,12 @@ module Substruct
   mattr_accessor :use_live_rate_calculation
   self.use_live_rate_calculation = false
 
+
+def today_is_sunday?
+   (Time.now.utc - 6*60*60).wday == 0 # sometimes Time.now is utc, sometimes it ain't, so force it here pretty close anyway, could be improved http://stackoverflow.com/questions/2927111/ruby-get-time-in-given-timezone
+end
+
+
   # Override SSL production mode?
   # If set to true the cart and checkout are accessed via HTTP not HTTPS
   # regardless of the mode that the server is run in.

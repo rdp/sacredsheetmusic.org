@@ -305,7 +305,7 @@ at please try again later."
   #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
     cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
-    if Time.now.wday == 0 # Sunday
+    if today_is_sunday?
       cache_name = cache_name + '_sunday'
     end
     if logged_in_user?
@@ -326,7 +326,7 @@ at please try again later."
 
   def render_and_cache rhtml_name, cache_name
     cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
-    if Time.now.wday == 0 # Sunday
+    if today_is_sunday?
       cache_name = cache_name + '_sunday'
     end
     if logged_in_user?
