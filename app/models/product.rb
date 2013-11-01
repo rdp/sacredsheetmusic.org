@@ -244,15 +244,23 @@ class Product < Item
       if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i}
         problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), possibly needs to be split?"
       end
+
+      if self.tags.count{|t| t.is_hymn_tag?} > 1 && !self.tags.detect{|t| t.name =~ /medley/}
+        problems << "might be lacking the medley tag"
+      end
+
       for download in self.downloads
        problems << "has empty download?" + download.filename unless download.size > 0
       end
+
       if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
         problems <<  "no hymn or 'original' tag for this song yet."
       end
+
       if self.downloads.size == 0 && !self.original_url.present?
         problems << "song has no original_url nor pdf uploads! Not expected I don't think..."
       end
+
       if self.original_url.present? 
         if !self.original_url.start_with?("http")
           problems << "original url should start with http://"
