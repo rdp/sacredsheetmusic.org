@@ -32,7 +32,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def list
    # we get here....
-    @title = "All Product List"
+    @title = "All Songs List"
     @products = Product.paginate(
     :order => "name ASC",
     :page => params[:page],
@@ -52,7 +52,7 @@ class Admin::ProductsController < Admin::BaseController
     @products.select!{|p| 
       p.cached_find_problems.length > 0 
     }
-    @title = 'all products with any problems listed'
+    @title = 'all songs with any problems listed'
     def @products.total_pages # fake it out :P
       1
     end
@@ -66,6 +66,21 @@ class Admin::ProductsController < Admin::BaseController
   #
   def self.density= to_this
    @@density = to_this
+  end
+
+  def duplicate
+    raise 'no id?' unless id = params[:id]
+    old = Product.find id
+    attributes = old.attributes
+    newy = Product.new
+    newy.attributes = old.attributes
+    newy.code = newy.code + "-2"
+    raise unless newy.save
+    for tag in old.tags
+      newy.tags << tag # force a save
+    end
+    flash[:notice] = "editing the dup..."
+    redirect_to :action => :edit, :id => newy.id
   end
 
   # fix up any previously ugly images from pdf's
