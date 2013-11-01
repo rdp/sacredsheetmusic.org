@@ -279,7 +279,10 @@ class Admin::ProductsController < Admin::BaseController
               rescue ContinueError => e
                 logger.info e.to_s # ok
               end
-              raise 'failed to convert pdf' unless got_one
+              unless got_one
+                FileUtils.cp i[:download_data].path, "/tmp/latest_failure.pdf"
+                raise 'failed to convert pdf' unless got_one
+              end
             end
             
             # and a hacky work-around for unknown file content types...I guess...
