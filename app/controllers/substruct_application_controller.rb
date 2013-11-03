@@ -4,8 +4,7 @@ module SubstructApplicationController
   
   def redirect_to_freeldssheetmusic
     if ENV['RAILS_ENV'] == "production" 
-      #if( (request.host !~ /freeldssheetmusic.org/) || (request.host =~ /choirarrangements.freeldssheetmusic.org/) )
-      if request.host =~ /^(www|choirarrangements)/ || (request.host !~ /localhost|freeldssheetmusic.org/) # allow localhost:3000
+      if request.host =~ /^(www|choirarrangements)/ || (request.host !~ /localhost|freeldssheetmusic.org|admin.freeldssheetmusic.org/) # allow localhost:3000 etc.
          redirect_to "http://freeldssheetmusic.org" + request.request_uri, :status => :moved_permanently 
          flash.keep
          return false
