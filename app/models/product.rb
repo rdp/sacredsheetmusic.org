@@ -141,7 +141,7 @@ class Product < Item
 
   after_save {  # singleton!
     #Product.delete_group_caches # ??
-    #Cache.clear_html_cache # why not :P
+    #Cache.clear_html_cache # ??
   } 
 
   def self.delete_group_caches
@@ -363,7 +363,7 @@ class Product < Item
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
-            if tag.name !~ /original/i
+            if tag.name !~ /original|solo/i
               problems << "might need a child tag beneath #{tag.name}, or for that tag to be removed possibly"
             end
           end
