@@ -622,7 +622,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   def look_for_exact_matching_tags search_term
     exact_match = Tag.find(:all, :conditions => ["REPLACE(REPLACE(tags.name , '\\'', ''), ',', '') = ?", search_term]) # already case insensitive
     if exact_match.size  == 1
-      # this causes a cache miss, so don't do it: flash[:notice] = "Displaying the #{exact_match[0].name} category"
+      # this causes a subsequent cache miss, so don't do it: flash[:notice] = "Displaying the #{exact_match[0].name} category"
       redirect_to_tag(exact_match[0].name)
       true
     elsif exact_match.size > 1
@@ -645,13 +645,12 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     original_search_term = @search_term
     @search_term = @search_term.gsub(/[.,'"]/, "") # ignore still, still, still, etc. in case they get it wrong
+    session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
     if look_for_exact_matching_tags @search_term
       return
     end
 
     @title = "Search Results for: #{original_search_term}"
-    session[:last_search] = original_search_term # save it away with punct.
-
 
     name_without_punct="REPLACE(REPLACE(items.name, '\\'', ''), ',', '')"
     # let's => let (apostrophe and after are removed)
@@ -660,6 +659,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
     super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
@@ -689,6 +689,8 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
        :order => "rand(#{session_id.hash})"
     )
+
+    # precise_hits here doesn't make sense, since that could/would/shoulda already been a direct tag hit
 
     all_ids_merged = (good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
 
