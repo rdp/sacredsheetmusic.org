@@ -647,16 +647,16 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     end
 
     @title = "Search Results for: #{@search_term}"
+    session[:last_search] = @search_term # save it away with punct.
 
-    @search_term.gsub!(/[.,'"]/, "") # ignore still, still, still, etc. in case they get it wrong
+    @search_term = @search_term.gsub(/[.,'"]/, "") # ignore still, still, still, etc. in case they get it wrong
 
     name_without_punct="REPLACE(REPLACE(items.name, '\\'', ''), ',', '')"
     # let's => let (apostrophe and after are removed)
     # oh => o
     # duets => duet
     # and => ''
-    # your => you (they want you're...)
-    # query your matches you're since the ' is replaced out...
+    # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
     super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
 
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
@@ -694,7 +694,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     Rails.logger.info "search #{@search_term} returned #{all_products.length} results"
     @products = paginate_and_filter all_products
  
-    session[:last_search] = @search_term
 
     # If only one product comes back, take em directly to it.
     if all_ids_merged.size == 1 && @products.length > 0
