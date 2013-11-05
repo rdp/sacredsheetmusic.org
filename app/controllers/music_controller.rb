@@ -654,6 +654,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # your => you (they want you're...)
     # query your matches you're since the ' is replaced out...
     super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+
     super_search_query = (["(REPLACE(items.name, '\\'', '') like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX paginate within the query itself LOL :)
@@ -678,7 +679,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     # put more precise hits first...
     good_hits = Product.find(:all, 
-       :conditions => ["name like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
+       :conditions => ["(REPLACE(items.name, '\\'', '') like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term.gsub("'", "")}%"], 
        :order => "rand(#{session_id.hash})"
     )
 
