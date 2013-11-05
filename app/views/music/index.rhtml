@@ -37,6 +37,7 @@
         <% end %>
 
 <% if @was_filtered_able %>
+  <br/>
   <%  if @old_global_filter.present?; blank_text = "-show all (#{@total_count_before_filtering})-" %>
     This list currently limited to <b>only</b> songs that include:
 <% else; blank_text = "showing all (#{@products.size})" %>
