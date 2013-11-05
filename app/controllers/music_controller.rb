@@ -619,14 +619,14 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     render :action => 'index.rhtml' and return
   end
 
-  def look_for_matching_tags
-    exact_match = Tag.find(:all, :conditions => ["REPLACE(tags.name , '\\'', '') = ?", @search_term.gsub("'", "")]) # already case insensitive
+  def look_for_exact_matching_tags search_term
+    exact_match = Tag.find(:all, :conditions => ["REPLACE(REPLACE(tags.name , '\\'', ''), ',', '') = ?", search_term]) # already case insensitive
     if exact_match.size  == 1
       # this causes a cache miss, so don't do it: flash[:notice] = "Displaying the #{exact_match[0].name} category"
       redirect_to_tag(exact_match[0].name)
       true
     elsif exact_match.size > 1
-      # prolly never get here...legacy code...
+      # prolly never get here...legacy code really...?
       @tags = exact_match
       render :action => 'search_found_tags.rhtml'
       true
@@ -637,19 +637,21 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   
   def search
     @search_term = params[:q]
+
     unless @search_term.present?
       flash[:notice] = "please enter a search query at all!"
       redirect_to :action => 'index' and return false
     end
 
-    if look_for_matching_tags
+    original_search_term = @search_term
+    @search_term = @search_term.gsub(/[.,'"]/, "") # ignore still, still, still, etc. in case they get it wrong
+    if look_for_exact_matching_tags @search_term
       return
     end
 
-    @title = "Search Results for: #{@search_term}"
-    session[:last_search] = @search_term # save it away with punct.
+    @title = "Search Results for: #{original_search_term}"
+    session[:last_search] = original_search_term # save it away with punct.
 
-    @search_term = @search_term.gsub(/[.,'"]/, "") # ignore still, still, still, etc. in case they get it wrong
 
     name_without_punct="REPLACE(REPLACE(items.name, '\\'', ''), ',', '')"
     # let's => let (apostrophe and after are removed)
@@ -659,6 +661,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
     super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
 
+    # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
     # XXX paginate within the query itself LOL :)
