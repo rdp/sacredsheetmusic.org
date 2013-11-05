@@ -49,24 +49,24 @@
         <%= first_topic = true
             first_composer= true
            tags.map{|t| 
-            name_to_use = t.name.gsub(',', '')
-            if name_to_use =~ /\// 
-              if t != tags[-1] # at very ending ... feels tacky...
-                name_to_use = name_to_use.split(/\//)[0].split[0] + ' &hellip;' # just use first word of it, like "flute ..."
-              else
-                name_to_use = name_to_use.gsub('/', ' / ')
-              end
-            end
-            extra = ''
-            if t.is_composer_tag? && first_composer
-              extra = 'By: '
-              first_composer = false
-            end
-            if first_topic && t.is_topic_tag?
-              name_to_use = "Topics: " + name_to_use
-              first_topic=false
-            end 
-            extra + tag_link(t, name_to_use)
+             name_to_use = t.name.gsub(',', '')
+             if name_to_use =~ /\// 
+               if t != tags[-1] # at very ending ... feels too tacky otherwise...
+                 name_to_use = name_to_use.split(/\//)[0].split[0] + ' &hellip;' # just use first word of it, like "flute ..."
+               else
+                 name_to_use = name_to_use.gsub('/', ' / ')
+               end
+             end
+             extra = ''
+             if t.is_composer_tag? && first_composer
+               extra = 'By: '
+               first_composer = false
+             end
+             if first_topic && t.is_topic_tag?
+               extra = "Topics: "
+               first_topic = false
+             end 
+             extra + tag_link(t, name_to_use)
            }.join(', ')
         %>
         <% if product.downloads.length == 0 %>
