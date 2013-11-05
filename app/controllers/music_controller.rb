@@ -73,8 +73,8 @@ at please try again later."
 
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
-   if (params['recaptcha'] || '').downcase != 'monday'
-     flash[:notice] = "Spam avoidance question answer failed (the answer is monday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to try again!"
+   if (params['recaptcha'] || '').downcase != 'sunday'
+     flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to enter sunday and try again!"
      return [product, nil]
    else
      new_hash = {}
