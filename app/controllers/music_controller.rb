@@ -664,7 +664,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
 
-    # XXX paginate within the query itself LOL :)
     conds = [
         "(items.name LIKE ? OR code = ? OR (#{super_search_query})) AND #{Product::CONDITIONS_AVAILABLE}", 
         "%#{@search_term}%", @search_term # name, code
@@ -690,15 +689,14 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
        :order => "rand(#{session_id.hash})"
     )
 
-    # precise_hits here doesn't make sense, since that could/would/shoulda already been a direct tag hit
+    # calculating totally_precise_hits here doesn't make sense, since that could/would/shoulda already been a direct tag hit
 
     all_ids_merged = (good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
     Rails.logger.info "search #{@search_term} returned #{all_products.length} results"
-    @products = paginate_and_filter all_products
- 
+    @products = paginate_and_filter all_products, 50 # make "bad" queries return somewhat quickly, at least until we have better cacheing figured out...
 
     # If only one product comes back, take em directly to it.
     if all_ids_merged.size == 1 && @products.length > 0
