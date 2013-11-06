@@ -292,7 +292,7 @@ at please try again later."
            :controller => "content_nodes",
            :action => "show_by_name",
            :params => {
-             :name => 'index-of-free-lds-mormon-arrangements-choir-piano-solo',
+             :name => 'home',
            }
     )
   end
