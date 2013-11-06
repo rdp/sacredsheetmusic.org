@@ -689,9 +689,12 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
        :order => "rand(#{session_id.hash})"
     )
 
-    # calculating totally_precise_hits here doesn't make sense, since that could/would/shoulda already been a direct tag hit
+    start_with_hits = Product.find(:all, 
+       :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
+       :order => "rand(#{session_id.hash})"
+    )
 
-    all_ids_merged = (good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
+    all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
