@@ -93,7 +93,7 @@
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
-          If you sing/use this song, please contact the composer to <a href="<%= url %>">say thanks</a>!
+          If you sing/use this song, please contact the composer and <a href="<%= url %>">say thank you</a> to <%= @product.composer_tags[0].andand.name %>!
         <% end %>
         <br/>
         <br/>
