@@ -28,14 +28,14 @@ out
 		<div class="float" style="margin-left: 50px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
-      <%= make_label('Copy and paste an mp3/midi url here (it will be uploaded then disappear):') %>
-   <div class="float" style="margin-left: 50px">
-      <%= text_field nil, 'download_mp3_url', :class => 'textInput', :size => 30  %>
-   </div>
-
       <%= make_label('Copy and paste a pdf url here (it will be uploaded then disappear):') %>
    <div class="float" style="margin-left: 50px">
       <%= text_field nil, 'download_pdf_url', :class => 'textInput', :size => 30  %>
+   </div>
+
+      <%= make_label('Copy and paste an mp3/midi url here (it will be uploaded then disappear):') %>
+   <div class="float" style="margin-left: 50px">
+      <%= text_field nil, 'download_mp3_url', :class => 'textInput', :size => 30  %>
    </div>
 
 
