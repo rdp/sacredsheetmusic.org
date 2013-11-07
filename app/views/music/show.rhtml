@@ -115,7 +115,7 @@
 
         <% for hymn_tag in @product.hymn_tags %>
           <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
-            Also see our <%= "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}" %>
+            We also have <%= "other #{competitors_count} arrangement#{ competitors_count > 1 ? 's' : ''}" %>
             of "<%= tag_link(hymn_tag, hymn_tag.name) %>".
             <br/>
           <% else %>
