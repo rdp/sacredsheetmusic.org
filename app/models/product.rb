@@ -94,12 +94,16 @@ class Product < Item
   # called via a before_save :clean_code
   def clean_code
     if self.code.blank?
-      if self.composer_tag && (voicing = self.voicing_tags[0])
-        voicing_name = voicing.name
-        voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
-        self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
+      if self.composer_tag 
+        if voicing = self.voicing_tags[0]
+          voicing_name = voicing.name
+          voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
+          self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
+        else
+          raise 'please setup voicing tags first (use back button on browser)'
+        end
       else
-        raise 'please setup code or tag with voicing and composer' # otherwise it isn't explicit why it failed...return # make them set this up well enough for us :)
+        raise 'please setup a composer first (use back button on browser)'
       end
     end
 #    self.code.upcase! # too ugly!

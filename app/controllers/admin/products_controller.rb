@@ -44,7 +44,7 @@ class Admin::ProductsController < Admin::BaseController
   def edit
     @product = Product.find(params[:id])
                 @image = Image.new
-    @title = "Editing #{@product.name}"
+    @title = "Editing #{@product.name} #{@product.code}"
   end
 
   def with_problems
