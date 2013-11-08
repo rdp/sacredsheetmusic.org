@@ -1,6 +1,6 @@
 <%= form_tag({:action => 'save', :id => @product}, :multipart => true) %>
 <div id="left">
-  <h1><%= @title %></h1>
+  <h1><%= @header || @title %></h1>
   <p>
     <%=
       link_to(
