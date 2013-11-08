@@ -63,7 +63,11 @@
                first_composer = false
              end
              if first_topic && t.is_topic_tag?
-               extra = "Topics: "
+               if tags.select{|t| t.is_topic_tag?}.count > 1
+                 extra = "Topics: "
+               else
+                 extra = "Topic: "
+               end
                first_topic = false
              end 
              extra + tag_link(t, name_to_use)
