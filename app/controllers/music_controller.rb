@@ -634,22 +634,32 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   end
   
   def search
-    @search_term = params[:q]
+    search_term = params[:q]
 
-    unless @search_term.present?
+    unless search_term.present?
       flash[:notice] = "please enter a search query at all!"
       redirect_to :action => 'index' and return false
     end
 
-    original_search_term = @search_term
-    @search_term = @search_term.gsub(/[.,'"]/, " ").downcase.gsub(/sheet music (|for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong
+    original_search_term = search_term
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
+
+    @search_term = original_search_term.gsub(/[.,'"]/, " ").downcase.gsub(/sheet music( |for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
+    @search_term = @search_term.downcase.gsub(/sheet music(| for)/, '').strip
+
     if look_for_exact_matching_tags @search_term
       return
     end
+    Rails.logger.info "actually searching for #{@search_term} from #{original_search_term}"
 
     if @search_term =~ /piano/
       flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano so we don't index them that way, consider removing it."
+    end
+    if @search_term =~ /ob+l+ig+at+o/ && @search_term !~ /obbligato/
+      flash[:notice] = "Warning, you may want to search for obbligato instead"
+    end
+    if @search_term =~ / font/
+      flash[:notice] = "Warning, you searched for font, you may ant to search for fount instead"
     end
 
     @title = "Search Results for: #{original_search_term}"
@@ -660,7 +670,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # duets => duet
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
-    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a', 'by'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
 
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
