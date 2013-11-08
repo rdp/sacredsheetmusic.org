@@ -263,10 +263,9 @@ at please try again later."
       old_id = session['filter_all_tag_id']
       if old_id.present?
         @old_global_filter = old_id.to_i 
-        @total_count_before_filtering = these_products.length
         these_products = these_products.select{|p| p.tag_ids.include? @old_global_filter }
         if @title
-           @title += " (#{@total_count_before_filtering} arrangements limited to only #{Tag.find(old_id).name} [#{these_products.length}])"
+           @title += " (#{@all_products_unfiltered.size} arrangements limited to only #{Tag.find(old_id).name} [#{these_products.length}])"
         end
       end
     end
@@ -643,7 +642,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     end
 
     original_search_term = @search_term
-    @search_term = @search_term.gsub(/[.,'"]/, "").downcase.gsub(/sheet music (|for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong
+    @search_term = @search_term.gsub(/[.,'"]/, " ").downcase.gsub(/sheet music (|for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
     if look_for_exact_matching_tags @search_term
       return
@@ -657,7 +656,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # duets => duet
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
-    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
 
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
