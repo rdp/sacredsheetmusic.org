@@ -232,7 +232,6 @@ at please try again later."
 
   def advanced_search_post
    tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
-   @title = 'Advanced search:' + tags.map{|t| t.name}.join(' and ') 
    parent_tag_groups = {}
    for tag in tags
     if tag.parent
@@ -253,6 +252,7 @@ at please try again later."
    }
   
    @do_not_paginate = true # XXXX enable paginate
+   @title = 'Advanced search:' + tags.map{|t| t.name}.join(' and ') + " #{@products.count} songs"
    render :action => 'index.rhtml'
  end
 
@@ -662,7 +662,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
       flash[:notice] = "Warning, you searched for font, you may ant to search for fount instead"
     end
 
-    @title = "Search Results for: #{original_search_term}"
 
     name_without_punct="REPLACE(REPLACE(items.name, '\\'', ''), ',', '')"
     # let's or lets => let (apostrophe and after are removed, end s's are removed, like for mothers day)
@@ -687,6 +686,12 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
       :order => "rand(#{session_id.hash})"
     )
 
+    # allow searches like "christmas duet" to work...unclear how to do this in sql...
+    with_all_tags = Product.find(:all, :include => :tags, :order => "rand(#{session_id.hash})").select{|p| 
+       big_string = (p.name + p.description + p.tags.map{|t| t.name}.join).downcase
+       @search_term.split.all?{|word| big_string.downcase.contain? word}
+    }
+
     # search for all products of (basically) precise matching tags, too
     # this might be redundant to the above these days though...
     tags = Tag.find(:all,
@@ -700,13 +705,12 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
        :order => "rand(#{session_id.hash})"
     )
-
     start_with_hits = Product.find(:all, 
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
        :order => "rand(#{session_id.hash})"
     )
 
-    all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten).uniq
+    all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten + with_all_tags.map(&:id)).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
@@ -719,6 +723,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
       flash[:notice] = 'Found (showing) one song that matches: ' + @search_term
       redirect_to :action => 'show', :id => @products[0].code and return
     else
+      @title = "Search Results for: #{original_search_term} (#{all_products.size} songs)"
       render :action => 'index.rhtml'
     end
   end
