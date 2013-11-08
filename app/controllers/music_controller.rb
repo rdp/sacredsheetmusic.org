@@ -645,7 +645,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
 
     @search_term = original_search_term.gsub(/[.,'"]/, " ").downcase.gsub(/sheet music( |for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
-    @search_term = @search_term.downcase.gsub(/sheet music(| for)/, '').strip
+    @search_term = @search_term.downcase.gsub(/sheet music/, '').strip
 
     if look_for_exact_matching_tags @search_term
       return
