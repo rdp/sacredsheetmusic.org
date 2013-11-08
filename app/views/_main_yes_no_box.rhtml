@@ -83,9 +83,11 @@
 				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;"/> <!-- avoid x and y get params -->
 				<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="float:right; margin-right: 5px;" /> <!-- Search -->
 			</form>
-                        <div style="float: right; margin-top: 15px; margin-right: 60px;">
+
+                        <!--div style="float: right; margin-top: 15px; margin-right: 60px;">
                             <a href="/music/advanced_search">Advanced search</a><span style="color: grey; font-size: 9px;">&nbsp;&nbsp;&nbsp; topic with specific voicing, etc...</span>
-                       </div>
+                       </div-->
+
 		</div>
 		
 		<div class="clear"></div> <!-- necessary... -->
@@ -145,12 +147,12 @@
 	</div><!-- End content body -->
 	<div class="clear"></div>
 
-	<div id="footer" style="background-image:url('/images/trebs/trebs240.gif'); margin-left: 50px;">
+	<div id="footer" style="background-image:url('/images/trebs/trebs240.gif'); margin-left: 25px;">
 		<ul class="navigation">
 			<!--li><a href="/">Home</a></li-->
                         <li><%=link_to 'About Us', :controller => 'content_nodes', :action => 'show_by_name', :name => 'about' %></li>
 			<!--li><a href="/questions/faq">FAQ</a></li-->
-			<li><a href="/questions/ask">Contact Us</a></li>
+			<li><a href="/questions/ask">Contact Us/Feedback</a></li>
 			<li><a href="/music/wishlist">Bookmarked Songs</a></li>
                         <li><%=link_to 'Publish/list your own works with us!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'upload' %></li>
                         <li><%=link_to 'Other Resources', :controller => 'content_nodes', :action => 'show_by_name', :name => 'all-resources'%></li>
@@ -163,7 +165,7 @@
 		</ul>
          <br/>
 
-          <div style="margin-top: 5px; font-size: .75em; text-align: center; color: gray">See <a href="http://mormon.org">mormon.org</a> for the "official" LDS church website. Each piece (or recording) remains &copy; its respective author.
+          <div style="margin-top: 5px; font-size: .75em; text-align: center; color: gray">See <a href="http://mormon.org">lds.org</a> for the "official" LDS church website. Each piece (or recording) remains &copy; its respective author.
           </div>
 
         </div> <!-- end footer -->
