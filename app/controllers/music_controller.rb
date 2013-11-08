@@ -657,7 +657,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # duets => duet
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
-    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word.downcase == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.map{|name| name.downcase}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or']}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
 
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
