@@ -644,7 +644,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     end
 
     original_search_term = @search_term
-    @search_term = @search_term.gsub(/[.,'"]/, "").strip # ignore still, still, still, etc. in case they get punct wrong
+    @search_term = @search_term.gsub(/[.,'"]/, "").downcase.gsub(/sheet music (|for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
     if look_for_exact_matching_tags @search_term
       return
