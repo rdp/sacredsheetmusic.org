@@ -256,22 +256,21 @@ at please try again later."
    render :action => 'index.rhtml'
  end
 
-  def filter_by_current_main_tag! these_products
+  def filter_by_current_main_tag these_products
+    @all_products_unfiltered = these_products
     if these_products.length > 1
       @was_filtered_able = true
       old_id = session['filter_all_tag_id']
-      logger.info old_id
       if old_id.present?
         @old_global_filter = old_id.to_i 
         @total_count_before_filtering = these_products.length
-      #logger.info these_products.map{|p| p.tag_ids}.inspect
-        
-        these_products.select!{|p| p.tag_ids.include? @old_global_filter }
+        these_products = these_products.select{|p| p.tag_ids.include? @old_global_filter }
         if @title
            @title += " (#{@total_count_before_filtering} arrangements limited to only #{Tag.find(old_id).name} [#{these_products.length}])"
         end
       end
     end
+    these_products
   end 
 
   def change_global_filter
@@ -718,7 +717,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
   def paginate_and_filter products, per_page = @@per_page
     # filter first
-    filter_by_current_main_tag! products
+    products = filter_by_current_main_tag products
     # Paginate products so we don't have a ton of ugly SQL
     # and conditions in the controller
     list = products

@@ -46,8 +46,9 @@
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
        current_tag = @viewing_tags.andand[0]
-       Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text, current_tag].hash, 'global_filter', 'tags') {  # takes like 0.5s [!]
-         select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.count > 0}.reject{|t| current_tag && (t == current_tag || t == current_tag.parent) }.reject{|t| t.name == "Original"}.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{@products.select{|p| p.tags.include? t}.size})", t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
+       Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text, current_tag].hash, 'global_filter', 'tags') {  # takes like 0.5s [?] plus should be safe, total size wise, to cache...
+         # reject current_tag since it's already shown in the top line if anything's selected...
+         select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.count > 0}.reject{|t| t == current_tag || t == current_tag.andand.parent }.reject{|t| t.name == "Original" }.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{@all_products_unfiltered.select{|p| p.tags.include? t}.size})", t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
              :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });$('spinner').show()", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
