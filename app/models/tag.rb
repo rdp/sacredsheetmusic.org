@@ -129,10 +129,11 @@ class Tag
     #Cache.clear! 
   } # some were marked with it, left side is messed up...may as well start over...
 
-  after_save { |record|
+  after_save { |tag|
     # case of creating a "new" one I guess...
     #Cache.delete_by_type 'tags'# cached left side is messed now
-    record.clear_public_cached
+    tag.clear_public_cached
+    tag.products.each{|p| p.clear_my_cache} # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...
   } 
 
   def clear_public_cached
