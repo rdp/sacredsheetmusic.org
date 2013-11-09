@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
   
   def logout
     session[:user] = nil
-    flash['notice'] = 'logged out' # doesn't work?
+    flash[:notice] = 'logged out' # doesn't work?
     redirect_to "/"
   end
     

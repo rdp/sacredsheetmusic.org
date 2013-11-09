@@ -32,6 +32,15 @@ class MusicController < StoreController
     WishlistItem.find(params[:id]).destroy
     render :text => '' # render nothing...
   end
+  def sleep_forever
+    sleep
+  end
+  def burn_forever
+    loop {} # burn cpu, baby!
+  end
+  def die
+    raise 'show me your version'
+  end
 
   def session_id
     request.session_options[:id] # a big long string I believe..
@@ -658,10 +667,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     if @search_term =~ /ob+l+ig+at+o/ && @search_term !~ /obbligato/
       flash[:notice] = "Warning, you may want to search for obbligato instead"
     end
-    if @search_term =~ / font/
-      flash[:notice] = "Warning, you searched for font, you may ant to search for fount instead"
-    end
-
 
     name_without_punct="REPLACE(REPLACE(items.name, '\\'', ''), ',', '')"
     # let's or lets => let (apostrophe and after are removed, end s's are removed, like for mothers day)
@@ -688,7 +693,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
     with_all_tags = Product.find(:all, :include => :tags, :order => "rand(#{session_id.hash})").select{|p| 
-       big_string = (p.name + p.description + p.tags.map{|t| t.name}.join).downcase
+       big_string = (p.name + p.description + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
        @search_term.split.all?{|word| big_string.downcase.contain? word}
     }
 
