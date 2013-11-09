@@ -32,16 +32,8 @@ class MusicController < StoreController
     WishlistItem.find(params[:id]).destroy
     render :text => '' # render nothing...
   end
-  def sleep_forever
-    sleep
-  end
-  def burn_forever
-    loop {} # burn cpu, baby!
-  end
-  def die
-    raise 'show me your version'
-  end
 
+  private
   def session_id
     request.session_options[:id] # a big long string I believe..
   end
@@ -52,6 +44,8 @@ class MusicController < StoreController
       @old_comment = old_comment
     end
   end
+
+  public
 
   def competition_results
     @title = "Sacred Sheet Music Competition Winners"
