@@ -5,11 +5,7 @@
 					<% 
 						@main_nav_tags.each do |tag| 
 					%>
-                                            <% if tag.name != "Original" %>
                                                 <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
-                                            <% end %>
-
-
                                         <% end %>
   <li><a href="/all">All Songs</a></li>
   <!--li><a href="/music/most_recently_added">Songs Recently Added</a></li-->
