@@ -686,7 +686,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     )
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
-    with_all_tags = Product.find(:all, :include => :tags, :order => "rand(#{session_id.hash})").select{|p| 
+    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => "rand(#{session_id.hash})").select{|p| 
        big_string = (p.name + p.description + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
        @search_term.split.all?{|word| big_string.downcase.contain? word}
     }
