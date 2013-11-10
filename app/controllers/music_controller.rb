@@ -281,7 +281,7 @@ at please try again later."
    if id.present?
      flash[:notice] = "Ok, results (and future results) now filtered/limited to just #{Tag.find(id).name}"
    else
-     flash[:notice] = "Ok, showing *all* results now"
+     flash[:notice] = "Ok, showing *all* results now (unfiltered--and also for future results)"
    end
    render :text => "alert('xyz');" # does nothing [?!]
   end
