@@ -1,4 +1,4 @@
-class CreateCache < ActiveRecord::Migration
+class CacheAddParentIndex < ActiveRecord::Migration
   def self.up
     add_index  :cache, :parent_id
   end
