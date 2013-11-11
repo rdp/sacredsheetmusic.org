@@ -81,7 +81,7 @@ class Admin::ProductsController < Admin::BaseController
     for tag in old.tags
       newy.tags << tag # force a save
     end
-    flash[:notice] = "editing the dup..."
+    flash[:notice] = "editing the dup (you may need/want to clear its code now, if voicing is changing...)"
     redirect_to :action => :edit, :id => newy.id
   end
 
