@@ -1,9 +1,9 @@
 class SongAddLyrics < ActiveRecord::Migration
   def self.up
-    add_column :product, :lyrics, :string_value, :longtext, :default => nil 
+    add_column :items, :lyrics, :longtext, :default => nil 
   end
  
   def self.down
-    remove_column :product, :lyrics
+    remove_column :items, :lyrics
   end
 end
