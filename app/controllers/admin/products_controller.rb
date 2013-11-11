@@ -37,13 +37,14 @@ class Admin::ProductsController < Admin::BaseController
     :order => "name ASC",
     :page => params[:page],
     :per_page => params[:per_page] || 5,
-    :include => [:tags, :downloads] # just fer fun...
+    :include => [{:tags => [:parent, :children]}, :downloads] # just fer fun...
     )
   end
 
   def edit
-    @product = Product.find(params[:id])
-               @image = Image.new
+    @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
+ 
+    @image = Image.new
     @header = "Editing #{@product.name}<br/>#{@product.code}"
     @title = "Editing #{@product.name} (#{@product.code})"
   end
