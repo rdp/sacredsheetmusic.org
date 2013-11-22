@@ -1,7 +1,7 @@
 
 <!--
 
-Run this from a web server to actually work...
+must be run from a web server to actually work I believe...
 
 --> 
  
@@ -48,22 +48,6 @@ Run this from a web server to actually work...
       }      
       
 
-// we will mute from 2->10 seconds, and then skip from second 13 to 18...
-// have to run this from a web server for it to work
-
-    function muteFromSecondTwoToTen() { // also contains a skip from 13 to 18...
-            ytplayer.mute();
-            setTimeout(
-              function() {
-                ytplayer.unMute();
-                setTimeout(
-                 function() { 
-                   // here we're at second 13
-                   // so let's seek to...say...1
-                   ytplayer.seekTo(18, true);
-                }, 3000);
-              },  8000);
-    }
       
       var mutes2=[<%= mutes.join(',') %>];
       var splits=[<%= splits.join(',') %>];
@@ -109,21 +93,22 @@ Run this from a web server to actually work...
         updatePlayerInfo();
         ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
         ytplayer.addEventListener("onError", "onPlayerError");
+        //Load an initial video into the player
+        ytplayer.autoPlayType = "standard";
+        ytplayer.cueVideoById( "<%= video_id %>");
       }
       
       // The "main method" of this sample. Called when someone clicks "Run".
       function loadPlayer() {
         // The video to load
-        var videoID = "<%= video_id %>"
         // Lets Flash from another domain call JavaScript
         var params = { allowScriptAccess: "always" };
         // The element id of the Flash embed
-        var atts = { id: "ytPlayer" };
+        var atts = { id: "ytPlayer", videoId:  "<%= video_id %>" }; // videoId doesn't work here...sigh...
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
-        swfobject.embedSWF("http://www.youtube.com/v/" + videoID + 
-                           "&enablejsapi=1&playerapiid=player1&autoplay=1", 
-                           "videoDiv", "480", "295", "8", null, null, params, atts);
-      }
+       swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
+                           "version=3&enablejsapi=1&playerapiid=player1", 
+                           "videoDiv", "480", "295", "9", null, null, params, atts);}
       function _run() {
         loadPlayer();
       }
