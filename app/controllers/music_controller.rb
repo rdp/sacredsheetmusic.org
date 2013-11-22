@@ -648,12 +648,11 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
 
     # work for I'll go, and ros' [?] also strip random punct.
-    @search_term = original_search_term.gsub(/[.,'"] /, " ").gsub(/[.,'"]/, "").downcase.gsub(/sheet (|music)/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
+    @search_term = original_search_term.gsub(/[.,'"] /, " ").gsub(/[.,'"]/, "").downcase.gsub(/sheet|music/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
 
     if look_for_exact_matching_tags @search_term
       return
     end
-    Rails.logger.info "actually searching for #{@search_term} from #{original_search_term}"
 
     if @search_term =~ /piano/
       flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano so we don't index them that way, consider removing it."
@@ -668,8 +667,11 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # duets => duet
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
-    super_search_terms = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}.map{|name| ["%#{name}%"]*3}.flatten
+    words_to_search_for = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}
 
+    super_search_terms = words_to_search_for.map{|name| ["%#{name}%"]*3}.flatten
+
+    Rails.logger.info "actually searching for [#{words_to_search_for.join(' ')}] from #{original_search_term}"
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
@@ -688,7 +690,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
     with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => "rand(#{session_id.hash})").select{|p| 
        big_string = (p.name + p.description + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
-       @search_term.split.all?{|word| big_string.downcase.contain? word}
+       words_to_search_for.all?{|word| big_string.contain? word}
     }
 
     # search for all products of (basically) precise matching tags, too
