@@ -647,8 +647,8 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     original_search_term = search_term
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
 
-    @search_term = original_search_term.gsub(/[.,'"]/, " ").downcase.gsub(/sheet music( |for)/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
-    @search_term = @search_term.downcase.gsub(/sheet music/, '').strip
+    # work for I'll go, and ros' [?] also strip random punct.
+    @search_term = original_search_term.gsub(/[.,'"] /, " ").gsub(/[.,'"]/, "").downcase.gsub(/sheet (|music)/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
 
     if look_for_exact_matching_tags @search_term
       return
@@ -708,6 +708,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
        :order => "rand(#{session_id.hash})"
     )
+    logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
 
     all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten + with_all_tags.map(&:id)).uniq
 
