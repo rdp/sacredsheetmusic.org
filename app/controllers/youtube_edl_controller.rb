@@ -23,13 +23,11 @@ end
 def yo
     incoming_params = params
     logger.info "got #{incoming_params.inspect} #{params} #{params['mute_start']}"
-    mutes = combine_arrays incoming_params['mute_start'], incoming_params['mute_end']
-    splits = combine_arrays incoming_params['skip_start'], incoming_params['skip_end']
-    video_id = incoming_params['youtube_video_id'][0]
-    should_loop = incoming_params['loop'] == '1' ? '0' : '0'
-    out = $template.result(binding)
-    # html tag has already been closed...hmm
-    out +=  'mutes: ' + mutes.join(', ') + ' skips: ' + splits.join(', ') + "\n"
+    @mutes = combine_arrays incoming_params['mute_start'], incoming_params['mute_end']
+    @splits = combine_arrays incoming_params['skip_start'], incoming_params['skip_end']
+    @video_id = incoming_params['youtube_video_id'][0]
+    @should_loop = incoming_params['loop'] == '1' ? '0' : '0'
+    out = render :action => :control_youtube
     render :text => out
 end
 

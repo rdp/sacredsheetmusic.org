@@ -40,7 +40,7 @@ must be run from a web server to actually work I believe...
       // This function is called when the player changes state
       function onPlayerStateChange(newState) {
         updateHTML("playerState", newState);
-        <% if should_loop == '1' %>
+        <% if @should_loop == '1' %>
         if(newState == 0) {
           document.location.reload(true);
         } 
@@ -49,8 +49,8 @@ must be run from a web server to actually work I believe...
       
 
       
-      var mutes2=[<%= mutes.join(',') %>];
-      var splits=[<%= splits.join(',') %>];
+      var mutes2=[<%= @mutes.join(',') %>];
+      var splits=[<%= @splits.join(',') %>];
       
       function areWeWithin(thisArray) {
           var cur_time = ytplayer.getCurrentTime();
@@ -95,7 +95,7 @@ must be run from a web server to actually work I believe...
         ytplayer.addEventListener("onError", "onPlayerError");
         //Load an initial video into the player
         ytplayer.autoPlayType = "standard";
-        ytplayer.cueVideoById( "<%= video_id %>");
+        ytplayer.cueVideoById( "<%= @video_id %>");
       }
       
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -104,7 +104,7 @@ must be run from a web server to actually work I believe...
         // Lets Flash from another domain call JavaScript
         var params = { allowScriptAccess: "always" };
         // The element id of the Flash embed
-        var atts = { id: "ytPlayer", videoId:  "<%= video_id %>" }; // videoId doesn't work here...sigh...
+        var atts = { id: "ytPlayer", videoId:  "<%= @video_id %>" }; // videoId doesn't work here...sigh...
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
        swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
                            "version=3&enablejsapi=1&playerapiid=player1", 
@@ -127,5 +127,6 @@ must be run from a web server to actually work I believe...
       </div> 
     </td></tr> 
     </table> 
+<%= 'mutes: ' + @mutes.join(', ') + ' skips: ' + @splits.join(', ') + "\n" %>
   </body> 
 </html> 
