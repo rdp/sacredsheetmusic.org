@@ -52,6 +52,17 @@ must be run from a web server to actually work I believe...
       var mutes2=[<%= @mutes.join(',') %>];
       var splits=[<%= @splits.join(',') %>];
       
+      function playVideo() {
+        if (ytplayer) {
+          ytplayer.playVideo();
+        }
+      }
+      
+      function pauseVideo() {
+        if (ytplayer) {
+          ytplayer.pauseVideo();
+        }
+      } 
       function areWeWithin(thisArray) {
           var cur_time = ytplayer.getCurrentTime();
           for (key in thisArray) {
@@ -77,6 +88,7 @@ must be run from a web server to actually work I believe...
           if(last_end = areWeWithin(splits)) {
             ytplayer.seekTo(last_end, true);
           }
+          updateHTML("volume", ytplayer.getVolume());
           
         }
         updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
@@ -90,12 +102,13 @@ must be run from a web server to actually work I believe...
         // This causes the updatePlayerInfo function to be called every 250ms to
         // get fresh data from the player
         setInterval(updatePlayerInfo, 25); // 25 ms
-        updatePlayerInfo();
         ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
         ytplayer.addEventListener("onError", "onPlayerError");
         //Load an initial video into the player
         ytplayer.autoPlayType = "standard";
         ytplayer.cueVideoById( "<%= @video_id %>");
+        ytplayer.playVideo();
+        updatePlayerInfo();
       }
       
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -124,6 +137,8 @@ must be run from a web server to actually work I believe...
         <p>Player state: <span id="playerState">--</span></p> 
         <p>Current Time: <span id="videoCurrentTime">--:--</span> | Duration: <span id="videoDuration">--:--</span></p> 
         <p>Bytes Total: <span id="bytesTotal">--</span> | Start Bytes: <span id="startBytes">--</span> | Bytes Loaded: <span id="bytesLoaded">--</span></p> 
+           <p>Controls: <a href="javascript:void(0);" onclick="playVideo();">Play</a> | <a href="javascript:void(0);" onclick="pauseVideo();">Pause</a> | <a href="javascript:void(0);" onclick="muteVideo();">Mute</a> | <a href="javascript:void(0);" onclick="unMuteVideo();">Unmute</a></p>
+          <p>| Volume: <span id="volume">--</span></p>
       </div> 
     </td></tr> 
     </table> 

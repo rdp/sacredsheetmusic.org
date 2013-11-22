@@ -6,9 +6,6 @@ $template = ERB.new File.read(RAILS_ROOT + "/app/views/youtube_edl/control_youtu
 def combine_arrays array1, array2
     array1 ||= []
     array2 ||= []
-    # accomodate for a single start/end time [?]
-    array1 = [array1] unless array1.is_a? Array
-    array2 = [array2] unless array2.is_a? Array
     raise "mismatch start with end count #{array1} #{array2}" unless array1.length == array2.length
     out = []
     array1.each_with_index{|start, idx|
@@ -20,15 +17,15 @@ def combine_arrays array1, array2
     out
 end
 
-def yo
-    incoming_params = params
-    logger.info "got #{incoming_params.inspect} #{params} #{params['mute_start']}"
+def control_youtube
+    # do my own parsing, rails shmails too ugly for multiples
+    incoming_params = CGI.parse(request.url.split('?')[1] || '')
+    logger.info "got #{incoming_params.inspect} #{params} #{params['mute_start']} #{incoming_params.inspect}"
     @mutes = combine_arrays incoming_params['mute_start'], incoming_params['mute_end']
     @splits = combine_arrays incoming_params['skip_start'], incoming_params['skip_end']
-    @video_id = incoming_params['youtube_video_id'][0]
+    @video_id = incoming_params['youtube_video_id']
     @should_loop = incoming_params['loop'] == '1' ? '0' : '0'
-    out = render :action => :control_youtube
-    render :text => out
+    render :action => :control_youtube
 end
 
   def translate_string_to_seconds s
