@@ -172,7 +172,7 @@ at please try again later."
 
  def render_404_to_home string  # redirect them...
     flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string
-    redirect_to :action => :search, :q => string, :status => 303 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
+    redirect_to :action => :search, :q => string.gsub('-', ' '), :status => 303 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
  end
 
  public 

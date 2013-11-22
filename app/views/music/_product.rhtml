@@ -51,7 +51,8 @@
            tags.map{|t| 
              name_to_use = t.name.gsub(',', '')
              if name_to_use =~ /\// 
-               if t != tags[-1] # at very ending ... feels too tacky otherwise...
+               if t != tags[-1] # at very ending the ellipses ... feels too tacky...
+                 # TODO rdp a capella here :) 
                  name_to_use = name_to_use.split(/\//)[0].split[0] + ' &hellip;' # just use first word of it, like "flute ..."
                else
                  name_to_use = name_to_use.gsub('/', ' / ')
