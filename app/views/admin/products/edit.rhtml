@@ -28,6 +28,7 @@
 			<%= link_to 'Regenerate images', {:action => 'regenerate', :id => @product}, :class => 'action' %>
 			<%= link_to 'Duplicate song', {:action => 'duplicate', :id => @product}, :class => 'action' %>
 		</div>
+    <%= submit_tag 'Save This Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
 
 </div>
 

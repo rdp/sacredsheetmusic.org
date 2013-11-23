@@ -77,7 +77,7 @@ class Admin::ProductsController < Admin::BaseController
     newy = Product.new
     newy.attributes = old.attributes
     newy.code = newy.code + "-2"
-    raise unless newy.save
+    raise "unable to save dupe [possibly already duped?]!" unless newy.save
     for tag in old.tags
       newy.tags << tag # force a save
     end
