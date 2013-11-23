@@ -231,15 +231,7 @@ class Admin::ProductsController < Admin::BaseController
       # do after the pdf for ordering sake...
       if params[:download_mp3_url].present?
         url = params[:download_mp3_url]
-        type = 'audio/mpeg'
-        if url =~ /\.(mid|midi)$/
-          type = 'audio/midi'
-        end 
-        add_download url, temp_file_path, type, 'mp3'
-        out = `file #{temp_file_path}`
-        unless out =~ /MP3|MPEG|midi|Audio/i # MPEG? guess so...
-           flash[:notice] = "warning: mp3/midi upload was bad? #{url} [#{out}] file #{temp_file_path}"
-        end
+        temp_files << do_download_mp3(url)
       end
 
       if params[:download].present?
@@ -353,6 +345,19 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   private
+  def do_download_mp3 url
+    temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.mp3"
+    type = 'audio/mpeg'
+    if url =~ /\.(mid|midi)$/
+      type = 'audio/midi'
+    end 
+    add_download url, temp_file2, type, 'mp3'
+    out = `file #{temp_file2}`
+    unless out =~ /MP3|MPEG|midi|Audio/i
+       flash[:notice] = "warning: mp3/midi upload was bad? #{url} [#{out}] file #{temp_file_path}"
+    end
+    temp_file2
+  end
 
   def do_download_pdf url
     temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.pdf"
@@ -393,7 +398,7 @@ class Admin::ProductsController < Admin::BaseController
     logger.info 'downloading to', temp_file_path
     download(url, temp_file_path)
     fake_upload = Pathname.new(temp_file_path)
-     # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a787040b902c68d5680cfbe5ea065&l_sid=21117&l_eid=&l_mid=2660741&expiration=1325969215&hwt=28bdd0536f3512d6ba1d60cb3e38d23d -> DormanSeason.mp3 where applicable
+     # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a78704&mid=a1d60cb3e38d23d -> DormanSeason.mp3 where applicable
     fake_upload.original_filename = url.split('/')[-1].split('?')[0]
     fake_upload.original_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
     fake_upload.content_type = type
