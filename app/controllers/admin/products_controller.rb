@@ -222,14 +222,10 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
 
+      temp_files=[]
       if params[:download_pdf_url].present?
         url = params[:download_pdf_url]
-        temp_file2 = "/tmp/incoming_#{Process.pid}.pdf"
-        add_download url, temp_file2, 'application/pdf', 'pdf'
-        out = `file #{temp_file2}`
-        unless out =~ /PDF/
-          flash[:notice] = 'warning--non pdf?' + url
-        end
+        temp_files << do_download_pdf(url)
       end
 
       # do after the pdf for ordering sake...
@@ -305,7 +301,9 @@ class Admin::ProductsController < Admin::BaseController
       end
       # cleanup
       FileUtils.rm_rf temp_file_path
-      FileUtils.rm_rf temp_file2 if temp_file2
+      for file in temp_files
+        FileUtils.rm_rf temp_file_path
+      end
 
       # product was already saved...
       flash[:notice] ||= ''
@@ -355,6 +353,17 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   private
+
+  def do_download_pdf url
+    temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.pdf"
+    add_download url, temp_file2, 'application/pdf', 'pdf'
+    out = `file #{temp_file2}`
+    unless out =~ /PDF/
+      flash[:notice] = 'warning--non pdf?' + url
+    end
+    temp_file2
+  end
+
   def download full_url, to_here
     require 'open-uri'
     retrieved = open(full_url).read
