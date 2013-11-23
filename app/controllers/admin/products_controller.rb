@@ -175,10 +175,8 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       image_errors = []
+      temp_files=[]
 
-      if params['suck_in_all_links']
-        logger.info "got it"
-      end
 
       # add copied url, if requested
       if params['re_use_url'] 
@@ -198,6 +196,14 @@ class Admin::ProductsController < Admin::BaseController
         end
       end
 
+
+      if params['suck_in_all_links']
+        content = `curl #{@product.original_url}` # Do new products have this available to them already?
+        urls = URI.extract(content)
+        urls.each{|link|
+          logger.info "got one #{link}"
+        }
+      end
 
       # Build product images from upload
       if params[:image].present?
@@ -222,7 +228,6 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
 
-      temp_files=[]
       if params[:download_pdf_url].present?
         url = params[:download_pdf_url]
         temp_files << do_download_pdf(url)
