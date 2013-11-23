@@ -176,6 +176,10 @@ class Admin::ProductsController < Admin::BaseController
 
       image_errors = []
 
+      if params['suck_in_all_links']
+        logger.info "got it"
+      end
+
       # add copied url, if requested
       if params['re_use_url'] 
         if @product.composer_tag
