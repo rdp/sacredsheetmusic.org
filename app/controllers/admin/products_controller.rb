@@ -177,8 +177,7 @@ class Admin::ProductsController < Admin::BaseController
       image_errors = []
       temp_files=[]
 
-
-      # add copied url, if requested
+      # add copy url, if requested
       if params['re_use_url'] 
         if @product.composer_tag
           if old_prod = @product.composer_tag.products.detect{|p| p.original_url.present?}
@@ -198,10 +197,14 @@ class Admin::ProductsController < Admin::BaseController
 
 
       if params['suck_in_all_links']
-        content = `curl #{@product.original_url}` # Do new products have this available to them already?
+        content = `curl #{@product.original_url}` # we already saved the product, so this should be available to us
         urls = URI.extract(content)
         urls.each{|link|
-          logger.info "got one #{link}"
+          if link =~ /\.pdf$/i
+            temp_files << do_download_pdf(link)
+          elsif link =~ /\.mp3$/i
+            temp_files << do_download_mp3(link)
+          end
         }
       end
 
