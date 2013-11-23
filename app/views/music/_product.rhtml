@@ -51,13 +51,21 @@
            tags.map{|t| 
              name_to_use = t.name.gsub(',', '')
              if name_to_use =~ /\// 
-               if t != tags[-1] # at very ending the ellipses ... feels too tacky...
-                 # TODO rdp a capella here :) 
-                 name_to_use = name_to_use.split(/\//)[0].split[0] + ' &hellip;' # just use first word of it, like "flute ..."
+               name_to_use = name_to_use.split(/\//)[0]
+             end
+             if t != tags[-1] # at very ending having the ellipses ... feels too tacky...
+               first_word = name_to_use.split[0] 
+               if first_word.length < 3
+                 # don't say "a" for a capella
+                 first_word = name_to_use.split[0..1].join(' ')
+               end
+               if first_word != name_to_use
+                 name_to_use = first_word + "&hellip;"
                else
-                 name_to_use = name_to_use.gsub('/', ' / ')
+                 name_to_use = first_word
                end
              end
+             Rails.logger.info "from #{t.name} to #{name_to_use}"
              extra = ''
              if t.is_composer_tag? && first_composer
                extra = 'By: '
