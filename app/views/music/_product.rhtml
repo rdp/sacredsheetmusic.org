@@ -69,6 +69,7 @@
              if t.is_composer_tag? && first_composer
                extra = 'By: '
                first_composer = false
+               name_to_use = t.name # full name for composers
              end
              if first_topic && t.is_topic_tag?
                if tags.select{|t2| t2.is_topic_tag?}.count > 1
