@@ -368,7 +368,7 @@ at please try again later."
     # Generate tag ID list from names
     tag_ids_array = Array.new
     tag_names.map!{|name|
-      if name =~ / / # an old school name 
+      if name =~ / / # an old school name  or convenience name typed in
         redirect_to_tag(name) and return
       end
       real_name = name.gsub('_', ' ')# allow for cleaner google links coming in...
@@ -376,7 +376,8 @@ at please try again later."
       if temp_tag then
         tag_ids_array << temp_tag.id
       else
-        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+        @to_search = real_name
+        render(:file => "#{RAILS_ROOT}/public/404_search.html", :status => 404) and return
       end
       if temp_tag.name != real_name # redirect capitalization fail
         redirect_to_tag(temp_tag.name) and return
