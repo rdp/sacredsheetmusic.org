@@ -200,9 +200,9 @@ class Admin::ProductsController < Admin::BaseController
 
 
       # Build product images from upload
-      unless params[:image].blank?
+      if params[:image].present?
         params[:image].each do |i|
-          if i[:image_data] && !i[:image_data].blank?
+          if i[:image_data].present?
             new_image = Image.new
             logger.info i.inspect
             logger.info i[:image_data].inspect
@@ -222,7 +222,7 @@ class Admin::ProductsController < Admin::BaseController
       download_errors = []
       temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
 
-      unless params[:download_pdf_url].blank?
+      if params[:download_pdf_url].present?
         url = params[:download_pdf_url]
         temp_file2 = "/tmp/incoming_#{Process.pid}.pdf"
         add_download url, temp_file2, 'application/pdf', 'pdf'
@@ -233,7 +233,7 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       # do after the pdf for ordering sake...
-      unless params[:download_mp3_url].blank?
+      if params[:download_mp3_url].present?
         url = params[:download_mp3_url]
         type = 'audio/mpeg'
         if url =~ /\.(mid|midi)$/
@@ -246,7 +246,7 @@ class Admin::ProductsController < Admin::BaseController
         end
       end
 
-      unless params[:download].blank?
+      if params[:download].present?
         n2 = 0 # outside the loops to allow for multiple pdfs
         # calculate highest previous image rank so it'll add 'em at the end...
         @product.images.each{ |old_image|
@@ -260,7 +260,7 @@ class Admin::ProductsController < Admin::BaseController
         }
 
         params[:download].each do |i|
-          if i[:download_data] && !i[:download_data].blank?
+          if i[:download_data].present?
             new_download = Download.new
             logger.info i[:download_data].inspect
 
