@@ -29,12 +29,12 @@
       <% 
          has_sound_file = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
          if has_sound_file
-           button_mp3_link = " " + image_tag('play_button_small.gif', :alt => 'has mp3', :size => "17x17")
+           button_mp3_link = " " + image_tag('play_button_small.gif', :alt => 'has mp3', :size => "17x17", :style => "opacity:0.6")
          else
            button_mp3_link = ""
          end
       %>
-      <%= link_to(product.name + button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
+      <%= link_to(product.name, :controller=>'music', :action=>'show', :id => product.code) %>
     </div>
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
@@ -82,6 +82,8 @@
            }.join(', ')
         %>
        <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
+      <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
+
     </div>
   </div>
   <div class="product_bottom"></div>
