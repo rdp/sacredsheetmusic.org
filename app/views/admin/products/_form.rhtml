@@ -27,6 +27,7 @@ out
 		<div class="float" style="margin-left: 50px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
+                <br/>
                 or check here: <input type="checkbox" name="re_use_url"> to use author's url from other song previously entered
 <br/>
                  check here: <input type="checkbox" name="suck_in_all_links"> to ingest all mp3's/pdf's from that page too

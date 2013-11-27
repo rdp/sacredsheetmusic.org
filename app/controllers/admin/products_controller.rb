@@ -76,11 +76,13 @@ class Admin::ProductsController < Admin::BaseController
     attributes = old.attributes
     newy = Product.new
     newy.attributes = old.attributes
-    newy.code = newy.code + "-2"
-    raise "unable to save dupe [possibly already duped?]!" unless newy.save
+    newy.code = "auto_refresh_me_dupe_not_yet" # has no composer tag yet so give it a temp code for the init save so we can add tags
+    newy.save!
     for tag in old.tags
       newy.tags << tag # force a save
     end
+    newy.update_attribute(:code, "auto_refresh_me_dupe") # something about assigning .attributes up above is killing us with a normal assign then save...
+    # newy.save!
     flash[:notice] = "editing the dup (you may need/want to clear its code now, if voicing is changing...)"
     redirect_to :action => :edit, :id => newy.id
   end

@@ -93,7 +93,7 @@ class Product < Item
   # Makes code safe for URL usage.
   # called via a before_save :clean_code
   def clean_code
-    if self.code.blank?
+    if self.code.blank? || self.code == "auto_refresh_me_dupe"
       if self.composer_tag 
         if voicing = self.voicing_tags[0]
           voicing_name = voicing.name
