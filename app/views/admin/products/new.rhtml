@@ -1,15 +1,12 @@
 <%= form_tag({:action => 'save'}, :multipart => true) %>
 <div id="left">
   <h1><%= @title %></h1>
-  <ul class="navigation secondary">
-    <li><a href="/admin/products/list/">Back to Product List</a></li>
-  </ul>
 
     <%= render :partial => 'form' %>
     <%# maybe should disable since it doesn't get disabled right when you click the other save button... %>
+    <%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
 
 </div>
-    <%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
 
 <%= Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }%>
     <%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>

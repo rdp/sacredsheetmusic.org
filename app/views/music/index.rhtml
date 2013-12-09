@@ -83,7 +83,7 @@
          <div style="float: left; width: 500px;">
          <% tag_name = @viewing_tags[0].name %>
          <% if @viewing_tags[0].is_topic_tag? %>
-           You can also get a (possibly more complete) list of hymns for this topic (<%= tag_name %>) <a href="http://www.lds.org/cm/topicsearchalpha/1,18284,4789-1-1,00.html" rel="nofollow" target="_blank" >here</a>.</div>
+           You can also get a (possibly more complete) list of hymns for this topic (<%= tag_name %>) <a href="http://www.lds.org/music/index/hymns/topic?lang=eng" rel="nofollow" target="_blank" >here</a>.</div>
          <% end %>
          <% if @viewing_tags[0].is_hymn_tag? %>
            <% if tag_name !~ /thou fount|amazing grace/i %>
