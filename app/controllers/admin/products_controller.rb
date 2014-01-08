@@ -4,9 +4,21 @@ class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
   def spam_all_composers
-    count = 0
     composers = Tag.find_by_name("composers").children
     #composers = [Tag.find_by_name "Melissa Pack"]
+    spam_composers composers
+  end
+
+  def spam_composer
+    if params[:id] && composer=(Tag.find_by_id(params[:id]))
+      spam_composers [composer]
+    else
+      render :text => "not found spam_composer #{params.inspect}"
+    end
+  end
+
+  def spam_composers composers
+    count = 0
     for composer in composers
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)

@@ -2,6 +2,7 @@ Some stats for songs:
 
 Composer: <%= @composer.name %>
 total views of all songs: <%= @composer.all_products_hits %> 
+
 <% if @composer.all_products_pdf_downloads > 0 %> total pdf views/downloads: <%= @composer.all_products_pdf_downloads %>
 <% end %>
 <% if @composer.all_products_redirects > 0 %> total redirects from our site to yours: <%= @composer.all_products_redirects %>

@@ -153,6 +153,7 @@
                     total pdf downloads: <%= @parent_tag.all_products_pdf_downloads %>
                     total hits: <%= @parent_tag.all_products_hits %> total redirs: <%= @parent_tag.all_products_redirects %>
                     <%= link_to('send stats composer', :controller => :products, :action => :single_composer_stats, :id => @parent_tag.id) %>
+                    <%= link_to('spam composer', :controller => :products, :action => :spam_composer, :id => @parent_tag.id) %>
                  <% end %>
 
 
