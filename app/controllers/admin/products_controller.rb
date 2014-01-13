@@ -24,6 +24,7 @@ class Admin::ProductsController < Admin::BaseController
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
       sleep 0.2
+      Rails.logger.info "sent spamser to #{composer.id}"
     end
     render :text => "spammed #{count} of them #{Time.now}"
   end
