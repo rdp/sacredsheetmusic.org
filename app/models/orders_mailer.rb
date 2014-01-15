@@ -20,7 +20,6 @@ class OrdersMailer
     # hard to believe this isn't with the .rhtml file...
 
     subject "Your freeldssheetmusic.org 2013 stats, and 2014 competition announcement"
-    Rails.logger.info "set subject to good!"
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
