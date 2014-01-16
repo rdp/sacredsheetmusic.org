@@ -100,10 +100,10 @@ class Product < Item
           voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
           self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
         else
-          raise 'please setup voicing tags first (use back button on browser)'
+          raise 'please setup voicing tags first (use back button on browser) or manually enter a product code for it'
         end
       else
-        raise 'please setup a composer first (use back button on browser)'
+        raise 'please setup a composer first (use back button on browser) or manually enter a product code for it'
       end
     end
 #    self.code.upcase! # too ugly!
