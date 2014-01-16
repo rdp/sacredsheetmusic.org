@@ -29,7 +29,7 @@ class Admin::ProductsController < Admin::BaseController
     render :text => "spammed #{count} of them #{Time.now}"
   end
 
-  def go
+  def spam_all_composers_pre
    render :text => "now try spam_all_composers"
   end
 
