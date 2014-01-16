@@ -20,7 +20,7 @@ Total views of songs: <%= @composer.all_products_hits %>
 <% if @composer.all_products_redirects > 0 %>Total redirects from our site to yours: <%= @composer.all_products_redirects %>
 <% end %>
 
-You can see a list of popularity per song of yours here: <%= link_to('see stats composer', :controller => "/music", :action => :composer_all_song_stats, :id => @parent_tag.id)
+You can see a list of popularity per song of yours here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @parent_tag.id, :only_path => false, :host => 'freeldssheetmusic.org') %>
 
 Also, if you'd like to take a small composer survey to help us get some feedback, we'd love it! 
 
