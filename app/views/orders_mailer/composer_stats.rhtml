@@ -6,7 +6,7 @@ Stats for individual songs:
 
 <% for song in @composer.products %>
   <%= song.name %>, pdf downloads/views <%= song.pdf_download_count %>, views on the site <%= song.view_count %>
-  <% if song.redirect_count > 2 %>
+  <% if song.original_url.present? %>
    , redirects to your site (if you have one) <%= song.redirect_count %>
   <% end %>
 <% end %>
