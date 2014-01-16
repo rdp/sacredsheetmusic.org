@@ -1,7 +1,7 @@
-Warm greetings from my wife and I (Roger and Melissa Pack) 
-Who still constitute the freeldssheetmusic.org team :)
+Warm greetings from Roger and Melissa
+who constitute the volunteer freeldssheetmusic.org team :)
 
-Thank you for allowing your participation in our website, and for your contribution!  The site actually passed the 1 million view mark this year (way more popular than we thought it would ever get), mostly because we believe people find the site useful, thanks to the quality music that you all have let us put online, which they are able to sing and enjoy.  Thanks!
+Thank you for allowing your participation in our website, and for your contribution!  The site actually passed the 1 million view mark this year (way more popular than we thought it would ever get), mostly because we believe people find the site useful, thanks to the quality music that you all have let us put online, which they are able to sing and enjoy.  So thanks!
 
 We'd also like to announce that we will be holding the (2nd annual?) "Sacred Sheet Music Competition" this year, mid February,
 And also the "composer get together" Feb. 15th (this year: baked potato bar, everybody bring their own topping), and we'd like to invite you to both or either (you don't have to be in the competition to come to the lunch, either), if you can make it :)  Even if you can't make it, could we ask you to possibly mention the competition on your facebook or on your blog?  We'd really appreciate the help getting the word out!
@@ -20,7 +20,8 @@ Total views of songs: <%= @composer.all_products_hits %>
 <% if @composer.all_products_redirects > 0 %>Total redirects from our site to yours: <%= @composer.all_products_redirects %>
 <% end %>
 
-We can also send you a list of each of your song's popularity/hits, upon request.
+You can see a list of popularity per song of yours here: <%= link_to('see stats composer', :controller => "/music", :action => :composer_all_song_stats, :id => @parent_tag.id)
+
 Also, if you'd like to take a small composer survey to help us get some feedback, we'd love it! 
 
 https://docs.google.com/forms/d/1r265t1SiWHbxLBfOXZ6WVtD9vzNQwid_8qSvPW2K9G4/viewform

@@ -637,7 +637,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     end
   end
   
-  def composer_song_stats
+  def composer_all_song_stats
     @composer = Tag.find_by_id(params[:id])
   end
 
