@@ -480,6 +480,7 @@ at please try again later."
     # slightly prefer to undercount uh guess
     not_bot = false if ua =~ /http/i # like http://siteexplorer.info
     not_bot = false if ua =~ /@/i # like mail@emoz.com
+    not_bot = false if ua =~ /httrack/i # scraper?
     not_bot = false if ua =~ /SiteExplorer/i
     not_bot = false if ua =~ /yahoo.*slurp/i
     not_bot = false if ua =~ /spider/i # baiduspider
