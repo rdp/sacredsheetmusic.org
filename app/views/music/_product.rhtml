@@ -48,7 +48,6 @@
         <% tags = product.linkable_tags(session[:user]) %>
         <%= first_topic = true
             first_composer= true
-            first_voicing= true
            tags.map{|t| 
              name_to_use = t.name.gsub(',', '')
              if name_to_use =~ /\// 
@@ -68,26 +67,22 @@
                  name_to_use = first_word
                end
              end
-             prefix = ', '
+             prefix = ''
              if t.is_composer_tag? && first_composer
-               prefix = ' By: '
+               prefix = 'By: '
                first_composer = false
                name_to_use = t.name # full name for composers
              end
-             if t.is_voicing? && first_voicing
-               prefix = ''
-               first_voicing = false
-             end
-             if t.is_topic_tag? && first_topic
+             if first_topic && t.is_topic_tag?
                if tags.select{|t2| t2.is_topic_tag?}.count > 1
-                 prefix = " Topics: "
+                 prefix = "Topics: "
                else
-                 prefix = " Topic: "
+                 prefix = "Topic: "
                end
                first_topic = false
              end 
              prefix + tag_link(t, name_to_use)
-           }.join('')
+           }.join(' ')
         %>
       <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
        <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>

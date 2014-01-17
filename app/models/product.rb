@@ -384,16 +384,16 @@ class Product < Item
       tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| 
          if t.is_voicing?
            if t.name =~ /^[A-Z]+$/
-            0 # SATB first...
+            0 # SATB
            else
-            1 # then Harmonica
+            1 # Harmonica
            end
          elsif t.is_composer_tag?
            2
          elsif t.is_topic_tag?
            3
          else
-           1 # song special attributes? huh wuh?
+           4
          end
        }
      end
