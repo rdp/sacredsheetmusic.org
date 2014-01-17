@@ -55,8 +55,10 @@
              end
              if t != tags[-1] # at very ending having the ellipses ... feels too tacky...
                first_word = name_to_use.split[0] 
-               if first_word.length < 3
+               if first_word.length < 3 || name_to_use.split.length == 2
                  # don't say "a" for a capella
+                 # also don't do word ... when you could do "word word" :)
+                 # also don't do 2... for "2 part choir"
                  first_word = name_to_use.split[0..1].join(' ')
                end
                if first_word != name_to_use
@@ -65,22 +67,22 @@
                  name_to_use = first_word
                end
              end
-             extra = ''
+             prefix = ''
              if t.is_composer_tag? && first_composer
-               extra = 'By: '
+               prefix = 'By: '
                first_composer = false
                name_to_use = t.name # full name for composers
              end
              if first_topic && t.is_topic_tag?
                if tags.select{|t2| t2.is_topic_tag?}.count > 1
-                 extra = "Topics: "
+                 prefix = "Topics: "
                else
-                 extra = "Topic: "
+                 prefix = "Topic: "
                end
                first_topic = false
              end 
-             extra + tag_link(t, name_to_use)
-           }.join(', ')
+             prefix + tag_link(t, name_to_use)
+           }.join(' ')
         %>
       <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
        <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
