@@ -247,7 +247,7 @@ You can also <i>
 <!-- we're just not popular enough yet! Or something!  You can upload your own <a href="/about/your-own-mp3">performance</a> or recording of this arrangement, if you have one, to be displayed (with a link back to your site).  -->
 
   <div style="float:left;">
-    Report a <%= link_to 'problem', :controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)" %> with this song.
+    Report a <%= link_to 'problem', {:controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)"}, :rel => 'nofollow' %> with this song.
   </div>
   <!-- can't really give fb-like a width, it knows how big it will grow... -->
   <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
