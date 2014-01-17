@@ -52,7 +52,7 @@
            tags.map{|t| 
              name_to_use = t.name.gsub(',', '')
              if name_to_use =~ /\// 
-               name_to_use = name_to_use.split(/\//)[0]
+               name_to_use = name_to_use.gsub(/\//, ' ')
              end
              if t != tags[-1] # at very ending having the ellipses ... feels too tacky...
                first_word = name_to_use.split[0] 
