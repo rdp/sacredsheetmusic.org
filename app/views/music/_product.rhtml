@@ -50,16 +50,18 @@
             first_composer= true
             first_voicing= true
            tags.map{|t| 
-             name_to_use = t.name.gsub(',', '')
+             name_to_use = t.name.gsub(',', '') # Hope this never does anything...
              if t != tags[-1] # at very ending having the ellipses ... feels too tacky...
                words = name_to_use.split(/[ \/]/)
-               first_word = words[0]
-               if first_word.length < 3 || words.length == 2
-                 # don't say "a" for a capella
-                 # also don't do word ... when you could do "word word" :)
-                 # also don't do 2... for "2 part choir"
-                 # also don't do friend... for friend/friendship
-                 first_word = name_to_use.split[0..1].join(' ')
+               # don't say "a" for a capella
+               # also don't do word ... when you could do "word word" :)
+               # also don't do 2... for "2 part choir"
+               # also don't do friend... for friend/friendship
+               if words.size > 1
+                 loc = (name_to_use =~ /[ \/]/)
+                 first_word = words[0..1].join(name_to_use[loc..loc]) # preserve that slash :)
+               else
+                 first_word = name_to_use
                end
                if first_word != t.name
                  name_to_use = first_word + "&hellip;"
