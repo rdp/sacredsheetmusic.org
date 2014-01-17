@@ -478,9 +478,13 @@ at please try again later."
     not_bot = true if ua =~ /stagefright/ # android player
     # but it's fun to try and perfect :P
     # slightly prefer to undercount uh guess
+    not_bot = false if ua =~ /http/i # like http://siteexplorer.info
+    not_bot = false if ua =~ /@/i # like mail@emoz.com
+    not_bot = false if ua =~ /SiteExplorer/i
     not_bot = false if ua =~ /yahoo.*slurp/i
     not_bot = false if ua =~ /spider/i # baiduspider
     not_bot = false if ua =~ /bot[^a-z]/i # robot, bingbot (otherwise can't get the Mozilla with bingbot, above), various others calling themselves 'bot'
+    not_bot = false if ua =~ /bots[^a-z]/i # ...yandex/bots)
     not_bot = false if ua =~ /robot/i #  http://help.naver.com/robots/ Yeti
     not_bot = false if ua =~ /crawler/i # alexa crawler etc.
     not_bot = false if ua =~ /webfilter/ # genio crawler
