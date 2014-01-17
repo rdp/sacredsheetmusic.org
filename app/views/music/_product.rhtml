@@ -57,7 +57,8 @@
                # also don't do word ... when you could do "word word" :)
                # also don't do 2... for "2 part choir"
                # also don't do friend... for friend/friendship
-               if words.size > 1
+               # 2 part choir -> 2 part choir, not 2 part ...
+               if words.size > 1 && words.size != 3
                  loc = (name_to_use =~ /[ \/]/)
                  first_word = words[0..1].join(name_to_use[loc..loc]) # preserve that slash :)
                else
