@@ -665,7 +665,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     end
 
     if @search_term =~ /piano/
-      flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano so we don't index them that way, consider removing it."
+      flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano accompaniment, so we don't even mention it in our indexes, so you may want to consider removing that word from your query, as it will skew results to things like piano solos, etc."
     end
     if @search_term =~ /ob+l+ig+at+o/ && @search_term !~ /obbligato/
       flash[:notice] = "Warning, you may want to search for obbligato instead"
