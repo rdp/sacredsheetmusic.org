@@ -25,19 +25,18 @@
       <input name="commit" type="submit" value="Add my <%= @product.is_competition? ? "vote": "commenti" %>!" />
   </form>
   </div>
-<% if @product.comments.length > 0 %>
+<% non_comp_comments = @product.comments.select{|c| !c.is_competition?} %>
+<% if non_comp_comments.length > 0 %>
     <br/>
     <br/>
     Comments for this piece:
-    <% for c in @product.comments %>
+    <% for c in non_comp_comments %>
       <br/>
-      <% if !c.is_competition? %>
-        From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
-        <br/>
-      <% end%>
-       <% if c.overall_rating > -1 %>
-         <%= c.overall_rating %> stars.
-       <% end %>
+      From <%= c.user_name_with_url_and_colon %> <%= c.comment %>
+      <br/>
+      <% if c.overall_rating > -1 %>
+        <%= c.overall_rating %> stars.
+      <% end %>
       </p>
     <% end %>
 <% else %>
