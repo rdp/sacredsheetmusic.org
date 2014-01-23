@@ -1,38 +1,5 @@
-<% if @product.is_competition?  || @product.wants_reviews? %>
-<h1 style="color: rgb(92, 0, 255);">Vote for it!</h1>
-This piece participated in our music <%= link_to "competition", :action => :competition %>
-
-<% if( (count=@product.total_competition_points) >= 5) %>
- and earned <%= count %> points
-<% end %>
-!
-<% if @old_comment %>
-     Looks like you already voted for this piece, thanks for your vote (you can only vote once per piece)! In the meantime, feel free to vote for other songs in the <%= link_to "competition", :action => :competition %>.
-<% else %>
-<br/>
-Add your vote for this piece!
-<!-- You can still give it a review or comment if desired: -->
-<form action="/music/add_comment_competition" method="post">
-  Choose how many stars:
-  <select name="overall_rating" style="width:175px;">
-  <option value="-1">choose how many stars</option>
-  <option value="5" selected>5 stars</option>
-  <option value="4">4 stars</option>
-  <option value="3">3 stars</option>
-  <option value="2">2 stars</option>
-  <option value="1">1 star</option>
-  <option value="-1">none (I'm just leaving a written review for it)</option>
-  </select>
-
-  Review (optional, only sent to composer, not displayed, include your name if desired):<br/>
-  <textarea name="comment" cols="26" rows="5"></textarea>
-  <input name="id" type="hidden" value="<%= @product.id %>"/>
-  <% end %>
-
-<% else %>
-
   <button onclick="$('comments').toggle();">
-  Add a comment/rating&nbsp;</button> of your own for this piece.
+  Click to add a comment/rating&nbsp;</button> for this piece.
 
   <div id="comments" style="display:none;">
     <form action="/music/add_comment" method="post">
@@ -52,17 +19,14 @@ Add your vote for this piece!
   <option value="2">2 stars</option>
   <option value="1">1 star</option>
   </select>
-  </div>
-<% end %>
 
   <br/>
       Type the name of the day that comes after Saturday (for spam avoidance)? <input name="recaptcha" type="text" value="" /> <br/>
       <input name="commit" type="submit" value="Add my <%= @product.is_competition? ? "vote": "commenti" %>!" />
   </form>
-
-<% if !@product.is_competition? %>
-
+  </div>
 <% if @product.comments.length > 0 %>
+    <br/>
     <br/>
     Comments for this piece:
     <% for c in @product.comments %>
@@ -80,4 +44,5 @@ Add your vote for this piece!
   No user ratings for this song yet. Leave yours!
 <% end %>
 
-<% end %>
+Leave a comment via facebook:
+<div style="float:left;" class="fb-comments" data-href="<%= request.url %>" data-width="180" data-num-posts="10"></div>

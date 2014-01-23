@@ -135,16 +135,14 @@
         <br />
       <% end %>
         <hr style="margin-bottom: 10px;"/>
-         <%= render :partial => 'comments' %>
+         <% if @product.is_competition? %>
+             <%= render :partial => 'comments_competition' %>
+         <% else %>
+             <%= render :partial => 'comments' %>
+         <% end %>
         <hr style="margin-top: 10px;"/>
-<% if @product.is_competition? %>
-  <div style="float;left;">
-  Tell your friends to vote for this song, below, or add a public comment:
-  </div>
-  <div style="float:left;" class="fb-comments" data-href="<%= CGI::escape(request.url) %>" data-width="180" data-num-posts="10"></div>
-<% end %>
 
-</div> <!-- end float left -->
+</div> <!-- end entire float left column -->
 
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
