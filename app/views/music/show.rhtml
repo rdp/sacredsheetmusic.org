@@ -248,7 +248,7 @@ You can also <i>
     Report a <%= link_to 'problem', {:controller => :questions, :action => :ask,  :pre_fill => "Problem report for song #{@product.code}: (PROBLEM DESCRIPTION :)"}, :rel => 'nofollow' %> with this song.
   </div>
   <!-- can't really give fb-like a width, it knows how big it will grow... -->
-  <div style="float:left;" class="fb-like" data-href="<%= CGI::escape(request.url) %>" data-send="false" data-width="350" data-show-faces="false"></div>
+  <div style="float:left;" class="fb-like" data-href="<%= request.url %>" data-send="false" data-width="350" data-show-faces="false"></div>
 
 <div style="float:left; margin-right: 10px;">
 <% image_relative_url = @default_image ? @default_image.public_filename : '/images/trebs.gif' %>
