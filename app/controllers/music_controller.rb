@@ -4,7 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search, :add_comment_competition]
 
   def session_object
-    @_session_object ||= Session.find_or_create_by_sessid(session_id) # used for session_object method...
+    @_session_object ||= Session.find_or_create_by_sessid(session_id) # used for session_object method...which I use to lookup session things like bookmarks
   end
 
    # Wishlist items
@@ -35,11 +35,21 @@ class MusicController < StoreController
 
   private
   def session_id
-    request.session_options[:id] # a big long string I believe..
+    # request.session_options[:id] is a big long string I believe..
+    # like "abcdefrandomrandomrandom"
+    request.session_options[:id]
+  end
+   # stable, but random just for them :)
+  def session_rand
+    # session_id is a big long string I believe..
+    "rand(#{session_id.hash})"
+  end
+  def session_ip
+    request.remote_ip
   end
 
   def look_for_recent_comment id
-    @old_comment = Comment.find_by_product_id_and_created_ip(id, session_id, :order => "created_at desc")
+    @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
   end
 
   public
@@ -87,7 +97,8 @@ at please try again later."
        #raise "voting has ended for this year"
      end
      comment = Comment.new(new_hash)
-     comment.created_ip = session_id
+     comment.created_session = session_id
+     comment.created_ip = session_ip
      comment.overall_rating ||= -1 # guess a DB default isn't enough [?] that is so weird...rails defaulting everything to nil...
      comment.save
      product.comments << comment # might also perform a comment save?
@@ -565,10 +576,10 @@ at please try again later."
     end
   end 
 
-  def competition_reviews
+  def competition_reviews # deprecated :P
     @title = "Sheet Music Competition music reviews"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
+      :order => session_rand,
       :conditions => ["wants_reviews=?", true]
     ), 50000)
     @was_filtered_able = false
@@ -592,21 +603,17 @@ Thanks so much!
 
   def competition
     @title = "Sheet Music Competition!"
-    @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
-    # session_id is like "abcdefrandomrandomrandom"
+    @header = "Welcome to our Sacred Sheet Music Competition!"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
+      :order => session_rand,
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in our first ever competition!
+    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in this year's competition!
 Now you get the chance to vote for them.  Please check out the songs and give them a rating.
 Each song accrues points as it receives votes.
-Feel free to daily vote for as many songs as you'd like!
+Feel free to vote for as many songs as you'd like!
 Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<br/>")
-    @display_bio = "This year's sheet music competition has ended, thanks much to all participants!
-    You can still leave reviews of the pieces, though, see <a href=/music/competition_reviews>here</a>.
-".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
@@ -685,11 +692,11 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # need to include tags so that the query can work...
     products = Product.find(:all, :include => :tags,
       :conditions => conds,
-      :order => "rand(#{session_id.hash})"
+      :order => session_rand
     )
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
-    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => "rand(#{session_id.hash})").select{|p| 
+    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
        big_string = (p.name + p.description + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
        words_to_search_for.all?{|word| big_string.contain? word}
     }
@@ -698,18 +705,18 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # this might be redundant to the above these days though...
     tags = Tag.find(:all,
       :include => :products,
-      :order => "rand(#{session_id.hash})",
+      :order => session_rand,
       :conditions => [ "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", "%#{@search_term}%"]
     )
 
     # put more precise hits first...
     good_hits = Product.find(:all, 
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})"
+       :order => session_rand
     )
     start_with_hits = Product.find(:all, 
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})"
+       :order => session_rand
     )
     logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
 
