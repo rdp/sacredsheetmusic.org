@@ -190,7 +190,7 @@ at please try again later."
           return false
         end
       end
-      render_404_to_home(check_id) && return
+      render_404_to_home(id) && return
     end
     look_for_recent_comment @product.id # for competition...
 
@@ -673,8 +673,6 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     words_to_search_for = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}
 
     super_search_terms = words_to_search_for.map{|name| ["%#{name}%"]*3}.flatten
-
-    Rails.logger.info "actually searching for [#{words_to_search_for.join(' ')}] from #{original_search_term}"
 
     # basically, given I will go, also pass back any piece that contains "i" and "will" and "go" somewhere in it, just in case for flipped words...
     super_search_query = (["(#{name_without_punct} like ? or tags.name like ? or items.description like ?)"]*(super_search_terms.length/3)).join(" and ")
