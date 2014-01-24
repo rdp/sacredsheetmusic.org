@@ -152,8 +152,7 @@
 (by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
-             <% img = image_tag('little_link.png', :class => 'transparent2', :width => 12) %>
-             You can also visit the author's <%= link_to('original page ' + img, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
+             You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
 
  for this piece.
            <% else %>
