@@ -4,7 +4,7 @@ class MusicController < StoreController
  skip_before_filter :verify_authenticity_token, :only => [:add_comment, :search, :add_comment_competition]
 
   def session_object
-    @_session_object ||= Session.find_or_create_by_sessid(session_id) # used for session_object method...
+    @_session_object ||= Session.find_or_create_by_sessid(session_id) # used for session_object method...which I use to lookup session things like bookmarks
   end
 
    # Wishlist items
@@ -35,7 +35,14 @@ class MusicController < StoreController
 
   private
   def session_id
-    request.session_options[:id] # a big long string I believe..
+    # request.session_options[:id] is a big long string I believe..
+    # like "abcdefrandomrandomrandom"
+    request.session_options[:id]
+  end
+   # stable, but random just for them :)
+  def session_rand
+    # session_id is a big long string I believe..
+    session_id.hash
   end
   def session_ip
     request.remote_ip
@@ -572,7 +579,7 @@ at please try again later."
   def competition_reviews
     @title = "Sheet Music Competition music reviews"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
+      :order => session_rand,
       :conditions => ["wants_reviews=?", true]
     ), 50000)
     @was_filtered_able = false
@@ -596,10 +603,9 @@ Thanks so much!
 
   def competition
     @title = "Sheet Music Competition!"
-    @header = "Welcome to our 2013<br/>Sacred Sheet Music Competition!"
-    # session_id is like "abcdefrandomrandomrandom"
+    @header = "Welcome to our<br/>Sacred Sheet Music Competition!"
     @products = paginate_and_filter(Product.find(:all,
-      :order => "rand(#{session_id.hash})", # stable, but random just for them :)
+      :order => session_rand,
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
@@ -691,11 +697,11 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # need to include tags so that the query can work...
     products = Product.find(:all, :include => :tags,
       :conditions => conds,
-      :order => "rand(#{session_id.hash})"
+      :order => session_rand
     )
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
-    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => "rand(#{session_id.hash})").select{|p| 
+    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
        big_string = (p.name + p.description + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
        words_to_search_for.all?{|word| big_string.contain? word}
     }
@@ -704,18 +710,18 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
     # this might be redundant to the above these days though...
     tags = Tag.find(:all,
       :include => :products,
-      :order => "rand(#{session_id.hash})",
+      :order => session_rand,
       :conditions => [ "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", "%#{@search_term}%"]
     )
 
     # put more precise hits first...
     good_hits = Product.find(:all, 
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "%#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})"
+       :order => session_rand
     )
     start_with_hits = Product.find(:all, 
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
-       :order => "rand(#{session_id.hash})"
+       :order => session_rand
     )
     logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
 
