@@ -185,19 +185,15 @@ at please try again later."
     @product = Product.find_by_code(id, :include => [:downloads, {:tags => [:parent]}]) # no cacheing yet on the show page...
     # nb that we can't include :images because it comes in unsorted...Rails!!!
 
-    if !@product || request.request_uri =~ /music.show/ || request.request_uri.start_with?( '/m/')
-      if Product.find_by_code(new_id = id.gsub(/[-]+/, '-'))
-        redirect_to :action => 'show', :id => new_id, :status => :moved_permanently
-        return false
-      else
-        check_id = id.gsub('_', ' ')
-        if Tag.find_by_name(check_id)
-          redirect_to_tag(check_id) and return
-        else
-          render_404_to_home(check_id) && return
+    if !@product
+      options = [id.gsub(/[-]+/, '-'), id.gsub('_', ' '), id.gsub(/-competition$/, '')]
+      for option in options
+        if Product.find_by_code(option)
+          redirect_to :action => 'show', :id => option, :status => :moved_permanently
+          return false
         end
       end
-      # never get here...
+      render_404_to_home(check_id) && return
     end
     look_for_recent_comment @product.id # for competition...
 
