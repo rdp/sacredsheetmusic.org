@@ -42,7 +42,7 @@ class MusicController < StoreController
   end
 
   def look_for_recent_comment id
-    @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?', id, session_ip, session_id], :order => "created_at desc")
+    @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
   end
 
   public
