@@ -42,7 +42,7 @@ class MusicController < StoreController
    # stable, but random just for them :)
   def session_rand
     # session_id is a big long string I believe..
-    session_id.hash
+    "rand(#{session_id.hash})"
   end
   def session_ip
     request.remote_ip
@@ -576,7 +576,7 @@ at please try again later."
     end
   end 
 
-  def competition_reviews
+  def competition_reviews # deprecated :P
     @title = "Sheet Music Competition music reviews"
     @products = paginate_and_filter(Product.find(:all,
       :order => session_rand,
@@ -603,20 +603,17 @@ Thanks so much!
 
   def competition
     @title = "Sheet Music Competition!"
-    @header = "Welcome to our<br/>Sacred Sheet Music Competition!"
+    @header = "Welcome to our Sacred Sheet Music Competition!"
     @products = paginate_and_filter(Product.find(:all,
       :order => session_rand,
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in our first ever competition!
+    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in this year's competition!
 Now you get the chance to vote for them.  Please check out the songs and give them a rating.
 Each song accrues points as it receives votes.
-Feel free to daily vote for as many songs as you'd like!
+Feel free to vote for as many songs as you'd like!
 Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<br/>")
-    @display_bio = "This year's sheet music competition has ended, thanks much to all participants!
-    You can still leave reviews of the pieces, though, see <a href=/music/competition_reviews>here</a>.
-".gsub("\n", "<br/>")
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 

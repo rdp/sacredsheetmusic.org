@@ -130,8 +130,9 @@ end
 
     # shorten a few things :)
     map.connect '/logout', :controller => "/accounts", :action=>"logout"
-    map.connect '/Competition', :controller => "music", :action=>"competition"
+    # ughly map.connect '/Competition', :controller => "music", :action=>"competition"
     map.connect '/competition', :controller => "music", :action=>"competition"
+    map.connect '/sheet_music_competition', :controller => "music", :action=>"competition"
     map.connect '/search', :controller => :music, :action => :search
 
     # Install the default route as the lowest priority.
