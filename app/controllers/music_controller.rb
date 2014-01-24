@@ -37,9 +37,12 @@ class MusicController < StoreController
   def session_id
     request.session_options[:id] # a big long string I believe..
   end
+  def session_ip
+    request.remote_ip
+  end
 
   def look_for_recent_comment id
-    @old_comment = Comment.find_by_product_id_and_created_ip(id, session_id, :order => "created_at desc")
+    @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?', id, session_ip, session_id], :order => "created_at desc")
   end
 
   public
@@ -87,7 +90,8 @@ at please try again later."
        #raise "voting has ended for this year"
      end
      comment = Comment.new(new_hash)
-     comment.created_ip = session_id
+     comment.created_session = session_id
+     comment.created_ip = session_ip
      comment.overall_rating ||= -1 # guess a DB default isn't enough [?] that is so weird...rails defaulting everything to nil...
      comment.save
      product.comments << comment # might also perform a comment save?
