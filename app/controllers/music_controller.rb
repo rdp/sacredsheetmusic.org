@@ -39,10 +39,7 @@ class MusicController < StoreController
   end
 
   def look_for_recent_comment id
-    old_comment = Comment.find_by_product_id_and_created_ip(id, session_id, :order => "created_at desc")
-    if old_comment && old_comment.created_at > 23.hours.ago
-      @old_comment = old_comment
-    end
+    @old_comment = Comment.find_by_product_id_and_created_ip(id, session_id, :order => "created_at desc")
   end
 
   public
