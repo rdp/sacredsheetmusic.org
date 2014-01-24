@@ -84,14 +84,11 @@
 
 		<!-- search box on right -->
 		<div id="searchbox" style="width: 350px; margin-top: 10px;">
+                    <%= image_tag 'indicator.gif', :id => "spinner_search", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
 			<form action="/search" method="get">
-				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;"/> <!-- avoid x and y get params -->
+				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show();"/> <!-- avoid x and y get params -->
 				<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="float:right; margin-right: 5px;" /> <!-- Search -->
 			</form>
-
-                        <!--div style="float: right; margin-top: 15px; margin-right: 60px;">
-                            <a href="/music/advanced_search">Advanced search</a><span style="color: grey; font-size: 9px;">&nbsp;&nbsp;&nbsp; topic with specific voicing, etc...</span>
-                       </div-->
 
 		</div>
 		

@@ -647,6 +647,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
   end
 
   def search
+   start = Time.now
     search_term = params[:q]
 
     unless search_term.present?
@@ -724,7 +725,7 @@ Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
-    Rails.logger.info "search #{@search_term} returned #{all_products.length} results"
+    Rails.logger.info "search #{@search_term} returned #{all_products.length} results in #{Time.now - start}s"
     @products = paginate_and_filter all_products, 50 # make "bad" queries return somewhat quickly, at least until we have better cacheing figured out...
 
     # If only one product comes back, take em directly to it.
