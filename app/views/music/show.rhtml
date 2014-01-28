@@ -79,10 +79,10 @@
 
           <% if filename_extension =~ /mp3|mpeg/ %>
               <div style="padding-top:5px;">
-              <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" width="200" height="20">
-                  <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+              <object type="application/x-shockwave-flash" data="/flash/player_mp3_maxi.swf" width="200" height="20">
+                  <param name="movie" value="/flash/player_mp3_maxi.swf" />
                  <param name="bgcolor" value="#ffffff" />
-                 <param name="FlashVars" value="mp3=<%= dl.relative_path_to_web_server %>&amp;width=150&amp;showstop=1&amp;showvolume=1&amp;sliderwidth=10&amp;bgcolor1=cccccc&amp;bgcolor2=444444&amp;height=15&amp;volume=175" />
+                 <param name="FlashVars" value="mp3=<%= dl.relative_path_to_web_server %>&amp;width=150&amp;showstop=1&amp;showvolume=1&amp;sliderwidth=10&amp;bgcolor1=cccccc&amp;bgcolor2=444444&amp;height=15&amp;volume=175&amp;showloading=always" />
                </object>
                </div>
 
