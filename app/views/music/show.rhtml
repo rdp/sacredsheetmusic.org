@@ -77,7 +77,15 @@
           %>
           (<%= links.join(', ') %>)
 
-          <% if filename_extension =~ /midi|wav|mp3/ %>
+          <% if filename_extension =~ /mp3|mpeg/ %>
+            <% options = "/flash/xspf_player_slim.swf?&song_url=#{dl.relative_path_to_web_server}&player_title=play mp3&song_title=play mp3&" %>
+            <object type="application/x-shockwave-flash" data="<%= options %>" width="157" height="17">
+               <param name="movie" value="<%= options %>" />
+               <img src="noflash.gif" 
+                  width="157" height="17" alt="requires flash" />
+              </object>
+
+           <% elsif filename_extension =~ /midi|wav/ %>
             <br/>
             <%# the type=audio/mpeg forces it to quicktime...except quicktime then ignores the type, but at least it's quicktime at that point... %>
             <% type = "audio/#{filename_extension}"; type = 'audio/mpeg' if filename_extension == 'mp3' %>
