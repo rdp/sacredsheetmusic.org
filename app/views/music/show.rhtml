@@ -78,12 +78,13 @@
           (<%= links.join(', ') %>)
 
           <% if filename_extension =~ /mp3|mpeg/ %>
-            <% options = "/flash/xspf_player_slim.swf?&song_url=#{dl.relative_path_to_web_server}&player_title=play mp3&song_title=play mp3&" %>
-            <object type="application/x-shockwave-flash" data="<%= options %>" width="157" height="17">
-               <param name="movie" value="<%= options %>" />
-               <img src="noflash.gif" 
-                  width="157" height="17" alt="requires flash" />
-              </object>
+              <div style="padding-top:5px;">
+              <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" width="200" height="20">
+                  <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+                 <param name="bgcolor" value="#ffffff" />
+                 <param name="FlashVars" value="mp3=<%= dl.relative_path_to_web_server %>&amp;width=150&amp;showstop=1&amp;showvolume=1&amp;sliderwidth=10&amp;bgcolor1=cccccc&amp;bgcolor2=444444&amp;height=15&amp;volume=175" />
+               </object>
+               </div>
 
            <% elsif filename_extension =~ /midi|wav/ %>
             <br/>
