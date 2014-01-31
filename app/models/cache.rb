@@ -10,6 +10,7 @@ class Cache < ActiveRecord::Base
   def self.clear!
     delete_all # skips validations
     Rails.cache.clear
+    puts "not clearing the public/cache folder...also not restarting this rails app or others with their local caches"
     #clear_html_cache
   end
 
