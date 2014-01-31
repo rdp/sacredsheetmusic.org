@@ -576,28 +576,6 @@ at please try again later."
     end
   end 
 
-  def competition_reviews # deprecated :P
-    @title = "Sheet Music Competition music reviews"
-    @products = paginate_and_filter(Product.find(:all,
-      :order => session_rand,
-      :conditions => ["wants_reviews=?", true]
-    ), 50000)
-    @was_filtered_able = false
-    @display_bio = %|Though the online balloting has ended, many composers would love constructive feedback/critique for pieces from our recent sheet music competition.
-These composers have specifically opted in for any feedback, and it will be greatly welcome!
-
-To give them feedback,1) click on the links below,  2) leave your review in the song's "review" box 
-(we suggest first positive feedback then constructive criticism).
-
-Feel free to remark on anything about musicality, presentation, reaction, lyrics, hints/suggestions, (from the church's website) "artistic merit, usefulness for home or church, general appeal, ease of performance, originality, quality of text, and compatibility of music to text" and feel free to make your review as lengthy as you need.  3) You can give it a star rating or choose "just leaving a review" from the rating box.
-
-This list is in a different order for each person that views it, so if everybody reviews the first "few" pieces on their list, all the songs should get some feedback from somebody. You can review as many, or as few, as you are able.
-If you would like to review them all, we may be able to offer you some pay for doing it (if desired). If interested, please, contact us for terms first.
-Thanks so much!
- |.gsub("\n", "<br/>")
-    render :action => 'index.rhtml' and return # no cacheing here :)
-  end
-
   #def popular_songs # songs_stats is straight rhtml...
   #end
 

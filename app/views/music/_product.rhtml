@@ -3,12 +3,12 @@
     #if product.is_on_sale?
     #  image_tag('public-ui/icons/on-sale.gif', :alt => 'On Sale', :class => 'icon', :plugin => 'substruct')
     # end
-    if product.is_new? && !product.is_competition? && !product.wants_reviews?
+    if product.is_new? && !product.is_competition?
       image_tag('public-ui/icons/new.gif', :alt => 'New', :class => 'icon', :plugin => 'substruct')
     end 
    %>
   <%=
-    if product.is_five_star? && !product.is_competition? && !product.wants_reviews?
+    if product.is_five_star? && !product.is_competition?
       image_tag('public-ui/icons/star.png', :alt => '5star', :class => 'icon')
     end 
   %>
