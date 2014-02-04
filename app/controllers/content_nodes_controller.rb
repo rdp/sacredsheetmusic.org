@@ -11,9 +11,9 @@ class ContentNodesController < ApplicationController
     end
     # Set a title
     if @content_node.title.blank? then
-      #@title = @content_node.name.capitalize
+      @title = @content_node.name.capitalize
     else
-      #@title = @content_node.title
+      @title = @content_node.title
     end
     # Render special template for blog posts
     if @content_node.type == 'Blog' then
