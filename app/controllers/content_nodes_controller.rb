@@ -10,7 +10,9 @@ class ContentNodesController < ApplicationController
       return
     end
     # Set a title
-    if @content_node.title.blank? then
+    if @content_node.title == "home"
+      # use the default which is the full name
+    elsif @content_node.title.blank? then
       @title = @content_node.name.capitalize
     else
       @title = @content_node.title
