@@ -1,6 +1,4 @@
-
-Composer: <%= @composer.name %>
-Total views of all songs: <%= @composer.all_products_hits %> 
+<%= render :partial => 'orders_mailer/composer_summary' %>
 
 Stats for individual songs:
 
@@ -11,4 +9,4 @@ Stats for individual songs:
   <% end %>
 <% end %>
 
-You can also see global song arrangement stats here: <%= url_for :controller => 'music', :action => :songs_stats, :only_path => false, :host => 'freeldssheetmusic.org' %>
+You can also see global (site-wide) song arrangement stats here: <%= url_for :controller => 'music', :action => :songs_stats, :only_path => false, :host => 'freeldssheetmusic.org' %>

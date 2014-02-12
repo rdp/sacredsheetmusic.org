@@ -1,0 +1,6 @@
+Composer: <%= @composer.name %>
+Total views of songs: <%= @composer.all_products_hits %>
+<% if @composer.all_products_pdf_downloads > 0 %>Total pdf views/downloads: <%= @composer.all_products_pdf_downloads %>
+<% end %>
+<% if @composer.all_products_redirects > 0 %>Total redirects from our site to yours: <%= @composer.all_products_redirects %><% end %>
+

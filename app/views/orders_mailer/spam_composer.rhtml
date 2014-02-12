@@ -13,12 +13,7 @@ You can get more precise details about the competition or get together here: htt
 
 And here are your statistics for our site, in case you're interested.  Some of these numbers represent spambots, but some of them (a lot of them we believe) represent real people using your songs.  So thank you!
 
-Composer: <%= @composer.name %>
-Total views of songs: <%= @composer.all_products_hits %> 
-<% if @composer.all_products_pdf_downloads > 0 %>Total pdf views/downloads: <%= @composer.all_products_pdf_downloads %>
-<% end %>
-<% if @composer.all_products_redirects > 0 %>Total redirects from our site to yours: <%= @composer.all_products_redirects %>
-<% end %>
+<%= render :partial => 'orders_mailer/composer_summary' %>
 
 You can see a list of popularity per song of yours here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'freeldssheetmusic.org') %>
 
