@@ -15,7 +15,7 @@ And here are your statistics for our site, in case you're interested.  Some of t
 
 <%= render :partial => 'orders_mailer/composer_summary' %>
 
-You can see a list of popularity per song of yours here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'freeldssheetmusic.org') %>
+You can see a list of statistics per song (of yours) here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'freeldssheetmusic.org') %>
 
 Also, if you'd like to take a small (3 question, 30 second) composer survey to help us get some feedback, we'd love it! 
 
