@@ -103,7 +103,7 @@ at please try again later."
      comment.save
      product.comments << comment # might also perform a comment save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
-     if !comment.is_competition? || (comment.is_competition? && comment.comment.present?)
+     if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...
        composer_email = product.composer_tag.andand.composer_email_if_contacted
        if comment.is_competition?
          subject = "Comment received from competition."
