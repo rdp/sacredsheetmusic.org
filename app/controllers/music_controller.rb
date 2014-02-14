@@ -52,6 +52,10 @@ class MusicController < StoreController
     @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
   end
 
+  def content_for name
+    ContentNode.find(:first, :conditions => ["name = ?", name]).content
+  end
+
   public
 
   def competition_results
@@ -94,7 +98,7 @@ at please try again later."
      end
      new_hash[:is_competition] = is_competition
      if is_competition && params[:overall_rating].to_i > 0
-       #raise "voting has ended for this year"
+       raise "voting has not started for this year yet, try again soon!"
      end
      comment = Comment.new(new_hash)
      comment.created_session = session_id
@@ -587,11 +591,7 @@ at please try again later."
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = "Many composers have worked hard and submitted some great songs for public voting/feedback in this year's competition!
-Now you get the chance to vote for them.  Please check out the songs and give them a rating.
-Each song accrues points as it receives votes.
-Feel free to vote for as many songs as you'd like!
-Happy voting! (Click on the songs below to be able to rate them.)".gsub("\n", "<br/>")
+    @display_bio = content_for 'competition-header'
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
