@@ -92,8 +92,12 @@
              prefix + tag_link(t, name_to_use)
            }.join('')
         %>
-      <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
-       <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
+       <% if button_mp3_link.present? %>
+         <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
+       <% end %>
+       <% if product.original_url.present? %>
+         <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
+       <% end %>
 
     </div>
   </div>
