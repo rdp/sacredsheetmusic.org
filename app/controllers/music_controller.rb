@@ -585,7 +585,7 @@ at please try again later."
 
   def competition
     @title = "Sheet Music Competition!"
-    @header = "Welcome to our Sacred Sheet Music Competition!"
+    @header = ""#Welcome to our Sacred Sheet Music Competition!"
     @products = paginate_and_filter(Product.find(:all,
       :order => session_rand,
       :conditions => ["is_competition=?", true]
