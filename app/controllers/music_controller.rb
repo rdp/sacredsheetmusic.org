@@ -68,13 +68,10 @@ class MusicController < StoreController
     look_for_recent_comment params['id']
     product, comment = add_comment_helper true
     if @old_comment # smelly
-      flash[:notice] = "Looks like you already voted for this song within the last day
-at please try again later."
+      flash[:notice] = "Looks like you already voted for this song .  This year we only allow one vote per household per song, but feel free to vote on our other pieces"
       comment.delete
     elsif comment
-       # competition
-#      flash[:notice] = "Vote recorded! You can vote again, once a day, and also check out our songs from other composers.
-      flash[:notice] = "Review recorded! Thanks!"
+      flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from other composers..."
     end
 
     redirect_to :action => :show, :id => product.code
