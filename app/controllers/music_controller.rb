@@ -67,7 +67,7 @@ class MusicController < StoreController
   def add_comment_competition
     look_for_recent_comment params['id']
     product, comment = add_comment_helper true
-    if @old_comment # smelly
+    if @old_comment # smelly, ugly logic too yikes
       flash[:notice] = "Looks like you already voted for this song .  This year we only allow one vote per household per song, but feel free to vote on our other pieces"
       comment.delete
     elsif comment
@@ -119,7 +119,7 @@ class MusicController < StoreController
        OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email
       )
      end
-     product.clear_my_cache
+     # product.clear_my_cache # why would I need this...I can't think of why I would...plus it slows down the site?
    end
    [product, comment]
   end
