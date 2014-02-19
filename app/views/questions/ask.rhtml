@@ -1,6 +1,6 @@
 <% @title ||= 'Contact Us' %>
 
-<div id="fullContent">
+<div id="fullContent" style="float:left; width: 50%">
 	
 	<div class="form_block">
 		<h1><%= @title %></h1>
@@ -15,7 +15,7 @@
 		<%= form_tag :action => 'send_question' %>
 		
       <div style="padding-bottom:10px; float: left;">
-        <%= make_label("Your Email Address (required)", true) %>
+        <%= make_label("Your Email Address (required, or put a@a.com to remain anonymous)", true) %>
         <%= text_field 'question', 'email_address', :size => 50, :maxlength => 50, :class => 'textInput' %>
       	<%= error_message_on(:question, :email_address) %>
         <br/>
@@ -26,9 +26,9 @@
         <%= text_area 'question', 'long_question', :cols => 60, :rows => 8, :class => 'textArea' %>
       	<%= error_message_on(:question, :long_question) %>
       </div>
-
+      <div class="clear"></div>
       <p>
-  	    <%= submit_tag "Send message to us.", :class => 'button' %>
+  	<%= submit_tag "Send message to us.", :class => 'button' %>
         <div class="clear">&nbsp;</div>
       </p>
 	  </form>
