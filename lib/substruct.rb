@@ -131,9 +131,9 @@ end
     # shorten a few things :)
     map.connect '/logout', :controller => "/accounts", :action=>"logout"
 
+    map.connect '/competition', :controller => "music", :action=>"competition"
     map.connect '/Competition', :controller => "music", :action=>"competition" # TODO deprecate
     map.connect '/sheet_music_competition', :controller => "music", :action=>"competition" # todo deprecate
-    map.connect '/competition', :controller => "music", :action=>"competition"
     map.connect '/search', :controller => :music, :action => :search
 
     # Install the default route as the lowest priority.
