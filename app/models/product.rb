@@ -98,6 +98,7 @@ class Product < Item
         if voicing = self.voicing_tags[0]
           voicing_name = voicing.name
           voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
+          voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
           self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
         else
           raise 'please setup voicing tags first (use back button on browser) or manually enter a product code for it'
@@ -137,8 +138,7 @@ class Product < Item
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method? <sigh>
     #Product.delete_group_caches # ??
-    Rails.cache.clear # it has some old junk in it too, like saved product boxes...I guess that means
-    # the other instances still up may be stale too?
+    Cache.clear_local_caches! # it has some old junk in it too, like saved product boxes...clear it for everybody
     for tag in self.tags
       tag.clear_public_cached
     end
