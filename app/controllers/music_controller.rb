@@ -622,14 +622,14 @@ class MusicController < StoreController
   end
 
   def search
-   start = Time.now
     search_term = params[:q]
-
     unless search_term.present?
-      flash[:notice] = "please enter a search query at all!"
+#      flash[:notice] = "please enter a search query at all!" # NB this doesn't get displayed right since it's a cache...LODO fix
       redirect_to :action => 'index' and return false
     end
 
+    not_a_bot # for logging purposes :)
+    start = Time.now
     original_search_term = search_term
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
 
