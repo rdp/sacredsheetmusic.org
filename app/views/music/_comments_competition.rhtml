@@ -6,7 +6,9 @@ This piece is participating in our music <%= link_to "competition", :action => :
 <% end %>
 
 <% if @old_comment %>
-     Looks like you already voted once for this piece, thanks for your vote (you can only vote once per piece per household for the competition)! In the meantime, feel free to vote for other songs in the <%= link_to "competition", :action => :competition %>.
+<br/>
+<br/>
+     Looks like you already voted once for this piece, thanks for your vote! You can only vote once per piece per household for the competition, so the ratings box is not shown for this piece. In the meantime, feel free to vote for other songs in the <%= link_to "competition", :action => :competition %>.
 <% else %>
 <br/>
 Add your vote for this piece!
@@ -32,7 +34,7 @@ Add your vote for this piece!
   </form>
 <% end %>
 <div style="float;left; margin-top:10px;">
-  Tell your friends via facebook to vote for this song (to make sure it shows in your facebook feed, check the "Also post on facebook" button, then click on "Comment" and finally the "Publish comment" link):
+  You can tell your friends via facebook to vote for this song (to make sure it shows in your facebook feed, check the "Also post on facebook" button, then click on "Comment" and finally the "Publish comment" link):
   </div>
   <div style="float:left;" class="fb-comments" data-href="<%= request.url %>-competition" data-width="180" data-num-posts="10"></div>
 
