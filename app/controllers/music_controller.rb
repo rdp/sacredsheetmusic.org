@@ -701,7 +701,8 @@ class MusicController < StoreController
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
     Rails.logger.info "search #{@search_term} returned #{all_products.length} results in #{Time.now - start}s"
-    @products = paginate_and_filter all_products, 50 # make "bad" queries return somewhat quickly, at least until we have better cacheing figured out...
+
+    @products = paginate_and_filter all_products, 50 # make "bad" (too large) queries return somewhat quickly, at least until we have better cacheing figured out...
 
     # If only one product comes back, take em directly to it.
     if all_ids_merged.size == 1 && @products.length > 0
