@@ -281,7 +281,7 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  use_scanned = false
+                  use_scanned = true
                   if use_scanned
                     command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}" # uses more cpu, at least...I think so. Enable for scanned documents...
                   else
