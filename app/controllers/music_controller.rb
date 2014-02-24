@@ -694,7 +694,7 @@ class MusicController < StoreController
        :conditions => ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"], 
        :order => session_rand
     )
-    logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
+    # logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
 
     all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten + with_all_tags.map(&:id)).uniq
 

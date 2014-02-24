@@ -89,6 +89,9 @@ end
     map.connect 'admin',
       :controller => 'admin/products',
       :action     => 'index'
+    map.connect 'ad', # for poor auto complete on browsers--here's looking at you, safari :)
+      :controller => 'admin/products',
+      :action     => 'index'
 
     map.connect '/admin/customers/:action.:format', :controller => 'admin/customers'
 
