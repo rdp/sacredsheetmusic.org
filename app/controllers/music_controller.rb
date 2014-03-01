@@ -52,10 +52,6 @@ class MusicController < StoreController
     @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
   end
 
-  def content_for name
-    ContentNode.find(:first, :conditions => ["name = ?", name]).content
-  end
-
   public
 
   def competition_results
@@ -581,14 +577,15 @@ class MusicController < StoreController
   #end
 
   def competition
-    @title = "Sheet Music Competition!"
-    @header = ""#Welcome to our Sacred Sheet Music Competition!"
+    content = ContentNode.find(:first, :conditions => ["name = ?", 'competition-header'])
+    @title = content.title
+    @header = ""# let content display it...
     @products = paginate_and_filter(Product.find(:all,
       :order => session_rand,
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
-    @display_bio = content_for 'competition-header'
+    @display_bio = content.content
     render :action => 'index.rhtml' and return # no cacheing here :)
   end
 
