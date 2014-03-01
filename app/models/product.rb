@@ -159,7 +159,7 @@ class Product < Item
   end
 
   def total_valid_competition_points 
-    end_time = Time.parse(Preference.get_value('competition_end_date'))
+    end_time = Preference.competition_end_time
     self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.select{|c| c.created_at < end_time}.map(&:overall_rating).sum
   end
 
