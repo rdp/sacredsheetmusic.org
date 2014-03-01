@@ -13,13 +13,13 @@ This piece is participating in our music <%= link_to "competition", :action => :
 <br/>
 Add your vote for this piece!
 
-<% if Time.now > Time.parse(Preference.get_value('competition_end_date')) %>
-<br/>
-<br/>
-  Voting for the "popularity contest" has ended for this year, however, please feel free to still leave a review for the song by using the form below (you can still give them a rating, too, it just won't count toward the popularity contest, only toward the peer review contest).
-<br/>
-<br/>
-<% end %>
+  <% if Time.now > Preference.competition_end_time %>
+    <br/>
+    <br/>
+      Voting for the "popularity contest" has ended for this year, however, please feel free to still leave a review for the song by using the form below (you can still give them a rating, too, it just won't count toward the popularity contest, only toward the peer review contest).
+    <br/>
+    <br/>
+  <% end %>
 
 <form action="/music/add_comment_competition" method="post">
   Choose how many stars:
