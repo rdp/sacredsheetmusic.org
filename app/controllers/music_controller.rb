@@ -61,7 +61,7 @@ class MusicController < StoreController
   def competition_results
     @title = "Sacred Sheet Music Competition Winners"
     @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'competition-results'])
-    @products = Product.find(:all, :conditions => {:is_competition => true}).select{|p| p.is_competition?}.sort_by{|p| -p.total_valid_competition_points }
+    @products = Product.find(:all, :conditions => {:is_competition => true}).sort_by{|p| p.total_valid_competition_points }.reverse
   end
 
   def add_comment_competition
