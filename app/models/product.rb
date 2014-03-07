@@ -166,7 +166,7 @@ class Product < Item
   def competition_peer_review_average
     comments = self.comments.select{|c| c.is_competition? && c.overall_rating > -1 && c.comment.size > 100}
     if comments.size > 0
-      coments.ave
+      comments.map{|c| c.overall_rating}.ave
     else
       0 # avoid returning NaN for the average of an empty array :)
     end
