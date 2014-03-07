@@ -11,12 +11,17 @@
 <hr/>
 <br/>
 
+<!--
+
 And for our peer reviewed (well, loosely based on peer review, basically average of ratings that gave feedbacks):
 <br/>
 <br/>
 
 <% for p in @peer_review_products %>
-  <%= "%.01f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
+  <%= "%.01f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %> <%= p.id %>
   <br/>
 <% end %>
+...
+-->
+
 </div>

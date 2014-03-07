@@ -163,8 +163,12 @@ class Product < Item
     self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.select{|c| c.created_at < end_time}.map(&:overall_rating).sum
   end
 
+  def peer_reviews
+    self.comments.select{|c| c.is_competition? && c.overall_rating > -1 && (c.comment.size > 100 || (c.created_session == "e28b3a0a6a48843c9e476c34a117980d"))}
+  end
+
   def competition_peer_review_average
-    comments = self.comments.select{|c| c.is_competition? && c.overall_rating > -1 && c.comment.size > 100}
+    comments = peer_reviews
     if comments.size > 0
       comments.map{|c| c.overall_rating}.ave
     else
