@@ -163,6 +163,15 @@ class Product < Item
     self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.select{|c| c.created_at < end_time}.map(&:overall_rating).sum
   end
 
+  def competition_peer_review_average
+    comments = self.comments.select{|c| c.is_competition? && c.overall_rating > -1 && c.comment.size > 100}
+    if comments.size > 0
+      coments.ave
+    else
+      0 # avoid returning NaN for the average of an empty array :)
+    end
+  end
+
   def is_five_star?
    if self.comments.select{|c| !c.is_competition?}.map(&:overall_rating).select{|rating| rating > -1}.ave >= 4.5
      true
