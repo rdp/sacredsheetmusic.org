@@ -25,13 +25,12 @@ class Product < Item
     }
   end
 
-
-        # Is this product new?
-                 def is_new?
-                       weeks_new = Preference.get_value('product_is_new_week_range')
-                       weeks_new ||= 1
-                       self.date_available >= (weeks_new.to_i).weeks.ago
-                end
+  # Is this product new?
+  def is_new?
+    weeks_new = Preference.get_value('product_is_new_week_range')
+    weeks_new ||= 1
+    self.date_available >= (weeks_new.to_i).weeks.ago
+  end
 
   def composer_tag
     composer_tags[0]
@@ -62,13 +61,8 @@ class Product < Item
                 sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
                 sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
 #                find_by_sql(sql)
-     find(:all, :include => [:tags], :conditions => [sql])
+                find(:all, :include => [:tags], :conditions => [sql])
   end
-
-
-   # products = Product.find(:all, :include => [:tags],
-   #   :order => 'items.name ASC', :conditions => conds
-   # )
 
   def composer_generic_contact_url 
     composer_tag.andand.get_composer_contact_url
@@ -143,8 +137,10 @@ class Product < Item
       tag.clear_public_cached
     end
   end
-
-  after_save {  # singleton!
+  
+  after_save { |p| 
+    #p.clear_my_cache
+    Rails.logger.info "NOT clearing cache for this!"
     #Product.delete_group_caches # ??
     #Cache.clear_html_cache # ??
   } 

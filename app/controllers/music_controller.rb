@@ -117,7 +117,11 @@ class MusicController < StoreController
        OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email
       )
      end
-     # product.clear_my_cache # why would I need this...I can't think of why I would...plus it slows down the site?
+     if is_competition
+       product.clear_my_cache # so it can be noted as 5 star now :)
+     else
+       # don't want to slow down the site...
+     end
    end
    [product, comment]
   end
