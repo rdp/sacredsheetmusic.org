@@ -110,10 +110,10 @@ class Admin::ProductsController < Admin::BaseController
     end
     for id in ids
       logger.info "regenerating for #{id}"
-      # regenerate_internal id
+      regenerate_internal id
     end
     flash[:notice] = "regenerated images...#{ids.inspect}"
-    redirect_to :action => :edit, :id => id
+    redirect_to :action => :edit, :id => ids[0]
   end
 
   def self.regenerate_all_images this_servers_name # needs to be self because we cannot run this in fcgi...
