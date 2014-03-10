@@ -106,9 +106,12 @@ class Admin::ProductsController < Admin::BaseController
     if id.contain? ','
       ids=id.split(',')
     else
-      ids=[params[:id]]
+      ids=[id]
     end
-    regenerate_internal id
+    for id in ids
+      logger.info "regenerating for #{id}"
+      # regenerate_internal id
+    end
     flash[:notice] = "regenerated images...#{ids.inspect}"
     redirect_to :action => :edit, :id => id
   end
