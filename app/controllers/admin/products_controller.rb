@@ -102,10 +102,15 @@ class Admin::ProductsController < Admin::BaseController
 
   # fix up any previously ugly images from pdf's
   def regenerate # images
-    raise 'no id?' unless id = params[:id]
-    regenerate_internal params[:id]
-    flash[:notice] = "regenerated images..."
-    redirect_to :action => :edit, :id => params[:id]
+    raise 'no id[s]?' unless id = params[:id]
+    if id.contain? ','
+      ids=id.split(',')
+    else
+      ids=[params[:id]]
+    end
+    regenerate_internal id
+    flash[:notice] = "regenerated images...#{ids.inspect}"
+    redirect_to :action => :edit, :id => id
   end
 
   def self.regenerate_all_images this_servers_name # needs to be self because we cannot run this in fcgi...
