@@ -147,6 +147,10 @@ class Admin::ProductsController < Admin::BaseController
       params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
       logger.info params[:download_pdf_url]
       save_internal false
+      old_count = dl.count
+      new_download = product.reload.downloads.last # guess LOL
+      new_download.count = old_count
+      new_download.save
       dl.destroy # scaway :)
      }
      old_images.each{|i| i.destroy unless i.name =~ /\.(jpg|jpeg)$/i} # our one user contrib image is a jpeg :P
