@@ -91,9 +91,10 @@ class Admin::ProductsController < Admin::BaseController
 
   def new_same_author
     newy = duplicate_helper
-    newy.description = ''
-    newy.name = ''
-    # todo youtube LOL
+    newy.update_attribute(:description, '')
+    newy.update_attribute(:name, '')
+    # newy.save! # ??
+    # youtube LOL
     bad_tags = newy.tags.select{|t| !t.is_composer_tag?}
     bad_tags.each{|t| newy.tags.delete t}
     flash[:notice] = "editing the new one by same author"
@@ -112,7 +113,7 @@ class Admin::ProductsController < Admin::BaseController
       newy.tags << tag # force a save
     end
     newy.update_attribute(:code, "auto_refresh_me_dupe") # something about assigning .attributes up above is killing us with a normal assign then save...
-    # newy.save!
+    # newy.save! # ?? why broken?
     newy
   end
 
