@@ -116,15 +116,14 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :action => :edit, :id => ids[0]
   end
 
-  def self.regenerate_all_images this_servers_name # needs to be self because we cannot run this in fcgi...
+  def self.regenerate_all_images this_servers_name # for running in irb prompt?
     products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/i}}
     mini = products_with_images[0..2]
     out = []
     mini.each{|p|
       instance = self.new
-      instance.params = {:id => p.id}
       def instance.flash() 
-        @flash ||= {}
+        @flash ||= {} # OK this is getting stinky...
       end
       instance.regenerate_internal(p.id, this_servers_name)
       out << p.code
@@ -137,11 +136,12 @@ class Admin::ProductsController < Admin::BaseController
     product = Product.find(id)
     pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/i }
     raise 'no pdfs' unless pdfs.present?
-    logger.warn 'no images?' unless product.images.count > 0
-    old_images = product.images[0..-1] # force it to load so we get an old snapshot of the original images
+    logger.warn "no images #{id}?" unless product.images.count > 0
+    old_images = product.images[0..-1] # force it to load images list so we get an old snapshot of the original images
     pdfs.each{|dl|
       # save it with our old url, then delete the original...hmm...yeah
       # resets ids! params[:product] = {:tag_ids => []}
+      params[:id] = id # stinky!!!
       params[:product] = {} # doesn't  reset tags...
       params[:download] = []
       params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
@@ -149,7 +149,7 @@ class Admin::ProductsController < Admin::BaseController
       save_internal false
       dl.destroy # scaway :)
      }
-     old_images.each{|i| i.destroy unless i.name =~ /\.jpg$/i} # our one user contrib image is a jpeg :P
+     old_images.each{|i| i.destroy unless i.name =~ /\.(jpg|jpeg)$/i} # our one user contrib image is a jpeg :P
   end
 
   def save
