@@ -92,6 +92,8 @@ class Admin::ProductsController < Admin::BaseController
   def new_same_author
     newy = duplicate_helper
     newy.description = ''
+    newy.name = ''
+    # todo youtube LOL
     bad_tags = newy.tags.select{|t| !t.is_composer_tag?}
     bad_tags.each{|t| newy.tags.delete t}
     flash[:notice] = "editing the new one by same author"

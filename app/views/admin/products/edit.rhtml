@@ -18,18 +18,16 @@
     <li><a href="/admin/products/list/">&laquo; Back to Song List</a></li>
   </ul>
 
-		<div style="float:right;">
+		<div style="float:left; margin-right: 5px;">
 			<%= link_to 'Delete This Song', {:action => 'destroy', :id => @product}, :confirm => 'Are you sure?', :class => 'action' %>
 		</div>
-<br/>
-		<div style="float:right;">
+		<div style="float:left; margin-right: 5px;">
 			<%= link_to 'Regenerate images', {:action => 'regenerate', :id => @product}, :class => 'action' %>
                  </div>
-<br/>
-		<div style="float:right;">
+		<div style="float:left; margin-right: 5px;">
 			<%= link_to 'Duplicate song', {:action => 'duplicate', :id => @product}, :class => 'action' %>
 		</div>
-		<div style="float:right;">
+		<div style="float:left; margin-right: 5px;">
 			<%= link_to 'New song same author', {:action => 'new_same_author', :id => @product}, :class => 'action' %>
 		</div>
     <%= render :partial => 'form' %>
