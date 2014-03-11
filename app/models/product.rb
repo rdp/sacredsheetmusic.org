@@ -389,7 +389,7 @@ class Product < Item
 
   def linkable_tags user
     if user
-      tags # all :)
+      tags.reject{|t| t.is_topic_tag?} # don't care as much about those...more voicing...
     else
       tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| 
          if t.is_voicing?

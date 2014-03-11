@@ -84,6 +84,21 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def duplicate
+    newy = duplicate_helper
+    flash[:notice] = "editing the dup (you may need/want to clear its code now, if voicing is changing...)"
+    redirect_to :action => :edit, :id => newy.id
+  end
+
+  def new_same_author
+    newy = duplicate_helper
+    newy.description = ''
+    bad_tags = newy.tags.select{|t| !t.is_composer_tag?}
+    bad_tags.each{|t| newy.tags.delete t}
+    flash[:notice] = "editing the new one by same author"
+    redirect_to :action => :edit, :id => newy.id
+  end
+
+  def duplicate_helper preserve_tags=true
     raise 'no id?' unless id = params[:id]
     old = Product.find id
     attributes = old.attributes
@@ -96,8 +111,7 @@ class Admin::ProductsController < Admin::BaseController
     end
     newy.update_attribute(:code, "auto_refresh_me_dupe") # something about assigning .attributes up above is killing us with a normal assign then save...
     # newy.save!
-    flash[:notice] = "editing the dup (you may need/want to clear its code now, if voicing is changing...)"
-    redirect_to :action => :edit, :id => newy.id
+    newy
   end
 
   # fix up any previously ugly images from pdf's
