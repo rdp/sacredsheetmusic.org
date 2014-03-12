@@ -322,7 +322,7 @@ class Product < Item
         problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok
       end
       if self.voicing_tags.length == 0
-        problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
+        problems << "Warning: no voicing [youth, S A T B, piano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact_url.present?
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
