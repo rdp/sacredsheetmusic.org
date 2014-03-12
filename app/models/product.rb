@@ -133,15 +133,14 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method? <sigh>
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # it has some old junk in it too, like saved product boxes...clear it for everybody
-    Rails.logger.info "NOT clearing local cache fiels for this..."
     for tag in self.tags
-      #tag.clear_public_cached
+      # Rails.logger.info "NOT clearing local cache fiels for this..."
+      tag.clear_public_cached
     end
   end
   
   after_save { |p| 
     p.clear_my_cache
-    # Rails.logger.info "NOT clearing cache for this!"
   } 
 
   def self.delete_group_caches
