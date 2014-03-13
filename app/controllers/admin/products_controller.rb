@@ -288,17 +288,9 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       if params[:download].present?
-        n2 = 0 # outside the loops to allow for multiple pdfs
-        # calculate highest previous image rank so it'll add 'em at the end...
-        @product.images.each{ |old_image|
-          old_image_rank = old_image.product_images[0].rank
-          if old_image_rank
-            old_image_rank += 1 # we want to come *after* this one
-          else
-            old_image_rank = 0 # we're ok here...
-          end
-          n2 = [old_image_rank, n2].max # calculate new max rank...
-        }
+        # calculate highest previous image rank so it'll start add'in 'em at the end...
+        max = @product.product_images.select{|pi| pi.rank}.map{|pi| pi.rank}.max
+        next_rank = max ? max + 1 : 0 # accomodate for no rank before
 
         params[:download].each do |i|
           if i[:download_data].present?
@@ -319,8 +311,8 @@ class Admin::ProductsController < Admin::BaseController
                   end
                   logger.info "running " + command
                   raise ContinueError unless system(command)
-                  save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', n2
-                  n2 += 1
+                  save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', next_rank
+                  next_rank += 1
                   got_one = true
                 end
               rescue ContinueError => e
