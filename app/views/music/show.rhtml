@@ -144,7 +144,8 @@
         <br />
       <% end %>
         <hr style="margin-bottom: 10px;"/>
-         <% if @product.is_competition? %>
+         <% show_voting_options = false %>
+         <% if @product.is_competition? && show_voting_options %>
              <%= render :partial => 'comments_competition' %>
          <% else %>
              <%= render :partial => 'comments' %>
