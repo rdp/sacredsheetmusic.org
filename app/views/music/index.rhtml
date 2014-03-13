@@ -20,7 +20,6 @@
            </div>
         <% end %>
 
-
         <% if @products.length > 20 %>
            <div style="padding-bottom: 5px; margin-left: 15px;">
             <!--Showing <%= @products.length %> songs. too redundant... -->
@@ -43,20 +42,31 @@
 <% else; blank_text = "showing all (#{@products.size})" %>
     You could also filter these songs (limit them) by type. Currently:
 <% end %>
+
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
        current_tag = @viewing_tags.andand[0]
-       Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text, current_tag].hash, 'global_filter', 'tags') {  # takes like 0.5s [?] plus should be safe, total size wise, to cache...
+       filter_dropdown = Cache.get_or_set_int([@old_global_filter, @products.map(&:id), blank_text, current_tag].hash, 'global_filter', 'tags') {  # takes like 0.5s [?] plus should be safe, total size wise, to cache...
          # reject current_tag since it's already shown in the top line if anything's selected...
          select("main_filter", nil, Tag.find_ordered_parents.select{|t| t.products.count > 0}.reject{|t| t == current_tag || t == current_tag.andand.parent }.reject{|t| t.name == "Original" }.map{|t| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{@all_products_unfiltered.select{|p| p.tags.include? t}.size})", t.id]}, { :include_blank => blank_text, :selected => @old_global_filter }, 
            {
              :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });$('spinner').show()", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
        }
+       filter_dropdown
     %>
 <% end %>
+      </div> <!-- end top text div -->
 
-        </div>
+  <% if @products.length == 0 %>
+    <p>
+    <% if @viewing_tags && @viewing_tags.length == 1 && @viewing_tags[0].children.count > 0%>
+      Please choose a sub-category to your left.
+    <% else %>
+      Sorry, no songs match your view.  Maybe you can change search/filter terms or choose another category, or try out <a href="/music/advanced_search">advanced search</a>.
+    <% end %>
+    </p>
+  <% else %>
         <%
            get_all = proc {
              Cache.map_get_or_set(@products, 'music_box_display2' + session[:user].to_s, 'single_product', proc{|p| p.id}) {|product|
@@ -69,17 +79,11 @@
                get_all.call
              }
         %>
-
-  <% if @products.length == 0 %>
-    <p>
-    <% if @viewing_tags && @viewing_tags.length == 1 && @viewing_tags[0].children.count > 0%>
-      Please choose a sub-category to your left.
-    <% else %>
-      Sorry, no songs match your view.  Maybe you can change search/filter terms or choose another category, or try out <a href="/music/advanced_search">advanced search</a>.
-    <% end %>
-    </p>
   <% end %>
-        <% if @viewing_tags %>
+
+
+
+      <% if @viewing_tags %>
          <div style="float: left; width: 500px;">
          <% tag_name = @viewing_tags[0].name %>
          <% if @viewing_tags[0].is_topic_tag? %>
@@ -104,7 +108,8 @@ or
         <% end %>
 
   <div class="clear" style="height: 1px;">&nbsp;</div> <!-- bottom -->
-  <%#= will_paginate @products  unless @do_not_paginate%>
+  <%= will_paginate @products unless @do_not_paginate%>
+
 	<!-- takes up space so we can see the bottom content on this page -->
 	<!--div id="bottomSpacer">&nbsp;</div-->
 </div>
