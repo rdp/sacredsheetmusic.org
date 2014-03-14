@@ -264,6 +264,9 @@ class Admin::ProductsController < Admin::BaseController
             new_image.uploaded_data = i[:image_data]
             if new_image.save
               @product.images << new_image
+              product_image = new_image.reload.product_images[0]
+              product_image.rank = @product.reload.next_image_rank_to_use 
+              product_image.save
             else
               image_errors.push(new_image.filename + " " +  new_image.errors.map{|e| e.to_s}.join(' '))
             end
