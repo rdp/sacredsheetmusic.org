@@ -16,6 +16,11 @@ class Product < Item
     :through => :product_images, :order => "-product_images.rank DESC",
     :dependent => :destroy
 
+  def next_image_rank_to_use
+     max = self.product_images.select{|pi| pi.rank}.map{|pi| pi.rank}.max
+     next_rank = max ? max + 1 : 0 # accomodate for no rank before
+  end
+
   def sync_all_parent_tags # check parent tags that should be checked but weren't
     tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent} # plus parent to go 2 deep here
     tags.each{|t|

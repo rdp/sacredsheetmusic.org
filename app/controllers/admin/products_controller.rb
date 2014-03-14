@@ -288,9 +288,7 @@ class Admin::ProductsController < Admin::BaseController
       end
 
       if params[:download].present?
-        # calculate highest previous image rank so it'll start add'in 'em at the end...
-        max = @product.product_images.select{|pi| pi.rank}.map{|pi| pi.rank}.max
-        next_rank = max ? max + 1 : 0 # accomodate for no rank before
+        next_rank = @product.next_image_rank_to_use
 
         params[:download].each do |i|
           if i[:download_data].present?
