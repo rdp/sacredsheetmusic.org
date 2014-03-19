@@ -53,11 +53,11 @@
              name_to_use = t.name.gsub(',', '') # Hope this never does anything...
              words = name_to_use.split(/[ \/]/)
              # don't say "a" for a capella
-             # also don't do word ... when you could do "word word" :)
+             # also don't do word ... when you could fit "word word2" :)
              # also don't do 2... for "2 part choir"
-             # also don't do friend... for friend/friendship
+             # also don't do friend... for friend/friendship [too long]
              # 2 part choir -> 2 part choir, not 2 part ...
-             # comfort/strength/courage -> comfort/strength
+             # comfort/strength/courage -> comfort/strength...
              if (words.size > 1 && words.size != 3) || name_to_use.length > 20
                splitter_loc = (name_to_use =~ /[ \/]/)
                first_two_words = words[0..1]
@@ -66,19 +66,16 @@
                  first_two_words.pop # off the last one
                end
                first_part_of_name = first_two_words.join(name_to_use[splitter_loc..splitter_loc]) # preserve that slash :)
-             else
-               first_part_of_name = name_to_use
-             end
-             if first_part_of_name != t.name
                name_to_use = first_part_of_name + "&hellip;"
              else
-               name_to_use = first_part_of_name
+               name_to_use = name_to_use # whole name, sans commas :)
              end
+
              prefix = ', '
              if first_composer && t.is_composer_tag?
                prefix = ' By: '
                first_composer = false
-               name_to_use = t.name # full name for composers
+               name_to_use = t.name # full name for composers always
              end
              if first_voicing && t.is_voicing?
                prefix = ""
