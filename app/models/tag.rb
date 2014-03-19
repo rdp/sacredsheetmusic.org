@@ -156,4 +156,34 @@ class Tag
     )
   end
 
+  def abbreviated_name
+             name_to_use = self.name.gsub(',', '') # Hope this never does anything...
+             words = name_to_use.split(/[ \/]/)
+             # don't say "a" for a capella
+             # also don't do word ... when you could fit "word word2" :)
+             # also don't do 2... for "2 part choir"
+             # also don't do friend... for friend/friendship [too long]
+             # 2 part choir -> 2 part choir, not 2 part ...
+             # comfort/strength/courage -> comfort/strength...
+             if (words.size > 1 && words.size != 3) || name_to_use.length > 20
+               splitter_loc = (name_to_use =~ /[ \/]/)
+               first_two_words = words[0..1]
+               # don't write organ/organ
+               if first_two_words[0] == first_two_words[1]
+                 first_two_words.pop # off the last one
+               end
+               split_by_slashes = name_to_use.split('/')
+               if split_by_slashes.size > 1 && split_by_slashes[0].split[0] == split_by_slashes[1].split[0]
+                 # don't write harp solo for harp solo/optional harp accompaniment
+                 first_two_words = [split_by_slashes[0].split[0]] # harp solo/harp accompaniment -> "harp" since otherwise it looks like it's a solo...
+               end
+               first_part_of_name = first_two_words.join(name_to_use[splitter_loc..splitter_loc]) # preserve that slash :)
+               name_to_use = first_part_of_name + "&hellip;"
+             else
+               name_to_use = name_to_use # whole name, sans commas :)
+             end
+             name_to_use
+  end
+
+
 end
