@@ -8,8 +8,8 @@ class Cache < ActiveRecord::Base
   CACHE_TYPES = ['probs', 'tags', 'single_product', 'group_products'] 
 
   def self.clear!
+    puts "not clearing the public/cache folder...yes restarting this rails app [all instance] to clear all local caches"
     delete_all # skips validations
-    puts "not clearing the public/cache folder...yes restarting this rails app for local caches"
     #clear_html_cache
     clear_local_caches!
   end

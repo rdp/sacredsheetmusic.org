@@ -51,25 +51,24 @@
             first_voicing= true
            tags.map{|t| 
              name_to_use = t.name.gsub(',', '') # Hope this never does anything...
-             if true # not too tacky, right? t != tags[-1] # at very ending having the ellipses ... feels too tacky...
-               words = name_to_use.split(/[ \/]/)
-               # don't say "a" for a capella
-               # also don't do word ... when you could do "word word" :)
-               # also don't do 2... for "2 part choir"
-               # also don't do friend... for friend/friendship
-               # 2 part choir -> 2 part choir, not 2 part ...
-               # comfort/strength/courage -> comfort/strength
-               if (words.size > 1 && words.size != 3) || name_to_use.length > 20
-                 loc = (name_to_use =~ /[ \/]/)
-                 first_word = words[0..1].join(name_to_use[loc..loc]) # preserve that slash :)
-               else
-                 first_word = name_to_use
-               end
-               if first_word != t.name
-                 name_to_use = first_word + "&hellip;"
-               else
-                 name_to_use = first_word
-               end
+             words = name_to_use.split(/[ \/]/)
+             # don't say "a" for a capella
+             # also don't do word ... when you could do "word word" :)
+             # also don't do 2... for "2 part choir"
+             # also don't do friend... for friend/friendship
+             # 2 part choir -> 2 part choir, not 2 part ...
+             # comfort/strength/courage -> comfort/strength
+             if (words.size > 1 && words.size != 3) || name_to_use.length > 20
+               splitter_loc = (name_to_use =~ /[ \/]/)
+               first_two_words = words[0..1]
+               first_part_of_name = first_two_words.join(name_to_use[splitter_loc..splitter_loc]) # preserve that slash :)
+             else
+               first_part_of_name = name_to_use
+             end
+             if first_part_of_name != t.name
+               name_to_use = first_part_of_name + "&hellip;"
+             else
+               name_to_use = first_part_of_name
              end
              prefix = ', '
              if first_composer && t.is_composer_tag?
