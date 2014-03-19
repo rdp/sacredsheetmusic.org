@@ -12,6 +12,12 @@ class MusicController < StoreController
      @title = "Saved Bookmarked songs"
      @wishlist_items = session_object.wishlist_items # lacks pagination...
   end
+
+  def burn_cpu_one_minute
+    starty = Time.now
+    while (Time.now - starty < 60)
+    end
+  end
   
   def add_to_wishlist
     if params[:id]
