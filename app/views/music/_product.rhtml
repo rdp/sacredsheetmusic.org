@@ -61,6 +61,10 @@
              if (words.size > 1 && words.size != 3) || name_to_use.length > 20
                splitter_loc = (name_to_use =~ /[ \/]/)
                first_two_words = words[0..1]
+               # don't write organ/organ
+               if first_two_words[0] == first_two_words[1]
+                 first_two_words.pop # off the last one
+               end
                first_part_of_name = first_two_words.join(name_to_use[splitter_loc..splitter_loc]) # preserve that slash :)
              else
                first_part_of_name = name_to_use
