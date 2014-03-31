@@ -137,7 +137,7 @@ class Tag
     # NB this is still not enough, if a tag gains its first product it should reset more apparently...
     tag.products.each{|p|  
       # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...   
-      Rails.logger.info "NOT clearing child product cache"
+      #Rails.logger.info "NOT clearing child product cache"
       p.clear_my_cache
     }
   } 
