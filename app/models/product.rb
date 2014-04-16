@@ -135,12 +135,16 @@ class Product < Item
   end
 
   def clear_my_cache
-    Cache.delete_all(:parent_id => self.id) # could do this in an after_save {} now, except it's a singleton method? <sigh>
+    Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
-    Cache.clear_local_caches! # it has some old junk in it too, like saved product boxes...clear it for everybody
-    for tag in self.tags
-      # Rails.logger.info "NOT clearing local cache fiels for this..."
-      tag.clear_public_cached
+    clear_all_related_caches = false # this is pretty heavy still! default = true
+    if clear_all_related_caches
+      Cache.clear_local_caches! # it has some old junk in it too, like saved product boxes...clear it for everybody
+      for tag in self.tags
+        tag.clear_public_cached
+      end
+    else
+      Rails.logger.info "NOT clearing local cache fiels for this product, some things could get out of date..."
     end
   end
   
@@ -272,7 +276,7 @@ class Product < Item
       end
 
       if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
-        problems <<  "no hymn or 'original' tag for this song yet."
+        problems <<  "no hymn or 'o-riginal' tag for this song yet."
       end
 
       if self.downloads.size == 0 && !self.original_url.present?
