@@ -101,7 +101,7 @@
           Notes: <%= @product.description %>
 	</div>
         <% end %>
-       <% if !@product.is_competition? %> 
+       <% if true || !@product.is_competition? %> 
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
@@ -184,7 +184,7 @@
 <br/>
 <% end %>
 
-<% unless @product.is_competition? %>
+<% unless @product.is_competition? && false %>
 
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
