@@ -54,11 +54,18 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
+
+  def new # same as substruct's
+    @title = "New Product"
+    @image = Image.new
+    @product = Product.new
+  end
+
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
  
     @image = Image.new
-    @header = "Editing #{@product.name}<br/>#{@product.code}"
+    @header = "Editing #{@product.name}<br/>(#{@product.code})"
     @title = "Editing #{@product.name} (#{@product.code})"
   end
 
@@ -179,7 +186,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def save_internal should_render = true
-    logger.info "doing save"
+    logger.info "doing save_internal"
     # If we have ID param this isn't a new product
     if params[:id]
       @new_product = false
@@ -188,8 +195,8 @@ class Admin::ProductsController < Admin::BaseController
       old_tag_ids = @product.tag_ids # for warnings later
       logger.info "product #{params[:id]} started as #{@product.date_available}"
     else
+      # brand new..
       @new_product = true
-      @title = "New Product" # HTML page title, not product's title
       @product = Product.new
     end
  
