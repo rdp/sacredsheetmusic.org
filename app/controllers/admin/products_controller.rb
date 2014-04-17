@@ -92,7 +92,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def duplicate
     newy = duplicate_helper
-    flash[:notice] = "editing the dup (you may need/want to clear its code now, if voicing is changing...)"
+    flash[:notice] = "editing the dup (pleae add voicing, pdf's...)"
     redirect_to :action => :edit, :id => newy.id
   end
 
@@ -220,6 +220,7 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
+         Rails.logger.info "adding tag ids #{params[:product][:tag_ids].inspect}"
          @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is so wrong...
          @product.sync_all_parent_tags
       else
@@ -381,7 +382,7 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
-      logger.info "ended as #{@product.date_available}"
+      logger.info "ended as #{@product.date_available}  #{@product.reload.tag_ids.inspect}"
       if should_render
         redirect_to :action => 'edit', :id => @product.id
       end
