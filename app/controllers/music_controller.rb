@@ -365,7 +365,6 @@ class MusicController < StoreController
     # /tag_one/tag_two/tag_three/...
     not_a_bot # for logging purposes :P
     tag_names = params[:tags] || [] # 
-    logger.info "tag names #{tag_names}"
     if tag_names.length > 1
       # passenger or nginx bug, Primary%2FYouth gets translated to Primary/Youth
       tag_names = [tag_names.join('/')]

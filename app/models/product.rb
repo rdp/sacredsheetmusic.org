@@ -1,6 +1,7 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/product"
 
 class Product < Item
+
   has_many :comments, :dependent => :destroy
   has_and_belongs_to_many :tags, :order => :name
 
@@ -144,7 +145,7 @@ class Product < Item
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
 
-    clear_all_caches = false # this is pretty heavy still [so many...]! default = true...
+    clear_all_caches = true # this is pretty heavy still [so many...]! default = true...
     if clear_all_caches
       for tag in self.tags
         tag.clear_public_cached
