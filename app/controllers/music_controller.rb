@@ -716,6 +716,7 @@ class MusicController < StoreController
       per_page = 5000 # just get it over with for search engines...else they'll requery this 20 times to get all the pages...
     end
     @products = paginate_and_filter all_products, per_page
+    Rails.logger.info "using per_page=#{per_page} and showing #{@products.size}"
 
     # If only one product comes back, take em directly to it.
     if all_ids_merged.size == 1 && @products.length > 0
