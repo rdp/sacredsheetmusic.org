@@ -193,7 +193,7 @@ class Admin::ProductsController < Admin::BaseController
       @title = "Editing Product"
       @product = Product.find(params[:id])
       old_tag_ids = @product.tag_ids # for warnings later
-      logger.info "product #{params[:id]} started as #{@product.date_available}"
+      logger.info "product #{params[:id]} started as date available: #{@product.date_available} tag_ids: #{old_tag_ids.inspect}"
     else
       # brand new..
       @new_product = true
@@ -205,10 +205,10 @@ class Admin::ProductsController < Admin::BaseController
     if !@product.name.present? 
       # see if we should auto-fill
       tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
-      hymn_tag = tags_as_objects.detect{|t| t.is_hymn_tag?}
+      hymn_tags = tags_as_objects.select{|t| t.is_hymn_tag?}
       composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
-      if hymn_tag && composer_tag
-        @product.name = hymn_tag.name
+      if hymn_tags.size == 1 && composer_tag
+        @product.name = hymn_tags[0].name
       else
         flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title?"      
       end
