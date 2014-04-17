@@ -1,6 +1,7 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
+
   validate :no_underscores
   def no_underscores
     if self.name =~ /_/
@@ -130,6 +131,7 @@ class Tag
   } # some were marked with it, left side is messed up...may as well start over...
 
   after_save { |tag|
+    Rails.logger.info "clearing for tag with all children [!] #{tag}"
     # case of creating a "new" one I guess...
     #Cache.delete_by_type 'tags'# cached left side is messed now
     tag.clear_public_cached

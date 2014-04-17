@@ -142,9 +142,10 @@ class Product < Item
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
-    clear_all_related_caches = false # this is pretty heavy still! default = true
-    if clear_all_related_caches
-      Cache.clear_local_caches! # it has some old junk in it too, like saved product boxes...clear it for everybody
+    Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
+
+    clear_all_caches = false # this is pretty heavy still [so many...]! default = true...
+    if clear_all_caches
       for tag in self.tags
         tag.clear_public_cached
       end

@@ -92,7 +92,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def duplicate
     newy = duplicate_helper
-    flash[:notice] = "editing the dup (pleae add voicing, pdf's...)"
+    flash[:notice] = "editing the dup (pleae change voicing, add pdf's...)"
     redirect_to :action => :edit, :id => newy.id
   end
 
