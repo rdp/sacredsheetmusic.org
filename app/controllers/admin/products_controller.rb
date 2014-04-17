@@ -91,13 +91,13 @@ class Admin::ProductsController < Admin::BaseController
 
   def new_same_author
     newy = duplicate_helper
+    # newy.save! # ?? fails
     newy.update_attribute(:description, '')
     newy.update_attribute(:name, '')
-    # newy.save! # ??
-    # youtube LOL
+    newy.update_attribute(:youtube_video_id, '')
     bad_tags = newy.tags.select{|t| !t.is_composer_tag?}
     bad_tags.each{|t| newy.tags.delete t}
-    flash[:notice] = "editing the new one by same author"
+    flash[:notice] = "editing a new one by same author"
     redirect_to :action => :edit, :id => newy.id
   end
 
