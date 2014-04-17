@@ -273,7 +273,7 @@ class Product < Item
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
-        problems << "might be lacking the medley tag"
+        problems << "might be lacking the m edley tag"
       end
 
       for download in self.downloads
@@ -335,7 +335,7 @@ class Product < Item
         problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok
       end
       if self.voicing_tags.length == 0
-        problems << "Warning: no voicing [youth, S A T B, piano solo, etc.] seemingly found"
+        problems << "Warning: no voicing [youth, S A T B, p i ano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact_url.present?
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
