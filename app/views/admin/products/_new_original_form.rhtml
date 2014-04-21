@@ -1,6 +1,8 @@
+
 <%= form_tag({:action => 'save'}, :multipart => true) %>
 
 <div id="left">
+<hr/>
   <h1>New Original Song</h1>
 
 
@@ -8,157 +10,39 @@
 
 <div class="padLeft">
    <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
-<br/>
- <%= link_to 'New Song Page', {:action => 'new'}, :class => 'button hundredfifty' %>
 </div>
 
-          <% if @product.id.present? %>
-             <% problems = @product.find_problems(true) %>
-             <%= "Current difficulties: " + problems.join(',<br>') if problems.present? %>
-          <% end %>
 	<div class="padLeft">
 		<div class="float" style="padding-left:15px;">
-			<%= make_label('Name (can leave blank if you check tags for both hymn name and a composer)') %>
+			<%= make_label('Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
-		<%= make_label('Song website URL (like http://somewhere/song_name.html)') %>
+		<%= make_label('Song website URL (like http://somewhere/song_name.html)<br/> or your website page (if you have one)') %>
 		<div class="float" style="margin-left: 50px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit o_riginal url</a>" if @product.original_url.present? %>
 		</div>
                 <br/>
-                <br/>
-                 check here: <input type="checkbox" name="suck_in_all_links"> to ingest all mp3's/pdf's from that page too
-      <%= make_label('Copy and paste a pdf url here (it will be uploaded then disappear):') %>
-   <div class="float" style="margin-left: 50px">
-      <%= text_field nil, 'download_pdf_url', :class => 'textInput', :size => 30  %>
-   </div>
-
-      <%= make_label('Copy and paste an mp3/midi url here (it will be uploaded then disappear):') %>
-   <div class="float" style="margin-left: 50px">
-      <%= text_field nil, 'download_mp3_url', :class => 'textInput', :size => 30  %>
-   </div>
-
-
-		<div class="float">
-			<%= make_label('Price (enter 1.0 if song is nonfree)') %>
-			<%= text_field 'product', 'price', :class => 'textInput numeric', :size => 6, :original_value => @product.price  %>
-		</div>
-
-		<!--div class="float">
-			<%= make_label('Quantity') %>
-			<%= text_field 'product', 'quantity', :class => 'textInput numeric', :size => 6, :disabled => @product.variations.size > 0  %>
-		</div-->
-		<div class="clear"></div>
 
 	</div>
   
-	<!-- PRODUCT VARIATIONS >
-
-	<h2>Variations</h2>
-
-	<div class="padLeft">
-  	<p class="info">
-  		Variations will use price set for standard product unless otherwise specified.
-  		<br/>
-  		Drag and drop variations to order them.
-  	</p>
-  	
-		<div id="variation_container" class="sortable">
-			<%= render :partial => 'variation', :collection => @product.variations %>
-		</div>
-	
-		<p>
-			<%= 
-				link_to_remote 'Add product variation',
-		    	{
-						:url => { :action => "add_variation_ajax" },
-						:loading => "PRODUCT.add_variation_loading();",
-		    		:complete => "PRODUCT.add_variation_complete();",
-					},
-					:class => 'action',
-					:id => 'add_variation_link'
-			%>
-			<%= image_tag("/indicator.gif", :plugin => 'substruct', :style => 'display:none;', :id => "add_variation_indicator") %>
-		</p>
-		<br/>
-	</div-->
-
 </div>
+<br/>
 
-<!-- 
-	DETAILS #####################################################################
->
-
-<h1>Details</h1>
-
-<div class="padLeft">
-	<div>
-	  <div class="floatHalf">
-  		<p>
-  			<label>
-  				<%= check_box('product', 'is_discontinued', :class => 'inline') %> 
-  				Product is discontinued
-  			</label>
-  			<span class="info">
-  				Discontinued products will continue to show on the site until there are no more in stock.
-  			</span>
-  		</p>
-	
-		</div>
-    <div class="floatHalf">
-  		<div class="float">
-  			<p>
-  				<%= make_label('Width') %>
-  				<%= text_field 'product', 'size_width', :size => '10', :class => 'textInput'  %>
-  				<br/>
-  				<span class="info">(inches)</span>
-  			</p>
-  			<p>
-  				<%= make_label('Depth') %>
-  				<%= text_field 'product', 'size_depth', :size => '10', :class => 'textInput'  %>
-  				<br/>
-  				<span class="info">(inches)</span>
-  			</p>
-  		</div>
-
-  		<div class="float">
-  			<p>
-  				<%= make_label('Height') %>
-  				<%= text_field 'product', 'size_height', :size => '10', :class => 'textInput'  %>
-  				<br/>
-  				<span class="info">(inches)</span>
-  			</p>
-  			<p>
-  				<%= make_label('Weight') %>
-  				<%= text_field 'product', 'weight', :size => '10', :class => 'textInput'  %>
-  				<br/>
-  				<span class="info">(pounds)</span>
-  			</p>
-  		</div>
-  		<div class="clear">&nbsp;</div>
-	  </div>
-	  <div class="clear"></div>
-	</div>
-</div-->
-  <h1>Optional item:</h1>
-      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one') %>
+      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one (optional)') %>
    <div class="float" style="margin-left: 50px">
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
 <br/>
 <br/>
 <div class="padLeft">
-  Description:
+  Description/song history:
 	<%= text_area 'product', 'description', :rows => 10, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
 <div class="padLeft">
-  Lyrics (if an o_r_i_ginal song):
+  Lyrics (optional):
 	<%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
   
-<%= render :partial => 'image_upload' %>
-
-<br/>
 <div class="line">&nbsp;</div>
 
 <%= render :partial => 'product_upload' %>
