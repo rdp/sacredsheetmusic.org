@@ -59,8 +59,10 @@ class Admin::ProductsController < Admin::BaseController
     @image = Image.new
     @product = Product.new
   end
-
-  alias :new_original :new # but has a different view :P
+  def new_original
+    new # setup stuff
+    render :layout => 'main'
+  end
 
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
