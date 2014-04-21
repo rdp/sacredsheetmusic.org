@@ -168,6 +168,9 @@
 <!-- original song needs voicing, topics, that's about it [composer?] -->
 
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer', :tag2 => Tag.find_by_name('Composers')} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for choir)', :tag2 => Tag.find_by_name('Choir')} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for solo/ensemble)', :tag2 => Tag.find_by_name('Vocal Solo/Vocal Ensembles')} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if contains instrumentation besides piano accompaniment)', :tag2 => Tag.find_by_name('Instrumental/Instrumented')} ) %>
 <p class="info">
         Tags will be assigned when you save this product.
 </p>
