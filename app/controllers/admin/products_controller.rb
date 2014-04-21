@@ -59,9 +59,10 @@ class Admin::ProductsController < Admin::BaseController
     @image = Image.new
     @product = Product.new
   end
-  def new_original
+
+  def new_original_song
     new # setup stuff
-    render :layout => 'main'
+    render :layout => 'main_no_box'
   end
 
   def edit
