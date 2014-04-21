@@ -6,10 +6,12 @@
 </div>
 
 	<div class="padLeft">
+<% if have_name %>
 		<div class="float" style="padding-left:15px;">
 			<%= make_label('Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
+<% end %>
 		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
 		<div class="float" style="margin-left: 50px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit o_riginal url</a>" if @product.original_url.present? %>
@@ -29,7 +31,7 @@
 <br/>
 <div class="padLeft">
   Description/song history:
-	<%= text_area 'product', 'description', :rows => 10, :class => 'textArea', :style => 'width:670px;'  %>
+	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
 
 <script type="text/javascript">

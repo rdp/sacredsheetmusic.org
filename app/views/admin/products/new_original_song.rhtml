@@ -5,7 +5,7 @@
 <hr/>
   <h1>New Original Song</h1>
 
-<%= render :partial => 'new_xx_song' %>
+<%= render :partial => 'new_xx_song', :locals => {:have_name => true} %>
 <div class="padLeft">
   Lyrics (optional):
         <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
