@@ -111,15 +111,21 @@ class Product < Item
       else
         raise 'please setup a composer first (use back button on browser) or manually enter a product code for it'
       end
+#      self.code.upcase! # too ugly!
+      self.code.gsub!("'", '')
+      self.code.gsub!(/[\x80-\xff]/, '') # take care of freaky apostrophe's etc.
+      self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
+      self.code.gsub!(/-{2,}/,'-') # -- => -
+      self.code.gsub!(/^[-]+/,'') # strip beginning dashes
+      self.code.gsub!(/[-]+$/,'') # strip ending dashes
+      self.code = self.code.strip!
+      if Product.find_by_code(self.code)
+        Rails.logger.info "whoa, re-using a code? #{self.code}"
+        (1..100).each do |n|
+          puts n
+        end
+      end
     end
-#    self.code.upcase! # too ugly!
-    self.code.gsub!("'", '')
-    self.code.gsub!(/[\x80-\xff]/, '') # take care of freaky apostrophe's etc.
-    self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
-    self.code.gsub!(/-{2,}/,'-') # -- => -
-    self.code.gsub!(/^[-]+/,'') # strip beginning dashes
-    self.code.gsub!(/[-]+$/,'') # strip ending dashes
-    self.code.strip!
     return true
   end
 

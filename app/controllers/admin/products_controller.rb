@@ -62,9 +62,15 @@ class Admin::ProductsController < Admin::BaseController
 
   def new_original_song
     new # setup stuff
+    @title = "New Original Song"
     render :layout => 'main_no_box'
   end
-  alias new_arrangement_song new_original_song
+
+  def new_arrangement_song
+    new
+    @title = "New Arrangement Song"
+    render :layout => 'main_no_box'
+  end
 
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])

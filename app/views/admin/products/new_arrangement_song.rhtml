@@ -3,7 +3,7 @@
 
 <div id="left">
 <hr/>
-  <h1>New Arrangement Song</h1>
+  <h1>New Arrangement Piece</h1>
 
 <%= render :partial => 'new_xx_song', :locals => {:have_name => false} %>
 <div class="padLeft">
@@ -19,8 +19,8 @@
 
 <!-- original song needs voicing, topics, that's about it [composer?] -->
 
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer', :tag2 => Tag.find_by_name('Composers')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Hymn name(s)', :tag2 => Tag.find_by_name("Hymn Arrangements")} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Primary Song name(s) [also if primary song, tag with Primary solo] ', :tag2 => Tag.find_by_name("Primary Song Arrangements")} ) %>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for choir)', :tag2 => Tag.find_by_name('Choir')} ) %>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for solo/ensemble)', :tag2 => Tag.find_by_name('Vocal Solo/Vocal Ensembles')} ) %>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if contains instrumentation besides piano accompaniment)', :tag2 => Tag.find_by_name('Instrumental/Instrumented')} ) %>
