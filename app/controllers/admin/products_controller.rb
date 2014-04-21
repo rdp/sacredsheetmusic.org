@@ -54,12 +54,13 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
-
-  def new # same as substruct's
+  def new # same as substruct's method...
     @title = "New Product"
     @image = Image.new
     @product = Product.new
   end
+
+  alias :new_original :new # but has a different view :P
 
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
