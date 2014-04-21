@@ -118,7 +118,7 @@ class Product < Item
       self.code.gsub!(/-{2,}/,'-') # -- => -
       self.code.gsub!(/^[-]+/,'') # strip beginning dashes
       self.code.gsub!(/[-]+$/,'') # strip ending dashes
-      self.code = self.code.strip!
+      self.code = self.code.strip
       if Product.find_by_code(self.code)
         Rails.logger.info "whoa, re-using a code? #{self.code}"
         (1..100).each do |n|
