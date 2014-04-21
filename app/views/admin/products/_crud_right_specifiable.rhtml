@@ -43,8 +43,8 @@
            end
 
           %>
-		<% if @tags.length > 0 %>
-			<%= render(:partial => 'tag_list_form_row', :collection => @tags, :locals => {:product => @product}) %>
+		<% if tags2.length > 0 %>
+			<%= render(:partial => 'tag_list_form_row', :collection => tags2, :locals => {:product => @product}) %>
 		<% else %>
 			<tr>
 				<td colspan="3">No tags have been created yet.</td>
