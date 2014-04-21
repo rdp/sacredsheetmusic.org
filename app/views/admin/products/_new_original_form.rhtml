@@ -159,9 +159,12 @@
 
 </div>
 
-<%= Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }%>
+<!-- probably dont mind the cost here -->
+<%# Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }
+%>
+<%= render(:partial => 'crud_right') %>
 
-<%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
+<%= submit_tag "Save This Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
 
 </form>
 
