@@ -54,8 +54,8 @@ class Admin::ProductsController < Admin::BaseController
     )
   end
 
-  def new # same as substruct's method...
-    @title = "New Product"
+  def new
+    @title = "New Song"
     @image = Image.new
     @product = Product.new
   end
