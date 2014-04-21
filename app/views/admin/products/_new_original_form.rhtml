@@ -162,7 +162,15 @@
 <!-- probably dont mind the cost here -->
 <%# Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }
 %>
-<%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics'} ) %>
+<div id="right" style="width: 350px;">
+<h1>Tag This Song</h1>
+
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics'} ) %>
+<p class="info">
+        Tags will be assigned when you save this product.
+</p>
+</div>
+<div class="clear">&nbsp;</div>
 
 <%= submit_tag "Save This Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
 

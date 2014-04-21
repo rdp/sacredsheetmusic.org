@@ -15,13 +15,7 @@
 <!-- auto complete results div  -->
 <div class="auto_complete" id="product_lookup_auto_complete"></div>
 
-<div id="right" style="width: 350px;">
-
-<!-- 
-	TAGS ########################################################################
--->
-<h1>Tag This Song</h1>
-<%= title %>
+<h2><%= title %></h2>
 <!-- 
 	Add an always empty tag to force updates even if no checkboxes are selected
  -->
@@ -61,31 +55,5 @@
 		</tbody>
 	</table>
 </div>
-
-<p class="info">
-	Tags will be assigned when you save this product.
-</p>
-
-<!-- 
-	RELATED PRODUCTS ############################################################
--->
-<!--h1>Related Products</h1>
-<%
-	i = 0
-	for relative in @product.related_products do
-%>
-	<%= render :partial => 'relative', :locals => { :relative => relative, :input_id => "relative_box_#{i}" } %>
-	<% i += 1 %>
-<% end %>
-<% (i..4).each do |i| %>
-	<%= render :partial => 'relative', :locals => { :input_id => "relative_box_#{i}" } %>
-<% end%>
-<span class="info">
-	Type in the product name or code here. It will be auto-completed for you.
-</span>
- -->
-
-</div>
-<div class="clear">&nbsp;</div>
 
 
