@@ -1,11 +1,3 @@
-	<h4>Upload pdf/mp3/other (if you upload a pdf, it will automatically create thumbnail images for you):</h4>
-	<%= 
-		render :partial => '/shared/multiple_upload',
-			:locals => {
-				:name => 'download',
-				:input_size => '30'
-			}
-	%>
 <!-- 
 	DOWNLOADS ######################################################################
 -->
@@ -13,7 +5,7 @@
 <h1>Downloads</h1>
 <div class="padLeft">
 	<p class="info">
-	  These are digital downloads. (song view count <%= @product.view_count %>, song redir count <%= @product.redirect_count %>)
+	  These are digital downloads (like pdf's/mp3's).
 	  <br/>
 	</p>
 	<% if @product.downloads.length > 0 then %>
@@ -45,3 +37,13 @@
 	
 
 </div>
+<hr/>
+	<h4>Upload pdf/mp3/other (if you upload a pdf, it will automatically create thumbnail images for you):</h4>
+	<%= 
+		render :partial => '/shared/multiple_upload',
+			:locals => {
+				:name => 'download',
+				:input_size => '30'
+			}
+	%>
+
