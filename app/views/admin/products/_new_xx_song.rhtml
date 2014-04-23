@@ -1,11 +1,4 @@
 
-<%= form_tag({:action => 'save'}, :multipart => true) %>
-
-<div id="left">
-<hr/>
-  <h1>New Original Song</h1>
-
-
 <%= error_messages_for 'product' %>
 
 <div class="padLeft">
@@ -13,11 +6,13 @@
 </div>
 
 	<div class="padLeft">
+<% if have_name %>
 		<div class="float" style="padding-left:15px;">
 			<%= make_label('Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
-		<%= make_label('Song website URL (like http://somewhere/song_name.html)<br/> or your website page (if you have one)') %>
+<% end %>
+		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
 		<div class="float" style="margin-left: 50px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit o_riginal url</a>" if @product.original_url.present? %>
 		</div>
@@ -36,19 +31,8 @@
 <br/>
 <div class="padLeft">
   Description/song history:
-	<%= text_area 'product', 'description', :rows => 10, :class => 'textArea', :style => 'width:670px;'  %>
+	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
-<div class="padLeft">
-  Lyrics (optional):
-	<%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
-</div>
-  
-<div class="line">&nbsp;</div>
-
-<%= render :partial => 'product_upload' %>
-
-<br/>
-<div class="line">&nbsp;</div>
 
 <script type="text/javascript">
 <!--
@@ -148,7 +132,7 @@
 //-->
 </script>
 		<div class="float">
-			<%= make_label('Song Code (auto-filled--you shouldnt have to enter anything here)') %>
+			<%= make_label('Song Code (auto-filled--you shouldnt have to enter anything here, just leave it blank)') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
 		</div>
 <br>
@@ -156,30 +140,4 @@
 
   <%# maybe should disable since it doesn't get disabled right when you click the other save button... %>
     <%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
-
-</div>
-
-<!-- probably dont mind the cost here -->
-<%# Cache.get_or_set_int(@product.id, 'crud_right', 'single_product') { render(:partial => 'crud_right') }
-%>
-<div id="right" style="width: 350px;">
-<h1>Tag This Song</h1>
-
-<!-- original song needs voicing, topics, that's about it [composer?] -->
-
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer', :tag2 => Tag.find_by_name('Composers')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for choir)', :tag2 => Tag.find_by_name('Choir')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if for solo/ensemble)', :tag2 => Tag.find_by_name('Vocal Solo/Vocal Ensembles')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if contains instrumentation besides piano accompaniment)', :tag2 => Tag.find_by_name('Instrumental/Instrumented')} ) %>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Any special attributes, like a cappella, etc?', :tag2 => Tag.find_by_name('Song Attributes')} ) %>
-<p class="info">
-        Tags will be assigned when you save this product.
-</p>
-</div>
-<div class="clear">&nbsp;</div>
-
-<%= submit_tag "Save This Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
-
-</form>
 
