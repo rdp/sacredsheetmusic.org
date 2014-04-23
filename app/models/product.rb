@@ -309,7 +309,7 @@ class Product < Item
               a.close
               raise OpenURI::HTTPError.new("hello", "k?") if got =~ /Not Found/ # lindy kerby uses 302 redirs yikes
             rescue Exception => e
-              problems << "original url is bad? #{e} #{self.original_url}"
+              problems << "song url is not working? #{e} #{self.original_url}"
             end
            end
         end
