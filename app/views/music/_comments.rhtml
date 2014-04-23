@@ -5,9 +5,9 @@
     <form action="/music/add_comment" method="post">
       Add your own [positive/constructive] public comment about this piece, or ideas on how to perform it, etc.:<br/>
       Your name: <input name="user_name" type="text" value="" /> <br/>
-      Email (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
+      Your email address (not shown publicly): <input name="user_email" type="text" value="" /> <br/>
       Your URL (optional): <input name="user_url" type="text" value="" /> <br/>
-      Comment:<br/>
+      Song comment/feedback:<br/>
       <textarea name="comment" cols="28" rows="5"></textarea><br/>
       <input name="id" type="hidden" value="<%= @product.id %>"/>
       Rate this song, out of 5 stars (optional):
