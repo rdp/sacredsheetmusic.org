@@ -391,7 +391,7 @@ class Admin::ProductsController < Admin::BaseController
          flash[:notice] += "warning--appears song has duplicate downloads!"
       end
 
-      flash[:notice] += " Product '#{@product.name}' saved."
+      flash[:notice] += " Product '#{@product.name}' saved <a href=/admin/products/edit_song_easy/#{@product.id}>edit</a>."
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
@@ -400,8 +400,8 @@ class Admin::ProductsController < Admin::BaseController
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
       if should_render
-        if params[:after_save_redirect_to]
-          redirect_to params[:after_save_redirect_to] # straight url...
+        if params[:using_easy_save]
+          redirect_to :action => :edit_song_easy, :id => @product.id
         else
           redirect_to :action => 'edit', :id => @product.id
         end
@@ -409,8 +409,8 @@ class Admin::ProductsController < Admin::BaseController
     else # save failed
       @image = Image.new
       if @new_product
-        if params[:after_save_redirect_to]
-          redirect_to params[:after_save_redirect_to] # ??? TODO test this...see how it feels...
+        if params[:using_easy_save]
+          redirect_to params[:using_easy_save]
         else
           render :action => 'new' and return
         end
