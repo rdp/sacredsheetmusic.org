@@ -14,7 +14,8 @@
 <div style="float: left; width: 18%; margin-left: 2px;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
   <br/>
-  <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
+  <%= if session[:user]; '(' + link_to('edit song', :controller =>  'admin/products', :action => :edit_song_easy, :id => @product.id) + ')'; end %>
+  <%= if session[:user]; '(' + link_to('edit advanced', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
 <% if @product.downloads.length > 0 %>
   <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>

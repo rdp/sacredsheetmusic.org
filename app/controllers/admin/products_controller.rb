@@ -72,9 +72,17 @@ class Admin::ProductsController < Admin::BaseController
     render :layout => 'main_no_box'
   end
 
+  def edit_song_easy
+    edit # setup stuff
+    if @product.is_original?
+      render :action => 'new_original_song', :layout => 'main_no_box'
+    else
+      render :action => 'new_arrangement_song', :layout => 'main_no_box'
+    end
+  end
+
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
- 
     @image = Image.new
     @header = "Editing #{@product.name}<br/>(#{@product.code})"
     @title = "Editing #{@product.name} (#{@product.code})"

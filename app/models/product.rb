@@ -54,6 +54,10 @@ class Product < Item
     self.tags.select{|t| t.is_original_tag? }[0]
   end 
 
+  def is_original?
+    original_tag # nil if not there...
+  end 
+
   def voicing_tags
     self.tags.select{|t| t.is_voicing? }
   end
@@ -236,7 +240,7 @@ class Product < Item
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet."
       end
-      if self.original_tag && self.hymn_tag
+      if self.is_original? && self.hymn_tag
         problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i
       end
 
