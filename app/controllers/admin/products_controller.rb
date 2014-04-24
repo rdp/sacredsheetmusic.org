@@ -180,7 +180,6 @@ class Admin::ProductsController < Admin::BaseController
       params[:product] = {} # doesn't  reset tags...
       params[:download] = []
       params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
-      logger.info params[:download_pdf_url]
       save_internal false
       dl.destroy # scaway :)
       old_count = dl.count
@@ -231,7 +230,6 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
-         Rails.logger.info "adding tag ids #{params[:product][:tag_ids].inspect}"
          @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is so wrong...
          @product.sync_all_parent_tags
       else
@@ -393,21 +391,30 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
-      logger.info "ended as #{@product.date_available}  #{@product.reload.tag_ids.inspect}"
       if should_render
-        redirect_to :action => 'edit', :id => @product.id
+        if params[:after_save_redirect_to]
+          redirect_to params[:after_save_redirect_to] # straight url...
+        else
+          redirect_to :action => 'edit', :id => @product.id
+        end
       end
     else # save failed
       @image = Image.new
       if @new_product
-        render :action => 'new' and return
+        if params[:after_save_redirect_to]
+          redirect_to params[:after_save_redirect_to] # ??? TODO test this...see how it feels...
+        else
+          render :action => 'new' and return
+        end
       else
+        # more rare...I hope...edit might be ok here anyway since they may need to adjust a code [?]
         render :action => 'edit' and return
       end
     end
   end
 
   private
+
   def do_download_mp3 url
     temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.mp3"
     type = 'audio/mpeg'
