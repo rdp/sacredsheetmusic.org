@@ -23,14 +23,9 @@
 </div>
 <br/>
 
-      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one (optional)') %>
-   <div class="float" style="margin-left: 50px">
-      <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
-   </div>
-<br/>
 <br/>
 <div class="padLeft">
-  Description/song history:
+        <%= make_label('Description/song history:') %>
 	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
 
@@ -131,13 +126,21 @@
   PRODUCT.init();
 //-->
 </script>
-		<div class="float">
+
+		<!--div class="float">
 			<%= make_label('Song Code (auto-filled--you shouldnt have to enter anything here, just leave it blank)') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
-		</div>
+		</div-->
+
 <br>
+      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one (optional)') %>
+   <div class="float" style="margin-left: 50px">
+      <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
+   </div>
+<br/>
 <br>
 
-  <%# maybe should disable since it doesn't get disabled right when you click the other save button... %>
-    <%= submit_tag "Save New Song", :disable_with => 'Saving...', :class => 'button hundredfifty' %>
+<%= render :partial => 'product_upload' %>
+
+<input type="hidden" name="using_easy_save" value="yep">
 

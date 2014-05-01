@@ -72,9 +72,17 @@ class Admin::ProductsController < Admin::BaseController
     render :layout => 'main_no_box'
   end
 
+  def edit_song_easy
+    edit # setup stuff
+    if @product.is_original?
+      render :action => 'new_original_song', :layout => 'main_no_box'
+    else
+      render :action => 'new_arrangement_song', :layout => 'main_no_box'
+    end
+  end
+
   def edit
     @product = Product.find(params[:id], :include => [{:tags => [:parent, :children]}, :downloads])
- 
     @image = Image.new
     @header = "Editing #{@product.name}<br/>(#{@product.code})"
     @title = "Editing #{@product.name} (#{@product.code})"
@@ -180,7 +188,6 @@ class Admin::ProductsController < Admin::BaseController
       params[:product] = {} # doesn't  reset tags...
       params[:download] = []
       params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
-      logger.info params[:download_pdf_url]
       save_internal false
       dl.destroy # scaway :)
       old_count = dl.count
@@ -231,7 +238,6 @@ class Admin::ProductsController < Admin::BaseController
       # Our method doesn't save tags properly if the product doesn't already exist.
       # Make sure it gets called after the product has an ID already
       if params[:product][:tag_ids]
-         Rails.logger.info "adding tag ids #{params[:product][:tag_ids].inspect}"
          @product.tag_ids = params[:product][:tag_ids]  # re-assign, in case the .attributes= was on a "new" product so they weren't actually saved..which thing is so wrong...
          @product.sync_all_parent_tags
       else
@@ -385,7 +391,7 @@ class Admin::ProductsController < Admin::BaseController
          flash[:notice] += "warning--appears song has duplicate downloads!"
       end
 
-      flash[:notice] += " Product '#{@product.name}' saved."
+      flash[:notice] += " Product '#{@product.name}' saved <a href=/admin/products/edit_song_easy/#{@product.id}>edit</a>."
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
@@ -393,21 +399,30 @@ class Admin::ProductsController < Admin::BaseController
       if download_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
-      logger.info "ended as #{@product.date_available}  #{@product.reload.tag_ids.inspect}"
       if should_render
-        redirect_to :action => 'edit', :id => @product.id
+        if params[:using_easy_save]
+          redirect_to :action => :edit_song_easy, :id => @product.id
+        else
+          redirect_to :action => 'edit', :id => @product.id
+        end
       end
     else # save failed
       @image = Image.new
       if @new_product
-        render :action => 'new' and return
+        if params[:using_easy_save]
+          redirect_to params[:using_easy_save]
+        else
+          render :action => 'new' and return
+        end
       else
+        # more rare...I hope...edit might be ok here anyway since they may need to adjust a code [?]
         render :action => 'edit' and return
       end
     end
   end
 
   private
+
   def do_download_mp3 url
     temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.mp3"
     type = 'audio/mpeg'
