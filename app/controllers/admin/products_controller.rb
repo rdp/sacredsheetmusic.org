@@ -155,7 +155,7 @@ class Admin::ProductsController < Admin::BaseController
       logger.info "regenerating for #{id}"
       regenerate_internal id
     end
-    flash[:notice] = "regenerated images...#{ids.inspect}"
+    flash[:notice] = "regenerated images...ids: #{ids.inspect}"
     redirect_to :action => :edit, :id => ids[0]
   end
 
