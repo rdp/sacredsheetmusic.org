@@ -1,11 +1,7 @@
-
 <%= form_tag({:action => 'save'}, :multipart => true) %>
 
-<div id="left">
-<hr/>
-  <h1><%= @title %></h1>
-
 <%= render :partial => 'new_xx_song', :locals => {:have_name => true} %>
+
 <div class="padLeft">
   Lyrics (optional):
         <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
