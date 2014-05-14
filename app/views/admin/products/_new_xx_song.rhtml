@@ -1,6 +1,7 @@
 <div id="left">
 <hr/>
   <h1><%= @title %></h1>
+<%=link_to 'Back to intro page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 
 <%= error_messages_for 'product' %>
 
