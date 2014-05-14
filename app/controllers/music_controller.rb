@@ -636,7 +636,13 @@ class MusicController < StoreController
       redirect_to :action => 'index' and return false
     end
 
-    not_a_bot # for logging purposes :)
+    if !not_a_bot
+      # yes bot :)
+      if params[:page].present? && params[:page].to_i > 1
+         redirect_to :action => 'index' and return false # why do bots do this to me with ancient search links?
+      end
+    end
+
     start = Time.now
     original_search_term = search_term
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
