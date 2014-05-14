@@ -1,3 +1,6 @@
+<div id="left">
+<hr/>
+  <h1><%= @title %></h1>
 
 <%= error_messages_for 'product' %>
 
@@ -7,13 +10,14 @@
 
 	<div class="padLeft">
 <% if have_name %>
-		<div class="float" style="padding-left:15px;">
+		<div class="float" style="padding-left:0px;">
 			<%= make_label('Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
+                <br/>
 <% end %>
 		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
-		<div class="float" style="margin-left: 50px">
+		<div class="float" style="margin-left: 20px">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit o_riginal url</a>" if @product.original_url.present? %>
 		</div>
                 <br/>
@@ -25,7 +29,7 @@
 
 <br/>
 <div class="padLeft">
-        <%= make_label('Description/song history:') %>
+        <%= make_label('Description/song history [optional]:') %>
 	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
 
@@ -133,7 +137,7 @@
 		</div-->
 
 <br>
-      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one (optional)') %>
+      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one [optional]') %>
    <div class="float" style="margin-left: 50px">
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
