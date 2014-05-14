@@ -1,3 +1,11 @@
+<%=
+options = {:action => 'save'}
+  if @product.id
+    options[:id] = @product
+  end
+form_tag(options, :multipart => true)
+ %>
+
 <div id="left">
 <hr/>
   <h1><%= @title %></h1>

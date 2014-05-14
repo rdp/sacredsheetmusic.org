@@ -388,10 +388,6 @@ class Admin::ProductsController < Admin::BaseController
 
       end
  
-      if @product.duplicate_download_md5s.length > 0
-         flash[:notice] += "warning--appears song has duplicate downloads!"
-      end
-
       flash[:notice] += " Product '#{@product.name}' saved <a href=/admin/products/edit_song_easy/#{@product.id}>edit</a>."
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0
@@ -411,7 +407,8 @@ class Admin::ProductsController < Admin::BaseController
       @image = Image.new
       if @new_product
         if params[:using_edit_song_easy]
-          redirect_to params[:using_edit_song_easy]
+          #redirect_to params[:using_edit_song_easy]
+          render :action => 'new' and return # TODO what can we do here?
         else
           render :action => 'new' and return
         end
