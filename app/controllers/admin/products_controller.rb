@@ -63,22 +63,22 @@ class Admin::ProductsController < Admin::BaseController
   def new_original_song
     new # setup stuff
     @title = "New Original Song"
-    render :layout => 'main_no_box'
+    render :layout => 'main_no_box_admin'
   end
 
   def new_arrangement_song
     new
     @title = "New Arrangement Song"
-    render :layout => 'main_no_box'
+    render :layout => 'main_no_box_admin'
   end
 
   def edit_song_easy
     edit # setup stuff
     @title = "Editing song #{@product.name}..."
     if @product.is_original?
-      render :action => 'new_original_song', :layout => 'main_no_box'
+      render :action => 'new_original_song', :layout => 'main_no_box_admin'
     else
-      render :action => 'new_arrangement_song', :layout => 'main_no_box'
+      render :action => 'new_arrangement_song', :layout => 'main_no_box_admin'
     end
   end
 
