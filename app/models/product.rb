@@ -124,9 +124,13 @@ class Product < Item
       self.code.gsub!(/[-]+$/,'') # strip ending dashes
       self.code = self.code.strip
       if Product.find_by_code(self.code)
-        Rails.logger.info "whoa, re-using a code? #{self.code}"
+        Rails.logger.info "whoa, re-using a code? #{self.code} assigning it a numeric, this may be bad..."
         (1..100).each do |n|
-          puts n
+          next_attempt = self.code + '-' + n.to_s
+          if !Product.find_by_code(next_attempt)
+            self.code = next_attempt
+            break
+          end
         end
       end
     end

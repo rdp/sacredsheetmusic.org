@@ -9,7 +9,7 @@ form_tag(options, :multipart => true)
 <div id="left">
 <hr/>
   <h1><%= @title %></h1>
-<%=link_to 'Back to intro page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
+<%=link_to 'Back to instructions page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 
 <%= error_messages_for 'product' %>
 
@@ -24,6 +24,12 @@ form_tag(options, :multipart => true)
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
                 <br/>
+<div class="padLeft">
+  Lyrics (optional):
+        <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
+<br/>
+</div>
+
 <% end %>
 		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
 		<div class="float" style="margin-left: 20px">
@@ -154,6 +160,10 @@ form_tag(options, :multipart => true)
 <br>
 
 <%= render :partial => 'product_upload' %>
-
+<%= render :partial => 'image_upload' %>
 <input type="hidden" name="using_edit_song_easy" value="yep">
+
+<div id="right" style="width: 350px;">
+<h1>Describe This Song</h1>
+
 

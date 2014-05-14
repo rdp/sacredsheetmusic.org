@@ -74,10 +74,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def edit_song_easy
     edit # setup stuff
-    @title = "Editing song #{@product.name}..."
     if @product.is_original?
+      @title = "Editing original song '#{@product.name}'..."
       render :action => 'new_original_song', :layout => 'main_no_box_admin'
     else
+      @title = "Editing arrangement song '#{@product.name}'..."
       render :action => 'new_arrangement_song', :layout => 'main_no_box_admin'
     end
   end
