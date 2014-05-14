@@ -639,6 +639,7 @@ class MusicController < StoreController
     if !not_a_bot
       # yes bot :)
       if params[:page].present? && params[:page].to_i > 1
+         logger.info "rejecting bot with long search query!"
          redirect_to :action => 'index' and return false # why do bots do this to me with ancient search links?
       end
     end
