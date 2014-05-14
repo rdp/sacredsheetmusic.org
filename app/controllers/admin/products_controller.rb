@@ -401,7 +401,7 @@ class Admin::ProductsController < Admin::BaseController
         flash[:notice] += "<b>Warning:</b> Failed to upload file(s) #{download_errors.join(',')}."
       end
       if should_render
-        if params[:using_easy_save]
+        if params[:using_edit_song_easy]
           redirect_to :action => :edit_song_easy, :id => @product.id
         else
           redirect_to :action => 'edit', :id => @product.id
@@ -410,8 +410,8 @@ class Admin::ProductsController < Admin::BaseController
     else # save failed
       @image = Image.new
       if @new_product
-        if params[:using_easy_save]
-          redirect_to params[:using_easy_save]
+        if params[:using_edit_song_easy]
+          redirect_to params[:using_edit_song_easy]
         else
           render :action => 'new' and return
         end
