@@ -1,11 +1,8 @@
 <%= render :partial => 'new_xx_song', :locals => {:have_name => true} %>
 
-<div id="right" style="width: 350px;">
-<h1>Tag This Song</h1>
-
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
 
-<div >
+<div style="display: TODO;">
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Original? but you dont see this anyway', :tag2 => Tag.find_by_name('original')} ) %>
 </div>
 
