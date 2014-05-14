@@ -7,5 +7,10 @@
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Primary Song name(s) [if any]', :tag2 => Tag.find_by_name("Primary Song Arrangements")} ) %>
 <%= render :partial => 'new_xx_common_tags' %>
 
+<!-- If we don't do this it tries to take away all topics at re-edit time, resulting in a warning -->
+<div style="display: none;">
+<%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
+</div>
+
 </form>
 

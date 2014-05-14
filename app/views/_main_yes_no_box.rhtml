@@ -19,6 +19,11 @@
 </title>
 	<%= javascript_include_tag :defaults, :cache => 'default' %>
 
+<-- admin stuff -->
+      <%= javascript_include_tag 'tiny_mce/tiny_mce', :plugin => 'substruct' %>
+      <%= javascript_include_tag 'effects', 'dragdrop', 'controls' %>
+      <%= javascript_include_tag( 'mce_init', :plugin => 'substruct') %>
+
   <%= javascript_include_tag(
       'substruct', 'subModal', 'lightbox', 
       :plugin => 'substruct', 

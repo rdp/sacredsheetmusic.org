@@ -388,7 +388,7 @@ class Admin::ProductsController < Admin::BaseController
 
       end
  
-      flash[:notice] += " Product '#{@product.name}' saved <a href=/admin/products/edit_song_easy/#{@product.id}>edit</a>."
+      flash[:notice] += "Song '#{@product.name}' saved successfully!<br/>"
       flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
