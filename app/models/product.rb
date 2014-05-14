@@ -408,7 +408,7 @@ class Product < Item
           end
         end
       end
-      problems.map{|p| "warning:" + p}
+      problems.map{|p| "advice:" + p}
   end
 
   def linkable_tags user
