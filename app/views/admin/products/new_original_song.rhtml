@@ -2,8 +2,8 @@
 
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
 
-<div style="display: TODO;">
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Original? but you dont see this anyway', :tag2 => Tag.find_by_name('original')} ) %>
+<div style="display: none;">
+ <%= check_box_tag("product[tag_ids][]", Tag.find_by_name('original').id, true) %> This should say "original" here
 </div>
 
 <%= render :partial => 'new_xx_common_tags' %>
