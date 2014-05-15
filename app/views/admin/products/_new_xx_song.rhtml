@@ -8,7 +8,7 @@ form_tag(options, :multipart => true)
 <% if @product.id %>
      <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
        <%= link_to(
-        'View on the site',
+        '(View on the site)',
         {
           :controller => '/music', # our addy
           :action => 'show',
@@ -17,7 +17,7 @@ form_tag(options, :multipart => true)
         )
        %>
        <br/>
-       <%= link_to('Edit Advanced', :controller =>  'admin/products', :action => :edit, :id => @product.id) %>
+       <%= link_to('(Edit Advanced)', :controller =>  'admin/products', :action => :edit, :id => @product.id) %>
     </div>
 <% end %>
 
