@@ -17,23 +17,22 @@ form_tag(options, :multipart => true)
    <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
 </div>
 
-	<div class="padLeft">
+	<div class="float">
 <% if have_name %>
-		<div class="float" style="padding-left:0px;">
+		<div class="float">
 			<%= make_label('Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
-                <br/>
-<div class="padLeft">
-  Lyrics (optional):
+<div class="float">
+  <%= make_label('Lyrics [optional]:') %>
         <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
 <br/>
 </div>
 
 <% end %>
 		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
-		<div class="float" style="margin-left: 20px">
-			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit o_riginal url</a>" if @product.original_url.present? %>
+		<div class="float">
+			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
                 <br/>
 
@@ -151,12 +150,12 @@ form_tag(options, :multipart => true)
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
 		</div-->
 
-<br>
-      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one [optional]') %>
-   <div class="float" style="margin-left: 50px">
+   <div class="float" style="margin-left: 10px;">
+      <%= make_label('youtube video id (like JW5meKfy3fY) or url if it has one [optional]') %>
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
 <br/>
+<br>
 <br>
 
 <%= render :partial => 'product_upload' %>
