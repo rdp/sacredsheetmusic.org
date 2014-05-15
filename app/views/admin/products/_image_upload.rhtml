@@ -1,5 +1,5 @@
-<h1>Images</h1>
- (optional--pdf thumbnails will be auto generated for you, so you don't have to upload anything here typically)
+<h1>Step 3) Cover Art/Thumbnails</h1>
+ (optional--thumbnails will be auto generated for you--you don't have to upload anything here typically unless you have extra cover art you would like to use)
 <div class="padLeft">
 	<% if @product.images.length > 0 then %>
 		<p class="info">
@@ -53,7 +53,7 @@
 		This product has no images associated with it yet.
 	<% end %>
 	
-	<h4>Upload Direct Images (only--ex: jpg gif png):</h4>
+	<h4>Upload Cover Art Images (only--ex: jpg gif png) [optional]:</h4>
 	<%= 
 		render :partial => '/shared/multiple_upload',
 			:locals => {

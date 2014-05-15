@@ -1,12 +1,10 @@
 <!-- 
 	DOWNLOADS ######################################################################
 -->
-
-<h1>Downloads</h1>
+<br/>
+<hr/>
+<h1>Step 2) Upload pdf and/or mp3</h1>
 <div class="padLeft">
-	<p class="info">
-	  These are digital downloads (like pdf's/mp3's).
-	  <br/>
 	</p>
 	<% if @product.downloads.length > 0 then %>
 		<div>
@@ -32,13 +30,12 @@
 			</ul>
 		</div>
 	<% else %>
-		This product has no downloads associated with it yet.
+		This product has no pdf/mp3 associated with it yet.
 	<% end %>
 	
 
 </div>
-<hr/>
-	<h4>Click "Choose File" to upload new pdf/mp3/other files from your local computer.  If you upload a pdf, it will automatically add its thumbnail images for you:</h4>
+	<h4>Click "Choose File" to upload a new pdf/mp3 from your local computer.</h4>
 	<%= 
 		render :partial => '/shared/multiple_upload',
 			:locals => {

@@ -21,7 +21,8 @@ form_tag(options, :multipart => true)
 <hr/>
   <h1><%= @title %></h1>
 <%=link_to 'Back to instructions page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
-
+<br/>
+<h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
 <div class="padLeft">
@@ -31,7 +32,7 @@ form_tag(options, :multipart => true)
 	<div class="float">
 <% if have_name %>
 		<div class="float">
-			<%= make_label('Name') %>
+			<%= make_label('Song Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
 <div class="float">
@@ -41,7 +42,7 @@ form_tag(options, :multipart => true)
 </div>
 
 <% end %>
-		<%= make_label('Song (or your) website URL (like http://somewhere/song_name.html) [optional]') %>
+		<%= make_label('Your Website URL (of the song--like http://websitename.com/song_name.html) [optional]') %>
 		<div class="float">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
@@ -162,7 +163,7 @@ form_tag(options, :multipart => true)
 		</div-->
 
    <div class="float" style="margin-left: 10px;">
-      <%= make_label('youtube video id (like JW5meKfy3fY) or url if it has one [optional]') %>
+      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one [optional]') %>
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
 <br/>
@@ -174,6 +175,6 @@ form_tag(options, :multipart => true)
 <input type="hidden" name="using_edit_song_easy" value="yep">
 
 <div id="right" style="width: 350px;">
-<h1>Describe This Song</h1>
-
+<h1>Step 4) Describe This Song</h1>
+(Check all that apply)
 
