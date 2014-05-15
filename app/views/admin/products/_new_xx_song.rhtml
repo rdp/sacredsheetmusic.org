@@ -25,9 +25,11 @@ form_tag(options, :multipart => true)
 <h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
-<div class="padLeft">
-   <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
-</div>
+<% if @product.id %>
+  <div class="padLeft">
+     <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
+  </div>
+<% end %>
 
 	<div class="float">
 <% if have_name %>
