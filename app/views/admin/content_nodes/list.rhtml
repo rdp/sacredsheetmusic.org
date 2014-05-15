@@ -56,7 +56,9 @@
         <%= link_to content_node.title, {:action => 'edit', :id => content_node} %> 
         <br/>
         <%= content_node.name %><br/>
-        <span class="info"><a href="/<%= content_node.name %>" class="normal">Show on the site</a></span>
+        <span class="info">
+           <%=link_to 'Show on the site', {:controller => '/content_nodes', :action => 'show_by_name', :name => content_node.name}, :class=> 'normal' %>
+         </span>
       </td>
       <td>
         <%= content_node.sections.collect{|s| s.name}.join(', ') %>
