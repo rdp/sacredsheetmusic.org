@@ -62,13 +62,13 @@ class Admin::ProductsController < Admin::BaseController
 
   def new_original_song
     new # setup stuff
-    @title = "New Original Song"
+    @title = "Add Original Song"
     render :layout => 'main_no_box_admin'
   end
 
   def new_arrangement_song
     new
-    @title = "New Arrangement Song"
+    @title = "Add Arrangement Piece"
     render :layout => 'main_no_box_admin'
   end
 
@@ -78,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
       @title = "Editing original song '#{@product.name}'..."
       render :action => 'new_original_song', :layout => 'main_no_box_admin'
     else
-      @title = "Editing arrangement song '#{@product.name}'..."
+      @title = "Editing arrangement piece '#{@product.name}'..."
       render :action => 'new_arrangement_song', :layout => 'main_no_box_admin'
     end
   end
