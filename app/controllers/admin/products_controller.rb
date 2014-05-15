@@ -74,7 +74,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def edit_song_easy
     edit # setup stuff
-    if @product.is_original?
+    if @product.is_original? && @product.hymn_tags.size == 0
       @title = "Editing original song '#{@product.name}'..."
       render :action => 'new_original_song', :layout => 'main_no_box_admin'
     else
@@ -230,7 +230,7 @@ class Admin::ProductsController < Admin::BaseController
       if hymn_tags.size == 1 && composer_tag
         @product.name = hymn_tags[0].name
       else
-        flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title?"      
+        flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title? or "      
       end
     end
 

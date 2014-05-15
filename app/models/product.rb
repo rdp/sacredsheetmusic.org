@@ -113,7 +113,7 @@ class Product < Item
           raise 'please setup voicing tags first (use back button on browser) or manually enter a product code for it'
         end
       else
-        raise 'please setup a composer first (use back button on browser) or manually enter a product code for it'
+        raise 'please select a composer first (use back button on browser)--no composer selected!'
       end
 #      self.code.upcase! # too ugly!
       self.code.gsub!("'", '')
