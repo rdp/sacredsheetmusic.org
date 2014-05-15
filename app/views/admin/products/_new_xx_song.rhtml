@@ -5,33 +5,31 @@ options = {:action => 'save'}
   end
 form_tag(options, :multipart => true)
  %>
-
-<div id="left">
-<hr/>
-  <h1><%= @title %></h1>
-<%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
-<br/>
 <% if @product.id %>
-<%= link_to(
+     <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
+       <%= link_to(
         'View on the site',
         {
           :controller => '/music', # our addy
           :action => 'show',
           :id => @product.code
         }
-      )
-    %>
-<br/>
+        )
+       %>
+       <br/>
+       <%= link_to('Edit Advanced', :controller =>  'admin/products', :action => :edit, :id => @product.id) %>
+    </div>
 <% end %>
+
+<div id="left">
+<hr/>
+  <h1><%= @title %></h1>
+<%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
+<br/>
 
 <h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
-<% if @product.id %>
-  <div class="padLeft">
-     <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
-  </div>
-<% end %>
 
 	<div class="float">
 <% if have_name %>
