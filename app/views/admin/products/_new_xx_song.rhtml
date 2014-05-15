@@ -6,6 +6,11 @@ options = {:action => 'save'}
 form_tag(options, :multipart => true)
  %>
 
+<div id="left">
+<hr/>
+  <h1><%= @title %></h1>
+<%=link_to 'Back to instructions page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
+<br/>
 <% if @product.id %>
 <%= link_to(
         'View on the site',
@@ -16,12 +21,9 @@ form_tag(options, :multipart => true)
         }
       )
     %>
-<% end %>
-<div id="left">
-<hr/>
-  <h1><%= @title %></h1>
-<%=link_to 'Back to instructions page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 <br/>
+<% end %>
+
 <h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
