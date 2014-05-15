@@ -6,6 +6,17 @@ options = {:action => 'save'}
 form_tag(options, :multipart => true)
  %>
 
+<% if @product.id %>
+<%= link_to(
+        'View on the site',
+        {
+          :controller => '/music', # our addy
+          :action => 'show',
+          :id => @product.code
+        }
+      )
+    %>
+<% end %>
 <div id="left">
 <hr/>
   <h1><%= @title %></h1>
