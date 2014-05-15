@@ -62,13 +62,13 @@ class Admin::ProductsController < Admin::BaseController
 
   def new_original_song
     new # setup stuff
-    @title = "Add Original Song"
+    @title = "Add New Original Song"
     render :layout => 'main_no_box_admin'
   end
 
   def new_arrangement_song
     new
-    @title = "Add Arrangement Piece"
+    @title = "Add New Arrangement Piece"
     render :layout => 'main_no_box_admin'
   end
 

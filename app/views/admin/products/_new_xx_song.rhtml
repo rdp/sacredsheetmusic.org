@@ -9,7 +9,7 @@ form_tag(options, :multipart => true)
 <div id="left">
 <hr/>
   <h1><%= @title %></h1>
-<%=link_to 'Back to instructions page', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
+<%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 <br/>
 <% if @product.id %>
 <%= link_to(
