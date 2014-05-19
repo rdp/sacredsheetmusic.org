@@ -413,6 +413,10 @@ class Product < Item
           end
         end
       end
+      if self.code =~ /\d+$/
+        problems << "this song might have been a duplicate of another like it, since it code ends in a number #{self.code} might be worth double checking--if you want to edit the code ues the advanced edit button"
+      end
+
       problems.map{|p| "advice:" + p}
   end
 
