@@ -22,6 +22,7 @@ form_tag(options, :multipart => true)
 <% end %>
 
 <div id="left">
+
 <hr/>
   <h1><%= @title %></h1>
 <%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
@@ -31,18 +32,15 @@ form_tag(options, :multipart => true)
 <%= error_messages_for 'product' %>
 
 
-	<div class="float">
 <% if have_name %>
 		<div class="float">
 			<%= make_label('Song Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
-<div class="float">
-  <%= make_label('Lyrics [optional]:') %>
-        <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
-<br/>
-</div>
-
+               <div class="float">
+                 <%= make_label('Lyrics [optional]:') %>
+               <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
+               </div>
 <% end %>
 		<%= make_label('Your Website URL (of the song--like http://websitename.com/song_name.html) [optional]') %>
 		<div class="float">
@@ -50,11 +48,7 @@ form_tag(options, :multipart => true)
 		</div>
                 <br/>
 
-	</div>
-  
-</div>
 <br/>
-
 <br/>
 <div class="padLeft">
         <%= make_label('Description/song history [optional]:') %>
