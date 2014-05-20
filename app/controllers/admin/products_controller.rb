@@ -25,6 +25,8 @@ class Admin::ProductsController < Admin::BaseController
     # Update user
     if request.post? and @user.save
       flash[:notice] = 'User successfully updated.'
+      redirect_to :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload'
+      return
     end
     @user.password = @user.password_confirmation =  '' # show blank typically to start [?]
     render :layout => 'main_no_box_admin'
