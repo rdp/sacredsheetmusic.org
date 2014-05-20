@@ -17,17 +17,17 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def edit_current_user
+  def edit_current_user # put it here so that roles/permissions allows a self edit :)
     @user = User.find(session[:user]) # session[:user] is the id
     @title = "Editing User #{@user.login}"
     @user.attributes = params["user"]
 
     # Update user
     if request.post? and @user.save
-      flash[:notice] = 'User was successfully updated.'
-      redirect_to '/'
+      flash[:notice] = 'User successfully updated.'
     end
-    @user.password = @user.password_confirmation =  '' # show blank typically
+    @user.password = @user.password_confirmation =  '' # show blank typically to start [?]
+    render :layout => 'main_no_box_admin'
   end
 
   def spam_composers composers

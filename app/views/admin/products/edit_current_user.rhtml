@@ -1,5 +1,5 @@
 <div id="left">
-<%= form_tag :action=>"edit", :id => @user.id %>
+<%= form_tag :action=>"edit_current_user" %>
 
   <h1><%= @title %></h1>
 
@@ -23,7 +23,7 @@
 </div>
         <!-- SAVE BUTTON -->
 <div class="line" style="margin-top:20px;">&nbsp;</div>
-<%= submit_tag 'Save This User', :class => 'button hundred' %>
+<%= submit_tag 'Save', :class => 'button hundred' %>
 </form>
 </div>
 
