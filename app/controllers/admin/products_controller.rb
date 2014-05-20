@@ -17,6 +17,19 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
+  def edit_current_user
+    @user = User.find(session[:user]) # session[:user] is the id
+    @title = "Editing User #{@user.login}"
+    @user.attributes = params["user"]
+
+    # Update user
+    if request.post? and @user.save
+      flash[:notice] = 'User was successfully updated.'
+      redirect_to '/'
+    end
+    @user.password = @user.password_confirmation =  '' # show blank typically
+  end
+
   def spam_composers composers
     count = 0
     for composer in composers
