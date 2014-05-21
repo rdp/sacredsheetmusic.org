@@ -159,7 +159,7 @@ class Product < Item
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
 
-    clear_all_caches = false # this is pretty heavy still [TODO why?]! default = true...
+    clear_all_caches = true # this is pretty heavy still [TODO why?]! default = true...
     if clear_all_caches
       for tag in self.tags
         tag.clear_public_cached
