@@ -102,7 +102,7 @@
           Notes: <%= @product.description %>
 	</div>
         <% end %>
-       <% if true || !@product.is_competition? %> 
+    <% if true || !@product.is_competition? %> 
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
@@ -116,15 +116,6 @@
            <br/><br/>
         <% end %>
 
-        <% for composer_tag in @product.composer_tags %>
-             <% if composer_tag.products.count > 1 %>
-               See more from/about <%= tag_link(composer_tag) %>.
-             <% else %>
-               About <%= tag_link(composer_tag, 'the composer') %>.
-             <% end %>
-             <br />
-        <% end %>
-        <br/>
 
         <% for hymn_tag in @product.hymn_tags %>
           <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
@@ -143,7 +134,20 @@
         <%#= render :partial => '/boxed_categories'
          %> 
         <br />
-      <% end %>
+        <% for composer_tag in @product.composer_tags %>
+             <% if composer_tag.products.count > 1 %>
+               See more from <%= tag_link(composer_tag) %>.
+             <% end %>
+             <br/>
+             <br/>
+             <% if composer_tag.bio.present? %>
+               Getting to know <%= tag_link(composer_tag, 'the composer') %>: <%= composer_tag.bio %>
+             <% end %>
+             <br />
+        <% end %>
+        <br/>
+
+    <% end %>
         <hr style="margin-bottom: 10px;"/>
          <% show_voting_options = false %>
          <% if @product.is_competition? && show_voting_options %>
