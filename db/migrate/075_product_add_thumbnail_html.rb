@@ -1,7 +1,7 @@
 class ProductAddThumbnailHtml < ActiveRecord::Migration
 
   def self.up
-    add_column :items, :thumbnail_html_cache, :string, :default => nil
+    add_column :items, :thumbnail_html_cache, :longtext, :default => nil
   end
 
   def self.down

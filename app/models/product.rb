@@ -22,6 +22,10 @@ class Product < Item
      next_rank = max ? max + 1 : 0 # accomodate for no rank before
   end
 
+  def set_html_cache to_this
+    Product.update_all({:thumbnail_html_cache => to_this}, {:id => self.id}) # http://stackoverflow.com/a/7243777/32453 don't use update_attribute to avoid the cruft
+  end
+
   def sync_all_parent_tags # check parent tags that should be checked but weren't
     tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent} # plus parent to go 2 deep here
     tags.each{|t|
@@ -158,8 +162,8 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
-
     clear_all_caches = true # this is pretty heavy still [TODO why?]! default = true...
+    set_html_cache(nil)
     if clear_all_caches
       for tag in self.tags
         tag.clear_public_cached

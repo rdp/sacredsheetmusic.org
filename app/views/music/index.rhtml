@@ -69,9 +69,14 @@
   <% else %>
         <%
            get_all = proc {
-             Cache.map_get_or_set(@products, 'music_box_display2' + session[:user].to_s, 'single_product', proc{|p| p.id}) {|product|
-               render :partial => 'product', :locals => {:product => product}, :to => :string 
-             }.join
+               'internal prod' + Time.now.to_s + @products.map{|product| 
+                 thumbnail = product.thumbnail_html_cache
+                 if !thumbnail
+                   thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
+                   product.set_html_cache thumbnail
+                 end
+                 thumbnail
+               }.join
            } 
         %>
 
