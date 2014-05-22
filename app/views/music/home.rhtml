@@ -11,8 +11,17 @@ Some recently added songs (<%= link_to 'full list', :action => :most_recently_ad
         %>
 <% end %>
 <div class="clear"></div>
+Some random songs from our site:
 <br/>
-Our latest news, from our facebook page:
+<% for product in @rand_products %>
+       <%= product.get_or_generate_thumbnail_cache {
+             thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
+           }
+        %>
+<% end %>
+
+<div class="clear"></div>
+Latest news, from our facebook page:
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
