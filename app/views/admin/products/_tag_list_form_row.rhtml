@@ -3,15 +3,13 @@
 <tr class="<%= row_class %> <%= 'selected' if product.tags.include?(tag)%>">
 	<td>
  <%= 
- if tag.children.size == 0 || tag.products.size > 0
   check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag))
- end
-
  %>
 	</td>
 	<td colspan="3">
           <%=h tag.name.gsub(',', '') %>
 	</td>
 </tr>
+
 <!-- now do all of the children recursively -->
 <%= render :partial => 'tag_list_form_single_row', :locals => {:tag => tag, :row_class => row_class, :product => product, :depth => 1} %>
