@@ -22,8 +22,21 @@ class Product < Item
      next_rank = max ? max + 1 : 0 # accomodate for no rank before
   end
 
+  private
   def set_html_cache to_this
-    Product.update_all({:thumbnail_html_cache => to_this}, {:id => self.id}) # http://stackoverflow.com/a/7243777/32453 don't use update_attribute to avoid the cruft
+    Product.update_all({:thumbnail_html_cache => to_this}, {:id => self.id})
+    self.thumbnail_html_cache = to_this # save it to local object too, why not :)
+  end
+
+  public
+
+  def get_or_generate_thumbnail_cache # takes a block
+    thumbnail = self.thumbnail_html_cache
+    if !thumbnail
+      thumbnail = yield
+      set_html_cache thumbnail
+    end
+    thumbnail
   end
 
   def sync_all_parent_tags # check parent tags that should be checked but weren't

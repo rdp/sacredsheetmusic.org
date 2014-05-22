@@ -70,12 +70,9 @@
         <%
            get_all = proc {
                @products.map{|product| 
-                 thumbnail = product.thumbnail_html_cache
-                 if !thumbnail
+                 product.get_or_generate_thumbnail_cache {
                    thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
-                   product.set_html_cache thumbnail
-                 end
-                 thumbnail
+                 }
                }.join
            } 
         %>
