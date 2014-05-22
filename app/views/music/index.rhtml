@@ -69,7 +69,7 @@
   <% else %>
         <%
            get_all = proc {
-               'internal prod' + Time.now.to_s + @products.map{|product| 
+               @products.map{|product| 
                  thumbnail = product.thumbnail_html_cache
                  if !thumbnail
                    thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
