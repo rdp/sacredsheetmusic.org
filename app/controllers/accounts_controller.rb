@@ -10,7 +10,8 @@ class AccountsController < ApplicationController
       if user = User.authenticate(params[:user_login], params[:user_password])
         session[:user] = user.id
         flash['notice']  = "Login successful"
-        redirect_back_or_default :action => "welcome"
+        # assume a lay user
+        redirect_back_or_default :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload'
       else
         flash.now['notice']  = "Login unsuccessful"
         @login = params[:user_login]

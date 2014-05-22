@@ -38,14 +38,8 @@
     </div>
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
-        <% if session[:user] %>
-            <%= link_to('edit', :controller =>  'admin/products', :action => :edit, :id => product.id) %>
-            <% if false && product.cached_find_problems.present? %>
-              <%= product.cached_find_problems.inspect%>
-            <% end %>
-        <% end %>
         <!-- TAGS -->
-        <% tags = product.linkable_tags(session[:user]) %>
+        <% tags = product.linkable_tags(nil) %>
         <%= first_topic = true
             first_composer = true
             first_voicing = true
