@@ -299,11 +299,14 @@ class MusicController < StoreController
    render :text => "alert('xyz');" # does nothing [?!]
   end
 
-  def render_home
+  def render_home # def home
     not_a_bot # for logging purposes :)
     # I think we could just put this into the routing itself, and not have to do the render component junk...sigh...
     @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'home'])
-    render :action => :render_home_content_node
+    @products = Product.find(:all, :order => 'date_available DESC', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 4) # one line
+    @rand_products = Product.find(:all, :order => 'RAND()', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 4)
+
+    render :action => :home
   end
 
 #  def reset

@@ -1,7 +1,16 @@
 <div style="float: left; width: 700px;">
 
 <%= @content_node.content %>
-
+<br/>
+Some recently added songs (<%= link_to 'full list', :action => :most_recently_added %>).
+<br/>
+<% for product in @products %>
+       <%= product.get_or_generate_thumbnail_cache {
+             thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
+           }
+        %>
+<% end %>
+<div class="clear"></div>
 <br/>
 Our latest news, from our facebook page:
 <div id="fb-root"></div>
