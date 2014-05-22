@@ -302,13 +302,8 @@ class MusicController < StoreController
   def render_home
     not_a_bot # for logging purposes :)
     # I think we could just put this into the routing itself, and not have to do the render component junk...sigh...
-    render_component(
-           :controller => "content_nodes",
-           :action => "show_by_name",
-           :params => {
-             :name => 'home',
-           }
-    )
+    @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'home'])
+    render :action => :render_home_content_node
   end
 
 #  def reset
