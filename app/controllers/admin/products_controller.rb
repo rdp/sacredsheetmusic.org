@@ -3,6 +3,18 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin
 class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
+
+  def index
+    user = User.find(session[:user]) # session[:user] is the id
+    has_admin = user.roles.detect{|role| role.name == 'Administrator'}
+    if !has_admin
+       redirect_back_or_default :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' # back to the non admin user main page :)
+       return
+    end
+    list
+    render :action => 'list'
+  end
+
   def spam_all_composers
     composers = Tag.find_by_name("composers").children
     #composers = [Tag.find_by_name "Melissa Pack"]
