@@ -7,6 +7,7 @@
 <!--[form:user]-->
 <% unless @user.new_record? %>
   <h4>Enter new password and confirmation if you wish to change password</h4>
+(suggestion: don't use a sensitive password, since it uses an unencrypted connection to update it).
 <% end %>
 <div id="change_password">
 	<p>
