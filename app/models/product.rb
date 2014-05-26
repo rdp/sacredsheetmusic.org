@@ -88,7 +88,7 @@ class Product < Item
                 sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
                 sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
 #                find_by_sql(sql)
-                find(:all, :conditions => [sql])
+                find(:all, :include => [:tags], :conditions => [sql])
   end
 
   def composer_generic_contact_url 
