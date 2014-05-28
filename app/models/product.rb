@@ -268,7 +268,7 @@ class Product < Item
       for composer_tag in self.composer_tags
         if !composer_tag.composer_contact_url.present?
           if !composer_tag.only_on_this_site
-            problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute--please report this to us!"
+            problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute-please report this to us!"
           end
           # no web page...
         end
@@ -276,11 +276,11 @@ class Product < Item
 
       bads = self.composer_tags.select{|t| t.only_on_this_site}
       if self.original_url.present? && bads.length > 0
-        problems << "one of its composers may be marked as only on this site in vain? [this song has a url but the composer is marked as not having a website, please report] #{bads.map &:name}"
+        problems << "one of its composers may be marked as only on this site in vain? [this song has a url but the composer is marked as not having a website, please report this to us] #{bads.map &:name}"
       end
 
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
-        problems << "this song may be lacking a url link? please add one."
+        problems << "this song may be lacking a url link to your website? please add one."
       end
 
       bad_whitespace_reg = /^\s|\s$/
@@ -352,7 +352,7 @@ class Product < Item
           name_reg =  Regexp.new("\\W" + Regexp.escape(topic_tag_name) + "\\W", Regexp::IGNORECASE)
           if (self.name =~ bare_name_reg) || (self.description.andand.gsub('font-family', '') =~ name_reg)
             if !self.tags.detect{|t| t.id == topic_tag.id}
-              problems << "might want the #{topic_tag.name} tag, since its name #{topic_tag_name} is included in the title or description"
+              problems << "might want the \"#{topic_tag.name}\" tag added, since its name \"#{topic_tag_name}\" is included in the title or description"
             end
           end 
         end
@@ -400,7 +400,7 @@ class Product < Item
         end
 
         if composer_tag.composer_url.present? && !composer_tag.composer_contact_url.present?
-          problems << "composer has a url but not contact url? they probably want one set, unless their web site does not have any contact information for them..."
+          problems << "composer has a url but not contact url? they probably want one set, unless their web site does not have any contact information for them...--please report this to us!"
         end
 
         if composer_tag.composer_email_if_contacted.andand.contain?("mailto:")

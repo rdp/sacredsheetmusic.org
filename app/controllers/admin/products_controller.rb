@@ -451,7 +451,7 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def add_current_product_problems_to_flash now
-      as_html = @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
+      as_html = @product.find_problems.map{|p| logger.info p.inspect;"<i>" + p + "</i><br/>"}.join('')
       if now
         flash.now[:notice] ||= ''
         flash.now[:notice] += as_html
