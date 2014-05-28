@@ -2,9 +2,9 @@
 
 <%= @content_node.content %>
 <br/>
-Some recently added songs (<%= link_to 'full list', :action => :most_recently_added %>).
+Some recently added songs (see full list of new songs <%= link_to 'here', :action => :most_recently_added %>).
 <br/>
-<% for product in @products %>
+<% for product in @recent_products %>
        <%= product.get_or_generate_thumbnail_cache {
              thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
            }

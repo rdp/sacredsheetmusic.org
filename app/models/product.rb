@@ -431,7 +431,7 @@ class Product < Item
         end
       end
       if self.code =~ /-\d+$/
-        problems << "this song might have been a duplicate of another like it, since it code ends in a number #{self.code} might be worth double checking if it's an accidental duplicate"
+        problems << "this song might have been a duplicate of another like it, since it code ends in a number #{self.code} might be worth double checking if it's an accidental duplicate or not"
       end
 
       problems.map{|p| "song advice:" + p}
