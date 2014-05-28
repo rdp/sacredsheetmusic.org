@@ -322,9 +322,6 @@ class MusicController < StoreController
     if today_is_sunday?
       cache_name = cache_name + '_sunday'
     end
-    if logged_in_user?
-      cache_name = cache_name + '_admin'
-    end
     filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
     if File.file? filename
      logger.info "rendering early cache #{cache_name}..."
@@ -337,14 +334,10 @@ class MusicController < StoreController
     false
   end
 
-
   def render_and_cache rhtml_name, cache_name
     cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
     if today_is_sunday?
       cache_name = cache_name + '_sunday'
-    end
-    if logged_in_user?
-      cache_name = cache_name + '_admin'
     end
     text = render_to_string rhtml_name
     cache_dir = RAILS_ROOT+"/public/cache"
