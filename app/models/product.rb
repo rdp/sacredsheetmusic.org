@@ -121,7 +121,7 @@ class Product < Item
 
     if self.code.blank? || self.code == "auto_refresh_me_dupe"
       if self.composer_tag 
-        if voicing = self.voicing_tags[0]
+        if voicing = self.voicing_tags[0] && self.name.present?
           voicing_name = voicing.name
           voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
           voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
@@ -335,7 +335,7 @@ class Product < Item
               a.close
               raise OpenURI::HTTPError.new("hello", "k?") if got =~ /Not Found/ # lindy kerby uses 302 redirs yikes
             rescue Exception => e
-              problems << "song website url (#{self.original_url}) does not seem to be working--please make sure it is a url that works in your browser!? (error message was: #{e.to_s[0..15]}...)" # try not to repeat uri twice, too confusing
+              problems << "song website url (#{self.original_url}) does not seem to be working--please make sure it is a url that works in your browser!? (error message was: #{e.to_s[0..10]}...)" # try not to repeat uri twice, too confusing
             end
            end
         end
