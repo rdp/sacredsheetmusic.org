@@ -258,7 +258,7 @@ class Admin::ProductsController < Admin::BaseController
       if hymn_tags.size == 1 && composer_tag
         @product.name = hymn_tags[0].name
       else
-        flash[:notice] = "maybe you forgot to tag it with a hymn name or a composer, or (if it's an original) forgot to fill in the title? or "      
+        flash[:notice] = "song not saved! song has no name assigned to it--if it's an original song, please fill in the name, if it's an arrangement song, make sure to tag it with the song it is an arrangement of." # :|
       end
     end
 
@@ -436,14 +436,14 @@ class Admin::ProductsController < Admin::BaseController
       @image = Image.new
       if @new_product
         if params[:using_edit_song_easy]
-          #redirect_to params[:using_edit_song_easy]
-          render :action => 'new' and return # TODO what can we do here?
+          # redirect_to params[:using_edit_song_easy]
+          # render :action => 'new' and return # TODO what can we do here?
+          redirect_to :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' # back to the non admin user main page :)
         else
           render :action => 'new' and return
         end
       else
-        # more rare...I hope...edit might be ok here anyway since they may need to adjust a code [?]
-        render :action => 'edit' and return
+        redirect_to :action => 'edit_song_easy' and return
       end
     end
   end
@@ -452,12 +452,14 @@ class Admin::ProductsController < Admin::BaseController
 
   def add_current_product_problems_to_flash now
       as_html = @product.find_problems.map{|p| logger.info p.inspect;"<i>" + p + "</i><br/>"}.join('')
-      if now
-        flash.now[:notice] ||= ''
-        flash.now[:notice] += as_html
-      else
-        flash[:notice] ||= ''
-        flash[:notice] += as_html
+      if as_html.present?
+        if now
+          flash.now[:notice] ||= ''
+          flash.now[:notice] += as_html
+        else
+          flash[:notice] ||= ''
+          flash[:notice] += as_html
+        end
       end
   end
 
