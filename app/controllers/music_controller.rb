@@ -303,8 +303,10 @@ class MusicController < StoreController
     not_a_bot # for logging purposes :)
     # I think we could just put this into the routing itself, and not have to do the render component junk...sigh...
     @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'home'])
-    @recent_products = Product.find(:all, :order => 'date_available DESC', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 4) # one line
-    @rand_products = Product.find(:all, :order => 'RAND()', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 8)
+    recent_products = Product.find(:all, :order => 'date_available DESC', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 25)
+    @recent_products = recent_products [0..3] # 4 == one line worth
+    rand_products = Product.find(:all, :order => 'RAND()', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 6)
+    @rand_products = rand_products + recent_products[4..-1].shuffle[0..1].shuffle # add some random newer ones in there too :)
 
     render :action => :home
   end
