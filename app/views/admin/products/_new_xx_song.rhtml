@@ -1,12 +1,14 @@
 <%=
 options = {:action => 'save'}
-  if @product.id
-    options[:id] = @product
-  end
+if @product.id
+  options[:id] = @product
+end
 form_tag(options, :multipart => true)
  %>
 <% if @product.id %>
-     <!-- top right --> <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
+
+<!-- top right --> 
+<div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
        <%= link_to(
         '(View on the site)',
         {
@@ -17,15 +19,15 @@ form_tag(options, :multipart => true)
         )
        %>
        <br/>
-       <div style="width: 100px;">
-Current code: <%= @product.code %>
-<br/>
+  <div style="width: 100px;">
+    Current song code: <%= @product.code %>
+    <br/>
 
-If you'd like to modify a song's code or delete it, please email us!
-<br/>
+    If you'd like to modify a song's code or delete a song, please email us!
+    <br/>
 
+  </div>
 </div>
-    </div>
 <% end %>
 
 <div id="left">
