@@ -77,9 +77,9 @@
            } 
         %>
 
-        <%=  Cache.get_or_set_int(@products.map(&:id).hash, 'music_box_display' + session[:user].to_s, 'group_products') { 
-               get_all.call
-             }
+        <%= Cache.get_or_set_int(@products.map(&:id).hash, 'song_groups', 'group_products') { 
+              get_all.call
+            }
         %>
   <% end %>
 
