@@ -303,7 +303,7 @@ class Product < Item
       # disallow SAB and SATB on same song
       distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.name !~ /choir/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and|song type|accompan/i}
       if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i}
-        problems << "has dual voicing (#{distinct_voicing_tags.map(&:name).join(',')}), please separate songs with multiple voicing options [ex: SATB or SAB] into separate songs, one SATB, one SAB"
+        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, and another one SAB"
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
