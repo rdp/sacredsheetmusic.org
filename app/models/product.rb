@@ -268,7 +268,7 @@ class Product < Item
       for composer_tag in self.composer_tags
         if !composer_tag.composer_contact_url.present?
           if !composer_tag.only_on_this_site
-            problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute"
+            problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute--please report this to us!"
           end
           # no web page...
         end
@@ -280,7 +280,7 @@ class Product < Item
       end
 
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
-        problems << "may want its composer tag to be marked only on this site, since this song lacks an original url"
+        problems << "this song may be lacking a url link? please add one."
       end
 
       bad_whitespace_reg = /^\s|\s$/
@@ -400,7 +400,7 @@ class Product < Item
         end
 
         if composer_tag.composer_url.present? && !composer_tag.composer_contact_url.present?
-          problems << "composer has a url but not contact url? they probably want one set..."
+          problems << "composer has a url but not contact url? they probably want one set, unless their web site does not have any contact information for them..."
         end
 
         if composer_tag.composer_email_if_contacted.andand.contain?("mailto:")

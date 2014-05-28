@@ -115,7 +115,7 @@ class Admin::ProductsController < Admin::BaseController
     @image = Image.new
     @header = "Editing #{@product.name}<br/>(#{@product.code})"
     @title = "Editing #{@product.name} (#{@product.code})"
-    add_current_product_problems_to_flash
+    add_current_product_problems_to_flash true
   end
 
   def with_problems
@@ -418,7 +418,7 @@ class Admin::ProductsController < Admin::BaseController
       end
  
       flash[:notice] += "Song '#{@product.name}' saved successfully!<br/>"
-      add_current_product_problems_to_flash
+      add_current_product_problems_to_flash false
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
@@ -450,9 +450,15 @@ class Admin::ProductsController < Admin::BaseController
 
   private
 
-  def add_current_product_problems_to_flash
-      flash[:notice] ||= ''
-      flash[:notice] += @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
+  def add_current_product_problems_to_flash now
+      as_html = @product.find_problems.map{|p| logger.info p.inspect;"<b>" + p + "</b><br/>"}.join('')
+      if now
+        flash.now[:notice] ||= ''
+        flash.now[:notice] += as_html
+      else
+        flash[:notice] ||= ''
+        flash[:notice] += as_html
+      end
   end
 
   def do_download_mp3 url
