@@ -258,7 +258,7 @@ class Admin::ProductsController < Admin::BaseController
       if hymn_tags.size == 1 && composer_tag
         @product.name = hymn_tags[0].name
       else
-        flash[:notice] = "song not saved! song has no name assigned to it--if it's an original song, please fill in the name, if it's an arrangement song, make sure to tag it with the song it is an arrangement of." # :|
+        flash[:notice] = "song not saved! song has no name assigned to it--if it's an original song, please fill in the name, if it's an arrangement song, make sure to tag it with the song/hymn name that it is an arrangement of." # :|
       end
     end
 
@@ -443,7 +443,7 @@ class Admin::ProductsController < Admin::BaseController
           render :action => 'new' and return
         end
       else
-        redirect_to :action => 'edit_song_easy' and return
+        redirect_to(:action => 'edit_song_easy', :id => @product.id) and return
       end
     end
   end
