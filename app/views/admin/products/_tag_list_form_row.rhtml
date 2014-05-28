@@ -3,7 +3,10 @@
 <tr class="<%= row_class %> <%= 'selected' if product.tags.include?(tag)%>">
 	<td>
  <%= 
-  check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag))
+   # no checkbox if they shouldn't :)
+   if tag.children.size == 0 || tag.products.size > 0
+     check_box_tag("product[tag_ids][]", tag.id, product.tags.include?(tag))
+   end
  %>
 	</td>
 	<td colspan="3">
