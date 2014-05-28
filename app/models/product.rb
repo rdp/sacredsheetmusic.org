@@ -400,7 +400,7 @@ class Product < Item
         end
 
         if composer_tag.composer_url.present? && !composer_tag.composer_contact_url.present?
-          problems << "composer has a url but not contact url? they probably want one set, unless their web site does not have any contact information for them...--please report this to us!"
+          problems << "composer has a url but not contact url? they probably want one set, unless their web site does not have any contact information for them...-please report this to us!"
         end
 
         if composer_tag.composer_email_if_contacted.andand.contain?("mailto:")
@@ -434,7 +434,7 @@ class Product < Item
         problems << "this song might have been a duplicate of another like it, since it code ends in a number #{self.code} might be worth double checking if it's an accidental duplicate"
       end
 
-      problems.map{|p| "advice:" + p}
+      problems.map{|p| "song advice:" + p}
   end
 
   def linkable_tags user
