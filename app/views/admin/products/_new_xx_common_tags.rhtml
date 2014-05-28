@@ -1,13 +1,12 @@
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer/Arranger name [typically your name]:', :tag2 => Tag.find_by_name('Composers')} ) %>
 
+  <h2>Please select voicings that apply to your song:</h2>
 <div style="border: grey dotted thick; padding:10px; margin:5px;">
-  <h1>Voicing</h1>
-  <h2>Please select any voicings that apply to your song</h2>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if voiced for choir)', :tag2 => Tag.find_by_name('Choir')} ) %>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Voicing (if voiced for solo or ensemble or primary)', :tag2 => Tag.find_by_name('Vocal Solo/Vocal Ensembles')} ) %>
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Instruments</h1>If your piece has instrumental obbligato or is an instrumental arrangement, select its instruments: (piano accompaniment doesn\'t count, organ accompaniment does however)<h1>', :tag2 => Tag.find_by_name('Instrumental/Instrumented')} ) %>
 </div>
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Any special song attributes, like a cappella, etc [optional]:', :tag2 => Tag.find_by_name('Song Attributes')} ) %>
+  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Any special song attributes, like a cappella, etc [if applicable]:', :tag2 => Tag.find_by_name('Song Attributes')} ) %>
 <p class="info">
         All tags will be assigned when you save this product.  If there are some missing from this list please contact us to have them added.
 </p>

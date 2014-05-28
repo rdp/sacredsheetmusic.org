@@ -1,7 +1,7 @@
         <%  #search for most depth
            @max_depth = 5 # hard code for now
           %>
-<h2><%= title %></h2>
+<h2 style="margin-bottom: 0px;"><%= title %></h2>
 <!-- Add an always empty tag to force updates even if no checkboxes are selected -->
 <input type="hidden" value="" name="product[tag_ids][]" />
 <div class="listContainer" style="height:200px;">
@@ -12,7 +12,7 @@
 			<col />
 		</colgroup>
 		<tr class="fixedHeader">
-			<th colspan="4">Tag Name</th>
+			<th colspan="4">&nbsp;</th>
 		</tr>
 		<tbody id="tag_list_tbody">
         <%  #search for most depth
