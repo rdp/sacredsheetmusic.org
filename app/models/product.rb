@@ -466,4 +466,10 @@ class Product < Item
     tags
   end
 
+  # this is called in a before save
+  def set_date_available
+    self.date_available = Time.now if !self.date_available # use precise time for ordering sanity
+  end
+
+
 end
