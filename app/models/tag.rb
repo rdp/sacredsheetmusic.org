@@ -170,21 +170,26 @@ class Tag
              # also don't do 2... for "2 part choir"
              # also don't do friend... for friend/friendship [too long]
              # 2 part choir -> 2 part choir, not 2 part ...
-             # comfort/strength/courage -> comfort/strength...
-             if (words.size > 1 && words.size != 3) || name_sans_commas.length > 20
-               splitter_loc = (name_sans_commas =~ /[ \/]/)
+             # comfort/strength/courage -> comfort... (comfort/strength too big)
+             # home/family => home...
+             if (words.size > 2) || name_sans_commas.length > 20
+               splitter_loc = (name_sans_commas =~ /[ \/]/) # split on spaces or slashes
                first_two_words = words[0..1]
                # don't write organ/organ
                if first_two_words[0] == first_two_words[1]
                  first_two_words.pop # off the last one
                end
+               # also don't write harp solo for harp solo/harp optional accompaniment
                split_by_slashes = name_sans_commas.split('/')
                if split_by_slashes.size > 1 && split_by_slashes[0].split[0] == split_by_slashes[1].split[0]
-                 # don't write harp solo for harp solo/optional harp accompaniment
                  first_two_words = [split_by_slashes[0].split[0]] # harp solo/harp accompaniment -> "harp" since otherwise it looks like it's a solo...
                end
                first_part_of_name_rejoined = first_two_words.join(name_sans_commas[splitter_loc..splitter_loc]) # preserve that slash :)
                name_to_use = first_part_of_name_rejoined
+               if name_to_use.contain? '/'
+                 # home/family -> home
+                 name_to_use = name_to_use.split('/')[0] # TODO clean up this logic!
+               end
                if name_to_use != name_sans_commas
                  name_to_use += "&hellip;"
                else
