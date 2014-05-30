@@ -16,15 +16,15 @@ class Cache < ActiveRecord::Base
   end
 
   def self.clear_local_caches!
-    Rails.cache.clear # like this should even matter...
     require 'fileutils'
     FileUtils.touch RAILS_ROOT + "/tmp/restart.txt"
+    Rails.cache.clear # like this should matter...
   end
 
   def self.delete_by_type type
     verify_type type
     delete_all(["cache_type = ?", type])
-    Rails.cache.clear
+    clear_local_caches!
   end
 
   # uses AR instance' attributes too <yikes rails' #hash ...>
