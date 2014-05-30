@@ -395,7 +395,7 @@ class Admin::ProductsController < Admin::BaseController
       # cleanup
       FileUtils.rm_rf temp_file_path
       for file in temp_files
-        FileUtils.rm_rf temp_file_path
+        FileUtils.rm_rf file
       end
 
       # product was already saved...

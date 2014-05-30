@@ -335,7 +335,7 @@ class Product < Item
               a.close
               raise OpenURI::HTTPError.new("hello", "k?") if got =~ /Not Found/ # lindy kerby uses 302 redirs yikes
             rescue Exception => e
-              problems << "song website url (#{self.original_url}) does not seem to be working--please make sure it is a url that works in your browser!? (error message was: #{e.to_s[0..10]}...)" # try not to repeat uri twice, too confusing
+              problems << "song website url (#{self.original_url}) does not seem to be working-please make sure it is a url that works in your browser!? (error message was: #{e.to_s[0..10]}...)" # try not to repeat uri twice, too confusing
             end
            end
         end
@@ -361,7 +361,7 @@ class Product < Item
       for product in Product.find_all_by_name(self.name)
         next if product.id == self.id
         if product.tags.map(&:id).sort == self.tags.map(&:id).sort
-          problems << "this song is possibly a duplicate of another song--id #{product.id}"
+          problems << "this song is possibly a duplicate of another song-id #{product.id}"
         end
       end
       
@@ -379,14 +379,14 @@ class Product < Item
       end
       if self.hymn_tag && self.name != self.hymn_tag.name && (self.hymn_tags.length == 1) && self.name !~ /original/i && self.hymn_tag.name !~ /theme/i && !self.name.contain?(hymn_tag.name)
          if !self.hymn_tag.name.include?('/') && !self.hymn_tag.name.include?('(') && (self.hymn_tags.length == 1) && !self.description.include?(self.hymn_tag.name)
-           problems << "possibly mispelled [doesnt match hymn--might be expected/capitalization]--#{self.hymn_tag.name}"
+           problems << "possibly mispelled [doesnt match hymn- -might be expected/capitalization]- -#{self.hymn_tag.name}"
          end
       end
       unless self.composer_tag
          problems << "song has no composer tag?"
       end
       if (piano = self.tags.detect{|t| t.name =~ /piano/i && (t.children.size==0) && t.name !~ /accompaniment/}) && (choir = self.tags.detect{|t| t.name =~ /choir/i})
-         problems << "song has BOTH piano #{piano.name} and choir #{choir.name} tags--probably not expected"
+         problems << "song has BOTH piano #{piano.name} and choir #{choir.name} tags- -probably not expected"
       end
 
       if composer_tag = self.composer_tag
