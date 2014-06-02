@@ -319,7 +319,7 @@ class Product < Item
       end
 
       if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
-        problems <<  "no hymn or 'o-riginal' tag for this song yet."
+        problems <<  "no hymn or 'original' tag for this song yet."
       end
 
       if self.downloads.size == 0 && !self.original_url.present?
