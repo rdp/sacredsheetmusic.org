@@ -308,11 +308,14 @@ class Product < Item
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
-        problems << "might be lacking the m edley tag"
+        problems << "might want the the medley tag (under song attributes), please check it"
       end
 
       for download in self.downloads
-       problems << "has empty download?" + download.filename unless download.size > 0
+        problems << "has empty download?" + download.filename unless download.size > 0
+        if download.filename =~ /\.wav$/i
+          problems << "usually mp3 files are preferred over .wav files, please convert it to .mp3, upload it, and delete the .wav file"
+        end
       end
 
       if !self.hymn_tag && !self.tags.detect{|t| t.is_original_tag? }
