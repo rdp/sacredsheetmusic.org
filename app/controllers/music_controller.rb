@@ -683,7 +683,7 @@ class MusicController < StoreController
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
     with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
-       big_string = (p.name + p.description + p.lyrics.to_s + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
+       big_string = (p.name.to_s + p.description.to_s + p.lyrics.to_s + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
        words_to_search_for.all?{|word| big_string.contain? word}
     }
 
