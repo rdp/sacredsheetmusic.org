@@ -29,7 +29,7 @@
       <% 
          has_sound_file = product.downloads.detect{|dl| dl.filename =~ /\.mp3/} || product.downloads.detect{|dl| dl.filename =~ /.mid/}
          if has_sound_file
-           button_mp3_link = " " + image_tag('play_button_small.gif', :alt => 'has mp3', :size => "16x16", :style => "opacity:0.7; padding-right: 2px;")
+           button_mp3_link = " " + image_tag('play_button_small.gif', :alt => 'has mp3', :size => "14x14", :style => "opacity:0.7; padding-right: 2px;")
          else
            button_mp3_link = ""
          end
@@ -45,22 +45,19 @@
            composer_tags = tags.select{|t| t.is_composer_tag?}
            topic_attributes = tags.select{|t| !t.is_voicing? && !t.is_composer_tag?}
         %>
-        <%=   voicing_tags.map{|t| tag_link(t, t.abbreviated_name) }.join(' ') %>
+        <%=   voicing_tags.map{|t| tag_link(t, t.abbreviated_name) }.join(', ') %>
            By:
-         <%= tags = composer_tags.map{|t| tag_link(t, t.name) }.join(' ')
-             if product.original_url.present?
-               tags += '.' # seems a bit ugly on ones without a link.
-             end
+         <%= tags = composer_tags.map{|t| tag_link(t, t.name) }.join(', ')
              tags %>
          <% if product.original_url.present? %>
-            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 11), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
+            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 11), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>.
          <% end %>
          <% if topic_attributes.size > 1 %>
             Topics:
          <% else %>
             Topic:
          <% end %>
-         <%= topic_attributes.map{|t| tag_link(t, t.abbreviated_name) }.join(' ') %>
+         <%= topic_attributes.map{|t| tag_link(t, t.abbreviated_name) }.join(', ') %>
        <% if button_mp3_link.present? %>
          <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
        <% end %>
