@@ -594,13 +594,13 @@ class MusicController < StoreController
   end
 
   def most_recently_added
-    @title = 'Recently added'
-    # XXXX this loads them all [!]
+    @title = 'Recently added 100 songs'
     recent = Product.find(:all,
       :order => 'date_available DESC',
-      :conditions => Product::CONDITIONS_AVAILABLE
+      :conditions => Product::CONDITIONS_AVAILABLE,
+      :limit => 100
     )
-    @products = paginate_and_filter(recent, 50)
+    @products = paginate_and_filter(recent, 100)
     render :action => 'index.rhtml' and return
   end
 
