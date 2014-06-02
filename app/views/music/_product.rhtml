@@ -39,38 +39,30 @@
 
     <div class="product_title" style="height: 50px; font-size: 0.8em; overflow: visible;"> 
         <!-- TAGS -->
-        <% tags = product.linkable_tags(nil) %>
-        <%= first_topic = true
-            first_composer = true
-            first_voicing = true
-           tags.map{|t| 
-             name_to_use = t.abbreviated_name
-             prefix = ', '
-             if first_composer && t.is_composer_tag?
-               prefix = ' By: '
-               first_composer = false
-               name_to_use = t.name # full name for composers always
-             end
-             if first_voicing && t.is_voicing?
-               prefix = ""
-               first_voicing = false
-             end
-             if first_topic && t.is_topic_tag?
-               if tags.select{|t2| t2.is_topic_tag?}.count > 1
-                 prefix = " Topics: "
-               else
-                 prefix = " Topic: "
-               end
-               first_topic = false
-             end 
-             prefix + tag_link(t, name_to_use)
-           }.join('')
+        <%
+           tags = product.linkable_tags(nil) # XXX return 3 arrays?
+           voicing_tags = tags.select{|t| t.is_voicing?}
+           composer_tags = tags.select{|t| t.is_composer_tag?}
+           topic_attributes = tags.select{|t| !t.is_voicing? && !t.is_composer_tag?}
         %>
+        <%=   voicing_tags.map{|t| tag_link(t, t.abbreviated_name) }.join(' ') %>
+           By:
+         <%= tags = composer_tags.map{|t| tag_link(t, t.name) }.join(' ')
+             if product.original_url.present?
+               tags += '.' # seems a bit ugly on ones without a link.
+             end
+             tags %>
+         <% if product.original_url.present? %>
+            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 11), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
+         <% end %>
+         <% if topic_attributes.size > 1 %>
+            Topics:
+         <% else %>
+            Topic:
+         <% end %>
+         <%= topic_attributes.map{|t| tag_link(t, t.abbreviated_name) }.join(' ') %>
        <% if button_mp3_link.present? %>
          <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
-       <% end %>
-       <% if product.original_url.present? %>
-         <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 12), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
        <% end %>
 
     </div>
