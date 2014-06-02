@@ -54,10 +54,11 @@
          <% end %>
          <% if topic_attributes.size > 1 %>
             Topics:
+            <%= topic_attributes.map{|t| tag_link(t, t.abbreviated_name) }.join(', ') %>
          <% else %>
             Topic:
+            <%= topic_attributes.map{|t| tag_link(t, t.name) }.join(', ') %>
          <% end %>
-         <%= topic_attributes.map{|t| tag_link(t, t.abbreviated_name) }.join(', ') %>
        <% if button_mp3_link.present? %>
          <%= link_to(button_mp3_link, :controller=>'music', :action=>'show', :id => product.code) %>
        <% end %>
