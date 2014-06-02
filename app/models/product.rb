@@ -31,6 +31,7 @@ class Product < Item
   public
 
   def get_or_generate_thumbnail_cache # takes a block
+    # TODO reload here, in case a different process already beat us to it? how do I profile test this hmm...
     thumbnail = self.thumbnail_html_cache
     if !thumbnail
       thumbnail = yield

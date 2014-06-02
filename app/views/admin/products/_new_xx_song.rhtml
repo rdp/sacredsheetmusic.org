@@ -44,12 +44,13 @@ form_tag(options, :multipart => true)
 <h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
-
-<% if have_name %>
+<% if have_name || @product.id %>
 		<div class="float">
 			<%= make_label('Song Name') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
+<% end %>
+<% if have_name %>
                <div class="float">
                  <%= make_label('Lyrics [optional]:') %>
                <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
