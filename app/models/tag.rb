@@ -131,7 +131,7 @@ class Tag
   } # some were marked with it, left side is messed up...may as well start over...
 
   after_save { |tag|
-    Rails.logger.info "clearing for tag with all children [!] #{tag}"
+    Rails.logger.info "clearing for tag with all children [!] #{tag} #{tag.name}"
     # case of creating a "new" one I guess...
     #Cache.delete_by_type 'tags'# cached left side is messed now
     tag.clear_public_cached
