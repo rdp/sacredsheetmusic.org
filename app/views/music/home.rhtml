@@ -11,7 +11,8 @@ Some recently added songs (see also <%= link_to 'full list', :action => :most_re
         %>
 <% end %>
 <div class="clear"></div>
-Some random songs from our site:
+<a name="random"></a>
+Some random songs from our site (<a href="http://freeldssheetmusic.org/?a=<%= (rand*1000).to_i %>#random">refresh</a>):
 <br/>
 <% for product in @rand_products %>
        <%= product.get_or_generate_thumbnail_cache {
