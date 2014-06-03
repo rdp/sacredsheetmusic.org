@@ -10,7 +10,7 @@ form_tag(options, :multipart => true)
 <!-- top right --> 
 <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
        <%= link_to(
-        '(View song page on the site)',
+        '(View song page on site)',
         {
           :controller => '/music', # our addy
           :action => 'show',
@@ -22,10 +22,11 @@ form_tag(options, :multipart => true)
   <div style="width: 100px;">
     Current song code: <%= @product.code %>
     <br/>
-
-    If you'd like to modify a song's code or delete this song, please email us!
     <br/>
-    <%= link_to 'Delete this song', {:controller => '/questions', :action => :ask,  :pre_fill => "Please delete this song: #{@product.code}"}, :rel => 'nofollow' %>
+<%= link_to 'Modify song code', {:controller => '/questions', :action => :ask,  :pre_fill => "Song code modify request: Please modify this song code from #{@product.code} to :"}, :rel => 'nofollow' %>
+    <br/>
+    <br/>
+    <%= link_to 'Delete this song', {:controller => '/questions', :action => :ask,  :pre_fill => "Delete song request: Please delete this song: #{@product.code}"}, :rel => 'nofollow' %>
 
   </div>
 </div>
