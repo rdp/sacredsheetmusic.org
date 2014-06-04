@@ -148,6 +148,11 @@
         <br/>
 
     <% end %>
+
+    <% if @product.lyrics.present? %>
+       Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
+    <% end %>
+
         <hr style="margin-bottom: 10px;"/>
          <% show_voting_options = false %>
          <% if @product.is_competition? && show_voting_options %>
