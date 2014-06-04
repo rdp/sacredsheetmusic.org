@@ -48,7 +48,7 @@ form_tag(options, :multipart => true)
 
 <% if have_name || @product.id %>
 		<div class="float">
-			<%= make_label('Song Name') %>
+			<%= make_label('Song Name:') %>
 			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
 		</div>
 <% end %>
@@ -58,16 +58,15 @@ form_tag(options, :multipart => true)
                <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
                </div>
 <% end %>
-		<%= make_label('Website URL (of your song--like http://yourwebsitename.com/song_name.html or http://yourwebsitename.com/all_songs_list.html -- wherever people would go to get to that song, on your site) [if you have a website]') %>
+		<%= make_label('Website URL (of your song--like http://yourwebsitename.com/song_name.html or http://yourwebsitename.com/all_songs_list.html -- wherever that song is listed, on your site) [if you have a website, optional]:') %>
 		<div class="float">
 			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
                 <br/>
 
 <br/>
-<br/>
 <div class="padLeft">
-        <%= make_label('Description/song history/inspiration [optional]:') %>
+        <%= make_label('Description/song history/initial inspiration [optional]:') %>
 	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
 </div>
 
@@ -175,7 +174,7 @@ form_tag(options, :multipart => true)
 		</div-->
 
    <div class="float" style="margin-left: 10px;">
-      <%= make_label('youtube video id (like JW5meKfy3fY) if it has one [optional]') %>
+      <%= make_label('Youtube video id (like JW5meKfy3fY) if it has one [optional]:') %>
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
 <br/>
