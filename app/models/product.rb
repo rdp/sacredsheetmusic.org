@@ -281,7 +281,7 @@ class Product < Item
       end
 
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
-        problems << "this song may be lacking a url link to your website? please add one."
+        problems << "this song may be lacking a website url to your website? please add one."
       end
 
       bad_whitespace_reg = /^\s|\s$/
@@ -315,6 +315,9 @@ class Product < Item
         problems << "has empty download?" + download.filename unless download.size > 0
         if download.filename =~ /\.wav$/i
           problems << "usually mp3 files are preferred over .wav files, please convert it to .mp3, upload it, and delete the .wav file"
+        end
+        if download.filename =~ /\.(mid|midi)$/i
+          problems << "Usually mp3 files are preferred over .mid files, please convert it to .mp3 [ex: http://solmire.com ] and delete the .mid file"
         end
       end
 
