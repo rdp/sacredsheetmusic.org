@@ -41,7 +41,7 @@
         <!-- TAGS -->
         <%
            tags = product.linkable_tags(nil) # XXX return 3 arrays?
-           voicing_tags = tags.select{|t| t.is_voicing?}
+           voicing_tags = tags.select{|t| t.is_voicing? || t.name =~ /vocal solo/i}
            composer_tags = tags.select{|t| t.is_composer_tag?}
            topic_attributes = tags.select{|t| !t.is_voicing? && !t.is_composer_tag?}
         %>

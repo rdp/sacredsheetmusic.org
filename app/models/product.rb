@@ -451,9 +451,9 @@ class Product < Item
       tags.select{|t| !t.is_hymn_tag?}.reject{ |t| 
         (t.child_ids - self.tag_ids) != t.child_ids # reject it if we have a child also linked
       }.reject{|t| t.is_original_tag?}.sort_by{|t| 
-         if t.is_voicing?
+         if( t.is_voicing? || t.name =~ /vocal solo/i)
            if t.name =~ /^[A-Z]+$/
-            0 # SATB
+            0 # SATB is more important
            else
             1 # Harmonica
            end
