@@ -1,17 +1,14 @@
 substruct site for freeldssheetmusic.org (rails 2.3.8)
 
 To use, download, then create your vendor dir like this:
-$ rm -rf vendor
-$ svn checkout http://substruct.googlecode.com/svn/trunk/ vendor
 
-Also add in the admin_data plugin for rails2.3.x: https://github.com/neerajdotname/admin_data/wiki/Installing-admin_data-in-a-Rails-2.3.x-project
-$ ruby script/plugin install http://github.com/neerajdotname/admin_data.git -r rails2
+now create config/database.yml with mysql parameters, then run
 
-now create config/database.yml with mysql, then run
-
-$ rake gems:install
+$ rake gems:install # possibly don't need anymore.
 $ rake db:create
 $ rake substruct:db:bootstrap
 $ rake db:migrate
 
 and it should be ready.
+
+But really you can just email us comments/concerns about the site rogerdpack@gmail.com :)
