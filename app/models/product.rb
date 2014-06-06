@@ -348,6 +348,18 @@ class Product < Item
         end
       end
 
+      if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
+         unless t.id.in? self.tag_ids
+           unless self.description =~ /original/i
+             if t.is_hymn_tag?
+               problems << "song matches a hymn/song name #{self.name} perhaps it should be re-entered as an arrangement piece instead of an original?"
+             else
+               problems << "song matches a tag #{self.name}--possibly should tag it with that?"
+             end
+           end
+         end
+      end
+
       #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
       #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
@@ -416,13 +428,6 @@ class Product < Item
         
       end
 
-      if !self.hymn_tag && (t = Tag.find_by_name(self.name) )
-         unless t.id.in? self.tag_ids
-           unless self.description =~ /original/i
-             problems << "song probably should be tagged with hymn name, or topic [there is a tag that matches its title #{self.name}]"
-           end
-         end
-      end
       for download in downloads
         if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz|wma|mus|m4a)$/i
           problems << "might have bad download file #{download.filename}, unknown extension"
