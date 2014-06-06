@@ -301,10 +301,10 @@ class Product < Item
 
       end
       
-      # disallow SAB and SATB on same song
-      distinct_voicing_tags = self.tags.select{|t| (t.parent && t.parent.name =~ /^choir|ensemble/i) || (t.name =~ /solo/i && t.name !~ /choir/i && t.children.length == 0)}.reject{|t| t.name =~ /choir.*instrument/}.reject{|t| t.name =~ /obbligato|with choir|choir and|song type|accompan/i}
-      if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i}
-        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, and another one SAB"
+      # disallow SAB and SATB on same song...bit confusing...
+      distinct_voicing_tags = self.tags.select{|t| t.is_voicing?}
+      if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i} # cantata's really can be SATB and SAB...
+        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}, etc."
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
@@ -444,11 +444,13 @@ class Product < Item
       problems.map{|p| "song advice:" + p}
   end
 
-  def linkable_tags user
-    if user
-      tags.reject{|t| t.is_topic_tag?} # don't care as much about those...more voicing...
+  def linkable_tags logged_in_user
+    if logged_in_user
+      tags.reject{|t| t.is_topic_tag?} # don't care as much about those...more voicing, etc, and show everything...
     else
-      tags.select{|t| !t.is_hymn_tag?}.reject{|t| (t.child_ids - self.tag_ids) != t.child_ids}.reject{|t| t.is_original_tag?}.sort_by{|t| 
+      tags.select{|t| !t.is_hymn_tag?}.reject{ |t| 
+        (t.child_ids - self.tag_ids) != t.child_ids # reject it if we have a child also linked
+      }.reject{|t| t.is_original_tag?}.sort_by{|t| 
          if t.is_voicing?
            if t.name =~ /^[A-Z]+$/
             0 # SATB
@@ -459,7 +461,7 @@ class Product < Item
            2
          elsif t.is_topic_tag?
            3
-         else
+         else # song attribute [?]
            4
          end
        }

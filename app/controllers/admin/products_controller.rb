@@ -418,7 +418,7 @@ class Admin::ProductsController < Admin::BaseController
       end
  
       flash[:notice] += "<b>Song '#{@product.name}' saved successfully!</b><br/>"
-      add_current_product_problems_to_flash false
+      # this calculate don edit page already: add_current_product_problems_to_flash false
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end

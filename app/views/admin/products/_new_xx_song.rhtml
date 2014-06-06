@@ -54,9 +54,12 @@ form_tag(options, :multipart => true)
 <% end %>
 <% if have_name %>
                <div class="float">
-                 <%= make_label('Lyrics [optional]:') %>
-               <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
+                 <%= make_label('Original Song Lyrics [optional]:') %>
+                 <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
                </div>
+<% else %>
+<div class="clear"></div>
+                 (You don't have to enter lyrics for this song since it is an arrangement.)
 <% end %>
 		<%= make_label('Website URL (of your song--like http://yourwebsitename.com/song_name.html or http://yourwebsitename.com/all_songs_list.html -- wherever that song is listed, on your site) [if you have a website, optional]:') %>
 		<div class="float">
@@ -167,12 +170,14 @@ form_tag(options, :multipart => true)
   PRODUCT.init();
 //-->
 </script>
-
-		<!--div class="float">
-			<%= make_label('Song Code (auto-filled--you shouldnt have to enter anything here, just leave it blank)') %>
+<% if @product.id %>
+		<div class="float">
+			<%= make_label('Song Code (auto-filled--you shouldnt have to change this typically)') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
-		</div-->
-
+		</div>
+<br/>
+<br/>
+<% end %>
    <div class="float" style="margin-left: 10px;">
       <%= make_label('Youtube video id (like JW5meKfy3fY) if it has one [optional]:') %>
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
