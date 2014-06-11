@@ -93,14 +93,14 @@
          <% end %>
          <% if @viewing_tags[0].is_hymn_tag? %>
            <% if tag_name !~ /thou fount|amazing grace/i %>
-             You can also (probably) get an original sheet music/scripture references for <%= tag_name %> (in a flash printable/playable/transposable player) by clicking 
+             You can also (probably) get an original sheet music/lyrics/related scriptures for <%= tag_name %> (in a flash printable/playable/transposable player) by clicking 
               <% if @viewing_tags[0].parent.name =~ /primary/i %>
-                <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4958-1-2,00.html#nullLink" rel="nofollow" target="_blank">here</a>.
+                <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4958-1-2,00.html#nullLink" rel="nofollow" target="_blank">here</a>. 
               <% else %>
                 <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4782-1-1,00.html" rel="nofollow" target="_blank">here</a>.  
               <% end %>
            <% end %>
-         You might also find a song's history/lyrics either 
+         You might also find a song's history/background/lyrics either 
 <a href="http://www.hymnwiki.org/wiki/index.php?title=Special%3ASearch&search=<%= tag_name %>" rel="nofollow" target="_blank">here</a> or 
 <a href="http://en.wikipedia.org/wiki/Special:Search/<%= tag_name %>" rel="nofollow" target="_blank">here</a>
 or
