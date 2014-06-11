@@ -1,6 +1,7 @@
 <%= render :partial => 'new_xx_song', :locals => {:have_name => false} %>
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'If your piece is an arrangement of a Hymn, select hymn name:', :tag2 => Tag.find_by_name("Hymn Arrangements")} ) %>
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'If your piece is an arrangement of a Primary Song, select Primary song name:', :tag2 => Tag.find_by_name("Primary Song Arrangements")} ) %>
+Email us if something is missing from any of these lists. 
 <%= render :partial => 'new_xx_common_tags' %>
 
 <!-- If we don't do this it tries to take away all topics at re-edit time, resulting in a warning -->
