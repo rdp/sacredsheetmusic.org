@@ -20,11 +20,6 @@ form_tag(options, :multipart => true)
        %>
        <br/>
   <div style="width: 100px;">
-    Current song code: <%= @product.code %>
-    <br/>
-    <br/>
-<%= link_to 'Modify song code', {:controller => '/questions', :action => :ask,  :pre_fill => "Song code modify request: Please modify this song code from #{@product.code} to :"}, :rel => 'nofollow' %>
-    <br/>
     <br/>
     <%= link_to 'Delete this song', {:controller => '/questions', :action => :ask,  :pre_fill => "Delete song request: Please delete this song: #{@product.code}"}, :rel => 'nofollow' %>
 
@@ -54,7 +49,7 @@ form_tag(options, :multipart => true)
 <% end %>
 <% if have_name %>
                <div class="float">
-                 <%= make_label('Original Song Lyrics [optional]:') %>
+                 <%= make_label('Song Lyrics [optional]:') %>
                  <%= text_area 'product', 'lyrics', :rows => 3, :class => 'textArea', :style => 'width:670px;'  %>
                </div>
 <% else %>
@@ -172,8 +167,8 @@ form_tag(options, :multipart => true)
 </script>
 <% if @product.id %>
 		<div class="float">
-			<%= make_label('Song Code (auto-filled--you shouldnt have to change this typically)') %>
-			<%= text_field 'product', 'code', :class => 'textInput', :size => 30 %>
+			<%= make_label('Song Code (you shouldnt have to change this typically unless you change the voicing and want the new voicing listed instead--it\'s the URL your song is under on our site):') %>
+			<%= text_field 'product', 'code', :class => 'textInput', :size => 50 %>
 		</div>
 <br/>
 <br/>
@@ -183,6 +178,7 @@ form_tag(options, :multipart => true)
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
 <br/>
+<br>
 <br>
 <br>
 

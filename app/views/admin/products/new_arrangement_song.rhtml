@@ -2,12 +2,25 @@
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'If your piece is an arrangement of a Hymn, select hymn name:', :tag2 => Tag.find_by_name("Hymn Arrangements")} ) %>
 <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'If your piece is an arrangement of a Primary Song, select Primary song name:', :tag2 => Tag.find_by_name("Primary Song Arrangements")} ) %>
 Email us if something is missing from any of these lists. 
-<%= render :partial => 'new_xx_common_tags' %>
 
 <!-- If we don't do this it tries to take away all topics at re-edit time, resulting in a warning -->
-<div style="display: none;">
+
+<%
+# show topics if an arrangement that hasn't ever gotten any yet
+show_topics = true if @product.id && !@product.tags.select{|t| t.is_topic_tag?}
+
+ %>
+<% if show_topics %>
+  <div class="listContainer"  style="">
+<% else %>
+<h2>Topics:</h2>
+  (You don't have to select topics for this song since it is an arrangement piece and the original piece already has some topics associated with it).
+  <div style="display: none;">
+<% end %>
+
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
 </div>
 
-</form>
+<%= render :partial => 'new_xx_common_tags' %>
 
+</form>
