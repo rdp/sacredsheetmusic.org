@@ -41,12 +41,15 @@ form_tag(options, :multipart => true)
 <h2>Step 1) Song Information</h2>
 <%= error_messages_for 'product' %>
 
-<% if have_name || @product.id %>
 		<div class="float">
 			<%= make_label('Song Name:') %>
-			<%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
+                        <% if have_name || @product.id %>
+		  	  <%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
+                        <% else %>
+                          Since this is an arrangement, song name is automatically assigned as the name of the hymn it arranges.  You can change the name later if desired.
+                        <% end %>
 		</div>
-<% end %>
+
 <% if have_name %>
                <div class="float">
                  <%= make_label('Song Lyrics [optional]:') %>
