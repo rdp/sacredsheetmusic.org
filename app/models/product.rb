@@ -326,12 +326,12 @@ class Product < Item
       end
 
       if self.downloads.size == 0 && !self.original_url.present?
-        problems << "song has no original_url nor pdf uploads! Not expected I don't think..."
+        problems << "song has no website url nor pdf uploads! Not expected I don't think..."
       end
 
       if self.original_url.present? 
         if !self.original_url.start_with?("http")
-          problems << "original url should start with http://"
+          problems << "website url may be malformed--should start with http://... (currently is #{self.original_url})"
         else
           if true
             require 'open-uri' # like calling out to curl/wget kind of...
