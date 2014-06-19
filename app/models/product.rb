@@ -331,7 +331,7 @@ class Product < Item
 
       if self.original_url.present? 
         if !self.original_url.start_with?("http")
-          problems << "website url may be malformed--should start with http://... (currently is #{self.original_url})"
+          problems << "website url may be malformed--should look like http://... (currently is \"#{self.original_url}\")"
         else
           if true
             require 'open-uri' # like calling out to curl/wget kind of...
