@@ -403,7 +403,7 @@ class Admin::ProductsController < Admin::BaseController
       if @product.hymn_tag
         for tag in @product.hymn_tags
           unless Tag.share_tags_among_hymns_products tag
-            flash[:notice] +=  "this hymn has no topics yet! #{tag.name}"
+            flash[:notice] +=  "this hymn has no topics yet--please report this to us! #{tag.name}"
           end
         end
         @product.clear_my_cache # force it to clear its html cache so that it can show its new tags now...

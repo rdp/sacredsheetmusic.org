@@ -260,7 +260,7 @@ class Product < Item
       end
 
       if self.topic_tags.length == 0
-        problems << "no topics associated with song yet."
+        problems << "no topics associated with song yet. Under the \"topics\" section, below, please check mark any topics that apply to this song."
       end
       if self.is_original? && self.hymn_tag
         problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i

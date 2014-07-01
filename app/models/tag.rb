@@ -60,7 +60,7 @@ class Tag
       end
     end
     if errors.length > 0
-      "Warning: no topics associated with any hymns for:" + errors.join(', ')
+      "Warning: no topics associated with any hymns for [please report this to us! :" + errors.join(', ')
     else
       ''
     end
