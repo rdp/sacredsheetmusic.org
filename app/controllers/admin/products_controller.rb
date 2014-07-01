@@ -406,7 +406,8 @@ class Admin::ProductsController < Admin::BaseController
             flash[:notice] +=  "this hymn has no topics yet! #{tag.name}"
           end
         end
-        @product.reload # it has new tags now
+        @product.clear_my_cache # force it to clear its html cache so that it can show its new tags now...
+        @product.reload # load new tags into this object as well
 
         if params[:product][:tag_ids]
           desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort

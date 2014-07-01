@@ -40,7 +40,7 @@ class Product < Item
     thumbnail
   end
 
-  def sync_all_parent_tags # check parent tags that should be checked but weren't
+  def sync_all_parent_tags # check parent tags that should also be checked but weren't -- this is not topic syncing!
     tags = self.tags + self.tags.select{|t| t.parent}.map{|t| t.parent} # plus parent to go 2 deep here
     tags.each{|t|
       if t.products.size > 0 && t.parent && t.parent.products.size > 0 && !t.parent.id.in?(self.tag_ids)
