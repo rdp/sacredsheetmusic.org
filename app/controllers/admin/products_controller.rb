@@ -453,7 +453,7 @@ class Admin::ProductsController < Admin::BaseController
   def remove_download_ajax
     dl = Download.find_by_id(params[:id])
     dl.destroy()
-    should_be_empty = ProductDownloads.find_by_download_id(dl.id)
+    should_be_empty = ProductDownload.find_by_download_id(dl.id)
     Rails.logger.info "should be empty #{should_be_empty}"
     render :text => "", :layout => false
   end
