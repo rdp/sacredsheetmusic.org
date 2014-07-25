@@ -449,6 +449,15 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
+  # Removes a download -- here so we can add logs if necessary :)
+  def remove_download_ajax
+    dl = Download.find_by_id(params[:id])
+    dl.destroy()
+    should_be_empty = ProductDownloads.find_by_download_id(dl.id)
+    Rails.logger.info "should be empty #{should_be_empty}"
+    render :text => "", :layout => false
+  end
+
   private
 
   def add_current_product_problems_to_flash now
