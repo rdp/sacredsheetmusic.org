@@ -277,7 +277,7 @@ class Product < Item
 
       bads = self.composer_tags.select{|t| t.only_on_this_site}
       if self.original_url.present? && bads.length > 0
-        problems << "one of its composers may be marked as only on this site in vain? [this song has a url but the composer is marked as not having a website, please report this to us] #{bads.map &:name}"
+        problems << "one of its composers may be marked as only on this site in vain? [this song has a url but the composer is marked as not having a website, please report this message to us!] #{bads.map &:name}"
       end
 
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}

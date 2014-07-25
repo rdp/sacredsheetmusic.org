@@ -1,3 +1,4 @@
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -21,21 +22,20 @@
   <h3 style="color:black; margin: 0px; padding: 0px;">Downloads:</h3>
     <ul>
       <% 
-
-        products_with_extension = @product.downloads.map{|dl| 
+        downloads_with_extension = @product.downloads.map{|dl| 
             filename_extension = dl.filename.split('.')[-1].downcase
             filename_extension = 'midi' if filename_extension == 'mid'
             filename_extension = 'wav' if filename_extension == 'wav'
             [dl, filename_extension]
         }
 
-        products_with_extension.sort_by{|dl, ext| ext == 'pdf' ? 0 : 1}.each do |dl, filename_extension| %>
+        downloads_with_extension.sort_by{|dl, ext| ext == 'pdf' ? 0 : 1}.each do |dl, filename_extension| %>
         <li>
           <%= 
             link_name = filename_extension
             # if there are 2 pdf's, then advertise them as just pdf I guess
             count = 0
-            products_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
+            downloads_with_extension.each{|dl2, ext| count += 1 if ext == filename_extension }
             link_name = dl.filename if count > 1
             if link_name.size > 15
                extension_sans_dot = filename_extension[0..10]
