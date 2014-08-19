@@ -31,8 +31,9 @@ class Admin::TagsController < Admin::BaseController
     params[:tag_list].each_index do |i|
       tag = Tag.find(params[:tag_list][i])
       if tag
-        tag.rank = i
-        tag.save
+        Tag.update_all({:rank => i}, {:id => tag.id}) # avoid callbacks etc.
+      else
+        Rails.logger.info "whoa non tag"
       end
     end
     render :nothing => true
