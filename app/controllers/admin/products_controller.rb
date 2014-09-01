@@ -257,8 +257,12 @@ class Admin::ProductsController < Admin::BaseController
       hymn_tags = tags_as_objects.select{|t| t.is_hymn_tag?}
       composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
       if hymn_tags.size > 0 && composer_tag
+        if hymn_tags.size > 1
+          flash[:notice] = "warning: got more than one arrangement song name, you may want to edit the song name and code if the song is named something else."
+        end
         @product.name = hymn_tags.map{|t| t.name}.join('-')
       else
+        # NB usually they don't see this because the auto code stuff raises...
         flash[:notice] = "song not saved! song has no name assigned to it--if it's an original song, please fill in the name, if it's an arrangement song, make sure to tag it with the song/hymn name that it is an arrangement of." # :|
       end
     end
