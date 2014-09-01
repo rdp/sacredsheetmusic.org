@@ -251,12 +251,13 @@ class Admin::ProductsController < Admin::BaseController
     @product.attributes = params[:product] # actually performs a tag save...if the product already existed.  Which thing is wrong, again.
 
     if !@product.name.present? 
-      # see if we can should auto-fill
+      # see if we can/should auto-fill
+      # XXXX move this to the post save method that assigns the code?
       tags_as_objects = params[:product][:tag_ids].select{|t| t.length > 0}.map{|id| Tag.find(id)}
       hymn_tags = tags_as_objects.select{|t| t.is_hymn_tag?}
       composer_tag = tags_as_objects.detect{|t| t.is_composer_tag?}
-      if hymn_tags.size > 1 && composer_tag
-        @product.name = hymn_tags[0].name
+      if hymn_tags.size > 0 && composer_tag
+        @product.name = hymn_tags.map{|t| t.name}.join('-')
       else
         flash[:notice] = "song not saved! song has no name assigned to it--if it's an original song, please fill in the name, if it's an arrangement song, make sure to tag it with the song/hymn name that it is an arrangement of." # :|
       end

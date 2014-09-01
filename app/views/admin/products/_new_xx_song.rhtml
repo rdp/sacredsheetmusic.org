@@ -44,7 +44,7 @@ form_tag(options, :multipart => true)
 		<div class="float">
 			<%= make_label('Song Name:') %>
                         <% if have_name || @product.id %>
-		  	  <%= text_field 'product', 'name', :class => 'textInput', :size => 30  %>
+		  	  <%= text_field 'product', 'name', :class => 'textInput', :size => 60  %>
                         <% else %>
                           Since this is an arrangement, song name is automatically assigned as the name of the hymn it arranges.  You can change the name later if desired.
                         <% end %>
@@ -170,7 +170,7 @@ form_tag(options, :multipart => true)
 </script>
 <% if @product.id %>
 		<div class="float">
-			<%= make_label('Song Code (you shouldnt have to change this typically unless you change the voicing and want the new voicing listed instead--it\'s the URL your song is under on our site):') %>
+			<%= make_label('Song Code (you shouldnt have to change this typically unless you change the voicing and want the new voicing listed instead, but it is modifiable):') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 50 %>
 		</div>
 <br/>
