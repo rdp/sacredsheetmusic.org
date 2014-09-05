@@ -122,11 +122,13 @@ class Product < Item
 
     if self.code.blank? || self.code == "auto_refresh_me_dupe"
       if self.composer_tag 
-        if (voicing = self.voicing_tags[0]) && self.name.present?
-          voicing_name = voicing.name
-          voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
-          voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
-          self.code = self.name.clone + '-' + voicing_name + '-by-' + self.composer_tag.name
+        if self.voicing_tags.size > 0 && self.name.present?
+          voicing_names = self.voicing_tags.map{|voicing| 
+            voicing_name = voicing.name
+            voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
+            voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
+          }
+          self.code = self.name.clone + ' ' + voicing_names.join(' and ') + ' by ' + self.composer_tag.name
         else
           raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
         end
