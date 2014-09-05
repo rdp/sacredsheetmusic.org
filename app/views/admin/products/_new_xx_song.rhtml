@@ -7,8 +7,8 @@ form_tag(options, :multipart => true)
  %>
 <% if @product.id %>
 
-<!-- top right --> 
-<div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
+  <!-- top right --> 
+  <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
        <%= link_to(
         '(View song page on site)',
         {
@@ -24,7 +24,7 @@ form_tag(options, :multipart => true)
     <%= link_to 'Delete this song', {:controller => '/questions', :action => :ask,  :pre_fill => "Delete song request: Please delete this song: #{@product.code}"}, :rel => 'nofollow' %>
 
   </div>
-</div>
+  </div>
 <% end %>
 
 <div id="left">
