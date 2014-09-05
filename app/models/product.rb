@@ -123,12 +123,10 @@ class Product < Item
     if self.code.blank? || self.code == "auto_refresh_me_dupe"
       if self.composer_tag 
         if self.voicing_tags.size > 0 && self.name.present?
-          voicing_names = self.voicing_tags.map{|voicing| 
-            voicing_name = voicing.name
-            voicing_name = voicing_name.split('/')[0] # prefer "violin" of "violin/violin-obbligatto-as-accompaniment"
-            voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
-          }
-          self.code = self.name.clone + ' ' + voicing_names.join(' and ') + ' by ' + self.composer_tag.name
+          voicing_name = self.voicing_tags[0].name # don't use more than one in case they accidentally initially tag it as SATB SAB though for instrumental it might be nice to have "violin and cello" gah...maybe we should do more here, like auto-recode them at save time [?]
+          voicing_name = voicing_name.split('/')[0] # prefer "violin" instead of "violin/violin-obbligatto-as-accompaniment"
+          voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
+          self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
           raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
         end
@@ -310,8 +308,10 @@ class Product < Item
       
       # disallow SAB and SATB on same song...bit confusing...
       distinct_voicing_tags = self.tags.select{|t| t.is_voicing?}
+      # cello and viola is ok though...XXXX better distinguish here!??
+
       if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i} # cantata's really can be SATB and SAB...
-        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}, etc."
+        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, a different ont SAB (or in this case #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}) if applicable."
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
