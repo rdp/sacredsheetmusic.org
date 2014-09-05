@@ -4,16 +4,10 @@ module SubstructApplicationController
   
   def redirect_to_freeldssheetmusic
     if ENV['RAILS_ENV'] == "production" 
-      if request.host =~ /^(www|choirarrangements)/ || (request.host !~ /localhost|freeldssheetmusic.org|admin.freeldssheetmusic.org/) # allow localhost:3000 etc.
+      if (request.host =~ /^(www|admin)/) || (request.host !~ /localhost|freeldssheetmusic.org/) # allow localhost:3000 etc. redirect all old url's...
          redirect_to "http://freeldssheetmusic.org" + request.request_uri, :status => :moved_permanently 
          flash.keep
          return false
-      end
-
-      if request.request_uri.in? ['/index-of-free-lds-mormon-arrangements-choir-piano-solo', '/lds-ward-choir-music', '/choir-arrangements']
-        redirect_to "/", :status => :moved_permanently # this is a 301, apparently preferred, viz: http://webdesign.about.com/od/http/qt/tip301v302redir.htm
-        flash.keep
-        return false
       end
 
     end
