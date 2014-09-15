@@ -356,7 +356,7 @@ class Product < Item
               a.close
               raise OpenURI::HTTPError.new("hello", "k?") if got =~ /Not Found/ # lindy kerby uses 302 redirs yikes
             rescue Exception => e
-              problems << "song website url (#{self.original_url}) does not seem to be working-please make sure it is a url that works in your browser!? (error message was: #{e.to_s[0..10]}...)" # try not to repeat uri twice, too confusing
+              problems << "song website url (#{self.original_url}) does not seem to be correct-please make sure it is the right url by testing it in your browser! (error message was: #{e.to_s[0..20]}...)" # try not to repeat uri twice, too confusing, it may be in error message...
             end
            end
         end
