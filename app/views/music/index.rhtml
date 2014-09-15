@@ -13,6 +13,7 @@
               <% if @composer_tag %>
                 <% if @composer_tag.composer_url.present? %>
                    Visit <a href="<%= @composer_tag.composer_url %>" target="_blank"><%= @composer_tag.name %>'s website</a> if you'd like to see his/her site.
+                   See composer song statistics  <%= link_to('here', :action => :composer_all_song_stats, :id => @composer_tag.id) %>.
                  <% elsif @composer_tag.composer_email_if_contacted.present? %>
                    <a href="mailto:<%= @composer_tag.composer_email_if_contacted%>">Email <%= @composer_tag.name %></a> if you'd like to send a personal note.
                  <% end %>

@@ -148,6 +148,9 @@
              <% if composer_tag.bio.present? %>
                More about the composer: <br/> <%= composer_tag.bio %>
              <% end %>
+             <% if composer_tag.composer_url.present? %>
+               Visit <a href="<%=composer_tag.composer_url%>">composer website</a>.
+             <% end %>
              <br />
         <% end %>
         <br/>

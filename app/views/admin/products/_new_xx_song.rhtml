@@ -32,7 +32,7 @@ form_tag(options, :multipart => true)
 <hr/>
   <h1><%= @title %></h1>
 <% if @product.id %>
-  <%=link_to '&lt;&lt;&lt; (Back to instructions page if you wish to enter another song)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
+  <%=link_to '&lt;&lt;&lt; (Back to instructions page if you wish to enter another new song)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 <% else %>
   <%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 <% end %>

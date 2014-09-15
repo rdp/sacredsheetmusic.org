@@ -124,7 +124,14 @@ class Product < Item
       if self.composer_tag 
         if self.voicing_tags.size > 0 && self.name.present?
           voicing_name = self.voicing_tags[0].name # don't use more than one in case they accidentally initially tag it as SATB SAB though for instrumental it might be nice to have "violin and cello" gah...maybe we should do more here, like auto-recode them at save time [?]
-          voicing_name = voicing_name.split('/')[0] # prefer "violin" instead of "violin/violin-obbligatto-as-accompaniment"
+          if voicing_name.contain?('/')
+            parts = voicing_name.split('/')
+            if parts[0].split(' ')[0] == parts[1].split(' ')[0]
+              voicing_name = parts[0].split(' ')[0] # prefer violin to violin duet, given violin duet/ensemble
+            else
+              voicing_name = parts[0] # prefer "violin" to "violin/violin-obbligatto-as-accompaniment"
+            end
+          end
           voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
           self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
@@ -324,7 +331,7 @@ class Product < Item
           problems << "usually mp3 files are preferred over .wav files, please convert it to .mp3, upload it, and delete the .wav file"
         end
         if download.filename =~ /\.(mid|midi)$/i
-          problems << "Usually mp3 files are preferred over .mid files, please convert it to .mp3 [ex: http://solmire.com ] and delete the .mid file"
+          problems << "Usually mp3 files are preferred over .mid files, please convert it to .mp3 [http://solmire.com  has an auto conversion process you could use] and delete the .mid file"
         end
       end
 
