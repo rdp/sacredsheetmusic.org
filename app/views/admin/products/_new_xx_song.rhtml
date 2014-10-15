@@ -61,7 +61,7 @@ form_tag(options, :multipart => true)
 <% end %>
 		<%= make_label('Website URL (of your song--like http://yourwebsitename.com/song_name.html or http://yourwebsitename.com/all_songs_list.html -- wherever that song is listed, on your site) [if you have a website, optional]:') %>
 		<div class="float">
-			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 30, :placeholder => 'http://yourwebsite.com/song_page.html...'  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
+			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 50, :placeholder => 'http://yourwebsite.com/song_page.html...'  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
 		</div>
                 <br/>
 
