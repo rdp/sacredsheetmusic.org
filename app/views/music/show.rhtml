@@ -178,7 +178,7 @@
       </h1>
     <% end %>
     <% if @product.original_url.present? %>
-           <% if @product.images.length > 0 %>
+           <% if @images.present? %> <!-- then assume we have some pdf's locally so dont emphasize redirect -->
              You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
 
  for this piece.
@@ -228,7 +228,9 @@
 				<% for @p_image in @images do %>
 					<HR/>
 					<div class="float" style="margin:5px;">
-                                              <%= image_tag @p_image.public_filename, :width => "100%" %>
+                                              <a href="#" onClick="alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, left hand side column of this page')">
+                                                <%= image_tag @p_image.public_filename, :width => "100%" %>
+                                              </a>
 					</div>
 				<% end %>
 			<HR/>
