@@ -229,7 +229,6 @@ class MusicController < StoreController
        @title = @product.name
     end
     @images = @product.images
-    @default_image = @images[0]
 
     #@variations = @product.variations.find(
     #  :all,

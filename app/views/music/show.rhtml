@@ -171,10 +171,12 @@
 
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
-    <% extra_style = "display:none;" if @default_image %>
-    <h1 style="margin: 0px; margin-left: 50px;<%= extra_style %>">
- <%=link_to(@product.name, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' ) %>
-(by <%= @product.composer_tags.map(&:name).join(', ') %>)</h1>
+    <% if !@images.present? %>
+      <h1 style="margin: 0px; margin-left: 50px;">
+         <%=link_to(@product.name, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' ) %>
+        (by <%= @product.composer_tags.map(&:name).join(', ') %>)
+      </h1>
+    <% end %>
     <% if @product.original_url.present? %>
            <% if @product.images.length > 0 %>
              You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
@@ -204,7 +206,7 @@
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
-You can also <i>
+<br/>You can also <i>
  <%=
                         link_to(
                                 'bookmark/save',
@@ -222,22 +224,13 @@ You can also <i>
 
    </div>
      <div style="float: left; width: 100%;">
-      <% if @default_image %>
-        <% if @default_image.public_filename then %>
-          <%= image_tag @default_image.public_filename(), :width => "100%", :alt => @product.name%>
-        <% end %>
-			<!-- not actually thumbnails! -->
-			<% if @images.size > 1 %>
+      <% if @images.present? %>
 				<% for @p_image in @images do %>
-				        <% next if @p_image == @default_image %>
 					<HR/>
 					<div class="float" style="margin:5px;">
-					  <% if @p_image.public_filename then %>
                                               <%= image_tag @p_image.public_filename, :width => "100%" %>
-                                         <% end %>
 					</div>
 				<% end %>
-			<% end %>
 			<HR/>
 	<% else %>
           <br />
@@ -249,7 +242,7 @@ You can also <i>
           <br />
           <br />
           <br />
-          <br /> <!-- make footer look like a footer -->
+          <br /> <!-- make footer look like a footer LOL -->
        <% end %>
      </div>
   
@@ -275,7 +268,7 @@ You can also <i>
   <div style="float:left;" class="fb-like" data-href="<%= request.url %>" data-send="false" data-width="350" data-show-faces="false"></div>
 
 <div style="float:left; margin-right: 10px;">
-<% image_relative_url = @default_image ? @default_image.public_filename : '/images/trebs.gif' %>
+<% image_relative_url = @images.present? ? @images[0].public_filename : '/images/trebs.gif' %>
 <a href="http://pinterest.com/pin/create/button/?url=<%= request.url %>&media=http://<%= request.host + image_relative_url %>&description=<%= CGI.escape(@title) %>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
 </div>
 
