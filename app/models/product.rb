@@ -141,12 +141,12 @@ class Product < Item
         raise 'please select a composer first (use back button on browser)--no composer selected!'
       end
 #      self.code.upcase! # too ugly!
-      self.code.gsub!("'", '')
+      self.code.gsub!("'", '-')
       self.code.gsub!(/[\x80-\xff]/, '') # take care of freaky apostrophe's etc.
-      self.code.gsub!(/[^[:alnum:]']/,'-') # non alnum => -, except ' s
-      self.code.gsub!(/-{2,}/,'-') # -- => -
-      self.code.gsub!(/^[-]+/,'') # strip beginning dashes
-      self.code.gsub!(/[-]+$/,'') # strip ending dashes
+      self.code.gsub!(/[^[:alnum:]']/, '-') # non alnum => -, except ' s
+      self.code.gsub!(/-{2,}/, '-') # -- => -
+      self.code.gsub!(/^[-]+/, '') # strip beginning dashes
+      self.code.gsub!(/[-]+$/, '') # strip ending dashes
       self.code = self.code.strip
       if Product.find_by_code(self.code)
         Rails.logger.info "whoa, re-using a code? #{self.code} assigning it a numeric, this may be bad..."

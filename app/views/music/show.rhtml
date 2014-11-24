@@ -180,8 +180,7 @@
     <% if @product.original_url.present? %>
            <% if @images.present? %> <!-- then assume we have some pdf's locally so dont emphasize redirect -->
              You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
-
- for this piece.
+ for this piece.<br/>
            <% else %>
 <br />
 <br />
@@ -206,7 +205,7 @@
 <% if @already_bookmarked %>
 (This song is in your <%= link_to('bookmarks', {:action => :wishlist}, :target => '_blank') %> already).
 <% else %>
-<br/>You can also <i>
+You can also <i>
  <%=
                         link_to(
                                 'bookmark/save',
