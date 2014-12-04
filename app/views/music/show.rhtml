@@ -227,9 +227,7 @@ You can also <i>
 				<% for @p_image in @images do %>
 					<HR/>
 					<div class="float" style="margin:5px;">
-                                              <a href="#" onClick="alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, left hand side column of this page')">
-                                                <%= image_tag @p_image.public_filename, :width => "100%" %>
-                                              </a>
+                                                <%= image_tag @p_image.public_filename, :width => "100%", :onclick => "alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, left hand side column of this page')" %>
 					</div>
 				<% end %>
 			<HR/>

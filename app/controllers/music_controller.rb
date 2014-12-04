@@ -555,7 +555,6 @@ class MusicController < StoreController
   # Our "all songs" list
   def index
     return if render_cached_if_exists('all_songs')
-    @title = "All Songs (alphabetic order)"
     @display_bio = "Choose a different category from the list on the left for a more precise list."
     respond_to do |format|
       format.html do
@@ -565,6 +564,7 @@ class MusicController < StoreController
           :order => 'name ASC',
           :conditions => Product::CONDITIONS_AVAILABLE
         )
+        @title = "All Songs (alphabetic order) #{@products.size} total"
         def @products.total_pages # fake it out :P
           1
         end
