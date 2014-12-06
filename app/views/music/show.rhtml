@@ -59,9 +59,10 @@
             inline_view # this is output
           %>
 
-          <% links = [] %>
-          <% if filename_extension == 'pdf'
-              links << link_to(
+          <%
+             links = [] 
+             if filename_extension == 'pdf'
+               links << link_to(
                 'view', # has its own name...
                 {
                   :controller => 'music',
@@ -69,15 +70,23 @@
                   :params => { :download_id => dl.id, :name => dl.filename}
                 },
                 :target => '_blank'
-              )
-            end   
+               )
 
-            links << link_to(
+               links << link_to(
+                 'print',
+                 :controller => 'music',
+                 :action => 'download_file',
+                 :params => { :download_id => dl.id, :name => dl.filename }
+               )
+             end   
+
+             links << link_to(
               'download',
               :controller => 'music',
               :action => 'download_file',
               :params => { :download_id => dl.id, :name => dl.filename }
              )
+ 
           %>
           (<%= links.join(', ') %>)
 
@@ -227,7 +236,7 @@ You can also <i>
 				<% for @p_image in @images do %>
 					<HR/>
 					<div class="float" style="margin:5px;">
-                                                <%= image_tag @p_image.public_filename, :width => "100%", :onclick => "alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, left hand side column of this page')" %>
+                                                <%= image_tag @p_image.public_filename, :width => "100%", :onclick => "alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, top left hand side of this page')" %>
 					</div>
 				<% end %>
 			<HR/>
