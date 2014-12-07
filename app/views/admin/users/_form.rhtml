@@ -55,3 +55,7 @@
 	end %>
 	</table>
 </div>
+
+<div>
+<%= select_tag 'user[composer_tag_id]', content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(Tag.find_by_name('composers').children, "id", "name") %>
+</div>
