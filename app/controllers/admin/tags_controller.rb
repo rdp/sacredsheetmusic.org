@@ -9,7 +9,10 @@ class Admin::TagsController < Admin::BaseController
     parent = Tag.find_by_id(params[:id])
     children = parent.children
     children = children.sort_by{|t| t.name.upcase}
-    children.each_with_index{|tag, idx| tag.rank = idx; tag.save}
+    children.each_with_index{|tag, idx| 
+      # tag.rank = idx; tag.save
+      Tag.update_all({:rank => idx}, {:id => tag.id}) # skip callbacks
+    }
     flash[:notice] = "alphabetized them under #{parent.name}"
     redirect_to :action => 'list', :id => parent.id
   end
