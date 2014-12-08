@@ -142,6 +142,7 @@
 			<%= @parent_tag.name %>
 		<% end %>
 	</h2>
+        <%= link_to('alphabetize this list', :action => 'alphabetize_children', :id => @parent_tag.id) %>
 
 	<!-- TAG TABLE LIST -->
 	<ul id="tag_list" class="sortable">

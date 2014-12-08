@@ -5,6 +5,15 @@ class Admin::TagsController < Admin::BaseController
     render :action => 'list'
   end
 
+  def alphabetize_children
+    parent = Tag.find_by_id(params[:id])
+    children = parent.children
+    children = children.sort_by{|t| t.name.upcase}
+    children.each_with_index{|tag, idx| tag.rank = idx; tag.save}
+    flash[:notice] = "alphabetized them under #{parent.name}"
+    redirect_to :action => 'list', :id => parent.id
+  end
+
   # List manages addition/deletion of items through ajax
   def list
     @title = 'Manage Tags'
