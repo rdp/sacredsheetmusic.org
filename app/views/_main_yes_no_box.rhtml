@@ -76,8 +76,8 @@
               	
 	
 		  <!-- left logo -->
-		  <div style="float:left; padding-top: 5px; padding-left: 5px;">
-		     <div style="font-family: 'Great Vibes', cursive; font-size: 37px; margin-top: 20px;  letter-spacing: 2px;"><a href="/" rel="home">Free L DS Sheet Music</a></div>
+		  <div style="float:left; padding-top: 0px; padding-left: 5px;">
+		     <div style="font-family: 'Great Vibes', cursive; font-size: 37px; margin-top: 10px;  letter-spacing: 2px;"><a href="/" rel="home">Free L DS Sheet Music</a></div>
 		  </div>
                  <!-- middle message -->
 
@@ -107,7 +107,7 @@
 
 
 		<!-- search box on right -->
-		<div id="searchbox" style="width: 350px; margin-top: 10px;">
+		<div id="searchbox" style="width: 350px; margin-top: 5px;">
                     <%= image_tag 'indicator.gif', :id => "spinner_search", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
 			<form action="/search" method="get">
 				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show();"/> <!-- avoid x and y get params -->
@@ -125,7 +125,7 @@
 			<div id="navigation-inner">
 				<ul class="navigation">
 					<!--li class="<%= @cname == 'main' ? 'active' : '' %>"><a href="/">Home</a></li-->
-					<li class="<%= (@cname == 'music' && @aname == 'show_by_tags' && controller.params[:tags] == ['all']) ? 'active' : '' %>"><a href="/all">All</a></li>
+					<li class="<%= (@cname == 'music' && @aname == 'show_by_tags' && controller.params[:tags] == ['all']) ? 'active' : '' %>"><a href="/">Home</a></li>
 					<% 
 						@main_nav_tags.each_index do |i| 
 							tag = @main_nav_tags[i]
