@@ -134,7 +134,7 @@
 						 	class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>"
 							style="<%= i == @main_nav_tags.size-1 ? 'margin-right: 0px !important;' : '' %>"
 						>
-							<%= tag_link_nav(tag) %>
+							<%= tag_link_nav(tag, false) %>
 						</li>
 					<% end %>
 				</ul>

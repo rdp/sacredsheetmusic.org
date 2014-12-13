@@ -162,6 +162,7 @@ class Tag
     )
   end
 
+  # i.e. one with ellipses, that shows both sides of slashes, etc.
   def abbreviated_name
              name_sans_commas = self.name.gsub(',', '')
              words = name_sans_commas.split(/[ \/]/)

@@ -67,11 +67,11 @@ module ApplicationHelper
     return false
   end
 
-  def tag_link_nav tag
+  def tag_link_nav tag, is_bullet_style=true
     if tag.name_in_nav.present?
-      tag_link(tag, tag.name_in_nav, true)
+      tag_link(tag, tag.name_in_nav, is_bullet_style)
     else
-      tag_link(tag, tag.name, true)
+      tag_link(tag, tag.name, is_bullet_style)
     end
   end
 
