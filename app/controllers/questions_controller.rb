@@ -42,10 +42,11 @@ class QuestionsController < ApplicationController
 	
 	# Sends question via email to site owner
 	def send_question
-	  @question = Question.new(params[:question])
+	  @question = Question.new(params[:question]) # what is a Question here? they used to save these?
 	  @question.short_question = "Message from the contact form"
+          email = params[:question][:email_address]
 	  
-	  if !@question.valid?
+	  if !@question.valid? || email !~ /@/ 
 	    flash[:notice] = "Please enter an email address and message"
 	    ask()
 	    render :action => 'ask' and return
