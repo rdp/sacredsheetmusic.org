@@ -134,7 +134,7 @@
 						 	class="<%= is_main_tab_active?(tag.id) ? 'active' : '' %>"
 							style="<%= i == @main_nav_tags.size-1 ? 'margin-right: 0px !important;' : '' %>"
 						>
-							<%= tag_link(tag) %>
+							<%= tag_link_nav(tag) %>
 						</li>
 					<% end %>
 				</ul>
@@ -142,7 +142,7 @@
 			</div>
 		</div>
 		
-		<% if @show_subnav && @subnav_tags.length > 0 && @subnav_tags.length < 50%>
+		<% if false && @show_subnav && @subnav_tags.length > 0 && @subnav_tags.length < 50%>
 			<!--div id="subnavigation">
 				<ul class="navigation">
                                         <li><a href="">Sub-categories:</a></li>
