@@ -6,16 +6,18 @@ Email us if something is missing from any of these lists.
 <!-- If we don't do this it tries to take away all topics at re-edit time, resulting in a warning -->
 
 <%
-# show topics if an arrangement that hasn't ever gotten any yet
-show_topics = true if @product.id && !@product.tags.select{|t| t.is_topic_tag?}
 
- %>
+# show topics if an arrangement that hasn't ever gotten any yet [or original]
+show_topics = true if @product.id && !@product.tags.detect{|t| t.is_topic_tag?}
+
+%>
+
 <% if show_topics %>
-  <div class="listContainer"  style="">
+  <div class="listContainer" style="">
 <% else %>
 <h2>Topics:</h2>
-  (You don't have to select topics for this song since it is an arrangement piece and the original piece already has some topics associated with it).
-  <div style="display: none;">
+  (You don't have to select topics for this song since it is an arrangement piece).
+  <div style="display: none;"> <!-- still have to have it in the html though -->
 <% end %>
 
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
