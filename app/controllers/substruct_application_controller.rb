@@ -27,5 +27,10 @@ module SubstructApplicationController
                 end
         end
   end
+
+  # run in a before filter
+  def get_nav_tags
+    @main_nav_tags = Tag.find_ordered_parents.reject{|t| t.name_in_nav == 'skip'}
+  end
   
 end
