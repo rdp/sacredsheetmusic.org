@@ -14,7 +14,7 @@ If you just want links back from our site to yours, then don't upload any pdf's,
 				<li id="download_<%= @d.id %>">
 					<a href="<%= @d.public_filename() %>"><%= @d.name %></a> <%= @d.size %> Bytes, <%= @d.count %> downloads <a href="/admin_data/klass/download/<%= @d.id %>/edit">edit</a>.
 					<div style="float:right;margin-top:10px;">
-						<%= 
+						remove:<%= 
 							link_to_remote image_tag("icons/png-24/16-em-cross.png", :plugin => 'substruct', :alt => 'Delete'),
 					    	{
 									:url => { :action => "remove_download_ajax", :id => @d.id },
