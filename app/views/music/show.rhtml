@@ -23,7 +23,7 @@
     <ul>
       <%
         downloads = @product.downloads
-        downloads.each{|dl| Rails.logger.info "got missing phantom dl? #{@product}" unless dl }
+        downloads.each{|dl| Rails.logger.info "got missing phantom dl? #{@product.id}" unless dl }
         downloads = downloads.compact # remove nils...
         downloads_with_extension = downloads.map{|dl| 
             filename_extension = dl.filename.split('.')[-1].downcase

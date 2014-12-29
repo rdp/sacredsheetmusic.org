@@ -175,7 +175,8 @@ class Product < Item
   end
 
   def pdf_download_count
-    sum = 0;downloads.each{|d| sum += d.count if d.name =~ /\.pdf$/i}
+    sum = 0
+    downloads.each{|d| sum += d.count if (d && d.name =~ /\.pdf$/i)}
     sum
   end
 
