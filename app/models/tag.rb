@@ -122,21 +122,15 @@ class Tag
      end
   end
 
-  after_update {
-    #Cache.clear! # no idea what damage this did...probs changed, normals changed...
-  }
-
   after_destroy { 
     #Cache.clear! 
-  } # some were marked with it, left side is messed up...may as well start over...
+  } # some were marked with it, left side is messed up...may as well start over...kind of expensive though...
 
-  after_save :clear_my_cache_and_associated 
+  after_update :clear_my_cache_and_associated 
   after_create :clear_my_cache_and_associated 
 
   def clear_my_cache_and_associated
-    Rails.logger.info "clearing for tag with all children [!] #{self} #{self.name}"
-    # case of creating a "new" one I guess...
-    #Cache.delete_by_type 'tags'# cached left side is messed now
+    Rails.logger.info "clearing for tag with all children [!] #{self.name}"
     clear_public_cached
     parent.andand.clear_public_cached # in case it needs to add one to its children now...
     # NB this is still not enough, if a tag gains its first product it should reset more apparently...
@@ -144,6 +138,7 @@ class Tag
       # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...   
       p.clear_my_cache
     }
+    Cache.delete_by_type 'tags'# cached left side is messed now -- this also clears all local caches, restarts
   end 
 
   def clear_public_cached
