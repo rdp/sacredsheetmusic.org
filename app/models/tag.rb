@@ -134,13 +134,13 @@ class Tag
   after_create :clear_my_cache_and_associated 
 
   def clear_my_cache_and_associated
-    Rails.logger.info "clearing for tag with all children [!] #{tag} #{tag.name}"
+    Rails.logger.info "clearing for tag with all children [!] #{self} #{self.name}"
     # case of creating a "new" one I guess...
     #Cache.delete_by_type 'tags'# cached left side is messed now
-    tag.clear_public_cached
-    tag.parent.andand.clear_public_cached # in case it needs to add one to its children now...
+    clear_public_cached
+    parent.andand.clear_public_cached # in case it needs to add one to its children now...
     # NB this is still not enough, if a tag gains its first product it should reset more apparently...
-    tag.products.each{|p|  
+    products.each{|p|  
       # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...   
       p.clear_my_cache
     }
