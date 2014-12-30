@@ -130,7 +130,10 @@ class Tag
     #Cache.clear! 
   } # some were marked with it, left side is messed up...may as well start over...
 
-  after_save { |tag|
+  after_save :clear_my_cache_and_associated 
+  after_create :clear_my_cache_and_associated 
+
+  def clear_my_cache_and_associated
     Rails.logger.info "clearing for tag with all children [!] #{tag} #{tag.name}"
     # case of creating a "new" one I guess...
     #Cache.delete_by_type 'tags'# cached left side is messed now
@@ -139,10 +142,9 @@ class Tag
     # NB this is still not enough, if a tag gains its first product it should reset more apparently...
     tag.products.each{|p|  
       # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...   
-      #Rails.logger.info "NOT clearing child product cache"
       p.clear_my_cache
     }
-  } 
+  end 
 
   def clear_public_cached
     files = Dir[RAILS_ROOT + '/public/cache/' + self.name.gsub('/', '_').gsub(' ', '_') + '*'] # SATB causes SATBB clear too but...
