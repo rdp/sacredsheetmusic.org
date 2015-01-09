@@ -87,21 +87,22 @@
 
                   <% advertise_competition = true %>
                   <% if advertise_competition %>
-                    <% if Time.now < Preference.competition_end_time %>
+                    <% if Time.now < Preference.competition_start_time %>
                       <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
-                        Come vote for your favorites in our <br/>
-                        <%=link_to '2014 Sheet Music Competition!', :controller => "music", :action=>"competition" %>
-                      </div>
-                      <!--div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Composer? Arranger? <br/>
                         Check out our <br/>
-                        <%=link_to '2014 Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
-                      </div-->
-                    <% else %>
-                      <!--div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
+                        <%=link_to Time.now.year.to_s + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
+                      </div>
+                   <% elsif Time.now < Preference.competition_end_time %>
+                      <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
+                        Come vote for your favorites in our <br/>
+                        <%=link_to Time.now.year.to_s + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
+                      </div>
+                    <% elsif Time.now < (Preference.competition_end_time + 1.month) %>
+                      <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Come check out our <br/>
-                        <%=link_to '2014 Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
-                      </div-->
+                        <%= link_to Time.now.year.to_s + ' Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
+                      </div>
                     <% end %>
                 <% end %>
 

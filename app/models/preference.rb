@@ -6,6 +6,10 @@ class Preference
     Time.parse(Preference.get_value('competition_end_date'))
   end
 
+  def self.competition_start_time
+    Time.parse(Preference.get_value('competition_start_date'))
+  end
+
 end
 
 
