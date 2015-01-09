@@ -154,12 +154,12 @@
                     total pdf downloads: <%= @parent_tag.all_products_pdf_downloads %>
                     total hits: <%= @parent_tag.all_products_hits %> total redirs: <%= @parent_tag.all_products_redirects %>
 <br/>
-                    <%= link_to('send stats composer', :controller => :products, :action => :single_composer_stats, :id => @parent_tag.id) %>
-<br/>
                     <%= link_to('yearly spam composer', :controller => :products, :action => :spam_composer, :id => @parent_tag.id) %>
 <br/>
                     <%= link_to('see stats composer', :controller => "/music", :action => :composer_all_song_stats, :id => @parent_tag.id) %>
-                 <% end %>
+<br/>
+                    <%= link_to("spam all composers", :controller => :products, :action => "spam_all_composers_pre") %>
+            <% end %>
 
 
 	<%= 
@@ -192,4 +192,3 @@
 </div>
 
 <div class="clear"></div>
-<%= link_to("spam all composers", :controller => :products, :action => "spam_all_composers_pre") %>
