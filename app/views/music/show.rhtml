@@ -12,7 +12,8 @@
 <% raise 'song disabled?' if @product.date_available > Time.now %>
 
 <% @two_column_layout = true %>
-<div style="float: left; width: 18%; margin-left: 2px;">
+
+<div style="float: left; width: 18%; margin-left: 2px; overflow: hidden;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
   <br/>
   <%= if session[:user]; '(' + link_to('edit this song', :controller =>  'admin/products', :action => :edit_song_easy, :id => @product.id) + ')'; end %>
@@ -109,11 +110,6 @@
       <% end %>
     </ul>
 <% end %> <!-- end downloads -->
-        <% if @product.description.present? %>
-	<div style="padding-top:10px;">
-          Notes: <%= @product.description %>
-	</div>
-        <% end %>
     <% if true || !@product.is_competition? %> 
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
@@ -180,6 +176,11 @@
 
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
+        <% if @product.description.present? %>
+	  <div style="padding-top:10px;">
+            Song background: <%= @product.description %>
+	  </div>
+        <% end %>
     <% if !@images.present? %>
       <h1 style="margin: 0px; margin-left: 50px;">
          <%=link_to(@product.name, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' ) %>
