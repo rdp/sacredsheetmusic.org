@@ -87,33 +87,29 @@
                        year = Time.now.year.to_s
                   %>
                 <% if Time.now > (start_time - 2.months) && Time.now < (end_time + 1.month) %> 
+                    <div style="font-size: 15px; float:left; width: 220px; margin-left: 10px; background-color: #ffe066; padding: 5px;  border: 2px solid; border-radius: 15px;">
                     <% if Time.now < start_time %>
-                      <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
-                        Composer? Arranger? <br/>
+                        Compose? Arrange? <br/>
                         Check out our <br/>
                         <%=link_to year + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition-current-year' %>
-                      </div>
                    <% elsif Time.now < end_time %>
-                      <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Come vote for your favorites in our <br/>
                         <%=link_to year + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
-                      </div>
                    <% else %>
-                      <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Come check out our <br/>
                         <%= link_to year + ' Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
-                      </div>
                    <% end %>
+                   </div>
                <% end %>
 
 		<!-- search box on right -->
-		<div id="searchbox" style="width: 350px; margin-top: 3px;">
+		<div id="searchbox" style="width: 300px; margin-top: 3px;">
                     <div id="spinner_search" style="display:none;">
                       <%= image_tag 'indicator.gif', :class => 'product_icon_floater', :plugin => 'substruct', :alt => '' %>
                     </div>
 			<form action="/search" method="get">
 				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show(); $('spinner_search').update('Searching...');"/> <!-- avoid x and y get params -->
-				<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="float:right; margin-right: 5px;" /> <!-- Search -->
+				<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="width: 200px; float:right; margin-right: 5px;" /> <!-- Search -->
 			</form>
 
 		</div>
