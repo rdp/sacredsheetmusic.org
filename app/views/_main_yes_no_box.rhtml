@@ -91,7 +91,7 @@
                     <% if Time.now < start_time %>
                         Compose? Arrange? <br/>
                         Check out our <br/>
-                        <%=link_to year + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition-current-year' %>
+                        <%=link_to year + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
                    <% elsif Time.now < end_time %>
                         Come vote for your favorites in our <br/>
                         <%=link_to year + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
