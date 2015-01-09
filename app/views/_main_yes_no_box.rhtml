@@ -79,33 +79,32 @@
 		  <div style="float:left; padding-top: 0px; padding-left: 5px; margin-bottom: -5px;"> <!-- negative bottom margin since we don't use many descend down chars and great vibes goes waaay down -->
 		     <div style="font-family: 'Great Vibes', cursive; font-size: 37px; margin-top: 10px; letter-spacing: 2px;"><a href="/" rel="home">Free <span style="letter-spacing: 8px;">L</span>DS Sheet Music</a></div>
 		  </div>
-                 <!-- middle message -->
 
-                  <!--div style="float:left; width: 300px; padding-left: 10px;">
-                     <%= link_to image_tag('check_out_our_winners.png', :width => '275px'), :controller => :music, :action => :competition_results %>
-                  </div-->
-
-                  <% advertise_competition = true %>
-                  <% if advertise_competition %>
-                    <% if Time.now < Preference.competition_start_time %>
+                 <!-- middle message/section -->
+                  <% 
+                       end_time = Preference.competition_end_time
+                       start_time = Preference.competition_start_time
+                       year = Time.now.year.to_s
+                  %>
+                <% if Time.now > (start_time - 2.months) && Time.now < (end_time + 1.month) %> 
+                    <% if Time.now < start_time %>
                       <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Composer? Arranger? <br/>
                         Check out our <br/>
-                        <%=link_to Time.now.year.to_s + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
+                        <%=link_to year + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
                       </div>
-                   <% elsif Time.now < Preference.competition_end_time %>
+                   <% elsif Time.now < end_time %>
                       <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Come vote for your favorites in our <br/>
-                        <%=link_to Time.now.year.to_s + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
+                        <%=link_to year + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
                       </div>
-                    <% elsif Time.now < (Preference.competition_end_time + 1.month) %>
+                   <% else %>
                       <div style="font-size: 15px; float:left; width: 250px; margin-left: 10px; background-color: #ffe066; padding-left: 5px;">
                         Come check out our <br/>
-                        <%= link_to Time.now.year.to_s + ' Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
+                        <%= link_to year + ' Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
                       </div>
-                    <% end %>
-                <% end %>
-
+                   <% end %>
+               <% end %>
 
 		<!-- search box on right -->
 		<div id="searchbox" style="width: 350px; margin-top: 3px;">
