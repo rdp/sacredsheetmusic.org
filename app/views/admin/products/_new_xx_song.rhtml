@@ -15,7 +15,7 @@ form_tag(options, :multipart => true)
           :controller => '/music', # our addy
           :action => 'show',
           :id => @product.code
-        }
+        }, :target => '_blank'
         )
        %>
        <br/>
