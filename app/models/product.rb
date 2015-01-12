@@ -184,11 +184,16 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
+    set_html_cache(nil) # does an assign in the DB too
     clear_all_caches = true # this is pretty heavy still [TODO why?]! default = true...
-    set_html_cache(nil)
     if clear_all_caches
       for tag in self.tags
-        tag.clear_public_cached
+        tag.clear_public_cached # since the name for this one has changed...is this enough even? if new songs were added, this will be enough...though orphan some cache entries assuming we still group cache... :|
+        if tag.songs.count == 1 # just has this song
+          tag.clear_cache_self # in case this is its first
+          # product ever and, previous to this, it wasn't even shown on 
+          # lists at all since it was empty... :|
+        end
       end
     else
       Rails.logger.info "NOT clearing local cache fiels for this product, some things could get out of date..."
@@ -200,7 +205,6 @@ class Product < Item
   } 
 
   before_destroy { |p| # make deletes cleanup too
-    Rails.logger.info "in pre destroy"
     p.clear_my_cache
   }
 

@@ -31,6 +31,10 @@ class Tag
     sum
   end
 
+  def songs
+    products
+  end
+
   def super_children_tags
     if self.children.length > 0
       [self, self.children.map{|c| c.super_children_tags}].flatten
@@ -130,21 +134,29 @@ class Tag
   after_create :clear_my_cache_and_associated 
 
   def clear_my_cache_and_associated
-    Rails.logger.info "clearing for tag with all children [!] #{self.name}"
+    Rails.logger.info "clearing for tag and parent with all songs [!] #{self.name}"
+    clear_cache_self
+    clear_cache_songs
+  end 
+
+  def clear_cache_self
     clear_public_cached
     parent.andand.clear_public_cached # in case it needs to add one to its children now...
-    # NB this is still not enough, if a tag gains its first product it should reset more apparently...
+    Cache.delete_by_type 'tags'# cached left side is messed now -- this also clears all local caches, restarts
+  end
+
+  def clear_cache_songs
     products.each{|p|  
       # hopefully no...infinite recursion here since the product just calls back to tags.clear_public_cached...   
       p.clear_my_cache
     }
-    Cache.delete_by_type 'tags'# cached left side is messed now -- this also clears all local caches, restarts
-  end 
+  end
+
 
   def clear_public_cached
     files = Dir[RAILS_ROOT + '/public/cache/' + self.name.gsub('/', '_').gsub(' ', '_') + '*'] # SATB causes SATBB clear too but...
     files += Dir[RAILS_ROOT + '/public/cache/all_songs*'] # this one too :)
-    Rails.logger.info "clearing #{files.inspect} #{self.name}"
+    Rails.logger.info "clearing files=#{files.inspect} #{self.name}"
     files.each{|f| File.delete f}
     files
   end
