@@ -1,0 +1,18 @@
+<div id="left">
+  <h1>Create new admin user</h1><a href="https://www.random.org/strings/?num=10&len=7&digits=on&loweralpha=on&unique=on&format=html&rnd=new">randomzer</a>
+  <ul class="navigation secondary">
+    <li><a href="/admin/users/list/">Back to User List</a></li>
+  </ul>
+
+  <%= form_tag :action => "new" %>
+    <%= render :partial => "form" %>
+    <%= submit_tag 'Save New User', :class => 'button hundredthirty' %>
+  </form>
+</div>
+
+
+<!-- RIGHT -->
+<div id="right">
+
+</div>
+<div class="clear">&nbsp;</div>
