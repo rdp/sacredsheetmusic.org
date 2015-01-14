@@ -105,7 +105,9 @@
 		<!-- search box on right -->
 		<div id="searchbox" style="width: 300px; margin-top: 3px;">
                     <div id="spinner_search" style="display:none;">
+                     <!-- this was messing up facebook img:og tags, and just gets accidentaly overridden with the update anyway... 
                       <%= image_tag 'indicator.gif', :class => 'product_icon_floater', :plugin => 'substruct', :alt => '' %>
+                       -->
                     </div>
 			<form action="/search" method="get">
 				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show(); $('spinner_search').update('Searching...');"/> <!-- avoid x and y get params -->
