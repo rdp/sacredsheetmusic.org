@@ -1,3 +1,6 @@
+<% if session[:user] -%>
+  <font color="green">Currently logged in<br/></font>
+<% end %>
 <div style="float: left; width: 700px;">
 
 <%= @content_node.content %>

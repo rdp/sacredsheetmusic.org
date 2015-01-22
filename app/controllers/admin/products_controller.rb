@@ -8,6 +8,7 @@ class Admin::ProductsController < Admin::BaseController
     user = User.find(session[:user]) # session[:user] is the id
     has_admin = user.roles.detect{|role| role.name == 'Administrator'}
     if !has_admin
+       flash.keep # sigh
        redirect_back_or_default :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' # back to the non admin user main page :)
        return
     end

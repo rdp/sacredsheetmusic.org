@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 # this model expects a certain database layout and its based on the name/login pattern. 
+
 class User < ActiveRecord::Base
 	has_and_belongs_to_many :roles, :order => 'name ASC'
 	
@@ -14,11 +15,11 @@ class User < ActiveRecord::Base
 	def validate
 	  if (self.new_record? || (!self.password.blank? && !self.password_confirmation.blank?))  
 	    if (5 > self.password.length || 40 < self.password.length)
-        errors.add(:password, " must be between 5 and 40 characters.")
-      end
-    end
+                errors.add(:password, " must be between 5 and 40 characters.")
+            end
+           end
     
-    # check presence of password & matching if they both aren't blank
+            # check presence of password & matching if they both aren't blank
   	if (self.password != self.password_confirmation) then
   		errors.add(:password, " and confirmation don't match.")
   	end

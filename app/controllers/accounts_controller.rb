@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
     if request.post?
       if user = User.authenticate(params[:user_login], params[:user_password])
         session[:user] = user.id
-        flash['notice']  = "Login successful"
+        flash['notice']  = "Login successful, welcome #{user.login}"
         redirect_back_or_default :action => "welcome"
       else
         flash.now['notice']  = "Login unsuccessful"
@@ -20,11 +20,12 @@ class AccountsController < ApplicationController
   
   def logout
     session[:user] = nil
-    flash[:notice] = 'logged out' # doesn't work?
+    flash[:notice] = 'logged out' # hard to get to username :|
     redirect_to "/"
   end
     
   def welcome
+    flash.keep # :|
   end
   
 end
