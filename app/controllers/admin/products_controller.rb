@@ -345,7 +345,7 @@ class Admin::ProductsController < Admin::BaseController
         temp_files << do_download_pdf(url)
       end
 
-      # do after the pdf for ordering sake...
+      # do after the pdf for faux ordering sake...
       if params[:download_mp3_url].present?
         url = params[:download_mp3_url]
         temp_files << do_download_mp3(url)
@@ -378,7 +378,7 @@ class Admin::ProductsController < Admin::BaseController
                   got_one = true
                 end
               rescue ContinueError => e
-                logger.info e.to_s # ok
+                logger.info "done with pdf: #{e}"
               end
               unless got_one
                 FileUtils.cp i[:download_data].path, "/tmp/latest_failure.pdf"
@@ -386,7 +386,7 @@ class Admin::ProductsController < Admin::BaseController
               end
             end
             
-            # and a hacky work-around for unknown file content types...I guess...
+            # and a hacky work-around for unknown file content types...I guess...[mcsz type weird ones?]
             if new_download.content_type == ""
               new_download.content_type = "application/#{new_download.name.split('.')[-1]}"
             end
@@ -403,8 +403,9 @@ class Admin::ProductsController < Admin::BaseController
       for file in temp_files
         FileUtils.rm_rf file
       end
+      @product.clear_my_cache # maybe necessary if we just added a pdf/images...
 
-      # product was already saved...
+      # product was already saved at least once...
       flash[:notice] ||= ''
       if @product.hymn_tag
         for tag in @product.hymn_tags
@@ -413,7 +414,7 @@ class Admin::ProductsController < Admin::BaseController
           end
         end
         @product.clear_my_cache # force it to clear its html cache so that it can show its new tags now...
-        @product.reload # load new tags into this object as well
+        @product.reload # load new shared tags into this object as well
 
         if params[:product][:tag_ids]
           desired_tags = params[:product][:tag_ids].select{|id| !id.to_s.empty? }.map{|s| s.to_i}.sort
@@ -425,7 +426,7 @@ class Admin::ProductsController < Admin::BaseController
       end
  
       flash[:notice] += "<b>Song '#{@product.name}' saved successfully!</b><br/>"
-      # this calculate don edit page already: add_current_product_problems_to_flash false
+      # this calculated on edit page already: add_current_product_problems_to_flash false
       if image_errors.length > 0
         flash[:notice] += "<b>Warning:</b> Failed to upload image(s) #{image_errors.join(',')}. This may happen if the size is greater than the maximum allowed of #{Image::MAX_SIZE / 1024 / 1024} MB!"
       end
