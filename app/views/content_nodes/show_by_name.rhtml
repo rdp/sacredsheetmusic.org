@@ -1,5 +1,5 @@
-<% if session[:user] -%>
-  <font color="green">Currently logged in<br/></font>
+<% if @user -%>
+  <font color="green">Currently logged in as <%= @user.login %><br/></font>
 <% end %>
 <div style="float: left; width: 700px;">
 

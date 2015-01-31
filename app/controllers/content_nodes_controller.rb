@@ -4,6 +4,9 @@ class ContentNodesController < ApplicationController
 
   # Shows an entire page of content by name
   def show_by_name
+
+    @user = User.find(session[:user]) if session[:user]
+
     @content_node = ContentNode.find(:first, :conditions => ["name = ?", params[:name]])
     if !@content_node then
       render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
