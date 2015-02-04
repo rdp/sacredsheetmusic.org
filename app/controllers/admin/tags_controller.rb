@@ -33,6 +33,7 @@ class Admin::TagsController < Admin::BaseController
         render and return
       end
       @parent_tag_id = @parent_tag.id
+      @title = "Manage Tags #{@parent_tag.name}"
       @tags = @parent_tag.children
     end
   end
