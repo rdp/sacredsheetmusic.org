@@ -474,19 +474,21 @@ class Product < Item
     else
       tags.select{|t| !t.is_hymn_tag?}.reject{ |t| 
         (t.child_ids - self.tag_ids) != t.child_ids # reject it if we have a child also linked
-      }.reject{|t| t.is_original_tag?}.sort_by{|t| 
-         if( t.is_voicing? || t.name =~ /vocal solo/i)
+      }.reject{|t| 
+        t.is_original_tag?
+      }.sort_by { |t| 
+         if( t.is_voicing? || t.name =~ /vocal solo/i )
            if t.name =~ /^[A-Z]+$/
-            0 # SATB is more important
+            [0, t.name] # SATB is more important
            else
-            1 # Harmonica
+            [1, t.name] # Harmonica
            end
          elsif t.is_composer_tag?
-           2
+           [2, t.name]
          elsif t.is_topic_tag?
-           3
+           [3, t.name]
          else # song attribute [?]
-           4
+           [4, t.name]
          end
        }
      end
