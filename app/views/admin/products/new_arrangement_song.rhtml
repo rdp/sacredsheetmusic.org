@@ -7,21 +7,23 @@ Email us if something is missing from any of these lists.
 
 <%
 
-# show topics if an arrangement that hasn't ever gotten any yet [or original]
-show_topics = true if @product.id && !@product.tags.detect{|t| t.is_topic_tag?}
+# show topics if an arrangement that hasn't ever gotten any yet [or already saved so not initial entry]
+show_topics = true if @product.id
 
 %>
 
 <% if show_topics %>
-  <div class="listContainer" style="">
+  <br/>
+  <br/>
+  (You usually don't have to select topics for this song since it is an arrangement piece, but can here).
+  <div >
 <% else %>
-<h2>Topics:</h2>
-  (You don't have to select topics for this song since it is an arrangement piece).
   <div style="display: none;"> <!-- still have to have it in the html though -->
 <% end %>
 
   <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Topics', :tag2 => Tag.find_by_name('Topics')} ) %>
-</div>
+
+  </div>
 
 <%= render :partial => 'new_xx_common_tags' %>
 
