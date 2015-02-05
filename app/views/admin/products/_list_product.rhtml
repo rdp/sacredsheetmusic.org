@@ -1,6 +1,6 @@
 
       <td>
-        <%= link_to(h(product.name), :action => 'edit', :id => product) %>
+        <%= link_to(h(product.name.strip.present? ? product.name : "(has no name)"), :action => 'edit', :id => product) %>
         <br>
         <span class="info">
          url: <%= (product.original_url[0..50] + '...') || 'none' %><br/>
