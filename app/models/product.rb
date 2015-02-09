@@ -323,7 +323,8 @@ class Product < Item
       # cello and viola is ok though...XXXX better distinguish here!??
 
       if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i} # cantata's really can be SATB and SAB...
-        problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, a different ont SAB (or in this case #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}) if applicable."
+        # people didn't like this...TODO more
+        #problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, a different ont SAB (or in this case #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}) if applicable."
       end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
