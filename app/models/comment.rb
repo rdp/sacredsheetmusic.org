@@ -1,5 +1,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :product
+
+  belongs_to :created_admin_user, :class_name => 'User' # has a reference to a User
+
   
   def user_name_with_url_and_colon
     return '' unless user_name && user_name.length > 0

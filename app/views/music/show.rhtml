@@ -164,7 +164,11 @@
 
 
         <hr style="margin-bottom: 10px;"/>
-         <% show_voting_options = false %>
+         <% 
+           end_time = Preference.competition_end_time
+           start_time = Preference.competition_start_time
+           show_voting_options = Time.now < end_time && Time.now > start_time
+         %>
          <% if @product.is_competition? && show_voting_options %>
              <%= render :partial => 'comments_competition' %>
          <% else %>

@@ -136,12 +136,12 @@
           <span class="info">If set, after a successful order all but the last 4 digits of CC# will be cleared.  Doesn't make a difference if you use paypal IPN, as no credit card numbers are entered on site.</span>
         </p>
         <p>
-          <%= make_label('Competition end date like Mar 01 00:00:00 -0700 2014', true) %>
-          <%= text_field_tag('prefs[competition_end_date]', @prefs['competition_end_date'].value, :size => 24, :class => 'textInput') %>
+          <%= make_label('Competition start date like Feb 01 00:00:00 -0700 2014', true) %>
+          <%= text_field_tag('prefs[competition_start_date]', @prefs['competition_start_date'].value, :size => 24, :class => 'textInput') %>
         </p>
         <p>
-          <%= make_label('Competition start date like Mar 01 00:00:00 -0700 2014', true) %>
-          <%= text_field_tag('prefs[competition_start_date]', @prefs['competition_start_date'].value, :size => 24, :class => 'textInput') %>
+          <%= make_label('Competition end date like Mar 01 00:00:00 -0700 2014', true) %>
+          <%= text_field_tag('prefs[competition_end_date]', @prefs['competition_end_date'].value, :size => 24, :class => 'textInput') %>
         </p>
       </div>
     </div>
