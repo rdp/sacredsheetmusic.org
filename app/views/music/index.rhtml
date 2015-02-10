@@ -2,7 +2,9 @@
 %>
 
 <div id="fullContent"  style="background-image:url('/images/trebs/trebs240.gif');">
-
+<% if @show_green %>
+  <%= render :partial => '/shared/logged_in_green'%>
+<% end %>
         <h1 style="<%= h1_style %>"><%= @header || @title %></h1>
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>

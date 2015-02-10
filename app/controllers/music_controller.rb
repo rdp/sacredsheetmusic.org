@@ -60,6 +60,20 @@ class MusicController < StoreController
 
   public
 
+  def competition
+    content = ContentNode.find(:first, :conditions => ["name = ?", 'competition-header'])
+    @title = content.title
+    @header = "" # let content define it, instead of overriding it...
+    @show_green = true
+    @products = paginate_and_filter(Product.find(:all,
+      :order => session_rand,
+      :conditions => ["is_competition=?", true]
+    ), 50000)
+    @was_filtered_able = false
+    @display_bio = content.content
+    render :action => 'index.rhtml' and return # no cacheing here :)
+  end
+
   def competition_results
     @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'competition-results'])
     @title = @content_node.title
@@ -579,19 +593,6 @@ class MusicController < StoreController
 
   #def popular_songs # songs_stats is straight rhtml...
   #end
-
-  def competition
-    content = ContentNode.find(:first, :conditions => ["name = ?", 'competition-header'])
-    @title = content.title
-    @header = ""# let content display it...
-    @products = paginate_and_filter(Product.find(:all,
-      :order => session_rand,
-      :conditions => ["is_competition=?", true]
-    ), 50000)
-    @was_filtered_able = false
-    @display_bio = content.content
-    render :action => 'index.rhtml' and return # no cacheing here :)
-  end
 
   def most_recently_added
     @title = 'Recently added 100 songs'

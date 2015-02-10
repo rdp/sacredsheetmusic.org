@@ -1,6 +1,5 @@
-<% if @user -%>
-  <font color="green">Currently logged in as <%= @user.login %><br/></font>
-<% end %>
+<%= render :partial => '/shared/logged_in_green'%>
+
 <div style="float: left; width: 700px;">
 
 <%= @content_node.content %>
