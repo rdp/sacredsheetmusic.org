@@ -28,9 +28,14 @@ module SubstructApplicationController
         end
   end
 
-  # run in a before filter
+  # run in a before filter...
   def get_nav_tags
+    # huh?
     @main_nav_tags = Tag.find_ordered_parents.reject{|t| t.name_in_nav == 'skip'}
+    # a few use this
+    if session[:user]
+      @user = User.find(session[:user])
+    end
   end
-  
+
 end
