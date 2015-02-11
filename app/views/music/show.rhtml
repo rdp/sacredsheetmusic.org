@@ -139,6 +139,19 @@
         <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
+        <hr style="margin-bottom: 10px;"/>
+         <% 
+           end_time = Preference.competition_end_time
+           start_time = Preference.competition_start_time
+           show_voting_options = Time.now < end_time && Time.now > start_time
+         %>
+         <% if @product.is_competition? && show_voting_options %>
+             <%= render :partial => 'comments_competition' %>
+         <% else %>
+             <%= render :partial => 'comments' %>
+         <% end %>
+        <hr style="margin-top: 10px;"/>
+
         <br />
     <% if @product.lyrics.present? %>
        Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
@@ -162,19 +175,6 @@
 
     <% end %>
 
-
-        <hr style="margin-bottom: 10px;"/>
-         <% 
-           end_time = Preference.competition_end_time
-           start_time = Preference.competition_start_time
-           show_voting_options = Time.now < end_time && Time.now > start_time
-         %>
-         <% if @product.is_competition? && show_voting_options %>
-             <%= render :partial => 'comments_competition' %>
-         <% else %>
-             <%= render :partial => 'comments' %>
-         <% end %>
-        <hr style="margin-top: 10px;"/>
 
 </div> <!-- end entire float left column -->
 
