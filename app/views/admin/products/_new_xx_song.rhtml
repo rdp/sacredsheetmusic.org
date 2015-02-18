@@ -48,8 +48,20 @@ form_tag(options, :multipart => true)
                         <% else %>
                           Since this is an arrangement, song name is automatically assigned as the name of the hymn it arranges.  You can change the name later if desired.
                         <% end %>
+<br/>
+<br/>
 		</div>
+		<div class="float">
+		<%= make_label('Website URL (if you have a website) address of your song--like http://yourwebsitename.com/SONG_NAME.html</b> or http://yourwebsitename.com/all_songs_list.html -- wherever that song is listed, on your site) [optional]:') %>
+			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 50, :placeholder => 'http://yourwebsite.com/song_page.html...'  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
+		</div>
+                <br/>
 
+<br/>
+<div class="float">
+        <%= make_label('Description/song history/initial inspiration [optional]:') %>
+	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
+</div>
 <% if have_name %>
                <div class="float">
                  <%= make_label('Song Lyrics [optional]:') %>
@@ -59,17 +71,7 @@ form_tag(options, :multipart => true)
 <div class="clear"></div>
                  (You don't have to enter lyrics for this song since it is an arrangement song.)
 <% end %>
-		<%= make_label('Website URL (of your song--like http://yourwebsitename.com/SONG_NAME.html</b> or http://yourwebsitename.com/all_songs_list.html -- wherever that song is listed, on your site) [if you have a website, optional]:') %>
-		<div class="float">
-			<%= text_field 'product', 'original_url', :class => 'textInput', :size => 50, :placeholder => 'http://yourwebsite.com/song_page.html...'  %> <%= "<a href=#{@product.original_url} target=\"_blank\">Visit original url</a>" if @product.original_url.present? %>
-		</div>
-                <br/>
-
-<br/>
-<div class="padLeft">
-        <%= make_label('Description/song history/initial inspiration [optional]:') %>
-	<%= text_area 'product', 'description', :rows => 5, :class => 'textArea', :style => 'width:670px;'  %>
-</div>
+<div class="clear"></div>
 
 <script type="text/javascript">
 <!--
@@ -176,7 +178,7 @@ form_tag(options, :multipart => true)
 <br/>
 <br/>
 <% end %>
-   <div class="float" style="margin-left: 10px;">
+   <div class="float" >
       <%= make_label('Youtube video id (like JW5meKfy3fY) if it has one [optional]:') %>
       <%= text_field 'product', 'youtube_video_id', :class => 'textInput', :size => 30  %>
    </div>
