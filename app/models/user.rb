@@ -2,6 +2,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/user"
 
 class User
   belongs_to :composer_tag, :class_name => 'Tag' # has a reference to a tag
+  has_many :comments, :foreign_key => :created_admin_user_id
 
   def validate
           if (self.new_record? || (!self.password.blank? && !self.password_confirmation.blank?))
