@@ -3,7 +3,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/user"
 class User
   belongs_to :composer_tag, :class_name => 'Tag' # has a reference to a tag
 
- def validate
+  def validate
           if (self.new_record? || (!self.password.blank? && !self.password_confirmation.blank?))
             if (3 > self.password.length || 40 < self.password.length)
                 errors.add(:password, " must be between 3 and 40 characters.") # this is redundant to another validation anyway ??
