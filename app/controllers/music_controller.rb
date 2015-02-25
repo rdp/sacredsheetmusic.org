@@ -13,12 +13,6 @@ class MusicController < StoreController
      @wishlist_items = session_object.wishlist_items # lacks pagination...
   end
 
-  def burn_cpu_one_minute
-    starty = Time.now
-    while (Time.now - starty < 60)
-    end
-  end
-  
   def add_to_wishlist
     if params[:id]
       if item = Item.find_by_id(params[:id])
@@ -45,11 +39,13 @@ class MusicController < StoreController
     # like "abcdefrandomrandomrandom"
     request.session_options[:id]
   end
+
    # stable, but random just for them :)
   def session_rand
-    # session_id is a big long string I believe..
-    "rand(#{session_id.hash})"
+    # session_id is an always present big long string I believe..
+    "rand(#{session_id.consistent_hash})"
   end
+
   def session_ip
     request.remote_ip
   end
@@ -61,12 +57,17 @@ class MusicController < StoreController
   public
 
   def competition
-    content = ContentNode.find(:first, :conditions => ["name = ?", 'competition-header'])
+    content = ContentNode.find_by_name('competition-header')
     @title = content.title
     @header = "" # let content define it, instead of overriding it...
     @show_green = true
+    order = session_rand
+    if params['latest']
+      order = "date_available"
+    end
+Rails.logger.info("using order #{order}")
     @products = paginate_and_filter(Product.find(:all,
-      :order => session_rand,
+      :order => order,
       :conditions => ["is_competition=?", true]
     ), 50000)
     @was_filtered_able = false
@@ -75,7 +76,7 @@ class MusicController < StoreController
   end
 
   def competition_results
-    @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'competition-results'])
+    @content_node = ContentNode.find_by_name('competition-results')
     @title = @content_node.title
     @products = Product.find(:all, :conditions => {:is_competition => true}).sort_by{|p| p.total_valid_competition_points }.reverse
     @peer_review_products = Product.find(:all, :conditions => {:is_competition => true}).sort_by{|p| p.competition_peer_review_average}.select{|p| p.competition_peer_review_average >= 4.0}.reverse
@@ -316,7 +317,7 @@ class MusicController < StoreController
   def render_home # def home
     not_a_bot # for logging purposes :)
     # I think we could just put this into the routing itself, and not have to do the render component junk...sigh...
-    @content_node = ContentNode.find(:first, :conditions => ["name = ?", 'home'])
+    @content_node = ContentNode.find_by_name('home')
     recent_products = Product.find(:all, :order => 'date_available DESC', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 25)
     @recent_products = recent_products [0..3] # 4 == one line worth
     rand_products = Product.find(:all, :order => 'RAND()', :conditions => Product::CONDITIONS_AVAILABLE, :limit => 3)

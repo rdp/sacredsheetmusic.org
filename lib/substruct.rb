@@ -27,9 +27,14 @@ class File
 
 end
 
+require 'zlib'
 class ::String
   def strip_html_tags
-    gsub(/[<].*?[>]/, '')
+    gsub(/[<].*?[>]/, '') # TODO is this enough though?
+  end
+
+  def consistent_hash
+    Zlib.crc32(self) # 32 bits I believe, reliable across restarts [yikes]
   end
 end
 
