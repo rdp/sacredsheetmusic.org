@@ -213,17 +213,18 @@ class Product < Item
     Cache.delete_by_type('tags') # if date_available has changed, we're changed here to...
   end
 
-  def total_competition_points
-    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.map(&:overall_rating).sum
+  def total_valid_competition_points 
+    competition_valid_reviews.map(&:overall_rating).sum
   end
 
-  def total_valid_competition_points 
+  def competition_valid_reviews
     end_time = Preference.competition_end_time
-    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.select{|c| c.created_at < end_time}.map(&:overall_rating).sum
+    self.comments.select{|c| c.overall_rating > -1}.select{|c| c.is_competition? }.select{|c| c.created_at < end_time}
   end
+
 
   def peer_reviews
-    self.comments.select{|c| c.is_competition? && c.overall_rating > -1 && (c.comment.size > 100 || c.created_admin_user  )}
+    competition_valid_reviews.select{|c| c.comment.size > 100 || c.created_admin_user} # blah XXXX
   end
 
   def competition_peer_review_average
