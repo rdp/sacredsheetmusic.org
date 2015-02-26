@@ -2,6 +2,8 @@
 
 <%= @content_node.content %>
 
+<div style="width:50%; float:left;">
+
 <% for p in @products[0..5] %>
   <%= p.total_valid_competition_points %> points: <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
 <div class="clear"></div>
@@ -19,11 +21,9 @@
 <% end %>
 </div>
 
-<br/>
-<br/>
-<br/>
-<hr/>
-<br/>
+</div>
+
+<div style="width:50%; float:left;">
 
 And for our peer adjudicated (calculated as the average of ratings received with written feedback):
 <br/>
@@ -34,5 +34,7 @@ And for our peer adjudicated (calculated as the average of ratings received with
   <br/>
 <% end %>
 ...
+
+</div>
 
 </div>
