@@ -62,10 +62,9 @@ class MusicController < StoreController
     @header = "" # let content define it, instead of overriding it...
     @show_green = true
     order = session_rand
-    if params['latest']
-      order = "date_available"
+    if params['order'] == 'newest'
+      order = "updated_at desc"
     end
-Rails.logger.info("using order #{order}")
     @products = paginate_and_filter(Product.find(:all,
       :order => order,
       :conditions => ["is_competition=?", true]
