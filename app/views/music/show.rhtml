@@ -110,7 +110,7 @@
       <% end %>
     </ul>
 <% end %> <!-- end downloads -->
-    <% if true || !@product.is_competition? %> 
+    <% if !@product.is_competition? %> 
 
         <% if (url = @product.composer_generic_contact_url).present? && url !~ /lds.org/ %>
           <br/>
@@ -123,7 +123,6 @@
              Voicing/Instrumentation: <%= voicing_tags.map{|t| tag_link(t)}.join(', ') %>
            <br/><br/>
         <% end %>
-
 
         <% for hymn_tag in @product.hymn_tags %>
           <% if (competitors_count = hymn_tag.products.size - 1) > 0 %>
@@ -139,13 +138,15 @@
         <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
+   <% end %>
         <hr style="margin-bottom: 10px;"/>
          <% 
-           end_time = Preference.competition_end_time
-           start_time = Preference.competition_start_time
-           show_voting_options = Time.now < end_time && Time.now > start_time
+           #end_time = Preference.competition_end_time
+           #start_time = Preference.competition_start_time
+           #show_voting_options = Time.now < end_time && Time.now > start_time
          %>
-         <% if @product.is_competition? && show_voting_options %>
+         <% if @product.is_competition? # && show_voting_options
+%>
              <%= render :partial => 'comments_competition' %>
          <% else %>
              <%= render :partial => 'comments' %>
@@ -153,10 +154,10 @@
         <hr style="margin-top: 10px;"/>
 
         <br />
-    <% if @product.lyrics.present? %>
-       Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
-    <% end %>
-       <br />
+        <% if @product.lyrics.present? %>
+           Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
+           <br />
+        <% end %>
         <% for composer_tag in @product.composer_tags %>
              <% if composer_tag.products.count > 1 %>
                See more from <%= tag_link(composer_tag) %>.
@@ -172,8 +173,6 @@
              <br />
         <% end %>
         <br/>
-
-    <% end %>
 
 
 </div> <!-- end entire float left column -->
