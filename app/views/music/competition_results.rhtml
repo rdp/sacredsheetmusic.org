@@ -2,11 +2,19 @@
 
 <%= @content_node.content %>
 
-<% for p in @products %>
-  <%= p.total_valid_competition_points %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
-  <br/>
+<% for p in @products[0..5] %>
+  <%= p.total_valid_competition_points %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %><br/>
 <% end %>
 
+<button onclick="$('rest_open').toggle();"> Click to see all songs</button>.
+<div id='rest_open' style="display:none;">
+<% for p in @products[6..-1] %>
+  <%= p.total_valid_competition_points %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %><br/>
+<% end %>
+</div>
+
+<br/>
+<br/>
 <br/>
 <hr/>
 <br/>
