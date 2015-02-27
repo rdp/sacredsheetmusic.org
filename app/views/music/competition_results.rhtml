@@ -13,20 +13,17 @@ First the "open vote" category:
 <div class="clear"></div>
 <% end %>
 
-<button onclick="$('rest_open').toggle();"> Click to see all songs</button>.
-<div id='rest_open' style="display:none;">
 <% for p in @products[6..-1] %>
   <%= p.total_valid_competition_points %> points: <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
 <div class="clear"></div>
 <%= p.thumbnail_html_cache %>
 <div class="clear"></div>
 <% end %>
-</div>
 
 </div>
 
 <div style="width:50%; float:left;">
-And for our peer review category winners (out of possible score of 5.0):
+And for our peer review category winners (out of possible 5.0):
 <br/>
 <% for p in @peer_review_products %>
   <%= "%.01f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
