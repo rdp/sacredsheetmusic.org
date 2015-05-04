@@ -4,10 +4,12 @@
         <td>&nbsp;</td>
        <% end %>
 		<td>
-		   <%= check_box_tag("product[tag_ids][]", child.id, product.tags.include?(child)) %>
+		   <%=  checked = product.tags.include?(child)
+                        check_box_tag("product[tag_ids][]", child.id, checked) 
+                   %>
 		</td>
 		<td colspan="<%= @max_depth - depth%>">
-		  <%=h child.name == "Original" ? child.name : child.name.gsub(/[,']/, '').gsub(/original/i, 'original') %>
+		  <%=h child.name.gsub(/[,']/, '').gsub(/original/i, 'original') %>
 		</td>
 	</tr>
 	<% if child.children.length > 0 %>

@@ -16,7 +16,7 @@
 		</tr>
 		<tbody id="tag_list_tbody">
         <%  #search for most depth
-           @max_depth = 4 # hard code for now
+           @max_depth = 4 # hard code for now, too slow!
           %>
 			<%= render(:partial => 'tag_list_form_row', :collection => [tag2], :locals => {:product => @product}) %>
 		</tbody>
