@@ -16,5 +16,9 @@ class User
                 errors.add(:password, " and confirmation don't match.")
         end
   end
+ 
+  def is_admin?
+    roles.detect{|role| role.name == 'Administrator'}
+  end
 
 end

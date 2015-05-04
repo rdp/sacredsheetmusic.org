@@ -28,13 +28,13 @@ module SubstructApplicationController
         end
   end
 
-  # run in a before filter...
+  # run in a before filter...for everything I believe...
   def get_nav_tags
-    # huh?
+    # huh? Why do they all need this? I guess for the typical layout?
     @main_nav_tags = Tag.find_ordered_parents.reject{|t| t.name_in_nav == 'skip'}
     # a few use this
     if session[:user]
-      @user = User.find(session[:user])
+      @user = User.find(session[:user]) # NB admin also already has an @logged_in_user before filter
     end
   end
 

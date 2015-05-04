@@ -3,11 +3,9 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/admin
 class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
-
   def index
-    user = User.find(session[:user]) # session[:user] is the id
-    has_admin = user.roles.detect{|role| role.name == 'Administrator'}
-    if !has_admin
+    # discourage normal users from seeing the typical substruct admin page
+    if !@user.is_admin?
        flash.keep # sigh
        redirect_back_or_default :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' # back to the non admin user main page :)
        return
@@ -30,8 +28,7 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def edit_current_user # put it here so that roles/permissions allows a self edit :)
-    @user = User.find(session[:user]) # session[:user] is the id
+  def edit_current_user # put it here so that roles/permissions allows a self edit so they can update password :)
     @title = "Editing User #{@user.login}"
     @user.attributes = params["user"]
 

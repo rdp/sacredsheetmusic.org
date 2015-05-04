@@ -16,7 +16,7 @@ class MusicController < StoreController
   def add_to_wishlist
     if params[:id]
       if item = Item.find_by_id(params[:id])
-        if not_a_bot || logged_in_user?
+        if not_a_bot || logged_in_admin_user?
           session_object.wishlist_items << WishlistItem.new(:item_id => item.id)
         end
       else
@@ -520,7 +520,7 @@ class MusicController < StoreController
       prefix= "yes bot:"
     end
     logger.info "#{prefix} [#{ua}] [#{al}]" unless ua =~ /Wget/
-    if logged_in_user?
+    if logged_in_admin_user?
       logger.info "logged in user, fingindo ser bot para nao adjustar numeros"
       return false
     end
@@ -528,8 +528,8 @@ class MusicController < StoreController
     not_bot
   end
 
-  def logged_in_user?
-    session[:user]
+  def logged_in_admin_user?
+    session[:user] 
   end
 
   def download_helper disposition, add_count = true # this can get down to 7ms
