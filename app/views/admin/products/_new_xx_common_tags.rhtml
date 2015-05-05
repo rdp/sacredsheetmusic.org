@@ -1,5 +1,15 @@
-  <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer/Arranger name [typically your name]:', :tag2 => Tag.find_by_name('Composers')} ) %>
-  If there are other composers who collaborated with you on a piece that would like to be listed on our site, but aren't yet, please let us know, we'll add them!
+ <!-- it is specified as step x like two nests above ... --> 
+
+  <% if  @user.is_admin? || !@user.composer_tag  %>
+    <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer/Arranger name [typically your name--do not uncheck your name or you will lose editing privileges for this song]:', :tag2 => Tag.find_by_name('Composers')} ) %>
+    If there are other composers who collaborated with you on a piece that would like to be listed on our site, but aren't yet, please let us know, we can add them!
+  <% else %>
+     Composer tag is auto selected for you:
+   <div style="display:none;">
+     <!-- always selected ... -->
+     <%= check_box_tag("product[tag_ids][]", @user.composer_tag.id, checked = true) %>
+   </div>
+  <% end %>
 
   <h2>Please select any voicings that apply to your song:</h2>
 <div style="border: grey dotted thick; padding:10px; margin:5px;">
