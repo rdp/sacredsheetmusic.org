@@ -510,3 +510,5 @@ class Product < Item
 
 
 end
+
+Song = Product # so I can say Song.find_by_name LOL
