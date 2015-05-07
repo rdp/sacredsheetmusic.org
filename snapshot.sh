@@ -1,7 +1,8 @@
 echo "snapshotting (production) DB..."
 #./sessions_clear.sh
 #./cache_clear.sh
-# partial clear instead, except it zips so well, who cares?
+# partial [non file] clear instead, except it zips so well, who cares?
+puts "clearing cache table"
 nice ruby script/runner -e production "p Cache.clear!" 
 #rm log/* # we don't zip files anymore FWIW...
 cat config/database.yml

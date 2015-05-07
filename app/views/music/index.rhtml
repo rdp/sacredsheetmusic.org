@@ -70,19 +70,12 @@
     <% end %>
     </p>
   <% else %>
-        <%
-           get_all = proc {
+        <%=
                @products.map{|product| 
                  product.get_or_generate_thumbnail_cache {
                    thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
                  }
                }.join
-           } 
-        %>
-
-        <%= Cache.get_or_set_int(@products.map(&:id).hash, 'song_groups', 'group_products') { 
-              get_all.call
-            }
         %>
   <% end %>
 
