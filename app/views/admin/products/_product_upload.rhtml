@@ -3,8 +3,8 @@
 -->
 <br/>
 <hr/>
-<h1>Step 2) Upload pdf and/or song recording (mp3)</h1>
-If you just want links back from our site to yours, then don't upload any pdf's, and make sure to fill in the website URL above.  If you want to update a pdf, delete it here (the red X button to its right) and then also delete all thumbnail images.
+<h1>Step 2) Upload pdf and/or song recording (mp3) files</h1>
+If you just want links back from our site to yours, then don't upload any pdf's, and make sure to fill in the website URL above.  If you want to update a pdf, delete it here (the red X button to its right) and then also delete all thumbnail cover art images, then upload it again.
 <div class="padLeft">
 	</p>
 	<% if @product.downloads.length > 0 then %>
@@ -31,18 +31,28 @@ If you just want links back from our site to yours, then don't upload any pdf's,
 			</ul>
 		</div>
 	<% else %>
-		This song has no pdf/mp3 associated with it yet.
+		This song has no pdf/mp3 download files associated with it yet.<br/><br/>
 	<% end %>
 	
 
-</div>
-	<h4>Click "Choose File" to upload a new pdf/mp3 from your local computer.</h4>
+	<h4>Click "Choose File" here to upload a new pdf (sheet music file) from your local computer, for this song.</h4>
 	<%= 
 		render :partial => '/shared/multiple_upload',
 			:locals => {
 				:name => 'download',
 				:input_size => '30',
-                                :type => 'pdf or mp3'
+                                :type => 'pdf'
 			}
 	%>
 
+	<h4>Click "Choose File" here to upload a new mp3 (song recording file) from your local computer, for this song.</h4>
+	<%= 
+		render :partial => '/shared/multiple_upload',
+			:locals => {
+				:name => 'download',
+				:input_size => '30',
+                                :type => 'mp3'
+			}
+	%>
+
+</div>
