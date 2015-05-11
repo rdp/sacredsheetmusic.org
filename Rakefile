@@ -4,7 +4,7 @@ require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rake/rdoctask' # see README for dirs on what version where
 #require 'rdoc/task' # newer rake than0.9.6
 
 require 'tasks/rails'
