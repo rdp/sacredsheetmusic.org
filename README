@@ -4,7 +4,9 @@ To use, download, then create your vendor dir like this:
 
 now create config/database.yml with mysql parameters, then run
 
-$ rake gems:install # possibly don't need anymore.
+$ gem update --system 1.3.7 or some odd
+$ gem install os
+$ rake gems:install # possibly don't need anymore?
 $ rake db:create
 $ rake substruct:db:bootstrap
 $ rake db:migrate
