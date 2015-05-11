@@ -40,4 +40,5 @@ production:
   username: root
   password: 
   socket: /tmp/mysql.sock
-  pool: 1 # default is 5, we use 2, can run out...
+  pool: 10
+  reconnect: true
