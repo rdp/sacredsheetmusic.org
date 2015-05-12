@@ -6,6 +6,72 @@ now create config/database.yml with mysql parameters, then run
 
 # first install ruby enterprise edition, then...
 
+add 1G swap, swappiness 20 [?]
+
+install ree, must patch tcmalloc first https://github.com/sstephenson/ruby-build/issues/186
+
+CFLAGS="-O2 -fno-tree-dce -fno-optimize-sibling-calls" /home/rdp/downloads/ruby-enterprise-1.8.7-2012.02/installer --configure-arg --disable-doc 
+
+sudo apt-get install libmysqlclient-dev
+gem install mysql2
+
+.gemrc 
+gem: --no-rdoc --no-ri
+
+[install apache]
+
+run passenger install from ree, accept its apt-get suggestions/requirements
+
+TODO logrotate
+
+apache2.conf:
+
+   LoadModule passenger_module /home/rdp/installs/ree-187/lib/ruby/gems/1.8/gems/passenger-5.0.7/buildout/apache2/mod_passenger.so
+   <IfModule mod_passenger.c>
+     PassengerRoot /home/rdp/installs/ree-187/lib/ruby/gems/1.8/gems/passenger-5.0.7
+     PassengerDefaultRuby /home/rdp/installs/ree-187/bin/ruby
+   </IfModule>
+
+to sites-enabled:
+
+   <VirtualHost *:80>
+      ServerName freeldssheetmusic.org
+      ServerAlias www.freeldssheetmusic.org
+      # !!! Be sure to point DocumentRoot to 'public'!
+      DocumentRoot /home/rdp/dev/prod_flds/public
+      <Directory /home/rdp/dev/prod_flds/public>
+         # This relaxes Apache security settings.
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+         # Uncomment this if you're on Apache >= 2.4:
+         Require all granted
+      </Directory>
+   </VirtualHost>
+
+   <VirtualHost *:80>
+      ServerName www.yourhost.com
+      # !!! Be sure to point DocumentRoot to 'public'!
+      DocumentRoot /somewhere/public    
+      <Directory /somewhere/public>
+         # This relaxes Apache security settings.
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+         # Uncomment this if you're on Apache >= 2.4:
+         #Require all granted
+      </Directory>
+   </VirtualHost>
+
+(this isn't enough unfortunately see config file for full examples)
+
+$ apt-get install mysql-server
+run mysql then
+ create user 'prod_flds'@'localhost' identified by 'XX';
+create database prod_flds_database
+GRANT ALL PRIVILEGES ON prod_flds_database . * TO 'prod_flds'@'localhost';
+
+
 $ gem update --system 1.3.7 or some odd
 $ gem uninstall rake
 $ gem install rake -v 0.8.7
