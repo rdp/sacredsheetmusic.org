@@ -32,7 +32,7 @@ module SubstructApplicationController
   def get_nav_tags
     # huh? Why do they all need this? I guess for the typical layout?
     @main_nav_tags = Tag.find_ordered_parents.reject{|t| t.name_in_nav == 'skip'}
-    # a few use this
+    # a few use this, I added it :)
     if session[:user]
       @user = User.find(session[:user]) # NB admin also already has an @logged_in_user before filter
     end
