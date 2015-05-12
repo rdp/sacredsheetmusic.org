@@ -26,8 +26,8 @@ Rails::Initializer.run do |config|
   config.load_paths += %W( #{RAILS_ROOT}/vendor/plugins/substruct )
   config.action_controller.session_store = :active_record_store
 
-  # It seems Rack 1.1.0 SPECIFICALLY is required by Rails 2.3.8
-  config.gem "rack", :version => '1.1.0'
+  # It seems Rack 1.1.x SPECIFICALLY is required by Rails 2.3.8 (well, actionpack) TODO bump rack and rails v's to minor patches [or can we even vendor that with passenger though?] 1.1.6
+  config.gem "rack", :version => '~> 1.1.0'
   
   config.gem 'RedCloth', :lib => 'redcloth', :version => '3.0.4'
   config.gem 'sane'
