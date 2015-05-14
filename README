@@ -86,4 +86,6 @@ $ rake db:migrate
 
 and it should be ready.
 
+
+sudo apt-get install imagemagick
 But really you can just email us comments/concerns about the site rogerdpack@gmail.com :)
