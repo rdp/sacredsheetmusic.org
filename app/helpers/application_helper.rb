@@ -77,10 +77,11 @@ module ApplicationHelper
 
   def tag_link tag, name_to_use=tag.name, is_bullet=false
     escaped_name = URI.escape(tag.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+    escaped_name = escaped_name.gsub("%20", "_")
     if is_bullet
-      "<a style=\"margin-left: -20px; padding-left: 20px;\" href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_to_use}</a>"
+      "<a style=\"margin-left: -20px; padding-left: 20px;\" href=\"/#{escaped_name}\">#{name_to_use}</a>"
     else
-      "<a href=\"/#{escaped_name.gsub("%20", "_")}\">#{name_to_use}</a>"
+      "<a href=\"/#{escaped_name}\">#{name_to_use}</a>"
     end
   end
 
