@@ -1,15 +1,17 @@
  <!-- it is specified as step x like two nests above ... --> 
 
-  <% if  @user.is_admin? || !@user.composer_tag  %>
-    <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer/Arranger(s) (admin list):', :tag2 => Tag.find_by_name('Composers')} ) %>
+  <br/>
+  <% if @user.is_admin? || !@user.composer_tag %>
+    (Showing all composer tags since you're an admin)
+    <div style="display:visible;">
   <% else %>
-    <br/>
-     Composer is auto assigned for you as <%= @user.composer_tag.name %>.  (If you want to add other/more composers to this piece please create it then email us.)
-   <div style="display:none;">
+    Composer is auto assigned for you as <%= @user.composer_tag.name %>.  (If you want to add other/more composers to this piece please create it then email us.)
+    <div style="display:none;">
      <!-- always selected ... -->
      <%= check_box_tag("product[tag_ids][]", @user.composer_tag.id, checked = true) %>
-   </div>
   <% end %>
+    <%= render(:partial => 'crud_right_specifiable', :locals => {:title => 'Composer/Arranger(s) (admin list):', :tag2 => Tag.find_by_name('Composers')} ) %>
+   </div>
 
   <h2>Please select any voicings that apply to your song</h2> 
   Checking multiple is ok, for instance both "duet" and "SA" or both "vocal solo" and "primary children" or both "SA" and "SSA" etc.:
