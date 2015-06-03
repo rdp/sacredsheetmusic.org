@@ -1,1 +1,1 @@
-tail -f log/*.log
+tail -F log/*.log

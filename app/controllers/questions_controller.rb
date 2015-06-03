@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
                 params[:question][:long_question],
                 params[:question][:email_address]
               )
-              flash[:notice] = "Message sent successfully."
+              flash[:notice] = "Message sent successfully, thank you!"
               redirect_to '/' and return
             rescue => e
               flash[:notice] = "There was a problem sending your email please try again #{e}"
