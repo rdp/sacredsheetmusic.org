@@ -232,7 +232,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def save_internal should_render = true
-#    params[:product][:tag_ids].uniq! # we have double composer sometimes <sigh>
+    params[:product][:tag_ids].uniq! # we have double composer sometimes <sigh>
     logger.info "doing save_internal"
     # If we have ID param this isn't a new product
     if params[:id]

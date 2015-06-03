@@ -101,7 +101,7 @@ class Product < Item
     tags.clear
     for id in list
       if !id.to_s.empty?
-        tags << Tag.find(id) if !id.to_s.empty?
+        tags << Tag.find(id)
       end
     end
   end
