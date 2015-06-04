@@ -1,5 +1,6 @@
 <div id="left">
-  <h1>Create new admin user</h1><a href="https://www.random.org/strings/?num=10&len=7&digits=on&loweralpha=on&unique=on&format=html&rnd=new">randomzer</a>
+  <h1>Create new admin user</h1>
+  A random password for your usage: <%= chars = ('a'..'z').to_a + ('0'..'9').to_a; (0..6).map{ chars.random_element}.join %> 
   <ul class="navigation secondary">
     <li><a href="/admin/users/list/">Back to User List</a></li>
   </ul>
