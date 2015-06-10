@@ -91,3 +91,12 @@ sudo apt-get install imagemagick
 But really you can just email us comments/concerns about the site rogerdpack@gmail.com :)
 
 transfer other small'ish websites and test site
+
+sudo apt-get install vsftpd
+https://help.ubuntu.com/community/vsftpd "The workshop" 
+
+create /etc/vsftpd/vusers.txt file appropriately (and its companions), etc.
+
+create dir /home/vftp/carolyn as symlink to correct www folder
+
+
