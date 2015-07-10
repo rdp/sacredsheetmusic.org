@@ -38,7 +38,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def edit_current_user # put it here so that roles/permissions allows a self edit so they can update password :)
     @title = "Editing User #{@user.login}"
-    @user.attributes = params["user"]
+    @user.attributes = params["user"] # reassign all the attributes
 
     # Update user
     if request.post? and @user.save
@@ -46,20 +46,41 @@ class Admin::ProductsController < Admin::BaseController
       redirect_to :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload'
       return
     end
-    @user.password = @user.password_confirmation =  '' # show blank typically to start [?]
+    @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway
     render :layout => 'main_no_box_admin'
   end
 
   def new_song_editor
-    if @user
-      #raise "dont know how to resave user yet" # TODO ?
+
+    if request.post?
+      @user ||= User.create!(params["user"]) # OK I'm lazy...
+      @composer_tag = @user.composer_tag || Tag.create!(params["composer_tag"])
+      @user.update(params["user"])
+      @composer_tag.update(params["composer_tag"])
+      composers = Tag.find_by_name "Composers"
+      @composer_tag.parent = composers
+      @composer_tag.save!
+      composers.alphabetize_children!
+      @user.composer_tag = @composer_tag # in case an initial save
+      product_editor = Role.find_by_name "Product Editor"
+      @user.roles << product_editor unless @user.roles.contain?(product_editor)
+      # TODO send email so they can remember their login name?
+      Flash.notice['Successfully created login, use it now']
+      redirect_to '/admin' # force them to use it to login now :)
     end
-    @user = User.new
-    @composer_tag = Tag.new # non saved..
+    if @user
+      if @user.is_admin?
+        raise "admins should not use this"
+      end
+      @composer_tag = @user.composer_tag
+    else
+      # new login
+      @user = User.new
+      @composer_tag = Tag.new
+    end
 
-    # TODO re-save :) and alphabetize...
-    # TODO send email
-
+    @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway
+    render :layout => 'main_no_box_admin'
   end
 
   def spam_composers composers

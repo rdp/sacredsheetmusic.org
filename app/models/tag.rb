@@ -212,5 +212,13 @@ class Tag
              name_to_use
   end
 
+  def alphabetize_children!
+    children = self.children
+    children = children.sort_by{|t| t.name.gsub("'", "").upcase}
+    children.each_with_index{|tag, idx|
+      # tag.rank = idx; tag.save # too slow
+      Tag.update_all({:rank => idx}, {:id => tag.id}) # skip callbacks
+    }
+ end
 
 end
