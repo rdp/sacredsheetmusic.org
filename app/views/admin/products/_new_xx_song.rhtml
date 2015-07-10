@@ -1,11 +1,11 @@
 <%=
 options = {:action => 'save'}
-if @product.id
+if @product.persisted?
   options[:id] = @product
 end
 form_tag(options, :multipart => true)
  %>
-<% if @product.id %>
+<% if @product.persisted? %>
 
   <!-- top right --> 
   <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
@@ -31,7 +31,7 @@ form_tag(options, :multipart => true)
 
 <hr/>
   <h1><%= @title %></h1>
-<% if @product.id %>
+<% if @product.persisted? %>
   <%=link_to '&lt;&lt;&lt; (Back to instructions page if you wish to enter another new song)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
 <% else %>
   <%=link_to '&lt;&lt;&lt; (Back to instructions page)', :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' %>
@@ -43,7 +43,7 @@ form_tag(options, :multipart => true)
 
 		<div class="float">
 			<%= make_label('Song Name:') %>
-                        <% if have_name || @product.id %>
+                        <% if have_name || @product.persisted? %>
 		  	  <%= text_field 'product', 'name', :class => 'textInput', :size => 60  %>
                         <% else %>
                           Since this is an arrangement, song name is automatically assigned as the name of the hymn it arranges.  You can change the name later if desired.
@@ -170,7 +170,7 @@ form_tag(options, :multipart => true)
   PRODUCT.init();
 //-->
 </script>
-<% if @product.id %>
+<% if @product.persisted? %>
 		<div class="float">
 			<%= make_label('Song Code (you shouldnt have to change this typically unless you change the voicing and want the new voicing listed instead, but it is modifiable):') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 75 %>

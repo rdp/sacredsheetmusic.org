@@ -6,10 +6,8 @@ Email us if something is missing from any of these lists.
 <!-- If we don't do this it tries to take away all topics at re-edit time, resulting in a warning -->
 
 <%
-
-# show topics if an arrangement that hasn't ever gotten any yet [or already saved so not initial entry]
-show_topics = true if @product.id
-
+# show topics if an arrangement hasn't ever gotten any yet [or already saved so not initial entry, so basically always now]
+show_topics = true if @product.persisted?
 %>
 
 <% if show_topics %>

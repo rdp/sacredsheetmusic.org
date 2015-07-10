@@ -6,7 +6,7 @@
  <%= link_to 'New Song Page', {:action => 'new'}, :class => 'button hundredfifty' %>
 </div>
 
-          <% if @product.id.present? %>
+          <% if @product.persisted? %>
              <% problems = @product.find_problems(true) %>
              <%= "Current difficulties: " + problems.join(',<br>') if problems.present? %>
           <% end %>
