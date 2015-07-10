@@ -27,9 +27,10 @@ class AccountsController < ApplicationController
     flash.keep # :|
   end
 
-  def new_song_editor
-    @title = "create new user to upload your songs"
+  def new_composer_login
+    @title = "Create login to upload your songs"
     if session[:user]
+      @title = "Edit login to upload your songs"
       @user = User.find session[:user] # already logged in, so force an update [or edit view]
       if @user.is_admin?
         raise "admins should not use this" # too dangerous since it messes with permissions :P
@@ -56,9 +57,9 @@ class AccountsController < ApplicationController
         @user.save!
         product_editor = Role.find_by_name "Product Editor"
         @user.roles << product_editor unless @user.roles.contain?(product_editor)
-        # TODO send email so they can remember their login name? or make them remember it LOL
+        # TODO send email so they can remember their login name? or make them remember it LOL plus to send *me* an email too...
         Rails.logger.info "SUCCESS creating #{@user.login} #{@composer_tag.name}"
-        flash[:notice] = "Successfully created login #{@user.login}, use it to login now"
+        flash[:notice] = "Successfully created (or edited) login #{@user.login}, use it to login now"
         redirect_to "/admin" # forces a re-login
         return
       else
