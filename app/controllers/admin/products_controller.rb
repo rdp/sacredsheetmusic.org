@@ -50,6 +50,18 @@ class Admin::ProductsController < Admin::BaseController
     render :layout => 'main_no_box_admin'
   end
 
+  def new_song_editor
+    if @user
+      #raise "dont know how to resave user yet" # TODO ?
+    end
+    @user = User.new
+    @composer_tag = Tag.new # non saved..
+
+    # TODO re-save :) and alphabetize...
+    # TODO send email
+
+  end
+
   def spam_composers composers
     count = 0
     for composer in composers

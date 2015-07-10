@@ -58,5 +58,5 @@ class Admin::UsersController < Admin::BaseController
       redirect_to :action => 'list'
 		end
   end
-    
+
 end

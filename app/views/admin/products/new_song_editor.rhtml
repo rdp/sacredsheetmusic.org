@@ -1,0 +1,62 @@
+<div id="left">
+  <h1>Create new song editor composer user</h1>
+
+  <%= form_tag :action => "new_song_editor" %>
+<!-- _form.rhtml -->
+
+<%= error_messages_for 'user' %>
+<%= error_messages_for 'composer_tag' %>
+<!--[form:user]-->
+<p>
+        <label for="user_login">Desired Login:</label>
+        <%= text_field 'user', 'login', :class => 'textInput'  %>
+</p>
+
+<% unless @user.new_record? %>
+  <h4>Enter password and confirmation if you wish to change password</h4>
+<% end %>
+<div id="change_password">
+        <p>
+                <label for="user_password">Password:</label>
+                <%= password_field 'user', 'password', :class => 'textInput'  %>
+        </p>
+
+        <p>
+                <label for="user_password">Retype password:</label>
+                <%= password_field 'user', 'password_confirmation', :class => 'textInput'  %>
+        </p>
+</div>
+
+
+    <p>
+      <label for="composer_tag_name">Composer name:</label>
+      <%= text_field 'composer_tag', 'name', :class => 'textInput'  %>
+    </p>
+    <p>
+      <label for="composer_tag_bio">Composer bio/background:</label>
+      <%= text_area 'composer_tag', 'bio', :rows => 5 %>
+    </p>
+    <p>
+      <label for="composer_tag_composer_url">Composer main website url (if you publish your sheet music to your own website anywhere):</label>
+      <%= text_field 'composer_tag', 'composer_url', :class => 'textInput'  %>
+    </p>
+    <p>
+      <label for="composer_tag_composer_contact_url">Composer webpage with contact info (if any):</label>
+      <%= text_field 'composer_tag', 'composer_contact_url', :class => 'textInput'  %>
+    </p>
+    <p>
+      <label for="composer_tag_composer_contact_url">Composer email:</label>
+      <%= text_field 'composer_tag', 'composer_email_if_contacted', :class => 'textInput'  %>
+    </p>
+
+    <%= submit_tag 'Save New composer Login', :class => 'button hundredthirty' %>
+
+  </form>
+</div>
+
+
+<!-- RIGHT -->
+<div id="right">
+
+</div>
+<div class="clear">&nbsp;</div>

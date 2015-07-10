@@ -1,0 +1,4 @@
+<div>
+<%= select_tag 'user[composer_tag_id]', content_tag(:option, 'select composer tag...',:value=>"")+options_from_collection_for_select(Tag.find_by_name('composers').children, "id", "name", @user.composer_tag_id) %>
+</div>
+
