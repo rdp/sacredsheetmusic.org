@@ -29,8 +29,9 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    # only an admin should typically ever get here...
     product = Product.find(params[:id])
+    # only an admin should typically ever get here...today anyway I don't give them a delete link I don't think...
+    raise "non admin user? please request deletion for now" unless @user.is_admin?
     product.destroy
     redirect_to :action => 'list'
   end
