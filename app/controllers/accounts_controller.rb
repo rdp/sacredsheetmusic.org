@@ -30,12 +30,12 @@ class AccountsController < ApplicationController
   def new_song_editor
     @title = "create new user to upload your songs"
     if session[:user]
-      @user = User.find session[:user] # already logged in, so an update
+      @user = User.find session[:user] # already logged in, so force an update [or edit view]
       if @user.is_admin?
         raise "admins should not use this" # too dangerous since it messes with permissions :P
       end
       @composer_tag = @user.composer_tag
-      @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird.
+      @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
     else
       @user = User.new
       @composer_tag = Tag.new
@@ -51,6 +51,8 @@ class AccountsController < ApplicationController
         @composer_tag.save!
         composers.alphabetize_children!
         @user.composer_tag = @composer_tag # in case of an initial save...
+        @user.password = @user.password_confirmation = "" # password being present [and md5'ed in this case] disallows resaving. weird.
+
         @user.save!
         product_editor = Role.find_by_name "Product Editor"
         @user.roles << product_editor unless @user.roles.contain?(product_editor)
