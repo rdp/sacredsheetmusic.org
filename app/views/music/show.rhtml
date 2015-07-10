@@ -135,6 +135,17 @@
         <% end %>
         <br/>
 
+        <% for composer_tag in @product.composer_tags %>
+             <% if composer_tag.products.count > 1 %>
+               See more from <%= tag_link(composer_tag) %>.
+             <% end %>
+             <br/>
+             <% if composer_tag.composer_url.present? %>
+               Visit <a href="<%=composer_tag.composer_url%>">composer website</a>.
+             <% end %>
+             <br />
+        <% end %>
+        <br/>
         <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
           <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
         </div>
@@ -159,20 +170,11 @@
            <br />
         <% end %>
         <% for composer_tag in @product.composer_tags %>
-             <% if composer_tag.products.count > 1 %>
-               See more from <%= tag_link(composer_tag) %>.
-             <% end %>
-             <br/>
-             <br/>
-             <% if composer_tag.bio.present? %>
-               More about the composer: <br/> <%= composer_tag.bio %>
-             <% end %>
-             <% if composer_tag.composer_url.present? %>
-               Visit <a href="<%=composer_tag.composer_url%>">composer website</a>.
-             <% end %>
-             <br />
-        <% end %>
-        <br/>
+           <% if composer_tag.bio.present? %>
+            <br/>
+            More about <%= composer_tag.name %>: <br/> <%= composer_tag.bio %>
+           <% end %>
+       <% end %>
 
 
 </div> <!-- end entire float left column -->
@@ -194,7 +196,7 @@
     <% if @product.original_url.present? %>
            <% if @images.present? %> <!-- then assume we have some pdf's locally so dont emphasize redirect -->
              You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
- for this piece.<br/>
+ for this piece (opens in a new window).<br/>
            <% else %>
 <br />
 <br />
