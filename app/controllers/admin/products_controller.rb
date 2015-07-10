@@ -28,6 +28,13 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
+  def destroy
+    # only an admin should typically ever get here...
+    product = Product.find(params[:id])
+    product.destroy
+    redirect_to :action => 'list'
+  end
+
   def edit_current_user # put it here so that roles/permissions allows a self edit so they can update password :)
     @title = "Editing User #{@user.login}"
     @user.attributes = params["user"]
