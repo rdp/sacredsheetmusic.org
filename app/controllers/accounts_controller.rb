@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
     if request.post?
       if user = User.authenticate(params[:user_login], params[:user_password])
         session[:user] = user.id
-        flash['notice']  = "Login successful, welcome #{user.login}"
+        flash['notice'] = "Login successful, welcome #{user.login}"
         redirect_back_or_default :action => "welcome"
       else
         flash.now['notice']  = "Login unsuccessful"
@@ -57,7 +57,7 @@ class AccountsController < ApplicationController
         @user.save!
         product_editor = Role.find_by_name "Product Editor"
         @user.roles << product_editor unless @user.roles.contain?(product_editor)
-        # TODO send email so they can remember their login name? or make them remember it LOL plus to send *me* an email too...
+        send_success_email @user, @composer_tag
         Rails.logger.info "SUCCESS creating #{@user.login} #{@composer_tag.name}"
         flash[:notice] = "Successfully created (or edited) login #{@user.login}, use it to login now"
         redirect_to "/admin" # forces a re-login
@@ -68,5 +68,14 @@ class AccountsController < ApplicationController
     end
     render :layout => 'main_no_box_admin'
   end
+
+private
+    def send_success_email user, composer_tag
+              OrdersMailer.deliver_inquiry(
+                'Welcome to freeldssheetmusic.org (login account info)',
+                "Pleased to meet you #{composer_tag.name} your login is #{user.login}. Enjoy! Any questions, don't hesitate to ask!",
+                composer_tag.composer_email_if_contacted
+              )
+    end
 
 end
