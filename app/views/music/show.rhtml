@@ -185,6 +185,7 @@
 	  </div>
         <% end %>
     <% if !@images.present? %>
+      <!-- assume it's a link "out" so emphasize the presumed redirect -->
       <h1 style="margin: 0px; margin-left: 50px;">
          <%=link_to(@product.name, {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' ) %>
         (by <%= @product.composer_tags.map(&:name).join(', ') %>)
