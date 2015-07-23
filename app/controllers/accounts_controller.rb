@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 
     if request.post?
       if !session[:user] && Tag.find_by_name(params['composer_tag']['name'])
-        render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about that]"
+        render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about that]. <br/>If you already have a login created for you to upload songs, please login using it first, <a href='/admin'>here</a>.<br/>if you forgot your password, please email us."
         return
       end
 
