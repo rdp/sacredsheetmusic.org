@@ -39,12 +39,16 @@ class AccountsController < ApplicationController
       @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
     else
       @user = User.new
-      @composer_tag = Tag.new
+      @composer_tag = Tag.new # hopefully this avoids them trying to "take over"/hijack an existing account...
     end
 
     if request.post?
+      if !session[:user] && Tag.find_by_name(params['composer_tag']['name'])
+        render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about that]"
+        return
+      end
+
       # update_attributes attempts a save, and sets local attribute values, and sets id. wow.
-      # TODO relookup composer tag? huh?
       if @user.update_attributes(params["user"]) && @composer_tag.update_attributes(params["composer_tag"])
         # assume the rest will all work LOL
         composers = Tag.find_by_name "Composers"
@@ -59,7 +63,7 @@ class AccountsController < ApplicationController
         @user.roles << product_editor unless @user.roles.contain?(product_editor)
         send_success_email @user, @composer_tag
         Rails.logger.info "SUCCESS creating #{@user.login} #{@composer_tag.name}"
-        flash[:notice] = "Successfully created (or edited) login #{@user.login}, use it to login now"
+        flash[:notice] = "Successfully #{session[:user] ? "edited" : "created"} login [#{@user.login}], use it to login now"
         redirect_to "/admin" # forces a re-login
         return
       else
