@@ -63,7 +63,7 @@ class AccountsController < ApplicationController
         @user.roles << product_editor unless @user.roles.contain?(product_editor)
         send_success_account_email @user, @composer_tag
         Rails.logger.info "SUCCESS creating #{@user.login} #{@composer_tag.name}"
-        flash[:notice] = "Successfully #{session[:user] ? "edited" : "created"} login [#{@user.login}], use it to login now"
+        flash[:notice] = "Successfully #{session[:user] ? "edited" : "created"} login [#{@user.login}], use it to login here :)"
         redirect_to "/admin" # forces a re-login
         return
       else
@@ -77,7 +77,7 @@ private
     def send_success_account_email user, composer_tag
               OrdersMailer.deliver_inquiry(
                 'Welcome to freeldssheetmusic.org (login account info or updated info)',
-                "Pleased to meet you #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile here:" + url_for(),
+                "Pleased to meet you #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + url_for() + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login"),
                  Preference.get_value('mail_username'),
                  composer_tag.composer_email_if_contacted
               )
