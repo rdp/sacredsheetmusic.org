@@ -139,7 +139,11 @@ class Product < Item
           voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
           self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
-          raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
+          if !self.name.present?
+            raise "Please enter a name for this song [if it is an arrangement of another song, click back and enter it as an arrangement"
+          else
+            raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
+          end
         end
       else
         raise 'please select a composer first (use back button on browser)--no composer selected!'
