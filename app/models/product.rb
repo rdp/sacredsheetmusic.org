@@ -140,7 +140,7 @@ class Product < Item
           self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
           if !self.name.present?
-            raise "Please enter a name for this song [if it is an arrangement of another song, click back and enter it as an arrangement"
+            raise "Please enter a name for this song [if it is an arrangement of another song, click back and enter it as an arrangement and/or check the box next to the song it is an arrangement of]"
           else
             raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
           end
