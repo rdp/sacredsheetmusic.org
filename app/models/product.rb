@@ -119,7 +119,7 @@ class Product < Item
   # Makes code safe for URL usage.
   # called via a before_save :clean_code in some substruct code
   def clean_code
-    if self.youtube_video_id.andand.contain? "http"
+    if self.youtube_video_id.andand.contain? "http://"
       # https://www.youtube.com/watch?v=rwWNkTVRN8Y -> rwWNkTVRN8Y
       self.youtube_video_id = self.youtube_video_id.split('=')[1]
     end
