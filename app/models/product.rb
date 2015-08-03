@@ -145,7 +145,7 @@ class Product < Item
           end
           if !self.name.present?
             # only possible if they forgot to enter a name, or forgot to tag it with an arrangement checkbox
-            raise "If this song is an original, please use the back arrow in your browser and enter a song name.  If it is an arrangement, please hit the back arrow in your browser and check a box next to the name of that song it is an arrangement of (make sure you're entering it as ia new arrangement song)"
+            raise "If this song is an original, please use the back arrow in your browser and enter a song name.  If it is an arrangement, please hit the back arrow in your browser and check a checkbox next to the name of that song it is an arrangement of (make sure you're entering it as a new arrangement song...)"
           else
             raise "we should never get here"
           end
