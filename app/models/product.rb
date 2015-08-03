@@ -127,6 +127,7 @@ class Product < Item
     if self.code.blank? || self.code == "auto_refresh_me_dupe"
       if self.composer_tag 
         if self.voicing_tags.size > 0 && self.name.present?
+          # auto assign a code, all the pieces are there
           voicing_name = self.voicing_tags[0].name # don't use more than one in case they accidentally initially tag it as SATB SAB though for instrumental it might be nice to have "violin and cello" gah...maybe we should do more here, like auto-recode them at save time [?]
           if voicing_name.contain?('/')
             parts = voicing_name.split('/')
@@ -139,10 +140,14 @@ class Product < Item
           voicing_name = voicing_name.split(/ or /i)[0] # prefer "Youth Choir" from "youth choir or..."
           self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
-          if !self.name.present?
-            raise "Please enter a name for this song [if it is an arrangement of another song, click back and enter it as an arrangement and/or check the box next to the song it is an arrangement of]"
-          else
+          if self.voicing_tags.size == 0
             raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
+          end
+          if !self.name.present?
+            # only possible if they forgot to enter a name, or forgot to tag it with an arrangement checkbox
+            raise "If this song is an original, please use the back arrow in your browser and enter a song name.  If it is an arrangement, please hit the back arrow in your browser and check a box next to the name of that song it is an arrangement of (make sure you're entering it as ia new arrangement song)"
+          else
+            raise "we should never get here"
           end
         end
       else
@@ -150,14 +155,14 @@ class Product < Item
       end
 #      self.code.upcase! # too ugly!
       self.code.gsub!("'", '-')
-      self.code.gsub!(/[\x80-\xff]/, '') # take care of freaky apostrophe's etc.
+      self.code.gsub!(/[\x80-\xff]/, '') # take care of freaky unicode apostrophe's etc.
       self.code.gsub!(/[^[:alnum:]']/, '-') # non alnum => -, except ' s
       self.code.gsub!(/-{2,}/, '-') # -- => -
       self.code.gsub!(/^[-]+/, '') # strip beginning dashes
       self.code.gsub!(/[-]+$/, '') # strip ending dashes
       self.code = self.code.strip
       if Product.find_by_code(self.code)
-        Rails.logger.info "whoa, re-using a code? #{self.code} assigning it a numeric, this may be bad..."
+        Rails.logger.info "whoa, re-using a code? #{self.code} assigning it a numeric, this may be bad..." # I'm pretty sure composers use this though, hopefully helpful anyway....
         (1..100).each do |n|
           next_attempt = self.code + '-' + n.to_s
           if !Product.find_by_code(next_attempt)
@@ -327,14 +332,14 @@ class Product < Item
 
       end
       
-      # disallow SAB and SATB on same song...bit confusing...
-      distinct_voicing_tags = self.tags.select{|t| t.is_voicing?}
+      # disallow SAB and SATB on same song...bit confusing...[to me, people didn't like them split though...]
+      # distinct_voicing_tags = self.tags.select{|t| t.is_voicing?}
       # cello and viola is ok though...XXXX better distinguish here!??
 
-      if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i} # cantata's really can be SATB and SAB...
+      #if distinct_voicing_tags.length > 1 && !self.tags.detect{|t| t.name =~ /cantata/i} # cantata's really can be SATB and SAB...
         # people didn't like this...TODO more
         #problems << "has multiple voicings (#{distinct_voicing_tags.map(&:name).join(',')}), if a song has various voicing options [ex: SATB or SAB], please add it multiple times, one for each voicing, for instance, one SATB, a different ont SAB (or in this case #{distinct_voicing_tags[0].name}, and another one #{distinct_voicing_tags[1].name}) if applicable."
-      end
+      #end
 
       if self.tags.select{|t| t.is_hymn_tag?}.size > 1 && !self.tags.detect{|t| t.name =~ /medley/i}
         problems << "might want the the medley tag (under song attributes), please check it if so"
@@ -389,7 +394,7 @@ class Product < Item
          end
       end
 
-      #topic_tags = Tag.find_by_name( "Topics", :include => :children).children
+      #topic_tags = Tag.find_by_name("Topics", :include => :children).children
       #instrument_tags = Tag.find_by_name("Instrumental", :include => :children).children
       for topic_tag in Tag.all#topic_tags + instrument_tags
         next if topic_tag.name.in? ['Choir', 'ST', 'SA', 'Christ', 'Work', 'Music', 'Piano', 'Original'] # too common false positives :)
@@ -414,10 +419,10 @@ class Product < Item
       end
       
       if self.original_url =~ /\.(pdf|mp3|mid|midi)/i 
-        problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok
+        problems << "original url looks like its non htmlish" unless self.original_url =~ /lds.org/ # some pdf ok on church site [that one book]
       end
       if self.voicing_tags.length == 0
-        problems << "Warning: no voicing [youth, S A T B, p i ano solo, etc.] seemingly found"
+        problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact_url.present?
         problems << "Possibly lacking an original_url?" unless self.original_url.present?
