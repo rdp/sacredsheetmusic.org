@@ -30,9 +30,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     product = Product.find(params[:id])
-    # only an admin should typically ever get here...today anyway I don't give them a delete link I don't think...
-    raise "non admin user? please request deletion for now" unless @user.is_admin?
-    product.destroy
+    if product.editable_by? @user
+      product.destroy
+    else
+      raise "somehow you don't have permission to delete this song, please contact us"
+    end 
     redirect_to :action => 'list'
   end
 
