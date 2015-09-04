@@ -16,7 +16,7 @@
 <div style="float: left; width: 18%; margin-left: 2px; overflow: hidden;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
   <br/>
-  <%= if @user && @user.is_admin? || (@user && @user.composer_tag && @product.composer_tags.contain?(@user.composer_tag)); '(' + link_to('edit this song', :controller =>  'admin/products', :action => :edit_song_easy, :id => @product.id) + ')'; end %>
+  <%= if @product.editable_by? @user; '(' + link_to('edit this song', :controller =>  'admin/products', :action => :edit_song_easy, :id => @product.id) + ')'; end %>
   <%= if @user && @user.is_admin?; '(' + link_to('edit advanced', :controller =>  'admin/products', :action => :edit, :id => @product.id) + ')'; end %>
   <hr style="margin: 10px; margin-bottom: 10px;"/>
 <% if @product.downloads.length > 0 %>

@@ -272,6 +272,13 @@ class Product < Item
     downloads.map{|dl| `md5sum #{dl.full_absolute_path}`.split[0]}.dups
   end
 
+  def editable_by? user
+    if user
+      return user.is_admin? || (user.composer_tag && composer_tags.contain?(user.composer_tag))
+    end
+    false
+  end
+
   def duplicate_download_lengths
     downloads.map{|dl| 
       if File.exist? dl.full_absolute_path
