@@ -7,7 +7,7 @@ form_tag(options, :multipart => true)
  %>
 <% if @product.persisted? %>
 
-  <!-- top right --> 
+  <!-- top right, only if persisted --> 
   <div style="float:right;"><%= submit_tag 'Save this Song', :disable_with => 'Saving...', :class => 'button hundredthirty' %>
        <%= link_to(
         '(View song page on site)',
@@ -21,7 +21,7 @@ form_tag(options, :multipart => true)
        <br/>
   <div style="width: 100px;">
     <br/>
-    <%= link_to 'Delete this song', {:controller => '/questions', :action => :ask,  :pre_fill => "Delete song request: Please delete this song: #{@product.code}"}, :rel => 'nofollow' %>
+     <%= link_to 'Delete This Song', {:action => 'destroy', :id => @product}, :confirm => "Are you sure you want to delete #{@product.code} [you cannot undo this]?", :class => 'action' %>
 
   </div>
   </div>

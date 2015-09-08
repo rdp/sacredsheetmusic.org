@@ -4,15 +4,21 @@ class Admin::ProductsController < Admin::BaseController
   class ContinueError < StandardError; end
 
   def index
+    return if only_product_editor?
+    list
+    render :action => 'list'
+  end
+
+  def only_product_editor?
     # discourage normal users from seeing the typical substruct admin page
     if !@user.is_admin?
        flash.keep # sigh
        redirect_back_or_default :controller => '/content_nodes', :action => 'show_by_name', :name => 'self-upload' # back to the non admin user main page :)
-       return
+       return true
     end
-    list
-    render :action => 'list'
+    false
   end
+
 
   def spam_all_composers
     composers = Tag.find_by_name("composers").children
@@ -79,7 +85,8 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def list
-   # we get here....
+    return if only_product_editor?
+    # we get here....
     @title = "All Songs List"
     @products = Product.paginate(
     :order => "name ASC",
@@ -108,10 +115,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit_song_easy
+    edit # setup stuffs
     if !@product.editable_by? @user
       raise "you don't seem to have permission to edit this song?"
     end
-    edit # setup stuff
     if @product.is_original? && @product.hymn_tags.size == 0
       @title = "Editing original song '#{@product.name}'..."
       render :action => 'new_original_song', :layout => 'main_no_box_admin'
