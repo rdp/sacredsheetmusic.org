@@ -108,6 +108,9 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit_song_easy
+    if !@product.editable_by? @user
+      raise "you don't seem to have permission to edit this song?"
+    end
     edit # setup stuff
     if @product.is_original? && @product.hymn_tags.size == 0
       @title = "Editing original song '#{@product.name}'..."
