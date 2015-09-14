@@ -7,7 +7,7 @@
 </div>
 
           <% if @product.persisted? %>
-             <% problems = @product.find_problems(true) %>
+             <% problems = @product.find_problems %>
              <%= "Current difficulties: " + problems.join(',<br>') if problems.present? %>
           <% end %>
 	<div class="padLeft">

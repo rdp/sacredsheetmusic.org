@@ -189,7 +189,7 @@ class Product < Item
 
   def pdf_download_count
     sum = 0
-    downloads.each{|d| sum += d.count if (d && d.name =~ /\.pdf$/i)}
+    downloads_no_nils.each{|d| sum += d.count if (d.name =~ /\.pdf$/i)}
     sum
   end
 
@@ -269,7 +269,7 @@ class Product < Item
   end
 
   def duplicate_download_md5s
-    downloads.map{|dl| `md5sum #{dl.full_absolute_path}`.split[0]}.dups
+    downloads_no_nils.map{|dl| `md5sum #{dl.full_absolute_path}`.split[0]}.dups
   end
 
   def editable_by? user
@@ -279,19 +279,23 @@ class Product < Item
     false
   end
 
+  def downloads_no_nils
+    self.downloads.compact # <sigh> that this is the one necessary...database foreign key constraints for the win!
+  end
+
   def duplicate_download_lengths
-    downloads.map{|dl| 
-      if File.exist? dl.full_absolute_path
-        File.size dl.full_absolute_path
+    downloads_no_nils.map{|dl2| 
+      if File.exist? dl2.full_absolute_path
+        File.size dl2.full_absolute_path
       else
         -1
       end
     }.dups
   end
 
-  def find_problems expensive=true# true until I can figure out what in the world I am doing wrong here...
+  def find_problems
       problems = []
-      if expensive && duplicate_download_lengths.length > 0
+      if duplicate_download_lengths.length > 0
         if duplicate_download_md5s.length > 0
           problems << "possibly has duplicate downloads accidentally"
         end
@@ -352,13 +356,23 @@ class Product < Item
         problems << "might want the the medley tag (under song attributes), please check it if so"
       end
 
-      for download in self.downloads
+      for download in self.downloads_no_nils
         problems << "has empty download?" + download.filename unless download.size > 0
         if download.filename =~ /\.wav$/i
           problems << "usually mp3 files are preferred over .wav files, please convert it to .mp3, upload it, and delete the .wav file"
         end
         if download.filename =~ /\.(mid|midi)$/i
           problems << "Usually mp3 files are preferred over .mid files, please convert it to .mp3 [http://solmire.com  has an auto conversion process you could use] and delete the .mid file"
+        end
+        if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz|wma|mus|m4a)$/i
+          problems << "might have bad download file #{download.filename}, unknown extension"
+        end
+        if !File.exist? download.full_absolute_path
+          problems << "might have corrupted download [file doesn't exist on server anymore?] " + download.filename
+        else
+          if File.size(download.full_absolute_path) != download.size
+            problems << "has mismatch size with size on disk?" + download.filename
+          end
         end
       end
 
@@ -469,11 +483,6 @@ class Product < Item
         
       end
 
-      for download in downloads
-        if download.filename !~ /\.(pdf|mid|midi|mp3|wav|wave|mscz|wma|mus|m4a)$/i
-          problems << "might have bad download file #{download.filename}, unknown extension"
-        end 
-      end
       for tag in self.tags
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
