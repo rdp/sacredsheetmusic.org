@@ -87,7 +87,7 @@ class MusicController < StoreController
     product, comment = add_comment_helper true
     if @old_comment # smelly, ugly logic too yikes
       flash[:notice] = "Looks like you already voted for this song .  This year we only allow one vote per household per song, but feel free to vote on our other pieces"
-      comment.delete
+      comment.destroy
     elsif comment
       flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from other composers..."
     end
