@@ -56,6 +56,10 @@ class Product < Item
     self.date_available >= (weeks_new.to_i).weeks.ago
   end
 
+  def available?
+    date_available < Time.now
+  end
+
   def persisted?
     !new_record?
   end

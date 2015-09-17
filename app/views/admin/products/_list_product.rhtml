@@ -9,7 +9,7 @@
          <%= "has #{pdfs.length} pdfs" if pdfs.length > 1 %>
          has <%= product.images.count %> images.
         </span>
-        <%= 'song not enabled (not displayed)!' if product.date_available > Time.now %>
+        <%= 'song not enabled (not displayed)!' if !product.available? %>
 
       </td>
       <td class="numeric">
