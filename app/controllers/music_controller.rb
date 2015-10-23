@@ -56,6 +56,14 @@ class MusicController < StoreController
 
   public
 
+  def check_if_out_of_space
+    bytes_free = `df -B1 .`.split[10].to_i
+    if bytes_free < 1.gigabyte
+      raise "low space #{bytes_free}"
+    end
+    render :text => "ok disk space #{bytes_free}"
+  end
+
   def competition
     content = ContentNode.find_by_name('competition-header')
     @title = content.title
