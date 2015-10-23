@@ -28,7 +28,7 @@
 					</div>
 					<div style="float:right;margin-top:10px;">
 						<%= 
-							link_to_remote image_tag("icons/png-24/16-em-cross.png", :plugin => 'substruct', :alt => 'Delete'),
+							link_to_remote "delete this image " + image_tag("icons/png-24/16-em-cross.png", :plugin => 'substruct', :alt => 'Delete'),
 					    	{
 									:url => { :action => "remove_image_ajax", :id => @p_image.id },
 									:loading => "$('remove_link_#{@p_image.id}').hide(); $('image_indicator_#{@p_image.id}').show();",
