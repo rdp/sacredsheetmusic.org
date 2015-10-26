@@ -195,11 +195,14 @@ class MusicController < StoreController
      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
    end
    if not_a_bot
-     # avoid all after_save procs ...
-     Product.increment_counter(:redirect_count, product.id)
-     if inc_view
-       Product.increment_counter(:view_count, product.id)
-     end
+     # this sometimes feels like it takes forever so...attempt to background it :|
+     Thread.new {
+       # avoid all after_save procs ...
+       Product.increment_counter(:redirect_count, product.id)
+       if inc_view
+         Product.increment_counter(:view_count, product.id)
+       end
+     }
    end
    redirect_to product.original_url # not permanent redirect code...not sure which is right...
  end 
