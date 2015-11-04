@@ -91,8 +91,8 @@
           %>
           (<%= links.join(', ') %>)
 
-          <% if filename_extension =~ /mp3|mpeg/ %>iii
-              <div style="padding-top:5px; margin-left: -20px;">
+          <% if filename_extension =~ /mp3|mpeg/ %>
+              <div style="padding-top:5px; margin-left: -40px;">
               <audio controls style="width: 200px; ">
                  <source src="<%= dl.relative_path_to_web_server %>" type="audio/mpeg">
                  <object type="application/x-shockwave-flash" data="/flash/player_mp3_maxi.swf" width="200" height="20">
