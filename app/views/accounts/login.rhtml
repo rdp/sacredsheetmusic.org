@@ -1,17 +1,12 @@
 <%= form_tag :action=> "login" %>
 
-<h1>Login To Continue</h1>
+<h1>Login To Continue to freeldssheetmusic song entry</h1>
 
 <% if flash[:notice] %>
   <div id="message"><%= flash[:notice] %></div>
 <% end %>
 
 <div class="padLeft">
-  <p class="info">
-    All attempts to access this system are logged.
-  </p>
-
-
   <p>
     <label for="user_login">Login:</label>
     <input type="text" class="textInput" name="user_login" id="user_login" size="30" value=""/>
