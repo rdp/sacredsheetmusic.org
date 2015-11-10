@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   end
 
 	# Ask a question, also known as /contact
-	def ask
+  def ask
 	  @title = "Contact us"
     	  @question = Question.new
          
@@ -28,9 +28,13 @@ class QuestionsController < ApplicationController
           elsif params[:pre_fill].present?
             @question.long_question = params[:pre_fill]
           end
-	end
+  end
+
+  def generate_random_minimum_1
+    render :text => "index is #{rand(params[:max_inclusive].to_i) + 1}"
+  end
 	
-	def create_faq
+  def create_faq
 	  @question = Question.new(params[:question])
 		@question.short_question = "Message from the contact form"
     if !@question.save then
