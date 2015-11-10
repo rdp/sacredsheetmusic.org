@@ -13,7 +13,7 @@
 
 <% @two_column_layout = true %>
 
-<div style="float: left; width: 18%; margin-left: 2px; overflow: hidden;">
+<div style="float: left; width: 18%; margin-left: 2px; overflow: display;">
   <a href="/music" onclick="history.go(-1); return false"> &lt;&lt;&lt; Back to list</a>
   <br/>
   <%= if @product.editable_by? @user; '(' + link_to('edit this song', :controller =>  'admin/products', :action => :edit_song_easy, :id => @product.id) + ')'; end %>
@@ -92,13 +92,16 @@
           (<%= links.join(', ') %>)
 
           <% if filename_extension =~ /mp3|mpeg/ %>
-              <div style="padding-top:5px;">
-              <object type="application/x-shockwave-flash" data="/flash/player_mp3_maxi.swf" width="200" height="20">
-                  <param name="movie" value="/flash/player_mp3_maxi.swf" />
-                 <param name="bgcolor" value="#ffffff" />
-                 <param name="FlashVars" value="mp3=<%= dl.relative_path_to_web_server %>&amp;width=150&amp;showstop=1&amp;showvolume=1&amp;sliderwidth=10&amp;bgcolor1=cccccc&amp;bgcolor2=444444&amp;height=15&amp;volume=175&amp;showloading=always" />
-               </object>
-               </div>
+              <div style="padding-top:5px; margin-left: -40px;">
+              <audio controls style="width: 200px; ">
+                 <source src="<%= dl.relative_path_to_web_server %>" type="audio/mpeg">
+                 <object type="application/x-shockwave-flash" data="/flash/player_mp3_maxi.swf" width="200" height="20">
+                   <param name="movie" value="/flash/player_mp3_maxi.swf" />
+                   <param name="bgcolor" value="#ffffff" />
+                   <param name="FlashVars" value="mp3=<%= dl.relative_path_to_web_server %>&amp;width=150&amp;showstop=1&amp;showvolume=1&amp;sliderwidth=10&amp;bgcolor1=cccccc&amp;bgcolor2=444444&amp;height=15&amp;volume=175&amp;showloading=always" />
+                 </object>
+              </audio>
+              </div>
 
            <% elsif filename_extension =~ /midi|wav/ %>
             <br/>
