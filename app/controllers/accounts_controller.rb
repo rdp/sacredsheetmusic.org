@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
   end
 
   def new_composer_login
-    @title = "Create login to upload your songs"
+    @title = "Create new login to upload your songs"
     if session[:user]
       @title = "Edit login to upload your songs"
       @user = User.find session[:user] # already logged in, so force an update [or edit view]
