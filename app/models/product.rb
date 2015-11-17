@@ -193,7 +193,7 @@ class Product < Item
 
   def pdf_download_count
     sum = 0
-    downloads_no_nils.each{|d| sum += d.count if (d.name =~ /\.pdf$/i)}
+    pdf_downloads.each{|d| sum += d.count }
     sum
   end
 
@@ -285,6 +285,10 @@ class Product < Item
 
   def downloads_no_nils
     self.downloads.compact # <sigh> that this is the one necessary...database foreign key constraints for the win!
+  end
+
+  def pdf_downloads
+    downloads_no_nils.select{|d| d.name =~ /\.pdf$/i }
   end
 
   def duplicate_download_lengths

@@ -4,7 +4,7 @@
         <br>
         <span class="info">
          url: <%= (product.original_url[0..50] + '...') || 'none' %><br/>
-         <% pdfs =  product.downloads.select{|dl| dl.name =~ /pdf$/i} %>
+         <% pdfs = product.pdf_downloads %>
          <%= 'has a pdf' if pdfs.length == 1%>
          <%= "has #{pdfs.length} pdfs" if pdfs.length > 1 %>
          has <%= product.images.count %> images.
