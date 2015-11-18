@@ -197,7 +197,7 @@
       </h1>
     <% end %>
     <% if @product.original_url.present? %>
-           <% if @images.present? %> <!-- then assume we have some pdf's locally so dont emphasize redirect -->
+           <% if @product.pdf_downloads.present? %> <!-- then emphasize the redirect -->
              You can also visit the author's <%= link_to('original page', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "") }, :target => '_blank' )%>
  for this piece (opens in a new window).<br/>
            <% else %>

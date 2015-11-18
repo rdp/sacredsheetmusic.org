@@ -208,7 +208,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def self.regenerate_all_images this_servers_name # for running in irb prompt?
-    products_with_images = Product.all(:include => :downloads).select{|p| p.downloads.detect{|dl| dl.name =~ /pdf$/i}}
+    products_with_images = Product.all(:include => :downloads).select{|p| p.pdf_downloads.present? }
     mini = products_with_images[0..2]
     out = []
     mini.each{|p|
@@ -225,7 +225,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME']
     product = Product.find(id)
-    pdfs = product.downloads.select{|dl| dl.name =~ /pdf$/i }
+    pdfs = product.pdfs_downloads
     raise 'no pdfs' unless pdfs.present?
     logger.warn "no images #{id}?" unless product.images.count > 0
     old_images = product.images[0..-1] # force it to load images list so we get an old snapshot of the original images

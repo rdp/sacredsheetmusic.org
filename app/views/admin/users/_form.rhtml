@@ -1,6 +1,6 @@
 <%= error_messages_for 'user' %>
 
-A random password for your usage, if desired: <%= chars = ('a'..'z').to_a + ('0'..'9').to_a; (0..6).map{ chars.random_element}.join %>
+A random password for your usage, if desired: <%= chars = ('a'..'z').to_a; (0..6).map{ chars.random_element}.join %>
 
 <!--[form:user]-->
 <p>
