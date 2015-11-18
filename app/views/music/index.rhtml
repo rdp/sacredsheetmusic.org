@@ -58,7 +58,7 @@
        }
        filter_dropdown
     %>
-  <% if @old_global_filter.present? %>
+  <% if @was_filtered_able && @old_global_filter.present? %>
     (out of <%= @all_products_unfiltered.size %> total).
   <% end %>
 <% end %>
