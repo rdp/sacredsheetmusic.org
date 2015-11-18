@@ -388,77 +388,69 @@ class MusicController < StoreController
       tag_names = [tag_names.join('/')]
     end
     
-    if tag_names.length != 1 # also occurs for anything with a '.' in it? huh? basically this is a catch all for...any poor action now?
+    if tag_names.length != 1 # also occurs for any url with a '.' in it? huh? basically this is a catch all for...any poor url now?
       render_404_to_home(tag_names.join(' ')) && return
     end
-    cache_name = tag_names[0]
+    tag_name = tag_names[0]
+
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
-      return if render_cached_if_exists(cache_name)
+      return if render_cached_if_exists(tag_name)
     end
+
     # Generate tag ID list from names
-    tag_ids_array = Array.new
-    tag_names.map!{|name|
-      if name =~ / / # an old school name  or convenience name typed in
-        redirect_to_tag(name) and return
-      end
-      real_name = name.gsub('_', ' ')# allow for cleaner google links coming in...
-      temp_tag = Tag.find_by_name(real_name) 
-      if temp_tag then
-        tag_ids_array << temp_tag.id
-      else
-        @to_search = real_name
-        render(:file => "#{RAILS_ROOT}/public/404_search.html", :status => 404) and return
-      end
-      if temp_tag.name != real_name # redirect capitalization fail
-        redirect_to_tag(temp_tag.name) and return
-      end  
-      real_name
-    }
-
-    if tag_ids_array.size == 0
-      render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
+    if tag_name =~ / / # a convenience name typed in manually
+      redirect_to_tag(tag_name) and return
     end
+    real_name = tag_name.gsub('_', ' ') # allow for cleaner google links coming in...which were the ones we created :)
+    temp_tag = Tag.find_by_name(real_name) 
+    if !temp_tag
+      @to_search = real_name
+      render(:file => "#{RAILS_ROOT}/public/404_search.html", :status => 404) and return
+    end
+    if temp_tag.name != real_name # redirect on capitalization fail :)
+      redirect_to_tag(temp_tag.name) and return
+    end  
 
-    @viewing_tags = Tag.find(tag_ids_array, :order => "parent_id ASC", :include => [:parent, :children])
+    @viewing_tags = [temp_tag]
 
-    # Paginate products so we don't have a ton of ugly SQL
+    # Paginate products here so we don't have a ton of ugly SQL
     # and conditions in the controller
     # 
-    # lacking #tag_ids for now [non eager load] might actually be ok...
-    all_products = Product.find_by_tags(tag_ids_array, true, "items.name ASC")
-    if !@viewing_tags[0].is_composer_tag?#~ /arrangements/i
+    # lacking #tag_ids for now [non eager load] but that might actually be ok...
+    all_products = Product.find_by_tags([temp_tag.id], true, "items.name ASC")
+    if temp_tag.is_composer_tag?
       all_products = randomize(all_products)
     else
-      # all_products = all_products.sort_by{|p| p.name} # already sorted by name in sql, above
+      # all_products = all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above
     end
 
     original_size = all_products.size
-    t = @viewing_tags[0]
     if original_size > 0
-      if t.is_topic_tag?
-        @title = "#{t.name} sheet music (#{original_size} Free Arrangements)"
+      if temp_tag.is_topic_tag?
+        @title = "#{temp_tag.name} sheet music (#{original_size} Free Arrangements)" # SEO targeting :|
       else # arrangement...
-        @title = "#{t.name} (#{original_size} Free Arrangements)"
+        @title = "#{temp_tag.name} (#{original_size} Free Arrangements)"
       end
     else
       # don't say Topics (0 free arrangements) LOL
-      @title = t.name
+      @title = temp_tag.name
     end
     @products = paginate_and_filter(all_products)
 
-    if @viewing_tags[0].bio
+    if temp_tag.bio
       @display_bio = @viewing_tags[0].bio
     end
 
-    if @viewing_tags[0].get_composer_contact_url.present?
+    if temp_tag.get_composer_contact_url.present?
       @composer_tag = @viewing_tags[0]
     end
 
     if !session['filter_all_tag_id'].present?
-      render_and_cache('index.rhtml', cache_name)
+      render_and_cache('index.rhtml', tag_name)
     else
-      render 'index.rhtml' # render every time...
+      render 'index.rhtml' # render every time if special list...though we could cache it too uh guess...
     end
+
   end
 
   def only_on_this_site
