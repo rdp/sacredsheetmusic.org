@@ -686,8 +686,8 @@ class MusicController < StoreController
     )
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
-    with_all_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
-       big_string = (p.name.to_s + p.description.to_s + p.lyrics.to_s + p.tags.map{|t| t.name + t.bio.to_s}.join).downcase
+    with_all_words_somewhere = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
+       big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + p.tags.map{|t| t.name + " " + t.bio.to_s}.join(" ")).downcase.split # split so mary doesn't match primary
        words_to_search_for.all?{|word| big_string.contain? word}
     }
 
@@ -698,6 +698,7 @@ class MusicController < StoreController
       :order => session_rand,
       :conditions => [ "(tags.name LIKE ?) AND #{Product::CONDITIONS_AVAILABLE}", "%#{@search_term}%"]
     )
+    from_tags = tags.map{|t| t.products.map(&:id)}.flatten
 
     # put more precise hits first...
     good_hits = Product.find(:all, 
@@ -710,7 +711,7 @@ class MusicController < StoreController
     )
     # logger.info "start with was " +  ["#{name_without_punct} like ? AND #{Product::CONDITIONS_AVAILABLE}",  "#{@search_term}%"].inspect
 
-    all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + tags.map{|t| t.products.map(&:id)}.flatten + with_all_tags.map(&:id)).uniq
+    all_ids_merged = (start_with_hits.map(&:id) + good_hits.map(&:id) + products.map(&:id) + from_tags + with_all_words_somewhere.map(&:id)).uniq
 
     # re map to product objects...
     all_products = all_ids_merged.map{|id| Product.find(id) }
