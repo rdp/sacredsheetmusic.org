@@ -648,14 +648,14 @@ class MusicController < StoreController
     session[:last_search] = original_search_term # try to save it away, in case of direct tag found, though this is ignored for cached pages..
 
     # work for I'll go, and ros' [?] also strip random punct.
-    @search_term = original_search_term.gsub(/[.,'"] /, " ").gsub(/[.,'"]/, "").downcase.gsub(/sheet|music/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
+    @search_term = original_search_term.downcase.gsub(/[.,'"] /, " ").gsub(/[.,'"]/, "").gsub(/sheet|music/, '').strip # ignore still, still, still, etc. in case they get punct wrong, we expect no punct. anyway, but XXX test with hymn names with punct for exact match
 
     if look_for_exact_matching_tags @search_term
       return
     end
 
     if @search_term =~ /piano/
-      flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano accompaniment, so we don't even mention it in our indexes, so you may want to consider removing that word from your query, as it will skew results to things like piano solos, etc."
+      flash[:notice] = "Warning, you have the word piano in your search, however, most songs in our database have piano accompaniment, so we don't even mention it in our indexes, so you may want to consider removing that word from your search, as it will skew results to things like piano instrumentals, etc."
     end
     if @search_term =~ /ob+l+ig+at+o/ && @search_term !~ /obbligato/
       flash[:notice] = "Warning, you may want to search for obbligato instead"
@@ -687,12 +687,12 @@ class MusicController < StoreController
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
     with_all_words_somewhere = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand).select{|p| 
-       big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + p.tags.map{|t| t.name + " " + t.bio.to_s}.join(" ")).downcase.split # split so mary doesn't match primary
+       big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + p.tags.map{|t| t.name + " " + t.bio.to_s}.join(" ")).downcase.split # split so mary doesn't match primary though some of this still occurs in the SQL query within description...
        words_to_search_for.all?{|word| big_string.contain? word}
     }
 
     # search for all products of (basically) precise matching tags, too
-    # this might be redundant to the above these days though...
+    # this might be redundant to the above these days...
     tags = Tag.find(:all,
       :include => :products,
       :order => session_rand,
