@@ -225,7 +225,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME']
     product = Product.find(id)
-    pdfs = product.pdfs_downloads
+    pdfs = product.pdf_downloads
     raise 'no pdfs' unless pdfs.present?
     logger.warn "no images #{id}?" unless product.images.count > 0
     old_images = product.images[0..-1] # force it to load images list so we get an old snapshot of the original images
