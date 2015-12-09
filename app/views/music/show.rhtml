@@ -184,11 +184,19 @@
 
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
-        <% if @product.description.present? %>
+        <% composer_all_song_text = @product.composer_tags.select{|t| t.text_for_every_song_for_composer.present?} %>
+        <% if @product.description.present?  %>
 	  <div style="padding-top:10px;">
             Song background: <%= @product.description %>
 	  </div>
         <% end %>
+        <% for tag in composer_all_song_text %>
+	  <div style="padding-top:10px;">
+            <%= tag.text_for_every_song_for_composer %>
+            <br/>
+	  <div">
+        <% end %>
+
     <% if !@images.present? %>
       <!-- assume it's a link "out" so emphasize the presumed redirect -->
       <h1 style="margin: 0px; margin-left: 50px;">
