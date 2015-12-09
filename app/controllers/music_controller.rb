@@ -395,6 +395,8 @@ class MusicController < StoreController
 
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(tag_name)
+    else
+      logger.info "not rendering cached because of filter or flash"
     end
 
     # Generate tag ID list from names

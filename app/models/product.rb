@@ -23,21 +23,21 @@ class Product < Item
   end
 
   private
-  def set_html_cache to_this
-    Product.update_all({:thumbnail_html_cache => to_this}, {:id => self.id})
-    self.thumbnail_html_cache = to_this # save it to local object too, why not :)
+  def reset_html_cache
+    FileUtils.rm_rf thumbnail_filename
   end
 
+  def thumbnail_filename
+    RAILS_ROOT + "/temp/#{self.id}"
+  end
   public
 
   def get_or_generate_thumbnail_cache # takes a block
     # TODO reload here, in case a different process already beat us to it? how do I profile test this hmm...
-    thumbnail = self.thumbnail_html_cache
-    if !thumbnail
-      thumbnail = yield
-      set_html_cache thumbnail
+    if !File.exist? thumbnail_filename
+      File.write(thumbnail_filename, yield)
     end
-    thumbnail
+    File.read(thumbnail_filename)
   end
 
   def sync_all_parent_tags # check parent tags that should also be checked but weren't -- this is not topic syncing!
@@ -203,9 +203,9 @@ class Product < Item
     Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
     Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
-    set_html_cache(nil) # does an assign in the DB too
-    clear_all_caches = true # this is pretty heavy still [TODO why?]! default = true...
-    if clear_all_caches
+    reset_html_cache
+    clear_tag_caches = true # this is pretty heavy still [TODO why?]! default = true...
+    if clear_tag_caches
       for tag in self.tags
         tag.clear_public_cached # since the name for this one has changed...is this enough even? if new songs were added, this will be enough...though orphan some cache entries assuming we still group cache... :|
         if tag.songs.count == 1 # just has this song
