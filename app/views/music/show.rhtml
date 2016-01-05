@@ -184,13 +184,13 @@
 
 <div style="float: right; width: 81%;">
     <div id="text_at_top" style="margin-left: 10px; float: left;"> 
-        <% composer_all_song_text = @product.composer_tags.select{|t| t.text_for_every_song_for_composer.present?} %>
+        <% composer_every_song_tags = @product.composer_tags.select{|t| t.text_for_every_song_for_composer.present?} %>
         <% if @product.description.present?  %>
 	  <div style="padding-top:10px;">
             Song background: <%= @product.description %>
 	  </div>
         <% end %>
-        <% for tag in composer_all_song_text %>
+        <% for tag in composer_every_song_tags %>
 	  <div style="padding-top:10px;">
             <%= tag.text_for_every_song_for_composer %>
             <br/>
