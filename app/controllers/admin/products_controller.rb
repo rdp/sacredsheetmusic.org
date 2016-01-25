@@ -30,7 +30,7 @@ class Admin::ProductsController < Admin::BaseController
     if params[:id] && composer=(Tag.find_by_id(params[:id]))
       spam_composers [composer]
     else
-      render :text => "not found spam_composer #{params.inspect}"
+      render :text => "not found composer spam_composer #{params.inspect}"
     end
   end
 
