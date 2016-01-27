@@ -19,16 +19,23 @@ class Admin::ProductsController < Admin::BaseController
     false
   end
 
+  def spam_some_composers # that haven't gotten it yet
+    last_that_got_it = "Karen L. Mumford" # name
+    composers = Tag.find_by_name("composers").children
+    found_last = false
+    use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last}
+    use = use [1..-1] # skip first which is the last that already got it
+    spam_composers_and_render use 
+  end
 
   def spam_all_composers
     composers = Tag.find_by_name("composers").children
-    #composers = [Tag.find_by_name "Melissa Pack"]
-    spam_composers composers
+    spam_composers_and_render composers
   end
 
   def spam_composer
     if params[:id] && composer=(Tag.find_by_id(params[:id]))
-      spam_composers [composer]
+      spam_composers_and_render [composer]
     else
       render :text => "not found composer spam_composer #{params.inspect}"
     end
@@ -58,16 +65,16 @@ class Admin::ProductsController < Admin::BaseController
     render :layout => 'main_no_box_admin'
   end
 
-  def spam_composers composers
+  def spam_composers_and_render composers
     count = 0
     for composer in composers
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
-      sleep 0.2
+      sleep 0.2 # ???
       Rails.logger.info "sent spamser to #{composer.id}"
     end
-    render :text => "spammed #{count} of them #{Time.now}"
+    render :text => "successfully spammed #{count} of them #{Time.now}"
   end
 
   def spam_all_composers_pre
