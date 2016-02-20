@@ -79,7 +79,7 @@ class MusicController < StoreController
     ), 50000)
     @was_filtered_able = false
     @display_bio = content.content
-    render :action => 'index.rhtml' and return # no cacheing here :)
+    render :action => 'competition.rhtml'
   end
 
   def competition_results
