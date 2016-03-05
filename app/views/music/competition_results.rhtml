@@ -6,14 +6,7 @@
 First the "open vote" category:
 <br/>
 <br/>
-<% for p in @products[0..5] %>
-  <%= p.total_valid_competition_points %> points: <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
-<div class="clear"></div>
-<%= p.thumbnail_html_cache %>
-<div class="clear"></div>
-<% end %>
-
-<% for p in @products[6..-1] %>
+<% for p in @products %>
   <%= p.total_valid_competition_points %> points: <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
 <div class="clear"></div>
 <%= p.thumbnail_html_cache %>
