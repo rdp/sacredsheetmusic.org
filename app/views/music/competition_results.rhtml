@@ -19,7 +19,7 @@ First the "open vote" category:
 And for our peer review category winners (out of possible 5.0):
 <br/>
 <% for p in @peer_review_products %>
-  <%= "%.01f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
+  <%= "%.02f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
   <div class="clear"></div>
 <%= p.thumbnail_html_cache %>
 <div class="clear"></div>
