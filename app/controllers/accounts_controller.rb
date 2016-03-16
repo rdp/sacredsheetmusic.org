@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
         throw "resetting password when currently logged in? please <a href=/logout>logout</a> first..."
       end
       composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
-      composer_user = composer_tag.admin_user || raise "no admin user to reset?"
+      composer_user = composer_tag.admin_user || raise("no admin user to reset?")
       password = generate_random_password 
       composer_user.password = password
       composer_user.save!
