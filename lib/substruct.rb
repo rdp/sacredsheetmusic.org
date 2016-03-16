@@ -423,3 +423,7 @@ def local_ip
 ensure
   Socket.do_not_reverse_lookup = orig
 end
+
+def generate_random_password
+  chars = ('a'..'z').to_a; (0..6).map{ chars.random_element}.join
+end

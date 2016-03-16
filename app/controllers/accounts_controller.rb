@@ -19,12 +19,31 @@ class AccountsController < ApplicationController
   
   def logout
     session[:user] = nil
-    flash[:notice] = 'logged out' # hard to get to username :|
+    flash[:notice] = 'logged out' # hard to get to username here :|
     redirect_to "/"
   end
     
   def welcome
     flash.keep # :|
+  end
+
+  def reset_password
+    if request.post?
+      if session[:user]
+        throw "resetting password when currently logged in? please <a href=/logout>logout</a> first..."
+      end
+      composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
+      composer_user = composer_tag.admin_user || raise "no admin user to reset?"
+      password = generate_random_password 
+      composer_user.password = password
+      composer_user.save!
+      send_success_account_email composer_user, composer_tag
+      flash[:notice] = "Successfully reset password and sent it to your email, please use that to login!"
+      redirect_to "/admin" # forces a re-login
+      return
+    else
+      # its all in the view 
+    end
   end
 
   def new_composer_login
@@ -33,7 +52,7 @@ class AccountsController < ApplicationController
       @title = "Edit login to upload your songs"
       @user = User.find session[:user] # already logged in, so force an update [or edit view]
       if @user.is_admin?
-        raise "admins should not use this" # too dangerous since it messes with permissions :P
+        raise "admins should not use this, too dangerous since it messes with permissions :P"
       end
       @composer_tag = @user.composer_tag
       @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
@@ -44,7 +63,7 @@ class AccountsController < ApplicationController
 
     if request.post?
       if !session[:user] && Tag.find_by_name(params['composer_tag']['name'])
-        render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about that]. <br/>If you already have a login created for you to upload songs, please login using it first, <a href='/admin'>here</a>.<br/>if you forgot your password, please email us."
+        render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about this...]. <br/>If you already have a login created for you to upload songs, please login using it first, <a href='/admin'>here</a>.<br/>if you forgot your password, please email us."
         return
       end
 

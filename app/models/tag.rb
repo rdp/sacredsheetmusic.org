@@ -1,7 +1,7 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
-  has_one :admin_user, :class_name => 'User', :foreign_key => :composer_tag_id # User has one of these
+  has_one :admin_user, :class_name => 'User', :foreign_key => :composer_tag_id # User has one of these [composer login]
 
   validate :no_underscores
   def no_underscores
