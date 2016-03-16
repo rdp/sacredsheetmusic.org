@@ -100,7 +100,7 @@ class AccountsController < ApplicationController
         # fall through and render with failure messages
       end
     end
-    render :layout => 'main_no_box_admin', :view => 'new_composer_login'
+    render :layout => 'main_no_box_admin', :action => 'new_composer_login'
   end
 
 private
