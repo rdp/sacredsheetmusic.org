@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Login to access the admin area</title>
+	<title><%= @title || "admin area" %></title>
 	<%= javascript_include_tag "prototype", "effects" %>
   <%= javascript_include_tag "substruct", :plugin => 'substruct' %>
 	<%= stylesheet_link_tag "admin", "accounts", :plugin => 'substruct' %>
@@ -12,7 +12,7 @@
 <div id="container">
   <br/><br/><br/>
   <div id="login_disabled" style="background: white; height: 500px;">
-    <div id="content">
+    <div id="content" width="100%">
       <%= yield %>
     </div>
   </div>

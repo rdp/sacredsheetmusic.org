@@ -425,5 +425,5 @@ ensure
 end
 
 def generate_random_password
-  chars = ('a'..'z').to_a; (0..6).map{ chars.random_element}.join
+  chars = ('a'..'z').to_a - ['l', 'o']; (0..6).map{ chars.random_element }.join # avoid ambiguous :)
 end

@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   before_filter :ssl_required
 
   def login
+    @title = "Login to access admin area"
     if request.post?
       if user = User.authenticate(params[:user_login], params[:user_password])
         session[:user] = user.id
@@ -28,22 +29,32 @@ class AccountsController < ApplicationController
   end
 
   def reset_password
+    @title = "Reset user password"
     if request.post?
       if session[:user]
         throw "resetting password when currently logged in? please <a href=/logout>logout</a> first..."
       end
       composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
       composer_user = composer_tag.admin_user || raise("no admin user to reset?")
-      password = generate_random_password 
-      composer_user.password = password
-      composer_user.save!
-      send_success_account_email composer_user, composer_tag
-      flash[:notice] = "Successfully reset password and sent it to your email, please use that to login!"
-      redirect_to "/admin" # forces a re-login
+      new_password = generate_random_password 
+      composer_user.password = composer_user.password_confirmation = new_password
+      composer_user.save! # md5 it
+      send_success_account_email composer_user, composer_tag, new_password 
+      flash[:notice] = "Successfully reset password and sent it to your email #{params[:email_to_reset]}, please check it, and use that to login!"
+      redirect_to "/about/self-upload" # a page that display the flash pretti-ly :)
       return
     else
       # its all in the view 
     end
+  end
+
+  def edit_composer_login
+    if !session[:user]
+      flash[:notice] = "you need to login first, before you can edit your profile"
+      redirect_to "/about/self-upload" # a page that display the flash pretti-ly :)
+      return
+    end
+    new_composer_login 
   end
 
   def new_composer_login
@@ -89,20 +100,25 @@ class AccountsController < ApplicationController
         # fall through and render with failure messages
       end
     end
-    render :layout => 'main_no_box_admin'
+    render :layout => 'main_no_box_admin', :view => 'new_composer_login'
   end
 
 private
-    def send_success_account_email user, composer_tag
+    def send_success_account_email user, composer_tag, new_password = nil
               # obviously I need a real template LOL
               if session[:user]
                 prefix = "Updated your account info"
               else
                 prefix="Pleased to meet you"
               end
+              adjust_user_url =  url_for(:action => 'edit_composer_login')
+              message = "#{prefix} #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + adjust_user_url + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login")
+              if new_password
+                message += "\n Your newly reset password is #{new_password}.  You can change it (if desired) here: " + adjust_user_url
+              end
               OrdersMailer.deliver_inquiry(
-                'Welcome to freeldssheetmusic.org (login account info or updated info)',
-                "#{prefix} #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + url_for() + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login"),
+                "Message from freeldssheetmusic.org: #{prefix}",
+                 message,
                  Preference.get_value('mail_username'),
                  composer_tag.composer_email_if_contacted
               )
