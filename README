@@ -1,8 +1,7 @@
-substruct site for freeldssheetmusic.org (rails 2.3.8)
+installation instructions for site (rails 2.3.8)
 
-To use, download, then create your vendor dir like this:
+To use, download
 
-now create config/database.yml with mysql parameters, then run
 
 # first install ruby enterprise edition, then...
 
@@ -15,16 +14,16 @@ CFLAGS="-O2 -fno-tree-dce -fno-optimize-sibling-calls" /home/rdp/downloads/ruby-
 sudo apt-get install libmysqlclient-dev
 gem install mysql2
 
-.gemrc 
+~/.gemrc 
 gem: --no-rdoc --no-ri
 
 [install apache]
 
 run passenger install from ree, accept its apt-get suggestions/requirements
 
-TODO logrotate
+config/logrotate.conf add to bottom of /etc/logrotate.conf [I think...]
 
-apache2.conf:
+add to apache2.conf:
 
    LoadModule passenger_module /home/rdp/installs/ree-187/lib/ruby/gems/1.8/gems/passenger-5.0.7/buildout/apache2/mod_passenger.so
    <IfModule mod_passenger.c>
@@ -65,14 +64,15 @@ to sites-enabled:
 
 (this isn't enough unfortunately see config file for full examples)
 
+now create config/database.yml with some new mysql parameters, then run
+
 $ apt-get install mysql-server
 run mysql then
  create user 'prod_flds'@'localhost' identified by 'XX';
 create database prod_flds_database
 GRANT ALL PRIVILEGES ON prod_flds_database . * TO 'prod_flds'@'localhost';
 
-
-$ gem update --system 1.3.7 or some odd
+$ gem update --system 1.3.7 or some odd version
 $ gem uninstall rake
 $ gem install rake -v 0.8.7
 $ gem install os
@@ -80,7 +80,7 @@ $ gem uninstall rack # and reinstall v 1.1.6 -- or do we get the reinstall for f
 $ rake gems:install # still needed I think, this is a mess, some are vendored, some have to be installed for native, some have both what?
 $ gem install sundawg_premailer # bundled but shouldn't be, etc.
 $ rake db:create # unless you already did, depending on how you setup the mysql DB
-# now either the following, or load a dump
+# now either the following, or load a dump snapshot of your DB
 $ rake substruct:db:bootstrap
 $ rake db:migrate
 
@@ -98,5 +98,4 @@ https://help.ubuntu.com/community/vsftpd "The workshop"
 create /etc/vsftpd/vusers.txt file appropriately (and its companions), etc.
 
 create dir /home/vftp/carolyn as symlink to correct www folder
-
 
