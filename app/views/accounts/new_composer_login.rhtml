@@ -38,16 +38,16 @@
       <%= text_area 'composer_tag', 'bio', :rows => 5 %>
     </p>
     <p>
-      <label for="composer_tag_composer_url">Composer main website url (if you publish your sheet music to your own website anywhere):</label>
-      <%= text_field 'composer_tag', 'composer_url', :class => 'textInput'  %>
+      <label for="composer_tag_composer_url">Composer main website url (if you publish your sheet music to your own website anywhere, else leave blank):</label>
+      <%= text_field 'composer_tag', 'composer_url', :class => 'textInput', :size => 60, :placeholder => 'http://yourwebsite.com' %>
     </p>
     <p>
       <label for="composer_tag_composer_contact_url">Composer webpage with contact info (if any):</label>
-      <%= text_field 'composer_tag', 'composer_contact_url', :class => 'textInput'  %>
+      <%= text_field 'composer_tag', 'composer_contact_url', :class => 'textInput', :placeholder => 'http://yourwebsite.com/contact.html...', :size => 60  %>
     </p>
     <p>
       <label for="composer_tag_composer_contact_url">Composer email:</label>
-      <%= text_field 'composer_tag', 'composer_email_if_contacted', :class => 'textInput'  %>
+      <%= text_field 'composer_tag', 'composer_email_if_contacted', :class => 'textInput', :placeholder => 'you@you.com'  %>
     </p>
 
     <%= submit_tag 'Save New composer Login', :class => 'button hundredthirty' %>
