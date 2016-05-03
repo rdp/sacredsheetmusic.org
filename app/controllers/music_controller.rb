@@ -455,7 +455,7 @@ class MusicController < StoreController
 
   end
 
-  def only_on_this_site
+  def only_on_this_site # deprecated, i.e. unused I believe these days...
     @products = Tag.find_all_by_only_on_this_site(true).map{|t| t.products}.flatten 
     def @products.total_pages # fake it out :P
       1

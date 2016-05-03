@@ -318,20 +318,6 @@ class Product < Item
         problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i
       end
 
-      for composer_tag in self.composer_tags
-        if !composer_tag.composer_contact_url.present?
-          if !composer_tag.only_on_this_site
-            problems << "since its composer has no contact web page, composer tag probably wants the only_on_this_site attribute-please report this to us!"
-          end
-          # no web page...
-        end
-      end
-
-      bads = self.composer_tags.select{|t| t.only_on_this_site}
-      if self.original_url.present? && bads.length > 0
-        problems << "one of its composers may be marked as only on this site in vain? [this song has a url but the composer is marked as not having a website, please report this message to us!] #{bads.map &:name}"
-      end
-
       if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
         problems << "this song may be lacking a website url to your website? please add one."
       end
@@ -339,13 +325,13 @@ class Product < Item
       bad_whitespace_reg = /^\s|\s$/
       for string in [self.name, self.original_url, self.code]
         if string.present? && string =~ bad_whitespace_reg
-          problems << "#{string} has some extra beginning or trailing whitespace?"
+          problems << "[#{string}] has some extra beginning or trailing whitespace? please remove any extra spaces"
         end
       end
 
       for tag in self.tags
         if tag.name =~ bad_whitespace_reg
-          problems << "tag has beginning or trailing whitespace?" + tag.name
+          problems << "tag has beginning or trailing whitespace? [#{tag.name}] please remove extra spaces"
         end
         if tag.composer_contact_url.present? && tag.composer_contact_url =~ bad_whitespace_reg
           problems << "tag composer contact url has beginning or trailing whitespace?" + tag.name
@@ -456,7 +442,7 @@ class Product < Item
         problems << "Warning: no voicing [youth, SATB, piano solo, etc.] seemingly found"
       end
       if self.composer_tag && self.composer_tag.composer_contact_url.present?
-        problems << "Possibly lacking an original_url?" unless self.original_url.present?
+        problems << "Possibly lacking song URL website address?" unless self.original_url.present?
       end
       if (count = Product.count(:conditions => {:code => self.code})) != 1
         problems << "probably not a unique product code please update #{count}"
