@@ -103,7 +103,8 @@ end
     # Shorter url to show song
     map.connect '/song/:id', # s for song!
       :controller => 'music',
-      :action => 'show'
+      :action => 'show',
+      :requirements => { :id => /[^\/]+/ } # allow for '.' in the id code :|
 
     # Shorter url to show music items by tags
     #
