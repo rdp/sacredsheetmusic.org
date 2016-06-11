@@ -104,16 +104,6 @@ end
     map.connect '/song/:id', # s for song!
       :controller => 'music',
       :action => 'show'
-    map.connect '/s/:id', # s for song! # lodo remove, this is antiquated
-      :controller => 'music',
-      :action => 'show'
-
-    #map.connect '/music/s/:id', # LODO remove
-    #  :controller => 'music',
-    #  :action => 'show'
-    #map.connect '/m/:id', # LODO remove just here for pass through...
-    #  :controller => 'music',
-    #  :action => 'show'
 
     # Shorter url to show music items by tags
     #
