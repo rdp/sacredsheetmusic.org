@@ -9,7 +9,7 @@ class MusicController < StoreController
 
    # Wishlist items
   def wishlist
-     @title = "Saved Bookmarked songs"
+     @title = "Saved Bookmarked songs (this computer)"
      @wishlist_items = session_object.wishlist_items # lacks pagination...
   end
 

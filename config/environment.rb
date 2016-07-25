@@ -61,6 +61,6 @@ if RUBY_VERSION >= '1.9.0'
   FasterCSV = CSV
 end
 
-reuqire 'open-uri'
-require 'open_uri_allow_redirections_to_https' # my own gem vendorization LOL
+#require 'open-uri'
+# require 'open_uri_allow_redirections_to_https' # my own gem vendorization LOL didn't seem to take, 1.x issue?
 Substruct.override_ssl_production_mode = true
