@@ -108,9 +108,19 @@ class MusicController < StoreController
     redirect_to :action => :show, :id => product.code
   end
 
+  def is_spam_comment?
+    if (params['recaptcha'] || '').downcase != 'sunday'
+      return true
+    end
+    if params[:user_url] =~ /customink/i
+      return true # some kind of live'ish spammer, hope I don't run into too many here
+    end
+    false
+  end
+
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
-   if (params['recaptcha'] || '').downcase != 'sunday'
+   if is_spam_comment?
      flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to enter sunday and try again!"
      return [product, nil]
    else
