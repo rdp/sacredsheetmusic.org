@@ -256,7 +256,7 @@ class MusicController < StoreController
       return
     end
     if not_a_bot
-      # also avoid after_save blocks ...
+      # avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
     if @product.composer_tag && @product.voicing_tags[0]
@@ -266,12 +266,6 @@ class MusicController < StoreController
     end
     @images = @product.images
 
-    #@variations = @product.variations.find(
-    #  :all,
-    #  :order => '-variation_rank DESC',
-    #  :conditions => 'quantity > 0'
-    #)
-    #
     @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
 
     render :layout => 'main_no_box'
@@ -409,7 +403,8 @@ class MusicController < StoreController
       logger.info "not rendering cached because of filter or flash"
     end
 
-    # Generate tag ID list from names
+    # Generate tag ID list from names passed in
+
     if tag_name =~ / / # a convenience name typed in manually
       redirect_to_tag(tag_name) and return
     end
@@ -430,8 +425,8 @@ class MusicController < StoreController
     # 
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
     all_products = Product.find_by_tags([temp_tag.id], true, "items.name ASC")
-    if temp_tag.is_composer_tag?
-      all_products = randomize(all_products)
+    if !temp_tag.is_composer_tag?
+      all_products = randomize_but_keep_titles_together(all_products)
     else
       # all_products = all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above
     end
@@ -473,7 +468,7 @@ class MusicController < StoreController
     render 'index.rhtml'
   end
 
-  def randomize all_products
+  def randomize_but_keep_titles_together all_products
     titles = {} # keep them organized by title.
     # keep them random within title though :P
     all_products.sort_by{ rand }.sort_by{|p| 
