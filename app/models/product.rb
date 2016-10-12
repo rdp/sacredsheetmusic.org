@@ -147,7 +147,7 @@ class Product < Item
           self.code = self.name.clone + ' ' + voicing_name + ' by ' + self.composer_tag.name
         else
           if self.voicing_tags.size == 0
-            raise 'please check some voicing options first (use back button on browser to proceed) (if no voicing options match, please tell us!)'
+            raise 'please check some voicing options first (like "vocal solo" or SATB, or an instrument--use back button on browser to proceed) (if no voicing options match, please tell us!)'
           end
           if !self.name.present?
             # only possible if they forgot to enter a name, or forgot to tag it with an arrangement checkbox
