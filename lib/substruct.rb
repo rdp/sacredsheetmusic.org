@@ -106,6 +106,10 @@ end
       :action => 'show',
       :requirements => { :id => /[^\/]+/ } # allow for '.' in the id code :|
 
+    map.connect '/s/:id', # s for song -- just convenience for when I manually type it in, though there's some link for it out there somewhere too :|!
+      :controller => 'music',
+      :action => 'show',
+      :requirements => { :id => /[^\/]+/ } # allow for '.' in the id code :|
     # Shorter url to show music items by tags
     #
     #map.connect '/s/*tags', # was replaced! see above...
