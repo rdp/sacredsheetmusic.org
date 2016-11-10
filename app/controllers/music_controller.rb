@@ -674,7 +674,9 @@ class MusicController < StoreController
     # duets => duet
     # and => ''
     # your => you (they might have wanted you're...) so query you matches you're since the ' is replaced out...
-    words_to_search_for = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}.reject{|name| name.in? ['with', 'and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}.map{|name| name.gsub(/[^a-z0-9]/, '')}
+    words_to_search_for = @search_term.split.map{|word| first_part=word.split("'")[0]}.map{|word| word == 'oh' ? 'o' : word}.map{|word| word.sub(/s$/, '')}
+    words_to_search_for.reject!{|name| name.in? ['with', 'and', 'or', 'the', 'a', 'by', 'for'] || name.length < 2}
+    words_to_search_for.map!{|name| name.gsub(/[^a-z0-9]/, '')}
 
     super_search_terms = words_to_search_for.map{|name| ["%#{name}%"]*3}.flatten
 
