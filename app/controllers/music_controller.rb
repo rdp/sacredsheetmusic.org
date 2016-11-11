@@ -635,6 +635,30 @@ class MusicController < StoreController
     @composer = Tag.find_by_id(params[:id])
   end
 
+  @@song_mutex = Mutex.new
+
+  def all_songs_with_strings
+    @@cached_all_songs ||= all_songs_with_strings_non_memoized() # init, kind of OK if multiple simultaneously :|
+    if @@song_mutex.locked?
+      return @@cached_all_songs # don't queue up...kind of :)
+    end
+    Thread.new {
+      @@song_mutex.synchronize {
+       @@cached_all_songs = all_songs_with_strings_non_memoized() # refresh :)
+      }
+    }
+    @@cached_all_songs # unrefreshed version :)
+  end
+
+  def all_songs_with_strings_non_memoized
+    all_songs_with_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand)
+    all_songs_with_tags.map{ |p| 
+       all_tags =  p.tags.map{|t| t.name + " " + t.bio.to_s }.join(" ")
+       big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + all_tags).downcase.split # split so mary doesn't match primary though some of this still occurs in the SQL query within description...
+       [p, big_string]
+    }
+  end
+
   def search
     search_term = params[:q]
     unless search_term.present?
@@ -695,16 +719,10 @@ class MusicController < StoreController
     )
 
     # allow searches like "christmas duet" to work...unclear how to do this in sql...
-    all_songs_with_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand)
-    all_songs_with_strings = all_songs_with_tags.map{ |p| 
-       all_tags =  p.tags.map{|t| t.name + " " + t.bio.to_s }.join(" ")
-       big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + all_tags).downcase.split # split so mary doesn't match primary though some of this still occurs in the SQL query within description...
-       [p, big_string]
-    }
 
-    with_all_words_somewhere = all_songs_with_strings.select{|p, big_string| 
+    with_all_words_somewhere = all_songs_with_strings().select{ |p, big_string| 
        words_to_search_for.all?{|word| big_string.contain? word}
-    }.map{|p, big_string| p}
+    }.map{ |p, big_string| p}
 
     # search for all products of (basically) precise matching tags, too
     # this might be redundant to the above these days...
