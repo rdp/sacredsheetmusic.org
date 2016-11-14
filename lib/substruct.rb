@@ -422,3 +422,14 @@ end
 def generate_random_password
   chars = ('a'..'z').to_a - ['l', 'o']; (0..6).map{ chars.random_element }.join # avoid ambiguous :)
 end
+
+#
+unless Array.method_defined? :sort_by!
+  class Array
+    def sort_by!
+      return to_enum(:sort_by!) unless block_given?
+      raise "can't modify frozen array" if frozen?
+      replace sort_by{|e| yield e}
+    end
+  end
+end

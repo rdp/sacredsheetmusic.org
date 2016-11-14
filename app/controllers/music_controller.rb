@@ -637,7 +637,7 @@ class MusicController < StoreController
   def all_songs_with_strings_non_memoized
     all_songs_with_tags = Product.find(:all, :include => :tags, :conditions => Product::CONDITIONS_AVAILABLE, :order => session_rand)
     all_songs_with_tags.map{ |p| 
-       all_tags =  p.tags.map{|t| t.name + " " + t.bio.to_s }.join(" ")
+       all_tags =  p.tags.map{|t| t.name + " " + t.bio.to_s}.join(" ")
        big_string = (p.name.to_s + " " + p.description.to_s + " " + p.lyrics.to_s + " " + all_tags).downcase.split # split so mary doesn't match primary though some of this still occurs in the SQL query within description...
        [p, big_string]
     }
