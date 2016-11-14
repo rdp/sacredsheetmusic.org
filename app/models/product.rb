@@ -521,20 +521,25 @@ class Product < Item
     self.date_available = Time.now if !self.date_available # use precise time for ordering sanity
   end
 
-        # Finds products by list of tag ids passed in
-        #
-        # We could JOIN multiple times, but selecting IN grabs us the products
-        # and using GROUP BY & COUNT with the number of tag id's given
-        # is a faster approach according to freenode #mysql
-  def self.find_by_tags(tag_ids, order_by="items.name ASC")
-                sql =  "SELECT * "
-                sql << "FROM items "
-                sql << "JOIN products_tags on items.id = products_tags.product_id "
-                sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
-                sql << "AND #{CONDITIONS_AVAILABLE}"
-                sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
-                sql << "ORDER BY #{order_by};"
-                find_by_sql(sql)
+  # Finds products by list of tag ids passed in
+  #
+  # We could JOIN multiple times, but selecting IN grabs us the products
+  # and using GROUP BY & COUNT with the number of tag id's given
+  # is a faster approach according to freenode #mysql
+  # I think this basically requires a product to match "all" tags passed into it.
+  def self.find_by_tags_old(tag_ids, order_by="items.name ASC")
+    sql =  "SELECT * "
+    sql << "FROM items "
+    sql << "JOIN products_tags on items.id = products_tags.product_id "
+    sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
+    sql << "AND #{CONDITIONS_AVAILABLE}"
+    sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
+    sql << "ORDER BY #{order_by};"
+    find_by_sql(sql) # this v. of rails has no joins and no "preloader" option...hmm...
+  end
+
+  def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
+    Tag.find(tag_id, :include => [{:products => [:tags]}], :order => order_by).songs
   end
 
 end

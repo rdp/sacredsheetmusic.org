@@ -408,7 +408,7 @@ class MusicController < StoreController
     # and conditions in the controller
     # 
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
-    all_products = Product.find_by_tags([temp_tag.id], "items.name ASC")
+    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
     if !temp_tag.is_composer_tag?
       all_products = randomize_but_keep_titles_together(all_products)
     else
