@@ -88,18 +88,6 @@ class Product < Item
     self.tags.select{|t| t.is_voicing? }
   end
 
-  def self.find_by_tag_ids(tag_ids, find_available=true, order_by="items.name DESC")
-                sql = ''
-                #sql << "FROM items "
-                #sql << "JOIN products_tags on items.id = products_tags.product_id "
-                sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
-                sql << "AND #{CONDITIONS_AVAILABLE}" if find_available==true
-                sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
-                sql << "ORDER BY #{order_by};" # :order => 'items.name ASC'
-#                find_by_sql(sql)
-                find(:all, :include => [:tags], :conditions => [sql])
-  end
-
   def composer_generic_contact_url 
     composer_tag.andand.get_composer_contact_url
   end
@@ -538,12 +526,12 @@ class Product < Item
         # We could JOIN multiple times, but selecting IN grabs us the products
         # and using GROUP BY & COUNT with the number of tag id's given
         # is a faster approach according to freenode #mysql
-  def self.find_by_tags(tag_ids, find_available=false, order_by="items.date_available DESC")
+  def self.find_by_tags(tag_ids, order_by="items.name ASC")
                 sql =  "SELECT * "
                 sql << "FROM items "
                 sql << "JOIN products_tags on items.id = products_tags.product_id "
                 sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
-                sql << "AND #{CONDITIONS_AVAILABLE}" if find_available==true
+                sql << "AND #{CONDITIONS_AVAILABLE}"
                 sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
                 sql << "ORDER BY #{order_by};"
                 find_by_sql(sql)

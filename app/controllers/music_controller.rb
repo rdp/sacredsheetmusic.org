@@ -173,22 +173,6 @@ class MusicController < StoreController
   true
  end
 
- # this is an "or" currently, for if it has any tags...
- def find_by_tag_ids(tag_ids, find_available=true, order_by="items.name ASC")
-    sql = "products_tags.tag_id IN (?)"
-    sql << "AND #{Product::CONDITIONS_AVAILABLE}" if find_available==true
-  #  sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
-    Product.find(:all, :group => 'items.id', :joins => :tags, :group => 'items.id', :include => :tags, :conditions => [sql, tag_ids], :order => order_by)
- end 
-
- def wake_up
-  #Cache.first
-  #Product.first
-  #Download.first
-  #Tag.first # might be cached so might not need this LOL
-  render :text => "what a beautiful morning!" and return # for cron
- end
-
  def redirect_to_original_url
    redirect_to_original_url_helper false
  end
@@ -424,11 +408,11 @@ class MusicController < StoreController
     # and conditions in the controller
     # 
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
-    all_products = Product.find_by_tags([temp_tag.id], true, "items.name ASC")
+    all_products = Product.find_by_tags([temp_tag.id], "items.name ASC")
     if !temp_tag.is_composer_tag?
       all_products = randomize_but_keep_titles_together(all_products)
     else
-      # all_products = all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above
+      # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to
     end
 
     original_size = all_products.size
