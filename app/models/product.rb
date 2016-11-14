@@ -190,7 +190,7 @@ class Product < Item
   def clear_my_cache
     Cache.delete_all(:parent_id => self.id)
     #Product.delete_group_caches # ??
-    Cache.clear_local_caches! # clear "product specific" caches for all instances, so we don't get an old "Tag This Product" box on some edits, but not others [yikes!]
+    Cache.clear_local_caches_restart_all_apps! # so we don't get an old warning box on some re-edits, but not others [yikes!]
     reset_html_cache
     clear_tag_caches = true # this is pretty heavy still [TODO why?]! default = true...
     if clear_tag_caches

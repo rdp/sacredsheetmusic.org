@@ -628,7 +628,7 @@ class MusicController < StoreController
     end
     Thread.new {
       @@song_mutex.synchronize {
-       @@cached_all_songs = all_songs_with_strings_non_memoized() # refresh :)
+        #@@cached_all_songs = all_songs_with_strings_non_memoized() # refresh :) shouldn't need to since saving a product actually restart the whole durn app LOL
       }
     }
     @@cached_all_songs # unrefreshed version :)

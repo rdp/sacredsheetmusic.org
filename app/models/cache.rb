@@ -12,10 +12,10 @@ class Cache < ActiveRecord::Base
     Product.update_all("thumbnail_html_cache = null")
     puts "not clearing the public/cache folder...yes restarting this rails app [all instance] to clear all local caches"
     #clear_html_cache
-    clear_local_caches!
+    clear_local_caches_restart_all_apps!
   end
 
-  def self.clear_local_caches!
+  def self.clear_local_caches_restart_all_apps!
     require 'fileutils'
     Rails.logger.info "restarting all rails processes..."
     FileUtils.touch RAILS_ROOT + "/tmp/restart.txt"
@@ -25,7 +25,7 @@ class Cache < ActiveRecord::Base
   def self.delete_by_type type
     verify_type type
     delete_all(["cache_type = ?", type])
-    clear_local_caches!
+    clear_local_caches_restart_all_apps!
   end
 
   # uses AR instance' attributes too <yikes rails' #hash ...>
