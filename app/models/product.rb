@@ -521,14 +521,26 @@ class Product < Item
     self.date_available = Time.now if !self.date_available # use precise time for ordering sanity
   end
 
-  @@cached_products = {} # ID to product with all tagz LOL once again rely on global reboot :|
+  # Finds products by list of tag ids passed in
+  #
+  # We could JOIN multiple times, but selecting IN grabs us the products
+  # and using GROUP BY & COUNT with the number of tag id's given
+  # is a faster approach according to freenode #mysql
+  # I think this basically requires a product to match "all" tags passed into it.
+  def self.find_by_tags_old(tag_ids, order_by="items.name ASC")
+    sql =  "SELECT * "
+    sql << "FROM items "
+    sql << "JOIN products_tags on items.id = products_tags.product_id "
+    sql << "WHERE products_tags.tag_id IN (#{tag_ids.join(",")}) "
+    sql << "AND #{CONDITIONS_AVAILABLE}"
+    sql << "GROUP BY items.id HAVING COUNT(*)=#{tag_ids.length} "
+    sql << "ORDER BY #{order_by};"
+    find_by_sql(sql) # this v. of rails has no joins and no "preloader" option...hmm...
+  end
 
-  def self.find_by_tag_id(tag_id)
-    tag = Tag.find(tag_id)
-    wanted_ids = tag.product_ids
-    wanted_ids.map{ |id| 
-      @@cached_products[id] ||= Product.find(id, :include => [{:tags => [:parent, :children]}])
-    }
+  def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
+    tag = Tag.find(tag_id, :include => :products) # including tags here is like 0.2s -> 2s
+    tag.songs
   end
 
 end
