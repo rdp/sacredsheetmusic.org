@@ -1,6 +1,7 @@
 require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/models/tag"
 
 class Tag
+
   has_one :admin_user, :class_name => 'User', :foreign_key => :composer_tag_id # User has one of these [composer login]
 
   validate :no_underscores
@@ -102,7 +103,7 @@ class Tag
   end
 
   def valid_products
-   self.products.select{|p| p.date_available < Time.now}
+    self.products.select{|p| p.date_available < Time.now}
   end
 
   def is_composer_tag?

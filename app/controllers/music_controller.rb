@@ -386,15 +386,15 @@ class MusicController < StoreController
     end
 
     # Generate tag ID list from names passed in
-
-    if tag_name =~ / / # a convenience name typed in manually
+    if tag_name =~ / / # convenience name typed in manually by moi LOL
       redirect_to_tag(tag_name) and return
     end
+
     real_name = tag_name.gsub('_', ' ') # allow for cleaner google links coming in...which were the ones we created :)
     temp_tag = Tag.find_by_name(real_name) 
     if !temp_tag
       @to_search = real_name
-      render(:file => "#{RAILS_ROOT}/public/404_search.html", :status => 404) and return
+      render(:file => "#{RAILS_ROOT}/public/404_search.html", :status => 404) and return # :|
     end
     if temp_tag.name != real_name # redirect on capitalization fail :)
       redirect_to_tag(temp_tag.name) and return
@@ -403,12 +403,10 @@ class MusicController < StoreController
     @viewing_tags = [temp_tag]
 
     # Paginate products here so we don't have a ton of ugly SQL
-    # and conditions in the controller
-    # 
-    # lacking #tag_ids for now [non eager load] but that might actually be ok...
+    # and conditions in the view
     logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
     start_time = Time.now
-    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
+    all_products = Product.find_by_tag_id(temp_tag.id)# 0.7
     logger.info "find_by_tag took #{Time.now - start_time}s"
     start_time = Time.now
     if !temp_tag.is_composer_tag?
