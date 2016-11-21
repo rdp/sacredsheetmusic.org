@@ -577,7 +577,7 @@ class MusicController < StoreController
         render_and_cache('index.rhtml', 'all_songs') and return
       end
       format.rss do
-        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook maybe requested this once?
+        render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook maybe requested this once? so 404 instead of clogging our logs with 500's
       end
     end
   end 
