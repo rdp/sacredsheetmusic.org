@@ -28,7 +28,7 @@ class Product < Item
   end
 
   def thumbnail_filename
-    RAILS_ROOT + "/temp/#{self.id}"
+    RAILS_ROOT + "/public/cache_song_square/#{self.id}"
   end
   public
 

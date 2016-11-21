@@ -353,18 +353,15 @@ class MusicController < StoreController
       cache_name = cache_name + '_sunday'
     end
     text = render_to_string rhtml_name
-    cache_dir = RAILS_ROOT+"/public/cache"
-    Dir.mkdir cache_dir unless File.directory?(cache_dir)
+    cache_dir = RAILS_ROOT + "/public/cache"
     if !flash[:notice].present?
-      File.write("#{cache_dir}/#{cache_name}.html", text)
+      File.write("#{cache_dir}/#{cache_name}.html", text) # :|
     end
     render :text => text 
   end
 
-
   # Shows products by tag or tags.
-  # Tags are passed in as id #'s separated by commas.
-  #
+  # Tags are passed in as id #'s separated by commas. or were once upon a time snort snort
   def show_by_tags
     # Tags are passed in as an array.
     # Passed into this controller like this [except we only use at most one]...:
