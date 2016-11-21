@@ -539,7 +539,8 @@ class Product < Item
   end
 
   def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
-    Tag.find(tag_id, :include => [{:products => [:tags]}], :order => order_by).songs
+    tag = Tag.find(tag_id, :include => [{:products => [:tags]}], :order => order_by) # 4.5s
+    tag.songs
   end
 
 end

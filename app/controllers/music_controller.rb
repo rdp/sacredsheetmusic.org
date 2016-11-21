@@ -366,10 +366,11 @@ class MusicController < StoreController
     # Tags are passed in as an array.
     # Passed into this controller like this [except we only use at most one]...:
     # /tag_one/tag_two/tag_three/...
+    start_time = Time.now
     not_a_bot # for logging purposes :P
-    tag_names = params[:tags] || [] # 
+    tag_names = params[:tags] || []
     if tag_names.length > 1
-      # passenger or nginx bug, Primary%2FYouth gets translated to Primary/Youth
+      # passenger or nginx bug, Primary%2FYouth gets translated to Primary/Youth and come in as separate tags to us at this point :|
       tag_names = [tag_names.join('/')]
     end
     
@@ -405,7 +406,11 @@ class MusicController < StoreController
     # and conditions in the controller
     # 
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
-    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
+    logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
+    start_time = Time.now
+    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC") # 4.48s [!]
+    logger.info "find_by_tag took #{Time.now - start_time}s"
+    start_time = Time.now
     if !temp_tag.is_composer_tag?
       all_products = randomize_but_keep_titles_together(all_products)
     else
@@ -432,12 +437,15 @@ class MusicController < StoreController
     if temp_tag.get_composer_contact_url.present?
       @composer_tag = @viewing_tags[0]
     end
+    logger.info("step 2 took #{Time.now - start_time}s") # 6s
+    start_time = Time.now
 
     if !session['filter_all_tag_id'].present?
       render_and_cache('index.rhtml', tag_name)
     else
       render 'index.rhtml' # render every time if special list...though we could cache it too uh guess...
     end
+   logger.info("step 3 took #{Time.now - start_time}s") # 1.6s
 
   end
 
