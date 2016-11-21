@@ -539,8 +539,7 @@ class Product < Item
   end
 
   def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
-    tag = Tag.find(tag_id, :include => [{:products => [:tags]}]) 
-    tag.products.sort_by{|p| p.name} # == items.name ASC ... I think LOL but twice as fast, ai ai rails
+    tag = Tag.find(tag_id, :include => :products) # including tags here is like 0.2s -> 2s
     tag.songs
   end
 

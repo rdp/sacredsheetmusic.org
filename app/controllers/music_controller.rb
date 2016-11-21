@@ -408,7 +408,7 @@ class MusicController < StoreController
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
     logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
     start_time = Time.now
-    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC") # 4.48s [!]
+    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
     logger.info "find_by_tag took #{Time.now - start_time}s"
     start_time = Time.now
     if !temp_tag.is_composer_tag?
@@ -416,6 +416,7 @@ class MusicController < StoreController
     else
       # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to
     end
+    logger.info "checkpoint 1 now #{Time.now - start_time}s"
 
     original_size = all_products.size
     if original_size > 0
@@ -428,6 +429,7 @@ class MusicController < StoreController
       # don't say Topics (0 free arrangements) LOL
       @title = temp_tag.name
     end
+    logger.info "checkpoint 2 now #{Time.now - start_time}s"
     @products = paginate_and_filter(all_products)
 
     if temp_tag.bio
