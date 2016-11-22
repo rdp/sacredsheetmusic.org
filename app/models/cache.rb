@@ -62,7 +62,7 @@ class Cache < ActiveRecord::Base
   end
 
   def self.all_cache_files
-    Dir[RAILS_ROOT+"/public/cache/*"]
+    Dir[RAILS_ROOT+"/public/cache/*"].reject{|file| file =~ /git_keep/}
   end
 
   def self.clear_html_cache
