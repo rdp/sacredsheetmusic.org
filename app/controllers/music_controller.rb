@@ -442,6 +442,20 @@ class MusicController < StoreController
     logger.info("step 2 took #{Time.now - start_time}s") # 6s
     start_time = Time.now
 
+    @alpha_tag_to_product_ids = []
+    alphas = Tag.find_ordered_parents
+    alphas.map{ |alpha|
+      ids_for_this_tag = []
+      @products.each{ |product|
+        product_alpha_tags = get_product_alpha_tag_ids(product, alphas)
+        if product_alpha_tags.include?(alpha.id) # is there some cleverer way to do this?
+          ids_for_this_tag << product.id
+        end
+      }
+      @alpha_tag_to_product_ids << [alpha, ids_for_this_tag]
+    }
+    logger.info "got alphas as #{@alpha_tag_to_product_ids.map{|t, ids| [t.name, ids.size]}.inspect}"
+
     if !session['filter_all_tag_id'].present?
       render_and_cache('index.rhtml', tag_name)
     else
@@ -449,6 +463,11 @@ class MusicController < StoreController
     end
    logger.info("step 3 took #{Time.now - start_time}s") # 1.6s
 
+  end
+
+  @@product_id_to_alpha_tags = {}
+  def get_product_alpha_tag_ids product, parents
+    @@product_id_to_alpha_tags[product.id] ||= parents.select{|t| product.tag_ids.include?(t.id)}.map &:id
   end
 
   def only_on_this_site # deprecated, i.e. unused I believe these days...
