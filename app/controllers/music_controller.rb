@@ -382,7 +382,11 @@ class MusicController < StoreController
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(tag_name)
     else
-      logger.info "not rendering cached because of filter or flash"
+      if !session['filter_all_tag_id'].present? 
+        logger.info "not rendering cached because of filter"
+      else
+        logger.info "not rendering cached because of flash"
+      end
     end
 
     # Generate tag ID list from names passed in
@@ -416,7 +420,6 @@ class MusicController < StoreController
     else
       # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to
     end
-    logger.info "checkpoint 1 now #{Time.now - start_time}s [this one starts slow then warms up]"
 
     original_size = all_products.size
     if original_size > 0
@@ -429,7 +432,6 @@ class MusicController < StoreController
       # don't say Topics (0 free arrangements) LOL
       @title = temp_tag.name
     end
-    logger.info "checkpoint 2 now #{Time.now - start_time}s"
     @products = paginate_and_filter(all_products)
 
     if temp_tag.bio
@@ -439,23 +441,10 @@ class MusicController < StoreController
     if temp_tag.get_composer_contact_url.present?
       @composer_tag = @viewing_tags[0]
     end
-    logger.info("step 2 took #{Time.now - start_time}s") # 6s
+    logger.info("step 2 took #{Time.now - start_time}s [this one starts slow then warms up]")
     start_time = Time.now
 
-    @alpha_tag_to_product_ids = []
-    alphas = Tag.find_ordered_parents
-    alphas.map{ |alpha|
-      ids_for_this_tag = []
-      @products.each{ |product|
-        product_alpha_tags = get_product_alpha_tag_ids(product, alphas)
-        if product_alpha_tags.include?(alpha.id) # is there some cleverer way to do this?
-          ids_for_this_tag << product.id
-        end
-      }
-      @alpha_tag_to_product_ids << [alpha, ids_for_this_tag]
-    }
-    logger.info "got alphas as #{@alpha_tag_to_product_ids.map{|t, ids| [t.name, ids.size]}.inspect}"
-
+    setup_alpha_tag_sizes
     if !session['filter_all_tag_id'].present?
       render_and_cache('index.rhtml', tag_name)
     else
@@ -468,6 +457,21 @@ class MusicController < StoreController
   @@product_id_to_alpha_tags = {}
   def get_product_alpha_tag_ids product, parents
     @@product_id_to_alpha_tags[product.id] ||= parents.select{|t| product.tag_ids.include?(t.id)}.map &:id
+  end
+
+  def setup_alpha_tag_sizes
+    @alpha_tag_to_product_ids = []
+    alphas = Tag.find_ordered_parents
+    alphas.map{ |alpha|
+      ids_for_this_tag = []
+      @products.each{ |product|
+        product_alpha_tags = get_product_alpha_tag_ids(product, alphas)
+        if product_alpha_tags.include?(alpha.id) # is there some cleverer way to do this?
+          ids_for_this_tag << product.id
+        end
+      }
+      @alpha_tag_to_product_ids << [alpha, ids_for_this_tag]
+    }
   end
 
   def only_on_this_site # deprecated, i.e. unused I believe these days...
@@ -777,6 +781,7 @@ class MusicController < StoreController
     end
     @products = paginate_and_filter all_products, per_page
     Rails.logger.info "using per_page=#{per_page} and showing #{@products.size}"
+    setup_alpha_tag_sizes
 
     # If only one product comes back, take em directly to it.
     if all_ids_merged.size == 1 && @products.length > 0
