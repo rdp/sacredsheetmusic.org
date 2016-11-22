@@ -409,14 +409,14 @@ class MusicController < StoreController
     logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
     start_time = Time.now
     all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
-    logger.info "find_by_tag took #{Time.now - start_time}s"
+    logger.info "find_by_tag took #{Time.now - start_time}s" # 0.4s
     start_time = Time.now
     if !temp_tag.is_composer_tag?
       all_products = randomize_but_keep_titles_together(all_products)
     else
       # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to
     end
-    logger.info "checkpoint 1 now #{Time.now - start_time}s"
+    logger.info "checkpoint 1 now #{Time.now - start_time}s [this one starts slow then warms up]"
 
     original_size = all_products.size
     if original_size > 0
