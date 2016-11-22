@@ -382,7 +382,7 @@ class MusicController < StoreController
     if !session['filter_all_tag_id'].present? && !flash[:notice].present?
       return if render_cached_if_exists(tag_name)
     else
-      if !session['filter_all_tag_id'].present? 
+      if session['filter_all_tag_id'].present? 
         logger.info "not rendering cached because of filter"
       else
         logger.info "not rendering cached because of flash"
