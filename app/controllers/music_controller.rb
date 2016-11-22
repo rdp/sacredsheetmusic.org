@@ -459,17 +459,27 @@ class MusicController < StoreController
     render 'index.rhtml'
   end
 
-  def randomize_but_keep_titles_together all_products
-    titles = {} # keep them organized by title.
-    # keep them random within title though :P
-    all_products.sort_by{ rand }.sort_by{|p| 
-      if p.hymn_tags.length > 0
-        hymn_tag = p.hymn_tags.sort_by{|t| t.name}.first 
-        titles[hymn_tag] ||= rand
-        titles[hymn_tag]
+  @@product_id_to_hymn_tag_name = {}
+
+  def rand_for_product title_rands, product
+    if !@@product_id_to_hymn_tag_name[product.id]
+      # cache miss :)
+      if product.hymn_tags.length > 0
+        title_for_rand = product.hymn_tags.sort_by{|t| t.name}.first.name # all this work to avoid having to lookup tags often :|
       else
-        rand # an original, I presume
+        title_for_rand = product.name # anything will do, an original presumably :|
       end
+      @@product_id_to_hymn_tag_name[product.id] = title_for_rand
+    end
+    title_rands[@@product_id_to_hymn_tag_name[product.id]] ||= rand
+  end
+
+  def randomize_but_keep_titles_together all_products
+    title_rands = {} # keep them organized by title.
+    # keep them random within title though :P
+    all_products.sort_by!{ rand }
+    all_products.sort_by!{ |p| 
+      rand_for_product(title_rands, p)
     }
   end
   
