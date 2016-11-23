@@ -505,6 +505,8 @@ class MusicController < StoreController
     all_products.sort_by!{ |p| 
       rand_for_product(title_rands, p) # this will also use our srand so be consistent
     }
+    srand # reset it back to "somefin random"
+    all_products
   end
   
   # Downloads a file using the original way
