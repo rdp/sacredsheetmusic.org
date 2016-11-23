@@ -486,7 +486,7 @@ class MusicController < StoreController
 
   def rand_for_product title_rands, product
     if !@@product_id_to_hymn_tag_name[product.id]
-      # cache miss :)
+      # cache miss, lookup hymn_tags [and tags at all :| ]
       if product.hymn_tags.length > 0
         title_for_rand = product.hymn_tags.sort_by{|t| t.name}.first.name # all this work to avoid having to lookup tags often :|
       else
@@ -500,9 +500,10 @@ class MusicController < StoreController
   def randomize_but_keep_titles_together all_products
     title_rands = {} # keep them organized by title.
     # keep them random within title though :P
+    srand(session_id.consistent_hash) # dunno how else to do this :(
     all_products.sort_by!{ rand }
     all_products.sort_by!{ |p| 
-      rand_for_product(title_rands, p)
+      rand_for_product(title_rands, p) # this will also use our srand so be consistent
     }
   end
   
