@@ -255,36 +255,6 @@ class MusicController < StoreController
     render :layout => 'main_no_box'
   end
 
-  def advanced_search
-    # place holder...
-  end
-
-  def advanced_search_post
-   tags = params[:product][:tag_ids].map{|id| Tag.find(id)}
-   parent_tag_groups = {}
-   for tag in tags
-    if tag.parent
-      parent_id = tag.parent.id
-      child_id = tag.id
-    else
-      # allow for parent tags, too
-      parent_id = child_id = tag.id
-    end
-     parent_tag_groups[parent_id] ||= []
-     parent_tag_groups[parent_id] << child_id
-   end
-
-   all_products = Product.find(:all, :conditions => Product::CONDITIONS_AVAILABLE) # LODO sql for all the above :)
-  
-   @products = all_products.select{|p|
-     product_matches(p, parent_tag_groups)
-   }
-  
-   @do_not_paginate = true # XXXX enable paginate
-   @title = 'Advanced search:' + tags.map{|t| t.name}.join(' and ') + " #{@products.count} songs"
-   render :action => 'index.rhtml'
- end
-
   def filter_by_current_main_tag these_products
     @all_products_unfiltered = these_products
     if these_products.length > 1
@@ -451,12 +421,11 @@ class MusicController < StoreController
       render 'index.rhtml' # render every time if special list...though we could cache it too uh guess...
     end
    logger.info("step 3 took #{Time.now - start_time}s") # 1.6s
-
   end
 
-  @@product_id_to_alpha_tags = {}
-  def get_product_alpha_tag_ids product, parents
-    @@product_id_to_alpha_tags[product.id] ||= parents.select{|t| product.tag_ids.include?(t.id)}.map &:id
+  @@product_id_to_alpha_tags_cache = {}
+  def get_product_alpha_tag_ids product, alphas
+    @@product_id_to_alpha_tags_cache[product.id] ||= alphas.select{|t| product.tag_ids.include?(t.id)}.map(&:id)
   end
 
   def setup_alpha_tag_sizes
@@ -466,20 +435,12 @@ class MusicController < StoreController
       ids_for_this_tag = []
       @products.each{ |product|
         product_alpha_tags = get_product_alpha_tag_ids(product, alphas)
-        if product_alpha_tags.include?(alpha.id) # is there some cleverer way to do this?
+        if product_alpha_tags.include?(alpha.id) # is there some cleverer way to do this? might be fast enough since so few tags...
           ids_for_this_tag << product.id
         end
       }
       @alpha_tag_to_product_ids << [alpha, ids_for_this_tag]
     }
-  end
-
-  def only_on_this_site # deprecated, i.e. unused I believe these days...
-    @products = Tag.find_all_by_only_on_this_site(true).map{|t| t.products}.flatten 
-    def @products.total_pages # fake it out :P
-      1
-    end
-    render 'index.rhtml'
   end
 
   @@product_id_to_hymn_tag_name = {}
@@ -639,6 +600,7 @@ class MusicController < StoreController
       :limit => 100
     )
     @products = paginate_and_filter(recent, 100)
+    setup_alpha_tag_sizes
     render :action => 'index.rhtml' and return
   end
 

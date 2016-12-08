@@ -33,7 +33,6 @@
            <% else %>
                  <!--You can also get a more precise list by selecting a category, on the left hand side. <- NB this is used only for root tags -->
            <% end %>
-           <!--searching, or selecting by topic, etc., or use an <a href="/music/advanced_search">advanced</a> search.)-->
         <% else %>
              <div style="padding-bottom: 5px;">
         <% end %>
@@ -69,7 +68,7 @@
     <% if @viewing_tags && @viewing_tags.length == 1 && @viewing_tags[0].children.count > 0%>
       Please choose a sub-category to your left.
     <% else %>
-      Sorry, no songs match your view.  Maybe you can change search/filter terms or choose another category, or try out <a href="/music/advanced_search">advanced search</a>.
+      Sorry, no songs match your view.  Maybe you can change search/filter terms or choose to browse by a category.
     <% end %>
     </p>
   <% else %>
