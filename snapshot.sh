@@ -9,5 +9,6 @@ nice ruby script/runner -e production "p Cache.clear!"
 A=`date`
 B=`echo $A | tr -d \\n`
 # allow this to lock the tables since it 3s total anyway...
+cat ./config/database.yml
 nice mysqldump -uprod_flds prod_flds_database -p > "snap$B.sql" &&  gzip "snap$B.sql" && echo "created snap$B.sql" 
 echo "not snapping pub files..."

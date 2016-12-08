@@ -45,14 +45,13 @@
 <% else; top_dropdown_row_text = "showing all (#{@products.size})" %>
     You could also filter these songs (limit them) by type. Currently:
 <% end %>
-
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
        start = Time.now
        current_tag = @viewing_tags.andand[0]
        filter_dropdown = 
          # reject current_tag since it's already shown in the top line if anything's selected, already...
-         select("main_filter", nil, @alpha_tag_to_product_ids.select{|t, ids| ids.size > 0}.reject{|t, ids| t == current_tag || t == current_tag.andand.parent }.map{|t, ids| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{ids.size})", t.id]}, { :include_blank => top_dropdown_row_text, :selected => @old_global_filter }, 
+         select("main_filter", nil, @alpha_tag_to_product_ids.select{|t, ids| ids.size > 0 || t.id == @old_global_filter }.reject{|t, ids| t == current_tag || t == current_tag.andand.parent }.map{|t, ids| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{ids.size})", t.id]}, { :include_blank => top_dropdown_row_text, :selected => @old_global_filter }, 
            {
              :onchange => remote_function(:loading => "new Effect.Fade($('main_filter_'), { duration: 0.5 });$('spinner').show()", :url => {:action => :change_global_filter}, :with => "'id=' + $('main_filter_').value", :success => "window.location.reload();"),
         }) 
