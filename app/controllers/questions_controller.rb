@@ -43,9 +43,16 @@ class QuestionsController < ApplicationController
       render :action => 'ask'
     end
   end
-	
+  def is_spam_comment?
+    params['recaptcha'].downcase != 'sunday'
+  end
+
 	# Sends question via email to site owner
 	def send_question
+          if is_spam_comment?
+            raise "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to enter sunday and try again!"
+            # wasn't sure how to auto re-populate so force browser back LOL
+          end
 	  @question = Question.new(params[:question]) # what is a Question here? they used to save these?
 	  @question.short_question = "Message from the contact form"
           email = params[:question][:email_address]
