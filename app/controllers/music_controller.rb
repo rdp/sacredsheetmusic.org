@@ -449,7 +449,7 @@ class MusicController < StoreController
     if !@@product_id_to_hymn_tag_name[product.id]
       # cache miss, lookup hymn_tags [and tags at all :| ]
       if product.hymn_tags.length > 0
-        title_for_rand = product.hymn_tags.sort_by{|t| t.name}.first.name # all this work to avoid having to lookup tags often :|
+        title_for_rand = product.hymn_tags.sort_by{|t| t.name}.first.name # all this work to avoid having to lookup tag names on subsequent hits, yikes! :|
       else
         title_for_rand = product.name # anything will do, an original presumably :|
       end

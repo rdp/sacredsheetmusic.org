@@ -9,7 +9,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <% raise 'we dont display pay songs yet' if @product.price > 0 %>
-<% raise 'song disabled?' if @product.date_available > Time.now %>
+<% raise "song disabled? #{@product.date_available} > #{Time.now}" if @product.date_available > Time.now %>
 
 <% @two_column_layout = true %>
 
