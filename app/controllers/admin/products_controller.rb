@@ -71,7 +71,7 @@ class Admin::ProductsController < Admin::BaseController
       next unless composer.composer_email_if_contacted.present?
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
-      sleep 0.2 # ???
+      sleep 2 # gmail attempt friendliness again :|
       Rails.logger.info "sent spamser to #{composer.id}"
     end
     render :text => "successfully spammed #{count} of them #{Time.now}"
