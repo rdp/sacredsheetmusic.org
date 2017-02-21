@@ -1,5 +1,5 @@
 echo "snapshotting (production) DB..."
-echo "not sure this prossibly get too much junk stuff these days... :|"
+echo "this does not do a sessions nor cache clear first..."
 #./sessions_clear.sh
 #./cache_clear.sh
 # partial [non file] clear instead, except it zips so well, who cares?
