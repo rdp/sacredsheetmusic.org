@@ -225,7 +225,6 @@ class Admin::ProductsController < Admin::BaseController
       end
       instance.regenerate_internal(p.id, this_servers_name)
       out << p.code
-      puts p.code
     }
     out
   end
@@ -332,7 +331,7 @@ class Admin::ProductsController < Admin::BaseController
         urls = URI.extract(content)
         urls.each{|link|
           if link =~ /\.pdf$/i
-            temp_files << do_download_pdf(link)
+            temp_files << do_download_pdf(link) # add to params[:download]
           elsif link =~ /\.mp3$/i
             temp_files << do_download_mp3(link)
           end
@@ -381,10 +380,26 @@ class Admin::ProductsController < Admin::BaseController
 
         params[:download].each do |i|
           if i[:download_data].present?
+            # they uploaded a new file
             new_download = Download.new
             logger.info i[:download_data].inspect
 
             new_download.uploaded_data = i[:download_data]
+            if i[:download_data].original_filename =~ /\.wav$/i
+              # replace inline :)
+              out = `ffmpeg -i #{i[:download_data].path} 2>&1`
+              if out =~ /Audio: pcm_/
+                temp_file2 = get_temp_file_no_extension + ".mp3"
+                raise unless system("ffmpeg -i #{i[:download_data].path} #{temp_file2}")
+                # unfortunately it seems I can't just adjust i[:download_data]???
+                # so add one to the end of the list and hope LOL
+                add_download_from_local_file temp_file2, "audio/mpeg", i[:download_data].original_filename.sub(/\.wav$/i, ".mp3")
+                temp_files << temp_file2
+                logger.info "converted to mp3"
+                next;
+              end
+            end
+
             if i[:download_data].original_filename =~ /\.pdf$/i
               # also add them in as fake images
               got_one = false
@@ -398,12 +413,12 @@ class Admin::ProductsController < Admin::BaseController
                   end
                   logger.info "running " + command
                   raise ContinueError unless system(command)
-                  save_local_file_as_upload temp_file_path, 'image/png',  'sheet_music_picture.png', next_rank
+                  save_local_file_as_upload_image temp_file_path, 'image/png',  'sheet_music_picture.png', next_rank
                   next_rank += 1
                   got_one = true
                 end
               rescue ContinueError => e
-                logger.info "done with pdf: #{e}"
+                logger.info "done with pdf -> png: #{e}"
               end
               unless got_one
                 FileUtils.cp i[:download_data].path, "/tmp/latest_failure.pdf"
@@ -506,12 +521,12 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def do_download_mp3 url
-    temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.mp3"
+    temp_file2 = get_temp_file_no_extension + ".mp3"
     type = 'audio/mpeg'
     if url =~ /\.(mid|midi)$/
       type = 'audio/midi'
     end 
-    add_download url, temp_file2, type, 'mp3'
+    add_download_from_url url, temp_file2, type, 'mp3'
     out = `file #{temp_file2}`
     unless out =~ /MP3|MPEG|midi|Audio/i
        flash[:notice] = "warning: mp3/midi upload was bad? #{url} [#{out}] file #{temp_file_path}"
@@ -519,9 +534,13 @@ class Admin::ProductsController < Admin::BaseController
     temp_file2
   end
 
+  def get_temp_file_no_extension
+    "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}"
+  end
+
   def do_download_pdf url
-    temp_file2 = "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}.pdf"
-    add_download url, temp_file2, 'application/pdf', 'pdf'
+    temp_file2 = get_temp_file_no_extension + ".pdf"
+    add_download_from_url url, temp_file2, 'application/pdf', 'pdf'
     out = `file #{temp_file2}`
     unless out =~ /PDF/
       flash[:notice] = 'warning--non pdf?' + url
@@ -537,9 +556,9 @@ class Admin::ProductsController < Admin::BaseController
     writeOut.close
   end
 
-  def save_local_file_as_upload local_path, type, filename, rank
+  def save_local_file_as_upload_image local_path, type, filename, rank
     new_image = Image.new
-    fake_upload = Pathname.new(local_path)
+    fake_upload = FakeUploadFile.new(local_path)
     fake_upload.content_type = type
     fake_upload.original_filename = filename
     new_image.uploaded_data = fake_upload
@@ -553,23 +572,27 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def add_download url, temp_file_path, type, extension_if_needed
-    # psych it out ;)
+  def add_download_from_url url, temp_file_path, type, extension_if_needed
     logger.info 'downloading to', temp_file_path
     download(url, temp_file_path)
-    fake_upload = Pathname.new(temp_file_path)
-     # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a78704&mid=a1d60cb3e38d23d -> DormanSeason.mp3 where applicable
-    fake_upload.original_filename = url.split('/')[-1].split('?')[0]
-    fake_upload.original_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
-    fake_upload.content_type = type
-    new_download = {:download_data => fake_upload}
-    params[:download].unshift new_download # unshift so we can reuse that one filename...
+    # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a78704&mid=a1d60cb3e38d23d -> DormanSeason.mp3 where applicable
+    local_filename = url.split('/')[-1].split('?')[0]
+    local_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
+    add_download_from_local_file temp_file_path, type, local_filename
   end
 
+  def add_download_from_local_file temp_file_path, type, local_filename
+    # psych it out ;)
+    fake_upload = FakeUploadFile.new(temp_file_path)
+    fake_upload.original_filename = local_filename
+    fake_upload.content_type = type
+    new_download = {:download_data => fake_upload}
+    params[:download].push new_download 
+  end
 
 end
 
-class Pathname
+class FakeUploadFile < Pathname # for the #path method or something LOL
  attr_accessor :content_type, :original_filename
  alias :path :to_s # for pdf's .path sake...we're sure faking out whatever it's really supposed to be here...
 end
