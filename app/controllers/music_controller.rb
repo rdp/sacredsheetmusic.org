@@ -543,10 +543,10 @@ class MusicController < StoreController
       # LODO this doesn't actually inline anything else besides pdf...but at least it wurx
       if filename =~ /\.pdf$/
         args[:type] = 'application/pdf'
-      elsif filename =~ /\.(mid|midi|mp3|wav)/
+      elsif filename =~ /\.(mid|midi|mp3|wav|m4a)/
         args[:type] = "audio/#{$1}"
       else
-        logger.info "whoa unknown type from filename? #{filename}" 
+        logger.info "whoa unknown type from filename? #{filename}"  # leave blank :|
       end
       args[:filename] = File.basename(filename)
       send_file(filename, args)
