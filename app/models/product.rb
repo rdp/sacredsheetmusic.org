@@ -299,6 +299,7 @@ class Product < Item
         end
       end
 
+
       if self.topic_tags.length == 0
         problems << "no topics associated with song yet. Under the \"topics\" section, below, please check mark any topics that apply to this song."
       end
@@ -318,6 +319,9 @@ class Product < Item
       end
 
       for tag in self.tags
+        if tag.copyright_warning_message.present?
+          problems << "WARNING: we have received a notice from a copyright holder in times past regarding arrangements of this song, unfortunately.  You may need permission before you can publish it:" + tag.copyright_warning_message
+        end
         if tag.name =~ bad_whitespace_reg
           problems << "tag has beginning or trailing whitespace? [#{tag.name}] please remove extra spaces"
         end

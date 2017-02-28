@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20100210194537) do
   end
 
   add_index "items", ["date_available", "is_discontinued", "quantity", "variation_quantity", "type"], :name => "tag_view"
-  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"date_available"=>nil, "name"=>nil, "type"=>nil, "quantity"=>nil, "is_discontinued"=>nil, "code"=>"255", "variation_quantity"=>nil}
+  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"type"=>nil, "variation_quantity"=>nil, "code"=>"255", "date_available"=>nil, "name"=>nil, "quantity"=>nil, "is_discontinued"=>nil}
   add_index "items", ["product_id", "type"], :name => "variation"
   add_index "items", ["quantity", "is_discontinued", "variation_quantity"], :name => "published"
 
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(:version => 20100210194537) do
     t.boolean "only_on_this_site",                                      :default => false
     t.string  "composer_email_if_contacted"
     t.string  "text_for_every_song_for_composer"
+    t.string  "copyright_warning_message"
   end
 
   add_index "tags", ["name"], :name => "name"
