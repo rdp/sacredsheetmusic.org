@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20100210194537) do
   end
 
   add_index "items", ["date_available", "is_discontinued", "quantity", "variation_quantity", "type"], :name => "tag_view"
-  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"type"=>nil, "variation_quantity"=>nil, "code"=>"255", "date_available"=>nil, "name"=>nil, "quantity"=>nil, "is_discontinued"=>nil}
+  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"date_available"=>nil, "code"=>"255", "name"=>nil, "quantity"=>nil, "variation_quantity"=>nil, "type"=>nil, "is_discontinued"=>nil}
   add_index "items", ["product_id", "type"], :name => "variation"
   add_index "items", ["quantity", "is_discontinued", "variation_quantity"], :name => "published"
 
