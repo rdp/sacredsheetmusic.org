@@ -91,10 +91,11 @@
           %>
           (<%= links.join(', ') %>)
 
-          <% if filename_extension =~ /mp3|mpeg/ %>
+          <% if filename_extension =~ /mp3|m4a/ %>
               <div style="padding-top:5px; margin-left: -40px;">
               <audio controls style="width: 200px; ">
-                 <source src="<%= dl.relative_path_to_web_server %>" type="audio/mpeg">
+                 <source src="<%= dl.relative_path_to_web_server %>"> <!-- make browser figure out type -->
+                 <!-- I think this is a fallback, probably doesn't work with m4a LOL -->
                  <object type="application/x-shockwave-flash" data="/flash/player_mp3_maxi.swf" width="200" height="20">
                    <param name="movie" value="/flash/player_mp3_maxi.swf" />
                    <param name="bgcolor" value="#ffffff" />
@@ -105,7 +106,7 @@
 
            <% elsif filename_extension =~ /midi|wav/ %>
             <br/>
-            <%# the type=audio/mpeg forces it to quicktime...except quicktime then ignores the type, but at least it's quicktime at that point... %>
+            <%# the type=audio/mpeg forces it to quicktime...except quicktime then ignores the type, but at least it's quicktime at that point...if they have quicktime installed %>
             <% type = "audio/#{filename_extension}"; type = 'audio/mpeg' if filename_extension == 'mp3' %>
              <embed src="<%= friendly_download_url %>" type="<%= type  %>" width="140" height="40" autostart="false" loop="FALSE" bgcolor="#FFFFFF" />
           <% end %>
