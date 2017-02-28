@@ -331,9 +331,9 @@ class Admin::ProductsController < Admin::BaseController
         urls = URI.extract(content)
         urls.each{|link|
           if link =~ /\.pdf$/i
-            temp_files << do_download_pdf(link) # add to params[:download]
+            temp_files << do_download_pdf_from_url(link) # add to params[:download]
           elsif link =~ /\.mp3$/i
-            temp_files << do_download_mp3(link)
+            temp_files << do_download_mp3_from_url(link)
           end
         }
       end
@@ -359,23 +359,22 @@ class Admin::ProductsController < Admin::BaseController
         end
       end
 
-      # it must just inspect the file?
-      # Build downloads from form
       download_errors = []
-      temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
 
       if params[:download_pdf_url].present?
         url = params[:download_pdf_url]
-        temp_files << do_download_pdf(url)
+        temp_files << do_download_pdf_from_url(url)
       end
 
       # do after the pdf for faux ordering sake...
       if params[:download_mp3_url].present?
         url = params[:download_mp3_url]
-        temp_files << do_download_mp3(url)
+        temp_files << do_download_mp3_from_url(url)
       end
 
+      temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
       if params[:download].present?
+        # any kind of download, image or pdf etc.
         next_rank = @product.next_image_rank_to_use
 
         params[:download].each do |i|
@@ -520,7 +519,7 @@ class Admin::ProductsController < Admin::BaseController
       end
   end
 
-  def do_download_mp3 url
+  def do_download_mp3_from_url url
     temp_file2 = get_temp_file_no_extension + ".mp3"
     type = 'audio/mpeg'
     if url =~ /\.(mid|midi)$/
@@ -529,7 +528,7 @@ class Admin::ProductsController < Admin::BaseController
     add_download_from_url url, temp_file2, type, 'mp3'
     out = `file #{temp_file2}`
     unless out =~ /MP3|MPEG|midi|Audio/i
-       flash[:notice] = "warning: mp3/midi upload was bad? #{url} [#{out}] file #{temp_file_path}"
+       flash[:notice] = "warning: mp3/midi upload was bad? #{url} [#{out}] file #{temp_file2}"
     end
     temp_file2
   end
@@ -538,7 +537,7 @@ class Admin::ProductsController < Admin::BaseController
     "/tmp/incoming_#{Process.pid}_#{(rand*1000000).to_i}"
   end
 
-  def do_download_pdf url
+  def do_download_pdf_from_url url
     temp_file2 = get_temp_file_no_extension + ".pdf"
     add_download_from_url url, temp_file2, 'application/pdf', 'pdf'
     out = `file #{temp_file2}`
