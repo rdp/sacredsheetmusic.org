@@ -37,36 +37,20 @@ module ApplicationHelper
   end
   
   # When browsing the store by tags we need to know what
-  # is the main "parent" tag or tag group.
+  # is the main "parent" tag so it stays highlighted too
   #
   # This lets us display the "active" state in the UI
-  # appears to vary based on @viewing_tags
-  #
   def is_main_tab_active?(tab_id)
-    if @viewing_tags
-      for tag in [@viewing_tags[0], @viewing_tags[0].parent, @viewing_tags[0].parent.andand.parent]
+    if @current_tag
+      for tag in [@current_tag, @current_tag.parent, @current_tag.parent.andand.parent]
         if tag.andand.id == tab_id
-          # main bar subnav disabled currently...
-          #@show_subnav = true
-          #@main_tag_active = Tag.find(tab_id)
-          #@subnav_tags = @main_tag_active.children
-          #@show_subnav = false if (@main_tag_active.products.size==0)  # don't show ones that we want them to choose another subcat on 
           return true
         end
       end
     end
-    
     return false
   end
   
-  def is_sub_tab_active?(tab_id) # unused, I think
-    if @viewing_tags && @viewing_tags.size > 1 && @viewing_tags[1].id == tab_id
-      @show_subnav = true
-      return true
-    end
-    return false
-  end
-
   def tag_link_nav tag, is_bullet_style=true
     if tag.name_in_nav.present?
       tag_link(tag, tag.name_in_nav, is_bullet_style)

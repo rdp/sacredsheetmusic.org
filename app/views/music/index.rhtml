@@ -9,7 +9,7 @@
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
-        <% if @display_bio.present? || @composer_tag%>
+        <% if @display_bio.present? || @composer_tag %>
            <div style="padding-bottom: 0px;">
               <%= @display_bio.present? ? @display_bio + "<br/>" : "" %>
               <% if @composer_tag %>
@@ -25,13 +25,12 @@
 
         <% if @products.length > 20 %>
            <div style="padding-bottom: 5px; margin-left: 15px;">
-            <!--Showing <%= @products.length %> songs. too redundant... -->
-           <% if @viewing_tags %>
-               <% if (@viewing_tags[0].children.size > 0) %>
+           <% if @current_tag %>
+               <% if @current_tag.children.count > 0 %>
                   You can also get a more precise list by choosing a sub-category, at the left.
                <% end %>
            <% else %>
-                 <!--You can also get a more precise list by selecting a category, on the left hand side. <- NB this is used only for root tags -->
+               <!--You can also get a more precise list by selecting a category, on the left hand side. <- NB this is used only for root tags -->
            <% end %>
         <% else %>
              <div style="padding-bottom: 5px;">
@@ -47,7 +46,7 @@
  <%= image_tag 'indicator.gif', :id => "spinner", :style => "display:none;", :class => 'product_icon_floater', :plugin => 'substruct' %>
    <%= 
        start = Time.now
-       current_tag = @viewing_tags.andand[0]
+       current_tag = @current_tag
        filter_dropdown = 
          # reject current_tag since it's already shown in the top line if anything's selected, already...
          select("main_filter", nil, @alpha_tag_to_product_ids.select{|t, ids| ids.size > 0 || t.id == @old_global_filter }.reject{|t, ids| t == current_tag || t == current_tag.andand.parent }.map{|t, ids| [t.id == @old_global_filter? "#{t.name} (#{@products.size})" : "#{t.name} (#{ids.size})", t.id]}, { :include_blank => top_dropdown_row_text, :selected => @old_global_filter }, 
@@ -65,7 +64,7 @@
 
   <% if @products.length == 0 %>
     <p>
-    <% if @viewing_tags && @viewing_tags.length == 1 && @viewing_tags[0].children.count > 0%>
+    <% if @current_tag && @current_tag.children.count > 0 %>
       Please choose a sub-category to your left.
     <% else %>
       Sorry, no songs match your view.  Maybe you can change search/filter terms or choose to browse by a category.
@@ -85,16 +84,16 @@
 
 
 
-      <% if @viewing_tags %>
+      <% if @current_tag %>
          <div style="float: left; width: 500px;">
-         <% tag_name = @viewing_tags[0].name %>
-         <% if @viewing_tags[0].is_topic_tag? %>
+         <% tag_name = @current_tag.name %>
+         <% if @current_tag.is_topic_tag? %>
            You can also get a (possibly more complete) list of hymns for this topic (<%= tag_name %>) <a href="http://www.lds.org/music/index/hymns/topic?lang=eng" rel="nofollow" target="_blank" >here</a>.</div>
          <% end %>
-         <% if @viewing_tags[0].is_hymn_tag? %>
+         <% if @current_tag.is_hymn_tag? %>
            <% if tag_name !~ /thou fount|amazing grace/i %>
              You can also (probably) get an original sheet music/lyrics/related scriptures for <%= tag_name %> (in a flash printable/playable/transposable player) by clicking 
-              <% if @viewing_tags[0].parent.name =~ /primary/i %>
+              <% if @current_tag.parent.name =~ /primary/i %>
                 <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4958-1-2,00.html#nullLink" rel="nofollow" target="_blank">here</a>. 
               <% else %>
                 <a href="http://www.lds.org/cm/catalogsearchalpha/1,17929,4782-1-1,00.html" rel="nofollow" target="_blank">here</a>.  

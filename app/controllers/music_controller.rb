@@ -79,7 +79,7 @@ class MusicController < StoreController
     ), 50000)
     @was_filtered_able = false
     @display_bio = content.content
-    render :action => 'competition.rhtml'
+    render :action => 'index.rhtml'
   end
 
   def competition_results
@@ -371,42 +371,39 @@ class MusicController < StoreController
       redirect_to_tag(temp_tag.name) and return
     end  
 
-    @viewing_tags = [temp_tag]
+    @current_tag = temp_tag
 
-    # Paginate products here so we don't have a ton of ugly SQL
-    # and conditions in the controller
-    # 
     # lacking #tag_ids for now [non eager load] but that might actually be ok...
     logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
     start_time = Time.now
-    all_products = Product.find_by_tag_id(temp_tag.id, "items.name ASC")
+    all_products = Product.find_by_tag_id(@current_tag.id, "items.name ASC")
     logger.info "find_by_tag took #{Time.now - start_time}s" # 0.4s
     start_time = Time.now
-    if !temp_tag.is_composer_tag?
+    if !@current_tag.is_composer_tag?
       all_products = randomize_but_keep_titles_together(all_products)
     else
-      # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to
+      # all_products.sort_by{|p| p.name} # already sorted by items.name in SQL, above, so don't need to ...
     end
 
     original_size = all_products.size
     if original_size > 0
-      if temp_tag.is_topic_tag?
-        @title = "#{temp_tag.name} sheet music (#{original_size} Free Arrangements)" # SEO targeting :|
+      if @current_tag.is_topic_tag?
+        @title = "#{@current_tag.name} sheet music (#{original_size} Free Arrangements)" # SEO targeting :|
       else # arrangement...
-        @title = "#{temp_tag.name} (#{original_size} Free Arrangements)"
+        @title = "#{@current_tag.name} (#{original_size} Free Arrangements)"
       end
     else
       # don't say Topics (0 free arrangements) LOL
-      @title = temp_tag.name
+      @title = @current_tagname
     end
     @products = paginate_and_filter(all_products)
 
-    if temp_tag.bio
-      @display_bio = @viewing_tags[0].bio
+    if @current_tag.bio
+      @display_bio = @current_tag.bio
     end
 
-    if temp_tag.get_composer_contact_url.present?
-      @composer_tag = @viewing_tags[0]
+    if @current_tag.is_composer_tag?
+      @composer_tag = @current_tag
     end
     logger.info("step 2 took #{Time.now - start_time}s [this one starts slow then warms up]")
     start_time = Time.now
@@ -568,8 +565,7 @@ class MusicController < StoreController
     @display_bio = "Choose a different category from the list on the left for a more precise list."
     respond_to do |format|
       format.html do
-        @tags = Tag.find_alpha
-        @viewing_tags = nil # paginate_and_filter
+        @current_tag = nil
         @products = Product.find(:all,
           :order => 'name ASC',
           :conditions => Product::CONDITIONS_AVAILABLE
