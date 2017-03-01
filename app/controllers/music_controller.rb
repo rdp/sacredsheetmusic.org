@@ -154,9 +154,9 @@ class MusicController < StoreController
       )
      end
      if is_competition
-       product.clear_my_cache # so it can be noted as 5 star now :)
-     else
        # don't want to slow down the site...
+     else
+       product.clear_my_cache # so it can be noted as 5 star now :)
      end
    end
    [product, comment]
