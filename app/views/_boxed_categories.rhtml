@@ -1,6 +1,8 @@
 <div style="float:left; padding-right: 5px; margin: 0px; margin-right: 5px ; padding-left: 1px;">
 <div style="min-height: 350; padding: 5px; border-style:dotted; border-width:1px; border-color: #aaaaaa; border-radius: 10px;">
 
+<% if !@current_tag || @current_tag.children.count > 0 # show sub options in these cases %>
+
 <UL style="li a { margin-left: -20px; padding-left: 20px; }; list-style-image: url(/images/green_bullet.gif); list-style-position:inside; padding: 0px;">
 					<% 
 						@main_nav_tags.each do |tag| 
@@ -9,6 +11,10 @@
                                         <% end %>
   <li><a href="/all">All Songs</a></li>
 </UL>
+
+<% else  %>
+       <%= [@current_tag.parent.andand.parent, @current_tag.parent, @current_tag].compact.map{|t| tag_link_nav(t)}.join (" -> ") %>
+<% end %>
 </div>
 
 <div style="width: 200px; border-style:dotted; border-width:1px; border-color: #aaaaaa; border-radius: 10px; margin-top: 5px; padding: 5px; margin-bottom: 5px;">
