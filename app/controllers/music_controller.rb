@@ -130,9 +130,6 @@ class MusicController < StoreController
       new_hash[key] = params[key]
      end
      new_hash[:is_competition] = is_competition
-     if is_competition && params[:overall_rating].to_i > 0
-       #raise "voting has not started for this year yet, try again soon!"
-     end
      comment = Comment.new(new_hash)
      comment.created_session = session_id
      comment.created_ip = session_ip
