@@ -13,7 +13,7 @@
 </UL>
 
 <% else  %>
-       <%= [@current_tag.parent.andand.parent, @current_tag.parent, @current_tag].compact.map{|t| tag_link_nav(t)}.join (" -> ") %>
+       <%= (["<a href=\"/\">Home</a>"] + [@current_tag.parent.andand.parent, @current_tag.parent, @current_tag].compact.map{|t| tag_link_nav(t)}).join (" -> ") %>
 <% end %>
 </div>
 
