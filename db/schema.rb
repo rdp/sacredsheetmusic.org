@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20100210194537) do
     t.string   "user_name"
     t.string   "user_email"
     t.string   "user_url"
-    t.integer  "overall_rating",        :default => -1
+    t.float    "overall_rating",        :default => -1.0
     t.integer  "difficulty_rating"
     t.boolean  "is_competition",        :default => false
     t.datetime "created_at"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20100210194537) do
   end
 
   add_index "items", ["date_available", "is_discontinued", "quantity", "variation_quantity", "type"], :name => "tag_view"
-  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"type"=>nil, "variation_quantity"=>nil, "code"=>"255", "date_available"=>nil, "name"=>nil, "quantity"=>nil, "is_discontinued"=>nil}
+  add_index "items", ["name", "code", "is_discontinued", "date_available", "quantity", "variation_quantity", "type"], :name => "search", :length => {"date_available"=>nil, "is_discontinued"=>nil, "quantity"=>nil, "type"=>nil, "variation_quantity"=>nil, "code"=>"255", "name"=>nil}
   add_index "items", ["product_id", "type"], :name => "variation"
   add_index "items", ["quantity", "is_discontinued", "variation_quantity"], :name => "published"
 
