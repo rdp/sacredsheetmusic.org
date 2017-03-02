@@ -75,7 +75,7 @@ class MusicController < StoreController
     end
     @products = paginate_and_filter(Product.find(:all,
       :order => order,
-      :conditions => ["is_competition=?", true]
+      :conditions => ["is_competition=? AND " + Product::CONDITIONS_AVAILABLE, true]
     ), 50000)
     @was_filtered_able = false
     @display_bio = content.content
@@ -373,7 +373,6 @@ class MusicController < StoreController
 
     @current_tag = temp_tag
 
-    # lacking #tag_ids for now [non eager load] but that might actually be ok...
     logger.info "prelude took #{Time.now - start_time}s" # 0.001s LOL
     start_time = Time.now
     all_products = Product.find_by_tag_id(@current_tag.id, "items.name ASC")
@@ -396,6 +395,7 @@ class MusicController < StoreController
       # don't say Topics (0 free arrangements) LOL
       @title = @current_tagname
     end
+    # TODO just do product_ids all the way through instead :|
     @products = paginate_and_filter(all_products)
 
     if @current_tag.bio
@@ -582,9 +582,6 @@ class MusicController < StoreController
     end
   end 
 
-  #def popular_songs # songs_stats is straight rhtml...
-  #end
-
   def most_recently_added
     @title = 'Recently added 100 songs'
     recent = Product.find(:all,
@@ -751,11 +748,6 @@ class MusicController < StoreController
       render :action => 'index.rhtml'
     end
   end
-
-#  def search_and_paginate_and_filter terms
-#    products = Product.find terms
-#    paginate_and_filter(products)
-#  end
 
   def paginate_and_filter products, per_page = @@per_page
     # filter first

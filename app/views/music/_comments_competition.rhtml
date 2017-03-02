@@ -2,7 +2,7 @@
 This piece is participating in our music <%= link_to "competition", :action => :competition %>
 
 <% if( (count=@product.total_valid_competition_points) >= 5) %>
- and has already earned <%= count %> points!
+ and has already earned <%= count.to_i %> points!
 <% end %>
 
 <% if @old_comment %>

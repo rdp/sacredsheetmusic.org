@@ -78,7 +78,7 @@
                    thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
                  }
                }.join
-               logger.info "tiny conglom took #{Time.now - start}"
+               logger.info "get_or_generate_thumbnail_caches took #{Time.now - start} #{@products.size}"
                all
         %>
   <% end %>
