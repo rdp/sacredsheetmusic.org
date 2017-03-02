@@ -1,8 +1,8 @@
-<div style="float: left; width: 700px;">
+<div style="float: left; max-width: 700px; width: auto;"> <!-- not sure why it wraps without a max width...gah --> <!-- not sure why need width here to override a 500 -->
 
 <%= @content_node.content %>
 <br/>
-<div style=" border: 2px solid #a1a1a1; border-radius: 25px;  padding: 10px 40px; height:600px;"> <!-- why do I have to call out height here? -->
+<div style="border: 2px solid #a1a1a1; border-radius: 25px;  padding: 10px 40px; min-height:600px;"> <!-- why do I have to call out height here? -->
 Some recently added songs (see also <%= link_to 'full list', :action => :most_recently_added %> of new songs).
 <br/>
 <% for product in @recent_products %>
