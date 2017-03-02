@@ -113,8 +113,17 @@ class Product < Item
   def clean_code
     if self.youtube_video_id.present?
       if self.youtube_video_id =~ /(http|https):\/\//
-        # https://www.youtube.com/watch?v=rwWNkTVRN8Y&feature=you.tube -> rwWNkTVRN8Y
-        self.youtube_video_id = self.youtube_video_id.split('=')[1].split("&")[0]
+        if self.youtube_video_id =~ /=/
+          # https://www.youtube.com/watch?v=rwWNkTVRN8Y&feature=you.tube -> rwWNkTVRN8Y
+          self.youtube_video_id = self.youtube_video_id.split('=')[1].split("&")[0]
+        elsif self.youtube_video_id =~ /youtu\.be/
+          # https://youtu.be/dNAIQtajBNQ
+          self.youtube_video_id = self.youtube_video_id.split("/")[-1]
+        else
+          raise "unknown youtube url try using a more standard one like https://www.youtube.com/watch?v=rwWNkTVRN8Y"
+        end
+      else
+        # assume it's already an ID...
       end
     end
 
