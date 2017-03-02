@@ -73,12 +73,14 @@
     </p>
   <% else %>
         <%=    start = Time.now
+               count = 0
                all = @products.map{|product| 
                  product.get_or_generate_thumbnail_cache {
-                   thumbnail = render(:partial => 'product', :locals => {:product => product}, :to => :string)
+                   count += 1
+                   render(:partial => 'product', :locals => {:product => product}, :to => :string)
                  }
                }.join
-               logger.info "get_or_generate_thumbnail_caches took #{Time.now - start} #{@products.size}"
+               logger.info "get_or_generate_thumbnail_caches took #{Time.now - start} count=#{@products.size} new=#{count}"
                all
         %>
   <% end %>
