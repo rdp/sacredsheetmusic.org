@@ -169,10 +169,6 @@
         <hr style="margin-top: 10px;"/>
 
         <br />
-        <% if @product.lyrics.present? %>
-           Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
-           <br />
-        <% end %>
         <% for composer_tag in @product.composer_tags %>
            <% if composer_tag.bio.present? %>
             <br/>
@@ -270,6 +266,10 @@ You can also <i>
           <br />
           <br />
           <br /> <!-- make footer look like a footer LOL -->
+       <% end %>
+       <% if @product.lyrics.present? %>
+          Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
+          <br />
        <% end %>
      </div>
   

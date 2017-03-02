@@ -97,7 +97,7 @@ class MusicController < StoreController
       flash[:notice] = "Looks like you already voted for this song .  This year we only allow one vote per household per song, but feel free to vote on our other pieces"
       comment.destroy
     elsif comment
-      flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from other composers..."
+      flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
     end
 
     redirect_to :action => :show, :id => product.code
