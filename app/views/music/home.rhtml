@@ -30,11 +30,9 @@ Latest news, from our facebook page:
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.async = true; // I added this!
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=16593771297";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<br/>
-<div class="fb-like-box" data-href="https://www.facebook.com/pages/freeldssheetmusicorg/252663114775187" data-width="550" data-height="350" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true" style="min-height: 350px;"></div>
-
+<!-- it only adapts at load time which is hopefully enough, avoid 500 min width -->
+<div style="min-height: 500px;" class="fb-page" data-href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" data-tabs="timeline" data-width="700" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/">freeldssheetmusic.org</a></blockquote></div>
 </div>
