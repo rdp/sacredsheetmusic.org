@@ -70,7 +70,7 @@ class MusicController < StoreController
     @header = "" # let content define it, instead of overriding it...
     @show_green = true
     order = session_rand
-    if params['order'] == 'newest'
+    if params['order'] == 'newest' # so adjudicators can find late ones
       order = "updated_at desc"
     end
     @products = paginate_and_filter(Product.find(:all,
