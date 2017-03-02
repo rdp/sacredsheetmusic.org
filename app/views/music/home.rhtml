@@ -2,7 +2,7 @@
 
 <%= @content_node.content %>
 <br/>
-<div style="border: 2px solid #a1a1a1; border-radius: 25px;  padding: 10px 40px; min-height:600px;"> <!-- why do I have to call out height here? -->
+<div style="overflow: auto; border: 2px solid #a1a1a1; border-radius: 25px;  padding: 10px 40px;"> <!-- why do I have to call out overflow auto here? -->
 Some recently added songs (see also <%= link_to 'full list', :action => :most_recently_added %> of new songs).
 <br/>
 <% for product in @recent_products %>
@@ -35,6 +35,6 @@ Latest news, from our facebook page:
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <br/>
-<div class="fb-like-box" data-href="https://www.facebook.com/pages/freeldssheetmusicorg/252663114775187" data-width="550" data-height="350" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+<div class="fb-like-box" data-href="https://www.facebook.com/pages/freeldssheetmusicorg/252663114775187" data-width="550" data-height="350" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true" style="min-height: 350px;"></div>
 
 </div>
