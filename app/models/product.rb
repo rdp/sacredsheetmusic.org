@@ -316,7 +316,7 @@ class Product < Item
         problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i
       end
 
-      if !self.original_url.present? && self.composer_tags.detect{|t| t.composer_url }
+      if !self.original_url.present? && self.composer_tags.detect{|t| t.composer_url.present? }
         problems << "this song may be lacking a website url to your website? please add one."
       end
 
@@ -484,7 +484,7 @@ class Product < Item
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
             if tag.name !~ /original|solo/i
-              problems << "might need a child tag beneath #{tag.name}, or for that tag to be removed possibly"
+              problems << "might need a child tag beneath #{tag.name} [ex: Piano solo], or if it's just piano accompaniment, remove the Piano tag entirely"
             end
           end
         end
