@@ -90,11 +90,9 @@ class MusicController < StoreController
   end
 
   def competition_results
-    @content_node = ContentNode.find_by_name('competition-results')
-    @title = @content_node.title
+    @title = "Competition results"
     @products = Product.find(:all, :conditions => {:is_competition => true}).sort_by{|p| p.total_valid_competition_points }.reverse
     @peer_review_products = Product.find(:all, :conditions => {:is_competition => true}).sort_by{|p| p.competition_peer_review_average}.select{|p| p.competition_peer_review_average >= 4.0}.reverse
-
   end
 
   def add_comment_competition
