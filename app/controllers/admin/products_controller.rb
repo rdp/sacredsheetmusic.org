@@ -198,7 +198,7 @@ class Admin::ProductsController < Admin::BaseController
     newy
   end
 
-  # fix up any previously ugly images from pdf's
+  # fix up any previously ugly images from pdf's you can pass multiple commma separated id's...
   def regenerate # images
     raise 'no id[s]?' unless id = params[:id]
     if id.contain? ','
@@ -214,27 +214,14 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :action => :edit, :id => ids[0]
   end
 
-  def self.regenerate_all_images products_to_regen, this_servers_name # guess I once had an action call this to *regen all* whoa!
-    products_to_regen 
-    out = []
-    products_to_regen.each{|p|
-      instance = self.new
-      def instance.flash() 
-        @flash ||= {} # OK this is getting stinky...
-      end
-      instance.regenerate_internal(p.id, this_servers_name)
-      out << p.code
-    }
-    out
-  end
-
   def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME'] # like freeldssheetmusic.org
     product = Product.find(id)
     pdfs = product.pdf_downloads
     raise 'no pdfs' unless pdfs.present?
     logger.warn "no images #{id}?" unless product.images.count > 0
     old_images = product.images[0..-1] # force it to load images list so we get an old snapshot of the original images
-    pdfs.each{|dl|
+    logger.info "regenerating for #{id} #{this_servers_name_to_download_from} old_images=#{old_images} pdfs=#{pdfs}"
+    pdfs.each{ |dl|
       # save it with our old url, then delete the original...hmm...yeah
       # resets ids! params[:product] = {:tag_ids => []}
       params[:id] = id # stinky!!!
@@ -243,13 +230,19 @@ class Admin::ProductsController < Admin::BaseController
       params[:download_pdf_url] = "http://" + this_servers_name_to_download_from + dl.relative_path_to_web_server
       save_internal false
       dl.destroy # scaway :)
+      logger.info "deleted old pdf #{dl.inspect}after saving first"
       old_count = dl.count
       # look for the new one after deleting the old so that we can easily know which is which for the count save :)
       new_download = product.reload.downloads.detect{|new_dl| new_dl.filename ==  dl.filename}
       new_download.count = old_count
       new_download.save
      }
-     old_images.each{|i| i.destroy unless i.name =~ /\.(jpg|jpeg)$/i} # our one user contrib image is a jpeg :P
+     old_images.each{|i| 
+       unless i.name =~ /\.(jpg|jpeg)$/i
+         logger.info "Destroying image #{i.inspect}"
+         i.destroy
+       end
+      } # our one user contrib image is a jpeg :P
   end
 
   def save
