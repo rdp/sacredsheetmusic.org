@@ -82,7 +82,7 @@
 
                  <!-- middle message/section -->
                   <% 
-                       end_time = Preference.competition_end_time + 5.hours # allow for tallying...
+                       end_time = Preference.competition_end_time + 5.hours # allow for tallying...don't display results immediately that is...plus people can still 'vote' I think
                        start_time = Preference.competition_start_time
                        year = Time.now.year.to_s
                   %>
