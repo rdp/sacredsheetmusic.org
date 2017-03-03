@@ -63,7 +63,8 @@
 <% end %>
       </div> <!-- end top text div -->
 
-  <% if @products.length == 0 %>
+  <% @already_voted_on_songs ||= []
+    if (@products + @already_voted_on_songs).length == 0 %>
     <p>
     <% if @current_tag && @current_tag.children.count > 0 %>
       Please choose a sub-category to your left.
@@ -80,6 +81,16 @@
                    render(:partial => 'product', :locals => {:product => product}, :to => :string)
                  }
                }.join
+               if @already_voted_on_songs.size > 0
+                 logger.info("normal size=#{@products.size} grey size=#{@already_voted_on_songs.size}")
+                 grey = @already_voted_on_songs.map{|product|
+                   product.get_or_generate_thumbnail_cache {
+                     count += 1
+                     render(:partial => 'product', :locals => {:product => product}, :to => :string) 
+                   }
+                 }.join
+                 all +="<br/>Songs you already voted on, thank you!<div style='opacity: 0.5;'>" + grey + "</div>"
+               end
                logger.info "get_or_generate_thumbnail_caches took #{Time.now - start} count=#{@products.size} new=#{count}"
                all
         %>

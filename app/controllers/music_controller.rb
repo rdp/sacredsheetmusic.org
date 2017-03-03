@@ -51,7 +51,12 @@ class MusicController < StoreController
   end
 
   def look_for_recent_comment id
-    @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
+    if @user
+      # not sure what the default for created_admin_user_id is ... :|
+      @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ? or created_admin_user_id = ?)', id, session_ip, session_id, session[:user]], :order => "created_at desc")
+    else
+      @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
+    end
   end
 
   public
@@ -67,7 +72,8 @@ class MusicController < StoreController
   def competition
     content = ContentNode.find_by_name('competition-header')
     @title = content.title
-    @header = "" # let content define it, instead of overriding it...
+    @display_bio = content.content
+    @header = "" # content has an H2 so just let it do that
     @show_green = true
     order = session_rand
     if params['order'] == 'newest' # so adjudicators can find late ones
@@ -77,8 +83,14 @@ class MusicController < StoreController
       :order => order,
       :conditions => ["is_competition=? AND " + Product::CONDITIONS_AVAILABLE, true]
     ), 50000)
+    if @user
+      logger.info("searching for created_admin_user_id #{session[:user]} started as #{@products.size}")
+      @already_voted_on_songs = paginate_and_filter(@products.select{|p| Comment.find(:first, :conditions => ['product_id = ? AND created_admin_user_id = ?', p.id, session[:user]])}) # assume they don't resubmit songs year after year :|
+      @products -= @already_voted_on_songs
+      logger.info("already done = #{@already_voted_on_songs.size} products=#{@products.size}")
+      @products = paginate_and_filter(@products) # :|
+    end
     @was_filtered_able = false
-    @display_bio = content.content
     render :action => 'index.rhtml'
   end
 
