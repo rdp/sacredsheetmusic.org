@@ -50,7 +50,7 @@
          <%= tags = composer_tags.map{|t| tag_link(t, t.name) }.join(', ')
              tags %>
          <% if product.original_url.present? %>
-            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 11), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>.
+            <%= link_to(image_tag('little_link.png', :class => 'transparent2', :width => 11), {:controller=>'music', :action=>'redirect_to_original_url_v', :id => product.code}, :target => '_blank') %>
          <% end %>
          <% if topic_attributes.size > 1 %>
             Topics:

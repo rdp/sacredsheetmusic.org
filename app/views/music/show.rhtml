@@ -250,10 +250,11 @@ You can also <i>
      <div style="float: left; width: 100%;">
       <% if @images.present? %>
 				<% for @p_image in @images do %>
-					<HR/>
 					<div class="float" style="margin:5px;">
                                                 <%= image_tag @p_image.public_filename, :width => "100%", :onclick => "alert('To get a better resolution copy of the sheet music [printable copy], please use the pdf links, top left hand side of this page')" %>
 					</div>
+                                        <div class='clear'></div>
+					<hr/>
 				<% end %>
 			<HR/>
 	<% else %>
