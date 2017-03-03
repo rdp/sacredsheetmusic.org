@@ -89,7 +89,7 @@
                      render(:partial => 'product', :locals => {:product => product}, :to => :string) 
                    }
                  }.join
-                 all +="<br/>Songs you already voted on, thank you!<div style='opacity: 0.5;'>" + grey + "</div>"
+                 all = "Songs you haven't voted on yet:<br/>" + all + "<div class='clear'></div>Songs you already voted on, thank you!<div style='opacity: 0.5;'>" + grey + "</div>"
                end
                logger.info "get_or_generate_thumbnail_caches took #{Time.now - start} count=#{@products.size} new=#{count}"
                all
