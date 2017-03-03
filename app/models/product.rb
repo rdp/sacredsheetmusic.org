@@ -175,6 +175,7 @@ class Product < Item
         end
       end
     end
+    self.original_url = self.original_url.strip 
     return true
   end
 
@@ -484,7 +485,7 @@ class Product < Item
         if tag.children.length > 0
           if (tag.child_ids - self.tag_ids).length == tag.child_ids.length
             if tag.name !~ /original|solo/i
-              problems << "might need a child tag beneath #{tag.name} [ex: Piano solo], or if it's just piano accompaniment, remove the Piano tag entirely"
+              problems << "might need a child tag beneath #{tag.name} [ex: Piano solo, if it's under Piano], otherwise please remove that tag entirely"
             end
           end
         end
