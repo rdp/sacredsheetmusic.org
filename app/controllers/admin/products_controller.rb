@@ -214,11 +214,10 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :action => :edit, :id => ids[0]
   end
 
-  def self.regenerate_all_images this_servers_name # for running in irb prompt?
-    products_with_images = Product.all(:include => :downloads).select{|p| p.pdf_downloads.present? }
-    mini = products_with_images[0..2]
+  def self.regenerate_all_images products_to_regen, this_servers_name # guess I once had an action call this to *regen all* whoa!
+    products_to_regen 
     out = []
-    mini.each{|p|
+    products_to_regen.each{|p|
       instance = self.new
       def instance.flash() 
         @flash ||= {} # OK this is getting stinky...
@@ -229,7 +228,7 @@ class Admin::ProductsController < Admin::BaseController
     out
   end
 
-  def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME']
+  def regenerate_internal id, this_servers_name_to_download_from = request.env['SERVER_NAME'] # like freeldssheetmusic.org
     product = Product.find(id)
     pdfs = product.pdf_downloads
     raise 'no pdfs' unless pdfs.present?
