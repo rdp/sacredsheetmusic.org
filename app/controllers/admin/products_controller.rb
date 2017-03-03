@@ -576,7 +576,7 @@ class Admin::ProductsController < Admin::BaseController
     download(url, temp_file_path)
     # http://hw.libsyn.com/p/e/e/0/ee058f5387587ba7/DormantSeason.mp3?sid=e22a78704&mid=a1d60cb3e38d23d -> DormanSeason.mp3 where applicable
     local_filename = url.split('/')[-1].split('?')[0]
-    local_filename += '.' + extension_if_needed unless fake_upload.original_filename =~ /\./
+    local_filename += '.' + extension_if_needed unless local_filename =~ /\./
     add_download_from_local_file temp_file_path, type, local_filename
   end
 
