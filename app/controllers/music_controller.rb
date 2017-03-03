@@ -235,6 +235,7 @@ class MusicController < StoreController
       end
       render_404_to_home(id) && return
     end
+    wishlist # setup variable for view
     @old_comment = look_for_recent_comment @product.id # for competition...
 
     if @product.code != id
