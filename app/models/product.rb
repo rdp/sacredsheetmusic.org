@@ -316,7 +316,7 @@ class Product < Item
         problems << "is tagged with both original and hymn? possibly wants to be just hymn tag" unless self.description =~ /original/i
       end
 
-      if !self.original_url.present? && !self.composer_tags.detect{|t| t.only_on_this_site}
+      if !self.original_url.present? && self.composer_tags.detect{|t| t.composer_url }
         problems << "this song may be lacking a website url to your website? please add one."
       end
 
