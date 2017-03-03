@@ -50,12 +50,13 @@ class MusicController < StoreController
     request.remote_ip
   end
 
-  def look_for_recent_comment id
+  def look_for_recent_comment song_id
+    # assume they don't resubmit songs year after year :|
     if @user
       # not sure what the default for created_admin_user_id is ... :|
-      @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ? or created_admin_user_id = ?)', id, session_ip, session_id, session[:user]], :order => "created_at desc")
+      Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ? or created_admin_user_id = ?)', song_id, session_ip, session_id, session[:user]], :order => "created_at desc")
     else
-      @old_comment = Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', id, session_ip, session_id], :order => "created_at desc")
+      Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ?)', song_id, session_ip, session_id], :order => "created_at desc")
     end
   end
 
@@ -76,20 +77,14 @@ class MusicController < StoreController
     @header = "" # content has an H2 so just let it do that
     @show_green = true
     order = session_rand
-    if params['order'] == 'newest' # so adjudicators can find late ones
-      order = "updated_at desc"
-    end
     @products = paginate_and_filter(Product.find(:all,
       :order => order,
       :conditions => ["is_competition=? AND " + Product::CONDITIONS_AVAILABLE, true]
     ), 50000)
-    if @user
-      logger.info("searching for created_admin_user_id #{session[:user]} started as #{@products.size}")
-      @already_voted_on_songs = paginate_and_filter(@products.select{|p| Comment.find(:first, :conditions => ['product_id = ? AND created_admin_user_id = ?', p.id, session[:user]])}) # assume they don't resubmit songs year after year :|
-      @products -= @already_voted_on_songs
-      logger.info("already done = #{@already_voted_on_songs.size} products=#{@products.size}")
-      @products = paginate_and_filter(@products) # :|
-    end
+    @already_voted_on_songs = @products.select{|p| look_for_recent_comment(p.id)}
+    @products -= @already_voted_on_songs
+    @products = paginate_and_filter(@products) # needed apparently :|
+    logger.info("already done=#{@already_voted_on_songs.size} not_done=#{@products.size}")
     @was_filtered_able = false
     render :action => 'index.rhtml'
   end
@@ -103,15 +98,14 @@ class MusicController < StoreController
   end
 
   def add_comment_competition
-    look_for_recent_comment params['id']
+    old_comment = look_for_recent_comment params['id']
     product, comment = add_comment_helper true
-    if @old_comment # smelly, ugly logic too yikes
-      flash[:notice] = "Looks like you already voted for this song .  This year we only allow one vote per household per song, but feel free to vote on our other pieces"
-      comment.destroy
+    if old_comment
+      comment.destroy # XXXX uhgly
+      flash[:notice] = "Looks like you already voted for this song. We only allow one vote per household per song, but feel free to vote on any other pieces"
     elsif comment
       flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
     end
-
     redirect_to :action => :show, :id => product.code
   end
 
@@ -241,7 +235,7 @@ class MusicController < StoreController
       end
       render_404_to_home(id) && return
     end
-    look_for_recent_comment @product.id # for competition...
+    @old_comment = look_for_recent_comment @product.id # for competition...
 
     if @product.code != id
       # mis capitalized
