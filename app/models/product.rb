@@ -241,7 +241,7 @@ class Product < Item
 
 
   def peer_reviews
-    competition_valid_reviews.select{|c| c.comment.size > 100 || c.created_admin_user} # blah XXXX
+    competition_valid_reviews.select{|c| c.comment.size > 100 || c.created_admin_user} # blah size XXXX
   end
 
   def competition_peer_review_average
