@@ -14,7 +14,8 @@
 </p>
 
 <% unless @user.new_record? %>
-  <h4>Enter password and confirmation if you wish to change password</h4>
+  <h4>Enter password and confirmation if you wish to change password (or leave blank to retain current password)</h4>
+(suggestion: don't use a too sensitive password, since the site uses an unencrypted connection to update it today).
 <% end %>
 <div id="change_password">
         <p>
