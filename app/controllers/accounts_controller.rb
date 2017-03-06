@@ -54,28 +54,24 @@ class AccountsController < ApplicationController
       redirect_to "/about/self-upload" # a page that display the flash pretti-ly :)
       return
     end
-    @title = "Edit login to upload your songs"
-    @user = User.find session[:user] # already logged in, so force an update [or edit view]
-    if @user.is_admin?
-      raise "admins should not use this, too dangerous since it messes with permissions :P"
-    end
-    @composer_tag = @user.composer_tag
-    @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
-    new_edit_composer_login 
+    new_composer_login 
   end
 
   def new_composer_login
     @title = "Create new login to upload your songs"
-    @user = User.new
-    @composer_tag = Tag.new # hopefully this avoids them trying to "take over"/hijack any existing account...
-    if session[:user] && !request.post?
-      render :text => "please logout before creating a new login on the site, so you don't accidentally overwrite/adjust your current one trying to create a new login! If you'd like to edit your account go to <a href=/accounts/edit_composer_login >here</a>."
-      return # happened once :|
+    if session[:user]
+      @title = "Edit login to upload your songs"
+      @user = User.find session[:user] # already logged in, so force an update [or edit view]
+      if @user.is_admin?
+        raise "admins should not use this, too dangerous since it messes with permissions :P"
+      end
+      @composer_tag = @user.composer_tag
+      @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
+    else
+      @user = User.new
+      @composer_tag = Tag.new # hopefully this avoids them trying to "take over"/hijack an existing account...
     end
-    new_edit_composer_login
-  end
 
-  def new_edit_composer_login
     if request.post?
       if !session[:user] && Tag.find_by_name(params['composer_tag']['name'])
         render :text => "appears that you already have an account in our system, please email us rogerdpack@gmail.com so we can create you a login for you manually, sorry about this...]. <br/>If you already have a login created for you to upload songs, please login using it first, <a href='/admin'>here</a>.<br/>if you forgot your password, please email us."
@@ -115,7 +111,7 @@ private
               else
                 prefix="Pleased to meet you"
               end
-              adjust_user_url = url_for(:action => 'edit_composer_login')
+              adjust_user_url =  url_for(:action => 'edit_composer_login')
               message = "#{prefix} #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + adjust_user_url + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login")
               if new_password
                 message += "\n Your newly reset password is #{new_password}.  You can change it (if desired) here: " + adjust_user_url
