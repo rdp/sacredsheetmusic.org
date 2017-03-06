@@ -60,6 +60,9 @@ class AccountsController < ApplicationController
   def new_composer_login
     @title = "Create new login to upload your songs"
     if session[:user]
+      if @controller.action_name == "new_composer_login"
+        render :text => "Please <a href=/logout >logout</a> before creating a new login, assuming you're creating a second login"
+      end
       @title = "Edit login to upload your songs"
       @user = User.find session[:user] # already logged in, so force an update [or edit view]
       if @user.is_admin?
