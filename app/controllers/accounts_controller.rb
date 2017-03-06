@@ -66,6 +66,7 @@ class AccountsController < ApplicationController
         raise "admins should not use this, too dangerous since it messes with permissions :P"
       end
       @composer_tag = @user.composer_tag
+      # these have to be blank I think to allow you to save...
       @user.password = @user.password_confirmation =  '' # show blank typically to start since these are md5's anyway at save time apparently gets replaced with an md5 equivalent. weird. Except then you can't save it because it doesn't match? huh wuh?
     else
       @user = User.new
