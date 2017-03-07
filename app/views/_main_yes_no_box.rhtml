@@ -67,7 +67,7 @@
 <div id="container" style="background-color: white; max-width: 1000px; width: auto; margin: auto;"> 
 	<div id="header">
 		<!-- top links, all disabled -->
-		<ul class="navigation" id="toplinks" style="width: 385px;">
+		<ul class="navigation" id="toplinks" style="width: auto;">
                         <!--li style="margin-right:0px;"> <a href="/store/show_cart" class="submodal-600-400">Cart</a> </li-->
 			<!--li><a href="/customers/wishlist">Download Queue</a></li-->
 			<!--li><a href="/questions/ask">Contact Us</a></li-->
@@ -103,16 +103,16 @@
                <% end %>
 
 		<!-- search box on right -->
-		<div id="searchbox" style="width: 300px; margin-top: 3px;">
+		<div id="searchbox" style="width: auto; margin-top: 3px;">
                     <div id="spinner_search" style="display:none;">
-                     <!-- this was messing up facebook img:og tags, and just gets accidentaly overridden with the update anyway... 
+                     <!-- this was messing up facebook img:og tags, and we just put the text searching these days...
                       <%= image_tag 'indicator.gif', :class => 'product_icon_floater', :plugin => 'substruct', :alt => '' %>
                        -->
                     </div>
-			<form action="/search" method="get">
-				<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show(); $('spinner_search').update('Searching...');"/> <!-- avoid x and y get params -->
-				<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="width: 200px; float:right; margin-right: 5px;" /> <!-- Search -->
-			</form>
+                   <form action="/search" method="get">
+			<input type="text" name="q" class="textInput big" value="<%= session.delete(:last_search) %>" style="width: 200px; float: leftl; margin-right: 5px;" /> <!-- Search -->
+			<input type="submit" value="" style="border: solid 0px #000000; background-image: url(/plugin_assets/substruct/images/public-ui/buttons/search.gif); float: right; width: 80px; height: 40px;" onclick="$('spinner_search').show(); $('spinner_search').update('Searching...');"/> <!-- avoid x and y get params -->
+		   </form>
 
 		</div>
 		
