@@ -396,11 +396,15 @@ class Admin::ProductsController < Admin::BaseController
               got_one = false
               begin
                 0.upto(1000) do |n|
-                  use_scanned = false # results in thicker lines for normal pdf's that seem possibly harder to read
+                  use_scanned = false
+                  if params[:hand_written]
+                    use_scanned = true # results in thicker lines for normal pdf's that seem possibly harder to read, so special case it :|
+                  end
                   if use_scanned
-                    command = "nice convert -density #{@@density*1.5} #{i[:download_data].path}[#{n}] -resize 66.66% -quality 90 #{temp_file_path}" # uses more cpu, at least...I think so. Enable for scanned documents...
+                    factor = 1.5 # seemed OK relative to 2 anyway...
+                    command = "nice convert -density #{@@density*factor} #{i[:download_data].path}[#{n}] -resize #{1.0/factor*100}% -quality 90 #{temp_file_path}"
                   else
-                    command = "nice convert -density #{@@density} #{i[:download_data].path}[#{n}] -quality 90 #{temp_file_path}" # less cpu, ok for non scanned...odd
+                    command = "nice convert -density #{@@density} #{i[:download_data].path}[#{n}] -quality 90 #{temp_file_path}" # less cpu, ok for non scanned...oddly...
                   end
                   logger.info "running " + command
                   raise ContinueError unless system(command)
