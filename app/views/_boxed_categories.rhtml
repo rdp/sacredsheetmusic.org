@@ -4,18 +4,18 @@
 # show sub options in these cases
  %>
 <UL style="li a { margin-left: -20px; padding-left: 20px; }; list-style-image: url(/images/green_bullet.gif); list-style-position:inside; padding: 0px;">
+  <li><a href="/">Home</a></li> <!-- extra hard coded one at beginning -->
 					<% 
 						@main_nav_tags.each do |tag| 
 					%>
                                                 <%= render :partial => '/menu_dropdown_children', :locals => {:tag => tag} %>
                                         <% end %>
   <li><a href="/all">All Songs</a></li> <!-- extra hard coded one at end -->
-  <li><a href="/">Home</a></li> <!-- extra hard coded one at end -->
 </UL>
 <% else  %>
      <!-- TODO some day make it all wrap instead of two columns, so this isn't as big awkward on the left? -->
      You are here:<br/>
-     <%= (["<a href=\"/\">Home/all</a>"] + [@current_tag.parent.andand.parent, @current_tag.parent, @current_tag].compact.map{|t| tag_link_nav(t)}).join (" &rarr; ") %>
+     <%= (["<a href=\"/\">Home/All</a>"] + [@current_tag.parent.andand.parent, @current_tag.parent, @current_tag].compact.map{|t| tag_link_nav(t)}).join (" &rarr; ") %>
 <% end %>
 </div>
 
