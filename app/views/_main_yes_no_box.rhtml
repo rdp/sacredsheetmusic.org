@@ -119,6 +119,8 @@
 		
 		<div class="clear"></div> <!-- necessary... -->
 
+                <% if false  %>
+                <!-- disabled in favor of the crumb box upper leftthing...hope that's enough instead!
 		<!-- big navigation bar -->
 		<div id="navigation">
 			<div id="navcap_left"></div>
@@ -142,6 +144,9 @@
 				<div class="clear"></div>
 			</div>
 		</div>
+                <% else %>
+                  <hr/>
+                <% end %>
 		
 		<% if false && @show_subnav && @subnav_tags.length > 0 && @subnav_tags.length < 50%>
 			<!--div id="subnavigation">
