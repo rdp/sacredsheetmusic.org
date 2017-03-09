@@ -61,4 +61,17 @@
 				:url => { :action => 'update_image_rank_ajax', :id => @product.id }
 			) 
 		%>
+<style>
 
+ul.sortable li, div.sortable div.sort_item {
+        cursor: move;
+        list-style-type: none;
+        border-bottom: 1px dotted #ccc;
+        margin-bottom: 5px;
+        margin-left: 0px !important;
+        padding-left: 15px;
+        background-image: url(/plugin_assets/substruct/images/drag_pattern.gif);
+        background-repeat: no-repeat;
+        background-position: left center;
+}
+</style> <!-- from admin.css -->
