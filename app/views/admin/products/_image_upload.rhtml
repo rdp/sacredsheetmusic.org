@@ -7,9 +7,6 @@
 			<br/>
 			<strong>The image listed first will be the default.</strong>
 		</p>
-		<p class="info">
-			If you don't see an image it means the path is broken or doesn't exist any longer.
-		</p>
 		<div>
 			<ul onselectstart="return false;" class="sortable" id="image_list">
 			<% for @p_image in @product.images.find(:all) %>
@@ -43,12 +40,6 @@
 			<% end %>
 			</ul>
 		</div>
-		<%= 
-			sortable_element(
-				'image_list',
-				:url => { :action => 'update_image_rank_ajax', :id => @product.id }
-			) 
-		%>
 	<% else %>
 		This song has no images associated with it yet.
 	<% end %>
@@ -63,3 +54,11 @@
 			}
 	%>
 </div>
+
+		<%= 
+			sortable_element(
+				'image_list',
+				:url => { :action => 'update_image_rank_ajax', :id => @product.id }
+			) 
+		%>
+

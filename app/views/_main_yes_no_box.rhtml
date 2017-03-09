@@ -17,11 +17,12 @@
                  h(@title) #+ " &#9835;" # ruby weirdness, h infects it?
 		-%>
 </title>
-	<%= javascript_include_tag :defaults, :cache => 'default', :defer => true %>
 
 <% if defined?(admin_includes) && admin_includes %>
-<!-- admin stuff -->
+<!-- self admin stuff :| -->
+<!-- old defaults used to do a lot of this, but then conflicted with scrollable so piece them out now -->
       <%= javascript_include_tag 'tiny_mce/tiny_mce', :plugin => 'substruct' %>
+      <%= javascript_include_tag 'prototype' %>
       <%= javascript_include_tag 'effects', 'dragdrop', 'controls' %>
       <%= javascript_include_tag( 'mce_init', :plugin => 'substruct') %>
 <% end %>
