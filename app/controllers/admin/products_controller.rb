@@ -318,7 +318,7 @@ class Admin::ProductsController < Admin::BaseController
       end
 
 
-      if params['suck_in_all_links']
+      if params['suck_in_all_links'] # practically unused now
         content = `curl #{@product.original_url}` # we already saved the product, so this should be available to us
         urls = URI.extract(content)
         urls.each{|link|
@@ -330,10 +330,16 @@ class Admin::ProductsController < Admin::BaseController
         }
       end
 
-      # Build product images from upload
       if params[:image].present?
         params[:image].each do |i|
+ 
           if i[:image_data].present?
+            # they uploaded a new .jpg or some cover art -- and only one, mind you
+            # put at beginning [rank 0]
+            @product.product_images.each{ |pi|
+              pi.rank = pi.rank + 1
+              pi.save
+            }
             new_image = Image.new
             logger.info i.inspect
             logger.info i[:image_data].inspect
@@ -342,7 +348,7 @@ class Admin::ProductsController < Admin::BaseController
             if new_image.save
               @product.images << new_image
               product_image = new_image.reload.product_images[0]
-              product_image.rank = @product.reload.next_image_rank_to_use 
+              product_image.rank = 0 # I did this :)
               product_image.save
             else
               image_errors.push(new_image.filename + " " +  new_image.errors.map{|e| e.to_s}.join(' '))
@@ -366,14 +372,14 @@ class Admin::ProductsController < Admin::BaseController
 
       temp_file_path = "/tmp/temp_sheet_music_#{Process.pid}.png"
       if params[:download].present?
-        # any kind of download, image or pdf etc.
+        # I think we always get here LOL
         next_rank = @product.next_image_rank_to_use
 
         params[:download].each do |i|
           if i[:download_data].present?
-            # they uploaded a new file
+            # any kind of upload, but not image
             new_download = Download.new
-            logger.info i[:download_data].inspect
+            logger.info i[:download_data].inspect # for fun
 
             new_download.uploaded_data = i[:download_data]
             if i[:download_data].original_filename =~ /\.wav$/i
@@ -383,11 +389,11 @@ class Admin::ProductsController < Admin::BaseController
                 temp_file2 = get_temp_file_no_extension + ".mp3"
                 raise unless system("ffmpeg -i #{i[:download_data].path} #{temp_file2}")
                 # unfortunately it seems I can't just adjust i[:download_data]???
-                # so add one to the end of the list and hope LOL
+                # so add one to the end of the list and hope (does work)
                 add_download_from_local_file temp_file2, "audio/mpeg", i[:download_data].original_filename.sub(/\.wav$/i, ".mp3")
                 temp_files << temp_file2
                 logger.info "converted to mp3"
-                next;
+                next
               end
             end
 
