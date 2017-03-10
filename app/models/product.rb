@@ -89,7 +89,7 @@ class Product < Item
   end
 
   def composer_generic_contact_url 
-    composer_tag.andand.get_composer_contact_url
+    composer_tag.andand.get_composer_contact_generic_url
   end
   
   # my own version :P

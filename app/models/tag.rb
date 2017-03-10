@@ -117,7 +117,7 @@ class Tag
     self.name =~ /^original/i
   end
 
-  def get_composer_contact_url
+  def get_composer_contact_generic_url
      if composer_contact_url.present? 
        composer_contact_url
      elsif composer_email_if_contacted.present?
