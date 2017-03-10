@@ -127,12 +127,9 @@ class Tag
      end
   end
 
-  after_destroy { 
-    #Cache.clear! 
-  } # some were marked with it, left side is messed up...may as well start over...kind of expensive though...
-
+  after_destroy :clear_my_cache_and_associated
   after_update :clear_my_cache_and_associated 
-  after_create :clear_my_cache_and_associated 
+  after_create :clear_my_cache_and_associated # clear for parent :)
 
   def clear_my_cache_and_associated
     Rails.logger.info "clearing for tag and parent with all songs [!] #{self.name}"

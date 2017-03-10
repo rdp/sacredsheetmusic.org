@@ -97,11 +97,12 @@ class MusicController < StoreController
 
   def add_comment_competition
     old_comment = look_for_recent_comment params['id']
-    product, comment = add_comment_helper true
     if old_comment
-      comment.destroy # XXXX uhgly
-      flash[:notice] = "Looks like you already voted for this song. We only allow one vote per household per song, but feel free to vote on any other pieces"
-    elsif comment
+      product = Product.find(params['id']) # don't handle 404 LOL
+      flash[:notice] = "Looks like you (or somebody else from your household) already voted for this song this year, with this comment #{old_comment.comment} at #{old_comment.created_at}. 
+           We only allow one vote per household per song per competition, but feel free to vote on any other pieces! If you feel this was in error try voting from a different internet location"
+    else
+      product, comment = add_comment_helper true
       flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
     end
     redirect_to :action => :show, :id => product.code
@@ -125,7 +126,7 @@ class MusicController < StoreController
   def add_comment_helper is_competition
    product = Product.find(params['id']) # don't handle 404 LOL
    if is_spam_comment?
-     flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to enter sunday and try again!"
+     flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back arrow in your browser and enter sunday and try again!"
      return [product, nil]
    else
      new_hash = {}
@@ -142,23 +143,25 @@ class MusicController < StoreController
      comment.save
      product.comments << comment # might also perform a comment save?
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
-     if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...
-       composer_email = product.composer_tag.andand.composer_email_if_contacted
+     if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...non competition always send :)
+       composer_emails = product.composer_tags.map{|ct| ct.composer_email_if_contacted}
+       composer_emails = [nil] if composer_emails.size == 0 # send it to me :)
        if comment.is_competition?
          subject = "Comment received from competition."
        else
          subject = "Thanks for song comment."
        end
-       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition && v.to_s != "-1" }.map{|k, v| "#{k}: #{v}\n"}.join + ' http://freeldssheetmusic.org/s/' + product.code
-       unless composer_email.present?
-         subject += " Please forward!" unless composer_email.present?
-         content += "\n" + (product.composer_generic_contact_url).to_s
+       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition && v.to_s != "-1" }.map{|k, v| "#{k}: #{v}"}.join("\n") + ("\nhttp://freeldssheetmusic.org/song/" + product.code)
+       for composer_email in composer_emails
+         if !composer_email.present?
+           subject += " Please forward!"
+           content += "\n" + (product.composer_generic_contact_url).to_s # I guess for if it's the case of a composer we don't have an email for because never contacted them per se, but then they might have a "contact me" URL page?
+         end
+         OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email) # guess nil is OK for composer_email
        end
-       OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email
-      )
      end
      if is_competition
-       # don't want to slow down the site...
+       # don't want to slow down the site...don't clear cache
      else
        product.clear_my_cache # so it can be noted as 5 star now :)
      end
