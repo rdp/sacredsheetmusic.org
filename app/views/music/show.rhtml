@@ -159,7 +159,7 @@
         <% end %>
         <br/>
         <div> Related song categories are: <%= 'admin list (all):' if session[:user] %> <br/>
-          <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join(', ') %>
+          <%= @product.linkable_tags(session[:user]).reject{|t| t.is_voicing || t.is_composer_tag?}.map{|t| tag_link(t).gsub(',', '')}.join('<br/> ') %>
         </div>
    <% end %>
         <hr style="margin-bottom: 10px;"/>
