@@ -433,3 +433,14 @@ unless Array.method_defined? :sort_by!
     end
   end
 end
+
+module Enumerable # not even 2.x has this mostly
+  def map_with_index(&block)
+    i = 0
+    self.map { |val|
+      val = block.call(val, i)
+      i += 1
+      val
+    }
+  end
+end
