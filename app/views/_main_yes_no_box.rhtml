@@ -17,12 +17,12 @@
                  h(@title) #+ " &#9835;" # ruby weirdness, h infects it?
 		-%>
 </title>
+<%= javascript_include_tag 'prototype' %>
 
 <% if defined?(admin_includes) && admin_includes %>
 <!-- self admin stuff :| -->
 <!-- old defaults used to do a lot of this, but then conflicted with scrollable so piece them out now -->
       <%= javascript_include_tag 'tiny_mce/tiny_mce', :plugin => 'substruct' %>
-      <%= javascript_include_tag 'prototype' %>
       <%= javascript_include_tag 'effects', 'dragdrop', 'controls' %>
       <%= javascript_include_tag( 'mce_init', :plugin => 'substruct') %>
 <% end %>
@@ -85,7 +85,7 @@
 
                  <!-- middle message/section -->
                   <% 
-                       end_time = Preference.competition_end_time + 5.hours # allow for tallying...don't display results immediately that is...plus people can still 'vote' I think
+                       end_time = Preference.competition_end_time # could add time here to allow time to "review" things and check for fairness/fraud...but meh :)
                        start_time = Preference.competition_start_time
                        year = Time.now.year.to_s
                   %>

@@ -2,15 +2,16 @@
 
 <% end_time = Preference.competition_end_time
   if Time.now < end_time %>
-This is the current stats, competition isn't over yet!
+These are the current results, competition isn't over yet though!
 <br/>
 <br/>
 <br/>
 <% else %>
-
+<div style="font-size:100px;">&#127942;</div>
   First, many thanks to all of you for participating and those that voted on our pieces for this year's competition!
-
+<br/>
   And the winners of this year's Sacred Sheet Music Competition are (drum roll, please):
+<br/>
 <% end %>
 
 <div style="width:50%; float:left;">
