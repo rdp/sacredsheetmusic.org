@@ -13,6 +13,7 @@ These are the current results, competition isn't over yet though!
   And the winners of this year's Sacred Sheet Music Competition are (drum roll, please):
 <br/>
 <% end %>
+<hr/>
 
 <div style="width:50%; float:left;">
 First the "open vote" category:
@@ -28,7 +29,8 @@ First the "open vote" category:
 </div>
 
 <div style="width:50%; float:left;">
-And for our peer review category winners (out of possible 5.0):
+And our peer review category winners (out of possible 5.0):
+<br/>
 <br/>
 <% for p in @peer_review_products %>
   <%= "%.02f" % p.competition_peer_review_average %> : <%= link_to(p.name, :controller=>'music', :action=>'show', :id => p.code) %> by <%= p.composer_tag.name %>
