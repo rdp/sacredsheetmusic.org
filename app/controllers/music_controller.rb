@@ -117,8 +117,8 @@ class MusicController < StoreController
     if (params['recaptcha'] || '').downcase != 'sunday'
       return true
     end
-    if params[:user_url] =~ /customink/i
-      return true # some kind of live'ish spammer, hope I don't run into too many here
+    if params[:user_url] =~ /customink/i || params[:user_email] =~ /biancahilario/i
+      return true # some kind of live'ish spammer, hope I don't run into too many like that, yikes!
     end
     false
   end
