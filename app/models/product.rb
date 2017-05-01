@@ -5,6 +5,7 @@ class Product < Item
   has_many :comments, :dependent => :destroy
   has_and_belongs_to_many :tags, :order => :name
 
+  # also at bottom I do a ruby equiv :|
   CONDITIONS_AVAILABLE = %Q/
       CURRENT_DATE() >= DATE(items.date_available)
       AND items.price = 0.0
@@ -537,7 +538,8 @@ class Product < Item
 
   def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
     tag = Tag.find(tag_id, :include => :products, :order => order_by) # including products.tags here is like 0.2s -> 2s
-    tag.songs
+    # can't do :conditions => CONDITIONS_AVAILABLE with this? wait but order works what?
+    tag.songs.select{|s| s.date_available < Time.now && s.price == 0}
   end
 
 end
