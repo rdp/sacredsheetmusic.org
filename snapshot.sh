@@ -1,8 +1,9 @@
 echo "snapshotting (production) DB..."
-echo "this does a sessions and half cache clear..."
-./sessions_clear.sh
+echo "not cleaning sessions..."
+#echo "this does a sessions and half cache clear..."
+#./sessions_clear.sh
 #./cache_clear.sh
-# partial [non file] clear instead ... in case it brings down prod too hard [though prod theoretically recovers OK'ish better more now]
+# partial [non file] clear here ... in case otherwise it brings down prod too hard [though prod theoretically recovers OK'ish better more now]
 echo "clearing cache table(s) [only, partial cache clear]"
 nice ruby script/runner -e production "p Cache.clear!" 
 #rm log/* # we don't zip files anymore FWIW, so don't need to remot these...
