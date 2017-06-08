@@ -1,2 +1,3 @@
-public/cache*
+public/*cache*
 temp/*
+snap*
