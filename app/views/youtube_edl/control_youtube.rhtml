@@ -119,8 +119,7 @@ must be run from a web server to actually work I believe...
         // The element id of the Flash embed
         var atts = { id: "ytPlayer", videoId:  "<%= @video_id %>" }; // videoId doesn't work here...sigh...
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
-       swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
-                           "version=3&enablejsapi=1&playerapiid=player1", 
+       swfobject.embedSWF("https://youtube.googleapis.com/apiplayer?version=3&enablejsapi=1&playerapiid=player1", 
                            "videoDiv", "480", "295", "9", null, null, params, atts);}
       function _run() {
         loadPlayer();
