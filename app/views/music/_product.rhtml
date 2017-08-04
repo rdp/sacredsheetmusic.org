@@ -8,7 +8,7 @@
     end 
    %>
   <% if product.is_five_star?  %>
-     <% if !product.is_competition? || !Preference.self.competition_live_voting? %> <!-- don't want to show extra stars to comp pieces and influence voting -->
+     <% if !product.is_competition? || !Preference.competition_live_voting? %> <!-- don't want to show extra stars to comp pieces and influence voting -->
       <a href=/about/starred> <%= image_tag('public-ui/icons/star.png', :alt => '5star', :class => 'icon') %></a>
     <% end %>
   <% end %>

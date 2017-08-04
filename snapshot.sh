@@ -1,5 +1,5 @@
 echo "snapshotting (production) DB..."
-echo "not cleaning sessions..."
+echo "not cleaning sessions...this could be a bit bloated"
 #echo "this does a sessions and half cache clear..."
 #./sessions_clear.sh
 #./cache_clear.sh
