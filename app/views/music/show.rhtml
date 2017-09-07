@@ -302,17 +302,6 @@ You can also <i>
 <a href="http://pinterest.com/pin/create/button/?url=<%= request.url %>&media=http://<%= request.host + image_relative_url %>&description=<%= CGI.escape(@title) %>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
 </div>
 
-<!-- Place this tag where you want the +1 button to render -->
-<div style="float:left; width: 200px;" ><g:plusone annotation="inline"></g:plusone></div>
-<!-- Place this render call where appropriate -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-
 </div>
 
 </div> <!-- end float right -->
