@@ -222,7 +222,7 @@
 
 <% if @product.youtube_video_id.present? %>
   Sheet music playthrough video:
-  <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/<%= @product.youtube_video_id %>" frameborder="0"></iframe>
+  <iframe class="youtube-player" allowfullscreen type="text/html" width="640" height="385" src="http://www.youtube.com/embed/<%= @product.youtube_video_id %>" frameborder="0"></iframe>
 <br/>
 <% end %>
 
