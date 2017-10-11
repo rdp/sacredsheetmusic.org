@@ -32,7 +32,8 @@ class AccountsController < ApplicationController
     @title = "Reset user password"
     if request.post?
       if session[:user]
-        throw "resetting password when currently logged in? please <a href=/logout>logout</a> first..."
+        # why would they need to reset to random if they're logged in?
+        redirect_to "/accounts/edit_composer_login" and return # just in case they thought "reset password" meant "set a new one" :|
       end
       composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
       composer_user = composer_tag.admin_user || raise("no admin user to reset?")
