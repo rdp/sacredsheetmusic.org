@@ -31,6 +31,9 @@ class AccountsController < ApplicationController
   def reset_password
     @title = "Reset user password"
     if request.post?
+      if session[:user]
+        throw "resetting password when currently logged in? please <a href=/logout>logout</a> first..."
+      end
       composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
       composer_user = composer_tag.admin_user || raise("no admin user to reset?")
       new_password = generate_random_password 
@@ -38,11 +41,7 @@ class AccountsController < ApplicationController
       composer_user.save! # md5 it
       send_success_account_email composer_user, composer_tag, new_password 
       flash[:notice] = "Successfully reset password and sent it to your email #{params[:email_to_reset]}, please check it, and use that to login!"
-      if session[:user]
-        redirect_to "/logout" # force them to use the new password
-      else
-        redirect_to "/about/self-upload" # a page that display the flash pretti-ly :)
-      end
+      redirect_to "/about/self-upload" # a page that display the flash pretti-ly :)
       return
     else
       # its all in the view 
