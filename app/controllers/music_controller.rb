@@ -218,7 +218,8 @@ class MusicController < StoreController
 
  public 
  def show
-    id = params[:id]
+    id = params[:id] # id is actually the code \
+
     if !id.present?
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
@@ -236,22 +237,24 @@ class MusicController < StoreController
       end
       render_404_to_home(id) && return
     end
-    wishlist # setup variable for view
-    @old_comment = look_for_recent_comment @product.id # for competition...
 
     if @product.code != id
       # mis capitalized
       redirect_to :action => 'show', :id => @product.code, :status => :moved_permanently
       return
     end
+
     if not_a_bot
       # avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
 
     # allow it to inc the view counts
-    cache_name = "song_show_#{id}"
+    cache_name = "song_show_#{@product.id}"
     return if render_cached_if_exists(cache_name)
+
+    wishlist # setup variable for view
+    @old_comment = look_for_recent_comment @product.id # for competition...
 
     if @product.composer_tag && @product.voicing_tags[0]
        @title = "#{@product.name} (by #{@product.composer_tag.name} -- #{@product.voicing_tags.map{|t| t.name}.join(', ')})"

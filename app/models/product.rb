@@ -26,6 +26,8 @@ class Product < Item
   private
   def reset_html_cache
     FileUtils.rm_rf thumbnail_filename
+    song_filename = RAILS_ROOT + "/public/cache/song_show_#{self.id}.html"
+    FileUtils.rm_rf song_filename 
   end
 
   def thumbnail_filename
