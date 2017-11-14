@@ -248,6 +248,11 @@ class MusicController < StoreController
       # avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
+
+    # allow it to inc the view counts
+    cache_name = "song_show_#{id}"
+    return if render_cached_if_exists(cache_name)
+
     if @product.composer_tag && @product.voicing_tags[0]
        @title = "#{@product.name} (by #{@product.composer_tag.name} -- #{@product.voicing_tags.map{|t| t.name}.join(', ')})"
     else
@@ -257,7 +262,7 @@ class MusicController < StoreController
 
     @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
 
-    render :layout => 'main_no_box'
+    render_and_save_to_cache({:layout => 'main_no_box'}, cache_name)
   end
 
   def filter_by_current_main_tag these_products
@@ -303,8 +308,8 @@ class MusicController < StoreController
 #    expire_page :action => :show_by_tags   
 #    render :text => "ok reset 'em"
 #  end
+  #caches_page :show_by_tags, :index # needed more flexibility [?]
 
-  #caches_page :show_by_tags, :index
   def render_cached_if_exists cache_name
     cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
     if today_is_sunday?
@@ -313,21 +318,21 @@ class MusicController < StoreController
     filename = RAILS_ROOT+"/public/cache/#{cache_name}.html"
     if File.file? filename
      logger.info "rendering early cache #{cache_name}..."
-     render :text => File.read(filename) and return true
+     render :text => File.read(filename) 
      #send_file(filename) # needs more settings...
-     #return true
+     true
     else
      logger.info "early cache doesn't exist #{cache_name}..."
+     false
     end
-    false
   end
 
-  def render_and_cache rhtml_name, cache_name
+  def render_and_save_to_cache rhtml_name_or_options, cache_name
     cache_name = cache_name.gsub('/', '_') # disallowed unix filenames :)
     if today_is_sunday?
       cache_name = cache_name + '_sunday'
     end
-    text = render_to_string rhtml_name
+    text = render_to_string rhtml_name_or_options
     cache_dir = RAILS_ROOT + "/public/cache"
     if !flash[:notice].present?
       File.write("#{cache_dir}/#{cache_name}.html", text) # :|
@@ -418,7 +423,7 @@ class MusicController < StoreController
 
     setup_alpha_tag_sizes
     if !session['filter_all_tag_id'].present?
-      render_and_cache('index.rhtml', tag_name)
+      render_and_save_to_cache('index.rhtml', tag_name)
     else
       render 'index.rhtml' # render every time if special list...though we could cache it too uh guess...
     end
@@ -582,7 +587,7 @@ class MusicController < StoreController
         def @products.total_pages # fake it out :P
           1
         end
-        render_and_cache('index.rhtml', 'all_songs') and return
+        render_and_save_to_cache('index.rhtml', 'all_songs') and return
       end
       format.rss do
         render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return # no rss for now--facebook maybe requested this once? so 404 instead of clogging our logs with 500's
