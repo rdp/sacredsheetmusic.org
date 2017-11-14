@@ -251,7 +251,9 @@ class MusicController < StoreController
 
     # allow it to inc the view counts
     cache_name = "song_show_#{@product.id}"
-    return if render_cached_if_exists(cache_name)
+    if !logged_in_admin_user?
+      return if render_cached_if_exists(cache_name)
+    end # if logged in re-render so it can show the edit links and up to date stats woot
 
     wishlist # setup variable for view
     @old_comment = look_for_recent_comment @product.id # for competition...
@@ -563,16 +565,6 @@ class MusicController < StoreController
     else
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
-  end
-
-  def current_process_count_including_us
-    count_including_us = `ps -ef | egrep ruby | wc -l`.to_i-2
-  end
-
-  def all_no_cache
-    render :text => 'ok'
-    # @no_individ_cache = true # LODO totally remove this junk... 
-    # index # reads them all
   end
 
   # Our "all songs" list
