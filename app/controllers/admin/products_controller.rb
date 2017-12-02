@@ -397,6 +397,9 @@ class Admin::ProductsController < Admin::BaseController
               end
             end
 
+            if i[:download_data].original_filename =~ /\.(wmv|mp4)$/i
+              raise "for movie files, please upload them to youtube then enter in the youtube 'id' for that video into our system"
+            end
             if i[:download_data].original_filename =~ /\.pdf$/i
               # also add them in as fake images
               got_one = false
