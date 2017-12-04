@@ -78,7 +78,7 @@
 		</ul>
               	
 	
-		  <!-- left logo -->
+		  <!-- left logo, enabled -->
 		  <div style="float:left; padding-top: 0px; padding-left: 5px; margin-bottom: -5px;"> <!-- negative bottom margin since we don't use many descend down chars and great vibes goes waaay down -->
 		     <div style="font-family: 'Great Vibes', cursive; font-size: 37px; margin-top: 10px; letter-spacing: 2px;"><a href="/" rel="home">Free <span style="letter-spacing: 8px;">L</span>DS Sheet Music</a></div>
 		  </div>
@@ -170,14 +170,17 @@
           <% if yes_box %>
               <%= 
                start = Time.now
-               hash = Time.now.wday*11
+               hash = 3 # primes :\
+               if today_is_sunday?
+                 hash = 5
+               end
                hash *= @current_tag.id if @current_tag
                text = Cache.get_or_set_int(hash, 'boxed', 'tags') {
                  text = render :partial => '/boxed_categories'
                }
                logger.info "box cats took #{Time.now - start}s"
                text
-               %>
+             %>
           <% end %>
 	  <%= yield %>
 	</div><!-- End content body -->
