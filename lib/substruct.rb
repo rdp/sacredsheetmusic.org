@@ -124,9 +124,6 @@ end
        :controller => 'content_nodes',
        :action     => 'show_by_name'
 
-    #map.connect '/store/*asdf', # I think I need the asdf in there... LODO redirect?
-    #  :controller => 'nonexist' # I think I've ferreted out all the links by now actually...
-
     map.connect '/all',
       :controller => 'music',
       :action => :index
