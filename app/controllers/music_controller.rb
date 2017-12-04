@@ -109,6 +109,16 @@ class MusicController < StoreController
   end
 
   def add_comment
+    if !params['comment'].present?
+      raise "Please include a comment note, use the back arrow on your browser to add one"
+    end
+
+    song_id = params['id']
+    duplicate = Comment.find(:first, :conditions => ['product_id = ? and comment = ? and user_name = ? and user_email = ? and user_url = ? and overall_rating = ?', song_id, params['comment'], params['user_name'], params['user_email'], params['user_url'], params['overall_rating']])
+    if duplicate
+      raise "Looks like we already got your comment, thank you for submitting it!" # sometimes browser send in doubles, weird.
+    end
+
     product, possible_comment = add_comment_helper false
     redirect_to :action => :show, :id => product.code
   end
@@ -118,13 +128,13 @@ class MusicController < StoreController
       return true
     end
     if params[:user_url] =~ /customink/i || params[:user_email] =~ /biancahilario/i
-      return true # some kind of live'ish spammer, hope I don't run into too many like that, yikes!
+      return true # some kind of live'ish spammer, hope I don't run into too many like her, yikes!
     end
     false
   end
 
   def add_comment_helper is_competition
-   product = Product.find(params['id']) # don't handle 404 LOL
+   product = Product.find(params['id']) # ignore 404 LOL
    if is_spam_comment?
      flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back arrow in your browser and enter sunday and try again!"
      return [product, nil]
@@ -141,7 +151,7 @@ class MusicController < StoreController
      comment.overall_rating ||= -1 # guess a DB default isn't enough [?] that is so weird...rails defaulting everything to nil...
      comment.created_admin_user_id = session[:user]
      comment.save
-     product.comments << comment # might also perform a comment save?
+     product.comments << comment
      flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
      if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...non competition always send :)
        composer_emails = product.composer_tags.map{|ct| ct.composer_email_if_contacted}
