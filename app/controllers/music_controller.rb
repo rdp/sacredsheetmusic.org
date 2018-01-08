@@ -64,7 +64,7 @@ class MusicController < StoreController
 
   def check_if_out_of_space
     bytes_free = `df -B1 .`.split[10].to_i
-    if bytes_free < 512.megabyte
+    if bytes_free < 256.megabyte # make it dire
       raise "low space #{bytes_free}"
     end
     render :text => "ok disk space #{bytes_free}"
