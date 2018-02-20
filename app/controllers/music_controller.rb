@@ -512,6 +512,7 @@ class MusicController < StoreController
     al = request.headers['Accept-Language']
     not_bot = al.present?
 
+    # these are OK even if they don't have Accept-Language
     not_bot = true if ua =~ /MSIE \d.\d|Mac |Apple|translate.google.com|Gecko|player|Windows NT/i # players and browser players, etc.
     not_bot = true if ua =~ /^Mozilla\/\d/ # [Mozilla/5.0] [] huh? maybe their default player? # This kind of kills our whole system though...
     not_bot = true if ua =~ /stagefright/ # android player
