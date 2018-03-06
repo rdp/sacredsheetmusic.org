@@ -20,7 +20,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_some_composers # that haven't gotten it yet
-    last_that_got_it = "Karen L. Mumford" # name
+    last_that_got_it = "MindSpew" # name
     composers = Tag.find_by_name("composers").children
     found_last = false
     use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last}
