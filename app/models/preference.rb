@@ -12,7 +12,7 @@ class Preference
 
   def self.competition_live_voting?
     now = Time.now
-    now < competition_end_time && now > competition_end_time
+    now < competition_end_time && now > competition_start_time
   end
 
 end
