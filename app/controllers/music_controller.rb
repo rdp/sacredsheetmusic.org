@@ -103,7 +103,9 @@ class MusicController < StoreController
            We only allow one vote per household per song per competition, but feel free to vote on any other pieces! If you feel this was in error try voting from a different internet location"
     else
       product, comment = add_comment_helper true
-      flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
+      if comment
+        flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
+      end
     end
     redirect_to :action => :show, :id => product.code
   end
