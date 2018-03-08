@@ -51,7 +51,7 @@ class MusicController < StoreController
   end
 
   def look_for_recent_comment song_id
-    # assume they don't resubmit songs year after year :|
+    # assume composers don't resubmit songs year after year :|
     if @user
       # not sure what the default for created_admin_user_id is ... :|
       Comment.find(:first, :conditions => ['product_id = ? and (created_ip = ? or created_session = ? or created_admin_user_id = ?)', song_id, session_ip, session_id, session[:user]], :order => "created_at desc")
@@ -61,6 +61,10 @@ class MusicController < StoreController
   end
 
   public
+
+  def session_info
+    render :text => "ip=#{session_ip} user=#{session[:user]} session_id=#{session_id}"
+  end
 
   def check_if_out_of_space
     bytes_free = `df -B1 .`.split[10].to_i
@@ -263,7 +267,7 @@ class MusicController < StoreController
 
     # allow it to inc the view counts
     cache_name = "song_show_#{@product.id}"
-    if !logged_in_admin_user?
+    if !logged_in_admin_user? && !@product.is_competition?
       return if render_cached_if_exists(cache_name)
     end # if logged in re-render so it can show the edit links and up to date stats woot
 
