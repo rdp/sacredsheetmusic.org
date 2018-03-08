@@ -265,13 +265,17 @@ class MusicController < StoreController
       Product.increment_counter(:view_count, @product.id)
     end
 
+    wishlist # setup variable for view
+    @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
+
     # allow it to inc the view counts
     cache_name = "song_show_#{@product.id}"
-    if !logged_in_admin_user? && !@product.is_competition?
+    should_cache = !logged_in_admin_user? && !@product.is_competition? && !@already_bookmarked
+    # if logged in re-render so it can show the edit links and up to date stats woot (plus what if admin vs. editor)
+    if should_cache
       return if render_cached_if_exists(cache_name)
-    end # if logged in re-render so it can show the edit links and up to date stats woot
+    end 
 
-    wishlist # setup variable for view
     @old_comment = look_for_recent_comment @product.id # for competition...
 
     if @product.composer_tag && @product.voicing_tags[0]
@@ -281,9 +285,12 @@ class MusicController < StoreController
     end
     @images = @product.images
 
-    @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
+    if should_cache
+      render_and_save_to_cache({:layout => 'main_no_box'}, cache_name)
+    else
+      render :layout => 'main_no_box'
+    end
 
-    render_and_save_to_cache({:layout => 'main_no_box'}, cache_name)
   end
 
   def filter_by_current_main_tag these_products
@@ -379,8 +386,9 @@ class MusicController < StoreController
       render_404_to_home(tag_names.join(' ')) && return
     end
     tag_name = tag_names[0]
+    should_cache = !session['filter_all_tag_id'].present? && !flash[:notice].present?
 
-    if !session['filter_all_tag_id'].present? && !flash[:notice].present?
+    if should_cache
       return if render_cached_if_exists(tag_name)
     else
       if session['filter_all_tag_id'].present? 
@@ -443,7 +451,7 @@ class MusicController < StoreController
     start_time = Time.now
 
     setup_alpha_tag_sizes
-    if !session['filter_all_tag_id'].present?
+    if should_cache
       render_and_save_to_cache('index.rhtml', tag_name)
     else
       render 'index.rhtml' # render every time if special list...though we could cache it too uh guess...
