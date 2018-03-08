@@ -382,15 +382,15 @@ class Admin::ProductsController < Admin::BaseController
             logger.info i[:download_data].inspect # for fun
 
             new_download.uploaded_data = i[:download_data]
-            if i[:download_data].original_filename =~ /\.wav$/i
+            if i[:download_data].original_filename =~ /\.(wav|aac)$/i
               # replace inline :)
               out = `ffmpeg -i #{i[:download_data].path} 2>&1`
-              if out =~ /Audio: pcm_/
+              if out =~ /Audio: (pcm_|aac)/
                 temp_file2 = get_temp_file_no_extension + ".mp3"
                 raise unless system("ffmpeg -i #{i[:download_data].path} #{temp_file2}")
                 # unfortunately it seems I can't just adjust i[:download_data]???
                 # so add one to the end of the list and hope (does work)
-                add_download_from_local_file temp_file2, "audio/mpeg", i[:download_data].original_filename.sub(/\.wav$/i, ".mp3")
+                add_download_from_local_file temp_file2, "audio/mpeg", i[:download_data].original_filename.sub(/\.(wav|aac)$/i, ".mp3")
                 temp_files << temp_file2
                 logger.info "converted to mp3"
                 next
