@@ -113,7 +113,7 @@ class Tag
   end
 
   def is_topic_tag?
-    self.parent && (self.parent.name =~ /^topic/i)
+    self.parent && (self.parent.name =~ /^topic/i) && (self.parent.name !~ /languages/i) # languages is a weird one, don't want it to carry over...
   end
 
   def is_original_tag?
