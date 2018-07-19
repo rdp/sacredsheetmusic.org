@@ -18,7 +18,9 @@ class UserUpload < ActiveRecord::Base
 
   before_save :downcase_extension
   def downcase_extension
-    self.filename = "#{self.filename[0, self.filename.rindex('.')]}.#{self.extension.downcase}"
+    if self.filename =~ /\./
+      self.filename = "#{self.filename[0, self.filename.rindex('.')]}.#{self.extension.downcase}"
+    end # else no ext :)
   end
   
   # Returns extension
