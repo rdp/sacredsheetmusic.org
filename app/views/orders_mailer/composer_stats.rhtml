@@ -1,12 +1,43 @@
 <%= render :partial => 'orders_mailer/composer_summary' %>
 
-Stats for individual songs:
+  <header>
+    <h4>Individual song statistics for this composer</h4>
+  </header>
 
-<% for song in @composer.products %>
-  <%= song.name %>, pdf downloads/views <%= song.pdf_download_count %>, views on the site <%= song.view_count %>
-  <% if song.original_url.present? %>
-   , redirects to your site (if you have one) <%= song.redirect_count %> <%= song.original_url %>
-  <% end %>
-<% end %>
+  <section>
+    <div class="listContainer">
+      <table class="list">
+        <thead>
+          <tr class="header">
+            <th class="fill wrap">Name</th>
+            <th class="no-wrap">Page Views</th>
+            <th class="no-wrap">PDF Downloads</th>
+            <th class="wrap">
+              <span class="nowrap">Site Referrals</span>
+              <span class="nowrap">(if applicable)</span>
+            </th>
+          </tr>
+        </thead>
+        <% for song in @composer.products %>
+          <tr>
+            <td>
+              <%= song.name %>
+            </td>
+            <td>
+              <%= song.view_count %>
+            </td>
+            <td>
+              <%= song.pdf_download_count %>
+            </td>
+            <td>
+              <%= song.original_url %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </section>
 
-You can also see global (site-wide) song arrangement stats here: <%= url_for :controller => 'music', :action => :songs_stats, :only_path => false, :host => 'freeldssheetmusic.org' %>
+  <footer>
+    <a class="underlined" href="<%= url_for :controller => 'music', :action => :songs_stats, :only_path => false, :host => 'freeldssheetmusic.org' %>">View statistics for all songs on this site</a>
+  </footer>

@@ -31,6 +31,9 @@ a {
 	font-weight: bold;
 	text-decoration: none;
 }
+a.underlined {
+	text-decoration: underline;
+}
 
 a:link { 
   color: #005A80; 
@@ -350,11 +353,11 @@ div.listContainer {
 	overflow: auto;
 }
 
-
 .list {
 	border: 1px solid #666666;
 	width: 100%;
 }
+
 /* don't put a border around tables contained by a div */
 div.listContainer .list {
 	border: 0px;
@@ -592,6 +595,17 @@ input.error {
 	background-repeat: repeat-x;
 }
 
+.nowrap {
+	word-wrap: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.wrap {
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: pre-wrap;
+}
 
 /* CLASSES */
 .minor_callout {
