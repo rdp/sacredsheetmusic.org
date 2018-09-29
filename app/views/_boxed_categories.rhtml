@@ -24,8 +24,7 @@
 <div style="width: 200px; border-style:dotted; border-width:1px; border-color: #aaaaaa; border-radius: 10px; margin-top: 5px; padding: 5px; margin-bottom: 5px;">
 Quote: "The song of the righteous is a prayer unto me, and it shall be answered with a blessing upon their heads." <a href=https://www.lds.org/scriptures/dc-testament/dc/25.12#12>D&C 25:12</a>
 </div>
-<% if !today_is_sunday?
-%>
+<% if !today_is_sunday? && !@disable_ads  %>
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-6408506169461125";
 google_ad_slot = "1550305311";

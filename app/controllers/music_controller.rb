@@ -233,7 +233,7 @@ class MusicController < StoreController
  end
 
  public 
- def show
+ def show # single song
     id = params[:id] # id is actually the code \
 
     if !id.present?
@@ -368,8 +368,7 @@ class MusicController < StoreController
     render :text => text 
   end
 
-  # Shows products by tag or tags.
-  # Tags are passed in as id #'s separated by commas. or were once upon a time snort snort
+  # Shows products by tag
   def show_by_tags
     # Tags are passed in as an array.
     # Passed into this controller like this [except we only use at most one]...:
@@ -386,6 +385,9 @@ class MusicController < StoreController
       render_404_to_home(tag_names.join(' ')) && return
     end
     tag_name = tag_names[0]
+    if tag_name == "Sara_Lyn_Baril"
+      @disable_ads = true # manual policy violation have to disable for a week
+    end
     should_cache = !session['filter_all_tag_id'].present? && !flash[:notice].present?
 
     if should_cache
