@@ -1,4 +1,4 @@
-echo 'clearing just session, not cache'
+echo 'clearing just session, not cache, this takes quite awhile, and locks the site'
 ruby script/runner -e production " 
 good_ids = {}
 WishlistItem.all.each{|wli| good_ids[wli.session_id] = 1}
