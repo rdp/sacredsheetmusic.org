@@ -125,7 +125,7 @@ private
               OrdersMailer.deliver_inquiry(
                 "Message from freeldssheetmusic.org: #{prefix}",
                  message,
-                 Preference.get_value('mail_username'),
+                 nil,
                  composer_tag.composer_email_if_contacted
               )
     end
