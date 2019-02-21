@@ -71,7 +71,7 @@ class QuestionsController < ApplicationController
               OrdersMailer.deliver_inquiry(
                 'Feedback/question from global site',
                 params[:question][:long_question],
-                params[:question][:email_address]
+                params[:question][:email_address] # the from email
               )
               flash[:notice] = "Message sent successfully, thank you!"
               redirect_to '/' and return
