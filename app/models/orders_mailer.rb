@@ -18,7 +18,8 @@ class OrdersMailer
     setup_defaults
 #    @bcc = nil # uncomment if I don't want extra copies to me...leave commented to *yes receive* extra copies...
     # hard to believe subject isn't with the .rhtml file...
-    subject "Your freeldssheetmusic.org stats, and a #{Time.now.year} competition announcement"
+    subject "Your yearly freeldssheetmusic.org stats, and a #{Time.now.year} competition announcement"
+
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
