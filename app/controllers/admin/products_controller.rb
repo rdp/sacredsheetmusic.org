@@ -20,7 +20,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_some_composers # that haven't gotten it yet
-    last_that_got_it = "MindSpew" # name
+    last_that_got_it = "MindSpew" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
     use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last}
@@ -78,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_all_composers_pre
-   render :text => "now try spam_all_composers"
+   render :text => "now try spam_all_composers...but it needs curl??"
   end
 
   def single_composer_stats
