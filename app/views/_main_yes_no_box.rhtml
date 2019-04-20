@@ -96,8 +96,8 @@
                         Enter our <br/>
                         <%=link_to year + ' Sheet Music Competition!', :controller => 'content_nodes', :action => 'show_by_name', :name => 'sheet-music-competition' %>
                    <% elsif Time.now < end_time %>
-                        Come vote for your<br/> favorites in our ongoing<br/>
-                        <%=link_to year + ' Sheet Music Competition!', :controller => "music", :action=>"competition" %>
+                        Come  
+                        <%=link_to('vote for your favorites in our ongoing ' + year + ' Sheet Music Competition!', :controller => "music", :action=>"competition") %>
                    <% else %>
                         Come check out our
                         <%= link_to year + ' Sheet Music Competition Winners!', :controller => "music", :action=>"competition_results" %>
