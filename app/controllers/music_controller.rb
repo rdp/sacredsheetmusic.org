@@ -130,7 +130,7 @@ class MusicController < StoreController
   end
 
   def is_spam_comment?
-    if (params['recaptcha'] || '').downcase != 'sunday'
+    if (params['recaptcha'] || '').downcase.strip != 'sunday'
       return true
     end
     if params[:user_url] =~ /customink/i || params[:user_email] =~ /biancahilario/i

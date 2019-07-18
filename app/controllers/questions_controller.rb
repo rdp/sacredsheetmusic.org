@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
 	# Sends question via email to site owner
 	def send_question
           if is_spam_comment?
-            raise "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Monday in the last field, to enter sunday and try again!"
+            raise "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back in your browser and enter Sunday in the last field, and try again!"
             # wasn't sure how to auto re-populate so force browser back LOL
           end
 	  @question = Question.new(params[:question]) # what is a Question here? they used to save these?
