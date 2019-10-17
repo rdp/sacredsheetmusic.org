@@ -8,6 +8,7 @@ To use, download
 add 1G swap, swappiness 20 [?]
 
 install ree, must patch tcmalloc first https://github.com/sstephenson/ruby-build/issues/186
+and must install it using this to avoid timeout.rb SEGFAULT
 
 CFLAGS="-O2 -fno-tree-dce -fno-optimize-sibling-calls" /home/rdp/downloads/ruby-enterprise-1.8.7-2012.02/installer --configure-arg --disable-doc 
 
