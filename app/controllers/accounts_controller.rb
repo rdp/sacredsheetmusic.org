@@ -68,7 +68,7 @@ class AccountsController < ApplicationController
       @title = "Edit login profile/account you use to upload your songs"
       @user = User.find session[:user] # already logged in, so force an update [or edit view]
       if @user.is_admin?
-        raise "admins should not use this, too dangerous since it messes with permissions :P"
+        raise "admins should not use this, too dangerous since it messes with permissions :P [if you're roger getting this doing reset tests, logout first then do a reset]"
       end
       @composer_tag = @user.composer_tag
       # these have to be blank I think to allow you to save...
