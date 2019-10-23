@@ -174,7 +174,7 @@
         <% for composer_tag in @product.composer_tags %>
            <% if composer_tag.bio.present? %>
             <br/>
-            More about <%= tag_link(composer_tag) %>: <br/> <%= composer_tag.bio %>
+            More about <%= tag_link(composer_tag) %>: <br/> <%= h composer_tag.bio %>
            <% end %>
        <% end %>
 
@@ -186,7 +186,7 @@
         <% composer_every_song_tags = @product.composer_tags.select{|t| t.text_for_every_song_for_composer.present?} %>
         <% if @product.description.present?  %>
 	  <div style="padding-top:10px;">
-            Song background: <%= @product.description %>
+            Song background: <%= h @product.description %>
 	  </div>
         <% end %>
         <% for tag in composer_every_song_tags %>
@@ -211,7 +211,7 @@
 <br />
 <br />
 <br />
- <h3>              <%=link_to('Click here to proceed', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' )%></h3> and see the free sheet music/downloads for this song on the author's website.  You may need to search for it within their list.
+ <h3>              <%= link_to('Click here to proceed', {:controller=>'music', :action=>'redirect_to_original_url', :id => @product.code, :url => @product.original_url.sub("http://", "")}, :target => '_blank' )%></h3> and see the free sheet music/downloads for this song on the author's website.  You may need to search for it within their list.
 <br />
 <br />
 <br />
@@ -271,7 +271,7 @@ You can also <i>
           <br /> <!-- make footer look like a footer LOL -->
        <% end %>
        <% if @product.lyrics.present? %>
-          Lyrics: <%= @product.lyrics.gsub("\n", "<br/>") %>
+          Lyrics: <%= h @product.lyrics.gsub("\n", "<br/>") %>
           <br />
        <% end %>
      </div>

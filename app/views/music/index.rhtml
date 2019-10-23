@@ -6,7 +6,7 @@
 <% if @show_green %>
   <%= render :partial => '/shared/logged_in_green'%>
 <% end %>
-        <h1 style="<%= h1_style %>"><%= @header || @title %></h1>
+        <h1 style="<%= h1_style %>"><%= h(@header || @title )%></h1>
 	
 	<%= will_paginate(@products) unless @do_not_paginate %>
 
