@@ -186,7 +186,7 @@
         <% composer_every_song_tags = @product.composer_tags.select{|t| t.text_for_every_song_for_composer.present?} %>
         <% if @product.description.present?  %>
 	  <div style="padding-top:10px;">
-            Song background: <%= h @product.description %>
+            Song background: <%= @product.description %>
 	  </div>
         <% end %>
         <% for tag in composer_every_song_tags %>
