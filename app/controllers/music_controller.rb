@@ -16,7 +16,7 @@ class MusicController < StoreController
   def add_to_wishlist
     if params[:id]
       if item = Item.find_by_id(params[:id])
-        if not_a_bot || logged_in_admin_user?
+        if not_a_bot || logged_in_anytype_user?
           session_object.wishlist_items << WishlistItem.new(:item_id => item.id)
         end
       else
@@ -270,7 +270,7 @@ class MusicController < StoreController
 
     # allow it to inc the view counts
     cache_name = "song_show_#{@product.id}"
-    should_cache = !logged_in_admin_user? && !@product.is_competition? && !@already_bookmarked
+    should_cache = !logged_in_anytype_user? && !@product.is_competition? && !@already_bookmarked
     # if logged in re-render so it can show the edit links and up to date stats woot (plus what if admin vs. editor)
     if should_cache
       return if render_cached_if_exists(cache_name)
@@ -557,7 +557,7 @@ class MusicController < StoreController
       prefix= "yes bot:"
     end
     logger.info "#{prefix} [#{ua}] [#{al}]" unless ua =~ /Wget/
-    if logged_in_admin_user?
+    if logged_in_anytype_user?
       logger.info "logged in user, fingindo ser bot para nao adjustar numeros"
       return false
     end
@@ -565,7 +565,7 @@ class MusicController < StoreController
     not_bot
   end
 
-  def logged_in_admin_user?
+  def logged_in_anytype_user?
     session[:user] 
   end
 
