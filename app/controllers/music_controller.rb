@@ -385,9 +385,9 @@ class MusicController < StoreController
       render_404_to_home(tag_names.join(' ')) && return
     end
     tag_name = tag_names[0]
-    #if tag_name == "Sara_Lyn_Baril"
-    #  @disable_ads = true # manual policy violation have to disable for a week
-    #end
+    if tag_name == "Sara_Lyn_Baril"
+      @disable_ads = true # manual policy violation have to disable for a week, but it came back?!
+    end
     should_cache = !session['filter_all_tag_id'].present? && !flash[:notice].present? # :|
 
     if should_cache
