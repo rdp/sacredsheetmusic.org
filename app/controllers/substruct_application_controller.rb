@@ -4,14 +4,12 @@ module SubstructApplicationController
   
   def redirect_to_freeldssheetmusic
     if ENV['RAILS_ENV'] == "production" 
-      if (request.host =~ /^(www|admin)/) || (request.host !~ /localhost|freeldssheetmusic.org/) # allow localhost:3000 etc. redirect all old url's...
+      if (request.host =~ /^(www)/) || (request.host !~ /freeldssheetmusic.org/) # redirect all old url's...
          redirect_to "http://freeldssheetmusic.org" + request.request_uri, :status => :moved_permanently 
          flash.keep
          return false
       end
-
     end
-    
   end
 
   def set_substruct_view_defaults
