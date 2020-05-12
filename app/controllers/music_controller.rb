@@ -158,7 +158,7 @@ class MusicController < StoreController
      comment.created_admin_user_id = session[:user]
      comment.save
      product.comments << comment
-     flash[:notice] = 'Comment saved! Thanks for your contribution to LDS music!'
+     flash[:notice] = 'Comment saved! Thanks for your contribution to sacred music!'
      if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...non competition always send :)
        composer_emails = product.composer_tags.map{|ct| ct.composer_email_if_contacted}
        composer_emails = [nil] if composer_emails.size == 0 # send it to me, though that's pretty freaky... :)
