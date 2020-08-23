@@ -19,7 +19,7 @@ class Admin::ProductsController < Admin::BaseController
     false
   end
 
-  def spam_some_composers # that haven't gotten it yet
+  def spam_some_composers # that haven't gotten it yet if need restart from interrupted [plunk it in manually]
     last_that_got_it = "MindSpew" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
