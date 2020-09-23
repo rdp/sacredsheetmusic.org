@@ -19,12 +19,12 @@ class Admin::ProductsController < Admin::BaseController
     false
   end
 
-  def spam_some_composers # that haven't gotten it yet if need restart from interrupted [plunk it in manually]
-    last_that_got_it = "MindSpew" # name like "abraham lincoln"
+  def spam_some_composers # that haven't gotten it yet if need restart from interrupted :|
+    last_that_got_it = "Josh Lang" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
-    use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last}
-    use = use [1..-1] # skip first which is the last that already got it
+    use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last} # there's no easy ruby way??
+    remaining = use[1..-1] # skip first which is the last that already got it
     spam_composers_and_render use 
   end
 
@@ -72,13 +72,13 @@ class Admin::ProductsController < Admin::BaseController
       OrdersMailer.deliver_spam_composer(composer)
       count += 1
       sleep 2 # gmail attempt friendliness again :|
-      Rails.logger.info "sent spamser to #{composer.id}"
+      Rails.logger.info "successfully sent spamser to #{composer.id} #{composer.name}"
     end
     render :text => "successfully spammed #{count} of them #{Time.now}"
   end
 
   def spam_all_composers_pre
-   render :text => "now try spam_all_composers...but it needs curl??"
+   render :text => "now try spam_all_composers...but it needs curl installed command line??" # ??
   end
 
   def single_composer_stats
