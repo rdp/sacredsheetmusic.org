@@ -240,7 +240,7 @@ class MusicController < StoreController
       render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404) and return
     end
 
-    @product = Product.find_by_code(id, :include => [:downloads, {:tags => [:parent]}]) # no cacheing yet on the show page...
+    @product = Product.find_by_code(id, :include => [:downloads, {:tags => [:parent]}]) 
     # nb that we can't include :images because it comes in unsorted...Rails!!!
 
     if !@product
@@ -261,20 +261,12 @@ class MusicController < StoreController
     end
 
     if not_a_bot
-      # avoid after_save blocks ...
+      # also avoid after_save blocks ...
       Product.increment_counter(:view_count, @product.id)
     end
 
     wishlist # setup variable for view
     @already_bookmarked = session_object.wishlist_items.map{|wl| wl.item}.include? @product
-
-    # allow it to inc the view counts
-    cache_name = "song_show_#{@product.id}"
-    should_cache = !logged_in_anytype_user? && !@product.is_competition? && !@already_bookmarked
-    # if logged in re-render so it can show the edit links and up to date stats woot (plus what if admin vs. editor)
-    if should_cache
-      return if render_cached_if_exists(cache_name)
-    end 
 
     @old_comment = look_for_recent_comment @product.id # for competition...
 
@@ -285,12 +277,7 @@ class MusicController < StoreController
     end
     @images = @product.images
 
-    if should_cache
-      render_and_save_to_cache({:layout => 'main_no_box'}, cache_name)
-    else
-      render :layout => 'main_no_box'
-    end
-
+    render :layout => 'main_no_box'
   end
 
   def filter_by_current_main_tag these_products
