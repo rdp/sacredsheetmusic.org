@@ -172,7 +172,7 @@ form_tag(options, :multipart => true)
 </script>
 <% if @product.persisted? %>
 		<div class="float">
-			<%= make_label('Song Code (you shouldnt have to change this typically unless you change the voicing and want the new voicing listed instead, but it is modifiable):') %>
+			<%= make_label('Song Code (you shouldnt have to change this typically it is auto generated the first time ou save a song, unless you change the voicing and want the new voicing auto-listed instead, in which case change it to blank, but it is modifiable):') %>
 			<%= text_field 'product', 'code', :class => 'textInput', :size => 75 %>
 		</div>
 <br/>

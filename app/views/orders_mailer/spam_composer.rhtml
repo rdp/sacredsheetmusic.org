@@ -1,25 +1,24 @@
-Dear fellow sacred sheet music composer, here's our yearly message and some song statistics, we appreciate your contribution to the sacred music community!
+Dear sacredsheetmusic.org composer, here's our yearly message and your song statistics, we appreciate your contribution to the sacred music community!
 
-Announcing our yearly "Sacred Sheet Music Competition"! We'll be hosting a competition Sep. 22 - Oct 06, in preparation for the church's submission deadline which is Oct 1 this year.  
+Announcing our yearly "Sacred Sheet Music Competition"! We'll be hosting a competition <%= Preference.competition_start_time.strftime '%b %d' %> to <%= Preference.competition_end_time.strftime '%b %d' %>, in preparation for the church's submission deadline which is Nov 1 this year.
+
 There are small cash prizes for the winners as well as the chance for valuable feedback from peers.
 Check it out! http://sacredsheetmusic.org/about/sheet-music-competition.
-Feel free to reply to this email (ex: "keep me updated") if you'd like more announcements as we get closer again this year. 
+Feel free to reply to this email (ex: "keep me updated") if you'd like more announcements as we get closer this year.   Or just email me a link to your submission :)
 
-We also have a facebook group just for "sacred music composers" join if you are interested:
+We also have a facebook group for "sacred music composers" join us if you are interested:
 https://www.facebook.com/groups/380693272137804
 
-Also we renamed the website to "sacredsheetmusic.org" now, hope you like it :)
+And here are your statistics from the site.  Some of these numbers represent automated "spambot requests" but some of them represent real people.  So thank you again!
 
-And here are your statistics from the site.  Some of these numbers represent automated "spambot requests" but some of them represent real people benefitting.  So thank you again!
-
-Hope everybody has a great year and see you again next year!
+Hope you have a great and sacred year!
 
 <%= render :partial => 'orders_mailer/composer_summary' %>
 
 You can see a more detailed list of statistics per song (of yours) here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'sacredsheetmusic.org') %>, if you're the type that loves numbers.
 
-Thanks again for your contributions to the sacred sheet music world!
+Thanks for your contributions to the sacred sheet music world!
 
 ~ Packs ~
 
-(Also, send a response email if you ever want to unsubscribe from this yearly email, as always :)
+(Also, send a response email if you ever want to unsubscribe from this yearly email, no worries :)

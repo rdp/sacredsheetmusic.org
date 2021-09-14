@@ -6,7 +6,7 @@ class OrdersMailer
     email_addy_from=Preference.get_value('mail_username')
     setup_defaults
 #    @bcc = nil # uncomment if I don't want extra copies to me...
-    subject "freeldssheetmusic.org composer individual song stats"
+    subject "sacredsheetmusic.org composer individual song stats"
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
@@ -18,7 +18,7 @@ class OrdersMailer
     setup_defaults
 #    @bcc = nil # uncomment if I don't want extra copies to me...leave commented to *yes receive* extra copies...
     # hard to believe subject isn't with the .rhtml file...
-    subject "Your yearly freeldssheetmusic.org stats, and a #{Time.now.year} competition announcement"
+    subject "Your yearly sacredsheetmusic.org stats, and yearly competition announcement"
 
     # renders a .rhtml file...
     body         :composer => composer_object
