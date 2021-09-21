@@ -33,10 +33,10 @@ class AccountsController < ApplicationController
     if request.post?
       if session[:user]
         # why would they need to reset to random if they're logged in?
-        redirect_to "/accounts/edit_composer_login" and return # just in case they thought "reset password" meant "set a new one" :|
+        redirect_to "/accounts/edit_composer_login" and return # just in case they thought "reset password" meant "set it to a new one" :|
       end
       composer_tag = Tag.find_by_composer_email_if_contacted! params[:email_to_reset]
-      composer_user = composer_tag.admin_user || raise("no admin user to reset?")
+      composer_user = composer_tag.admin_user || raise("no comp user to reset?")
       new_password = generate_random_password 
       composer_user.password = composer_user.password_confirmation = new_password
       composer_user.save! # md5 it
@@ -111,16 +111,16 @@ class AccountsController < ApplicationController
 
 private
     def send_success_account_email user, composer_tag, new_password = nil
-              # obviously I need a real template LOL
+              # obviously I need a realer template LOL
               if session[:user]
                 prefix = "Updated your account info"
               else
                 prefix="Pleased to meet you"
               end
               adjust_user_url =  url_for(:action => 'edit_composer_login')
-              message = "#{prefix} #{composer_tag.name} your login is\n#{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + adjust_user_url + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login")
+              message = "#{prefix} #{composer_tag.name} your login is: #{user.login}\nEnjoy! Any questions, don't hesitate to ask!\nYou can adjust your bio/profile/password by going here:" + adjust_user_url + "\nAnd enter new songs here:" + url_for(:controller => "/accounts", :action=>"login")
               if new_password
-                message += "\n Your newly reset password is #{new_password}.  You can change it (if desired) here: " + adjust_user_url
+                message += "\n Your newly reset password is: #{new_password}.  You can change it (if desired) here: " + adjust_user_url
               end
               OrdersMailer.deliver_inquiry(
                 "Message from freeldssheetmusic.org: #{prefix}",
