@@ -441,3 +441,10 @@ module Enumerable # not even 2.x has this mostly
     }
   end
 end
+
+def mc(code)
+  s = Song.find_by_code(code)
+  s.is_competition = true
+  s.save
+  s
+end
