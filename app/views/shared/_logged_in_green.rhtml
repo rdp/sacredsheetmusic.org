@@ -1,3 +1,4 @@
 <% if @user -%>
-  <font color="green">Currently logged in as <%= @user.login %><br/></font>
+  <font color="green">Currently logged in as <%= @user.login %></font> <a href=/logout>logout</a>.
+<br/>
 <% end %>
