@@ -13,7 +13,7 @@ Some recently added songs (see also <%= link_to 'full list', :action => :most_re
 <% end %>
 <div class="clear"></div>
 <a name="random"></a>
-Some random songs from our site (<a href="http://freeldssheetmusic.org/?a=<%= (rand*1000).to_i %>#random">refresh</a>):
+Some random songs from our site (<a href="#" onclick="window.location.reload(true);"> refresh</a>):
 <br/>
 <% for product in @rand_products %>
        <%= product.get_or_generate_thumbnail_cache {
@@ -34,7 +34,7 @@ Latest news, from our facebook page:
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- it only adapts at load time which is hopefully enough, avoid 500 min width -->
-<div style="min-height: 500px;" class="fb-page" data-href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" data-tabs="timeline" data-width="700" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/">freeldssheetmusic.org</a></blockquote></div>
+<div style="min-height: 500px;" class="fb-page" data-href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" data-tabs="timeline" data-width="700" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/freeldssheetmusicorg-252663114775187/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/freeldssheetmusicorg-252663114775187/">sacredsheetmusic.org</a></blockquote></div>
 </div>
 
 <div class="clear"></div>
