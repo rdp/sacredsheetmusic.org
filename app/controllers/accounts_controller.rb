@@ -123,7 +123,7 @@ private
                 message += "\n Your newly reset password is: #{new_password}.  You can change it (if desired) here: " + adjust_user_url
               end
               OrdersMailer.deliver_inquiry(
-                "Message from freeldssheetmusic.org: #{prefix}",
+                "Message from sacredsheetmusic.org: #{prefix}",
                  message,
                  Preference.get_value('mail_username'),
                  composer_tag.composer_email_if_contacted,
