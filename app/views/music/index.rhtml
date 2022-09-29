@@ -122,7 +122,23 @@ or
 <a href="http://www.ldshymns.com/?s=<%= tag_name %>" rel="nofollow" target="_blank">here</a>.
          <% end %>
         </div>
-        <% end %>
+      <% end %>
+
+
+<% if !today_is_sunday? && !@disable_ads  %>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6408506169461125"
+     crossorigin="anonymous"></script>
+<!-- big bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-6408506169461125"
+     data-ad-slot="3260964561"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<% end %>
 
   <div class="clear" style="height: 1px;">&nbsp;</div> <!-- bottom -->
   <%= will_paginate @products unless @do_not_paginate%>
@@ -130,3 +146,5 @@ or
 	<!-- takes up space so we can see the bottom content on this page -->
 	<!--div id="bottomSpacer">&nbsp;</div-->
 </div>
+
+
