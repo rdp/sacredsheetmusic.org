@@ -32,38 +32,11 @@ add to apache2.conf:
      PassengerDefaultRuby /home/rdp/installs/ree-187/bin/ruby
    </IfModule>
 
-to sites-enabled:
+to /etc/apache2/sites-enabled:
 
-   <VirtualHost *:80>
-      ServerName freeldssheetmusic.org
-      ServerAlias www.freeldssheetmusic.org
-      # !!! Be sure to point DocumentRoot to 'public'!
-      DocumentRoot /home/rdp/dev/prod_flds/public
-      <Directory /home/rdp/dev/prod_flds/public>
-         # This relaxes Apache security settings.
-         AllowOverride all
-         # MultiViews must be turned off.
-         Options -MultiViews
-         # Uncomment this if you're on Apache >= 2.4:
-         Require all granted
-      </Directory>
-   </VirtualHost>
+   ...</VirtualHost>
 
-   <VirtualHost *:80>
-      ServerName www.yourhost.com
-      # !!! Be sure to point DocumentRoot to 'public'!
-      DocumentRoot /somewhere/public    
-      <Directory /somewhere/public>
-         # This relaxes Apache security settings.
-         AllowOverride all
-         # MultiViews must be turned off.
-         Options -MultiViews
-         # Uncomment this if you're on Apache >= 2.4:
-         #Require all granted
-      </Directory>
-   </VirtualHost>
-
-(this isn't enough unfortunately see config file for full examples)
+(see config file in config dir for full examples)
 
 now create config/database.yml with some new mysql parameters, then run
 

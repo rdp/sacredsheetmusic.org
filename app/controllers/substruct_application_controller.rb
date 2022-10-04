@@ -2,7 +2,7 @@ require_dependency RAILS_ROOT + "/vendor/plugins/substruct/app/controllers/subst
 
 module SubstructApplicationController
   
-  def redirect_to_freeldssheetmusic
+  def redirect_to_sacredsheetmusic
     if ENV['RAILS_ENV'] == "production" 
       if (request.host =~ /^www/) || (request.host !~ /sacredsheetmusic.org/) # redirect all old url's...and www's...
          redirect_to "http://sacredsheetmusic.org" + request.request_uri, :status => :moved_permanently 
