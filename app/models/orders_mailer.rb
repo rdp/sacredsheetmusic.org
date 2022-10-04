@@ -10,7 +10,6 @@ class OrdersMailer
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
-    from         email_addy_from
   end
 
   def spam_composer composer_object
@@ -23,7 +22,6 @@ class OrdersMailer
     # renders a .rhtml file...
     body         :composer => composer_object
     recipients   composer_object.composer_email_if_contacted
-    from         email_addy_from
   end
 
   def setup_defaults
@@ -43,11 +41,12 @@ class OrdersMailer
     end
     subject(subjectt)
     # renders a .rhtml file...
-    body :from => email_addy_from, :email_text => email_text
+    body :email_text => email_text
     if extra_email_to.present?
       recipients [extra_email_to] # send it typically "to them" instead of just bcc'ing it "to me"
     end
-    from email_addy_from # gmail doesn't care what you say here anyway iirc...
+    from email_addy_from # gmail doesn't care what you say here anyway tho iirc...
+    # guess it sends after this method exits?
   end
 
 end
