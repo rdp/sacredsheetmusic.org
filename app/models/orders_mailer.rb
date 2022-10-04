@@ -32,8 +32,8 @@ class OrdersMailer
   end
 
   # called like... deliver_inquiry(...)...I guess... 
-  # email_addy_from is "their submitted form email addy" for questions...
-  def inquiry(subjectt, email_text, email_addy_from, extra_email_to=nil, send_copy_to_me = true)
+  # email_addy_from is "their submitted form from email addy" for questions...song comments also uses this...
+  def inquiry(subjectt, email_text, email_addy_from, email_to=nil, send_copy_to_me = true)
     setup_defaults
     @email_addy_from = email_addy_from
     if !send_copy_to_me
@@ -42,8 +42,8 @@ class OrdersMailer
     subject(subjectt)
     # renders a .rhtml file...
     body :email_text => email_text
-    if extra_email_to.present?
-      recipients [extra_email_to] # send it typically "to them" instead of just bcc'ing it "to me"
+    if email_to.present?
+      recipients [extra_email_to] # send it typically "to composer" instead of just bcc'ing it "to me"
     end
     from email_addy_from # gmail doesn't care what you say here anyway tho iirc...
     # guess it sends after this method exits?

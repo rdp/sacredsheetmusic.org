@@ -1,3 +1,5 @@
-From: sacredsheetmusic.org
+<% if @email_addy_from.present? %>
+  From <%= @email_addy_from %>
+<% end %>
 --
 <%= @email_text %>

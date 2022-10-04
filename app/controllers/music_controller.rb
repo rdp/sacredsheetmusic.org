@@ -148,7 +148,7 @@ class MusicController < StoreController
      new_hash = {}
      # extract the ones we care about
      for key in [:id, :comment, :user_name, :user_email, :user_url, :overall_rating, :difficulty_rating]
-      new_hash[key] = params[key]
+       new_hash[key] = params[key]
      end
      new_hash[:is_competition] = is_competition
      comment = Comment.new(new_hash)
@@ -161,19 +161,20 @@ class MusicController < StoreController
      flash[:notice] = 'Comment saved! Thanks for your contribution to sacred music!'
      if !comment.is_competition? || (comment.is_competition? && comment.comment.present?) # only send competition ones if it says something...non competition always send :)
        composer_emails = product.composer_tags.map{|ct| ct.composer_email_if_contacted}
-       composer_emails = [nil] if composer_emails.size == 0 # send it to me, though that's pretty freaky... :)
+       composer_emails = [nil] if composer_emails.size == 0 # bcc it to me, though that's pretty freaky... :)
        if comment.is_competition?
          subject = "Comment received from competition."
        else
          subject = "Thanks for song comment."
        end
-       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition && v.to_s != "-1" }.map{|k, v| "#{k}: #{v}"}.join("\n") + ("\nhttp://freeldssheetmusic.org/song/" + product.code)
+       content = new_hash.select{|k, v| v.present? && k != :id && k != :is_competition && v.to_s != "-1" }.map{|k, v| "#{k}: #{v}"}.join("\n") + ("\nhttp://sacredsheetmusic.org/song/" + product.code)
        for composer_email in composer_emails
          if !composer_email.present?
            subject += " Please forward!"
            content += "\n" + (product.composer_generic_contact_url).to_s # I guess for if it's the case of a composer we don't have an email for because never contacted them per se, but then they might have a "contact me" URL page?
          end
-         OrdersMailer.deliver_inquiry(subject, content, Preference.get_value('mail_username'), composer_email) # guess nil is OK for composer_email
+         # third param is "from email" , which will be nil for competition, there's no where to enter it...
+         OrdersMailer.deliver_inquiry(subject, content, new_hash[:user_email], composer_email) # guess nil is OK for composer_email
        end
      end
      if is_competition
