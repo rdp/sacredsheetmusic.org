@@ -43,7 +43,7 @@ class OrdersMailer
     # renders a .rhtml file...
     body :email_text => email_text
     if email_to.present?
-      recipients [extra_email_to] # send it typically "to composer" instead of just bcc'ing it "to me"
+      recipients [email_to] # send it typically "to composer" instead of just bcc'ing it "to me"
     end
     from email_addy_from # gmail doesn't care what you say here anyway tho iirc...
     # guess it sends after this method exits?
