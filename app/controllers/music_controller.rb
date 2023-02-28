@@ -668,6 +668,11 @@ class MusicController < StoreController
       redirect_to :action => 'index' and return false
     end
 
+    if search_term.gsub(/[\x80-\xff]/, '') != search_term
+      logger.info "rejecting search term with weird chars?? #{search_term}" # some chinese spambot once?
+      redirect_to :action => 'index' and return false
+    end
+
     if !not_a_bot
       # yes bot :)
       if params[:page].present? && params[:page].to_i > 1
