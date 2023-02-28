@@ -665,19 +665,19 @@ class MusicController < StoreController
     search_term = params[:q]
     unless search_term.present?
 #      flash[:notice] = "please enter a search query at all!" # NB this doesn't get displayed right since it's a cache...LODO fix
-      redirect_to :action => 'index' and return false
+      redirect_to '/' and return false
     end
 
     if search_term.gsub(/[\x80-\xff]/, '') != search_term
       logger.info "rejecting search term with weird chars?? #{search_term}" # some chinese spambot once?
-      redirect_to :action => 'index' and return false
+      redirect_to '/' and return false
     end
 
     if !not_a_bot
       # yes bot :)
       if params[:page].present? && params[:page].to_i > 1
          logger.info "rejecting bot with long search query!"
-         redirect_to :action => 'index' and return false # why do bots do this to me with ancient search links?
+         redirect_to '/' and return false # why do bots do this to me with ancient search links?
       end
     end
 
