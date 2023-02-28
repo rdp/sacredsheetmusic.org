@@ -669,7 +669,7 @@ class MusicController < StoreController
     end
 
     if search_term.gsub(/[\x80-\xff]/, '') != search_term
-      logger.info "rejecting search term with weird chars?? #{search_term}" # some chinese spambot once?
+      flash[:notice] = "rejecting search term with unicode chars?? #{search_term} please try again!" # some chinese spambot once?
       redirect_to '/' and return false
     end
 
