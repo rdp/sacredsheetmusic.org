@@ -20,10 +20,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_some_composers # that haven't gotten it yet if need restart from interrupted :|
-    last_that_got_spam_succeeded = "Josh Lang" # name like "abraham lincoln"
+    last_that_got_spam_succeeded = "Andrew Caceres" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
-    use = composers.select{|t| found_last ||= t.name == last_that_got_spam_succeeded; found_last} # there's no easier ruby way??
+    use = composers.select{|t| found_last ||= t.name == last_that_got_spam_succeeded; found_last} # there's no easier ruby way?? probably is
     remaining = use[1..-1] # skip first which is the last that already got it
     spam_composers_and_render use 
   end
