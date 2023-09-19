@@ -78,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_all_composers_pre
-   render :text => "now try spam_all_composers...but it needs curl installed command line??" # ??
+   render :text => "now try spam_all_composers..." # needed curl once command line???
   end
 
   def single_composer_stats
