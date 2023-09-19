@@ -20,10 +20,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_some_composers # that haven't gotten it yet if need restart from interrupted :|
-    last_that_got_it = "Josh Lang" # name like "abraham lincoln"
+    last_that_got_spam_succeeded = "Josh Lang" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
-    use = composers.select{|t| found_last ||= t.name == last_that_got_it; found_last} # there's no easy ruby way??
+    use = composers.select{|t| found_last ||= t.name == last_that_got_spam_succeeded; found_last} # there's no easier ruby way??
     remaining = use[1..-1] # skip first which is the last that already got it
     spam_composers_and_render use 
   end
@@ -78,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_all_composers_pre
-   render :text => "now try spam_all_composers..." # needed curl once command line???
+   render :text => "now try spam_all_composers...if fails don't leave in browser tab open, use spam_some_composers after modifying code..." # needed curl once command line???
   end
 
   def single_composer_stats
