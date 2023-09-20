@@ -20,7 +20,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_some_composers # that haven't gotten it yet if need restart from interrupted :|
-    last_that_got_spam_succeeded = "Andrew Caceres" # name like "abraham lincoln"
+    last_that_got_spam_succeeded = "Richard Radmacher" # name like "abraham lincoln"
     composers = Tag.find_by_name("composers").children
     found_last = false
     use = composers.select{|t| found_last ||= t.name == last_that_got_spam_succeeded; found_last} # there's no easier ruby way?? probably is
