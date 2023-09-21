@@ -228,7 +228,7 @@ class MusicController < StoreController
    true
  end
 
- def render_404_to_home string  # redirect them...
+ def render_404_with_search_field string  # redirect them...
     flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string
     redirect_to :action => :search, :q => string.gsub('-', ' '), :status => :see_other and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
  end
@@ -252,7 +252,7 @@ class MusicController < StoreController
           return false
         end
       end
-      render_404_to_home(id) && return
+      render_404_with_search_field(id) && return
     end
 
     if @product.code != id
@@ -368,10 +368,15 @@ class MusicController < StoreController
       # passenger or nginx bug, Primary%2FYouth gets translated to Primary/Youth and come in as separate tags to us at this point :|
       tag_names = [tag_names.join('/')]
     end
-    
+
+    if tag_names.length == 0 # // link (sally)
+      redirect_to '/'
+      return
+    end
+
     if tag_names.length != 1 # also occurs for any url with a '.' in it? huh? 
-      # basically this is a catch all for...any poor url these days?
-      render_404_to_home(tag_names.join(' ')) && return
+      # basically this is a catch all for...any poor/unknown url/missing image these days...
+      render_404_with_search_field(tag_names.join(' ')) && return
     end
     tag_name = tag_names[0]
     if tag_name == "Sara_Lyn_Baril"

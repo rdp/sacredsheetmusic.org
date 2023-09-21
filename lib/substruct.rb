@@ -78,6 +78,8 @@ end
   # custom routes have been applied.
   # This allows for overriding the default mapping for /home
   def self.route(map)
+
+    # note that we rewrite the host in controllers/substruct_application_controller.rb :|
     # Default / home mapping
 =begin
 #    map.connect '',
@@ -145,7 +147,7 @@ end
       :controller => 'music',
       :action     => 'render_home' # or can you pass a parameter in here...
 
-    #map.redirect "//", "/"
+    #map.connect "//", :redirect => "/" # no idea LOL
 
     # putting this last (which I'm forced to do to be able to use the others at all) forces me to do some finagling to *use* it...hmm...
     map.connect '/*tags',
