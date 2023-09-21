@@ -230,7 +230,7 @@ class MusicController < StoreController
 
  def render_404_to_home string  # redirect them...
     flash[:notice] = "Sorry, we couldn't find what you were looking for, we've been under a bit of construction so please search again! " + string
-    redirect_to :action => :search, :q => string.gsub('-', ' '), :status => 303 and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
+    redirect_to :action => :search, :q => string.gsub('-', ' '), :status => :see_other and return true # 303 is not found redirect 301 is moved permanently. this one...is messed up :) once had 404 here...which is an awful user experience...300 is multiple choices, didn't work, 303 is also "see other"?
  end
 
  public 
@@ -369,7 +369,8 @@ class MusicController < StoreController
       tag_names = [tag_names.join('/')]
     end
     
-    if tag_names.length != 1 # also occurs for any url with a '.' in it? huh? basically this is a catch all for...any poor url now?
+    if tag_names.length != 1 # also occurs for any url with a '.' in it? huh? 
+      # basically this is a catch all for...any poor url these days?
       render_404_to_home(tag_names.join(' ')) && return
     end
     tag_name = tag_names[0]
