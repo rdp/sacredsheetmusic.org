@@ -80,12 +80,12 @@ end
   def self.route(map)
     # Default / home mapping
 =begin
-    map.connect '',
+#    map.connect '',
       :controller => 'content_nodes',
       :action     => 'show_by_name',
       :name       => 'home'
 
-    map.connect '/',
+#    map.connect '/',
       :controller => 'content_nodes',
       :action     => 'show_by_name',
       :name       => 'home'
@@ -145,12 +145,14 @@ end
       :controller => 'music',
       :action     => 'render_home' # or can you pass a parameter in here...
 
+    #map.redirect "//", "/"
+
     # putting this last (which I'm forced to do to be able to use the others at all) forces me to do some finagling to *use* it...hmm...
     map.connect '/*tags',
       :controller => 'music',
       :action     => 'show_by_tags'
 
-    # For things like /about_us, etc
+    # For things like /about_us, etc, but I used show_by_tags, above, instead
     # map.connect ':name',
     #   :controller => 'content_nodes',
     #   :action     => 'show_by_name'
