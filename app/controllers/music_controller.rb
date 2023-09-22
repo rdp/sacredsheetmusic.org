@@ -370,7 +370,7 @@ class MusicController < StoreController
     end
 
     if tag_names.length == 0 # // link (sally)
-      redirect_to '/'
+      redirect_to '/', :status => :moved_permanently
       return
     end
 

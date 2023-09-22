@@ -22,7 +22,7 @@ gem: --no-rdoc --no-ri
 
 run passenger install from ree, accept its apt-get suggestions/requirements
 
-config/logrotate.conf add to bottom of /etc/logrotate.conf [I think...]
+config/logrotate.conf follow its instructions
 
 add to apache2.conf:
 
