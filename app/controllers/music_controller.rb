@@ -108,7 +108,7 @@ class MusicController < StoreController
     else
       product, comment = add_comment_helper true
       if comment
-        flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
+        flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>...you can vote on as many pieces as you want to!"
       end
     end
     redirect_to "/competition"
