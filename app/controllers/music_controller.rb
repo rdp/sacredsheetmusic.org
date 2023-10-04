@@ -111,7 +111,7 @@ class MusicController < StoreController
         flash[:notice] = "Vote/Review recorded! Thanks! Also feel free to check out our songs from <a href=/competition>other composers</a>..."
       end
     end
-    redirect_to :action => :show, :id => product.code
+    redirect_to "/competition"
   end
 
   def add_comment
