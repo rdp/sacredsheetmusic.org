@@ -382,7 +382,7 @@ class Product < Item
       end
 
       if self.downloads.size == 0 && !self.original_url.present?
-        problems << "song has no website url nor pdf uploads! Not expected I don't think..."
+        problems << "song has no website url nor pdf uploads! Not expected I don't think...did you forget to upload something, or a url, perhaps?"
       end
 
       if self.original_url.present? 
