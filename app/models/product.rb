@@ -539,7 +539,7 @@ class Product < Item
   end
 
   def self.find_by_tag_id(tag_id, order_by = 'items.name ASC')
-    tag = Tag.find(tag_id, :include => :products, :order => order_by) # including products.tags here is like 0.2s -> 2s
+    tag = Tag.find(tag_id, :include => :products, :order => order_by) # including products.tags here is like 0.2s -> 2s but show_by_tags turns around and uses the tags!
     # can't do :conditions => CONDITIONS_AVAILABLE with this? wait but order works? I think it fails only if there are no songs [items] then it blows up... :|
     tag.songs.select{|s| s.date_available < Time.now && s.price == 0}
   end
