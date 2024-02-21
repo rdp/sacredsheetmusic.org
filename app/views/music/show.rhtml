@@ -271,7 +271,7 @@ You can also <i>
           <br /> <!-- make footer look like a footer LOL -->
        <% end %>
        <% if @product.lyrics.present? %>
-          Lyrics: <%= h @product.lyrics.gsub("\n", "<br/>") %>
+          Lyrics: <%= sanitize @product.lyrics.gsub("\n", "<br/>") %>
           <br />
        <% end %>
      </div>
