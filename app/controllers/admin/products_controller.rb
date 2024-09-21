@@ -78,7 +78,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def spam_all_composers_pre
-   render :text => "now try spam_all_composers...if fails don't leave in browser tab open, use spam_some_composers after modifying code..." # needed curl once command line???
+   render :text => "now try spam_all_composers...if fails don't leave in browser tab open [close tab? does it always timeout?], use spam_some_composers after modifying code..."
   end
 
   def single_composer_stats
