@@ -3,6 +3,6 @@
 <div style="float: left; width: 700px;">
 
 <%= @content_node.content.gsub("START_COMP", Preference.competition_start_time.strftime('%b %d')).gsub(
-"END_COMP", Preference.competition_end_time.strftime('%b %d')) %>
+"END_COMP", Preference.competition_end_time.strftime('%b %d %Y')) %>
 
 </div>

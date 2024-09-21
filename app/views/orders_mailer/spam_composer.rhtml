@@ -1,21 +1,20 @@
-Dear composer, here's our yearly message and your song statistics to date, we appreciate your contribution, as do those that use your music!
+Dear composer, here's your yearly email of song statistics to date, we appreciate your contribution, as do also those that use and hear your music!
 
-Announcing our yearly "Sacred Sheet Music Competition"! We'll be hosting a competition <%= Preference.competition_start_time.strftime '%b %d' %> to <%= Preference.competition_end_time.strftime '%b %d' %>, preceding the church's submission deadline which is Nov 1 this year, if you'd also like to submit your piece there after.
-There are small cash prizes for the winners as well as the chance for valuable feedback from peers.  Also small stipend for anybody that would like to review all of them :)
+Also announcing our yearly "Sacred Sheet Music Competition"! We'll be hosting a competition <%= Preference.competition_start_time.strftime '%b %d' %> to <%= Preference.competition_end_time.strftime '%b %d %Y' %>, preceding the church's submission deadline which is Nov 1, if you'd also like to submit your piece there, after getting feedback on it.
+There are small cash prizes for the winners as well as the chance for valuable feedback from peers.  Also small stipend for anybody that would like to review all :)
 Check it out! http://sacredsheetmusic.org/about/sheet-music-competition.
 Feel free to reply to this email (ex: "keep me updated") if you'd like more announcements as we get closer this year.   Or just email me a link to your submission(s) :)
 
-We also have a facebook group for "sacred music composers" if you'd like to join:
-https://www.facebook.com/groups/380693272137804
+We also have a facebook group for "sacred music composers" if you'd like to join the group: https://www.facebook.com/groups/380693272137804
 
-And here are your statistics from the site.  Some of these numbers represent automated "spambot requests" but some of them represent real people.  So thank you again!
+And here are your statistics from the site.  Some of these numbers represent automated "spambot webcrawlers" but some of them represent real people.  So thank you again!
 Hope you have a great musical year!
 
 <%= render :partial => 'orders_mailer/composer_summary' %>
 
-You can see a more detailed list of statistics per song (of yours) here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'sacredsheetmusic.org') %>, if you're the type that loves numbers.
+You can see a more detailed list of statistics per song (of yours) here: <%= url_for(:controller => "/music", :action => :composer_all_song_stats, :id => @composer.id, :only_path => false, :host => 'sacredsheetmusic.org') %>, if you're the type that likes statistics.
 
-Thanks for your contributions to the sacred sheet music world!
+Thanks again for your contributions to the sacred in this world!
 
 ~ Packs ~
 
