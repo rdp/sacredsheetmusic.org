@@ -17,7 +17,7 @@ class Cache < ActiveRecord::Base
 
   def self.clear_local_caches_restart_all_apps!
     require 'fileutils'
-    Rails.logger.info "restarting all rails processes..."
+    Rails.logger.info "restarting this app rails processes...probably script called this"
     FileUtils.touch RAILS_ROOT + "/tmp/restart.txt"
     Rails.cache.clear # like this should matter...
   end
