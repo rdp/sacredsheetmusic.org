@@ -144,6 +144,9 @@ class MusicController < StoreController
    if is_spam_comment?
      flash[:notice] = "Spam avoidance question answer failed (the answer is sunday, you put #{params['recaptcha']}) -- hit back arrow in your browser and enter sunday and try again!"
      return [product, nil]
+   elsif session[:user] && !params[:comment].present?
+     flash[:notice] = "For peer review, please leave a comment if you can, it really helps, please try again!"
+     return [product, nil]
    else
      new_hash = {}
      # extract the ones we care about
